@@ -1,0 +1,90 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Status values: "NEW" | "CONTACTED" | "CLOSED"
+
+model ServiceEnquiry {
+  id            String   @id @default(uuid())
+  reference     String   @unique
+  serviceSlug   String
+  serviceTitle  String
+  name          String
+  company       String?
+  phone         String
+  email         String
+  emirate       String
+  projectType   String
+  preferredDate String?
+  message       String
+  sourceUrl     String
+  status        String   @default("NEW")
+  notes         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model ProductEnquiry {
+  id               String   @id @default(uuid())
+  reference        String   @unique
+  categoryCode     String
+  categoryTitle    String
+  name             String
+  company          String?
+  phone            String
+  email            String
+  quantity         String?
+  deliveryLocation String?
+  message          String
+  sourceUrl        String
+  status           String   @default("NEW")
+  notes            String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Service {
+  id            String   @id @default(uuid())
+  slug          String   @unique
+  title         String
+  summary       String
+  content       String
+  whatsIncluded String
+  processSteps  String
+  published     Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model ProductCategory {
+  id          String   @id @default(uuid())
+  code        String   @unique
+  slug        String   @unique
+  groupPrefix String
+  title       String
+  description String
+  families    String
+  image       String?
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model BlogPost {
+  id          String   @id @default(uuid())
+  slug        String   @unique
+  title       String
+  excerpt     String
+  content     String
+  author      String   @default("Vision Energy Technical Team")
+  category    String   @default("Technical Insights")
+  published   Boolean  @default(true)
+  publishedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
