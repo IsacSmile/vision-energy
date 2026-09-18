@@ -175,7 +175,7 @@ export default async function HomePage() {
 
       {/* SECTION 3: FEATURED HIGHLIGHT BAND (LIGHTNING PROTECTION & EARTHING) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden bg-gradient-to-r from-[#0B65B3]/20 via-[#0D1117] to-[#8DC63F]/20 border-2 border-gradient-brand p-8 sm:p-12 rounded-3xl shadow-2xl">
+        <div className="relative overflow-hidden bg-linear-to-r from-[#0B65B3]/20 via-[#0D1117] to-[#8DC63F]/20 border-2 border-gradient-brand p-8 sm:p-12 rounded-3xl shadow-2xl">
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
             <div className="lg:col-span-2 space-y-4">
               <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#8DC63F]/20 border border-[#8DC63F]/50 text-xs font-bold text-[#8DC63F]">

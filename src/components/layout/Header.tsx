@@ -55,7 +55,7 @@ export default function Header() {
                 href={link.href}
                 className={`px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
                   isActive
-                    ? 'text-white bg-[#0B65B3]/20 border border-[#0B65B3]/40 text-[#8DC63F]'
+                    ? 'text-[#8DC63F] bg-[#0B65B3]/20 border border-[#0B65B3]/40'
                     : 'text-[#A9B4C0] hover:text-white hover:bg-white/5'
                 }`}
               >

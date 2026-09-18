@@ -80,7 +80,7 @@ export default function RootLayout({
       <body className="bg-[#050608] text-white flex flex-col min-h-screen antialiased">
         <EnquiryModalProvider>
           <Header />
-          <main className="flex-grow">{children}</main>
+          <main className="grow">{children}</main>
           <Footer />
           <EnquiryModal />
         </EnquiryModalProvider>

@@ -10,7 +10,7 @@ export default function HomeHeroClient() {
   const { openServiceModal } = useEnquiryModal();
 
   return (
-    <section className="relative pt-12 pb-16 overflow-hidden bg-gradient-to-b from-[#0B65B3]/10 via-[#050608] to-[#050608] border-b border-[#1F2937]">
+    <section className="relative pt-12 pb-16 overflow-hidden bg-linear-to-b from-[#0B65B3]/10 via-[#050608] to-[#050608] border-b border-[#1F2937]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-8">
         {/* Top Highlight Pill */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0D1117] border border-[#8DC63F]/40 text-xs font-bold text-[#8DC63F] pill-glow">
