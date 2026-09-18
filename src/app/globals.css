@@ -78,12 +78,14 @@
 .text-gradient-brand {
   background: linear-gradient(135deg, #FFFFFF 30%, #8DC63F 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .text-gradient-blue-lime {
   background: linear-gradient(135deg, #0B65B3 0%, #8DC63F 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
