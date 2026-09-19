@@ -20,6 +20,10 @@
     --text-muted: #A9B4C0;
   }
 
+  html {
+    font-size: clamp(16px, 0.8333vw, 28px);
+  }
+
   html, body {
     max-width: 100vw;
     overflow-x: hidden;
@@ -27,7 +31,6 @@
     color: #FFFFFF;
     font-family: var(--font-poppins), sans-serif;
     -webkit-tap-highlight-color: transparent;
-    font-size: 16px;
   }
 
   /* Fluid typography and orphan prevention */

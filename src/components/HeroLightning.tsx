@@ -8,6 +8,7 @@ const Lightning = dynamic(() => import('@/components/ui/Lightning'), { ssr: fals
 export const LIGHTNING_HUE = 210; // Brand blue (hue 210)
 export const LIGHTNING_SPEED = 0.7; // Speed tuned for smooth non-strobing animation
 export const LIGHTNING_SIZE = 1;
+export const BOLT_POSITION = 0.75; // Default 0.75 (75% across hero width, valid 0.65 to 0.85)
 
 export default function HeroLightning() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -17,6 +18,7 @@ export default function HeroLightning() {
   const [lightningProps, setLightningProps] = useState({
     xOffset: -0.7,
     intensity: 1.0,
+    size: 1.0,
   });
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -36,18 +38,60 @@ export default function HeroLightning() {
       return;
     }
 
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        // Desktop (>= 1024px): right third
-        setLightningProps({ xOffset: -0.7, intensity: 1.0 });
+    const updatePosition = () => {
+      const el = containerRef.current;
+      const width = el ? el.clientWidth : window.innerWidth;
+      const height = el ? el.clientHeight : window.innerHeight;
+
+      if (width >= 1024) {
+        // Desktop (>= 1024px): compute xOffset from aspect ratio
+        const aspect = width / (height || 1);
+        let targetPos = BOLT_POSITION; // 0.75
+
+        // On very wide screens (aspect above 2.2), cap bolt position so it never sits farther than 12rem outside container's right edge
+        if (aspect > 2.2) {
+          const rootFontSize = typeof document !== 'undefined'
+            ? (parseFloat(getComputedStyle(document.documentElement).fontSize) || 16)
+            : 16;
+          // Container is centered max-w-[80rem], so container right edge is width/2 + 40rem.
+          // 12rem outside container right edge = width/2 + 40rem + 12rem = width/2 + 52rem.
+          const maxBoltX = width / 2 + 52 * rootFontSize;
+          const maxPos = maxBoltX / width;
+          if (targetPos > maxPos) {
+            targetPos = maxPos;
+          }
+        }
+
+        const calculatedXOffset = -(targetPos - 0.5) * 2 * aspect;
+        const calculatedSize = width > 2000 ? 1.15 : LIGHTNING_SIZE;
+
+        setLightningProps({
+          xOffset: calculatedXOffset,
+          intensity: 1.0,
+          size: calculatedSize,
+        });
       } else {
-        // Mobile / Tablet (< 1024px): offset -0.6 & wrapper opacity 0.5 for robust contrast
-        setLightningProps({ xOffset: -0.6, intensity: 1.0 });
+        // Mobile / Tablet (< 1024px): offset -0.6 & wrapper opacity 0.5 for contrast
+        setLightningProps({
+          xOffset: -0.6,
+          intensity: 1.0,
+          size: LIGHTNING_SIZE,
+        });
       }
     };
 
-    handleResize();
-    window.addEventListener('resize', handleResize, { passive: true });
+    updatePosition();
+
+    // Use ResizeObserver to measure hero wrapper smoothly
+    let resizeObserver: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== 'undefined' && containerRef.current) {
+      resizeObserver = new ResizeObserver(() => {
+        updatePosition();
+      });
+      resizeObserver.observe(containerRef.current);
+    } else {
+      window.addEventListener('resize', updatePosition, { passive: true });
+    }
 
     // Mount only after first paint (~250ms)
     const timer = setTimeout(() => {
@@ -70,7 +114,11 @@ export default function HeroLightning() {
     return () => {
       clearTimeout(timer);
       observer.disconnect();
-      window.removeEventListener('resize', handleResize);
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      } else {
+        window.removeEventListener('resize', updatePosition);
+      }
     };
   }, []);
 
@@ -88,7 +136,7 @@ export default function HeroLightning() {
         xOffset={lightningProps.xOffset}
         speed={LIGHTNING_SPEED}
         intensity={lightningProps.intensity}
-        size={LIGHTNING_SIZE}
+        size={lightningProps.size}
       />
     </div>
   );

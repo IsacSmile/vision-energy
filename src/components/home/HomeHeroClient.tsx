@@ -40,7 +40,7 @@ export default function HomeHeroClient() {
       />
 
       {/* Layer 5: Content (positioned at ~54% down on mobile so CTAs sit in natural thumb zone) */}
-      <div className="relative z-30 w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 my-auto mt-[6svh] lg:mt-auto py-6 sm:py-8">
+      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 my-auto mt-[6svh] lg:mt-auto py-6 sm:py-8">
         <div className="max-w-[720px] text-center lg:text-left lg:mx-0 space-y-6">
           {/* Badge Pill (Hidden below sm, shortened on sm/md, full on lg+) */}
           <div className="hidden sm:inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0D1117] border border-[#1F2937] text-xs font-semibold text-white tracking-wide shadow-lg">
@@ -63,16 +63,23 @@ export default function HomeHeroClient() {
 
           {/* H1 Heading - Desktop */}
           <h1
-            className="hidden lg:block text-[clamp(2.25rem,4.2vw,4rem)] font-semibold text-white leading-[1.1] tracking-[-0.02em] text-balance max-w-[13em]"
-            style={{ textShadow: '0 2px 14px rgba(5,6,8,0.7)' }}
+            className="hidden lg:block font-semibold text-white leading-[1.1] tracking-[-0.02em]"
+            style={{
+              fontSize: 'clamp(2.25rem, 3.6vw, 5.5rem)',
+              textShadow: '0 2px 14px rgba(5,6,8,0.7)',
+            }}
           >
-            Innovation Engineered for Performance
+            <span className="block">Innovation Engineered</span>
+            <span className="block">for Performance</span>
           </h1>
 
           {/* Paragraph (24px gap mt-6 on desktop, 16px text-base 1.6 leading on mobile, 52ch max-width, 3 lines) */}
           <p
-            className="mt-6 text-base lg:text-lg text-white/85 font-normal leading-[1.6] lg:leading-[1.7] max-w-[52ch] mx-auto lg:mx-0 text-center lg:text-left"
-            style={{ textShadow: '0 2px 14px rgba(5,6,8,0.7)' }}
+            className="mt-6 text-white/85 font-normal leading-[1.6] lg:leading-[1.7] max-w-[52ch] mx-auto lg:mx-0 text-center lg:text-left"
+            style={{
+              fontSize: 'clamp(1.125rem, 1.25vw, 1.75rem)',
+              textShadow: '0 2px 14px rgba(5,6,8,0.7)',
+            }}
           >
             We deliver reliable, sustainable solutions through engineering expertise, advanced technology, and technical excellence.
           </p>
