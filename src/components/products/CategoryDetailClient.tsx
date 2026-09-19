@@ -74,6 +74,33 @@ export default function CategoryDetailClient({ category, relatedCategories = [] 
             <span>{expandedDesc ? 'Read less' : 'Read more'}</span>
             {expandedDesc ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
           </button>
+
+          {/* Inline CTA Block (Near Top) */}
+          <div className="bg-[#050608] border border-[#0B65B3]/40 rounded-2xl p-5 space-y-4 text-center mt-4">
+            <h3 className="text-base font-bold text-white">Require Pricing or Submittals for [{category.code}]?</h3>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a
+                href={`tel:${dictionary.company.primaryPhone}`}
+                className="w-full sm:w-auto h-12 min-h-[48px] px-6 bg-white text-[#050608] font-bold text-sm rounded-xl flex items-center justify-center gap-2 active-press"
+              >
+                <Phone className="w-4 h-4 text-[#0B65B3]" />
+                <span>Call Now</span>
+              </a>
+
+              <button
+                onClick={() =>
+                  openProductModal({
+                    categoryCode: category.code,
+                    categoryTitle: category.title,
+                  })
+                }
+                className="w-full sm:w-auto h-12 min-h-[48px] px-6 bg-gradient-brand text-white font-bold text-sm rounded-xl flex items-center justify-center gap-2 active-press"
+              >
+                <MessageSquare className="w-4 h-4" />
+                <span>Enquire About This Product</span>
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* Product Families Wrapping Chips */}

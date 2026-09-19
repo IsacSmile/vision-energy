@@ -148,8 +148,16 @@ export default function Header() {
             </a>
           </div>
 
-          {/* Mobile Hamburger Button (44x44px, solid bg rgba(13,17,23,0.9), 1px border rgba(255,255,255,0.12), white icon) */}
-          <div className="flex lg:hidden">
+          {/* Mobile Actions: Call Button & Hamburger Button */}
+          <div className="flex lg:hidden items-center gap-2">
+            <a
+              href={`tel:${dictionary.company.primaryPhone}`}
+              className="w-[44px] h-[44px] flex items-center justify-center rounded-xl text-white bg-[#0D1117]/90 border border-white/12 hover:bg-[#0D1117] focus-visible:ring-2 focus-visible:ring-[#8DC63F] active-press shadow-md"
+              aria-label="Call Vision Energy"
+            >
+              <Phone className="w-5 h-5 text-[#8DC63F]" />
+            </a>
+
             <button
               onClick={() => setMobileMenuOpen(true)}
               className="w-[44px] h-[44px] flex items-center justify-center rounded-xl text-white bg-[#0D1117]/90 border border-white/12 hover:bg-[#0D1117] focus-visible:ring-2 focus-visible:ring-[#8DC63F] active-press shadow-md"

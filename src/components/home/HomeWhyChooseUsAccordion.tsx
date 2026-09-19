@@ -56,21 +56,21 @@ export default function HomeWhyChooseUsAccordion() {
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-      <div className="text-center space-y-2 max-w-2xl mx-auto">
+    <section className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 space-y-8">
+      <div className="text-center space-y-4 max-w-2xl mx-auto">
         <span className="text-xs font-bold text-[#0B65B3] uppercase tracking-widest bg-[#0B65B3]/10 border border-[#0B65B3]/30 px-3.5 py-1 rounded-full inline-block">
           Distributor Strengths
         </span>
-        <h2 className="text-[clamp(1.5rem,6vw,2.5rem)] font-bold text-white tracking-tight">
+        <h2 className="text-[clamp(1.5rem,6vw,2.5rem)] font-bold text-white tracking-tight leading-[1.2]">
           Why Partner with Vision Energy International
         </h2>
-        <p className="text-sm text-[#A9B4C0]">
+        <p className="text-sm text-[#A9B4C0] leading-[1.65]">
           Authorized trading distributor committed to quality assurance and technical excellence.
         </p>
       </div>
 
       {/* 2-Column Compact Grid with Interactive Inline Accordion Expansion */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
         {strengths.map((item) => {
           const Icon = item.icon;
           const isExpanded = expandedId === item.id;
@@ -79,7 +79,7 @@ export default function HomeWhyChooseUsAccordion() {
             <div
               key={item.id}
               onClick={() => toggleExpand(item.id)}
-              className={`bg-[#0D1117] border border-white/10 p-4 sm:p-6 rounded-xl space-y-2 cursor-pointer transition-all active-press ${
+              className={`bg-[#0D1117] border border-white/10 p-5 sm:p-6 rounded-xl space-y-3 cursor-pointer transition-all active-press ${
                 isExpanded ? 'border-[#8DC63F] bg-[#161B22]' : 'hover:border-[#0B65B3]'
               }`}
             >
@@ -92,13 +92,13 @@ export default function HomeWhyChooseUsAccordion() {
                 />
               </div>
 
-              <h3 className="text-sm sm:text-lg font-bold text-white leading-snug">
+              <h3 className="text-sm sm:text-lg font-bold text-white leading-[1.2]">
                 {item.title}
               </h3>
 
               {/* Desktop always visible, Mobile expandable inline */}
               <p
-                className={`text-xs text-[#A9B4C0] leading-relaxed ${
+                className={`text-xs text-[#A9B4C0] leading-[1.65] ${
                   isExpanded ? 'block' : 'hidden sm:block'
                 }`}
               >

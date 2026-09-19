@@ -66,6 +66,33 @@ export default function ServiceDetailClient({ service }: ServiceDetailProps) {
           <p className="text-sm sm:text-base text-gray-300 leading-relaxed font-sans border-l-4 border-[#8DC63F] pl-4">
             {service.summary}
           </p>
+
+          {/* Inline CTA Block (Near Top) */}
+          <div className="bg-[#050608] border border-[#8DC63F]/40 rounded-2xl p-5 space-y-4 text-center mt-4">
+            <h3 className="text-base font-bold text-white">Need Urgent Service or Engineering Quote?</h3>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a
+                href={`tel:${dictionary.company.primaryPhone}`}
+                className="w-full sm:w-auto h-12 min-h-[48px] px-6 bg-white text-[#050608] font-bold text-sm rounded-xl flex items-center justify-center gap-2 active-press"
+              >
+                <Phone className="w-4 h-4 text-[#0B65B3]" />
+                <span>Call Now</span>
+              </a>
+
+              <button
+                onClick={() =>
+                  openServiceModal({
+                    serviceSlug: service.slug,
+                    serviceTitle: service.title,
+                  })
+                }
+                className="w-full sm:w-auto h-12 min-h-[48px] px-6 bg-gradient-brand text-white font-bold text-sm rounded-xl flex items-center justify-center gap-2 active-press"
+              >
+                <Calendar className="w-4 h-4" />
+                <span>Book Service</span>
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* Overview & Standards */}

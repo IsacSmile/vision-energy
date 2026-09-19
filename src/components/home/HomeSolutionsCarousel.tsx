@@ -62,15 +62,15 @@ export default function HomeSolutionsCarousel() {
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-      <div className="text-center space-y-2 max-w-2xl mx-auto">
+    <section className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 space-y-8">
+      <div className="text-center space-y-4 max-w-2xl mx-auto">
         <span className="text-xs font-bold text-[#8DC63F] uppercase tracking-widest bg-[#8DC63F]/10 border border-[#8DC63F]/30 px-3.5 py-1 rounded-full inline-block">
           Engineering Capabilities
         </span>
-        <h2 className="text-[clamp(1.5rem,6vw,2.5rem)] font-bold text-white tracking-tight">
+        <h2 className="text-[clamp(1.5rem,6vw,2.5rem)] font-bold text-white tracking-tight leading-[1.2]">
           Our Five Core Engineering Solution Pillars
         </h2>
-        <p className="text-sm text-[#A9B4C0]">
+        <p className="text-sm text-[#A9B4C0] leading-[1.65]">
           Comprehensive material supply, technical consultation, and project support across UAE.
         </p>
       </div>
@@ -78,7 +78,7 @@ export default function HomeSolutionsCarousel() {
       {/* Mobile Swipe Carousel (< sm) & Desktop Grid (sm+) */}
       <div
         onScroll={handleScroll}
-        className="flex overflow-x-auto no-scrollbar scroll-snap-x gap-4 py-2 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:overflow-visible"
+        className="flex overflow-x-auto no-scrollbar scroll-snap-x gap-4 py-2 px-1 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:overflow-visible"
       >
         {pillars.map((item, idx) => {
           const Icon = item.icon;

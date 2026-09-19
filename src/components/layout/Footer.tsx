@@ -12,8 +12,8 @@ export default function Footer() {
   const [noticeOpen, setNoticeOpen] = useState(false);
 
   return (
-    <footer className="bg-[#050608] border-t border-white/10 text-white pt-12 pb-12 pb-safe">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+    <footer className="bg-[#050608] border-t border-white/10 text-white pt-16 pb-[calc(24px+env(safe-area-inset-bottom))]">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 space-y-8">
         
         {/* Brand Header & UAE Locations Chips */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-8 border-b border-white/10">
