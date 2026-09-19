@@ -33,10 +33,12 @@ export default async function HomePage() {
     take: 3,
   });
 
+  const productCategoryCount = await db.productCategory.count();
+
   return (
     <div className="space-y-12 sm:space-y-20 pb-16">
       {/* SECTION 1: HERO SECTION */}
-      <HomeHeroClient />
+      <HomeHeroClient productCategoryCount={productCategoryCount} />
 
       {/* SECTION 2: FIVE SOLUTION BLOCKS (Mobile Swipe Carousel / Desktop Grid) */}
       <HomeSolutionsCarousel />

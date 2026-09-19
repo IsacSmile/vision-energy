@@ -6,13 +6,26 @@ import HeroLightning from '@/components/HeroLightning';
 import { useEnquiryModal } from '@/components/modals/EnquiryModalProvider';
 import { ArrowRight, ShieldCheck } from 'lucide-react';
 
-export default function HomeHeroClient() {
+interface HomeHeroClientProps {
+  productCategoryCount?: number;
+}
+
+export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientProps) {
   const { openServiceModal } = useEnquiryModal();
+
+  const chipLinks = [
+    { label: 'Lightning Protection', href: '/products/lp-01-conventional-lightning-protection-systems', isPrimary: true },
+    { label: 'Earthing', href: '/products/es-01-earth-rods-couplers-accessories', isPrimary: false },
+    { label: 'Surge Protection', href: '/products/sp-01-surge-protection-devices-spd', isPrimary: false },
+    { label: 'Electrical', href: '/products', isPrimary: false },
+    { label: 'Mechanical', href: '/products', isPrimary: false },
+    { label: 'Solar', href: '/products', isPrimary: false },
+  ];
 
   return (
     <section
-      className="relative w-full min-h-screen flex flex-col items-center justify-between pt-[var(--mobile-header-h,56px)] lg:pt-[var(--header-h,80px)] pb-6 overflow-hidden bg-[#050608]"
-      style={{ minHeight: '100svh' }}
+      className="relative w-full h-[100svh] min-h-[100svh] flex flex-col justify-between overflow-hidden bg-[#050608] pt-[var(--mobile-header-h,56px)] lg:pt-[var(--header-h,80px)]"
+      style={{ minHeight: '100svh', height: '100svh' }}
     >
       {/* Layer 1: Solid #050608 background */}
       <div className="absolute inset-0 bg-[#050608] pointer-events-none" />
@@ -22,11 +35,11 @@ export default function HomeHeroClient() {
         <HeroLightning />
       </div>
 
-      {/* Layer 3: Text scrim layer (near-black, no blur/backdrop-filter) */}
+      {/* Layer 3: Text scrim layer (near-black, behind text only) */}
       <div
         className="absolute inset-0 pointer-events-none z-20"
         style={{
-          background: 'radial-gradient(ellipse 95% 50% at 50% 55%, rgba(5,6,8,0.88) 0%, rgba(5,6,8,0.65) 55%, rgba(5,6,8,0) 100%)',
+          background: 'radial-gradient(ellipse 95% 50% at 50% 45%, rgba(5,6,8,0.88) 0%, rgba(5,6,8,0.65) 55%, rgba(5,6,8,0) 100%)',
         }}
       />
 
@@ -39,9 +52,9 @@ export default function HomeHeroClient() {
         }}
       />
 
-      {/* Layer 5: Content (positioned at ~54% down on mobile so CTAs sit in natural thumb zone) */}
-      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 my-auto mt-[6svh] lg:mt-auto py-6 sm:py-8">
-        <div className="max-w-[720px] text-center lg:text-left lg:mx-0 space-y-6">
+      {/* Layer 5: Main Content (Vertically Centered between Header & Bottom Strip on mobile) */}
+      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 my-auto flex-1 flex flex-col justify-center py-2 sm:py-8">
+        <div className="max-w-[720px] text-center lg:text-left lg:mx-0 space-y-4 sm:space-y-6">
           {/* Badge Pill (Hidden below sm, shortened on sm/md, full on lg+) */}
           <div className="hidden sm:inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0D1117] border border-[#1F2937] text-xs font-semibold text-white tracking-wide shadow-lg">
             <ShieldCheck className="w-4 h-4 text-[#8DC63F]" />
@@ -73,9 +86,9 @@ export default function HomeHeroClient() {
             <span className="block">for Performance</span>
           </h1>
 
-          {/* Paragraph (24px gap mt-6 on desktop, 16px text-base 1.6 leading on mobile, 52ch max-width, 3 lines) */}
+          {/* Paragraph */}
           <p
-            className="mt-6 text-white/85 font-normal leading-[1.6] lg:leading-[1.7] max-w-[52ch] mx-auto lg:mx-0 text-center lg:text-left"
+            className="mt-4 sm:mt-6 text-white/85 font-normal leading-[1.6] lg:leading-[1.7] max-w-[52ch] mx-auto lg:mx-0 text-center lg:text-left"
             style={{
               fontSize: 'clamp(1.125rem, 1.25vw, 1.75rem)',
               textShadow: '0 2px 14px rgba(5,6,8,0.7)',
@@ -84,8 +97,8 @@ export default function HomeHeroClient() {
             We deliver reliable, sustainable solutions through engineering expertise, advanced technology, and technical excellence.
           </p>
 
-          {/* Action Buttons (Mobile: ONE primary full-width 52px button + text link below; Desktop: side-by-side pills) */}
-          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 w-full max-w-[360px] sm:max-w-none mx-auto lg:mx-0">
+          {/* Action Buttons (32px padding-top on mobile, 16px gap between buttons) */}
+          <div className="pt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 w-full max-w-[360px] sm:max-w-none mx-auto lg:mx-0">
             <Link
               href="/products"
               className="w-full sm:w-auto h-[52px] px-8 bg-white text-[#050608] font-bold text-base sm:text-sm rounded-full hover:bg-gray-100 transition-all flex items-center justify-center gap-2 pill-glow shadow-xl active-press"
@@ -107,7 +120,7 @@ export default function HomeHeroClient() {
               <span>Book a Service</span>
             </button>
 
-            {/* Mobile secondary CTA text link with arrow (min-height 48px, min-width 48px, centered) */}
+            {/* Mobile secondary CTA text link with arrow */}
             <button
               onClick={() =>
                 openServiceModal({
@@ -120,6 +133,54 @@ export default function HomeHeroClient() {
               <span>Book a Service</span>
               <ArrowRight className="w-4 h-4 text-[#8DC63F]" />
             </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Layer 6: Mobile Quick Facts & Category Chips Strip (Mobile only below 1024px) */}
+      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-5 pb-[max(20px,env(safe-area-inset-bottom))] lg:hidden animate-fade-up-strip">
+        {/* Quick Fact Tiles (3 equal tiles in a row) */}
+        <div className={`grid ${productCategoryCount && productCategoryCount > 0 ? 'grid-cols-3' : 'grid-cols-2'} gap-3 w-full mb-3`}>
+          {/* Tile A: 2018 Established */}
+          <div className="h-[88px] max-h-[88px] [media(max-height:640px)]:h-[72px] bg-[#0D1117]/85 border border-white/[0.08] rounded-xl flex flex-col items-center justify-center text-center p-2">
+            <span className="text-[20px] [media(max-height:640px)]:text-[16px] font-semibold text-white leading-tight">2018</span>
+            <span className="text-[12px] [media(max-height:640px)]:text-[10px] text-[#A9B4C0] uppercase tracking-[0.04em] font-medium leading-tight mt-0.5">Established</span>
+          </div>
+
+          {/* Tile B: 3 UAE Locations */}
+          <div className="h-[88px] max-h-[88px] [media(max-height:640px)]:h-[72px] bg-[#0D1117]/85 border border-white/[0.08] rounded-xl flex flex-col items-center justify-center text-center p-2">
+            <span className="text-[20px] [media(max-height:640px)]:text-[16px] font-semibold text-white leading-tight">3</span>
+            <span className="text-[12px] [media(max-height:640px)]:text-[10px] text-[#A9B4C0] uppercase tracking-[0.04em] font-medium leading-tight mt-0.5">UAE Locations</span>
+          </div>
+
+          {/* Tile C: Product Categories (only if database count is available) */}
+          {Boolean(productCategoryCount && productCategoryCount > 0) && (
+            <div className="h-[88px] max-h-[88px] [media(max-height:640px)]:h-[72px] bg-[#0D1117]/85 border border-white/[0.08] rounded-xl flex flex-col items-center justify-center text-center p-2 overflow-hidden">
+              <span className="text-[20px] [media(max-height:640px)]:text-[16px] font-semibold text-white leading-tight">{productCategoryCount}</span>
+              <span className="text-[12px] [media(max-height:640px)]:text-[10px] text-[#A9B4C0] uppercase tracking-[0.04em] font-medium leading-tight mt-0.5 truncate w-full">Product Categories</span>
+            </div>
+          )}
+        </div>
+
+        {/* Explore Label & Scrollable Chips Row */}
+        <div className="w-full [media(max-height:640px)]:hidden">
+          <span className="text-[12px] uppercase text-[#A9B4C0] font-medium tracking-[0.04em] block mb-1 text-left">
+            Explore
+          </span>
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar snap-x snap-mandatory py-1 w-full">
+            {chipLinks.map((chip) => (
+              <Link
+                key={chip.label}
+                href={chip.href}
+                className={`h-[40px] px-4 rounded-full text-[14px] font-medium shrink-0 flex items-center justify-center border transition-colors snap-start active-press ${
+                  chip.isPrimary
+                    ? 'text-[#8DC63F] border-[#8DC63F] bg-transparent'
+                    : 'text-white border-white/15 bg-transparent hover:border-white/30'
+                }`}
+              >
+                {chip.label}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
