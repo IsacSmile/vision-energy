@@ -247,37 +247,36 @@ export default function Header() {
         aria-label="Mobile Navigation Menu"
         aria-hidden={!mobileMenuOpen}
         inert={!mobileMenuOpen ? true : undefined}
-        className={`fixed inset-0 z-40 w-screen h-[100svh] min-h-[100vh] bg-[#050608] lg:hidden flex flex-col justify-between overflow-y-auto px-6 pt-[calc(var(--mobile-header-h,56px)+16px)] pb-[max(24px,env(safe-area-inset-bottom))] transition-all duration-320 ${
+        className={`fixed inset-0 z-40 w-screen h-[100svh] min-h-[100vh] bg-[#050608] lg:hidden flex flex-col justify-between overflow-y-auto px-6 pt-[calc(var(--mobile-header-h,56px)+20px)] pb-[max(24px,env(safe-area-inset-bottom))] transition-all duration-320 ${
           mobileMenuOpen
             ? 'opacity-100 visible pointer-events-auto translate-y-0 ease-[cubic-bezier(0.22,1,0.36,1)]'
             : 'opacity-0 invisible pointer-events-none -translate-y-4 ease-in duration-220'
         }`}
       >
         {/* Nav Links List */}
-        <nav className="w-full flex flex-col" aria-label="Mobile Overlay Navigation">
+        <nav className="w-full flex flex-col space-y-1 my-auto py-4" aria-label="Mobile Overlay Navigation">
           {navLinks.map((link, idx) => {
             const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
-            const isLast = idx === navLinks.length - 1;
 
             return (
               <div
                 key={link.href}
                 style={{
-                  transitionDelay: mobileMenuOpen ? `${80 + idx * 50}ms` : '0ms',
+                  transitionDelay: mobileMenuOpen ? `${60 + idx * 40}ms` : '0ms',
                 }}
                 className={`w-full transition-all duration-300 ${
                   mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
-                } ${!isLast ? 'border-b border-white/[0.08]' : ''}`}
+                }`}
               >
                 <Link
                   ref={idx === 0 ? firstLinkRef : undefined}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`w-full min-h-[56px] flex items-center gap-3 text-[28px] font-medium leading-[1.2] text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded-lg py-2 ${
-                    isActive ? 'text-[#8DC63F]' : 'text-white hover:text-[#8DC63F]'
+                  className={`w-full py-2.5 flex items-center gap-3 text-[26px] font-medium leading-tight text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded-lg ${
+                    isActive ? 'text-[#8DC63F]' : 'text-white/90 hover:text-white'
                   }`}
                 >
-                  {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] shrink-0" />}
+                  {isActive && <span className="w-1.5 h-6 rounded-full bg-[#8DC63F] shrink-0" />}
                   <span>{link.label}</span>
                 </Link>
               </div>
@@ -285,37 +284,40 @@ export default function Header() {
           })}
         </nav>
 
-        {/* Pinned Bottom Buttons & Office Line */}
+        {/* Pinned Bottom Actions & Office Coverage */}
         <div
           style={{
-            transitionDelay: mobileMenuOpen ? `${80 + navLinks.length * 50}ms` : '0ms',
+            transitionDelay: mobileMenuOpen ? `${60 + navLinks.length * 40}ms` : '0ms',
           }}
-          className={`w-full mt-auto pt-4 space-y-2 transition-all duration-300 ${
+          className={`w-full mt-auto pt-4 space-y-3 transition-all duration-300 ${
             mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
           }`}
         >
-          {/* Button 1: White Pill */}
-          <a
-            href={`tel:${dictionary.company.primaryPhone}`}
-            onClick={() => setMobileMenuOpen(false)}
-            className="w-full h-[44px] min-h-[44px] rounded-full bg-white text-[#050608] font-bold text-sm flex items-center justify-center gap-2 active-press shadow-md focus-visible:ring-2 focus-visible:ring-[#8DC63F]"
-          >
-            <Phone className="w-4 h-4 text-[#0B65B3]" />
-            <span>Call Us: {dictionary.company.primaryPhone}</span>
-          </a>
+          {/* Side-by-Side Action Bar */}
+          <div className="grid grid-cols-2 gap-3 w-full">
+            {/* Button 1: Call Us (Dark Glass) */}
+            <a
+              href={`tel:${dictionary.company.primaryPhone}`}
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full h-[48px] rounded-full bg-[#0D1117] border border-white/15 text-white font-semibold text-sm flex items-center justify-center gap-2 active-press focus-visible:ring-2 focus-visible:ring-[#8DC63F]"
+            >
+              <Phone className="w-4 h-4 text-[#8DC63F]" />
+              <span>Call Us</span>
+            </a>
 
-          {/* Button 2: Gradient Blue-to-Lime Pill */}
-          <button
-            onClick={handleMobileEnquiry}
-            className="w-full h-[44px] min-h-[44px] rounded-full bg-gradient-brand text-white font-bold text-sm flex items-center justify-center gap-2 active-press shadow-md focus-visible:ring-2 focus-visible:ring-[#8DC63F]"
-          >
-            <Send className="w-4 h-4 text-white" />
-            <span>Enquire</span>
-          </button>
+            {/* Button 2: Enquire Now (Lime Accent Pill) */}
+            <button
+              onClick={handleMobileEnquiry}
+              className="w-full h-[48px] rounded-full bg-[#8DC63F] text-[#050608] font-bold text-sm flex items-center justify-center gap-2 active-press shadow-lg focus-visible:ring-2 focus-visible:ring-[#8DC63F]"
+            >
+              <Send className="w-4 h-4 text-[#050608]" />
+              <span>Enquire</span>
+            </button>
+          </div>
 
           {/* Muted Office Coverage Line */}
-          <p className="text-xs text-[#A9B4C0] text-center font-normal block pt-1">
-            Abu Dhabi | Dubai | Ras Al Khaimah
+          <p className="text-[11px] text-[#A9B4C0] text-center font-medium uppercase tracking-widest block pt-1">
+            Abu Dhabi • Dubai • Ras Al Khaimah
           </p>
         </div>
       </div>
