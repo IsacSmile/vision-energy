@@ -187,34 +187,6 @@ export default async function HomePage() {
           ))}
         </div>
       </section>
-
-      {/* SECTION 7: FINAL CTA BAND (Short heading + 2 full-width buttons on mobile) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-gradient-brand p-6 sm:p-12 rounded-2xl sm:rounded-3xl text-center space-y-6 shadow-2xl">
-          <h2 className="text-[clamp(1.5rem,6vw,2.5rem)] font-extrabold text-white">
-            Discuss Your Product Requirements
-          </h2>
-          <p className="text-xs sm:text-sm text-gray-100 max-w-2xl mx-auto leading-relaxed">
-            Contact our engineering sales team in Abu Dhabi, Dubai, or Ras Al Khaimah for immediate product availability and BOQ support.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-            <a
-              href={`tel:${dictionary.company.primaryPhone}`}
-              className="w-full sm:w-auto h-12 px-8 bg-white text-[#050608] font-bold text-sm rounded-full hover:bg-gray-100 transition-all flex items-center justify-center gap-2 pill-glow active-press"
-            >
-              <Phone className="w-4 h-4 text-[#0B65B3]" />
-              <span>Call: {dictionary.company.primaryPhone}</span>
-            </a>
-            <Link
-              href="/contact"
-              className="w-full sm:w-auto h-12 px-8 bg-[#050608] border border-white/30 text-white font-bold text-sm rounded-full hover:bg-black/60 transition-all flex items-center justify-center gap-2 active-press"
-            >
-              <Send className="w-4 h-4 text-[#8DC63F]" />
-              <span>Submit General Enquiry</span>
-            </Link>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
