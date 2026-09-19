@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { useEnquiryModal } from '@/components/modals/EnquiryModalProvider';
 import Reveal from '@/components/ui/Reveal';
+import LightningButton from '@/components/ui/LightningButton';
 
 export interface CategoryData {
   id: string;
@@ -505,12 +506,9 @@ export default function CatalogueIndex({
 
             {/* View All Products Primary Pill Button */}
             <div className="pt-4 text-center">
-              <Link
-                href="/products"
-                className="w-full max-w-[360px] mx-auto h-[52px] rounded-full bg-white text-[#050608] font-semibold text-base flex items-center justify-center hover:bg-white/90 active:scale-[0.98] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] shadow-lg"
-              >
+              <LightningButton variant="primary" size="md" href="/products" fullWidth>
                 View all products
-              </Link>
+              </LightningButton>
             </div>
           </div>
         </>

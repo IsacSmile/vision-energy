@@ -5,6 +5,7 @@ import Link from 'next/link';
 import HeroLightning from '@/components/HeroLightning';
 import { useEnquiryModal } from '@/components/modals/EnquiryModalProvider';
 import { ArrowRight, ShieldCheck } from 'lucide-react';
+import LightningButton from '@/components/ui/LightningButton';
 
 interface HomeHeroClientProps {
   productCategoryCount?: number;
@@ -100,26 +101,32 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
 
           {/* Action Buttons (32px padding-top on mobile, 16px gap between buttons) */}
           <div className="pt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 w-full max-w-[360px] sm:max-w-none mx-auto lg:mx-0">
-            <Link
+            <LightningButton
+              variant="primary"
+              size="lg"
               href="/products"
-              className="w-full sm:w-auto h-[52px] px-8 bg-white text-[#050608] font-bold text-base sm:text-sm rounded-full hover:bg-gray-100 transition-all flex items-center justify-center gap-2 pill-glow shadow-xl active-press"
+              iconRight={<ArrowRight className="w-4 h-4" />}
+              fullWidth
+              className="sm:w-auto"
             >
-              <span>Explore Products</span>
-              <ArrowRight className="w-4 h-4 text-[#0B65B3]" />
-            </Link>
+              Explore Products
+            </LightningButton>
 
             {/* Desktop second button (dark glass pill) */}
-            <button
-              onClick={() =>
-                openServiceModal({
-                  serviceSlug: 'general-service',
-                  serviceTitle: 'General Technical Service Booking',
-                })
-              }
-              className="hidden sm:flex h-[52px] px-8 bg-[#0D1117] border border-[#1F2937] hover:border-[#8DC63F] text-white font-bold text-sm rounded-full transition-all items-center justify-center gap-2 blue-glow shadow-xl active-press"
-            >
-              <span>Book a Service</span>
-            </button>
+            <div className="hidden sm:block">
+              <LightningButton
+                variant="secondary"
+                size="lg"
+                onClick={() =>
+                  openServiceModal({
+                    serviceSlug: 'general-service',
+                    serviceTitle: 'General Technical Service Booking',
+                  })
+                }
+              >
+                Book a Service
+              </LightningButton>
+            </div>
 
             {/* Mobile secondary CTA text link with arrow */}
             <button

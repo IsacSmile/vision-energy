@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 import { useEnquiryModal } from '@/components/modals/EnquiryModalProvider';
 import { dictionary } from '@/lib/dictionary';
 import { Phone, Send } from 'lucide-react';
+import LightningButton from '@/components/ui/LightningButton';
 
 export default function Header() {
   const pathname = usePathname();
@@ -187,14 +188,15 @@ export default function Header() {
 
           {/* Desktop Action Button */}
           <div className="hidden lg:flex items-center gap-3">
-            <a
+            <LightningButton
+              variant="primary"
+              size="md"
               href={`tel:${dictionary.company.primaryPhone}`}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-[#050608] font-bold text-sm hover:bg-gray-100 transition-all pill-glow active-press"
+              iconLeft={<Phone className="w-4 h-4 text-[#0B65B3]" />}
               id="header-call-button"
             >
-              <Phone className="w-4 h-4 text-[#0B65B3]" />
-              <span>{dictionary.nav.callNow}</span>
-            </a>
+              {dictionary.nav.callNow}
+            </LightningButton>
           </div>
 
           {/* Mobile Actions: Call Icon Button & Single Animated Toggle Button (44x44px) */}
@@ -295,24 +297,28 @@ export default function Header() {
         >
           {/* Side-by-Side Action Bar */}
           <div className="grid grid-cols-2 gap-3 w-full">
-            {/* Button 1: Call Us (Dark Glass) */}
-            <a
+            {/* Button 1: Call Us (Secondary Variant) */}
+            <LightningButton
+              variant="secondary"
+              size="md"
               href={`tel:${dictionary.company.primaryPhone}`}
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full h-[48px] rounded-full bg-[#0D1117] border border-white/15 text-white font-semibold text-sm flex items-center justify-center gap-2 active-press focus-visible:ring-2 focus-visible:ring-[#8DC63F]"
+              iconLeft={<Phone className="w-4 h-4 text-[#8DC63F]" />}
+              fullWidth
             >
-              <Phone className="w-4 h-4 text-[#8DC63F]" />
-              <span>Call Us</span>
-            </a>
+              Call Us
+            </LightningButton>
 
-            {/* Button 2: Enquire Now (Lime Accent Pill) */}
-            <button
+            {/* Button 2: Enquire (Primary Variant) */}
+            <LightningButton
+              variant="primary"
+              size="md"
               onClick={handleMobileEnquiry}
-              className="w-full h-[48px] rounded-full bg-[#8DC63F] text-[#050608] font-bold text-sm flex items-center justify-center gap-2 active-press shadow-lg focus-visible:ring-2 focus-visible:ring-[#8DC63F]"
+              iconLeft={<Send className="w-4 h-4" />}
+              fullWidth
             >
-              <Send className="w-4 h-4 text-[#050608]" />
-              <span>Enquire</span>
-            </button>
+              Enquire
+            </LightningButton>
           </div>
 
           {/* Muted Office Coverage Line */}

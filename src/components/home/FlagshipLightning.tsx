@@ -8,6 +8,7 @@ import Reveal from '@/components/ui/Reveal';
 import Chip from '@/components/ui/Chip';
 import ProtectionDiagram from './ProtectionDiagram';
 import { useEnquiryModal } from '@/components/modals/EnquiryModalProvider';
+import LightningButton from '@/components/ui/LightningButton';
 
 const SAFETY_TILES = [
   {
@@ -176,21 +177,24 @@ export default function FlagshipLightning() {
             <div className="space-y-4 pt-2">
               <div className="flex flex-col gap-4 w-full max-w-[420px]">
                 {/* Primary White Pill Button */}
-                <Link
+                <LightningButton
+                  variant="primary"
+                  size="md"
                   href="/products?codes=LP-01,LP-02,LP-03,LP-04,ER-01,ER-02,ER-03,ER-04"
-                  className="w-full h-[52px] px-6 rounded-full bg-white text-[#050608] font-bold text-sm flex items-center justify-center gap-2 hover:bg-gray-100 transition-all pill-glow active-press shadow-lg text-center whitespace-nowrap"
+                  fullWidth
                 >
-                  <span>Explore Lightning Protection Products</span>
-                </Link>
+                  Explore Lightning Protection Products
+                </LightningButton>
 
                 {/* Secondary Dark Glass Pill Button */}
-                <button
-                  type="button"
+                <LightningButton
+                  variant="secondary"
+                  size="md"
                   onClick={handleBookInstallation}
-                  className="w-full h-[52px] px-6 rounded-full bg-[#0D1117] border border-white/15 text-white font-semibold text-sm flex items-center justify-center gap-2 hover:bg-white/10 transition-all active-press text-center whitespace-nowrap"
+                  fullWidth
                 >
-                  <span>Book Installation</span>
-                </button>
+                  Book Installation
+                </LightningButton>
               </div>
 
               {/* Call Text Link */}

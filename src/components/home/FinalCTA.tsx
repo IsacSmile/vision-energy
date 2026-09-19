@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Phone, ArrowRight, ArrowUpRight, Copy, Check } from 'lucide-react';
 import { useEnquiryModal } from '@/components/modals/EnquiryModalProvider';
 import Reveal from '@/components/ui/Reveal';
+import LightningButton from '@/components/ui/LightningButton';
 
 export default function FinalCTA() {
   const { openProductModal } = useEnquiryModal();
@@ -125,23 +126,28 @@ export default function FinalCTA() {
             <Reveal staggerIndex={3}>
               <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
                 {/* Primary White Pill Button: Send Enquiry */}
-                <button
-                  type="button"
+                <LightningButton
+                  variant="primary"
+                  size="lg"
                   onClick={handleOpenEnquiry}
-                  className="group h-[56px] px-8 rounded-full bg-white text-[#050608] font-semibold text-base hover:bg-white/90 active:opacity-70 transition-all flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] w-full sm:w-auto max-w-[360px] sm:max-w-none mx-auto sm:mx-0 shadow-lg"
+                  iconRight={<ArrowRight className="w-4 h-4" />}
+                  fullWidth
+                  className="sm:w-auto shadow-lg"
                 >
-                  <span>Send Enquiry</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
+                  Send Enquiry
+                </LightningButton>
 
                 {/* Secondary Glass Pill Button: Call Now */}
-                <a
+                <LightningButton
+                  variant="secondary"
+                  size="lg"
                   href="tel:+97172042763"
-                  className="h-[56px] px-8 rounded-full bg-white/10 border border-white/15 text-white font-semibold text-base hover:bg-white/20 active:opacity-70 transition-all flex items-center justify-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] w-full sm:w-auto max-w-[360px] sm:max-w-none mx-auto sm:mx-0"
+                  iconLeft={<Phone className="w-4 h-4 text-[#8DC63F]" />}
+                  fullWidth
+                  className="sm:w-auto"
                 >
-                  <Phone className="w-4 h-4 text-[#8DC63F]" />
-                  <span>Call Now</span>
-                </a>
+                  Call Now
+                </LightningButton>
               </div>
             </Reveal>
           </div>
