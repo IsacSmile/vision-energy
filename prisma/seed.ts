@@ -819,6 +819,7 @@ Vision Energy International provides complete engineering support, material supp
       author: 'Vision Energy Technical Team',
       category: 'Technical Insights',
       published: true,
+      isPlaceholder: true,
       publishedAt: new Date('2026-02-15')
     },
     {
@@ -833,6 +834,7 @@ Vision Energy International supplies certified earthing materials including copp
       author: 'Vision Energy Technical Team',
       category: 'Engineering & Safety',
       published: true,
+      isPlaceholder: true,
       publishedAt: new Date('2026-03-01')
     },
     {
@@ -848,6 +850,7 @@ Both technologies are backed by rigorous international testing. Vision Energy In
       author: 'Vision Energy Technical Team',
       category: 'Product Comparison',
       published: true,
+      isPlaceholder: true,
       publishedAt: new Date('2026-03-10')
     }
   ];

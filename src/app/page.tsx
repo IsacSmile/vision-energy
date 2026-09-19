@@ -4,8 +4,12 @@ import HomeHeroClient from '@/components/home/HomeHeroClient';
 import IntroStandards from '@/components/home/IntroStandards';
 import SolutionPillars from '@/components/home/SolutionPillars';
 import FlagshipLightning from '@/components/home/FlagshipLightning';
+import ProductPreview from '@/components/home/ProductPreview';
+import ServicesPreview from '@/components/home/ServicesPreview';
 import WhyChooseUs from '@/components/home/WhyChooseUs';
 import Industries from '@/components/home/Industries';
+import LatestPosts from '@/components/home/LatestPosts';
+import FinalCTA from '@/components/home/FinalCTA';
 import { PILLARS_CONFIG } from '@/config/pillars';
 
 export const metadata = {
@@ -36,49 +40,63 @@ export default async function HomePage() {
     }
   });
 
+  // Hairline divider component
+  const HairlineDivider = () => (
+    <div
+      className="w-full max-w-[80rem] mx-auto h-[1px] bg-[linear-gradient(90deg,transparent_0%,rgba(11,101,179,0.3)_35%,rgba(141,198,63,0.3)_65%,transparent_100%)]"
+      aria-hidden="true"
+    />
+  );
+
   return (
-    <div className="pb-16 bg-[#050608]">
-      {/* SECTION 1: HERO SECTION */}
+    <div className="bg-[#050608]">
+      {/* 1. HERO SECTION */}
       <HomeHeroClient productCategoryCount={productCategoryCount} />
 
-      {/* SECTION 2: INTRO & STANDARDS */}
+      <HairlineDivider />
+
+      {/* 2. INTRO & STANDARDS (#0D1117) */}
       <IntroStandards productCategoryCount={productCategoryCount} />
 
-      {/* Signature Blue-to-Lime Hairline Divider */}
-      <div
-        className="w-full max-w-[80rem] mx-auto h-[1px] bg-[linear-gradient(90deg,transparent_0%,rgba(11,101,179,0.3)_35%,rgba(141,198,63,0.3)_65%,transparent_100%)]"
-        aria-hidden="true"
-      />
+      <HairlineDivider />
 
-      {/* SECTION 3: SOLUTION PILLARS */}
+      {/* 3. SOLUTION PILLARS (#050608) */}
       <SolutionPillars countsByPillarId={countsByPillarId} />
 
-      {/* Signature Blue-to-Lime Hairline Divider */}
-      <div
-        className="w-full max-w-[80rem] mx-auto h-[1px] bg-[linear-gradient(90deg,transparent_0%,rgba(11,101,179,0.3)_35%,rgba(141,198,63,0.3)_65%,transparent_100%)]"
-        aria-hidden="true"
-      />
+      <HairlineDivider />
 
-      {/* SECTION 4: FLAGSHIP LIGHTNING & PROTECTION NETWORK */}
+      {/* 4. FLAGSHIP LIGHTNING (#0D1117) */}
       <FlagshipLightning />
 
-      {/* Signature Blue-to-Lime Hairline Divider */}
-      <div
-        className="w-full max-w-[80rem] mx-auto h-[1px] bg-[linear-gradient(90deg,transparent_0%,rgba(11,101,179,0.3)_35%,rgba(141,198,63,0.3)_65%,transparent_100%)]"
-        aria-hidden="true"
-      />
+      <HairlineDivider />
 
-      {/* SECTION 5: WHY CHOOSE US */}
+      {/* 5. PRODUCT PREVIEW (#050608) */}
+      <ProductPreview />
+
+      <HairlineDivider />
+
+      {/* 6. SERVICES PREVIEW (#0D1117) */}
+      <ServicesPreview />
+
+      <HairlineDivider />
+
+      {/* 7. WHY CHOOSE US (#050608) */}
       <WhyChooseUs />
 
-      {/* Signature Blue-to-Lime Hairline Divider */}
-      <div
-        className="w-full max-w-[80rem] mx-auto h-[1px] bg-[linear-gradient(90deg,transparent_0%,rgba(11,101,179,0.3)_35%,rgba(141,198,63,0.3)_65%,transparent_100%)]"
-        aria-hidden="true"
-      />
+      <HairlineDivider />
 
-      {/* SECTION 6: INDUSTRIES / SECTORS WE SERVE */}
+      {/* 8. INDUSTRIES / SECTORS WE SERVE (#0D1117) */}
       <Industries />
+
+      <HairlineDivider />
+
+      {/* 9. LATEST POSTS (#050608) - CONDITIONAL (null if <3 posts) */}
+      <LatestPosts />
+
+      <HairlineDivider />
+
+      {/* 10. FINAL CTA (#0D1117) */}
+      <FinalCTA />
     </div>
   );
 }
