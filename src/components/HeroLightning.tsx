@@ -19,6 +19,16 @@ export default function HeroLightning() {
     intensity: 1.0,
   });
 
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleMenuState = (e: any) => {
+      setMenuOpen(Boolean(e.detail?.open));
+    };
+    window.addEventListener('mobile-menu-state', handleMenuState);
+    return () => window.removeEventListener('mobile-menu-state', handleMenuState);
+  }, []);
+
   useEffect(() => {
     // Check prefers-reduced-motion
     if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -64,7 +74,7 @@ export default function HeroLightning() {
     };
   }, []);
 
-  if (reducedMotion || !mounted || !inView) {
+  if (reducedMotion || !mounted || !inView || menuOpen) {
     return <div ref={containerRef} style={{ width: '100%', height: '100%', position: 'relative' }} />;
   }
 
