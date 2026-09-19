@@ -103,7 +103,7 @@ export default function Header() {
   return (
     <>
       <header className={headerClasses}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 lg:h-[80px] flex items-center justify-between">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-14 lg:h-[80px] flex items-center justify-between">
           {/* Brand Logo - 40px on mobile (h-10), 48px on desktop (lg:h-12) */}
           <Link href="/" className="flex items-center group py-1 active-press" id="header-logo-link">
             <Image

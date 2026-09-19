@@ -40,7 +40,7 @@ export default function HomeHeroClient() {
       />
 
       {/* Layer 5: Content */}
-      <div className="relative z-30 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-auto py-6 sm:py-8">
+      <div className="relative z-30 w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 my-auto py-6 sm:py-8">
         <div className="max-w-[720px] text-center lg:text-left lg:mx-0 space-y-6">
           {/* Badge Pill (Hidden below sm, shortened on sm/md, full on lg+) */}
           <div className="hidden sm:inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0D1117] border border-[#1F2937] text-xs font-semibold text-white tracking-wide shadow-lg">
@@ -50,7 +50,7 @@ export default function HomeHeroClient() {
           </div>
 
           {/* H1 Heading (Only H1 on page) */}
-          <h1 className="text-[clamp(2rem,6vw,4.75rem)] font-semibold text-white leading-[1.05] tracking-[-0.02em] text-balance lg:max-w-[12em]">
+          <h1 className="text-[clamp(2rem,6vw,2.5rem)] lg:text-[clamp(2.25rem,4.2vw,4rem)] font-semibold text-white leading-tight lg:leading-[1.1] tracking-[-0.02em] text-balance max-w-[13em]">
             Innovation Engineered for Performance
           </h1>
 
@@ -99,9 +99,9 @@ export default function HomeHeroClient() {
         </div>
       </div>
 
-      {/* Scroll indicator (hidden on mobile below md) */}
-      <div className="hidden md:block relative z-30 pb-4 motion-safe:animate-bounce pointer-events-none opacity-80" aria-hidden="true">
-        <div className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center pt-2 mx-auto">
+      {/* Scroll indicator (hidden on mobile below md, centered exactly horizontally at left-1/2 -translate-x-1/2) */}
+      <div className="hidden md:block absolute bottom-6 left-1/2 -translate-x-1/2 z-30 motion-safe:animate-bounce pointer-events-none opacity-80" aria-hidden="true">
+        <div className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center pt-2">
           <div className="w-1.5 h-2.5 bg-[#8DC63F] rounded-full motion-safe:animate-pulse" />
         </div>
       </div>
