@@ -6,13 +6,14 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { serviceEnquirySchema, productEnquirySchema, ServiceEnquiryInput, ProductEnquiryInput } from '@/lib/validation';
 import { dictionary } from '@/lib/dictionary';
-import { X, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { X, CheckCircle2, AlertCircle, Loader2, Copy, Phone, ChevronDown, ChevronUp } from 'lucide-react';
 
 export default function EnquiryModal() {
   const { modalType, serviceContext, productContext, closeModal } = useEnquiryModal();
   const [submitting, setSubmitting] = useState(false);
   const [successRef, setSuccessRef] = useState<string | null>(null);
   const [serverError, setServerError] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
 
   // Lock body scroll when modal is active
   useEffect(() => {
@@ -22,6 +23,7 @@ export default function EnquiryModal() {
       document.body.style.overflow = 'unset';
       setSuccessRef(null);
       setServerError(null);
+      setCopied(false);
     }
     return () => {
       document.body.style.overflow = 'unset';
@@ -39,6 +41,14 @@ export default function EnquiryModal() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [modalType, closeModal]);
 
+  const handleCopyReference = () => {
+    if (successRef && typeof navigator !== 'undefined') {
+      navigator.clipboard.writeText(successRef);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    }
+  };
+
   if (!modalType) return null;
 
   return (
@@ -52,9 +62,12 @@ export default function EnquiryModal() {
       aria-labelledby="modal-title"
     >
       <div className="relative w-full sm:max-w-xl max-h-[92svh] sm:max-h-[88vh] flex flex-col bg-[#0D1117] border border-[#1F2937] rounded-t-2xl sm:rounded-2xl shadow-2xl text-white overflow-hidden pb-safe">
+        {/* Mobile Drag Handle Indicator */}
+        <div className="w-12 h-1.5 bg-gray-600/60 rounded-full mx-auto my-2 shrink-0 sm:hidden" aria-hidden="true" />
+
         {/* Sticky Header */}
-        <div className="sticky top-0 z-10 bg-[#0D1117]/95 backdrop-blur-md px-6 py-4 border-b border-[#1F2937] flex items-center justify-between">
-          <h2 id="modal-title" className="text-lg sm:text-xl font-bold text-white truncate pr-4">
+        <div className="sticky top-0 z-10 bg-[#0D1117]/95 backdrop-blur-md px-5 py-3 sm:py-4 border-b border-[#1F2937] flex items-center justify-between">
+          <h2 id="modal-title" className="text-base sm:text-lg font-bold text-white truncate pr-4">
             {successRef
               ? 'Submission Confirmation'
               : modalType === 'SERVICE'
@@ -63,7 +76,7 @@ export default function EnquiryModal() {
           </h2>
           <button
             onClick={closeModal}
-            className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2 text-gray-400 hover:text-white rounded-xl hover:bg-white/10 transition-colors"
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2 text-gray-400 hover:text-white rounded-xl hover:bg-white/10 transition-colors active-press"
             aria-label="Close modal"
           >
             <X className="w-6 h-6" />
@@ -71,27 +84,35 @@ export default function EnquiryModal() {
         </div>
 
         {/* Scrollable Form Body */}
-        <div className="p-6 overflow-y-auto grow space-y-4">
+        <div className="p-5 sm:p-6 overflow-y-auto grow space-y-4">
           {successRef ? (
-            <div className="text-center py-6 space-y-4">
+            <div className="text-center py-6 space-y-5">
               <CheckCircle2 className="w-16 h-16 mx-auto text-[#8DC63F] animate-bounce" />
               <h3 className="text-xl sm:text-2xl font-bold text-white">Enquiry Submitted Successfully</h3>
-              <p className="text-gray-300 max-w-md mx-auto text-sm">
+              <p className="text-gray-300 max-w-md mx-auto text-xs sm:text-sm">
                 Thank you for contacting Vision Energy International. Your enquiry reference ID is:
               </p>
               <div className="inline-block bg-[#050608] border border-[#8DC63F]/40 px-6 py-3 rounded-full text-base sm:text-lg font-mono text-[#8DC63F] font-bold pill-glow">
                 {successRef}
               </div>
-              <p className="text-xs text-[#A9B4C0] pt-2">
-                Our engineering team will review your specifications and get in touch shortly.
-              </p>
-              <div className="pt-4">
+
+              {/* Copy Reference & Direct Call Buttons */}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
                 <button
-                  onClick={closeModal}
-                  className="w-full sm:w-auto h-12 px-8 bg-[#0B65B3] hover:bg-[#0B65B3]/80 text-white font-bold rounded-full transition-colors text-base"
+                  onClick={handleCopyReference}
+                  className="w-full sm:w-auto h-12 px-6 bg-[#0B65B3] hover:bg-[#0B65B3]/80 text-white font-bold rounded-full transition-colors flex items-center justify-center gap-2 text-sm active-press"
                 >
-                  Close Window
+                  <Copy className="w-4 h-4" />
+                  <span>{copied ? 'Copied to Clipboard!' : 'Copy Reference'}</span>
                 </button>
+
+                <a
+                  href={`tel:${dictionary.company.primaryPhone}`}
+                  className="w-full sm:w-auto h-12 px-6 bg-white text-[#050608] font-bold rounded-full transition-colors flex items-center justify-center gap-2 text-sm active-press"
+                >
+                  <Phone className="w-4 h-4 text-[#0B65B3]" />
+                  <span>Call Us Now: {dictionary.company.primaryPhone}</span>
+                </a>
               </div>
             </div>
           ) : modalType === 'SERVICE' ? (
@@ -120,7 +141,7 @@ export default function EnquiryModal() {
 }
 
 // ----------------------------------------------------------------------
-// Service Booking Form Component
+// Service Booking Form Component (Progressive Disclosure)
 // ----------------------------------------------------------------------
 function ServiceForm({
   context,
@@ -137,6 +158,8 @@ function ServiceForm({
   setServerError: (err: string | null) => void;
   serverError: string | null;
 }) {
+  const [showExtraDetails, setShowExtraDetails] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -146,6 +169,7 @@ function ServiceForm({
     defaultValues: {
       serviceSlug: context.serviceSlug,
       serviceTitle: context.serviceTitle,
+      phone: '+971 ',
       sourceUrl: typeof window !== 'undefined' ? window.location.href : '',
       consent: false,
     },
@@ -174,18 +198,9 @@ function ServiceForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      <div>
-        <span className="inline-block px-3 py-1 text-xs font-semibold text-[#8DC63F] bg-[#8DC63F]/10 border border-[#8DC63F]/30 rounded-full mb-1">
-          Service Booking Mode
-        </span>
-        <p className="text-xs text-[#A9B4C0]">
-          Submit your project requirements and preferred timeline for engineering review.
-        </p>
-      </div>
-
       {serverError && (
-        <div className="p-3 bg-red-950/60 border border-red-500/50 rounded-lg text-red-200 text-sm flex items-center gap-2">
-          <AlertCircle className="w-5 h-5 shrink-0 text-red-400" />
+        <div className="p-3 bg-red-950/60 border border-red-500/50 rounded-xl text-red-200 text-xs flex items-center gap-2">
+          <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
           <span>{serverError}</span>
         </div>
       )}
@@ -193,7 +208,8 @@ function ServiceForm({
       {/* Hidden honeypot */}
       <input type="text" {...register('website')} tabIndex={-1} autoComplete="off" className="hidden" />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {/* PRIMARY REQUIRED FIELDS (Name, Phone, Email, Message) */}
+      <div className="space-y-3">
         <div>
           <label className="block text-xs font-medium text-gray-300 mb-1">Full Name *</label>
           <input
@@ -202,21 +218,9 @@ function ServiceForm({
             autoComplete="name"
             inputMode="text"
             placeholder="e.g. Engineer Ahmed Mansoor"
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#0B65B3] text-base"
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#8DC63F] text-base"
           />
           {errors.name && <p className="text-xs text-red-400 mt-1">{errors.name.message}</p>}
-        </div>
-
-        <div>
-          <label className="block text-xs font-medium text-gray-300 mb-1">Company / Organization</label>
-          <input
-            {...register('company')}
-            type="text"
-            autoComplete="organization"
-            inputMode="text"
-            placeholder="e.g. Al Habtoor Contracting"
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#0B65B3] text-base"
-          />
         </div>
 
         <div>
@@ -227,7 +231,7 @@ function ServiceForm({
             autoComplete="tel"
             inputMode="tel"
             placeholder="+971 50 123 4567"
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#0B65B3] text-base"
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#8DC63F] text-base"
           />
           {errors.phone && <p className="text-xs text-red-400 mt-1">{errors.phone.message}</p>}
         </div>
@@ -240,64 +244,94 @@ function ServiceForm({
             autoComplete="email"
             inputMode="email"
             placeholder="ahmed@company.ae"
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#0B65B3] text-base"
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#8DC63F] text-base"
           />
           {errors.email && <p className="text-xs text-red-400 mt-1">{errors.email.message}</p>}
         </div>
 
         <div>
-          <label className="block text-xs font-medium text-gray-300 mb-1">Emirate / Location *</label>
-          <select
-            {...register('emirate')}
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#0B65B3] text-base"
-          >
-            <option value="">-- Select Emirate --</option>
-            {dictionary.emirates.map((em) => (
-              <option key={em} value={em}>
-                {em}
-              </option>
-            ))}
-          </select>
-          {errors.emirate && <p className="text-xs text-red-400 mt-1">{errors.emirate.message}</p>}
-        </div>
-
-        <div>
-          <label className="block text-xs font-medium text-gray-300 mb-1">Project Type *</label>
-          <select
-            {...register('projectType')}
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#0B65B3] text-base"
-          >
-            <option value="">-- Select Project Type --</option>
-            {dictionary.projectTypes.map((pt) => (
-              <option key={pt} value={pt}>
-                {pt}
-              </option>
-            ))}
-          </select>
-          {errors.projectType && <p className="text-xs text-red-400 mt-1">{errors.projectType.message}</p>}
+          <label className="block text-xs font-medium text-gray-300 mb-1">Message & Scope Details *</label>
+          <textarea
+            {...register('message')}
+            rows={3}
+            placeholder="Describe your project scope or building requirements..."
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 py-3 text-white focus:border-[#8DC63F] text-base"
+          />
+          {errors.message && <p className="text-xs text-red-400 mt-1">{errors.message.message}</p>}
         </div>
       </div>
 
+      {/* PROGRESSIVE DISCLOSURE TOGGLE */}
       <div>
-        <label className="block text-xs font-medium text-gray-300 mb-1">Preferred Start Date (Optional)</label>
-        <input
-          {...register('preferredDate')}
-          type="date"
-          className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#0B65B3] text-base"
-        />
+        <button
+          type="button"
+          onClick={() => setShowExtraDetails(!showExtraDetails)}
+          className="text-xs font-bold text-[#8DC63F] hover:underline flex items-center gap-1.5 py-1 active-press"
+        >
+          <span>{showExtraDetails ? 'Hide optional details' : '+ Add more details (Company, Emirate, Start Date)'}</span>
+          {showExtraDetails ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+        </button>
       </div>
 
-      <div>
-        <label className="block text-xs font-medium text-gray-300 mb-1">Message & Technical Details *</label>
-        <textarea
-          {...register('message')}
-          rows={3}
-          placeholder="Describe your project scope, building dimensions, or specific technical specs..."
-          className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 py-3 text-white focus:border-[#0B65B3] text-base"
-        />
-        {errors.message && <p className="text-xs text-red-400 mt-1">{errors.message.message}</p>}
-      </div>
+      {/* OPTIONAL FIELDS (Collapsed by default) */}
+      {showExtraDetails && (
+        <div className="space-y-3 pt-2 border-t border-[#1F2937] animate-in fade-in duration-200">
+          <div>
+            <label className="block text-xs font-medium text-gray-300 mb-1">Company / Organization</label>
+            <input
+              {...register('company')}
+              type="text"
+              autoComplete="organization"
+              inputMode="text"
+              placeholder="e.g. Al Habtoor Contracting"
+              className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#8DC63F] text-base"
+            />
+          </div>
 
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label className="block text-xs font-medium text-gray-300 mb-1">Emirate / Location</label>
+              <select
+                {...register('emirate')}
+                className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#8DC63F] text-base"
+              >
+                <option value="">-- Select Emirate --</option>
+                {dictionary.emirates.map((em) => (
+                  <option key={em} value={em}>
+                    {em}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-gray-300 mb-1">Project Type</label>
+              <select
+                {...register('projectType')}
+                className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#8DC63F] text-base"
+              >
+                <option value="">-- Select Project Type --</option>
+                {dictionary.projectTypes.map((pt) => (
+                  <option key={pt} value={pt}>
+                    {pt}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-medium text-gray-300 mb-1">Preferred Start Date</label>
+            <input
+              {...register('preferredDate')}
+              type="date"
+              className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#8DC63F] text-base"
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Consent Checkbox */}
       <div className="flex items-start gap-2.5 pt-1">
         <input
           {...register('consent')}
@@ -306,24 +340,25 @@ function ServiceForm({
           className="mt-1 accent-[#8DC63F] w-5 h-5 rounded shrink-0"
         />
         <label htmlFor="service-consent" className="text-xs text-gray-300 leading-normal">
-          I consent to Vision Energy International storing my details for processing this service enquiry. *
+          I consent to Vision Energy International storing my details for processing this service booking enquiry. *
         </label>
       </div>
       {errors.consent && <p className="text-xs text-red-400">{errors.consent.message}</p>}
 
-      <div className="pt-2 sticky bottom-0 bg-[#0D1117] py-2 border-t border-[#1F2937]/50">
+      {/* STICKY SUBMIT BUTTON */}
+      <div className="sticky bottom-0 bg-[#0D1117] py-2 border-t border-[#1F2937]/50">
         <button
           type="submit"
           disabled={submitting}
-          className="w-full h-12 bg-gradient-brand text-white font-bold rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2 text-base shadow-lg"
+          className="w-full h-12 bg-gradient-brand text-white font-bold rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2 text-base shadow-lg active-press"
         >
           {submitting ? (
             <>
               <Loader2 className="w-5 h-5 animate-spin" />
-              Processing Request...
+              <span>Processing Request...</span>
             </>
           ) : (
-            'Submit Service Booking Request'
+            <span>Submit Service Booking Request</span>
           )}
         </button>
       </div>
@@ -332,7 +367,7 @@ function ServiceForm({
 }
 
 // ----------------------------------------------------------------------
-// Product Enquiry Form Component
+// Product Enquiry Form Component (Progressive Disclosure)
 // ----------------------------------------------------------------------
 function ProductForm({
   context,
@@ -349,6 +384,8 @@ function ProductForm({
   setServerError: (err: string | null) => void;
   serverError: string | null;
 }) {
+  const [showExtraDetails, setShowExtraDetails] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -358,6 +395,7 @@ function ProductForm({
     defaultValues: {
       categoryCode: context.categoryCode,
       categoryTitle: context.categoryTitle,
+      phone: '+971 ',
       sourceUrl: typeof window !== 'undefined' ? window.location.href : '',
       consent: false,
     },
@@ -386,18 +424,9 @@ function ProductForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      <div>
-        <span className="inline-block px-3 py-1 text-xs font-semibold text-[#0B65B3] bg-[#0B65B3]/10 border border-[#0B65B3]/30 rounded-full mb-1">
-          Product Enquiry Mode
-        </span>
-        <p className="text-xs text-[#A9B4C0]">
-          Request technical datasheets, bulk pricing, or availability for this product category.
-        </p>
-      </div>
-
       {serverError && (
-        <div className="p-3 bg-red-950/60 border border-red-500/50 rounded-lg text-red-200 text-sm flex items-center gap-2">
-          <AlertCircle className="w-5 h-5 shrink-0 text-red-400" />
+        <div className="p-3 bg-red-950/60 border border-red-500/50 rounded-xl text-red-200 text-xs flex items-center gap-2">
+          <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
           <span>{serverError}</span>
         </div>
       )}
@@ -405,7 +434,8 @@ function ProductForm({
       {/* Hidden honeypot */}
       <input type="text" {...register('website')} tabIndex={-1} autoComplete="off" className="hidden" />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {/* PRIMARY REQUIRED FIELDS (Name, Phone, Email, Message) */}
+      <div className="space-y-3">
         <div>
           <label className="block text-xs font-medium text-gray-300 mb-1">Full Name *</label>
           <input
@@ -414,21 +444,9 @@ function ProductForm({
             autoComplete="name"
             inputMode="text"
             placeholder="e.g. Engineer Rashid Al Suwaidi"
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#0B65B3] text-base"
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#8DC63F] text-base"
           />
           {errors.name && <p className="text-xs text-red-400 mt-1">{errors.name.message}</p>}
-        </div>
-
-        <div>
-          <label className="block text-xs font-medium text-gray-300 mb-1">Company / Organization</label>
-          <input
-            {...register('company')}
-            type="text"
-            autoComplete="organization"
-            inputMode="text"
-            placeholder="e.g. Emirates Industrial Construction"
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#0B65B3] text-base"
-          />
         </div>
 
         <div>
@@ -439,7 +457,7 @@ function ProductForm({
             autoComplete="tel"
             inputMode="tel"
             placeholder="+971 50 123 4567"
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#0B65B3] text-base"
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#8DC63F] text-base"
           />
           {errors.phone && <p className="text-xs text-red-400 mt-1">{errors.phone.message}</p>}
         </div>
@@ -452,54 +470,86 @@ function ProductForm({
             autoComplete="email"
             inputMode="email"
             placeholder="rashid@company.ae"
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#0B65B3] text-base"
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#8DC63F] text-base"
           />
           {errors.email && <p className="text-xs text-red-400 mt-1">{errors.email.message}</p>}
         </div>
 
         <div>
-          <label className="block text-xs font-medium text-gray-300 mb-1">Category Code / Title (Pre-filled)</label>
-          <input
-            {...register('categoryCode')}
-            type="text"
-            readOnly
-            className="w-full bg-[#161B22] border border-[#1F2937] rounded-xl px-3.5 h-12 text-[#8DC63F] font-mono text-base"
+          <label className="block text-xs font-medium text-gray-300 mb-1">Message & Material Specifications *</label>
+          <textarea
+            {...register('message')}
+            rows={3}
+            placeholder="Specify sizes, material grades, or delivery timelines required..."
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 py-3 text-white focus:border-[#8DC63F] text-base"
           />
-          <input type="hidden" {...register('categoryTitle')} />
-        </div>
-
-        <div>
-          <label className="block text-xs font-medium text-gray-300 mb-1">Estimated Quantity / Requirement</label>
-          <input
-            {...register('quantity')}
-            type="text"
-            placeholder="e.g. 500 meters tape / 20 ESE rods"
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#0B65B3] text-base"
-          />
+          {errors.message && <p className="text-xs text-red-400 mt-1">{errors.message.message}</p>}
         </div>
       </div>
 
+      {/* PROGRESSIVE DISCLOSURE TOGGLE */}
       <div>
-        <label className="block text-xs font-medium text-gray-300 mb-1">Delivery Location / Site Emirate</label>
-        <input
-          {...register('deliveryLocation')}
-          type="text"
-          placeholder="e.g. ICAD III Abu Dhabi / KIZAD / JAFZA Dubai"
-          className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#0B65B3] text-base"
-        />
+        <button
+          type="button"
+          onClick={() => setShowExtraDetails(!showExtraDetails)}
+          className="text-xs font-bold text-[#8DC63F] hover:underline flex items-center gap-1.5 py-1 active-press"
+        >
+          <span>{showExtraDetails ? 'Hide optional details' : '+ Add more details (Company, Quantity, Delivery Location)'}</span>
+          {showExtraDetails ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+        </button>
       </div>
 
-      <div>
-        <label className="block text-xs font-medium text-gray-300 mb-1">Message & Material Specifications *</label>
-        <textarea
-          {...register('message')}
-          rows={3}
-          placeholder="Specify exact sizes, material grades (e.g. Copper 25x3mm), or delivery timelines required..."
-          className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 py-3 text-white focus:border-[#0B65B3] text-base"
-        />
-        {errors.message && <p className="text-xs text-red-400 mt-1">{errors.message.message}</p>}
-      </div>
+      {/* OPTIONAL FIELDS (Collapsed by default) */}
+      {showExtraDetails && (
+        <div className="space-y-3 pt-2 border-t border-[#1F2937] animate-in fade-in duration-200">
+          <div>
+            <label className="block text-xs font-medium text-gray-300 mb-1">Company / Organization</label>
+            <input
+              {...register('company')}
+              type="text"
+              autoComplete="organization"
+              inputMode="text"
+              placeholder="e.g. Emirates Industrial Construction"
+              className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#8DC63F] text-base"
+            />
+          </div>
 
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label className="block text-xs font-medium text-gray-300 mb-1">Category Code (Pre-filled)</label>
+              <input
+                {...register('categoryCode')}
+                type="text"
+                readOnly
+                className="w-full bg-[#161B22] border border-[#1F2937] rounded-xl px-3.5 h-12 text-[#8DC63F] font-mono text-base"
+              />
+              <input type="hidden" {...register('categoryTitle')} />
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-gray-300 mb-1">Estimated Quantity</label>
+              <input
+                {...register('quantity')}
+                type="text"
+                placeholder="e.g. 500 meters tape / 20 ESE rods"
+                className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#8DC63F] text-base"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-medium text-gray-300 mb-1">Delivery Location / Site Emirate</label>
+            <input
+              {...register('deliveryLocation')}
+              type="text"
+              placeholder="e.g. ICAD III Abu Dhabi / KIZAD / JAFZA Dubai"
+              className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#8DC63F] text-base"
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Consent Checkbox */}
       <div className="flex items-start gap-2.5 pt-1">
         <input
           {...register('consent')}
@@ -513,19 +563,20 @@ function ProductForm({
       </div>
       {errors.consent && <p className="text-xs text-red-400">{errors.consent.message}</p>}
 
-      <div className="pt-2 sticky bottom-0 bg-[#0D1117] py-2 border-t border-[#1F2937]/50">
+      {/* STICKY SUBMIT BUTTON */}
+      <div className="sticky bottom-0 bg-[#0D1117] py-2 border-t border-[#1F2937]/50">
         <button
           type="submit"
           disabled={submitting}
-          className="w-full h-12 bg-gradient-brand text-white font-bold rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2 text-base shadow-lg"
+          className="w-full h-12 bg-gradient-brand text-white font-bold rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2 text-base shadow-lg active-press"
         >
           {submitting ? (
             <>
               <Loader2 className="w-5 h-5 animate-spin" />
-              Submitting Product Enquiry...
+              <span>Submitting Product Enquiry...</span>
             </>
           ) : (
-            'Submit Product Enquiry'
+            <span>Submit Product Enquiry</span>
           )}
         </button>
       </div>

@@ -33,41 +33,67 @@ export default async function BlogPage() {
       </div>
 
       {/* Grid of Blog Posts */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {posts.map((post) => (
-          <div
-            key={post.id}
-            className="bg-[#0D1117] border border-[#1F2937] hover:border-[#0B65B3] rounded-3xl p-6 flex flex-col justify-between space-y-6 transition-all group hover:bg-[#161B22] shadow-xl"
-          >
-            <div className="space-y-4">
-              <div className="flex items-center justify-between text-[11px] text-gray-400">
-                <span className="font-bold text-[#8DC63F] uppercase bg-[#8DC63F]/10 border border-[#8DC63F]/30 px-2.5 py-0.5 rounded-full">
-                  {post.category}
-                </span>
-                <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {posts.map((post) => {
+          const wordCount = post.content ? post.content.split(/\s+/).length : 200;
+          const readTime = Math.max(1, Math.ceil(wordCount / 200));
+
+          return (
+            <Link
+              key={post.id}
+              href={`/blog/${post.slug}`}
+              className="bg-[#0D1117] border border-white/10 hover:border-[#0B65B3] rounded-xl overflow-hidden flex flex-col justify-between transition-all active:scale-[0.98] group shadow-xl"
+            >
+              <div>
+                {/* 16:9 Aspect Ratio Container */}
+                <div className="aspect-video w-full bg-gradient-to-br from-[#0B65B3]/20 via-[#0D1117] to-[#8DC63F]/10 border-b border-white/10 relative p-4 flex flex-col justify-between overflow-hidden">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(11,101,179,0.15),transparent_70%)]" />
+                  
+                  <div className="relative z-10 flex items-center justify-between">
+                    <span className="text-[10px] font-bold text-[#8DC63F] uppercase tracking-wider bg-[#8DC63F]/10 border border-[#8DC63F]/30 px-2.5 py-0.5 rounded-full backdrop-blur-sm">
+                      {post.category}
+                    </span>
+                    <span className="text-[11px] font-medium text-gray-300 bg-black/50 border border-white/10 px-2 py-0.5 rounded-full backdrop-blur-sm flex items-center gap-1">
+                      <BookOpen className="w-3 h-3 text-[#0B65B3]" />
+                      {readTime} min read
+                    </span>
+                  </div>
+
+                  <div className="relative z-10 flex items-center gap-2 text-white">
+                    <div className="w-8 h-8 rounded-lg bg-[#050608] border border-white/10 flex items-center justify-center shrink-0">
+                      <BookOpen className="w-4 h-4 text-[#8DC63F]" />
+                    </div>
+                    <span className="text-xs font-semibold text-gray-300 line-clamp-1">
+                      Technical Guide • IEC Standards
+                    </span>
+                  </div>
+                </div>
+
+                <div className="p-5 space-y-3">
+                  <div className="text-[11px] text-gray-400">
+                    {new Date(post.publishedAt).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
+                  </div>
+
+                  <h2 className="text-lg font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-snug line-clamp-2">
+                    {post.title}
+                  </h2>
+
+                  <p className="text-xs text-[#A9B4C0] line-clamp-3 leading-relaxed">
+                    {post.excerpt}
+                  </p>
+                </div>
               </div>
 
-              <h2 className="text-xl font-bold text-white group-hover:text-[#0B65B3] transition-colors leading-snug">
-                <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-              </h2>
-
-              <p className="text-xs text-[#A9B4C0] line-clamp-3 leading-relaxed">
-                {post.excerpt}
-              </p>
-            </div>
-
-            <div className="pt-6 border-t border-[#1F2937] flex items-center justify-between text-xs">
-              <span className="text-gray-400 font-semibold">{post.author}</span>
-              <Link
-                href={`/blog/${post.slug}`}
-                className="font-bold text-[#0B65B3] group-hover:text-[#8DC63F] flex items-center gap-1 transition-colors"
-              >
-                <span>Read Full Article</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-          </div>
-        ))}
+              <div className="p-5 pt-0 flex items-center justify-between text-xs text-gray-400 border-t border-white/5 mt-4">
+                <span className="font-semibold text-gray-300 text-[11px]">{post.author}</span>
+                <span className="font-bold text-[#0B65B3] group-hover:text-[#8DC63F] flex items-center gap-1 transition-colors">
+                  <span>Read Post</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </span>
+              </div>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

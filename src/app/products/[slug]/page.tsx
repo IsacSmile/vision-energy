@@ -24,9 +24,17 @@ export default async function CategoryDetailPage({ params }: { params: Promise<{
     notFound();
   }
 
+  const relatedCategories = await db.productCategory.findMany({
+    where: {
+      groupPrefix: category.groupPrefix,
+      NOT: { id: category.id },
+    },
+    take: 6,
+  });
+
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <CategoryDetailClient category={category} />
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12">
+      <CategoryDetailClient category={category} relatedCategories={relatedCategories} />
     </div>
   );
 }

@@ -1,33 +1,53 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useEnquiryModal } from '@/components/modals/EnquiryModalProvider';
 import { dictionary } from '@/lib/dictionary';
-import { Phone, Menu, X, ArrowRight, Zap } from 'lucide-react';
+import { Phone, Menu, X, Zap } from 'lucide-react';
 
 export default function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const lastScrollY = useRef(0);
   const { openProductModal, openServiceModal } = useEnquiryModal();
 
   const isHome = pathname === '/';
 
-  // Scroll listener for Home page overlay effect
+  // Close mobile menu on route change
   useEffect(() => {
-    if (!isHome) return;
+    setMobileMenuOpen(false);
+  }, [pathname]);
 
+  // Scroll detection for background fade & auto-hide/reappear
+  useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 24);
+      const currentScrollY = window.scrollY;
+
+      // Dark background fade after 24px
+      setScrolled(currentScrollY > 24);
+
+      // Auto-hide when scrolling down, reappear when scrolling up
+      if (currentScrollY > 100) {
+        if (currentScrollY > lastScrollY.current + 5) {
+          setVisible(false); // scrolling down
+        } else if (currentScrollY < lastScrollY.current - 5) {
+          setVisible(true); // scrolling up
+        }
+      } else {
+        setVisible(true);
+      }
+
+      lastScrollY.current = currentScrollY;
     };
 
-    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isHome]);
+  }, []);
 
   // Lock body scroll when mobile menu drawer is open
   useEffect(() => {
@@ -61,13 +81,15 @@ export default function Header() {
     { href: '/contact', label: dictionary.nav.contact },
   ];
 
+  const headerVisibilityClass = visible || mobileMenuOpen ? 'translate-y-0' : '-translate-y-full';
+
   const headerClasses = isHome
-    ? `fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 bg-[#050608]/60 backdrop-blur-md pt-safe ${
+    ? `fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 pt-safe ${headerVisibilityClass} ${
         scrolled
-          ? 'border-b border-[#0B65B3]/40 shadow-lg'
-          : 'border-b border-transparent'
+          ? 'bg-[#050608]/85 backdrop-blur-md border-b border-[#0B65B3]/30 shadow-lg'
+          : 'bg-transparent border-b border-transparent'
       }`
-    : 'sticky top-0 z-40 w-full bg-[#050608]/90 backdrop-blur-md border-b border-[#1F2937] pt-safe';
+    : `sticky top-0 z-40 w-full bg-[#050608]/90 backdrop-blur-md border-b border-[#1F2937] pt-safe transition-all duration-300 ${headerVisibilityClass}`;
 
   const handleMobileEnquiry = () => {
     setMobileMenuOpen(false);
@@ -81,9 +103,9 @@ export default function Header() {
   return (
     <>
       <header className={headerClasses}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[var(--header-h,80px)] flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 lg:h-[80px] flex items-center justify-between">
           {/* Brand Logo - 40px on mobile (h-10), 48px on desktop (lg:h-12) */}
-          <Link href="/" className="flex items-center group py-1" id="header-logo-link">
+          <Link href="/" className="flex items-center group py-1 active-press" id="header-logo-link">
             <Image
               src="/site-main-logo.png"
               alt="VISION ENERGY INTERNATIONAL UAE"
@@ -102,7 +124,7 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-3.5 py-2 text-sm font-medium rounded-lg transition-colors ${
+                  className={`px-3.5 py-2 text-sm font-medium rounded-lg transition-colors active-press ${
                     isActive
                       ? 'text-[#8DC63F] bg-[#0B65B3]/20 border border-[#0B65B3]/40'
                       : 'text-[#A9B4C0] hover:text-white hover:bg-white/5'
@@ -114,11 +136,11 @@ export default function Header() {
             })}
           </nav>
 
-          {/* Desktop Action Buttons */}
+          {/* Desktop Action Button */}
           <div className="hidden lg:flex items-center gap-3">
             <a
               href={`tel:${dictionary.company.primaryPhone}`}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-[#050608] font-bold text-sm hover:bg-gray-100 transition-all pill-glow"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-[#050608] font-bold text-sm hover:bg-gray-100 transition-all pill-glow active-press"
               id="header-call-button"
             >
               <Phone className="w-4 h-4 text-[#0B65B3]" />
@@ -126,11 +148,11 @@ export default function Header() {
             </a>
           </div>
 
-          {/* Mobile Hamburger Button (min 44x44px touch target, high contrast, focus ring) */}
+          {/* Mobile Hamburger Button (min 48x48px touch target, high contrast, focus ring) */}
           <div className="flex lg:hidden">
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2.5 rounded-xl text-white bg-white/5 border border-white/10 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-[#8DC63F]"
+              className="min-w-[48px] min-h-[48px] flex items-center justify-center p-2.5 rounded-xl text-white bg-white/5 border border-white/10 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-[#8DC63F] active-press"
               aria-label="Open Navigation Drawer"
             >
               <Menu className="w-6 h-6 text-white" />
@@ -158,19 +180,19 @@ export default function Header() {
                   alt="VISION ENERGY Logo"
                   width={160}
                   height={40}
-                  className="h-8 w-auto object-contain"
+                  className="h-9 w-auto object-contain"
                 />
                 <button
                   onClick={() => setMobileMenuOpen(false)}
-                  className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2 rounded-xl text-gray-300 hover:text-white bg-white/5 hover:bg-white/10"
+                  className="min-w-[48px] min-h-[48px] flex items-center justify-center p-2 rounded-xl text-gray-300 hover:text-white bg-white/5 hover:bg-white/10 active-press"
                   aria-label="Close Navigation Drawer"
                 >
                   <X className="w-6 h-6 text-white" />
                 </button>
               </div>
 
-              {/* Drawer Links (min 48px tap targets) */}
-              <nav className="space-y-1.5" aria-label="Mobile Drawer Navigation">
+              {/* Drawer Links (18px font, 56px row height) */}
+              <nav className="space-y-1 divide-y divide-[#1F2937]/50" aria-label="Mobile Drawer Navigation">
                 {navLinks.map((link) => {
                   const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
                   return (
@@ -178,10 +200,10 @@ export default function Header() {
                       key={link.href}
                       href={link.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`min-h-[48px] flex items-center px-4 rounded-xl text-base font-medium transition-colors ${
+                      className={`min-h-[56px] flex items-center px-4 rounded-xl text-[18px] font-medium transition-colors active-press ${
                         isActive
-                          ? 'bg-[#0B65B3] text-white font-bold'
-                          : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                          ? 'bg-[#0B65B3]/20 text-[#8DC63F] border border-[#8DC63F]/40 font-bold'
+                          : 'text-gray-200 hover:bg-white/5 hover:text-white'
                       }`}
                     >
                       {link.label}
@@ -191,11 +213,11 @@ export default function Header() {
               </nav>
             </div>
 
-            {/* Drawer Bottom Action Buttons */}
+            {/* Drawer Bottom Action Buttons (Pinned) */}
             <div className="space-y-3 pt-6 border-t border-[#1F2937]">
               <a
                 href={`tel:${dictionary.company.primaryPhone}`}
-                className="min-h-[48px] w-full flex items-center justify-center gap-2 rounded-xl bg-white text-[#050608] font-bold text-sm shadow-md"
+                className="min-h-[52px] w-full flex items-center justify-center gap-2 rounded-xl bg-white text-[#050608] font-bold text-base shadow-md active-press"
               >
                 <Phone className="w-4 h-4 text-[#0B65B3]" />
                 <span>Call Us: {dictionary.company.primaryPhone}</span>
@@ -203,7 +225,7 @@ export default function Header() {
 
               <button
                 onClick={handleMobileEnquiry}
-                className="min-h-[48px] w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-brand text-white font-bold text-sm shadow-md"
+                className="min-h-[52px] w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-brand text-white font-bold text-base shadow-md active-press"
               >
                 <Zap className="w-4 h-4 text-[#8DC63F]" />
                 <span>{pathname.startsWith('/services') ? 'Book Service' : 'Submit Enquiry'}</span>

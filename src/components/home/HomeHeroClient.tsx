@@ -4,20 +4,20 @@ import React from 'react';
 import Link from 'next/link';
 import HeroLightning from '@/components/HeroLightning';
 import { useEnquiryModal } from '@/components/modals/EnquiryModalProvider';
-import { ArrowRight, ShieldCheck, Zap } from 'lucide-react';
+import { ArrowRight, ShieldCheck } from 'lucide-react';
 
 export default function HomeHeroClient() {
   const { openServiceModal } = useEnquiryModal();
 
   return (
     <section
-      className="relative w-full min-h-screen flex flex-col items-center justify-between pt-[var(--header-h,80px)] pb-6 overflow-hidden bg-[#050608]"
+      className="relative w-full min-h-screen flex flex-col items-center justify-between pt-[var(--mobile-header-h,56px)] lg:pt-[var(--header-h,80px)] pb-6 overflow-hidden bg-[#050608]"
       style={{ minHeight: '100svh' }}
     >
       {/* Layer 1: Solid #050608 background */}
       <div className="absolute inset-0 bg-[#050608] pointer-events-none" />
 
-      {/* Layer 2: WebGL Lightning Canvas Wrapper (100% width & height) */}
+      {/* Layer 2: WebGL Lightning Canvas Wrapper */}
       <div className="absolute inset-0 w-full h-full pointer-events-none z-10" aria-hidden="true">
         <HeroLightning />
       </div>
@@ -41,36 +41,35 @@ export default function HomeHeroClient() {
 
       {/* Layer 5: Content */}
       <div className="relative z-30 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-auto py-6 sm:py-8">
-        <div className="max-w-2xl text-center lg:text-left lg:mx-0 lg:max-w-[640px] space-y-5 sm:space-y-8">
-          {/* Pill Badge (hidden below md to preserve vertical space on mobile) */}
-          <div className="hidden md:inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0D1117] border border-[#1F2937] text-xs font-semibold text-white tracking-wide shadow-lg">
+        <div className="max-w-[720px] text-center lg:text-left lg:mx-0 space-y-6">
+          {/* Badge Pill (Hidden below sm, shortened on sm/md, full on lg+) */}
+          <div className="hidden sm:inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0D1117] border border-[#1F2937] text-xs font-semibold text-white tracking-wide shadow-lg">
             <ShieldCheck className="w-4 h-4 text-[#8DC63F]" />
-            <span>Lightning Protection • Earthing • Surge Protection</span>
+            <span className="sm:inline lg:hidden">Lightning Protection • Earthing</span>
+            <span className="hidden lg:inline">Lightning Protection • Earthing • Surge Protection</span>
           </div>
 
-          {/* H1 Heading with fluid clamp & text balance */}
-          <h1 className="text-[clamp(2.25rem,6vw,4.5rem)] font-extrabold text-white tracking-tight leading-tight text-balance">
-            Lightning Protection
-            <span className="block text-[#8DC63F] text-[clamp(1.35rem,4vw,3.25rem)] font-bold mt-2 sm:mt-3">
-              essential safety for your assets
-            </span>
+          {/* H1 Heading (Only H1 on page) */}
+          <h1 className="text-[clamp(2rem,6vw,4.75rem)] font-semibold text-white leading-[1.05] tracking-[-0.02em] text-balance lg:max-w-[14em]">
+            Engineering Innovation Built for Performance
           </h1>
 
-          {/* Supporting Paragraph (max 3 lines on mobile) */}
-          <p className="text-base sm:text-lg text-gray-200 leading-relaxed line-clamp-3 sm:line-clamp-none max-w-xl mx-auto lg:mx-0">
-            Lightning protection, earthing and surge protection solutions for buildings and infrastructure across the UAE.
+          {/* Paragraph (24px gap mt-6 on desktop, 4-line max on mobile) */}
+          <p className="mt-6 text-base lg:text-lg text-white/85 font-normal leading-[1.7] max-w-[60ch] line-clamp-4 lg:line-clamp-none mx-auto lg:mx-0">
+            We combine engineering expertise, advanced technology, and responsive support to deliver reliable solutions for demanding projects. Our focus on quality, sustainability, and technical excellence creates lasting value across every application.
           </p>
 
-          {/* Action Buttons (stacked full width on mobile, side-by-side from sm+) */}
-          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-2 w-full max-w-[360px] sm:max-w-none mx-auto lg:mx-0">
+          {/* Action Buttons (Mobile: ONE primary full-width 52px button + text link below; Desktop: side-by-side pills) */}
+          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 w-full max-w-[360px] sm:max-w-none mx-auto lg:mx-0">
             <Link
               href="/products"
-              className="w-full sm:w-auto h-12 px-8 bg-white text-[#050608] font-bold text-sm rounded-full hover:bg-gray-100 transition-all flex items-center justify-center gap-2 pill-glow shadow-xl"
+              className="w-full sm:w-auto h-[52px] px-8 bg-white text-[#050608] font-bold text-base sm:text-sm rounded-full hover:bg-gray-100 transition-all flex items-center justify-center gap-2 pill-glow shadow-xl active-press"
             >
               <span>Explore Products</span>
               <ArrowRight className="w-4 h-4 text-[#0B65B3]" />
             </Link>
 
+            {/* Desktop second button (dark glass pill) */}
             <button
               onClick={() =>
                 openServiceModal({
@@ -78,16 +77,29 @@ export default function HomeHeroClient() {
                   serviceTitle: 'General Technical Service Booking',
                 })
               }
-              className="w-full sm:w-auto h-12 px-8 bg-[#0D1117] border border-[#1F2937] hover:border-[#8DC63F] text-white font-bold text-sm rounded-full transition-all flex items-center justify-center gap-2 blue-glow shadow-xl"
+              className="hidden sm:flex h-[52px] px-8 bg-[#0D1117] border border-[#1F2937] hover:border-[#8DC63F] text-white font-bold text-sm rounded-full transition-all items-center justify-center gap-2 blue-glow shadow-xl active-press"
             >
-              <Zap className="w-4 h-4 text-[#8DC63F]" />
               <span>Book a Service</span>
+            </button>
+
+            {/* Mobile secondary CTA text link with arrow */}
+            <button
+              onClick={() =>
+                openServiceModal({
+                  serviceSlug: 'general-service',
+                  serviceTitle: 'General Technical Service Booking',
+                })
+              }
+              className="sm:hidden text-[#8DC63F] flex items-center justify-center gap-1.5 font-semibold text-sm hover:underline py-2 active-press"
+            >
+              <span>Book a Service</span>
+              <ArrowRight className="w-4 h-4 text-[#8DC63F]" />
             </button>
           </div>
         </div>
       </div>
 
-      {/* Scroll indicator (hidden below md) */}
+      {/* Scroll indicator (hidden on mobile below md) */}
       <div className="hidden md:block relative z-30 pb-4 motion-safe:animate-bounce pointer-events-none opacity-80" aria-hidden="true">
         <div className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center pt-2 mx-auto">
           <div className="w-1.5 h-2.5 bg-[#8DC63F] rounded-full motion-safe:animate-pulse" />
