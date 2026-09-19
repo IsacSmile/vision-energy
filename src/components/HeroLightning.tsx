@@ -31,8 +31,8 @@ export default function HeroLightning() {
         // Desktop (>= 1024px): right third
         setLightningProps({ xOffset: -0.7, intensity: 1.0 });
       } else {
-        // Mobile / Tablet (< 1024px): offset -0.5 & intensity 0.6 for contrast
-        setLightningProps({ xOffset: -0.5, intensity: 0.6 });
+        // Mobile / Tablet (< 1024px): offset -0.6 & wrapper opacity 0.5 for robust contrast
+        setLightningProps({ xOffset: -0.6, intensity: 1.0 });
       }
     };
 
@@ -69,7 +69,10 @@ export default function HeroLightning() {
   }
 
   return (
-    <div ref={containerRef} style={{ width: '100%', height: '100%', position: 'relative' }}>
+    <div
+      ref={containerRef}
+      className="w-full h-full relative opacity-50 lg:opacity-100 transition-opacity duration-300"
+    >
       <Lightning
         hue={LIGHTNING_HUE}
         xOffset={lightningProps.xOffset}

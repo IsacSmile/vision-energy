@@ -22,11 +22,11 @@ export default function HomeHeroClient() {
         <HeroLightning />
       </div>
 
-      {/* Layer 3: Small subtle text-contrast layer */}
+      {/* Layer 3: Text scrim layer (near-black, no blur/backdrop-filter) */}
       <div
         className="absolute inset-0 pointer-events-none z-20"
         style={{
-          background: 'radial-gradient(ellipse at center, rgba(5,6,8,0.55) 0%, rgba(5,6,8,0) 60%)',
+          background: 'radial-gradient(ellipse 95% 50% at 50% 55%, rgba(5,6,8,0.88) 0%, rgba(5,6,8,0.65) 55%, rgba(5,6,8,0) 100%)',
         }}
       />
 
@@ -39,8 +39,8 @@ export default function HomeHeroClient() {
         }}
       />
 
-      {/* Layer 5: Content */}
-      <div className="relative z-30 w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 my-auto py-6 sm:py-8">
+      {/* Layer 5: Content (positioned at ~54% down on mobile so CTAs sit in natural thumb zone) */}
+      <div className="relative z-30 w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 my-auto mt-[6svh] lg:mt-auto py-6 sm:py-8">
         <div className="max-w-[720px] text-center lg:text-left lg:mx-0 space-y-6">
           {/* Badge Pill (Hidden below sm, shortened on sm/md, full on lg+) */}
           <div className="hidden sm:inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0D1117] border border-[#1F2937] text-xs font-semibold text-white tracking-wide shadow-lg">
@@ -49,13 +49,31 @@ export default function HomeHeroClient() {
             <span className="hidden lg:inline">Lightning Protection • Earthing • Surge Protection</span>
           </div>
 
-          {/* H1 Heading (Only H1 on page) */}
-          <h1 className="text-[clamp(2rem,6vw,2.5rem)] lg:text-[clamp(2.25rem,4.2vw,4rem)] font-semibold text-white leading-tight lg:leading-[1.1] tracking-[-0.02em] text-balance max-w-[13em]">
+          {/* H1 Heading - Mobile (2 block spans, nowrap, auto fluid size) */}
+          <h1
+            className="block lg:hidden font-semibold text-white tracking-[-0.02em] text-center leading-[1.15]"
+            style={{
+              fontSize: 'min(calc((100vw - 32px) / 12.8), 2.5rem)',
+              textShadow: '0 2px 14px rgba(5,6,8,0.7)',
+            }}
+          >
+            <span className="block whitespace-nowrap">Innovation Engineered</span>
+            <span className="block whitespace-nowrap">for Performance</span>
+          </h1>
+
+          {/* H1 Heading - Desktop */}
+          <h1
+            className="hidden lg:block text-[clamp(2.25rem,4.2vw,4rem)] font-semibold text-white leading-[1.1] tracking-[-0.02em] text-balance max-w-[13em]"
+            style={{ textShadow: '0 2px 14px rgba(5,6,8,0.7)' }}
+          >
             Innovation Engineered for Performance
           </h1>
 
-          {/* Paragraph (24px gap mt-6 on desktop, 52ch max-width) */}
-          <p className="mt-6 text-base lg:text-lg text-white/85 font-normal leading-[1.7] max-w-[52ch] mx-auto lg:mx-0">
+          {/* Paragraph (24px gap mt-6 on desktop, 16px text-base 1.6 leading on mobile, 52ch max-width, 3 lines) */}
+          <p
+            className="mt-6 text-base lg:text-lg text-white/85 font-normal leading-[1.6] lg:leading-[1.7] max-w-[52ch] mx-auto lg:mx-0 text-center lg:text-left"
+            style={{ textShadow: '0 2px 14px rgba(5,6,8,0.7)' }}
+          >
             We deliver reliable, sustainable solutions through engineering expertise, advanced technology, and technical excellence.
           </p>
 
@@ -82,7 +100,7 @@ export default function HomeHeroClient() {
               <span>Book a Service</span>
             </button>
 
-            {/* Mobile secondary CTA text link with arrow */}
+            {/* Mobile secondary CTA text link with arrow (min-height 48px, min-width 48px, centered) */}
             <button
               onClick={() =>
                 openServiceModal({
@@ -90,7 +108,7 @@ export default function HomeHeroClient() {
                   serviceTitle: 'General Technical Service Booking',
                 })
               }
-              className="sm:hidden text-[#8DC63F] flex items-center justify-center gap-1.5 font-semibold text-sm hover:underline py-2 active-press"
+              className="sm:hidden min-h-[48px] min-w-[48px] px-4 py-3 text-[#8DC63F] flex items-center justify-center gap-1.5 font-semibold text-sm hover:underline active-press mx-auto"
             >
               <span>Book a Service</span>
               <ArrowRight className="w-4 h-4 text-[#8DC63F]" />

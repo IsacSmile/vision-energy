@@ -148,11 +148,11 @@ export default function Header() {
             </a>
           </div>
 
-          {/* Mobile Hamburger Button (min 48x48px touch target, high contrast, focus ring) */}
+          {/* Mobile Hamburger Button (44x44px, solid bg rgba(13,17,23,0.9), 1px border rgba(255,255,255,0.12), white icon) */}
           <div className="flex lg:hidden">
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className="min-w-[48px] min-h-[48px] flex items-center justify-center p-2.5 rounded-xl text-white bg-white/5 border border-white/10 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-[#8DC63F] active-press"
+              className="w-[44px] h-[44px] flex items-center justify-center rounded-xl text-white bg-[#0D1117]/90 border border-white/12 hover:bg-[#0D1117] focus-visible:ring-2 focus-visible:ring-[#8DC63F] active-press shadow-md"
               aria-label="Open Navigation Drawer"
             >
               <Menu className="w-6 h-6 text-white" />
