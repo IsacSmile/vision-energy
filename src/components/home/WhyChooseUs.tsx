@@ -1,113 +1,216 @@
-import React from 'react';
-import {
-  BadgeCheck,
-  Layers,
-  ClipboardCheck,
-  ScrollText,
-  SlidersHorizontal,
-  ShieldCheck,
-  LucideIcon,
-} from 'lucide-react';
-import SectionHeader from '@/components/ui/SectionHeader';
-import Card from '@/components/ui/Card';
-import Reveal from '@/components/ui/Reveal';
-import Accordion, { AccordionItemData } from '@/components/ui/Accordion';
-import { WHY_CHOOSE_US_ITEMS } from '@/config/why-choose-us';
+'use client';
 
-const ICON_MAP: Record<string, LucideIcon> = {
-  BadgeCheck,
-  Layers,
-  ClipboardCheck,
-  ScrollText,
-  SlidersHorizontal,
-  ShieldCheck,
-};
+import React, { useState, useEffect, useRef } from 'react';
+import { ShieldCheck } from 'lucide-react';
+import Reveal from '@/components/ui/Reveal';
+import {
+  WHY_CHOOSE_US_HEADER,
+  WHY_CHOOSE_US_ITEMS,
+  OUR_COMMITMENT_PULL_QUOTE,
+} from '@/config/why-choose-us';
 
 export default function WhyChooseUs() {
-  // Convert config items to AccordionItemData for mobile accordion
-  const accordionItems: AccordionItemData[] = WHY_CHOOSE_US_ITEMS.map((item) => ({
-    id: item.id,
-    number: item.number,
-    iconName: item.iconName,
-    title: item.title,
-    description: item.description,
-  }));
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const rowRefs = useRef<(HTMLLIElement | null)[]>([]);
+
+  // Detect prefers-reduced-motion
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  // IntersectionObserver for active row tracking at vertical center of viewport (-45% top, -45% bottom)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const indexStr = entry.target.getAttribute('data-index');
+            if (indexStr !== null) {
+              setActiveIndex(parseInt(indexStr, 10));
+            }
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: '-45% 0px -45% 0px',
+        threshold: 0,
+      }
+    );
+
+    const currentRefs = rowRefs.current;
+    currentRefs.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => {
+      currentRefs.forEach((ref) => {
+        if (ref) observer.unobserve(ref);
+      });
+    };
+  }, []);
+
+  // Calculate progress fill ratio (01 to 06)
+  const progressRatio = (activeIndex + 1) / WHY_CHOOSE_US_ITEMS.length;
 
   return (
     <section
       aria-labelledby="why-choose-us-heading"
-      className="py-16 md:py-24 lg:py-32 bg-[#050608] relative"
+      className="py-16 md:py-24 lg:py-32 bg-[#050608] relative border-t border-b border-white/[0.08]"
     >
-      <div className="max-w-[80rem] mx-auto px-5 sm:px-6 lg:px-8 space-y-12 lg:space-y-16">
-        {/* Section Header */}
-        <SectionHeader
-          id="why-choose-us-heading"
-          eyebrow="Why Vision Energy"
-          title="A Partner You Can Rely On"
-          description="We combine specialist knowledge, quality-assured products and responsive support to keep your project on track."
-        />
-
-        {/* MOBILE (below md): Single-column Accordion list */}
-        <div className="block md:hidden">
-          <Reveal staggerIndex={0}>
-            <Accordion items={accordionItems} defaultOpenIndex={0} />
-          </Reveal>
-        </div>
-
-        {/* DESKTOP (md and up): 3 x 2 Grid of static Cards */}
-        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {WHY_CHOOSE_US_ITEMS.map((item, i) => {
-            const IconComponent = ICON_MAP[item.iconName];
-
-            return (
-              <Reveal key={item.id} staggerIndex={i} className="h-full flex flex-col flex-1">
-                <Card className="h-full">
-                  <div className="h-full flex flex-col flex-1">
-                    {/* Top Row: Index number & 48px Icon Square */}
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-semibold text-[#A9B4C0] uppercase tracking-widest">
-                        {item.number}
-                      </span>
-                      <div className="w-12 h-12 rounded-xl bg-[#0B65B3]/10 text-[#0B65B3] flex items-center justify-center border border-[#0B65B3]/20 group-hover:scale-105 group-hover:text-[#8DC63F] group-hover:bg-[#8DC63F]/10 group-hover:border-[#8DC63F]/30 transition-all duration-300 shrink-0">
-                        <IconComponent className="w-6 h-6 stroke-[1.5]" />
-                      </div>
-                    </div>
-
-                    {/* Title with 32px top margin */}
-                    <h3 className="mt-8 text-[clamp(1.25rem,1.6vw,1.625rem)] font-semibold text-white leading-[1.25] group-hover:text-[#8DC63F] transition-colors [text-wrap:balance]">
-                      {item.title}
-                    </h3>
-
-                    {/* Description with 12px top margin */}
-                    <p className="mt-3 text-base text-[#A9B4C0] leading-[1.7] max-w-[60ch]">
-                      {item.description}
-                    </p>
-                  </div>
-                </Card>
-              </Reveal>
-            );
-          })}
-        </div>
-
-        {/* COMMITMENT STRIP BELOW ITEMS */}
-        <Reveal staggerIndex={7}>
-          <div className="p-[1px] rounded-[24px] bg-gradient-to-r from-[#0B65B3]/40 via-[#8DC63F]/40 to-[#0B65B3]/40">
-            <div className="bg-[#0D1117] rounded-[23px] p-6 lg:p-10 flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
-              {/* ShieldCheck Icon in Lime-tinted Circle */}
-              <div className="w-10 h-10 rounded-full bg-[#8DC63F]/10 text-[#8DC63F] border border-[#8DC63F]/20 flex items-center justify-center shrink-0">
-                <ShieldCheck className="w-5 h-5 stroke-[1.5]" />
+      <div className="max-w-[80rem] mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 lg:gap-x-24 gap-y-12">
+          {/* LEFT COLUMN: Sticky on Desktop (lg:col-span-5) */}
+          <div className="lg:col-span-5 lg:sticky lg:top-32 lg:self-start space-y-8">
+            {/* Header: Eyebrow, H2, Description */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-2">
+                <span className="w-6 h-[1.5px] bg-[#8DC63F]" />
+                <span className="text-xs uppercase tracking-widest text-[#8DC63F] font-semibold">
+                  {WHY_CHOOSE_US_HEADER.eyebrow}
+                </span>
               </div>
-
-              {/* Exact Commitment Text */}
-              <p className="text-base text-white/90 leading-[1.7] max-w-[70ch]">
-                We do not supply, support, or promote dangerous, harmful, or non-compliant products
-                that fail to meet recognised international standards. Instead, we provide
-                responsible, certified, and eco-conscious alternatives that protect people, assets,
-                and the environment.
+              <h2
+                id="why-choose-us-heading"
+                className="text-[clamp(1.75rem,4.2vw,3rem)] font-semibold text-white leading-[1.15] tracking-[-0.02em] [text-wrap:balance]"
+              >
+                {WHY_CHOOSE_US_HEADER.title}
+              </h2>
+              <p className="text-base md:text-[1.0625rem] text-[#A9B4C0] leading-[1.7]">
+                {WHY_CHOOSE_US_HEADER.description}
               </p>
             </div>
+
+            {/* DESKTOP-ONLY PULL-QUOTE & COMMITMENT */}
+            <div className="hidden lg:block pt-8 space-y-6">
+              {/* 40px Lime Hairline */}
+              <div className="w-10 h-[1px] bg-[#8DC63F]" />
+
+              {/* Eyebrow */}
+              <span className="text-xs uppercase tracking-widest text-[#8DC63F] font-semibold block">
+                Our commitment
+              </span>
+
+              {/* Bare ShieldCheck Icon & Blockquote */}
+              <blockquote className="border-l-2 border-[#8DC63F] pl-6 space-y-4">
+                <ShieldCheck className="w-5 h-5 text-[#8DC63F] stroke-[1.5]" />
+                <p className="text-[clamp(1.125rem,1.7vw,1.5rem)] font-normal leading-[1.6] text-white/95 max-w-[34ch]">
+                  {OUR_COMMITMENT_PULL_QUOTE}
+                </p>
+              </blockquote>
+            </div>
           </div>
-        </Reveal>
+
+          {/* RIGHT COLUMN: The List (lg:col-span-7) */}
+          <div className="lg:col-span-7 relative">
+            {/* PROGRESS LINE */}
+            <div
+              className="absolute -left-3 sm:-left-4 top-0 bottom-0 w-[2px] bg-white/[0.08]"
+              aria-hidden="true"
+            >
+              <div
+                className={`w-full bg-[#8DC63F] origin-top ${
+                  prefersReducedMotion ? '' : 'transition-transform duration-400 ease-out'
+                }`}
+                style={{
+                  height: '100%',
+                  transform: `scaleY(${progressRatio})`,
+                }}
+              />
+            </div>
+
+            {/* SEMANTIC OL LIST */}
+            <ol className="relative divide-y divide-white/[0.08] border-y border-white/[0.08]">
+              {WHY_CHOOSE_US_ITEMS.map((item, index) => {
+                const isActive = activeIndex === index;
+
+                return (
+                  <Reveal key={item.id} staggerIndex={index}>
+                    <li
+                      ref={(el) => {
+                        rowRefs.current[index] = el;
+                      }}
+                      data-index={index}
+                      className="group relative py-6 lg:py-9 transition-colors duration-300"
+                    >
+                      {/* Hover bottom hairline gradient effect (Desktop hover devices only) */}
+                      <div
+                        className="pointer-events-none absolute bottom-0 left-0 right-0 h-[1px] bg-transparent lg:group-hover:bg-[linear-gradient(90deg,#0B65B3,#8DC63F)] transition-colors duration-300"
+                        aria-hidden="true"
+                      />
+
+                      {/* Content wrapper with translateX on hover */}
+                      <div
+                        className={`grid grid-cols-1 md:grid-cols-[56px_1fr] gap-2 md:gap-x-0 ${
+                          prefersReducedMotion
+                            ? ''
+                            : 'lg:group-hover:translate-x-2 transition-transform duration-300'
+                        }`}
+                      >
+                        {/* Number (Monospace, 13px, tracking 0.08em) */}
+                        <div className="pt-0.5">
+                          <span
+                            className={`font-mono text-[13px] tracking-[0.08em] tabular-nums transition-colors duration-300 ${
+                              isActive ? 'text-[#8DC63F] font-semibold' : 'text-[#A9B4C0]'
+                            }`}
+                          >
+                            {item.number}
+                          </span>
+                        </div>
+
+                        {/* Title & Description Stack */}
+                        <div className="space-y-3">
+                          {/* Title */}
+                          <h3
+                            className={`text-[clamp(1.25rem,2.2vw,1.875rem)] font-medium tracking-[-0.01em] leading-[1.2] transition-colors duration-300 ${
+                              isActive
+                                ? 'text-white'
+                                : 'text-white/60 lg:group-hover:text-white'
+                            }`}
+                          >
+                            {item.title}
+                          </h3>
+
+                          {/* Description */}
+                          <p className="text-base lg:text-[1.0625rem] text-[#A9B4C0] leading-[1.7] max-w-[52ch]">
+                            {item.description}
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                  </Reveal>
+                );
+              })}
+            </ol>
+
+            {/* MOBILE-ONLY PULL-QUOTE & COMMITMENT (Below list) */}
+            <div className="block lg:hidden mt-12 pt-8 space-y-6">
+              {/* 40px Lime Hairline */}
+              <div className="w-10 h-[1px] bg-[#8DC63F]" />
+
+              {/* Eyebrow */}
+              <span className="text-xs uppercase tracking-widest text-[#8DC63F] font-semibold block">
+                Our commitment
+              </span>
+
+              {/* Bare ShieldCheck Icon & Blockquote */}
+              <blockquote className="border-l-2 border-[#8DC63F] pl-6 space-y-4">
+                <ShieldCheck className="w-5 h-5 text-[#8DC63F] stroke-[1.5]" />
+                <p className="text-[clamp(1.125rem,1.7vw,1.5rem)] font-normal leading-[1.6] text-white/95">
+                  {OUR_COMMITMENT_PULL_QUOTE}
+                </p>
+              </blockquote>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
