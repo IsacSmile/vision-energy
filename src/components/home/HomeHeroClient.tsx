@@ -39,7 +39,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
       <div
         className="absolute inset-0 pointer-events-none z-20"
         style={{
-          background: 'radial-gradient(ellipse 95% 50% at 50% 45%, rgba(5,6,8,0.88) 0%, rgba(5,6,8,0.65) 55%, rgba(5,6,8,0) 100%)',
+          background: 'radial-gradient(ellipse 90% 42% at 50% 45%, rgba(5,6,8,0.8) 0%, rgba(5,6,8,0.55) 55%, rgba(5,6,8,0) 100%)',
         }}
       />
 
@@ -67,7 +67,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
             className="block lg:hidden font-semibold text-white tracking-[-0.02em] text-center leading-[1.15]"
             style={{
               fontSize: 'min(calc((100vw - 32px) / 12.8), 2.5rem)',
-              textShadow: '0 2px 14px rgba(5,6,8,0.7)',
+              textShadow: '0 0 18px rgba(5,6,8,0.9), 0 2px 6px rgba(5,6,8,0.8)',
             }}
           >
             <span className="block whitespace-nowrap">Innovation Engineered</span>
@@ -79,7 +79,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
             className="hidden lg:block font-semibold text-white leading-[1.1] tracking-[-0.02em]"
             style={{
               fontSize: 'clamp(2.25rem, 3.6vw, 5.5rem)',
-              textShadow: '0 2px 14px rgba(5,6,8,0.7)',
+              textShadow: '0 0 18px rgba(5,6,8,0.9), 0 2px 6px rgba(5,6,8,0.8)',
             }}
           >
             <span className="block">Innovation Engineered</span>
@@ -88,10 +88,11 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
 
           {/* Paragraph */}
           <p
-            className="mt-4 sm:mt-6 text-white/85 font-normal leading-[1.6] lg:leading-[1.7] max-w-[52ch] mx-auto lg:mx-0 text-center lg:text-left"
+            className="mt-4 sm:mt-6 text-white/95 font-normal leading-[1.6] lg:leading-[1.7] max-w-[52ch] mx-auto lg:mx-0 text-center lg:text-left"
             style={{
               fontSize: 'clamp(1.125rem, 1.25vw, 1.75rem)',
-              textShadow: '0 2px 14px rgba(5,6,8,0.7)',
+              color: 'rgba(255,255,255,0.95)',
+              textShadow: '0 0 18px rgba(5,6,8,0.9), 0 2px 6px rgba(5,6,8,0.8)',
             }}
           >
             We deliver reliable, sustainable solutions through engineering expertise, advanced technology, and technical excellence.
@@ -129,6 +130,9 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
                 })
               }
               className="sm:hidden min-h-[48px] min-w-[48px] px-4 py-3 text-[#8DC63F] flex items-center justify-center gap-1.5 font-semibold text-sm hover:underline active-press mx-auto"
+              style={{
+                textShadow: '0 0 18px rgba(5,6,8,0.9), 0 2px 6px rgba(5,6,8,0.8)',
+              }}
             >
               <span>Book a Service</span>
               <ArrowRight className="w-4 h-4 text-[#8DC63F]" />

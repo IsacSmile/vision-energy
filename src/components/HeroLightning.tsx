@@ -4,17 +4,20 @@ import React, { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 
 const Lightning = dynamic(() => import('@/components/ui/Lightning'), { ssr: false });
+const LightningCentered = dynamic(() => import('@/components/ui/LightningCentered'), { ssr: false });
 
 export const LIGHTNING_HUE = 210; // Brand blue (hue 210)
 export const LIGHTNING_SPEED = 0.7; // Speed tuned for smooth non-strobing animation
 export const LIGHTNING_SIZE = 1;
 export const BOLT_POSITION = 0.75; // Default 0.75 (75% across hero width, valid 0.65 to 0.85)
+export const MOBILE_WANDER = 0.5; // Named constant (0.4 = nearly straight, 0.7 = more wandering)
 
 export default function HeroLightning() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
   const [inView, setInView] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [lightningProps, setLightningProps] = useState({
     xOffset: -0.7,
     intensity: 1.0,
@@ -44,6 +47,7 @@ export default function HeroLightning() {
       const height = el ? el.clientHeight : window.innerHeight;
 
       if (width >= 1024) {
+        setIsMobile(false);
         // Desktop (>= 1024px): compute xOffset from aspect ratio
         const aspect = width / (height || 1);
         let targetPos = BOLT_POSITION; // 0.75
@@ -71,10 +75,11 @@ export default function HeroLightning() {
           size: calculatedSize,
         });
       } else {
-        // Mobile / Tablet (< 1024px): offset -0.6 & wrapper opacity 0.5 for contrast
+        // Mobile / Tablet (< 1024px)
+        setIsMobile(true);
         setLightningProps({
-          xOffset: -0.6,
-          intensity: 1.0,
+          xOffset: 0,
+          intensity: 0.85,
           size: LIGHTNING_SIZE,
         });
       }
@@ -129,15 +134,28 @@ export default function HeroLightning() {
   return (
     <div
       ref={containerRef}
-      className="w-full h-full relative opacity-50 lg:opacity-100 transition-opacity duration-300"
+      className="w-full h-full relative opacity-70 lg:opacity-100 transition-opacity duration-300"
     >
-      <Lightning
-        hue={LIGHTNING_HUE}
-        xOffset={lightningProps.xOffset}
-        speed={LIGHTNING_SPEED}
-        intensity={lightningProps.intensity}
-        size={lightningProps.size}
-      />
+      {isMobile ? (
+        <LightningCentered
+          hue={LIGHTNING_HUE}
+          xOffset={0}
+          wander={MOBILE_WANDER}
+          speed={LIGHTNING_SPEED}
+          intensity={0.85}
+          size={1}
+          octaves={6}
+          maxDpr={1}
+        />
+      ) : (
+        <Lightning
+          hue={LIGHTNING_HUE}
+          xOffset={lightningProps.xOffset}
+          speed={LIGHTNING_SPEED}
+          intensity={lightningProps.intensity}
+          size={lightningProps.size}
+        />
+      )}
     </div>
   );
 }
