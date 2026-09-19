@@ -18,6 +18,12 @@ import HomeHeroClient from '@/components/home/HomeHeroClient';
 import HomeSolutionsCarousel from '@/components/home/HomeSolutionsCarousel';
 import HomeWhyChooseUsAccordion from '@/components/home/HomeWhyChooseUsAccordion';
 
+export const metadata = {
+  title: 'Vision Energy International | Lightning Protection, Earthing and Electrical Solutions UAE',
+  description:
+    'Lightning protection, earthing, surge protection, electrical, mechanical and solar solutions for buildings and infrastructure across the UAE.',
+};
+
 export const revalidate = 60; // ISR revalidation
 
 export default async function HomePage() {

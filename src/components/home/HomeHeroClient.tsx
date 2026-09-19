@@ -50,13 +50,13 @@ export default function HomeHeroClient() {
           </div>
 
           {/* H1 Heading (Only H1 on page) */}
-          <h1 className="text-[clamp(2rem,6vw,4.75rem)] font-semibold text-white leading-[1.05] tracking-[-0.02em] text-balance lg:max-w-[14em]">
-            Engineering Innovation Built for Performance
+          <h1 className="text-[clamp(2rem,6vw,4.75rem)] font-semibold text-white leading-[1.05] tracking-[-0.02em] text-balance lg:max-w-[12em]">
+            Innovation Engineered for Performance
           </h1>
 
-          {/* Paragraph (24px gap mt-6 on desktop, 4-line max on mobile) */}
-          <p className="mt-6 text-base lg:text-lg text-white/85 font-normal leading-[1.7] max-w-[60ch] line-clamp-4 lg:line-clamp-none mx-auto lg:mx-0">
-            We combine engineering expertise, advanced technology, and responsive support to deliver reliable solutions for demanding projects. Our focus on quality, sustainability, and technical excellence creates lasting value across every application.
+          {/* Paragraph (24px gap mt-6 on desktop, 52ch max-width) */}
+          <p className="mt-6 text-base lg:text-lg text-white/85 font-normal leading-[1.7] max-w-[52ch] mx-auto lg:mx-0">
+            We deliver reliable, sustainable solutions through engineering expertise, advanced technology, and technical excellence.
           </p>
 
           {/* Action Buttons (Mobile: ONE primary full-width 52px button + text link below; Desktop: side-by-side pills) */}
