@@ -147,8 +147,8 @@ export default function Header() {
   return (
     <>
       <header className={headerClasses}>
-        <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 h-14 lg:h-[80px] flex items-center justify-between">
-          {/* Brand Logo - 40px on mobile (h-10), 48px on desktop (lg:h-12) */}
+        <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 h-16 lg:h-[80px] flex items-center justify-between">
+          {/* Brand Logo - 48px on mobile (h-12), 48px on desktop (lg:h-12) */}
           <Link
             href="/"
             onClick={() => setMobileMenuOpen(false)}
@@ -160,7 +160,7 @@ export default function Header() {
               alt="VISION ENERGY INTERNATIONAL UAE"
               width={240}
               height={60}
-              className="h-10 lg:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+              className="h-12 lg:h-12 w-auto object-contain transition-transform group-hover:scale-105"
               priority
             />
           </Link>
