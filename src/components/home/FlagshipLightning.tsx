@@ -174,11 +174,11 @@ export default function FlagshipLightning() {
 
             {/* Action Buttons & Phone Link */}
             <div className="space-y-4 pt-2">
-              <div className="flex flex-col sm:flex-row items-stretch gap-4 max-w-[360px] sm:max-w-none">
+              <div className="flex flex-col gap-4 w-full max-w-[420px]">
                 {/* Primary White Pill Button */}
                 <Link
                   href="/products?codes=LP-01,LP-02,LP-03,LP-04,ER-01,ER-02,ER-03,ER-04"
-                  className="h-[52px] px-6 rounded-full bg-white text-[#050608] font-bold text-sm flex items-center justify-center gap-2 hover:bg-gray-100 transition-all pill-glow active-press shadow-lg text-center"
+                  className="w-full h-[52px] px-6 rounded-full bg-white text-[#050608] font-bold text-sm flex items-center justify-center gap-2 hover:bg-gray-100 transition-all pill-glow active-press shadow-lg text-center whitespace-nowrap"
                 >
                   <span>Explore Lightning Protection Products</span>
                 </Link>
@@ -187,7 +187,7 @@ export default function FlagshipLightning() {
                 <button
                   type="button"
                   onClick={handleBookInstallation}
-                  className="h-[52px] px-6 rounded-full bg-[#0D1117] border border-white/15 text-white font-semibold text-sm flex items-center justify-center gap-2 hover:bg-white/10 transition-all active-press text-center"
+                  className="w-full h-[52px] px-6 rounded-full bg-[#0D1117] border border-white/15 text-white font-semibold text-sm flex items-center justify-center gap-2 hover:bg-white/10 transition-all active-press text-center whitespace-nowrap"
                 >
                   <span>Book Installation</span>
                 </button>
