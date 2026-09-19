@@ -90,7 +90,7 @@ export default function IntroStandards({ productCategoryCount }: IntroStandardsP
           {/* Chips Row: Horizontal scroll on mobile, flex-wrap on desktop */}
           <div className="flex items-center gap-3 overflow-x-auto no-scrollbar snap-x snap-mandatory lg:flex-wrap lg:overflow-visible py-1">
             {STANDARDS.map((std, i) => (
-              <Reveal key={std} staggerIndex={i}>
+              <Reveal key={std} staggerIndex={i} className="shrink-0">
                 <Chip variant="static" className="snap-start">
                   {std}
                 </Chip>

@@ -20,7 +20,7 @@ export default function Chip({
   };
 
   const baseClasses =
-    'h-[40px] px-4 rounded-full text-sm font-medium shrink-0 inline-flex items-center justify-center border transition-colors select-none';
+    'h-[40px] px-4 rounded-full text-sm font-medium whitespace-nowrap shrink-0 inline-flex items-center justify-center border transition-colors select-none';
 
   if (onClick) {
     return (
