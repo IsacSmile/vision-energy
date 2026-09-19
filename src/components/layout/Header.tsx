@@ -290,7 +290,7 @@ export default function Header() {
           style={{
             transitionDelay: mobileMenuOpen ? `${80 + navLinks.length * 50}ms` : '0ms',
           }}
-          className={`w-full mt-auto pt-6 space-y-3 transition-all duration-300 ${
+          className={`w-full mt-auto pt-4 space-y-2 transition-all duration-300 ${
             mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
           }`}
         >
@@ -298,23 +298,23 @@ export default function Header() {
           <a
             href={`tel:${dictionary.company.primaryPhone}`}
             onClick={() => setMobileMenuOpen(false)}
-            className="w-full h-[52px] rounded-full bg-white text-[#050608] font-bold text-base flex items-center justify-center gap-2 active-press shadow-lg focus-visible:ring-2 focus-visible:ring-[#8DC63F]"
+            className="w-full h-[44px] min-h-[44px] rounded-full bg-white text-[#050608] font-bold text-sm flex items-center justify-center gap-2 active-press shadow-md focus-visible:ring-2 focus-visible:ring-[#8DC63F]"
           >
-            <Phone className="w-5 h-5 text-[#0B65B3]" />
+            <Phone className="w-4 h-4 text-[#0B65B3]" />
             <span>Call Us: {dictionary.company.primaryPhone}</span>
           </a>
 
           {/* Button 2: Gradient Blue-to-Lime Pill */}
           <button
             onClick={handleMobileEnquiry}
-            className="w-full h-[52px] rounded-full bg-gradient-brand text-white font-bold text-base flex items-center justify-center gap-2 active-press shadow-lg focus-visible:ring-2 focus-visible:ring-[#8DC63F]"
+            className="w-full h-[44px] min-h-[44px] rounded-full bg-gradient-brand text-white font-bold text-sm flex items-center justify-center gap-2 active-press shadow-md focus-visible:ring-2 focus-visible:ring-[#8DC63F]"
           >
-            <Send className="w-5 h-5 text-white" />
+            <Send className="w-4 h-4 text-white" />
             <span>Enquire</span>
           </button>
 
           {/* Muted Office Coverage Line */}
-          <p className="text-[14px] text-[#A9B4C0] text-center font-normal block pt-1">
+          <p className="text-xs text-[#A9B4C0] text-center font-normal block pt-1">
             Abu Dhabi | Dubai | Ras Al Khaimah
           </p>
         </div>
