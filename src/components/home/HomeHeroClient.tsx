@@ -116,13 +116,6 @@ export default function HomeHeroClient() {
           </div>
         </div>
       </div>
-
-      {/* Scroll indicator (hidden on mobile below md, centered exactly horizontally at left-1/2 -translate-x-1/2) */}
-      <div className="hidden md:block absolute bottom-6 left-1/2 -translate-x-1/2 z-30 motion-safe:animate-bounce pointer-events-none opacity-80" aria-hidden="true">
-        <div className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center pt-2">
-          <div className="w-1.5 h-2.5 bg-[#8DC63F] rounded-full motion-safe:animate-pulse" />
-        </div>
-      </div>
     </section>
   );
 }
