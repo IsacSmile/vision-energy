@@ -43,7 +43,7 @@ export default function EnquiryModal() {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200"
       onClick={(e) => {
         if (e.target === e.currentTarget) closeModal();
       }}
@@ -51,57 +51,69 @@ export default function EnquiryModal() {
       aria-modal="true"
       aria-labelledby="modal-title"
     >
-      <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[#0D1117] border border-[#1F2937] rounded-2xl shadow-2xl p-6 sm:p-8 text-white">
-        {/* Close Button */}
-        <button
-          onClick={closeModal}
-          className="absolute top-4 right-4 p-2 text-gray-400 hover:text-white rounded-full hover:bg-white/10 transition-colors"
-          aria-label="Close modal"
-        >
-          <X className="w-6 h-6" />
-        </button>
+      <div className="relative w-full sm:max-w-xl max-h-[92svh] sm:max-h-[88vh] flex flex-col bg-[#0D1117] border border-[#1F2937] rounded-t-2xl sm:rounded-2xl shadow-2xl text-white overflow-hidden pb-safe">
+        {/* Sticky Header */}
+        <div className="sticky top-0 z-10 bg-[#0D1117]/95 backdrop-blur-md px-6 py-4 border-b border-[#1F2937] flex items-center justify-between">
+          <h2 id="modal-title" className="text-lg sm:text-xl font-bold text-white truncate pr-4">
+            {successRef
+              ? 'Submission Confirmation'
+              : modalType === 'SERVICE'
+              ? `Book Service: ${serviceContext?.serviceTitle}`
+              : `Enquire: [${productContext?.categoryCode}] ${productContext?.categoryTitle}`}
+          </h2>
+          <button
+            onClick={closeModal}
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2 text-gray-400 hover:text-white rounded-xl hover:bg-white/10 transition-colors"
+            aria-label="Close modal"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
 
-        {successRef ? (
-          <div className="text-center py-8 space-y-4">
-            <CheckCircle2 className="w-16 h-16 mx-auto text-[#8DC63F] animate-bounce" />
-            <h3 className="text-2xl font-bold text-white">Enquiry Submitted Successfully</h3>
-            <p className="text-gray-300 max-w-md mx-auto">
-              Thank you for contacting Vision Energy International. Your enquiry reference ID is:
-            </p>
-            <div className="inline-block bg-[#050608] border border-[#8DC63F]/40 px-6 py-3 rounded-full text-lg font-mono text-[#8DC63F] font-bold pill-glow">
-              {successRef}
+        {/* Scrollable Form Body */}
+        <div className="p-6 overflow-y-auto grow space-y-4">
+          {successRef ? (
+            <div className="text-center py-6 space-y-4">
+              <CheckCircle2 className="w-16 h-16 mx-auto text-[#8DC63F] animate-bounce" />
+              <h3 className="text-xl sm:text-2xl font-bold text-white">Enquiry Submitted Successfully</h3>
+              <p className="text-gray-300 max-w-md mx-auto text-sm">
+                Thank you for contacting Vision Energy International. Your enquiry reference ID is:
+              </p>
+              <div className="inline-block bg-[#050608] border border-[#8DC63F]/40 px-6 py-3 rounded-full text-base sm:text-lg font-mono text-[#8DC63F] font-bold pill-glow">
+                {successRef}
+              </div>
+              <p className="text-xs text-[#A9B4C0] pt-2">
+                Our engineering team will review your specifications and get in touch shortly.
+              </p>
+              <div className="pt-4">
+                <button
+                  onClick={closeModal}
+                  className="w-full sm:w-auto h-12 px-8 bg-[#0B65B3] hover:bg-[#0B65B3]/80 text-white font-bold rounded-full transition-colors text-base"
+                >
+                  Close Window
+                </button>
+              </div>
             </div>
-            <p className="text-sm text-[#A9B4C0] pt-2">
-              Our engineering team will review your specifications and get in touch shortly.
-            </p>
-            <div className="pt-4">
-              <button
-                onClick={closeModal}
-                className="px-8 py-3 bg-[#0B65B3] hover:bg-[#0B65B3]/80 text-white font-semibold rounded-full transition-colors"
-              >
-                Close Window
-              </button>
-            </div>
-          </div>
-        ) : modalType === 'SERVICE' ? (
-          <ServiceForm
-            context={serviceContext!}
-            setSubmitting={setSubmitting}
-            submitting={submitting}
-            setSuccessRef={setSuccessRef}
-            setServerError={setServerError}
-            serverError={serverError}
-          />
-        ) : (
-          <ProductForm
-            context={productContext!}
-            setSubmitting={setSubmitting}
-            submitting={submitting}
-            setSuccessRef={setSuccessRef}
-            setServerError={setServerError}
-            serverError={serverError}
-          />
-        )}
+          ) : modalType === 'SERVICE' ? (
+            <ServiceForm
+              context={serviceContext!}
+              setSubmitting={setSubmitting}
+              submitting={submitting}
+              setSuccessRef={setSuccessRef}
+              setServerError={setServerError}
+              serverError={serverError}
+            />
+          ) : (
+            <ProductForm
+              context={productContext!}
+              setSubmitting={setSubmitting}
+              submitting={submitting}
+              setSuccessRef={setSuccessRef}
+              setServerError={setServerError}
+              serverError={serverError}
+            />
+          )}
+        </div>
       </div>
     </div>
   );
@@ -163,13 +175,10 @@ function ServiceForm({
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <div>
-        <span className="inline-block px-3 py-1 text-xs font-semibold text-[#8DC63F] bg-[#8DC63F]/10 border border-[#8DC63F]/30 rounded-full mb-2">
+        <span className="inline-block px-3 py-1 text-xs font-semibold text-[#8DC63F] bg-[#8DC63F]/10 border border-[#8DC63F]/30 rounded-full mb-1">
           Service Booking Mode
         </span>
-        <h2 id="modal-title" className="text-2xl font-bold text-white">
-          Book Service: {context.serviceTitle}
-        </h2>
-        <p className="text-sm text-[#A9B4C0] mt-1">
+        <p className="text-xs text-[#A9B4C0]">
           Submit your project requirements and preferred timeline for engineering review.
         </p>
       </div>
@@ -181,7 +190,7 @@ function ServiceForm({
         </div>
       )}
 
-      {/* Hidden honeypot & context */}
+      {/* Hidden honeypot */}
       <input type="text" {...register('website')} tabIndex={-1} autoComplete="off" className="hidden" />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -190,8 +199,10 @@ function ServiceForm({
           <input
             {...register('name')}
             type="text"
+            autoComplete="name"
+            inputMode="text"
             placeholder="e.g. Engineer Ahmed Mansoor"
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-lg px-3 py-2 text-white focus:border-[#0B65B3] text-sm"
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#0B65B3] text-base"
           />
           {errors.name && <p className="text-xs text-red-400 mt-1">{errors.name.message}</p>}
         </div>
@@ -201,8 +212,10 @@ function ServiceForm({
           <input
             {...register('company')}
             type="text"
+            autoComplete="organization"
+            inputMode="text"
             placeholder="e.g. Al Habtoor Contracting"
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-lg px-3 py-2 text-white focus:border-[#0B65B3] text-sm"
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#0B65B3] text-base"
           />
         </div>
 
@@ -211,8 +224,10 @@ function ServiceForm({
           <input
             {...register('phone')}
             type="tel"
+            autoComplete="tel"
+            inputMode="tel"
             placeholder="+971 50 123 4567"
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-lg px-3 py-2 text-white focus:border-[#0B65B3] text-sm"
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#0B65B3] text-base"
           />
           {errors.phone && <p className="text-xs text-red-400 mt-1">{errors.phone.message}</p>}
         </div>
@@ -222,8 +237,10 @@ function ServiceForm({
           <input
             {...register('email')}
             type="email"
+            autoComplete="email"
+            inputMode="email"
             placeholder="ahmed@company.ae"
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-lg px-3 py-2 text-white focus:border-[#0B65B3] text-sm"
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#0B65B3] text-base"
           />
           {errors.email && <p className="text-xs text-red-400 mt-1">{errors.email.message}</p>}
         </div>
@@ -232,7 +249,7 @@ function ServiceForm({
           <label className="block text-xs font-medium text-gray-300 mb-1">Emirate / Location *</label>
           <select
             {...register('emirate')}
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-lg px-3 py-2 text-white focus:border-[#0B65B3] text-sm"
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#0B65B3] text-base"
           >
             <option value="">-- Select Emirate --</option>
             {dictionary.emirates.map((em) => (
@@ -248,7 +265,7 @@ function ServiceForm({
           <label className="block text-xs font-medium text-gray-300 mb-1">Project Type *</label>
           <select
             {...register('projectType')}
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-lg px-3 py-2 text-white focus:border-[#0B65B3] text-sm"
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#0B65B3] text-base"
           >
             <option value="">-- Select Project Type --</option>
             {dictionary.projectTypes.map((pt) => (
@@ -266,7 +283,7 @@ function ServiceForm({
         <input
           {...register('preferredDate')}
           type="date"
-          className="w-full bg-[#050608] border border-[#1F2937] rounded-lg px-3 py-2 text-white focus:border-[#0B65B3] text-sm"
+          className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#0B65B3] text-base"
         />
       </div>
 
@@ -276,29 +293,29 @@ function ServiceForm({
           {...register('message')}
           rows={3}
           placeholder="Describe your project scope, building dimensions, or specific technical specs..."
-          className="w-full bg-[#050608] border border-[#1F2937] rounded-lg px-3 py-2 text-white focus:border-[#0B65B3] text-sm"
+          className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 py-3 text-white focus:border-[#0B65B3] text-base"
         />
         {errors.message && <p className="text-xs text-red-400 mt-1">{errors.message.message}</p>}
       </div>
 
-      <div className="flex items-start gap-2 pt-1">
+      <div className="flex items-start gap-2.5 pt-1">
         <input
           {...register('consent')}
           id="service-consent"
           type="checkbox"
-          className="mt-1 accent-[#8DC63F] w-4 h-4 rounded"
+          className="mt-1 accent-[#8DC63F] w-5 h-5 rounded shrink-0"
         />
-        <label htmlFor="service-consent" className="text-xs text-gray-300">
+        <label htmlFor="service-consent" className="text-xs text-gray-300 leading-normal">
           I consent to Vision Energy International storing my details for processing this service enquiry. *
         </label>
       </div>
       {errors.consent && <p className="text-xs text-red-400">{errors.consent.message}</p>}
 
-      <div className="pt-2">
+      <div className="pt-2 sticky bottom-0 bg-[#0D1117] py-2 border-t border-[#1F2937]/50">
         <button
           type="submit"
           disabled={submitting}
-          className="w-full py-3 bg-gradient-brand text-white font-bold rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+          className="w-full h-12 bg-gradient-brand text-white font-bold rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2 text-base shadow-lg"
         >
           {submitting ? (
             <>
@@ -370,13 +387,10 @@ function ProductForm({
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <div>
-        <span className="inline-block px-3 py-1 text-xs font-semibold text-[#0B65B3] bg-[#0B65B3]/10 border border-[#0B65B3]/30 rounded-full mb-2">
+        <span className="inline-block px-3 py-1 text-xs font-semibold text-[#0B65B3] bg-[#0B65B3]/10 border border-[#0B65B3]/30 rounded-full mb-1">
           Product Enquiry Mode
         </span>
-        <h2 id="modal-title" className="text-2xl font-bold text-white">
-          Enquire: [{context.categoryCode}] {context.categoryTitle}
-        </h2>
-        <p className="text-sm text-[#A9B4C0] mt-1">
+        <p className="text-xs text-[#A9B4C0]">
           Request technical datasheets, bulk pricing, or availability for this product category.
         </p>
       </div>
@@ -397,8 +411,10 @@ function ProductForm({
           <input
             {...register('name')}
             type="text"
+            autoComplete="name"
+            inputMode="text"
             placeholder="e.g. Engineer Rashid Al Suwaidi"
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-lg px-3 py-2 text-white focus:border-[#0B65B3] text-sm"
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#0B65B3] text-base"
           />
           {errors.name && <p className="text-xs text-red-400 mt-1">{errors.name.message}</p>}
         </div>
@@ -408,8 +424,10 @@ function ProductForm({
           <input
             {...register('company')}
             type="text"
+            autoComplete="organization"
+            inputMode="text"
             placeholder="e.g. Emirates Industrial Construction"
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-lg px-3 py-2 text-white focus:border-[#0B65B3] text-sm"
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#0B65B3] text-base"
           />
         </div>
 
@@ -418,8 +436,10 @@ function ProductForm({
           <input
             {...register('phone')}
             type="tel"
+            autoComplete="tel"
+            inputMode="tel"
             placeholder="+971 50 123 4567"
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-lg px-3 py-2 text-white focus:border-[#0B65B3] text-sm"
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#0B65B3] text-base"
           />
           {errors.phone && <p className="text-xs text-red-400 mt-1">{errors.phone.message}</p>}
         </div>
@@ -429,8 +449,10 @@ function ProductForm({
           <input
             {...register('email')}
             type="email"
+            autoComplete="email"
+            inputMode="email"
             placeholder="rashid@company.ae"
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-lg px-3 py-2 text-white focus:border-[#0B65B3] text-sm"
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#0B65B3] text-base"
           />
           {errors.email && <p className="text-xs text-red-400 mt-1">{errors.email.message}</p>}
         </div>
@@ -441,7 +463,7 @@ function ProductForm({
             {...register('categoryCode')}
             type="text"
             readOnly
-            className="w-full bg-[#161B22] border border-[#1F2937] rounded-lg px-3 py-2 text-[#8DC63F] font-mono text-sm"
+            className="w-full bg-[#161B22] border border-[#1F2937] rounded-xl px-3.5 h-12 text-[#8DC63F] font-mono text-base"
           />
           <input type="hidden" {...register('categoryTitle')} />
         </div>
@@ -452,7 +474,7 @@ function ProductForm({
             {...register('quantity')}
             type="text"
             placeholder="e.g. 500 meters tape / 20 ESE rods"
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-lg px-3 py-2 text-white focus:border-[#0B65B3] text-sm"
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#0B65B3] text-base"
           />
         </div>
       </div>
@@ -463,7 +485,7 @@ function ProductForm({
           {...register('deliveryLocation')}
           type="text"
           placeholder="e.g. ICAD III Abu Dhabi / KIZAD / JAFZA Dubai"
-          className="w-full bg-[#050608] border border-[#1F2937] rounded-lg px-3 py-2 text-white focus:border-[#0B65B3] text-sm"
+          className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#0B65B3] text-base"
         />
       </div>
 
@@ -473,29 +495,29 @@ function ProductForm({
           {...register('message')}
           rows={3}
           placeholder="Specify exact sizes, material grades (e.g. Copper 25x3mm), or delivery timelines required..."
-          className="w-full bg-[#050608] border border-[#1F2937] rounded-lg px-3 py-2 text-white focus:border-[#0B65B3] text-sm"
+          className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 py-3 text-white focus:border-[#0B65B3] text-base"
         />
         {errors.message && <p className="text-xs text-red-400 mt-1">{errors.message.message}</p>}
       </div>
 
-      <div className="flex items-start gap-2 pt-1">
+      <div className="flex items-start gap-2.5 pt-1">
         <input
           {...register('consent')}
           id="product-consent"
           type="checkbox"
-          className="mt-1 accent-[#8DC63F] w-4 h-4 rounded"
+          className="mt-1 accent-[#8DC63F] w-5 h-5 rounded shrink-0"
         />
-        <label htmlFor="product-consent" className="text-xs text-gray-300">
+        <label htmlFor="product-consent" className="text-xs text-gray-300 leading-normal">
           I consent to Vision Energy International storing my details for processing this product enquiry. *
         </label>
       </div>
       {errors.consent && <p className="text-xs text-red-400">{errors.consent.message}</p>}
 
-      <div className="pt-2">
+      <div className="pt-2 sticky bottom-0 bg-[#0D1117] py-2 border-t border-[#1F2937]/50">
         <button
           type="submit"
           disabled={submitting}
-          className="w-full py-3 bg-gradient-brand text-white font-bold rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+          className="w-full h-12 bg-gradient-brand text-white font-bold rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2 text-base shadow-lg"
         >
           {submitting ? (
             <>

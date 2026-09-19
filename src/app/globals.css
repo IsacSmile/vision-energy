@@ -4,6 +4,8 @@
 
 @layer base {
   :root {
+    --header-h: 80px;
+    --mobile-bar-h: 56px;
     --bg-main: #050608;
     --bg-card: #0D1117;
     --bg-card-hover: #161B22;
@@ -17,12 +19,37 @@
     --text-muted: #A9B4C0;
   }
 
-  body {
+  html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
     background-color: #050608;
     color: #FFFFFF;
     font-family: var(--font-poppins), sans-serif;
-    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    font-size: 16px;
   }
+
+  /* Fluid typography and orphan prevention */
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+  }
+
+  p, li {
+    text-wrap: pretty;
+  }
+}
+
+/* Safe Area Inset Helpers */
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.bottom-safe {
+  bottom: env(safe-area-inset-bottom, 0px);
 }
 
 /* Custom Utilities for Signature Design System */
@@ -96,6 +123,15 @@
 
 .blue-glow {
   box-shadow: 0 0 20px rgba(11, 101, 179, 0.3);
+}
+
+/* Custom horizontal scrollbar hiding for filter chips */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Accessibility & Focus States */

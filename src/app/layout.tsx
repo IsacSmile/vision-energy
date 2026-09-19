@@ -1,17 +1,24 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Poppins } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import StickyMobileActionBar from '@/components/layout/StickyMobileActionBar';
 import { EnquiryModalProvider } from '@/components/modals/EnquiryModalProvider';
 import EnquiryModal from '@/components/modals/EnquiryModal';
 
 const poppins = Poppins({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800'],
+  weight: ['400', '600', '700'],
   variable: '--font-poppins',
   display: 'swap',
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+};
 
 export const metadata: Metadata = {
   title: {
@@ -80,8 +87,9 @@ export default function RootLayout({
       <body className="bg-[#050608] text-white flex flex-col min-h-screen antialiased">
         <EnquiryModalProvider>
           <Header />
-          <main className="grow">{children}</main>
+          <main className="grow pb-[calc(56px+env(safe-area-inset-bottom))] lg:pb-0">{children}</main>
           <Footer />
+          <StickyMobileActionBar />
           <EnquiryModal />
         </EnquiryModalProvider>
       </body>

@@ -57,18 +57,18 @@ export default function ProductsClientPage({ categories }: { categories: Categor
       <div className="bg-[#0D1117] border border-[#1F2937] p-4 sm:p-6 rounded-2xl space-y-4">
         {/* Search Input */}
         <div className="relative max-w-md">
-          <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-3" />
+          <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-3.5" />
           <input
             type="text"
             placeholder="Search by code (e.g. LP-01), keyword, or title..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl pl-10 pr-4 py-2 text-xs text-white focus:border-[#8DC63F]"
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl pl-10 pr-4 py-2.5 text-base sm:text-xs text-white focus:border-[#8DC63F]"
           />
         </div>
 
-        {/* Group Pills */}
-        <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-[#1F2937]/60">
+        {/* Horizontally Scrollable Group Chips on Mobile, Wrapped on Desktop */}
+        <div className="flex overflow-x-auto no-scrollbar scroll-snap-x items-center gap-2 pt-2 border-t border-[#1F2937]/60 md:flex-wrap md:overflow-visible pb-1">
           {Object.keys(groupLabels).map((prefix) => {
             const isSelected = selectedGroup === prefix;
             const isPriority = prefix === 'LP' || prefix === 'ER';
@@ -76,7 +76,7 @@ export default function ProductsClientPage({ categories }: { categories: Categor
               <button
                 key={prefix}
                 onClick={() => setSelectedGroup(prefix)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                className={`shrink-0 scroll-snap-align-start px-4 py-2 rounded-full text-xs font-semibold transition-all min-h-[36px] flex items-center ${
                   isSelected
                     ? 'bg-gradient-brand text-white shadow-md pill-glow font-bold'
                     : isPriority
@@ -91,8 +91,8 @@ export default function ProductsClientPage({ categories }: { categories: Categor
         </div>
       </div>
 
-      {/* Grid of Product Category Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Mobile-First Grid: 1 col on mobile, 2 at sm, 3 at lg, 4 at xl */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {filteredCategories.map((cat) => {
           const isPriority = cat.groupPrefix === 'LP' || cat.groupPrefix === 'ER';
           const familiesList = cat.families
@@ -103,7 +103,7 @@ export default function ProductsClientPage({ categories }: { categories: Categor
           return (
             <div
               key={cat.id}
-              className={`bg-[#0D1117] border rounded-2xl p-6 flex flex-col justify-between transition-all group hover:bg-[#161B22] ${
+              className={`bg-[#0D1117] border rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all group hover:bg-[#161B22] ${
                 isPriority
                   ? 'border-[#0B65B3]/50 hover:border-[#8DC63F]'
                   : 'border-[#1F2937] hover:border-[#0B65B3]'
@@ -123,7 +123,7 @@ export default function ProductsClientPage({ categories }: { categories: Categor
                 </div>
 
                 {/* Title */}
-                <h2 className="text-xl font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-snug">
+                <h2 className="text-lg sm:text-xl font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-snug">
                   <Link href={`/products/${cat.slug}`}>{cat.title}</Link>
                 </h2>
 
@@ -155,8 +155,8 @@ export default function ProductsClientPage({ categories }: { categories: Categor
                 </div>
               </div>
 
-              {/* TWO BUTTON CTAS */}
-              <div className="pt-6 border-t border-[#1F2937] mt-6 grid grid-cols-2 gap-3">
+              {/* TWO BUTTON CTAS (min 44px height for touch) */}
+              <div className="pt-5 border-t border-[#1F2937] mt-6 grid grid-cols-2 gap-3">
                 <button
                   onClick={() =>
                     openProductModal({
@@ -164,7 +164,7 @@ export default function ProductsClientPage({ categories }: { categories: Categor
                       categoryTitle: cat.title,
                     })
                   }
-                  className="py-2.5 px-3 bg-[#0B65B3] hover:bg-[#0B65B3]/90 text-white font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-1.5 blue-glow"
+                  className="min-h-[44px] px-3 bg-[#0B65B3] hover:bg-[#0B65B3]/90 text-white font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-1.5 blue-glow"
                 >
                   <MessageSquare className="w-3.5 h-3.5" />
                   <span>Enquire</span>
@@ -172,7 +172,7 @@ export default function ProductsClientPage({ categories }: { categories: Categor
 
                 <Link
                   href={`/products/${cat.slug}`}
-                  className="py-2.5 px-3 bg-[#050608] hover:bg-white/10 text-white border border-[#1F2937] font-semibold text-xs rounded-xl transition-all flex items-center justify-center gap-1"
+                  className="min-h-[44px] px-3 bg-[#050608] hover:bg-white/10 text-white border border-[#1F2937] font-semibold text-xs rounded-xl transition-all flex items-center justify-center gap-1"
                 >
                   <span>Details</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -195,7 +195,7 @@ export default function ProductsClientPage({ categories }: { categories: Categor
               setSelectedGroup('ALL');
               setSearchQuery('');
             }}
-            className="px-4 py-2 bg-[#0B65B3] text-white text-xs font-bold rounded-full"
+            className="px-4 py-2 bg-[#0B65B3] text-white text-xs font-bold rounded-full min-h-[40px]"
           >
             Clear Filters
           </button>
