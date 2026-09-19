@@ -4,6 +4,8 @@ import HomeHeroClient from '@/components/home/HomeHeroClient';
 import IntroStandards from '@/components/home/IntroStandards';
 import SolutionPillars from '@/components/home/SolutionPillars';
 import FlagshipLightning from '@/components/home/FlagshipLightning';
+import WhyChooseUs from '@/components/home/WhyChooseUs';
+import Industries from '@/components/home/Industries';
 import { PILLARS_CONFIG } from '@/config/pillars';
 
 export const metadata = {
@@ -59,6 +61,24 @@ export default async function HomePage() {
 
       {/* SECTION 4: FLAGSHIP LIGHTNING & PROTECTION NETWORK */}
       <FlagshipLightning />
+
+      {/* Signature Blue-to-Lime Hairline Divider */}
+      <div
+        className="w-full max-w-[80rem] mx-auto h-[1px] bg-[linear-gradient(90deg,transparent_0%,rgba(11,101,179,0.3)_35%,rgba(141,198,63,0.3)_65%,transparent_100%)]"
+        aria-hidden="true"
+      />
+
+      {/* SECTION 5: WHY CHOOSE US */}
+      <WhyChooseUs />
+
+      {/* Signature Blue-to-Lime Hairline Divider */}
+      <div
+        className="w-full max-w-[80rem] mx-auto h-[1px] bg-[linear-gradient(90deg,transparent_0%,rgba(11,101,179,0.3)_35%,rgba(141,198,63,0.3)_65%,transparent_100%)]"
+        aria-hidden="true"
+      />
+
+      {/* SECTION 6: INDUSTRIES / SECTORS WE SERVE */}
+      <Industries />
     </div>
   );
 }
