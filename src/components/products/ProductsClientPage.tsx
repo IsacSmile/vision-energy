@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo, Suspense } from 'react';
 import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEnquiryModal } from '@/components/modals/EnquiryModalProvider';
-import { Package, ArrowRight, MessageSquare, Search } from 'lucide-react';
+import { Package, ArrowRight, MessageSquare, Search, X } from 'lucide-react';
 
 interface CategoryItem {
   id: string;
@@ -17,10 +18,24 @@ interface CategoryItem {
   sortOrder: number;
 }
 
-export default function ProductsClientPage({ categories }: { categories: CategoryItem[] }) {
+function ProductsClientContent({ categories }: { categories: CategoryItem[] }) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const { openProductModal } = useEnquiryModal();
+
   const [selectedGroup, setSelectedGroup] = useState<string>('ALL');
   const [searchQuery, setSearchQuery] = useState<string>('');
+
+  const codesParam = searchParams.get('codes');
+  const filterName = searchParams.get('name');
+
+  const activeCodes = useMemo(() => {
+    if (!codesParam) return [];
+    return codesParam
+      .split(',')
+      .map((c) => c.trim().toUpperCase())
+      .filter(Boolean);
+  }, [codesParam]);
 
   const groupLabels: Record<string, string> = {
     ALL: 'All Categories (57)',
@@ -40,7 +55,15 @@ export default function ProductsClientPage({ categories }: { categories: Categor
     ID: 'Identification & Engraving (ID)',
   };
 
-  const filteredCategories = categories.filter((cat) => {
+  // First filter by activeCodes if present
+  const codeFilteredCategories = useMemo(() => {
+    if (activeCodes.length === 0) return categories;
+    const matched = categories.filter((cat) => activeCodes.includes(cat.code.toUpperCase()));
+    // Invalid codes ignored (empty result shows all)
+    return matched.length > 0 ? matched : categories;
+  }, [categories, activeCodes]);
+
+  const filteredCategories = codeFilteredCategories.filter((cat) => {
     const matchesGroup = selectedGroup === 'ALL' || cat.groupPrefix === selectedGroup;
     const matchesSearch =
       searchQuery === '' ||
@@ -51,8 +74,33 @@ export default function ProductsClientPage({ categories }: { categories: Categor
     return matchesGroup && matchesSearch;
   });
 
+  const clearCodeFilter = () => {
+    router.push('/products', { scroll: false });
+  };
+
   return (
     <div className="space-y-8">
+      {/* Removable Filter Chip Banner if ?codes= is active */}
+      {activeCodes.length > 0 && (
+        <div className="flex items-center justify-between bg-[#0D1117] border border-[#8DC63F]/40 p-4 rounded-xl text-xs font-semibold text-[#8DC63F] shadow-lg">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#8DC63F]" />
+            <span>
+              Filtered: {filterName || 'Solution Selection'} ({filteredCategories.length}{' '}
+              {filteredCategories.length === 1 ? 'category' : 'categories'})
+            </span>
+          </div>
+          <button
+            onClick={clearCodeFilter}
+            className="flex items-center gap-1.5 text-white hover:text-[#8DC63F] transition-colors px-3 py-1.5 bg-[#050608] border border-white/10 rounded-lg active-press"
+            aria-label="Remove filter"
+          >
+            <span>Clear filter</span>
+            <X className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      )}
+
       {/* Category Group Tabs & Search Bar */}
       <div className="bg-[#0D1117] border border-[#1F2937] p-4 sm:p-6 rounded-2xl space-y-4">
         {/* Search Input */}
@@ -194,6 +242,7 @@ export default function ProductsClientPage({ categories }: { categories: Categor
             onClick={() => {
               setSelectedGroup('ALL');
               setSearchQuery('');
+              clearCodeFilter();
             }}
             className="px-4 py-2 bg-[#0B65B3] text-white text-xs font-bold rounded-full min-h-[40px]"
           >
@@ -202,5 +251,13 @@ export default function ProductsClientPage({ categories }: { categories: Categor
         </div>
       )}
     </div>
+  );
+}
+
+export default function ProductsClientPage({ categories }: { categories: CategoryItem[] }) {
+  return (
+    <Suspense fallback={<div className="text-center py-12 text-sm text-[#A9B4C0]">Loading products...</div>}>
+      <ProductsClientContent categories={categories} />
+    </Suspense>
   );
 }
