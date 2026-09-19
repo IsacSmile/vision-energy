@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { productEnquirySchema } from '@/lib/validation';
+
+export const dynamic = 'force-dynamic';
 import { checkRateLimit } from '@/lib/rate-limit';
 import { sendNotificationEmail } from '@/lib/email';
 
