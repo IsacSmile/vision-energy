@@ -10,7 +10,6 @@ import {
 import SectionHeader from '@/components/ui/SectionHeader';
 import Card from '@/components/ui/Card';
 import Reveal from '@/components/ui/Reveal';
-import SwipeCarousel from '@/components/ui/SwipeCarousel';
 import { PILLARS_CONFIG } from '@/config/pillars';
 
 const ICON_MAP = {
@@ -20,14 +19,6 @@ const ICON_MAP = {
   ShieldCheck,
   ClipboardCheck,
 };
-
-const ITEM_CLASSES = [
-  'lg:col-span-2',
-  'lg:col-span-2',
-  'lg:col-span-2',
-  'lg:col-span-3',
-  'lg:col-span-3',
-];
 
 interface SolutionPillarsProps {
   countsByPillarId?: Record<string, number>;
@@ -46,12 +37,8 @@ export default function SolutionPillars({ countsByPillarId = {} }: SolutionPilla
           title="Solutions Built Around Your Project"
         />
 
-        {/* Swipe Carousel on mobile (< lg), 6-column Grid on lg+ */}
-        <SwipeCarousel
-          ariaLabel="Five Core Engineering Solution Pillars"
-          lgGridClass="lg:grid lg:grid-cols-6 lg:gap-6"
-          itemClasses={ITEM_CLASSES}
-        >
+        {/* Vertical stacked boxes on mobile (< lg), 6-column Grid on lg+ */}
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-6">
           {PILLARS_CONFIG.map((pillar, i) => {
             const IconComponent = ICON_MAP[pillar.iconName];
             const categoryCount = countsByPillarId[pillar.id];
@@ -62,8 +49,10 @@ export default function SolutionPillars({ countsByPillarId = {} }: SolutionPilla
                 ? `${categoryCount} product ${categoryCount === 1 ? 'category' : 'categories'}`
                 : 'Explore categories');
 
+            const lgColSpan = i < 3 ? 'lg:col-span-2' : 'lg:col-span-3';
+
             return (
-              <Reveal key={pillar.id} staggerIndex={i} className="h-full flex flex-col flex-1">
+              <Reveal key={pillar.id} staggerIndex={i} className={`h-full flex flex-col flex-1 ${lgColSpan}`}>
                 <Card
                   href={pillar.href}
                   highlightBorder={pillar.highlightBorder}
@@ -103,7 +92,7 @@ export default function SolutionPillars({ countsByPillarId = {} }: SolutionPilla
               </Reveal>
             );
           })}
-        </SwipeCarousel>
+        </div>
       </div>
     </section>
   );
