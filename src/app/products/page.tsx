@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Metadata } from 'next';
 import { db } from '@/lib/db';
 import ProductsExplorer, { CategoryExplorerItem } from '@/components/products/ProductsExplorer';
 import { getGroupLabel } from '@/lib/group-icons';
 import { FALLBACK_CATEGORIES } from '@/lib/fallback-categories';
+import ProductsLoading from './loading';
 
 interface PageProps {
   searchParams?: Promise<{
@@ -170,14 +171,16 @@ export default async function ProductsPage({ searchParams }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ProductsExplorer
-        categories={categories}
-        initialQ={initialQ}
-        initialGroup={initialGroup}
-        initialCodes={initialCodes}
-        initialSort={initialSort}
-        initialView={initialView}
-      />
+      <Suspense fallback={<ProductsLoading />}>
+        <ProductsExplorer
+          categories={categories}
+          initialQ={initialQ}
+          initialGroup={initialGroup}
+          initialCodes={initialCodes}
+          initialSort={initialSort}
+          initialView={initialView}
+        />
+      </Suspense>
     </>
   );
 }

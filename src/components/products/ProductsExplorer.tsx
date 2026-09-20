@@ -107,11 +107,11 @@ export default function ProductsExplorer({
   const { openProductModal } = useEnquiryModal();
 
   // URL state
-  const qParam = searchParams.get('q') ?? initialQ;
-  const groupParam = searchParams.get('group') ?? initialGroup;
-  const codesParam = searchParams.get('codes');
-  const sortParam = (searchParams.get('sort') as 'featured' | 'az') || initialSort;
-  const viewParam = (searchParams.get('view') as 'grid' | 'list') || initialView;
+  const qParam = searchParams?.get('q') ?? initialQ;
+  const groupParam = searchParams?.get('group') ?? initialGroup;
+  const codesParam = searchParams?.get('codes') ?? null;
+  const sortParam = (searchParams?.get('sort') as 'featured' | 'az') || initialSort;
+  const viewParam = (searchParams?.get('view') as 'grid' | 'list') || initialView;
 
   // Local state for search input (debounced with deferred value)
   const [searchInput, setSearchInput] = useState(qParam);
@@ -255,7 +255,7 @@ export default function ProductsExplorer({
     const timer = setTimeout(() => {
       const trimmed = deferredSearchInput.trim().slice(0, 80);
       if (trimmed !== qParam) {
-        const params = new URLSearchParams(searchParams.toString());
+        const params = new URLSearchParams(searchParams ? searchParams.toString() : '');
         if (trimmed) {
           params.set('q', trimmed);
         } else {
@@ -271,7 +271,7 @@ export default function ProductsExplorer({
   // URL state update helper for group (router.push)
   const setGroupFilter = useCallback(
     (newGroup: string) => {
-      const params = new URLSearchParams(searchParams.toString());
+      const params = new URLSearchParams(searchParams ? searchParams.toString() : '');
       if (newGroup && newGroup !== 'ALL') {
         params.set('group', newGroup);
       } else {
@@ -285,7 +285,7 @@ export default function ProductsExplorer({
   // URL state update helper for replace (sort, view, clear)
   const updateUrlParam = useCallback(
     (key: string, value: string | null) => {
-      const params = new URLSearchParams(searchParams.toString());
+      const params = new URLSearchParams(searchParams ? searchParams.toString() : '');
       if (value) {
         params.set(key, value);
       } else {
@@ -670,7 +670,7 @@ export default function ProductsExplorer({
           {/* All Chip */}
           <Link
             ref={!groupParam || groupParam === 'ALL' ? activeChipRef : undefined}
-            href={`/products${searchParams.get('q') ? `?q=${searchParams.get('q')}` : ''}`}
+            href={`/products${searchParams?.get('q') ? `?q=${encodeURIComponent(searchParams.get('q')!)}` : ''}`}
             onClick={(e) => {
               e.preventDefault();
               setGroupFilter('ALL');
@@ -691,7 +691,7 @@ export default function ProductsExplorer({
               <Link
                 key={g.key}
                 ref={isActive ? activeChipRef : undefined}
-                href={`/products?group=${g.key}${searchParams.get('q') ? `&q=${searchParams.get('q')}` : ''}`}
+                href={`/products?group=${g.key}${searchParams?.get('q') ? `&q=${encodeURIComponent(searchParams.get('q')!)}` : ''}`}
                 onClick={(e) => {
                   e.preventDefault();
                   setGroupFilter(g.key);
@@ -931,7 +931,7 @@ export default function ProductsExplorer({
                   {/* All products option */}
                   <Link
                     ref={!groupParam || groupParam === 'ALL' ? activeRowRef : undefined}
-                    href={`/products${searchParams.get('q') ? `?q=${searchParams.get('q')}` : ''}`}
+                    href={`/products${searchParams?.get('q') ? `?q=${encodeURIComponent(searchParams.get('q')!)}` : ''}`}
                     onClick={(e) => {
                       e.preventDefault();
                       setGroupFilter('ALL');
@@ -955,7 +955,7 @@ export default function ProductsExplorer({
                       <Link
                         key={g.key}
                         ref={isActive ? activeRowRef : undefined}
-                        href={`/products?group=${g.key}${searchParams.get('q') ? `&q=${searchParams.get('q')}` : ''}`}
+                        href={`/products?group=${g.key}${searchParams?.get('q') ? `&q=${encodeURIComponent(searchParams.get('q')!)}` : ''}`}
                         onClick={(e) => {
                           e.preventDefault();
                           setGroupFilter(g.key);
