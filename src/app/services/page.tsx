@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { getPublishedServices } from '@/lib/services/get-services';
 import ServicesListRow from '@/components/services/ServicesListRow';
@@ -86,40 +87,62 @@ export default async function ServicesListingPage() {
             aria-hidden="true"
           />
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
-            <Reveal>
-              <nav aria-label="Breadcrumb" className="mb-4">
-                <ol className="flex items-center gap-2 text-[13px] text-[#A9B4C0]">
-                  <li>
-                    <Link href="/" className="hover:text-white transition-colors">
-                      Home
-                    </Link>
-                  </li>
-                  <li aria-hidden="true" className="opacity-40">/</li>
-                  <li className="text-white font-medium" aria-current="page">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              {/* Left Column: Text */}
+              <div className="lg:col-span-7 space-y-6">
+                <Reveal>
+                  <nav aria-label="Breadcrumb" className="mb-4">
+                    <ol className="flex items-center gap-2 text-[13px] text-[#A9B4C0]">
+                      <li>
+                        <Link href="/" className="hover:text-white transition-colors">
+                          Home
+                        </Link>
+                      </li>
+                      <li aria-hidden="true" className="opacity-40">/</li>
+                      <li className="text-white font-medium" aria-current="page">
+                        Services
+                      </li>
+                    </ol>
+                  </nav>
+                </Reveal>
+
+                <Reveal delay={70}>
+                  <span className="text-[13px] font-semibold text-[#8DC63F] uppercase tracking-widest block">
                     Services
-                  </li>
-                </ol>
-              </nav>
-            </Reveal>
+                  </span>
+                </Reveal>
 
-            <Reveal delay={70}>
-              <span className="text-[13px] font-semibold text-[#8DC63F] uppercase tracking-widest block">
-                Services
-              </span>
-            </Reveal>
+                <Reveal delay={140}>
+                  <h1 className="text-[clamp(2.25rem,5vw,4rem)] font-semibold text-white leading-[1.08] tracking-[-0.02em] text-balance">
+                    Installation and Support Services
+                  </h1>
+                </Reveal>
 
-            <Reveal delay={140}>
-              <h1 className="text-[clamp(2.25rem,6vw,4.5rem)] font-semibold text-white leading-[1.08] tracking-[-0.02em] text-balance max-w-[12em]">
-                Installation and Support Services
-              </h1>
-            </Reveal>
+                <Reveal delay={210}>
+                  <p className="text-base sm:text-lg lg:text-xl text-[#A9B4C0] leading-relaxed max-w-[54ch]">
+                    Beyond supply, we help deliver results. From product selection and technical coordination to installation guidance and after-sales support, our team keeps your project moving with confidence.
+                  </p>
+                </Reveal>
+              </div>
 
-            <Reveal delay={210}>
-              <p className="text-base sm:text-lg lg:text-xl text-[#A9B4C0] leading-relaxed max-w-[56ch]">
-                Beyond supply, we help deliver results. From product selection and technical coordination to installation guidance and after-sales support, our team keeps your project moving with confidence.
-              </p>
-            </Reveal>
+              {/* Right Column: Hero Image */}
+              <div className="lg:col-span-5">
+                <Reveal delay={280}>
+                  <div className="relative rounded-[24px] overflow-hidden border border-white/10 bg-[#0D1117] shadow-[0_0_50px_rgba(11,101,179,0.2)] group">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-[#050608]/40 via-transparent to-transparent z-10 pointer-events-none" />
+                    <Image
+                      src="/images/services-hero.jpg"
+                      alt="Vision Energy Installation and Field Engineering Services UAE"
+                      width={640}
+                      height={480}
+                      priority
+                      className="w-full h-auto object-cover aspect-[4/3] rounded-[24px] transform group-hover:scale-[1.02] transition-transform duration-700"
+                    />
+                  </div>
+                </Reveal>
+              </div>
+            </div>
           </div>
         </section>
 
