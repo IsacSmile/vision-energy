@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { db } from '@/lib/db';
+import { getPublishedServices } from '@/lib/services/get-services';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.visionenergyme.com';
@@ -15,14 +16,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   // Dynamic published services
-  const services = await db.service.findMany({
-    where: { published: true },
-    select: { slug: true, updatedAt: true },
-  });
+  const services = await getPublishedServices();
 
   const serviceRoutes: MetadataRoute.Sitemap = services.map((s) => ({
     url: `${baseUrl}/services/${s.slug}`,
-    lastModified: s.updatedAt,
+    lastModified: new Date(),
     changeFrequency: 'weekly',
     priority: 0.8,
   }));

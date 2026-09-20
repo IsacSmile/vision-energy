@@ -36,6 +36,13 @@ export const DIAGRAM_STEPS: StepItem[] = [
   },
 ];
 
+export interface ProtectionDiagramProps {
+  visibleSteps?: number[];
+  caption?: string;
+  eyebrow?: string;
+  title?: string;
+}
+
 // SVG Hotspot Coordinates (x, y inside 640x520 viewBox)
 const HOTSPOT_COORDS = [
   { id: 1, x: 150, y: 100, label: 'Step 1: Intercept - Air Terminal' },
@@ -45,11 +52,20 @@ const HOTSPOT_COORDS = [
   { id: 5, x: 390, y: 320, label: 'Step 5: Protect - Surge Protection Device' },
 ];
 
-export default function ProtectionDiagram() {
-  const [activeStep, setActiveStep] = useState<number>(1);
+export default function ProtectionDiagram({
+  visibleSteps = [1, 2, 3, 4, 5],
+  caption,
+  eyebrow = 'Interactive Schematic',
+  title = 'How a protection network works',
+}: ProtectionDiagramProps) {
+  const activeStepsList = visibleSteps.length > 0 ? visibleSteps : [1, 2, 3, 4, 5];
+  const [activeStep, setActiveStep] = useState<number>(activeStepsList[0]);
   const [hasInteracted, setHasInteracted] = useState<boolean>(false);
   const [inView, setInView] = useState<boolean>(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState<boolean>(false);
+
+  const stepsToRender = DIAGRAM_STEPS.filter((s) => activeStepsList.includes(s.id));
+  const hotspotsToRender = HOTSPOT_COORDS.filter((h) => activeStepsList.includes(h.id));
 
   const containerRef = useRef<HTMLDivElement>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -87,19 +103,23 @@ export default function ProtectionDiagram() {
 
   // Auto-advance timer (every 3.5s when in view and user has not interacted)
   useEffect(() => {
-    if (!inView || hasInteracted || prefersReducedMotion) {
+    if (!inView || hasInteracted || prefersReducedMotion || activeStepsList.length <= 1) {
       if (timerRef.current) clearInterval(timerRef.current);
       return;
     }
 
     timerRef.current = setInterval(() => {
-      setActiveStep((prev) => (prev >= 5 ? 1 : prev + 1));
+      setActiveStep((prev) => {
+        const currentIdx = activeStepsList.indexOf(prev);
+        const nextIdx = currentIdx >= 0 ? (currentIdx + 1) % activeStepsList.length : 0;
+        return activeStepsList[nextIdx];
+      });
     }, 3500);
 
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [inView, hasInteracted, prefersReducedMotion]);
+  }, [inView, hasInteracted, prefersReducedMotion, activeStepsList]);
 
   const handleSelectStep = (stepId: number) => {
     setHasInteracted(true);
@@ -115,10 +135,10 @@ export default function ProtectionDiagram() {
       {/* SECTION HEADER ABOVE DIAGRAM */}
       <div className="flex flex-col space-y-1">
         <span className="text-xs font-bold text-[#8DC63F] uppercase tracking-[0.14em]">
-          Interactive Schematic
+          {eyebrow}
         </span>
         <h3 className="text-lg sm:text-xl font-semibold text-white">
-          How a protection network works
+          {title}
         </h3>
       </div>
 
@@ -130,7 +150,7 @@ export default function ProtectionDiagram() {
             viewBox="0 0 640 520"
             className="w-full h-full select-none"
             role="img"
-            aria-label="Schematic diagram illustrating the 5 key steps of a lightning protection network: 1. Intercept air terminal, 2. Conduct down conductor, 3. Dissipate earth electrode, 4. Equipotential bonding bar, 5. Surge protection device."
+            aria-label="Schematic diagram illustrating the lightning protection path."
           >
             <defs>
               {/* Blue to Lime Gradient for Conductor Path */}
@@ -245,26 +265,30 @@ export default function ProtectionDiagram() {
               <line x1="485" y1="488" x2="495" y2="488" stroke="#8DC63F" strokeWidth="1.5" />
             </g>
 
-            {/* 5. BONDING BAR & LINE (Step 4) */}
-            <g opacity={activeStep === 4 ? 1 : 0.55} className="transition-opacity duration-300">
-              {/* Bonding Bar */}
-              <rect x="260" y="375" width="80" height="12" rx="3" fill="#0D1117" stroke={activeStep === 4 ? '#8DC63F' : '#0B65B3'} strokeWidth="1.5" />
-              <circle cx="275" cy="381" r="2" fill="#8DC63F" />
-              <circle cx="300" cy="381" r="2" fill="#8DC63F" />
-              <circle cx="325" cy="381" r="2" fill="#8DC63F" />
-              {/* Conductor to Down Conductor */}
-              <path d="M 150 381 H 260" fill="none" stroke="#8DC63F" strokeWidth="1.5" strokeDasharray="4 2" />
-            </g>
+            {/* 5. BONDING BAR & LINE (Step 4 - only if visible) */}
+            {activeStepsList.includes(4) && (
+              <g opacity={activeStep === 4 ? 1 : 0.55} className="transition-opacity duration-300">
+                {/* Bonding Bar */}
+                <rect x="260" y="375" width="80" height="12" rx="3" fill="#0D1117" stroke={activeStep === 4 ? '#8DC63F' : '#0B65B3'} strokeWidth="1.5" />
+                <circle cx="275" cy="381" r="2" fill="#8DC63F" />
+                <circle cx="300" cy="381" r="2" fill="#8DC63F" />
+                <circle cx="325" cy="381" r="2" fill="#8DC63F" />
+                {/* Conductor to Down Conductor */}
+                <path d="M 150 381 H 260" fill="none" stroke="#8DC63F" strokeWidth="1.5" strokeDasharray="4 2" />
+              </g>
+            )}
 
-            {/* 6. SURGE PROTECTION DEVICE & MDB (Step 5) */}
-            <g opacity={activeStep === 5 ? 1 : 0.55} className="transition-opacity duration-300">
-              {/* Distribution Board Enclosure */}
-              <rect x="360" y="295" width="60" height="50" rx="4" fill="#0D1117" stroke={activeStep === 5 ? '#8DC63F' : '#0B65B3'} strokeWidth="1.5" />
-              {/* SPD Symbol inside DB */}
-              <path d="M 375 320 H 405 M 390 310 V 330" fill="none" stroke="#8DC63F" strokeWidth="1.5" />
-              {/* Bonding Line from DB to Bonding Bar */}
-              <path d="M 390 345 V 381 H 340" fill="none" stroke="#8DC63F" strokeWidth="1.5" strokeDasharray="3 3" />
-            </g>
+            {/* 6. SURGE PROTECTION DEVICE & MDB (Step 5 - only if visible) */}
+            {activeStepsList.includes(5) && (
+              <g opacity={activeStep === 5 ? 1 : 0.55} className="transition-opacity duration-300">
+                {/* Distribution Board Enclosure */}
+                <rect x="360" y="295" width="60" height="50" rx="4" fill="#0D1117" stroke={activeStep === 5 ? '#8DC63F' : '#0B65B3'} strokeWidth="1.5" />
+                {/* SPD Symbol inside DB */}
+                <path d="M 375 320 H 405 M 390 310 V 330" fill="none" stroke="#8DC63F" strokeWidth="1.5" />
+                {/* Bonding Line from DB to Bonding Bar */}
+                <path d="M 390 345 V 381 H 340" fill="none" stroke="#8DC63F" strokeWidth="1.5" strokeDasharray="3 3" />
+              </g>
+            )}
 
             {/* 7. ANIMATED TRAVELING PULSE DOT */}
             {inView && !prefersReducedMotion && (
@@ -277,8 +301,8 @@ export default function ProtectionDiagram() {
               </circle>
             )}
 
-            {/* 8. INTERACTIVE SVG HOTSPOTS (32px circles with 44px hit areas) */}
-            {HOTSPOT_COORDS.map((spot) => {
+            {/* 8. INTERACTIVE SVG HOTSPOTS */}
+            {hotspotsToRender.map((spot) => {
               const isActive = activeStep === spot.id;
               return (
                 <g key={spot.id} transform={`translate(${spot.x}, ${spot.y})`}>
@@ -338,13 +362,13 @@ export default function ProtectionDiagram() {
 
         {/* Diagram Caption */}
         <p className="mt-4 text-xs text-[#A9B4C0]/90 text-center italic">
-          A coordinated system helps protect people, structure, electrical installations and critical equipment.
+          {caption || 'A coordinated system helps protect people, structure, electrical installations and critical equipment.'}
         </p>
       </div>
 
-      {/* 5-STEPPER (Synced Vertical List / Grid) */}
+      {/* STEPPER (Synced Vertical List / Grid) */}
       <div className="w-full flex flex-col space-y-3">
-        {DIAGRAM_STEPS.map((step) => {
+        {stepsToRender.map((step) => {
           const isActive = activeStep === step.id;
 
           return (
@@ -402,3 +426,4 @@ export default function ProtectionDiagram() {
     </div>
   );
 }
+
