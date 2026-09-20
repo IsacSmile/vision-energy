@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronDown, ArrowUp, Phone, Mail, MapPin } from 'lucide-react';
+import { dictionary } from '@/lib/dictionary';
 import { SOCIAL_LINKS } from '@/config/social';
 
 export interface FooterServiceItem {
@@ -39,7 +40,6 @@ export default function Footer({ services = [] }: FooterProps) {
     });
   };
 
-  // Filter active social links
   const hasSocials =
     Boolean(SOCIAL_LINKS.facebook) ||
     Boolean(SOCIAL_LINKS.x) ||
@@ -55,6 +55,19 @@ export default function Footer({ services = [] }: FooterProps) {
     { label: 'All Products', href: '/products' },
   ];
 
+  const defaultServices: FooterServiceItem[] = [
+    {
+      slug: 'external-lightning-protection-installation',
+      title: 'External Lightning Protection Installation',
+    },
+    {
+      slug: 'manpower-supply',
+      title: 'Manpower Services',
+    },
+  ];
+
+  const displayServices = services.length > 0 ? services : defaultServices;
+
   const companyLinks = [
     { label: 'Home', href: '/' },
     { label: 'About Us', href: '/about' },
@@ -63,57 +76,53 @@ export default function Footer({ services = [] }: FooterProps) {
   ];
 
   return (
-    <footer aria-label="Site Footer" className="bg-[#050608] relative text-white">
-      {/* Blue-to-Lime Hairline Divider on Top */}
-      <div
-        className="w-full h-[1px] bg-[linear-gradient(90deg,transparent_0%,rgba(11,101,179,0.3)_35%,rgba(141,198,63,0.3)_65%,transparent_100%)]"
-        aria-hidden="true"
-      />
-
-      <div className="max-w-[80rem] mx-auto px-5 sm:px-6 lg:px-8 pt-16 pb-6 lg:pt-24 lg:pb-8">
-        {/* MAIN DESKTOP 12-COLUMN / MOBILE STACKED LAYOUT */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pb-12 border-b border-white/[0.08]">
-          {/* BRAND BLOCK (lg:col-span-4) */}
-          <div className="lg:col-span-4 space-y-6">
-            <Link href="/" className="inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded">
+    <footer aria-label="Site Footer" className="bg-[#050608] relative text-white border-t border-white/10">
+      <div className="max-w-[80rem] mx-auto px-5 sm:px-6 lg:px-8 pt-16 pb-8 lg:pt-20 lg:pb-10">
+        {/* MAIN LAYOUT: 12 COLUMNS ON DESKTOP */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 pb-12 border-b border-white/10">
+          {/* BRAND COLUMN (lg:col-span-4) */}
+          <div className="lg:col-span-4 space-y-4">
+            <Link
+              href="/"
+              className="inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded"
+            >
               <Image
                 src="/site-main-logo.png"
                 alt="VISION ENERGY INTERNATIONAL"
-                width={180}
-                height={44}
-                className="h-11 w-auto object-contain"
+                width={220}
+                height={56}
+                className="h-12 w-auto object-contain"
               />
             </Link>
 
-            <div className="space-y-2">
-              <p className="text-sm font-medium text-white max-w-[36ch] leading-[1.5]">
+            <div className="space-y-2 max-w-[34ch]">
+              <p className="text-sm font-semibold text-white leading-snug">
                 Redefined, Innovative And Quality Assured Engineering Product Solutions
               </p>
-              <p className="text-xs text-[#A9B4C0] leading-[1.6]">
+              <p className="text-xs text-[#A9B4C0] leading-relaxed">
                 Electrical, mechanical and solar product solutions across the UAE.
               </p>
             </div>
 
-            {/* Social Icons (only rendered if URLs exist in config) */}
             {hasSocials && (
               <div className="flex items-center gap-3 pt-2">
-                {/* Social icons rendered if URLs populated */}
+                {/* Social links placeholder if configured */}
               </div>
             )}
           </div>
 
-          {/* MOBILE ACCORDIONS / DESKTOP COLUMNS (lg:col-span-8) */}
-          <div className="lg:col-span-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
-            {/* PRODUCTS GROUP */}
-            <div className="border-b lg:border-b-0 border-white/[0.08] pb-4 lg:pb-0">
+          {/* NAV COLUMNS (lg:col-span-8) */}
+          <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* PRODUCTS */}
+            <div className="border-b sm:border-b-0 border-white/10 pb-4 sm:pb-0">
               <button
                 type="button"
                 onClick={() => toggleAccordion('products')}
                 aria-expanded={openAccordion === 'products'}
                 aria-controls="footer-products-list"
-                className="w-full min-h-[56px] flex items-center justify-between text-left lg:pointer-events-none group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded"
+                className="w-full py-2 flex items-center justify-between text-left lg:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded"
               >
-                <span className="text-sm font-semibold text-white uppercase tracking-wider border-l-2 border-[#8DC63F] pl-3">
+                <span className="text-xs font-semibold text-white/90 uppercase tracking-widest">
                   Products
                 </span>
                 <ChevronDown
@@ -125,7 +134,7 @@ export default function Footer({ services = [] }: FooterProps) {
 
               <ul
                 id="footer-products-list"
-                className={`space-y-1 text-sm text-[#A9B4C0] ${
+                className={`space-y-2.5 text-xs sm:text-sm text-[#A9B4C0] mt-3 ${
                   openAccordion === 'products' ? 'block' : 'hidden lg:block'
                 }`}
               >
@@ -133,7 +142,7 @@ export default function Footer({ services = [] }: FooterProps) {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="min-h-[48px] flex items-center py-2 hover:text-[#8DC63F] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded"
+                      className="hover:text-[#8DC63F] transition-colors inline-block py-0.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8DC63F] rounded"
                     >
                       {item.label}
                     </Link>
@@ -142,16 +151,16 @@ export default function Footer({ services = [] }: FooterProps) {
               </ul>
             </div>
 
-            {/* SERVICES GROUP */}
-            <div className="border-b lg:border-b-0 border-white/[0.08] pb-4 lg:pb-0">
+            {/* SERVICES */}
+            <div className="border-b sm:border-b-0 border-white/10 pb-4 sm:pb-0">
               <button
                 type="button"
                 onClick={() => toggleAccordion('services')}
                 aria-expanded={openAccordion === 'services'}
                 aria-controls="footer-services-list"
-                className="w-full min-h-[56px] flex items-center justify-between text-left lg:pointer-events-none group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded"
+                className="w-full py-2 flex items-center justify-between text-left lg:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded"
               >
-                <span className="text-sm font-semibold text-white uppercase tracking-wider border-l-2 border-[#0B65B3] pl-3">
+                <span className="text-xs font-semibold text-white/90 uppercase tracking-widest">
                   Services
                 </span>
                 <ChevronDown
@@ -163,54 +172,33 @@ export default function Footer({ services = [] }: FooterProps) {
 
               <ul
                 id="footer-services-list"
-                className={`space-y-1 text-sm text-[#A9B4C0] ${
+                className={`space-y-2.5 text-xs sm:text-sm text-[#A9B4C0] mt-3 ${
                   openAccordion === 'services' ? 'block' : 'hidden lg:block'
                 }`}
               >
-                {services.length > 0 ? (
-                  services.map((service) => (
-                    <li key={service.slug}>
-                      <Link
-                        href={`/services#${service.slug}`}
-                        className="min-h-[48px] flex items-center py-2 hover:text-[#8DC63F] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded"
-                      >
-                        {service.title}
-                      </Link>
-                    </li>
-                  ))
-                ) : (
-                  <>
-                    <li>
-                      <Link
-                        href="/services"
-                        className="min-h-[48px] flex items-center py-2 hover:text-[#8DC63F] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded"
-                      >
-                        External Lightning Protection
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/services"
-                        className="min-h-[48px] flex items-center py-2 hover:text-[#8DC63F] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded"
-                      >
-                        Technical Consultation & Risk Assessment
-                      </Link>
-                    </li>
-                  </>
-                )}
+                {displayServices.map((service) => (
+                  <li key={service.slug}>
+                    <Link
+                      href={`/services/${service.slug}`}
+                      className="hover:text-[#8DC63F] transition-colors inline-block py-0.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8DC63F] rounded"
+                    >
+                      {service.title}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
-            {/* COMPANY GROUP */}
-            <div className="border-b lg:border-b-0 border-white/[0.08] pb-4 lg:pb-0">
+            {/* COMPANY */}
+            <div className="border-b sm:border-b-0 border-white/10 pb-4 sm:pb-0">
               <button
                 type="button"
                 onClick={() => toggleAccordion('company')}
                 aria-expanded={openAccordion === 'company'}
                 aria-controls="footer-company-list"
-                className="w-full min-h-[56px] flex items-center justify-between text-left lg:pointer-events-none group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded"
+                className="w-full py-2 flex items-center justify-between text-left lg:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded"
               >
-                <span className="text-sm font-semibold text-white uppercase tracking-wider border-l-2 border-[#8DC63F] pl-3">
+                <span className="text-xs font-semibold text-white/90 uppercase tracking-widest">
                   Company
                 </span>
                 <ChevronDown
@@ -222,7 +210,7 @@ export default function Footer({ services = [] }: FooterProps) {
 
               <ul
                 id="footer-company-list"
-                className={`space-y-1 text-sm text-[#A9B4C0] ${
+                className={`space-y-2.5 text-xs sm:text-sm text-[#A9B4C0] mt-3 ${
                   openAccordion === 'company' ? 'block' : 'hidden lg:block'
                 }`}
               >
@@ -230,7 +218,7 @@ export default function Footer({ services = [] }: FooterProps) {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="min-h-[48px] flex items-center py-2 hover:text-[#8DC63F] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded"
+                      className="hover:text-[#8DC63F] transition-colors inline-block py-0.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8DC63F] rounded"
                     >
                       {item.label}
                     </Link>
@@ -239,45 +227,45 @@ export default function Footer({ services = [] }: FooterProps) {
               </ul>
             </div>
 
-            {/* CONTACT GROUP (Compact - Always Visible) */}
-            <div className="space-y-4">
-              <span className="text-sm font-semibold text-white uppercase tracking-wider border-l-2 border-[#0B65B3] pl-3 block">
+            {/* CONTACT */}
+            <div className="space-y-3">
+              <span className="text-xs font-semibold text-white/90 uppercase tracking-widest block py-2">
                 Contact
               </span>
 
-              <div className="space-y-2.5 text-xs text-[#A9B4C0]">
-                <div className="flex items-center gap-2">
-                  <Phone className="w-3.5 h-3.5 text-[#0B65B3] shrink-0" />
+              <div className="space-y-3 text-xs sm:text-sm text-[#A9B4C0]">
+                <div className="flex items-center gap-2.5">
+                  <Phone className="w-4 h-4 text-[#0B65B3] shrink-0" />
                   <a
-                    href="tel:+97172042763"
+                    href={`tel:${dictionary.company.primaryPhone}`}
                     className="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8DC63F] rounded"
                   >
-                    +971 7 204 2763
+                    {dictionary.company.primaryPhone}
                   </a>
                 </div>
 
-                <div className="flex items-center gap-2">
-                  <Phone className="w-3.5 h-3.5 text-[#0B65B3] shrink-0" />
+                <div className="flex items-center gap-2.5">
+                  <Phone className="w-4 h-4 text-[#0B65B3] shrink-0" />
                   <a
-                    href="tel:+971547004616"
+                    href={`tel:${dictionary.company.secondaryPhone}`}
                     className="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8DC63F] rounded"
                   >
-                    +971 54 700 4616
+                    {dictionary.company.secondaryPhone}
                   </a>
                 </div>
 
-                <div className="flex items-center gap-2">
-                  <Mail className="w-3.5 h-3.5 text-[#8DC63F] shrink-0" />
+                <div className="flex items-center gap-2.5">
+                  <Mail className="w-4 h-4 text-[#8DC63F] shrink-0" />
                   <a
-                    href="mailto:info@visionenergyme.com"
+                    href={`mailto:${dictionary.company.email}`}
                     className="hover:text-white text-[#8DC63F] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8DC63F] rounded"
                   >
-                    info@visionenergyme.com
+                    {dictionary.company.email}
                   </a>
                 </div>
 
-                <div className="flex items-center gap-2 pt-1 text-[#A9B4C0] font-medium">
-                  <MapPin className="w-3.5 h-3.5 text-[#8DC63F] shrink-0" />
+                <div className="flex items-start gap-2.5 pt-1 text-[#A9B4C0]">
+                  <MapPin className="w-4 h-4 text-[#8DC63F] shrink-0 mt-0.5" />
                   <span>Abu Dhabi | Dubai | Ras Al Khaimah</span>
                 </div>
               </div>
@@ -286,19 +274,16 @@ export default function Footer({ services = [] }: FooterProps) {
         </div>
 
         {/* BOTTOM BAR */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-[13px] text-[#A9B4C0] gap-4">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#A9B4C0] gap-4">
           <p>© {new Date().getFullYear()} VISION ENERGY INTERNATIONAL. All rights reserved.</p>
 
-          {/* TODO Add Privacy Policy and Terms links once pages are created */}
-
-          {/* BACK TO TOP BUTTON */}
           <button
             type="button"
             onClick={handleScrollToTop}
-            className="inline-flex items-center gap-2 font-semibold text-[#8DC63F] hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded px-2 py-1 min-h-[48px]"
+            className="inline-flex items-center gap-2 font-medium text-[#8DC63F] hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8DC63F] rounded py-1"
           >
             <span>Back to top</span>
-            <ArrowUp className="w-4 h-4" />
+            <ArrowUp className="w-3.5 h-3.5" />
           </button>
         </div>
       </div>
