@@ -176,7 +176,7 @@ export default function Header() {
               alt="VISION ENERGY INTERNATIONAL UAE"
               width={240}
               height={60}
-              className="h-12 lg:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+              className="h-[58px] lg:h-[58px] w-auto object-contain transition-transform group-hover:scale-105"
               priority
             />
           </Link>
