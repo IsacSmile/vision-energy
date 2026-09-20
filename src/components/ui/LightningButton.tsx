@@ -6,7 +6,7 @@ import Link from 'next/link';
 export interface LightningButtonProps {
   id?: string;
   variant?: 'primary' | 'secondary';
-  size?: 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg';
   href?: string;
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   iconLeft?: React.ReactNode;
@@ -181,8 +181,9 @@ const LightningButton = forwardRef<HTMLElement, LightningButtonProps>(
       }, remaining);
     };
 
-    // Size Specifications (md: 52px, lg: 56px)
+    // Size Specifications (sm: 44px, md: 52px, lg: 56px)
     const sizeClasses = {
+      sm: 'h-11 px-4 text-xs font-semibold gap-2',
       md: 'h-[52px] px-[28px] text-base font-semibold gap-[10px]',
       lg: 'h-[56px] px-[32px] text-base font-semibold gap-[10px]',
     };
@@ -192,10 +193,10 @@ const LightningButton = forwardRef<HTMLElement, LightningButtonProps>(
       primary:
         'bg-white text-[#050608] border border-transparent hover:bg-[#0D1117] hover:text-white hover:border-[#0B65B3]/60 focus-visible:bg-[#0D1117] focus-visible:text-white focus-visible:border-[#0B65B3]/60 shadow-lg shadow-white/5',
       secondary:
-        'bg-[#0D1117]/85 border border-white/12 text-white hover:bg-[#0D1117]/85 hover:border-[#0B65B3]/60 focus-visible:bg-[#0D1117]/85 focus-visible:border-[#0B65B3]/60 [text-shadow:0_0_12px_rgba(5,6,8,0.6)]',
+        'bg-[#050608] border border-white/16 text-white hover:bg-white hover:text-[#050608] hover:border-white focus-visible:bg-white focus-visible:text-[#050608] focus-visible:border-white hover:shadow-[0_0_24px_rgba(141,198,63,0.35)] transition-all duration-300',
     };
 
-    const widthClasses = fullWidth ? 'w-full max-w-[360px]' : 'w-auto';
+    const widthClasses = fullWidth ? 'w-full' : 'w-auto';
     const disabledClasses = disabled ? 'opacity-50 pointer-events-none cursor-not-allowed' : '';
 
     const combinedClasses = `

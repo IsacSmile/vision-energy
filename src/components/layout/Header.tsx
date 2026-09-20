@@ -66,6 +66,21 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [mobileMenuOpen]);
 
+  // Update --header-offset CSS variable on document root for sticky elements
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      const isVisible = visible || mobileMenuOpen;
+      const isDesktop = window.innerWidth >= 1024;
+      const headerOffsetValue = isVisible
+        ? isDesktop
+          ? 'var(--header-h, 80px)'
+          : 'var(--mobile-header-h, 56px)'
+        : '0px';
+      document.documentElement.style.setProperty('--header-offset', headerOffsetValue);
+    }
+  }, [visible, mobileMenuOpen]);
+
+
   // Lock body scroll on open, focus management, and restore focus on close
   useEffect(() => {
     if (mobileMenuOpen) {

@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { serviceEnquirySchema, productEnquirySchema, ServiceEnquiryInput, ProductEnquiryInput } from '@/lib/validation';
 import { dictionary } from '@/lib/dictionary';
 import { X, CheckCircle2, AlertCircle, Loader2, Copy, Phone, ChevronDown, ChevronUp } from 'lucide-react';
+import LightningButton from '@/components/ui/LightningButton';
 
 export default function EnquiryModal() {
   const { modalType, serviceContext, productContext, closeModal } = useEnquiryModal();
@@ -15,18 +16,24 @@ export default function EnquiryModal() {
   const [serverError, setServerError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
-  // Lock body scroll when modal is active
+  // Lock body & html scroll when modal is active
   useEffect(() => {
     if (modalType) {
       document.body.style.overflow = 'hidden';
+      document.body.style.touchAction = 'none';
+      document.documentElement.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+      document.documentElement.style.overflow = '';
       setSuccessRef(null);
       setServerError(null);
       setCopied(false);
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+      document.documentElement.style.overflow = '';
     };
   }, [modalType]);
 
@@ -72,7 +79,9 @@ export default function EnquiryModal() {
               ? 'Submission Confirmation'
               : modalType === 'SERVICE'
               ? `Book Service: ${serviceContext?.serviceTitle}`
-              : `Enquire: [${productContext?.categoryCode}] ${productContext?.categoryTitle}`}
+              : productContext?.categoryCode && productContext.categoryCode !== 'GENERAL'
+              ? `Enquire: [${productContext.categoryCode}] ${productContext.categoryTitle}`
+              : `Product Enquiry`}
           </h2>
           <button
             onClick={closeModal}
@@ -84,7 +93,7 @@ export default function EnquiryModal() {
         </div>
 
         {/* Scrollable Form Body */}
-        <div className="p-5 sm:p-6 overflow-y-auto grow space-y-4">
+        <div className="p-5 sm:p-6 overflow-y-auto custom-scrollbar grow space-y-4">
           {successRef ? (
             <div className="text-center py-6 space-y-5">
               <CheckCircle2 className="w-16 h-16 mx-auto text-[#8DC63F] animate-bounce" />
@@ -218,7 +227,7 @@ function ServiceForm({
             autoComplete="name"
             inputMode="text"
             placeholder="e.g. Engineer Ahmed Mansoor"
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#8DC63F] text-base"
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:outline-none focus:ring-0 focus:border-[#8DC63F] text-base transition-colors"
           />
           {errors.name && <p className="text-xs text-red-400 mt-1">{errors.name.message}</p>}
         </div>
@@ -231,7 +240,7 @@ function ServiceForm({
             autoComplete="tel"
             inputMode="tel"
             placeholder="+971 50 123 4567"
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#8DC63F] text-base"
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:outline-none focus:ring-0 focus:border-[#8DC63F] text-base transition-colors"
           />
           {errors.phone && <p className="text-xs text-red-400 mt-1">{errors.phone.message}</p>}
         </div>
@@ -244,7 +253,7 @@ function ServiceForm({
             autoComplete="email"
             inputMode="email"
             placeholder="ahmed@company.ae"
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#8DC63F] text-base"
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:outline-none focus:ring-0 focus:border-[#8DC63F] text-base transition-colors"
           />
           {errors.email && <p className="text-xs text-red-400 mt-1">{errors.email.message}</p>}
         </div>
@@ -255,7 +264,7 @@ function ServiceForm({
             {...register('message')}
             rows={3}
             placeholder="Describe your project scope or building requirements..."
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 py-3 text-white focus:border-[#8DC63F] text-base"
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 py-3 text-white focus:outline-none focus:ring-0 focus:border-[#8DC63F] text-base transition-colors"
           />
           {errors.message && <p className="text-xs text-red-400 mt-1">{errors.message.message}</p>}
         </div>
@@ -284,39 +293,45 @@ function ServiceForm({
               autoComplete="organization"
               inputMode="text"
               placeholder="e.g. Al Habtoor Contracting"
-              className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#8DC63F] text-base"
+              className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:outline-none focus:ring-0 focus:border-[#8DC63F] text-base transition-colors"
             />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label className="block text-xs font-medium text-gray-300 mb-1">Emirate / Location</label>
-              <select
-                {...register('emirate')}
-                className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#8DC63F] text-base"
-              >
-                <option value="">-- Select Emirate --</option>
-                {dictionary.emirates.map((em) => (
-                  <option key={em} value={em}>
-                    {em}
-                  </option>
-                ))}
-              </select>
+              <div className="relative">
+                <select
+                  {...register('emirate')}
+                  className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 pr-10 h-12 text-white focus:outline-none focus:ring-0 focus:border-[#8DC63F] text-base appearance-none cursor-pointer transition-colors"
+                >
+                  <option value="" className="bg-[#0D1117] text-white">-- Select Emirate --</option>
+                  {dictionary.emirates.map((em) => (
+                    <option key={em} value={em} className="bg-[#0D1117] text-white">
+                      {em}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="w-4 h-4 text-[#8DC63F] absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              </div>
             </div>
 
             <div>
               <label className="block text-xs font-medium text-gray-300 mb-1">Project Type</label>
-              <select
-                {...register('projectType')}
-                className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#8DC63F] text-base"
-              >
-                <option value="">-- Select Project Type --</option>
-                {dictionary.projectTypes.map((pt) => (
-                  <option key={pt} value={pt}>
-                    {pt}
-                  </option>
-                ))}
-              </select>
+              <div className="relative">
+                <select
+                  {...register('projectType')}
+                  className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 pr-10 h-12 text-white focus:outline-none focus:ring-0 focus:border-[#8DC63F] text-base appearance-none cursor-pointer transition-colors"
+                >
+                  <option value="" className="bg-[#0D1117] text-white">-- Select Project Type --</option>
+                  {dictionary.projectTypes.map((pt) => (
+                    <option key={pt} value={pt} className="bg-[#0D1117] text-white">
+                      {pt}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="w-4 h-4 text-[#8DC63F] absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              </div>
             </div>
           </div>
 
@@ -325,7 +340,7 @@ function ServiceForm({
             <input
               {...register('preferredDate')}
               type="date"
-              className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#8DC63F] text-base"
+              className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:outline-none focus:ring-0 focus:border-[#8DC63F] text-base transition-colors"
             />
           </div>
         </div>
@@ -347,10 +362,12 @@ function ServiceForm({
 
       {/* STICKY SUBMIT BUTTON */}
       <div className="sticky bottom-0 bg-[#0D1117] py-2 border-t border-[#1F2937]/50">
-        <button
+        <LightningButton
           type="submit"
+          variant="primary"
+          size="md"
+          fullWidth
           disabled={submitting}
-          className="w-full h-12 bg-gradient-brand text-white font-bold rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2 text-base shadow-lg active-press"
         >
           {submitting ? (
             <>
@@ -360,7 +377,7 @@ function ServiceForm({
           ) : (
             <span>Submit Service Booking Request</span>
           )}
-        </button>
+        </LightningButton>
       </div>
     </form>
   );
@@ -377,7 +394,7 @@ function ProductForm({
   setServerError,
   serverError,
 }: {
-  context: { categoryCode: string; categoryTitle: string };
+  context: { categoryCode?: string; categoryTitle?: string; prefillMessage?: string };
   submitting: boolean;
   setSubmitting: (val: boolean) => void;
   setSuccessRef: (ref: string) => void;
@@ -393,8 +410,9 @@ function ProductForm({
   } = useForm<ProductEnquiryInput>({
     resolver: zodResolver(productEnquirySchema),
     defaultValues: {
-      categoryCode: context.categoryCode,
-      categoryTitle: context.categoryTitle,
+      categoryCode: context.categoryCode || 'GENERAL',
+      categoryTitle: context.categoryTitle || 'General Product Enquiry',
+      message: context.prefillMessage || '',
       phone: '+971 ',
       sourceUrl: typeof window !== 'undefined' ? window.location.href : '',
       consent: false,
@@ -444,7 +462,7 @@ function ProductForm({
             autoComplete="name"
             inputMode="text"
             placeholder="e.g. Engineer Rashid Al Suwaidi"
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#8DC63F] text-base"
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:outline-none focus:ring-0 focus:border-[#8DC63F] text-base transition-colors"
           />
           {errors.name && <p className="text-xs text-red-400 mt-1">{errors.name.message}</p>}
         </div>
@@ -457,7 +475,7 @@ function ProductForm({
             autoComplete="tel"
             inputMode="tel"
             placeholder="+971 50 123 4567"
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#8DC63F] text-base"
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:outline-none focus:ring-0 focus:border-[#8DC63F] text-base transition-colors"
           />
           {errors.phone && <p className="text-xs text-red-400 mt-1">{errors.phone.message}</p>}
         </div>
@@ -470,7 +488,7 @@ function ProductForm({
             autoComplete="email"
             inputMode="email"
             placeholder="rashid@company.ae"
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#8DC63F] text-base"
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:outline-none focus:ring-0 focus:border-[#8DC63F] text-base transition-colors"
           />
           {errors.email && <p className="text-xs text-red-400 mt-1">{errors.email.message}</p>}
         </div>
@@ -481,7 +499,7 @@ function ProductForm({
             {...register('message')}
             rows={3}
             placeholder="Specify sizes, material grades, or delivery timelines required..."
-            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 py-3 text-white focus:border-[#8DC63F] text-base"
+            className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 py-3 text-white focus:outline-none focus:ring-0 focus:border-[#8DC63F] text-base transition-colors"
           />
           {errors.message && <p className="text-xs text-red-400 mt-1">{errors.message.message}</p>}
         </div>
@@ -510,7 +528,7 @@ function ProductForm({
               autoComplete="organization"
               inputMode="text"
               placeholder="e.g. Emirates Industrial Construction"
-              className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#8DC63F] text-base"
+              className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:outline-none focus:ring-0 focus:border-[#8DC63F] text-base transition-colors"
             />
           </div>
 
@@ -521,7 +539,7 @@ function ProductForm({
                 {...register('categoryCode')}
                 type="text"
                 readOnly
-                className="w-full bg-[#161B22] border border-[#1F2937] rounded-xl px-3.5 h-12 text-[#8DC63F] font-mono text-base"
+                className="w-full bg-[#161B22] border border-[#1F2937] rounded-xl px-3.5 h-12 text-[#8DC63F] font-mono text-base focus:outline-none focus:ring-0"
               />
               <input type="hidden" {...register('categoryTitle')} />
             </div>
@@ -532,7 +550,7 @@ function ProductForm({
                 {...register('quantity')}
                 type="text"
                 placeholder="e.g. 500 meters tape / 20 ESE rods"
-                className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#8DC63F] text-base"
+                className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:outline-none focus:ring-0 focus:border-[#8DC63F] text-base transition-colors"
               />
             </div>
           </div>
@@ -543,7 +561,7 @@ function ProductForm({
               {...register('deliveryLocation')}
               type="text"
               placeholder="e.g. ICAD III Abu Dhabi / KIZAD / JAFZA Dubai"
-              className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:border-[#8DC63F] text-base"
+              className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:outline-none focus:ring-0 focus:border-[#8DC63F] text-base transition-colors"
             />
           </div>
         </div>
@@ -565,10 +583,12 @@ function ProductForm({
 
       {/* STICKY SUBMIT BUTTON */}
       <div className="sticky bottom-0 bg-[#0D1117] py-2 border-t border-[#1F2937]/50">
-        <button
+        <LightningButton
           type="submit"
+          variant="primary"
+          size="md"
+          fullWidth
           disabled={submitting}
-          className="w-full h-12 bg-gradient-brand text-white font-bold rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2 text-base shadow-lg active-press"
         >
           {submitting ? (
             <>
@@ -578,7 +598,7 @@ function ProductForm({
           ) : (
             <span>Submit Product Enquiry</span>
           )}
-        </button>
+        </LightningButton>
       </div>
     </form>
   );

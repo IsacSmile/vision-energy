@@ -10,8 +10,9 @@ export interface ServiceModalContext {
 }
 
 export interface ProductModalContext {
-  categoryCode: string;
-  categoryTitle: string;
+  categoryCode?: string;
+  categoryTitle?: string;
+  prefillMessage?: string;
 }
 
 interface EnquiryModalContextType {
@@ -41,8 +42,9 @@ export function EnquiryModalProvider({ children }: { children: ReactNode }) {
 
   const openProductModal = (context?: Partial<ProductModalContext>) => {
     setProductContext({
-      categoryCode: context?.categoryCode || 'LP-01',
-      categoryTitle: context?.categoryTitle || 'Lightning Protection Products',
+      categoryCode: context?.categoryCode || 'GENERAL',
+      categoryTitle: context?.categoryTitle || 'General Product Enquiry',
+      prefillMessage: context?.prefillMessage || '',
     });
     setServiceContext(null);
     setModalType('PRODUCT');

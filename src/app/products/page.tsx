@@ -1,38 +1,149 @@
 import React from 'react';
-import Link from 'next/link';
+import { Metadata } from 'next';
 import { db } from '@/lib/db';
-import ProductsClientPage from '@/components/products/ProductsClientPage';
+import ProductsExplorer, { CategoryExplorerItem } from '@/components/products/ProductsExplorer';
+import { getGroupLabel } from '@/lib/group-icons';
 
-export const metadata = {
-  title: 'Product Categories Catalogue | Electrical, Mechanical & Solar Trading',
-  description:
-    'Browse 57 technical product categories grouped by family: Lightning Protection (LP), Earthing Systems (ER), Lighting (LT), Cable Management (CM), Cables (CB), Conduits (CT), Electrical (EL), Solar Energy (EN), Mechanical (ME), Safety & Hardware.',
-};
+interface PageProps {
+  searchParams: Promise<{
+    q?: string;
+    group?: string;
+    codes?: string;
+    sort?: string;
+    view?: string;
+  }>;
+}
+
+export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
+  const params = await searchParams;
+  const totalCount = await db.productCategory.count();
+
+  const hasQueryParams = Boolean(
+    params.q || params.group || params.codes || params.sort || params.view
+  );
+
+  return {
+    title: 'Products | Lightning Protection, Earthing, Electrical, Mechanical & Solar | Vision Energy International',
+    description: `Browse ${totalCount} product categories from Vision Energy International: lightning protection, earthing, cables, lighting, electrical, mechanical and solar products across the UAE.`,
+    alternates: {
+      canonical: '/products',
+    },
+    robots: hasQueryParams
+      ? {
+          index: false,
+          follow: true,
+        }
+      : undefined,
+  };
+}
 
 export const revalidate = 60;
 
-export default async function ProductsPage() {
-  const categories = await db.productCategory.findMany({
+export default async function ProductsPage({ searchParams }: PageProps) {
+  const params = await searchParams;
+
+  const rawCategories = await db.productCategory.findMany({
     orderBy: { sortOrder: 'asc' },
+    select: {
+      code: true,
+      slug: true,
+      groupPrefix: true,
+      sortOrder: true,
+      title: true,
+      description: true,
+      families: true,
+    },
   });
 
-  return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
-      {/* Page Header */}
-      <div className="space-y-4 text-center max-w-3xl mx-auto">
-        <span className="text-xs font-bold text-[#8DC63F] uppercase tracking-widest bg-[#8DC63F]/10 border border-[#8DC63F]/30 px-3.5 py-1 rounded-full inline-block">
-          Authorised Distribution Catalogue
-        </span>
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Engineering Product Categories
-        </h1>
-        <p className="text-sm text-[#A9B4C0] leading-relaxed">
-          Explore our range of priority lightning protection, earthing networks, mechanical fittings, and electrical distribution products. Select any category to view technical families or submit a pricing enquiry.
-        </p>
-      </div>
+  const categories: CategoryExplorerItem[] = rawCategories.map((cat) => {
+    const group = (cat.groupPrefix || '').toUpperCase();
+    const isPriority = group === 'LP' || group === 'ER' || group === 'EB';
+    const parsedFamilies = cat.families
+      ? cat.families
+          .split(';')
+          .map((f) => f.trim())
+          .filter(Boolean)
+      : [];
 
-      {/* Filterable Products Client Section */}
-      <ProductsClientPage categories={categories} />
-    </div>
+    return {
+      code: cat.code,
+      slug: cat.slug,
+      group,
+      groupLabel: getGroupLabel(group),
+      sortOrder: cat.sortOrder,
+      priority: isPriority,
+      title: cat.title,
+      description: cat.description,
+      productFamilies: parsedFamilies,
+    };
+  });
+
+  // JSON-LD structured data for SEO (BreadcrumbList & CollectionPage with ItemList)
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://visionenergy.ae',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Products',
+            item: 'https://visionenergy.ae/products',
+          },
+        ],
+      },
+      {
+        '@type': 'CollectionPage',
+        '@id': 'https://visionenergy.ae/products',
+        name: 'Product Catalogue - Vision Energy International',
+        description: `Browse ${categories.length} product categories from Vision Energy International.`,
+        url: 'https://visionenergy.ae/products',
+        mainEntity: {
+          '@type': 'ItemList',
+          numberOfItems: categories.length,
+          itemListElement: categories.map((cat, idx) => ({
+            '@type': 'ListItem',
+            position: idx + 1,
+            name: cat.title,
+            url: `https://visionenergy.ae/products/${cat.slug}`,
+          })),
+        },
+      },
+    ],
+  };
+
+  const initialQ = params.q ? params.q.slice(0, 80) : '';
+  const initialGroup = params.group ? params.group.toUpperCase() : 'ALL';
+  const initialCodes = params.codes
+    ? params.codes
+        .split(',')
+        .map((c) => c.trim().toUpperCase())
+        .filter(Boolean)
+    : [];
+  const initialSort = params.sort === 'az' ? 'az' : 'featured';
+  const initialView = params.view === 'list' ? 'list' : 'grid';
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <ProductsExplorer
+        categories={categories}
+        initialQ={initialQ}
+        initialGroup={initialGroup}
+        initialCodes={initialCodes}
+        initialSort={initialSort}
+        initialView={initialView}
+      />
+    </>
   );
 }
