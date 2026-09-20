@@ -11,6 +11,7 @@ import Industries from '@/components/home/Industries';
 import LatestPosts from '@/components/home/LatestPosts';
 import FinalCTA from '@/components/home/FinalCTA';
 import { PILLARS_CONFIG } from '@/config/pillars';
+import { FALLBACK_CATEGORIES } from '@/lib/fallback-categories';
 
 export const metadata = {
   title: 'Vision Energy International | Lightning Protection, Earthing and Electrical Solutions UAE',
@@ -21,14 +22,24 @@ export const metadata = {
 export const revalidate = 60; // ISR revalidation
 
 export default async function HomePage() {
-  const productCategoryCount = await db.productCategory.count();
+  let productCategoryCount = FALLBACK_CATEGORIES.length;
+  let allCategoryCodes: string[] = FALLBACK_CATEGORIES.map((c) => c.code);
 
-  // Compute category counts per pillar server-side
-  const allCategories = await db.productCategory.findMany({
-    select: { code: true },
-  });
+  try {
+    const count = await db.productCategory.count();
+    if (count > 0) productCategoryCount = count;
 
-  const categoryCodesSet = new Set(allCategories.map((c) => c.code.toUpperCase()));
+    const dbCategories = await db.productCategory.findMany({
+      select: { code: true },
+    });
+    if (dbCategories && dbCategories.length > 0) {
+      allCategoryCodes = dbCategories.map((c) => c.code);
+    }
+  } catch (e) {
+    console.error('Database query fallback triggered for HomePage:', e);
+  }
+
+  const categoryCodesSet = new Set(allCategoryCodes.map((c) => c.toUpperCase()));
 
   const countsByPillarId: Record<string, number> = {};
   PILLARS_CONFIG.forEach((pillar) => {
@@ -90,7 +101,7 @@ export default async function HomePage() {
 
       <HairlineDivider />
 
-      {/* 9. LATEST POSTS (#050608) - CONDITIONAL (null if <3 posts) */}
+      {/* 9. LATEST POSTS (#050608) - CONDITIONAL */}
       <LatestPosts />
 
       <HairlineDivider />

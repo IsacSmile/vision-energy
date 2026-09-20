@@ -6,7 +6,7 @@ interface RevealProps {
   children: React.ReactNode;
   delay?: number;
   staggerIndex?: number;
-  as?: 'div' | 'section' | 'article' | 'span' | 'header' | 'footer';
+  as?: 'div' | 'section' | 'article' | 'span' | 'header' | 'footer' | 'li';
   className?: string;
   style?: React.CSSProperties;
 }

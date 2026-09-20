@@ -3,20 +3,46 @@ import { Metadata } from 'next';
 import { db } from '@/lib/db';
 import ProductsExplorer, { CategoryExplorerItem } from '@/components/products/ProductsExplorer';
 import { getGroupLabel } from '@/lib/group-icons';
+import { FALLBACK_CATEGORIES } from '@/lib/fallback-categories';
 
 interface PageProps {
-  searchParams: Promise<{
+  searchParams?: Promise<{
     q?: string;
     group?: string;
     codes?: string;
     sort?: string;
     view?: string;
-  }>;
+  }> | {
+    q?: string;
+    group?: string;
+    codes?: string;
+    sort?: string;
+    view?: string;
+  };
+}
+
+async function resolveSearchParams(searchParams: PageProps['searchParams']) {
+  if (!searchParams) return {};
+  try {
+    if (typeof (searchParams as any).then === 'function') {
+      return (await searchParams) || {};
+    }
+    return (searchParams as any) || {};
+  } catch (e) {
+    return {};
+  }
 }
 
 export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
-  const params = await searchParams;
-  const totalCount = await db.productCategory.count();
+  const params = await resolveSearchParams(searchParams);
+  let totalCount = FALLBACK_CATEGORIES.length;
+
+  try {
+    const count = await db.productCategory.count();
+    if (count > 0) totalCount = count;
+  } catch (e) {
+    // Graceful fallback if database connection is unavailable
+  }
 
   const hasQueryParams = Boolean(
     params.q || params.group || params.codes || params.sort || params.view
@@ -40,28 +66,36 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
 export const revalidate = 60;
 
 export default async function ProductsPage({ searchParams }: PageProps) {
-  const params = await searchParams;
+  const params = await resolveSearchParams(searchParams);
 
-  const rawCategories = await db.productCategory.findMany({
-    orderBy: { sortOrder: 'asc' },
-    select: {
-      code: true,
-      slug: true,
-      groupPrefix: true,
-      sortOrder: true,
-      title: true,
-      description: true,
-      families: true,
-    },
-  });
+  let rawCategories: any[] = [];
+  try {
+    rawCategories = await db.productCategory.findMany({
+      orderBy: { sortOrder: 'asc' },
+      select: {
+        code: true,
+        slug: true,
+        groupPrefix: true,
+        sortOrder: true,
+        title: true,
+        description: true,
+        families: true,
+      },
+    });
+  } catch (e) {
+    console.error('Database query fallback triggered for /products:', e);
+  }
 
-  const categories: CategoryExplorerItem[] = rawCategories.map((cat) => {
+  // Fallback to static catalog if DB returned 0 records or threw an exception
+  const sourceData = rawCategories && rawCategories.length > 0 ? rawCategories : FALLBACK_CATEGORIES;
+
+  const categories: CategoryExplorerItem[] = sourceData.map((cat) => {
     const group = (cat.groupPrefix || '').toUpperCase();
     const isPriority = group === 'LP' || group === 'ER' || group === 'EB';
     const parsedFamilies = cat.families
       ? cat.families
           .split(';')
-          .map((f) => f.trim())
+          .map((f: string) => f.trim())
           .filter(Boolean)
       : [];
 
@@ -78,7 +112,7 @@ export default async function ProductsPage({ searchParams }: PageProps) {
     };
   });
 
-  // JSON-LD structured data for SEO (BreadcrumbList & CollectionPage with ItemList)
+  // JSON-LD structured data for SEO
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -89,22 +123,22 @@ export default async function ProductsPage({ searchParams }: PageProps) {
             '@type': 'ListItem',
             position: 1,
             name: 'Home',
-            item: 'https://visionenergy.ae',
+            item: 'https://www.visionenergyme.com/',
           },
           {
             '@type': 'ListItem',
             position: 2,
             name: 'Products',
-            item: 'https://visionenergy.ae/products',
+            item: 'https://www.visionenergyme.com/products',
           },
         ],
       },
       {
         '@type': 'CollectionPage',
-        '@id': 'https://visionenergy.ae/products',
+        '@id': 'https://www.visionenergyme.com/products',
         name: 'Product Catalogue - Vision Energy International',
         description: `Browse ${categories.length} product categories from Vision Energy International.`,
-        url: 'https://visionenergy.ae/products',
+        url: 'https://www.visionenergyme.com/products',
         mainEntity: {
           '@type': 'ItemList',
           numberOfItems: categories.length,
@@ -112,7 +146,7 @@ export default async function ProductsPage({ searchParams }: PageProps) {
             '@type': 'ListItem',
             position: idx + 1,
             name: cat.title,
-            url: `https://visionenergy.ae/products/${cat.slug}`,
+            url: `https://www.visionenergyme.com/products/${cat.slug}`,
           })),
         },
       },
@@ -124,7 +158,7 @@ export default async function ProductsPage({ searchParams }: PageProps) {
   const initialCodes = params.codes
     ? params.codes
         .split(',')
-        .map((c) => c.trim().toUpperCase())
+        .map((c: string) => c.trim().toUpperCase())
         .filter(Boolean)
     : [];
   const initialSort = params.sort === 'az' ? 'az' : 'featured';

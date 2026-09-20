@@ -6,7 +6,11 @@ import { useEnquiryModal } from '@/components/modals/EnquiryModalProvider';
 import Reveal from '@/components/ui/Reveal';
 import LightningButton from '@/components/ui/LightningButton';
 
-export default function FinalCTA() {
+interface FinalCTAProps {
+  bgClass?: string;
+}
+
+export default function FinalCTA({ bgClass = 'bg-[#0D1117]' }: FinalCTAProps) {
   const { openProductModal } = useEnquiryModal();
   const [copiedPhone, setCopiedPhone] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
@@ -59,7 +63,7 @@ export default function FinalCTA() {
   return (
     <section
       aria-labelledby="final-cta-heading"
-      className="py-20 md:py-32 lg:py-40 bg-[#0D1117] relative overflow-hidden border-t border-b border-white/[0.08]"
+      className={`py-20 md:py-32 lg:py-40 ${bgClass} relative overflow-hidden border-t border-b border-white/[0.08]`}
     >
       {/* Blue-to-Lime Hairline at Top */}
       <div
