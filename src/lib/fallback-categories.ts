@@ -1,3 +1,4 @@
+// SEED SOURCE ONLY - The public site and admin read from the database via lib/data/products.ts
 export interface FallbackCategory {
   code: string;
   slug: string;

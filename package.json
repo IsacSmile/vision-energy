@@ -4,14 +4,19 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "export DATABASE_URL=\"${DATABASE_URL:-file:./dev.db}\" && prisma generate && prisma db push --accept-data-loss && npx tsx prisma/seed.ts && next build",
+    "build": "prisma generate && prisma migrate deploy && npx tsx prisma/seed.ts && next build",
     "start": "next start",
     "lint": "eslint",
-    "postinstall": "prisma generate"  
+    "postinstall": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
+    "db:seed": "npx tsx prisma/seed.ts",
+    "db:studio": "prisma studio"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",
     "@prisma/client": "^5.22.0",
+    "@vercel/blob": "^2.8.0",
     "bcryptjs": "^3.0.3",
     "jose": "^6.2.12",
     "lucide-react": "^1.47.0",
@@ -21,9 +26,16 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.88.0",
+    "rehype-sanitize": "^6.0.0",
+    "rehype-stringify": "^10.0.1",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
+    "server-only": "^0.0.1",
+    "unified": "^11.0.5",
     "zod": "^4.6.5"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^3.0.0",
     "@types/node": "^20",
     "@types/react": "^18.3.31",
     "@types/react-dom": "^18.3.7",

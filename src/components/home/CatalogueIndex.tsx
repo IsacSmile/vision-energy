@@ -121,7 +121,15 @@ export default function CatalogueIndex({
     setOpenAccordionIndex((prev) => (prev === index ? -1 : index));
   };
 
-  const activeGroup = groups[activeGroupIndex] || groups[0];
+  const activeGroup = groups && groups.length > 0 ? (groups[activeGroupIndex] || groups[0]) : null;
+
+  if (!groups || groups.length === 0 || !activeGroup) {
+    return (
+      <div className="rounded-[24px] border border-white/[0.08] bg-[#0D1117] p-8 text-center space-y-4">
+        <p className="text-base text-[#A9B4C0]">No product categories available at the moment.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-8 lg:space-y-12">

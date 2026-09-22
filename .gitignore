@@ -15,7 +15,6 @@
 
 # misc
 .DS_Store
-*.pem
 
 # debug
 npm-debug.log*
@@ -24,18 +23,37 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files
+# Admin Email: admin@visionenergyme.com
+# Admin Password: AdminPass@visionenergy
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*
 !.env.example
+*.env
+
+# credentials, SSL keys & certificates
+*.pem
+*.pub
+*.key
+*.cert
+*.crt
+*.p12
+*.pfx
+id_rsa
+id_ed25519
 
 # sqlite dev database
 prisma/dev.db
 prisma/dev.db-journal
 *.db
 *.db-journal
+*.sqlite
+*.sqlite3
+
+# IDEs & OS files
+.vscode/
+.idea/
+*.swp
+*.swo
 
 # vercel
 .vercel
@@ -43,3 +61,4 @@ prisma/dev.db-journal
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+

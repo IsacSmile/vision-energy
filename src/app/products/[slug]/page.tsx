@@ -1,49 +1,49 @@
-import React from 'react';
-import { notFound } from 'next/navigation';
-import { db } from '@/lib/db';
-import CategoryDetailClient from '@/components/products/CategoryDetailClient';
-import { FALLBACK_CATEGORIES } from '@/lib/fallback-categories';
+import React from "react";
+import { notFound, redirect } from "next/navigation";
+import { getPublishedCategoryBySlug, getPublishedProductCategories } from "@/lib/data/products";
+import { db } from "@/lib/db";
+import CategoryDetailClient from "@/components/products/CategoryDetailClient";
 
 interface SlugPageProps {
   params?: Promise<{ slug: string }> | { slug: string };
 }
 
-async function resolveParams(params: SlugPageProps['params']) {
-  if (!params) return { slug: '' };
+async function resolveParams(params: SlugPageProps["params"]) {
+  if (!params) return { slug: "" };
   try {
-    if (typeof (params as any).then === 'function') {
-      return (await params) || { slug: '' };
+    if (typeof (params as any).then === "function") {
+      return (await params) || { slug: "" };
     }
-    return (params as any) || { slug: '' };
+    return (params as any) || { slug: "" };
   } catch (e) {
-    return { slug: '' };
+    return { slug: "" };
   }
 }
+
+export async function generateStaticParams() {
+  try {
+    const categories = await getPublishedProductCategories();
+    return categories.map((c) => ({ slug: c.slug }));
+  } catch {
+    return [];
+  }
+}
+
+export const dynamicParams = true;
+export const revalidate = 300;
 
 export async function generateMetadata({ params }: SlugPageProps) {
   const { slug } = await resolveParams(params);
-  if (!slug) return { title: 'Category Not Found' };
+  if (!slug) return { title: "Category Not Found" };
 
-  let category: any = null;
-  try {
-    category = await db.productCategory.findUnique({ where: { slug } });
-  } catch (e) {
-    // Fallback search
-  }
-
-  if (!category) {
-    category = FALLBACK_CATEGORIES.find((c) => c.slug === slug) || null;
-  }
-
-  if (!category) return { title: 'Category Not Found' };
+  const category = await getPublishedCategoryBySlug(slug);
+  if (!category) return { title: "Category Not Found" };
 
   return {
-    title: `[${category.code}] ${category.title} | Technical Product Specifications`,
-    description: category.description,
+    title: category.seoTitle || `[${category.code}] ${category.title} | Vision Energy`,
+    description: category.seoDescription || category.description,
   };
 }
-
-export const revalidate = 60;
 
 export default async function CategoryDetailPage({ params }: SlugPageProps) {
   const { slug } = await resolveParams(params);
@@ -51,60 +51,23 @@ export default async function CategoryDetailPage({ params }: SlugPageProps) {
     notFound();
   }
 
-  let category: any = null;
-  let relatedCategories: any[] = [];
+  const category = await getPublishedCategoryBySlug(slug);
 
-  try {
-    category = await db.productCategory.findUnique({ where: { slug } });
-  } catch (e) {
-    console.error('Database query fallback triggered for category detail:', e);
-  }
-
-  // Fallback to static data if database is unseeded or connection failed
   if (!category) {
-    const fb = FALLBACK_CATEGORIES.find((c) => c.slug === slug);
-    if (fb) {
-      category = {
-        ...fb,
-        id: fb.code,
-        image: null,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-      };
+    // Check if a 301 slug redirect exists for this old slug
+    const fromPath = `/products/${slug}`;
+    const redirectRow = await db.slugRedirect.findUnique({ where: { fromPath } });
+    if (redirectRow) {
+      redirect(redirectRow.toPath);
     }
-  }
-
-  if (!category) {
     notFound();
   }
 
-  try {
-    relatedCategories = await db.productCategory.findMany({
-      where: {
-        groupPrefix: category.groupPrefix,
-        NOT: { slug: category.slug },
-      },
-      take: 6,
-    });
-  } catch (e) {
-    console.error('Error fetching related categories from database:', e);
-  }
+  // Fetch related categories in the same group
+  const allCategories = await getPublishedProductCategories();
+  const relatedCategories = allCategories
+    .filter((c) => c.group === category.group && c.slug !== category.slug)
+    .slice(0, 6);
 
-  if (!relatedCategories || relatedCategories.length === 0) {
-    relatedCategories = FALLBACK_CATEGORIES.filter(
-      (c) => c.groupPrefix === category.groupPrefix && c.slug !== category.slug
-    ).slice(0, 6).map((fb) => ({
-      ...fb,
-      id: fb.code,
-      image: null,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-    }));
-  }
-
-  return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12">
-      <CategoryDetailClient category={category} relatedCategories={relatedCategories} />
-    </div>
-  );
+  return <CategoryDetailClient category={category as any} relatedCategories={relatedCategories as any} />;
 }

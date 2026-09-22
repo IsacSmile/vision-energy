@@ -1,163 +1,300 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
-import Image from 'next/image';
-import EnquiryTable from '@/components/admin/EnquiryTable';
-import { LogOut, Download, Package, Wrench, Shield, RefreshCw } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import {
+  Package,
+  Wrench,
+  FileText,
+  Inbox,
+  Plus,
+  AlertTriangle,
+  ArrowRight,
+  Clock,
+  Loader2,
+  RefreshCw,
+} from "lucide-react";
+
+interface DashboardData {
+  counts: {
+    newProductEnquiries: number;
+    newServiceEnquiries: number;
+    publishedProducts: number;
+    draftProducts: number;
+    publishedServices: number;
+    draftServices: number;
+    publishedPosts: number;
+    draftPosts: number;
+  };
+  needsAttention: {
+    oldDrafts: Array<{ type: string; title: string; href: string; updatedAt: string }>;
+    servicesWithUnconfirmedSteps: Array<{ id: string; title: string; href: string }>;
+  };
+  latestEnquiries: {
+    product: any[];
+    service: any[];
+  };
+}
 
 export default function AdminDashboardPage() {
-  const router = useRouter();
-  const [activeTab, setActiveTab] = useState<'product' | 'service'>('product');
-  const [newCounts, setNewCounts] = useState<{ product: number; service: number }>({
-    product: 0,
-    service: 0,
-  });
+  const [data, setData] = useState<DashboardData | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  const fetchBadgeCounts = useCallback(async () => {
+  const fetchDashboard = async () => {
+    setLoading(true);
     try {
-      const res = await fetch('/api/admin/enquiries?type=product&limit=1');
-      const json = await res.json();
-      if (res.ok && json.newCounts) {
-        setNewCounts(json.newCounts);
+      const res = await fetch("/api/admin/dashboard");
+      if (res.ok) {
+        const json = await res.json();
+        setData(json);
       }
     } catch (err) {
-      console.error('Failed to fetch badge counts:', err);
+      console.error("Failed to load dashboard data:", err);
+    } finally {
+      setLoading(false);
     }
-  }, []);
+  };
 
   useEffect(() => {
-    fetchBadgeCounts();
-  }, [fetchBadgeCounts]);
+    fetchDashboard();
+  }, []);
 
-  const handleLogout = async () => {
-    try {
-      await fetch('/api/admin/logout', { method: 'POST' });
-      router.push('/admin/login');
-      router.refresh();
-    } catch (err) {
-      console.error('Logout error:', err);
-    }
-  };
+  if (loading || !data) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[400px] gap-3">
+        <Loader2 className="w-8 h-8 text-[#A3E635] animate-spin" />
+        <p className="text-xs text-gray-400 font-mono">Loading CMS Dashboard metrics...</p>
+      </div>
+    );
+  }
 
-  const handleExportCSV = () => {
-    window.open(`/api/admin/export?type=${activeTab}`, '_blank');
-  };
+  const { counts, needsAttention, latestEnquiries } = data;
 
   return (
-    <div className="min-h-screen bg-[#050608] text-white">
-      {/* Dashboard Top Header Bar */}
-      <header className="bg-[#0D1117] border-b border-[#1F2937] py-4 px-4 sm:px-8">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-[#050608] border border-[#0B65B3]/40 rounded-xl flex items-center justify-center">
-              <Image src="/site-main-logo.png" alt="Logo" width={32} height={32} />
-            </div>
-            <div>
-              <h1 className="text-lg font-bold text-white tracking-tight leading-tight">
-                VISION ENERGY INTERNATIONAL
-              </h1>
-              <span className="text-[11px] font-semibold text-[#8DC63F] block">
-                Administrative Control Panel • Enquiries Management
-              </span>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <button
-              onClick={fetchBadgeCounts}
-              className="p-2 text-gray-400 hover:text-white bg-[#050608] border border-[#1F2937] rounded-xl hover:bg-white/5 transition-colors"
-              title="Refresh Badge Counts"
-            >
-              <RefreshCw className="w-4 h-4" />
-            </button>
-            <button
-              onClick={handleLogout}
-              className="px-4 py-2 bg-red-950/60 border border-red-500/40 text-red-300 hover:bg-red-900/60 font-semibold text-xs rounded-xl flex items-center gap-2 transition-colors"
-            >
-              <LogOut className="w-4 h-4" />
-              <span>Log Out</span>
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content Area */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
-        {/* Header Action Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <h2 className="text-2xl font-bold text-white tracking-tight">Client Enquiries Dashboard</h2>
-            <p className="text-xs text-[#A9B4C0] mt-1">
-              Manage product availability enquiries and service booking requests submitted via the portal.
-            </p>
-          </div>
-
-          <button
-            onClick={handleExportCSV}
-            className="px-5 py-2.5 bg-gradient-brand text-white font-bold text-xs rounded-full hover:opacity-90 transition-opacity flex items-center gap-2 shadow-lg pill-glow self-start sm:self-auto"
-          >
-            <Download className="w-4 h-4" />
-            <span>Export Current Tab to CSV</span>
-          </button>
-        </div>
-
-        {/* TWO SEPARATED TAB HEADERS */}
-        <div className="flex border-b border-[#1F2937] gap-2 sm:gap-4">
-          {/* Tab 1: Product Enquiries */}
-          <button
-            onClick={() => setActiveTab('product')}
-            className={`py-3 px-5 text-sm font-bold border-b-2 flex items-center gap-3 transition-colors ${
-              activeTab === 'product'
-                ? 'border-[#0B65B3] text-[#0B65B3] bg-[#0B65B3]/10 rounded-t-xl'
-                : 'border-transparent text-gray-400 hover:text-white hover:bg-white/5 rounded-t-xl'
-            }`}
-          >
-            <Package className="w-4 h-4" />
-            <span>Product Enquiries</span>
-            <span
-              className={`px-2.5 py-0.5 text-xs font-mono rounded-full font-bold ${
-                newCounts.product > 0
-                  ? 'bg-[#8DC63F] text-[#050608] pill-glow'
-                  : 'bg-gray-800 text-gray-400'
-              }`}
-            >
-              {newCounts.product} NEW
-            </span>
-          </button>
-
-          {/* Tab 2: Service Enquiries */}
-          <button
-            onClick={() => setActiveTab('service')}
-            className={`py-3 px-5 text-sm font-bold border-b-2 flex items-center gap-3 transition-colors ${
-              activeTab === 'service'
-                ? 'border-[#8DC63F] text-[#8DC63F] bg-[#8DC63F]/10 rounded-t-xl'
-                : 'border-transparent text-gray-400 hover:text-white hover:bg-white/5 rounded-t-xl'
-            }`}
-          >
-            <Wrench className="w-4 h-4" />
-            <span>Service Enquiries</span>
-            <span
-              className={`px-2.5 py-0.5 text-xs font-mono rounded-full font-bold ${
-                newCounts.service > 0
-                  ? 'bg-[#8DC63F] text-[#050608] pill-glow'
-                  : 'bg-gray-800 text-gray-400'
-              }`}
-            >
-              {newCounts.service} NEW
-            </span>
-          </button>
-        </div>
-
-        {/* TAB CONTENT TABLES */}
+    <div className="space-y-8">
+      {/* Page Title & Refresh */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#1F2937] pb-5">
         <div>
-          {activeTab === 'product' ? (
-            <EnquiryTable type="product" onNewCountChange={fetchBadgeCounts} />
-          ) : (
-            <EnquiryTable type="service" onNewCountChange={fetchBadgeCounts} />
-          )}
+          <h1 className="text-2xl font-bold text-white tracking-tight">Dashboard Overview</h1>
+          <p className="text-xs text-[#A9B4C0] mt-1">
+            Real-time operations, enquiries breakdown, content counts and attention items.
+          </p>
         </div>
-      </main>
+
+        <div className="flex items-center gap-3">
+          <button
+            onClick={fetchDashboard}
+            className="p-2.5 text-gray-400 hover:text-white bg-[#0D1117] border border-[#1F2937] rounded-xl hover:bg-white/5 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+            title="Refresh Dashboard Data"
+          >
+            <RefreshCw className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+
+      {/* QUICK ACTIONS ROW */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <Link
+          href="/admin/products/new"
+          className="flex items-center justify-between p-4 bg-[#0D1117] border border-[#1F2937] hover:border-[#0B65B3]/60 rounded-xl transition-all group min-h-[44px]"
+        >
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-[#0B65B3]/10 text-[#0B65B3] rounded-lg">
+              <Package className="w-5 h-5" />
+            </div>
+            <span className="text-sm font-semibold text-white group-hover:text-[#0B65B3] transition-colors">
+              New Product Category
+            </span>
+          </div>
+          <Plus className="w-4 h-4 text-gray-400 group-hover:text-white" />
+        </Link>
+
+        <Link
+          href="/admin/services/new"
+          className="flex items-center justify-between p-4 bg-[#0D1117] border border-[#1F2937] hover:border-[#A3E635]/60 rounded-xl transition-all group min-h-[44px]"
+        >
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-[#A3E635]/10 text-[#A3E635] rounded-lg">
+              <Wrench className="w-5 h-5" />
+            </div>
+            <span className="text-sm font-semibold text-white group-hover:text-[#A3E635] transition-colors">
+              New Service Scope
+            </span>
+          </div>
+          <Plus className="w-4 h-4 text-gray-400 group-hover:text-white" />
+        </Link>
+
+        <Link
+          href="/admin/blog/new"
+          className="flex items-center justify-between p-4 bg-[#0D1117] border border-[#1F2937] hover:border-purple-500/60 rounded-xl transition-all group min-h-[44px]"
+        >
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-purple-500/10 text-purple-400 rounded-lg">
+              <FileText className="w-5 h-5" />
+            </div>
+            <span className="text-sm font-semibold text-white group-hover:text-purple-400 transition-colors">
+              New Blog Article
+            </span>
+          </div>
+          <Plus className="w-4 h-4 text-gray-400 group-hover:text-white" />
+        </Link>
+      </div>
+
+      {/* METRIC CARDS (PLAIN NUMBERS WITH LABELS) */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <Link href="/admin/enquiries" className="p-5 bg-[#0D1117] border border-[#1F2937] rounded-xl space-y-2 hover:border-gray-700 transition-all block">
+          <div className="flex items-center justify-between text-gray-400">
+            <span className="text-xs font-semibold uppercase tracking-wider">Product Enquiries</span>
+            <Inbox className="w-4 h-4 text-[#0B65B3]" />
+          </div>
+          <div className="text-3xl font-bold text-white font-mono">{counts.newProductEnquiries}</div>
+          <p className="text-[11px] text-[#0B65B3] font-medium">New unhandled enquiries</p>
+        </Link>
+
+        <Link href="/admin/enquiries" className="p-5 bg-[#0D1117] border border-[#1F2937] rounded-xl space-y-2 hover:border-gray-700 transition-all block">
+          <div className="flex items-center justify-between text-gray-400">
+            <span className="text-xs font-semibold uppercase tracking-wider">Service Enquiries</span>
+            <Inbox className="w-4 h-4 text-[#A3E635]" />
+          </div>
+          <div className="text-3xl font-bold text-white font-mono">{counts.newServiceEnquiries}</div>
+          <p className="text-[11px] text-[#A3E635] font-medium">New unhandled requests</p>
+        </Link>
+
+        <Link href="/admin/products" className="p-5 bg-[#0D1117] border border-[#1F2937] rounded-xl space-y-2 hover:border-gray-700 transition-all block">
+          <div className="flex items-center justify-between text-gray-400">
+            <span className="text-xs font-semibold uppercase tracking-wider">Products</span>
+            <Package className="w-4 h-4 text-gray-400" />
+          </div>
+          <div className="text-3xl font-bold text-white font-mono">{counts.publishedProducts}</div>
+          <p className="text-[11px] text-gray-400">
+            <span className="text-[#A3E635] font-semibold">{counts.publishedProducts} published</span> • {counts.draftProducts} drafts
+          </p>
+        </Link>
+
+        <Link href="/admin/services" className="p-5 bg-[#0D1117] border border-[#1F2937] rounded-xl space-y-2 hover:border-gray-700 transition-all block">
+          <div className="flex items-center justify-between text-gray-400">
+            <span className="text-xs font-semibold uppercase tracking-wider">Services & Blog</span>
+            <Wrench className="w-4 h-4 text-gray-400" />
+          </div>
+          <div className="text-3xl font-bold text-white font-mono">{counts.publishedServices + counts.publishedPosts}</div>
+          <p className="text-[11px] text-gray-400">
+            {counts.publishedServices} services, {counts.publishedPosts} posts published
+          </p>
+        </Link>
+      </div>
+
+      {/* NEEDS ATTENTION SECTION */}
+      {(needsAttention.oldDrafts.length > 0 || needsAttention.servicesWithUnconfirmedSteps.length > 0) && (
+        <div className="p-5 bg-[#0D1117] border border-amber-500/30 rounded-xl space-y-4">
+          <div className="flex items-center gap-2 text-amber-400 font-bold text-sm">
+            <AlertTriangle className="w-5 h-5 shrink-0" />
+            <h2>Needs Attention</h2>
+          </div>
+
+          <div className="space-y-2 text-xs">
+            {needsAttention.servicesWithUnconfirmedSteps.map((s) => (
+              <div key={s.id} className="flex items-center justify-between p-3 bg-[#050608] border border-[#1F2937] rounded-lg">
+                <span className="text-gray-300">
+                  Service <strong className="text-white">{s.title}</strong> has unconfirmed process steps (hidden on site).
+                </span>
+                <Link href={s.href} className="text-[#A3E635] hover:underline font-semibold flex items-center gap-1 shrink-0 ml-2">
+                  <span>Edit Service</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            ))}
+
+            {needsAttention.oldDrafts.map((d, i) => (
+              <div key={i} className="flex items-center justify-between p-3 bg-[#050608] border border-[#1F2937] rounded-lg">
+                <span className="text-gray-300">
+                  {d.type} draft <strong className="text-white">{d.title}</strong> has been unupdated for over 14 days.
+                </span>
+                <Link href={d.href} className="text-[#A3E635] hover:underline font-semibold flex items-center gap-1 shrink-0 ml-2">
+                  <span>Review Draft</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* 5 LATEST ENQUIRIES OF EACH TYPE */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Latest Product Enquiries */}
+        <div className="bg-[#0D1117] border border-[#1F2937] rounded-xl p-5 space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Package className="w-4 h-4 text-[#0B65B3]" />
+              <h3 className="font-bold text-sm text-white">Latest Product Enquiries</h3>
+            </div>
+            <Link href="/admin/enquiries" className="text-xs text-[#0B65B3] hover:underline font-medium">
+              View all
+            </Link>
+          </div>
+
+          <div className="space-y-2">
+            {latestEnquiries.product.length === 0 ? (
+              <p className="text-xs text-gray-500 py-4 text-center">No product enquiries yet.</p>
+            ) : (
+              latestEnquiries.product.map((item) => (
+                <Link
+                  key={item.id}
+                  href="/admin/enquiries"
+                  className="block p-3 bg-[#050608] border border-[#1F2937] hover:border-gray-700 rounded-lg text-xs space-y-1 transition-colors"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-semibold text-white">{item.name} ({item.company || "Individual"})</span>
+                    <span className="text-[10px] font-mono text-[#0B65B3]">{item.categoryCode}</span>
+                  </div>
+                  <p className="text-gray-400 text-[11px] truncate">{item.categoryTitle}</p>
+                  <div className="text-[10px] text-gray-500 flex items-center gap-1">
+                    <Clock className="w-3 h-3" />
+                    <span>{new Date(item.createdAt).toLocaleDateString("en-GB")}</span>
+                  </div>
+                </Link>
+              ))
+            )}
+          </div>
+        </div>
+
+        {/* Latest Service Enquiries */}
+        <div className="bg-[#0D1117] border border-[#1F2937] rounded-xl p-5 space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Wrench className="w-4 h-4 text-[#A3E635]" />
+              <h3 className="font-bold text-sm text-white">Latest Service Enquiries</h3>
+            </div>
+            <Link href="/admin/enquiries" className="text-xs text-[#A3E635] hover:underline font-medium">
+              View all
+            </Link>
+          </div>
+
+          <div className="space-y-2">
+            {latestEnquiries.service.length === 0 ? (
+              <p className="text-xs text-gray-500 py-4 text-center">No service enquiries yet.</p>
+            ) : (
+              latestEnquiries.service.map((item) => (
+                <Link
+                  key={item.id}
+                  href="/admin/enquiries"
+                  className="block p-3 bg-[#050608] border border-[#1F2937] hover:border-gray-700 rounded-lg text-xs space-y-1 transition-colors"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-semibold text-white">{item.name} ({item.emirate})</span>
+                    <span className="text-[10px] font-mono text-[#A3E635]">{item.projectType}</span>
+                  </div>
+                  <p className="text-gray-400 text-[11px] truncate">{item.serviceTitle}</p>
+                  <div className="text-[10px] text-gray-500 flex items-center gap-1">
+                    <Clock className="w-3 h-3" />
+                    <span>{new Date(item.createdAt).toLocaleDateString("en-GB")}</span>
+                  </div>
+                </Link>
+              ))
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+// SEED SOURCE ONLY - The public site and admin read from the database via lib/data/services.ts
 export interface SystemItem {
   title: string;
   body: string;

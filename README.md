@@ -1,78 +1,72 @@
-# VISION ENERGY INTERNATIONAL - Next.js Full-Stack Application
+# VISION ENERGY INTERNATIONAL - Next.js Full-Stack Application & CMS Admin
 
-Web application, enquiry management system, and administration panel for **VISION ENERGY INTERNATIONAL**, a UAE electrical, mechanical, and solar product trading company with a priority focus on **Lightning Protection & Earthing**.
+Web application, CMS administration panel, and enquiry management system for **VISION ENERGY INTERNATIONAL**, a UAE electrical, mechanical, and solar product trading company with a priority focus on **Lightning Protection & Earthing**.
+
+---
+
+## Connect Neon (PostgreSQL Setup)
+
+The application uses **Neon Serverless PostgreSQL** for production data persistence, session storage, audit logging, and content management.
+
+### Environment Variables
+Configure the database connection strings in `.env`:
+
+```env
+# Neon Pooled Connection String (Used by runtime queries, contains "-pooler")
+DATABASE_URL="postgresql://user:password@ep-cool-pooler.us-east-2.aws.neon.tech/neondb?sslmode=require"
+
+# Neon Direct Connection String (Used for migrations & seeding, without "-pooler")
+DIRECT_URL="postgresql://user:password@ep-cool.us-east-2.aws.neon.tech/neondb?sslmode=require"
+
+# Security & Secrets
+ADMIN_EMAIL="admin@visionenergyme.com"
+ADMIN_PASSWORD_HASH="$2b$12$YourBcryptHashHere"
+SESSION_SECRET="random_32_byte_string_secret_key_2026_vision"
+NEXT_PUBLIC_SITE_URL="https://vision-energy.nihatechsolutions.online"
+
+# Optional Vercel Blob Token for Image Uploads
+BLOB_READ_WRITE_TOKEN=""
+```
+
+> **Note on Neon Connection Options**:
+> - If connection to Neon fails with a `channel_binding` error in local Prisma execution, remove `channel_binding=gssapi-channel-binding` from your connection URL string.
+> - If connection pool timeouts occur, append `&pgbouncer=true` to your `DATABASE_URL`.
+
+### Database Scripts
+- **Migrations (Dev)**: `npm run db:migrate` (`npx prisma migrate dev`)
+- **Deploy Migrations (Prod/Vercel)**: `npm run db:deploy` (`npx prisma migrate deploy`)
+- **Seed Database**: `npm run db:seed` (`npx tsx prisma/seed.ts`)
+- **Prisma Studio GUI**: `npm run db:studio` (`npx prisma studio`)
 
 ---
 
 ## Technical Architecture
 
-- **Framework**: Next.js 16+ (App Router) + TypeScript
-- **Styling**: Tailwind CSS v4 with custom dark technical theme tokens (`#050608`, `#0D1117`, `#0B65B3`, `#8DC63F`, `#F2C230`)
-- **Database & ORM**: Prisma ORM with SQLite for local development (`prisma/dev.db`), engineered with PostgreSQL-compatible schema
-- **Validation**: React Hook Form + Zod (supporting UAE phone number formats)
-- **Admin Auth**: Single admin email + bcrypt password hash from `.env`, signed HttpOnly session cookies, middleware protection for `/admin` and `/api/admin/*`
-- **Email Notifications**: Safe SMTP dispatch via `nodemailer` (fails gracefully if SMTP is not configured)
+- **Framework**: Next.js (App Router) + TypeScript
+- **Styling**: Vanilla CSS + Tailwind CSS dark technical theme tokens (`#050608`, `#0D1117`, `#0B65B3`, `#A3E635`)
+- **Database & ORM**: PostgreSQL (Neon) with Prisma ORM singleton and 2-attempt connection retry resilience
+- **Security & Auth**: Bcrypt cost 12 password verification, 5 attempts / 15 min rate limiter, signed `admin_session` cookie (8h absolute, 60m sliding idle), CSRF origin verification, `rehype-sanitize` HTML sanitization, noindex headers on admin
+- **Image Storage**: Vercel Blob `@vercel/blob` with signature verification & fallback to direct URL input
 
 ---
 
-## Local Development & Setup Instructions
+## Client Hand-Over Checklist
 
-### 1. Prerequisites
-- Node.js (v18.19+ or v20.9+)
-- npm (v9.2+)
+1. **Admin Email & Password Setup**:
+   - Generate a cost 12 bcrypt password hash:
+     ```bash
+     node -e "const b = require('bcryptjs'); console.log(b.hashSync('YourSecurePasswordHere', 12));"
+     ```
+   - Set `ADMIN_EMAIL` and `ADMIN_PASSWORD_HASH` in environment variables.
 
-### 2. Installation
-Clone the repository and install dependencies:
-```bash
-npm install
-```
+2. **Enabling Vercel Blob Uploads**:
+   - In your Vercel project settings, attach a Vercel Blob store.
+   - `BLOB_READ_WRITE_TOKEN` will automatically populate. If token is omitted, the CMS gracefully falls back to direct image URLs.
 
-### 3. Environment Configuration
-Copy `.env.example` to `.env`:
-```bash
-cp .env.example .env
-```
-
-Environment variables in `.env`:
-```env
-DATABASE_URL="file:./dev.db"
-ADMIN_EMAIL="admin@visionenergyme.com"
-ADMIN_PASSWORD_HASH="$2b$10$M7s..l3utzhcA28N8hy2seQ25r981w5yOsd3NZTpYLTUSI./HdIga"
-JWT_SECRET="vision-energy-super-secret-jwt-key-2026-change-this"
-
-# Optional SMTP Configuration
-SMTP_HOST=""
-SMTP_PORT="587"
-SMTP_USER=""
-SMTP_PASS=""
-SMTP_FROM="Vision Energy System <noreply@visionenergyme.com>"
-NOTIFICATION_EMAIL="info@visionenergyme.com"
-```
-
-### 4. How to Generate a Custom Admin Password Hash
-To create a new bcrypt hash for your chosen admin password, run:
-```bash
-node -e "const b = require('bcryptjs'); console.log(b.hashSync('YourSuperSecretPasswordHere', 10));"
-```
-Copy the output hash string into `ADMIN_PASSWORD_HASH` in `.env`.
-
-*Default Login Credentials seeded in `.env`:*
-- **Email**: `admin@visionenergyme.com`
-- **Password**: `Admin@Vision2026!`
-
-### 5. Database Setup & Seeding
-Initialize the SQLite database and seed services, 57 product categories, and technical blog posts:
-```bash
-npx prisma db push
-npx prisma db seed
-```
-
-### 6. Running Local Development Server
-Start the local server:
-```bash
-npm run dev
-```
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+3. **How to Publish a Service Safely**:
+   - When editing a service scope, clicking **Publish** triggers the mandatory client approval confirmation modal.
+   - You must check *"I confirm this service scope has been approved by the client"* before the confirm button enables.
+   - Unconfirmed process steps (`confirmed: false`) remain hidden from the public website automatically.
 
 ---
 
@@ -80,75 +74,19 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 | Path | Description | Access |
 |---|---|---|
-| `/` | Home Page with Hero, 5 Solution Pillars, Lightning Highlight Band, Why Choose Us, Latest Blog | Public |
-| `/products` | Filterable Product Categories Catalogue (57 categories, LP/ER ordered first) | Public |
-| `/products/[slug]` | Product Category Detail with catalogue code, title, description, families & CTAs | Public |
-| `/services` | Engineering Services Listing (Published services) | Public |
-| `/services/[slug]` | Service Detail Page (Unpublished services return 404) | Public |
-| `/blog` | Technical Blog Listing | Public |
-| `/blog/[slug]` | Blog Post Article | Public |
-| `/about` | Company Profile, History (est. 2018), 3 Locations, Trading Model Notice | Public |
-| `/contact` | Office details, RAK address, phone numbers, map placeholder, contact form | Public |
-| `/admin/login` | Single Admin Login Portal | Public |
-| `/admin` | Admin Dashboard (Separate tabs for Product & Service enquiries, CSV Export, Notes editor) | Protected (HttpOnly Cookie) |
-
----
-
-## How to Add New Content to the Database
-
-### Adding a New Service
-Run `npx prisma studio` or create a new entry in `prisma/seed.ts`:
-```ts
-await prisma.service.create({
-  data: {
-    slug: 'new-service-slug',
-    title: 'New Engineering Service Title',
-    summary: 'Short service summary...',
-    content: 'Full service narrative...',
-    whatsIncluded: JSON.stringify(['Inclusion 1', 'Inclusion 2']),
-    processSteps: JSON.stringify(['Step 1', 'Step 2']),
-    published: true // Set to false to keep unpublished
-  }
-});
-```
-
-### Adding a New Product Category
-```ts
-await prisma.productCategory.create({
-  data: {
-    code: 'LP-05',
-    slug: 'lp-05-[#category-title]',
-    groupPrefix: 'LP',
-    title: 'New Category Title',
-    description: 'Detailed description...',
-    families: 'Family 1; Family 2; Family 3',
-    image: '/images/products/placeholder.jpg',
-    sortOrder: 5
-  }
-});
-```
-
-### Adding a New Blog Post
-```ts
-await prisma.blogPost.create({
-  data: {
-    slug: 'new-article-slug',
-    title: 'New Technical Article Title',
-    excerpt: 'Short excerpt...',
-    content: 'Full article markdown/text...',
-    author: 'Vision Energy Technical Team',
-    category: 'Technical Insights',
-    published: true,
-    publishedAt: new Date()
-  }
-});
-```
-
----
-
-## Production Build Verification
-To test production compilation:
-```bash
-npm run build
-npm start
-```
+| `/` | Home Page with Hero, Pillars, Lightning Highlight, Latest Posts | Public |
+| `/products` | Filterable Product Categories (57 categories) | Public |
+| `/products/[slug]` | Product Category Detail | Public |
+| `/services` | Engineering Services Listing | Public |
+| `/services/[slug]` | Service Scope Detail (Unconfirmed process steps hidden) | Public |
+| `/blog` | Technical Articles Listing | Public |
+| `/blog/[slug]` | Blog Article Detail | Public |
+| `/admin/login` | Secure Admin Login Portal | Public (Rate-limited) |
+| `/admin` | Admin Operations Dashboard | Protected |
+| `/admin/enquiries` | Client Enquiries Management (Products & Services tabs) | Protected |
+| `/admin/products` | Product Categories List, Reorder & JSON Import/Export | Protected |
+| `/admin/services` | Service Scopes List & Accordion Form Editor | Protected |
+| `/admin/blog` | Blog Articles List & Markdown Editor | Protected |
+| `/admin/trash` | Trash Bin & 30-Day Recovery | Protected |
+| `/admin/activity` | Audit Log Read-Only History | Protected |
+| `/admin/preview/[type]/[id]` | Live Draft Preview Banner Mode | Protected |

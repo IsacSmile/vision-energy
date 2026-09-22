@@ -3,16 +3,13 @@ import Link from 'next/link';
 import { ArrowUpRight, Wrench, ShieldCheck, FileCheck, Headset } from 'lucide-react';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Reveal from '@/components/ui/Reveal';
-import { db } from '@/lib/db';
+import { getPublishedServices } from '@/lib/data/services';
 
 const SERVICE_ICONS = [ShieldCheck, Wrench, FileCheck, Headset];
 
 export default async function ServicesPreview() {
-  const services = await db.service.findMany({
-    where: { published: true },
-    orderBy: { title: 'asc' },
-    take: 4,
-  });
+  const servicesAll = await getPublishedServices();
+  const services = servicesAll.slice(0, 4);
 
   return (
     <section

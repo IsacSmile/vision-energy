@@ -1,10 +1,8 @@
-import React, { Suspense } from 'react';
-import { Metadata } from 'next';
-import { db } from '@/lib/db';
-import ProductsExplorer, { CategoryExplorerItem } from '@/components/products/ProductsExplorer';
-import { getGroupLabel } from '@/lib/group-icons';
-import { FALLBACK_CATEGORIES } from '@/lib/fallback-categories';
-import ProductsLoading from './loading';
+import React, { Suspense } from "react";
+import { Metadata } from "next";
+import { getPublishedProductCategories } from "@/lib/data/products";
+import ProductsExplorer, { CategoryExplorerItem } from "@/components/products/ProductsExplorer";
+import ProductsLoading from "./loading";
 
 interface PageProps {
   searchParams?: Promise<{
@@ -22,10 +20,10 @@ interface PageProps {
   };
 }
 
-async function resolveSearchParams(searchParams: PageProps['searchParams']) {
+async function resolveSearchParams(searchParams: PageProps["searchParams"]) {
   if (!searchParams) return {};
   try {
-    if (typeof (searchParams as any).then === 'function') {
+    if (typeof (searchParams as any).then === "function") {
       return (await searchParams) || {};
     }
     return (searchParams as any) || {};
@@ -36,13 +34,13 @@ async function resolveSearchParams(searchParams: PageProps['searchParams']) {
 
 export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
   const params = await resolveSearchParams(searchParams);
-  let totalCount = FALLBACK_CATEGORIES.length;
+  let totalCount = 57;
 
   try {
-    const count = await db.productCategory.count();
-    if (count > 0) totalCount = count;
+    const items = await getPublishedProductCategories();
+    if (items && items.length > 0) totalCount = items.length;
   } catch (e) {
-    // Graceful fallback if database connection is unavailable
+    // Graceful fallback
   }
 
   const hasQueryParams = Boolean(
@@ -50,10 +48,10 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   );
 
   return {
-    title: 'Products | Lightning Protection, Earthing, Electrical, Mechanical & Solar | Vision Energy International',
+    title: "Products | Lightning Protection, Earthing, Electrical & Solar | Vision Energy International",
     description: `Browse ${totalCount} product categories from Vision Energy International: lightning protection, earthing, cables, lighting, electrical, mechanical and solar products across the UAE.`,
     alternates: {
-      canonical: '/products',
+      canonical: "/products",
     },
     robots: hasQueryParams
       ? {
@@ -64,123 +62,59 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   };
 }
 
-export const revalidate = 60;
+export const revalidate = 300;
 
 export default async function ProductsPage({ searchParams }: PageProps) {
   const params = await resolveSearchParams(searchParams);
 
   let rawCategories: any[] = [];
   try {
-    rawCategories = await db.productCategory.findMany({
-      orderBy: { sortOrder: 'asc' },
-      select: {
-        code: true,
-        slug: true,
-        groupPrefix: true,
-        sortOrder: true,
-        title: true,
-        description: true,
-        families: true,
-      },
-    });
+    rawCategories = await getPublishedProductCategories();
   } catch (e) {
-    console.error('Database query fallback triggered for /products:', e);
+    console.error("Data query fallback for /products:", e);
   }
 
-  // Fallback to static catalog if DB returned 0 records or threw an exception
-  const sourceData = rawCategories && rawCategories.length > 0 ? rawCategories : FALLBACK_CATEGORIES;
-
-  const categories: CategoryExplorerItem[] = sourceData.map((cat) => {
-    const group = (cat.groupPrefix || '').toUpperCase();
-    const isPriority = group === 'LP' || group === 'ER' || group === 'EB';
-    const parsedFamilies = cat.families
-      ? cat.families
-          .split(';')
-          .map((f: string) => f.trim())
-          .filter(Boolean)
-      : [];
+  const categories: CategoryExplorerItem[] = (rawCategories || []).map((cat) => {
+    const group = (cat.group || "").toUpperCase();
 
     return {
       code: cat.code,
       slug: cat.slug,
       group,
-      groupLabel: getGroupLabel(group),
+      groupLabel: cat.groupLabel || group,
       sortOrder: cat.sortOrder,
-      priority: isPriority,
+      priority: cat.priority,
       title: cat.title,
       description: cat.description,
-      productFamilies: parsedFamilies,
+      productFamilies: Array.isArray(cat.productFamilies)
+        ? cat.productFamilies
+        : typeof cat.productFamilies === "string"
+        ? (cat.productFamilies as string).split(";").map((f) => f.trim()).filter(Boolean)
+        : [],
     };
   });
 
-  // JSON-LD structured data for SEO
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            name: 'Home',
-            item: 'https://www.visionenergyme.com/',
-          },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: 'Products',
-            item: 'https://www.visionenergyme.com/products',
-          },
-        ],
-      },
-      {
-        '@type': 'CollectionPage',
-        '@id': 'https://www.visionenergyme.com/products',
-        name: 'Product Catalogue - Vision Energy International',
-        description: `Browse ${categories.length} product categories from Vision Energy International.`,
-        url: 'https://www.visionenergyme.com/products',
-        mainEntity: {
-          '@type': 'ItemList',
-          numberOfItems: categories.length,
-          itemListElement: categories.map((cat, idx) => ({
-            '@type': 'ListItem',
-            position: idx + 1,
-            name: cat.title,
-            url: `https://www.visionenergyme.com/products/${cat.slug}`,
-          })),
-        },
-      },
-    ],
-  };
-
-  const initialQ = params.q ? params.q.slice(0, 80) : '';
-  const initialGroup = params.group ? params.group.toUpperCase() : 'ALL';
+  const initialQ = params.q ? params.q.slice(0, 80) : "";
+  const initialGroup = params.group ? params.group.toUpperCase() : "ALL";
   const initialCodes = params.codes
     ? params.codes
-        .split(',')
+        .split(",")
         .map((c: string) => c.trim().toUpperCase())
         .filter(Boolean)
     : [];
-  const initialSort = params.sort === 'az' ? 'az' : 'featured';
-  const initialView = params.view === 'list' ? 'list' : 'grid';
+  const initialSort = params.sort === "az" ? "az" : "featured";
+  const initialView = params.view === "list" ? "list" : "grid";
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    <Suspense fallback={<ProductsLoading />}>
+      <ProductsExplorer
+        categories={categories}
+        initialQ={initialQ}
+        initialGroup={initialGroup}
+        initialCodes={initialCodes}
+        initialSort={initialSort}
+        initialView={initialView}
       />
-      <Suspense fallback={<ProductsLoading />}>
-        <ProductsExplorer
-          categories={categories}
-          initialQ={initialQ}
-          initialGroup={initialGroup}
-          initialCodes={initialCodes}
-          initialSort={initialSort}
-          initialView={initialView}
-        />
-      </Suspense>
-    </>
+    </Suspense>
   );
 }

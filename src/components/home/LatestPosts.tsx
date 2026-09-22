@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FileText, ArrowUpRight } from 'lucide-react';
-import { db } from '@/lib/db';
+import { getPublishedBlogPosts } from '@/lib/data/posts';
 import Reveal from '@/components/ui/Reveal';
 import Chip from '@/components/ui/Chip';
 
@@ -12,7 +12,8 @@ function calculateReadTime(content: string): string {
   return `${minutes} min read`;
 }
 
-function formatDateGB(date: Date): string {
+function formatDateGB(date: Date | string | null | undefined): string {
+  if (!date) return '';
   return new Date(date).toLocaleDateString('en-GB', {
     day: 'numeric',
     month: 'short',
@@ -22,18 +23,8 @@ function formatDateGB(date: Date): string {
 
 export default async function LatestPosts() {
   const isProd = process.env.NODE_ENV === 'production';
-
-  // Fetch newest published blog posts
-  const posts = await db.blogPost.findMany({
-    where: {
-      published: true,
-      ...(isProd ? { isPlaceholder: false } : {}),
-    },
-    orderBy: {
-      publishedAt: 'desc',
-    },
-    take: 3,
-  });
+  const postsAll = await getPublishedBlogPosts();
+  const posts = postsAll.slice(0, 3);
 
   // Guard: If fewer than 3 posts, do not render section at all
   if (posts.length < 3) {

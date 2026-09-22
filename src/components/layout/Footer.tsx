@@ -91,6 +91,7 @@ export default function Footer({ services = [] }: FooterProps) {
                 alt="VISION ENERGY INTERNATIONAL"
                 width={220}
                 height={56}
+                style={{ width: "auto", height: "auto" }}
                 className="h-12 w-auto object-contain"
               />
             </Link>

@@ -6,7 +6,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { EnquiryModalProvider } from '@/components/modals/EnquiryModalProvider';
 import EnquiryModal from '@/components/modals/EnquiryModal';
-import { db } from '@/lib/db';
+import { getPublishedServices } from '@/lib/data/services';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -60,11 +60,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   // Fetch published services for Footer
-  const publishedServices = await db.service.findMany({
-    where: { published: true },
-    select: { slug: true, title: true },
-    orderBy: { title: 'asc' },
-  });
+  const publishedServices = await getPublishedServices();
 
   // JSON-LD Organization Schema
   const organizationSchema = {

@@ -51,7 +51,7 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-md bg-[#0D1117] border border-[#1F2937] rounded-2xl shadow-2xl p-8 space-y-6">
         <div className="text-center space-y-3">
           <div className="w-16 h-16 bg-[#050608] border border-[#0B65B3]/50 rounded-2xl mx-auto flex items-center justify-center pill-glow">
-            <Image src="/site-main-logo.png" alt="Logo" width={40} height={40} />
+            <Image src="/site-main-logo.png" alt="Logo" width={40} height={40} style={{ width: "auto", height: "auto" }} />
           </div>
           <h1 className="text-2xl font-bold text-white tracking-tight">Admin Portal Access</h1>
           <p className="text-xs text-[#A9B4C0]">
