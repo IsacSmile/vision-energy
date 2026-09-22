@@ -26,9 +26,15 @@ export default function CategoryDetailClient({ category, relatedCategories = [] 
   const { openProductModal } = useEnquiryModal();
   const [expandedDesc, setExpandedDesc] = useState(false);
 
-  const familiesList = category.families
-    .split(';')
-    .map((f) => f.trim())
+  const rawFamilies = category.families || (category as any).productFamilies || '';
+  const familiesList = (
+    Array.isArray(rawFamilies)
+      ? rawFamilies
+      : typeof rawFamilies === 'string'
+      ? rawFamilies.split(';')
+      : []
+  )
+    .map((f: string) => String(f).trim())
     .filter(Boolean);
 
   return (

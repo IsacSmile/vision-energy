@@ -36,6 +36,12 @@ interface CatalogueIndexProps {
   totalCategoryCount: number;
 }
 
+function formatFamilies(families: any): string {
+  if (Array.isArray(families)) return families.join(' · ');
+  if (typeof families === 'string') return families.split(';').join(' · ');
+  return '';
+}
+
 export default function CatalogueIndex({
   groups,
   totalCategoryCount,
@@ -198,7 +204,7 @@ export default function CatalogueIndex({
                         {cat.title}
                       </Link>
                       <span className="text-sm text-[#A9B4C0] truncate block mt-0.5">
-                        {cat.families.split(';').join(' · ')}
+                        {formatFamilies(cat.families)}
                       </span>
                     </div>
                   </div>
@@ -366,7 +372,7 @@ export default function CatalogueIndex({
                             {cat.title}
                           </Link>
                           <span className="text-sm text-[#A9B4C0] truncate block mt-0.5">
-                            {cat.families.split(';').join(' · ')}
+                            {formatFamilies(cat.families)}
                           </span>
                         </div>
                       </div>
@@ -479,7 +485,7 @@ export default function CatalogueIndex({
                                 </Link>
                               </div>
                               <span className="text-xs text-[#A9B4C0] truncate mt-1">
-                                {cat.families.split(';').join(' · ')}
+                                {formatFamilies(cat.families)}
                               </span>
                             </div>
 
