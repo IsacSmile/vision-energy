@@ -88,9 +88,13 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
   // STRICT RULE: Unknown or unpublished services must check redirect then 404
   if (!service) {
     const fromPath = `/services/${slug}`;
-    const redirectRow = await db.slugRedirect.findUnique({ where: { fromPath } });
-    if (redirectRow) {
-      redirect(redirectRow.toPath);
+    try {
+      const redirectRow = await db.slugRedirect.findUnique({ where: { fromPath } });
+      if (redirectRow) {
+        redirect(redirectRow.toPath);
+      }
+    } catch (err) {
+      console.error("Slug redirect query error:", err);
     }
     notFound();
   }

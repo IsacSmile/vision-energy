@@ -56,9 +56,13 @@ export default async function CategoryDetailPage({ params }: SlugPageProps) {
   if (!category) {
     // Check if a 301 slug redirect exists for this old slug
     const fromPath = `/products/${slug}`;
-    const redirectRow = await db.slugRedirect.findUnique({ where: { fromPath } });
-    if (redirectRow) {
-      redirect(redirectRow.toPath);
+    try {
+      const redirectRow = await db.slugRedirect.findUnique({ where: { fromPath } });
+      if (redirectRow) {
+        redirect(redirectRow.toPath);
+      }
+    } catch (err) {
+      console.error("Slug redirect query error:", err);
     }
     notFound();
   }

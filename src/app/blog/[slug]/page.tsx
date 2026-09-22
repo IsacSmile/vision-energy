@@ -58,9 +58,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   if (!post) {
     const fromPath = `/blog/${slug}`;
-    const redirectRow = await db.slugRedirect.findUnique({ where: { fromPath } });
-    if (redirectRow) {
-      redirect(redirectRow.toPath);
+    try {
+      const redirectRow = await db.slugRedirect.findUnique({ where: { fromPath } });
+      if (redirectRow) {
+        redirect(redirectRow.toPath);
+      }
+    } catch (err) {
+      console.error("Slug redirect query error:", err);
     }
     notFound();
   }
