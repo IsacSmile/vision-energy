@@ -8,7 +8,7 @@ const envSchema = z.object({
   ADMIN_PASSWORD_HASH: z.string().optional(),
   SESSION_SECRET: z.string().optional().default('vision-energy-32-character-session-secret-key!'),
   BLOB_READ_WRITE_TOKEN: z.string().optional(),
-  NEXT_PUBLIC_SITE_URL: z.string().optional().default('https://www.visionenergyme.com'),
+  NEXT_PUBLIC_SITE_URL: z.string().optional().default('https://vision-energy.nihatechsolutions.online'),
 });
 
 function validateEnv() {
