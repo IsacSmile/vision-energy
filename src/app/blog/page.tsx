@@ -72,7 +72,7 @@ export default async function BlogPage() {
             </div>
 
             {/* Read Article Link */}
-            <div className="p-5 pt-0 mt-4 border-t border-[#1F2937]/50 pt-4 flex items-center justify-between">
+            <div className="px-5 pb-5 mt-4 border-t border-[#1F2937]/50 pt-4 flex items-center justify-between">
               <span className="text-xs font-bold text-[#8DC63F] group-hover:underline flex items-center gap-1.5 transition-all">
                 <span>Read article</span>
                 <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
