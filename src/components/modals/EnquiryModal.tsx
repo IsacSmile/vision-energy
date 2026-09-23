@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { serviceEnquirySchema, productEnquirySchema, ServiceEnquiryInput, ProductEnquiryInput } from '@/lib/validation';
 import { dictionary } from '@/lib/dictionary';
-import { X, CheckCircle2, AlertCircle, Loader2, Copy, Phone, ChevronDown, ChevronUp } from 'lucide-react';
+import { X, CheckCircle2, AlertCircle, Loader2, Copy, Phone, ChevronDown, ChevronUp, Check } from 'lucide-react';
 import LightningButton from '@/components/ui/LightningButton';
 
 export default function EnquiryModal() {
@@ -95,33 +95,57 @@ export default function EnquiryModal() {
         {/* Scrollable Form Body */}
         <div className="p-5 sm:p-6 overflow-y-auto custom-scrollbar grow space-y-4">
           {successRef ? (
-            <div className="text-center py-6 space-y-5">
-              <CheckCircle2 className="w-16 h-16 mx-auto text-[#8DC63F] animate-bounce" />
-              <h3 className="text-xl sm:text-2xl font-bold text-white">Enquiry Submitted Successfully</h3>
-              <p className="text-gray-300 max-w-md mx-auto text-xs sm:text-sm">
-                Thank you for contacting Vision Energy International. Your enquiry reference ID is:
-              </p>
-              <div className="inline-block bg-[#050608] border border-[#8DC63F]/40 px-6 py-3 rounded-full text-base sm:text-lg font-mono text-[#8DC63F] font-bold pill-glow">
-                {successRef}
+            <div className="text-center py-6 px-2 space-y-6">
+              {/* Minimal Success Badge */}
+              <div className="w-14 h-14 rounded-full bg-[#8DC63F]/10 border border-[#8DC63F]/30 text-[#8DC63F] flex items-center justify-center mx-auto">
+                <Check className="w-7 h-7 stroke-[2.5]" />
               </div>
 
-              {/* Copy Reference & Direct Call Buttons */}
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+              {/* Title & Description */}
+              <div className="space-y-2">
+                <h3 className="text-xl sm:text-2xl font-semibold text-white tracking-tight">
+                  Enquiry Submitted
+                </h3>
+                <p className="text-xs sm:text-sm text-[#A9B4C0] max-w-sm mx-auto leading-relaxed">
+                  Thank you for reaching out to Vision Energy International. Our technical team will review your enquiry and get back to you shortly.
+                </p>
+              </div>
+
+              {/* Minimal Reference Card */}
+              <div className="bg-[#050608] border border-[#1F2937] rounded-xl p-3.5 max-w-sm mx-auto flex items-center justify-between gap-3">
+                <div className="text-left pl-1">
+                  <span className="text-[10px] font-semibold text-[#A9B4C0] uppercase tracking-wider block">
+                    Reference ID
+                  </span>
+                  <span className="font-mono text-sm sm:text-base font-bold text-[#8DC63F]">
+                    {successRef}
+                  </span>
+                </div>
                 <button
                   onClick={handleCopyReference}
-                  className="w-full sm:w-auto h-12 px-6 bg-[#0B65B3] hover:bg-[#0B65B3]/80 text-white font-bold rounded-full transition-colors flex items-center justify-center gap-2 text-sm active-press"
+                  className="h-9 px-3.5 bg-[#1F2937] hover:bg-white/10 text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors active-press shrink-0"
                 >
-                  <Copy className="w-4 h-4" />
-                  <span>{copied ? 'Copied to Clipboard!' : 'Copy Reference'}</span>
+                  {copied ? <Check className="w-3.5 h-3.5 text-[#8DC63F]" /> : <Copy className="w-3.5 h-3.5 text-[#A9B4C0]" />}
+                  <span>{copied ? 'Copied' : 'Copy'}</span>
                 </button>
+              </div>
 
+              {/* Minimal Action Bar */}
+              <div className="pt-1 flex flex-col sm:flex-row items-center justify-center gap-3 max-w-sm mx-auto">
                 <a
                   href={`tel:${dictionary.company.primaryPhone}`}
-                  className="w-full sm:w-auto h-12 px-6 bg-white text-[#050608] font-bold rounded-full transition-colors flex items-center justify-center gap-2 text-sm active-press"
+                  className="w-full sm:flex-1 h-11 px-4 bg-[#0D1117] hover:bg-white/5 border border-[#1F2937] text-white text-xs font-semibold rounded-xl transition-colors flex items-center justify-center gap-2 active-press"
                 >
-                  <Phone className="w-4 h-4 text-[#0B65B3]" />
-                  <span>Call Us Now: {dictionary.company.primaryPhone}</span>
+                  <Phone className="w-3.5 h-3.5 text-[#8DC63F]" />
+                  <span>Call Us: {dictionary.company.primaryPhone}</span>
                 </a>
+
+                <button
+                  onClick={closeModal}
+                  className="w-full sm:w-auto min-w-[90px] h-11 px-5 bg-white text-[#050608] hover:bg-white/90 text-xs font-bold rounded-xl transition-colors active-press"
+                >
+                  Done
+                </button>
               </div>
             </div>
           ) : modalType === 'SERVICE' ? (
