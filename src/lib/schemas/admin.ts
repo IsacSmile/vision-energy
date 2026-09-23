@@ -67,17 +67,15 @@ export const blogPostSchema = z
   .object({
     title: z.string().min(3, 'Title must be at least 3 characters'),
     slug: slugSchema,
-    excerpt: z.string().optional().default(''),
-    content: z.string().min(10, 'Markdown content must be at least 10 characters'),
+    subheading: z.string().min(3, 'Subheading must be at least 3 characters'),
+    content: z.string().min(10, 'Body content must be at least 10 characters'),
     coverImage: z.string().url('Cover image must be a valid URL').nullable().optional(),
     coverAlt: z.string().nullable().optional(),
-    category: z.string().optional().default('Technical Insights'),
-    tags: z.array(z.string()).default([]),
-    status: z.enum(['DRAFT', 'PUBLISHED']).default('DRAFT'),
+    bodyImage: z.string().url('Body image must be a valid URL').nullable().optional(),
+    bodyAlt: z.string().nullable().optional(),
+    category: z.string().min(1, 'Category is required'),
+    status: z.enum(['DRAFT', 'PUBLISHED']).default('PUBLISHED'),
     publishedAt: z.string().datetime({ offset: true }).or(z.date()).optional(),
-    isPlaceholder: z.boolean().default(false),
-    seoTitle: z.string().max(60, 'SEO Title max 60 characters').nullable().optional(),
-    seoDescription: z.string().max(155, 'SEO Description max 155 characters').nullable().optional(),
   })
   .refine(
     (data) => {

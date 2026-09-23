@@ -90,13 +90,6 @@ export default async function LatestPosts() {
                     <FileText className="w-16 h-16 text-[#0B65B3]/40 stroke-[1.5]" />
                   </div>
                 )}
-
-                {/* Dev Placeholder Badge */}
-                {featuredPost.isPlaceholder && !isProd && (
-                  <div className="absolute top-4 left-4 z-10">
-                    <Chip variant="muted">Placeholder</Chip>
-                  </div>
-                )}
               </div>
 
               {/* Meta Row & Content */}
@@ -114,7 +107,7 @@ export default async function LatestPosts() {
                 </h3>
 
                 <p className="text-base text-[#A9B4C0] leading-[1.7] line-clamp-2">
-                  {featuredPost.excerpt}
+                  {featuredPost.subheading}
                 </p>
               </div>
             </Link>
@@ -134,13 +127,7 @@ export default async function LatestPosts() {
                       <span className="font-medium text-[#8DC63F]">{post.category}</span>
                       <span>•</span>
                       <span>{formatDateGB(post.publishedAt)}</span>
-                      <span>•</span>
-                      <span>{calculateReadTime(post.content)}</span>
                     </div>
-
-                    {post.isPlaceholder && !isProd && (
-                      <Chip variant="muted">Placeholder</Chip>
-                    )}
                   </div>
 
                   <div className="flex items-start justify-between gap-4">

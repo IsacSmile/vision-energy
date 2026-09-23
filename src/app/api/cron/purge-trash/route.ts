@@ -13,19 +13,16 @@ export async function GET(request: Request) {
   try {
     const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
 
-    const [deletedProducts, deletedServices, deletedPosts] = await Promise.all([
+    const [deletedProducts, deletedServices] = await Promise.all([
       db.productCategory.deleteMany({
         where: { deletedAt: { lt: thirtyDaysAgo } },
       }),
       db.service.deleteMany({
         where: { deletedAt: { lt: thirtyDaysAgo } },
       }),
-      db.blogPost.deleteMany({
-        where: { deletedAt: { lt: thirtyDaysAgo } },
-      }),
     ]);
 
-    const totalPurged = deletedProducts.count + deletedServices.count + deletedPosts.count;
+    const totalPurged = deletedProducts.count + deletedServices.count;
 
     if (totalPurged > 0) {
       await recordAuditLog({

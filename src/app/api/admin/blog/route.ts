@@ -21,9 +21,7 @@ export async function GET(request: Request) {
   const limit = parseInt(searchParams.get("limit") || "25", 10);
 
   try {
-    const where: any = {
-      deletedAt: null,
-    };
+    const where: any = {};
 
     if (status) {
       where.status = status;
@@ -37,7 +35,7 @@ export async function GET(request: Request) {
       where.OR = [
         { title: { contains: search, mode: "insensitive" } },
         { slug: { contains: search, mode: "insensitive" } },
-        { excerpt: { contains: search, mode: "insensitive" } },
+        { subheading: { contains: search, mode: "insensitive" } },
         { content: { contains: search, mode: "insensitive" } },
       ];
     }
@@ -56,7 +54,6 @@ export async function GET(request: Request) {
         take: limit,
       }),
       db.blogPost.findMany({
-        where: { deletedAt: null },
         select: { category: true },
         distinct: ["category"],
       }),
@@ -93,27 +90,19 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: `Slug "${parsed.slug}" is already in use` }, { status: 400 });
     }
 
-    const words = parsed.content.trim().split(/\s+/).length;
-    const readingMinutes = Math.max(1, Math.ceil(words / 200));
-
-    const autoExcerpt = parsed.excerpt || parsed.content.replace(/[#*`>_-]/g, "").substring(0, 155).trim();
-
     const created = await db.blogPost.create({
       data: {
         title: parsed.title,
         slug: parsed.slug,
-        excerpt: autoExcerpt,
+        subheading: parsed.subheading,
         content: parsed.content,
         coverImage: parsed.coverImage || null,
         coverAlt: parsed.coverAlt || null,
-        category: parsed.category || "Technical Insights",
-        tags: parsed.tags,
+        bodyImage: parsed.bodyImage || null,
+        bodyAlt: parsed.bodyAlt || null,
+        category: parsed.category,
         status: parsed.status,
         publishedAt: parsed.publishedAt ? new Date(parsed.publishedAt) : new Date(),
-        isPlaceholder: parsed.isPlaceholder || false,
-        readingMinutes,
-        seoTitle: parsed.seoTitle || null,
-        seoDescription: parsed.seoDescription || null,
       },
     });
 
@@ -158,9 +147,8 @@ export async function PUT(request: Request) {
         data: { status: "DRAFT" },
       });
     } else if (action === "bulk_trash") {
-      await db.blogPost.updateMany({
+      await db.blogPost.deleteMany({
         where: { id: { in: ids } },
-        data: { status: "DRAFT", deletedAt: new Date() },
       });
     }
 

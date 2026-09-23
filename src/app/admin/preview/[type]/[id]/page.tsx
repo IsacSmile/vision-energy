@@ -102,7 +102,7 @@ export default async function AdminPreviewPage({
             {post.category}
           </span>
           <h1 className="text-3xl font-bold">{post.title}</h1>
-          <p className="text-gray-400 text-sm leading-relaxed">{post.excerpt}</p>
+          <p className="text-gray-400 text-sm leading-relaxed">{post.subheading}</p>
           <div className="prose prose-invert max-w-none border-t border-[#1F2937] pt-6">{post.content}</div>
         </div>
       </div>

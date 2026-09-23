@@ -33,8 +33,8 @@ export async function GET() {
       db.productCategory.count({ where: { status: "DRAFT", deletedAt: null } }),
       db.service.count({ where: { status: "PUBLISHED", deletedAt: null } }),
       db.service.count({ where: { status: "DRAFT", deletedAt: null } }),
-      db.blogPost.count({ where: { status: "PUBLISHED", deletedAt: null } }),
-      db.blogPost.count({ where: { status: "DRAFT", deletedAt: null } }),
+      db.blogPost.count({ where: { status: "PUBLISHED" } }),
+      db.blogPost.count({ where: { status: "DRAFT" } }),
       db.productEnquiry.findMany({ take: 5, orderBy: { createdAt: "desc" } }),
       db.serviceEnquiry.findMany({ take: 5, orderBy: { createdAt: "desc" } }),
       db.productCategory.findMany({
@@ -46,7 +46,7 @@ export async function GET() {
         select: { id: true, title: true, updatedAt: true, slug: true },
       }),
       db.blogPost.findMany({
-        where: { status: "DRAFT", updatedAt: { lt: fourteenDaysAgo }, deletedAt: null },
+        where: { status: "DRAFT", updatedAt: { lt: fourteenDaysAgo } },
         select: { id: true, title: true, updatedAt: true, slug: true },
       }),
       db.service.findMany({

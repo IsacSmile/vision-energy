@@ -103,29 +103,29 @@ model ProductCategory {
   @@index([deletedAt])
 }
 
+enum PostStatus {
+  PUBLISHED
+  DRAFT
+}
+
 model BlogPost {
-  id             String        @id @default(uuid())
-  slug           String        @unique
-  title          String
-  excerpt        String
-  content        String
-  coverImage     String?
-  coverAlt       String?
-  category       String?
-  tags           String[]
-  status         ContentStatus @default(DRAFT)
-  publishedAt    DateTime?
-  isPlaceholder  Boolean       @default(false)
-  seoTitle       String?
-  seoDescription String?
-  readingMinutes Int           @default(1)
-  deletedAt      DateTime?
-  createdAt      DateTime      @default(now())
-  updatedAt      DateTime      @updatedAt
+  id          String     @id @default(cuid())
+  slug        String     @unique
+  title       String
+  subheading  String
+  content     String     @db.Text
+  coverImage  String?
+  coverAlt    String?
+  bodyImage   String?
+  bodyAlt     String?
+  category    String
+  status      PostStatus @default(PUBLISHED)
+  publishedAt DateTime   @default(now())
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
 
   @@index([status])
   @@index([slug])
-  @@index([deletedAt])
   @@index([publishedAt])
 }
 

@@ -20,22 +20,19 @@ export default function BlogForm({ initialData, id }: BlogFormProps) {
   const [title, setTitle] = useState(initialData?.title || "");
   const [slug, setSlug] = useState(initialData?.slug || "");
   const [slugManuallyEdited, setSlugManuallyEdited] = useState(Boolean(initialData?.slug));
-  const [excerpt, setExcerpt] = useState(initialData?.excerpt || "");
+  const [subheading, setSubheading] = useState(initialData?.subheading || "");
   const [content, setContent] = useState(initialData?.content || "");
   const [coverImage, setCoverImage] = useState(initialData?.coverImage || "");
   const [coverAlt, setCoverAlt] = useState(initialData?.coverAlt || "");
-  const [category, setCategory] = useState(initialData?.category || "Technical Insights");
-  const [tags, setTags] = useState<string[]>(initialData?.tags || []);
-  const [tagInput, setTagInput] = useState("");
-  const [status, setStatus] = useState<"DRAFT" | "PUBLISHED">(initialData?.status || "DRAFT");
+  const [bodyImage, setBodyImage] = useState(initialData?.bodyImage || "");
+  const [bodyAlt, setBodyAlt] = useState(initialData?.bodyAlt || "");
+  const [category, setCategory] = useState(initialData?.category || "Lightning Protection");
+  const [status, setStatus] = useState<"DRAFT" | "PUBLISHED">(initialData?.status || "PUBLISHED");
   const [publishedAt, setPublishedAt] = useState(
     initialData?.publishedAt
       ? new Date(initialData.publishedAt).toISOString().slice(0, 16)
       : new Date().toISOString().slice(0, 16)
   );
-  const [isPlaceholder, setIsPlaceholder] = useState(Boolean(initialData?.isPlaceholder));
-  const [seoTitle, setSeoTitle] = useState(initialData?.seoTitle || "");
-  const [seoDescription, setSeoDescription] = useState(initialData?.seoDescription || "");
 
   const [existingCategories, setExistingCategories] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -66,21 +63,12 @@ export default function BlogForm({ initialData, id }: BlogFormProps) {
     }
   }, [title, slugManuallyEdited]);
 
-  const handleAddTag = () => {
-    const trimmed = tagInput.trim();
-    if (!trimmed) return;
-    if (!tags.includes(trimmed)) {
-      setTags((prev) => [...prev, trimmed]);
-      setIsDirty(true);
-    }
-    setTagInput("");
-  };
-
   const validate = () => {
     const newErrors: Record<string, string> = {};
     if (!title || title.length < 3) newErrors.title = "Title must be at least 3 characters";
     if (!slug || slug.length < 3) newErrors.slug = "Slug must be at least 3 characters";
-    if (!content || content.length < 10) newErrors.content = "Markdown content must be at least 10 characters";
+    if (!subheading || subheading.length < 3) newErrors.subheading = "Subheading must be at least 3 characters";
+    if (!content || content.length < 10) newErrors.content = "Content must be at least 10 characters";
     if (coverImage && (!coverAlt || coverAlt.trim().length === 0)) {
       newErrors.coverAlt = "Alt text is required when a cover image exists";
     }
@@ -96,23 +84,18 @@ export default function BlogForm({ initialData, id }: BlogFormProps) {
 
     setIsSubmitting(true);
     try {
-      const autoExcerpt = excerpt.trim() || content.replace(/[#*`>_-]/g, "").substring(0, 155).trim();
-
       const payload = {
         title,
         slug,
-        excerpt: autoExcerpt,
+        subheading,
         content,
         coverImage: coverImage || null,
         coverAlt: coverAlt || null,
+        bodyImage: bodyImage || null,
+        bodyAlt: bodyAlt || null,
         category,
-        tags,
         status: targetStatus,
         publishedAt: new Date(publishedAt).toISOString(),
-        isPlaceholder,
-        seoTitle: seoTitle || null,
-        seoDescription: seoDescription || null,
-        updatedAt: initialData?.updatedAt,
       };
 
       const url = id ? `/api/admin/blog/${id}` : "/api/admin/blog";
@@ -202,25 +185,26 @@ export default function BlogForm({ initialData, id }: BlogFormProps) {
 
             <div className="space-y-1">
               <label className="block text-xs font-semibold text-gray-300">
-                Article Excerpt (Optional - auto-filled from content if left empty)
+                Subheading / Standfirst Intro <span className="text-red-400">*</span>
               </label>
               <textarea
-                rows={3}
-                value={excerpt}
+                rows={2}
+                value={subheading}
                 onChange={(e) => {
-                  setExcerpt(e.target.value);
+                  setSubheading(e.target.value);
                   setIsDirty(true);
                 }}
-                placeholder="A technical overview of risk management and strike calculations..."
-                className="w-full bg-[#050608] border border-[#1F2937] text-white text-xs rounded-xl p-3 min-h-[80px] focus:outline-none focus:ring-2 focus:ring-[#A3E635] resize-none"
+                placeholder="A concise one-sentence technical introduction..."
+                className="w-full bg-[#050608] border border-[#1F2937] text-white text-xs rounded-xl p-3 min-h-[60px] focus:outline-none focus:ring-2 focus:ring-[#A3E635] resize-none"
               />
+              {errors.subheading && <p className="text-[11px] text-red-400">{errors.subheading}</p>}
             </div>
           </div>
 
           {/* Markdown Content Editor */}
           <div className="space-y-2">
             <label className="block text-xs font-semibold text-gray-300">
-              Markdown Article Content <span className="text-red-400">*</span>
+              Article Body Content <span className="text-red-400">*</span>
             </label>
             <MarkdownEditor
               value={content}
@@ -231,33 +215,16 @@ export default function BlogForm({ initialData, id }: BlogFormProps) {
             />
             {errors.content && <p className="text-[11px] text-red-400">{errors.content}</p>}
           </div>
-
-          {/* SEO Panel */}
-          <SeoPanel
-            seoTitle={seoTitle}
-            seoDescription={seoDescription}
-            defaultTitle={`${title || "Technical Article"} | Vision Energy`}
-            defaultDescription={excerpt || "Technical insights and engineering articles."}
-            slug={`blog/${slug}`}
-            onTitleChange={(v) => {
-              setSeoTitle(v);
-              setIsDirty(true);
-            }}
-            onDescriptionChange={(v) => {
-              setSeoDescription(v);
-              setIsDirty(true);
-            }}
-          />
         </div>
 
         {/* Sidebar Controls (1 col) */}
         <div className="space-y-6">
-          {/* Cover Image Uploader */}
+          {/* Primary Cover Image Uploader */}
           <ImageUploader
             value={coverImage}
             altValue={coverAlt}
             type="blog"
-            label="Cover Image"
+            label="Primary Cover Image"
             onChange={(url, alt) => {
               setCoverImage(url);
               if (alt) setCoverAlt(alt);
@@ -265,6 +232,23 @@ export default function BlogForm({ initialData, id }: BlogFormProps) {
             }}
             onAltChange={(alt) => {
               setCoverAlt(alt);
+              setIsDirty(true);
+            }}
+          />
+
+          {/* Optional Body Image Uploader */}
+          <ImageUploader
+            value={bodyImage}
+            altValue={bodyAlt}
+            type="blog"
+            label="Optional Inline Body Image"
+            onChange={(url, alt) => {
+              setBodyImage(url);
+              if (alt) setBodyAlt(alt);
+              setIsDirty(true);
+            }}
+            onAltChange={(alt) => {
+              setBodyAlt(alt);
               setIsDirty(true);
             }}
           />
@@ -317,67 +301,6 @@ export default function BlogForm({ initialData, id }: BlogFormProps) {
               </datalist>
             </div>
 
-            {/* Tags Input */}
-            <div className="space-y-2">
-              <label className="block text-xs font-semibold text-gray-300">Tags</label>
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  value={tagInput}
-                  onChange={(e) => setTagInput(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      e.preventDefault();
-                      handleAddTag();
-                    }
-                  }}
-                  placeholder="Press Enter to add tag..."
-                  className="flex-1 bg-[#050608] border border-[#1F2937] text-white text-xs rounded-xl px-3 py-2 min-h-[44px]"
-                />
-                <button
-                  type="button"
-                  onClick={handleAddTag}
-                  className="px-3 py-2 bg-[#0B65B3] text-white text-xs font-bold rounded-xl min-h-[44px]"
-                >
-                  Add
-                </button>
-              </div>
-
-              <div className="flex flex-wrap gap-2 pt-1">
-                {tags.map((tag, idx) => (
-                  <span key={idx} className="inline-flex items-center gap-1 px-3 py-1 bg-[#050608] border border-[#1F2937] rounded-xl text-xs text-gray-300 font-mono">
-                    <Tag className="w-3 h-3 text-[#A3E635]" />
-                    <span>{tag}</span>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setTags((prev) => prev.filter((_, i) => i !== idx));
-                        setIsDirty(true);
-                      }}
-                      className="p-1 text-gray-400 hover:text-red-400 min-h-[44px] min-w-[44px] flex items-center justify-center -mr-1"
-                    >
-                      <X className="w-3.5 h-3.5" />
-                    </button>
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Development-only Placeholder Switch */}
-            {process.env.NODE_ENV === "development" && (
-              <label className="flex items-center justify-between p-3 bg-[#050608] border border-[#1F2937] rounded-xl cursor-pointer pt-3">
-                <span className="text-xs font-medium text-amber-400">Development Placeholder Post</span>
-                <input
-                  type="checkbox"
-                  checked={isPlaceholder}
-                  onChange={(e) => {
-                    setIsPlaceholder(e.target.checked);
-                    setIsDirty(true);
-                  }}
-                  className="w-4 h-4 rounded border-gray-600 bg-gray-800 text-amber-400"
-                />
-              </label>
-            )}
           </div>
         </div>
       </div>

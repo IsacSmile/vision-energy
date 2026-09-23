@@ -11,7 +11,7 @@ export async function GET() {
   }
 
   try {
-    const [products, services, posts] = await Promise.all([
+    const [products, services] = await Promise.all([
       db.productCategory.findMany({
         where: { deletedAt: { not: null } },
         select: { id: true, title: true, code: true, slug: true, deletedAt: true },
@@ -22,17 +22,11 @@ export async function GET() {
         select: { id: true, title: true, slug: true, deletedAt: true },
         orderBy: { deletedAt: "desc" },
       }),
-      db.blogPost.findMany({
-        where: { deletedAt: { not: null } },
-        select: { id: true, title: true, slug: true, deletedAt: true },
-        orderBy: { deletedAt: "desc" },
-      }),
     ]);
 
     const items = [
       ...products.map((p) => ({ ...p, type: "PRODUCT" as const })),
       ...services.map((s) => ({ ...s, type: "SERVICE" as const })),
-      ...posts.map((b) => ({ ...b, type: "BLOG" as const })),
     ].sort((a, b) => new Date(b.deletedAt!).getTime() - new Date(a.deletedAt!).getTime());
 
     return NextResponse.json({ items });
@@ -84,7 +78,7 @@ export async function POST(request: Request) {
       } else if (type === "BLOG") {
         const item = await db.blogPost.update({
           where: { id },
-          data: { deletedAt: null, status: "DRAFT" },
+          data: { status: "DRAFT" },
         });
         await recordAuditLog({
           actor: session.email,

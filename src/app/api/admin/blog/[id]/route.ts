@@ -62,27 +62,20 @@ export async function PUT(request: Request, { params }: { params: { id: string }
       });
     }
 
-    const words = parsed.content.trim().split(/\s+/).length;
-    const readingMinutes = Math.max(1, Math.ceil(words / 200));
-    const autoExcerpt = parsed.excerpt || parsed.content.replace(/[#*`>_-]/g, "").substring(0, 155).trim();
-
     const updated = await db.blogPost.update({
       where: { id: params.id },
       data: {
         title: parsed.title,
         slug: parsed.slug,
-        excerpt: autoExcerpt,
+        subheading: parsed.subheading,
         content: parsed.content,
         coverImage: parsed.coverImage || null,
         coverAlt: parsed.coverAlt || null,
-        category: parsed.category || "Technical Insights",
-        tags: parsed.tags,
+        bodyImage: parsed.bodyImage || null,
+        bodyAlt: parsed.bodyAlt || null,
+        category: parsed.category,
         status: parsed.status,
         publishedAt: parsed.publishedAt ? new Date(parsed.publishedAt) : existing.publishedAt || new Date(),
-        isPlaceholder: parsed.isPlaceholder || false,
-        readingMinutes,
-        seoTitle: parsed.seoTitle || null,
-        seoDescription: parsed.seoDescription || null,
       },
     });
 
@@ -121,12 +114,8 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
       return NextResponse.json({ error: "Blog post not found" }, { status: 404 });
     }
 
-    const trashed = await db.blogPost.update({
+    const trashed = await db.blogPost.delete({
       where: { id: params.id },
-      data: {
-        status: "DRAFT",
-        deletedAt: new Date(),
-      },
     });
 
     await recordAuditLog({
@@ -134,13 +123,13 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
       action: "DELETE",
       entity: "BLOG_POST",
       entityId: trashed.id,
-      summary: `Moved blog post "${trashed.title}" to trash`,
+      summary: `Deleted blog post "${trashed.title}"`,
     });
 
     triggerCmsRevalidation("blog", trashed.slug);
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    return NextResponse.json({ error: "Failed to trash blog post" }, { status: 500 });
+    return NextResponse.json({ error: "Failed to delete blog post" }, { status: 500 });
   }
 }

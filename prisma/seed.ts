@@ -339,70 +339,66 @@ async function main() {
   }
   console.log(`Seeded ${categoriesRaw.length} product categories (upsert).`);
 
-  // 3. Seed Blog Posts (3 placeholder posts, status DRAFT, isPlaceholder true)
+  // SEED CONTENT: Draft content grounded in technical project copy, flagged for client review before live publication.
   const blogPostsData = [
     {
-      slug: "lightning-protection-standards-uae",
-      title: "Understanding IEC/BS EN 62305 Lightning Protection Standards in the UAE",
-      excerpt:
-        "A technical overview of risk management, strike probability calculations, and structural protection requirements for UAE buildings.",
-      content: `Lightning protection in the United Arab Emirates requires strict adherence to international safety codes, primarily IEC/BS EN 62305 and NF C 17-102. Given the high-rise architectural landscape and harsh coastal environmental conditions in emirates like Dubai, Abu Dhabi, and Ras Al Khaimah, selecting high-grade materials (such as electrolytic copper, stainless steel 316L, and hot-dip galvanized steel) is paramount.
+      slug: "conventional-mesh-vs-ese-lightning-protection",
+      title: "Conventional Mesh vs ESE Systems for Structural Lightning Protection",
+      subheading: "A technical evaluation of Franklin rod mesh arrays versus Early Streamer Emission technology under IEC 62305 and NFC 17-102 standards.",
+      content: `Structural lightning protection in the United Arab Emirates requires strict adherence to international safety codes, primarily IEC/BS EN 62305 and NF C 17-102. Given the high-rise architectural landscape and harsh coastal environmental conditions across Abu Dhabi, Dubai, and Ras Al Khaimah, selecting high-grade materials—such as electrolytic copper, stainless steel 316L, and hot-dip galvanized steel—is paramount to ensure long-term structural integrity.
 
-Key technical considerations include:
-1. Risk Assessment (Part 2): Evaluating structural damage risks, loss of human life, and economic loss.
-2. Physical Damage to Structures (Part 3): Calculating air termination protection angles, mesh sizes, and down conductor spacing.
-3. Electrical Systems Protection (Part 4): Implementing coordinated Surge Protective Devices (SPDs) to prevent equipment failure.
+Conventional Franklin rod protection systems rely on Faraday cage principles. They incorporate air terminals, roof conductor mesh, continuous down conductors, test joints, and a coordinated earth termination network. This method is ideal for structures requiring multiple controlled discharge paths for lightning energy.
 
-Vision Energy International provides complete engineering support, material supply, and site installation for compliant lightning protection systems.`,
-      category: "Technical Insights",
-      tags: ["IEC 62305", "Lightning Protection", "UAE Standards"],
-      status: ContentStatus.DRAFT,
-      isPlaceholder: true,
+In contrast, Early Streamer Emission (ESE) technology utilizes an ionized streamer launch mechanism to capture strikes from an elevated position. This significantly extends the protection radius (up to 107 meters depending on the protection level), offering an efficient solution for large open roof areas, warehouses, and complex architectural geometries.
+
+Vision Energy International provides complete engineering support, material supply, site installation, and continuity testing for compliant external lightning protection systems across commercial, industrial, and infrastructure facilities.`,
+      coverImage: "/product-catalouge/LP-01.jpeg",
+      coverAlt: "Conventional lightning protection mesh installation",
+      bodyImage: "/product-catalouge/LP-02.jpeg",
+      bodyAlt: "Early Streamer Emission air terminal mast assembly",
+      category: "Lightning Protection",
+      status: "PUBLISHED" as const,
       publishedAt: new Date("2026-02-15T00:00:00Z"),
-      readingMinutes: 4,
-      seoTitle: "IEC/BS EN 62305 Lightning Protection UAE | Vision Energy",
-      seoDescription:
-        "A technical overview of risk management, strike probability calculations, and structural protection requirements for UAE buildings.",
     },
     {
-      slug: "importance-of-low-resistance-earthing",
-      title: "The Critical Role of Low-Resistance Earthing in Industrial Safety",
-      excerpt:
-        "Why achieving an earth resistance under 10 ohms (or under 1 ohm for substations) is non-negotiable for system protection.",
-      content: `An effective earthing (grounding) system is the backbone of electrical safety in any industrial or commercial facility. It serves two primary functions: providing a low-impedance path for fault currents and stabilizing system voltages during normal and transient conditions.
+      slug: "earthing-and-grounding-fundamentals-high-resistivity-soil",
+      title: "Earthing & Grounding Fundamentals for High-Resistivity Soil Conditions",
+      subheading: "Designing low-impedance earth termination networks using chemical enhancement materials, deep well electrodes, and exothermic molecular welds.",
+      content: `An effective earthing (grounding) system is the backbone of electrical safety for industrial plants, substations, and commercial facilities across the Middle East. It fulfills two essential functions: providing a low-impedance path for fault currents to dissipate safely into earth and stabilizing system neutral voltages during transient disturbances.
 
-Soil resistivity in the UAE varies significantly between coastal saline regions and inland arid desert soil. Utilizing earth enhancement compounds (marconite, bentonite, low-resistance carbon gels) alongside molecular exothermic welding ensures long-term low resistance without degradation over time.
+Soil resistivity in the UAE varies dramatically between hyper-saline coastal flats and arid, high-resistance inland desert terrain. Relying solely on standard copper earth rods in dry soil often fails to meet the target resistance threshold of under 10 ohms (or under 1 ohm for power substations).
 
-Vision Energy International supplies certified earthing materials including copper bonded earth rods, earth pits, lattice copper mats, and exothermic welding kits.`,
-      category: "Engineering & Safety",
-      tags: ["Earthing", "Grounding", "Electrical Safety"],
-      status: ContentStatus.DRAFT,
-      isPlaceholder: true,
+To achieve stable low resistance, Vision Energy utilizes engineered earth enhancement backfills—such as conductive carbon compounds and bentonite clay—that maintain moisture retention and ionic conductivity over time. When combined with molecular exothermic welding, these materials deliver permanent, maintenance-free electrical connections resistant to ground corrosion.
+
+Our specialist engineering team executes soil resistivity testing, earth grid simulation, deep well electrode installation, and certified earth pit resistance verification across Abu Dhabi, Dubai, and the Northern Emirates.`,
+      coverImage: "/product-catalouge/ER-01.jpeg",
+      coverAlt: "Copper bonded earth rod and chemical backfill installation",
+      bodyImage: "/product-catalouge/ER-02.jpeg",
+      bodyAlt: "Exothermic molecular weld connection for earth conductors",
+      category: "Earthing & Bonding",
+      status: "PUBLISHED" as const,
       publishedAt: new Date("2026-03-01T00:00:00Z"),
-      readingMinutes: 3,
-      seoTitle: "Low-Resistance Earthing in Industrial Safety | Vision Energy",
-      seoDescription: "Why achieving low earth resistance is non-negotiable for industrial system protection in the UAE.",
     },
     {
-      slug: "ese-vs-conventional-lightning-protection",
-      title: "Early Streamer Emission (ESE) vs Conventional Air Terminals: A Technical Comparison",
-      excerpt:
-        "Evaluating coverage radius, installation efficiency, and structural aesthetics when choosing between ESE and Franklin rod systems.",
-      content: `When designing lightning protection for expansive open areas, sports arenas, or complex roof geometries, engineers often compare Early Streamer Emission (ESE) technology with traditional Franklin rod mesh networks.
+      slug: "transient-overvoltage-protection-surge-arrester-placement",
+      title: "Transient Overvoltage Protection: Coordinated Surge Arrester Placement",
+      subheading: "Implementing Type 1, Type 2, and Type 3 surge protection devices across main switchboards and sub-distribution panels.",
+      content: `Transient overvoltages resulting from direct or indirect lightning strikes and high-power utility switching operations represent one of the primary causes of premature failure in electronic controllers, automation systems, and building management networks.
 
-- Conventional Systems (IEC 62305): Rely on Faraday cage principles, requiring multiple air rods, extensive roof tape routing, and frequent down conductors.
-- ESE Technology (NF C 17-102 / UNE 21186): Utilizes an ionized streamer launch mechanism to capture strikes from a greater height, offering a substantially larger radius of protection (up to 107m depending on protection level).
+Coordinated surge protection requires a cascading multi-stage defense strategy compliant with IEC 61643 standards:
 
-Both technologies are backed by rigorous international testing. Vision Energy International assists consultants and contractors in selecting the optimal protection strategy based on structural geometry, site constraints, and local authority requirements.`,
-      category: "Product Comparison",
-      tags: ["ESE", "Franklin Rods", "Protection Systems"],
-      status: ContentStatus.DRAFT,
-      isPlaceholder: true,
+1. Type 1 (Class I) SPDs: Installed at the Main Distribution Board (MDB) service entrance to divert high-energy lightning impulse currents (10/350 µs waveform).
+2. Type 2 (Class II) SPDs: Positioned at Sub-Distribution Boards (SMDB/DB) to suppress residual voltage spikes (8/20 µs waveform) induced along internal cabling.
+3. Type 3 (Class III) SPDs: Fitted adjacent to sensitive terminal equipment, telecommunications lines, and data infrastructure.
+
+Equipotential bonding bars (MEBB) interconnected with low-impedance down conductors complete the surge mitigation matrix. Vision Energy International supplies and installs certified surge protective devices engineered specifically for regional grid stability requirements.`,
+      coverImage: "/product-catalouge/EL-06.jpeg",
+      coverAlt: "Type 1 and Type 2 surge protection device array",
+      bodyImage: null,
+      bodyAlt: null,
+      category: "Surge Protection",
+      status: "PUBLISHED" as const,
       publishedAt: new Date("2026-03-10T00:00:00Z"),
-      readingMinutes: 4,
-      seoTitle: "ESE vs Conventional Lightning Protection | Vision Energy",
-      seoDescription:
-        "Evaluating coverage radius, installation efficiency, and structural aesthetics when choosing between ESE and Franklin rod systems.",
     },
   ];
 
@@ -411,30 +407,28 @@ Both technologies are backed by rigorous international testing. Vision Energy In
       where: { slug: post.slug },
       update: {
         title: post.title,
-        excerpt: post.excerpt,
+        subheading: post.subheading,
         content: post.content,
+        coverImage: post.coverImage,
+        coverAlt: post.coverAlt,
+        bodyImage: post.bodyImage,
+        bodyAlt: post.bodyAlt,
         category: post.category,
-        tags: post.tags,
         status: post.status,
-        isPlaceholder: post.isPlaceholder,
         publishedAt: post.publishedAt,
-        readingMinutes: post.readingMinutes,
-        seoTitle: post.seoTitle,
-        seoDescription: post.seoDescription,
       },
       create: {
         slug: post.slug,
         title: post.title,
-        excerpt: post.excerpt,
+        subheading: post.subheading,
         content: post.content,
+        coverImage: post.coverImage,
+        coverAlt: post.coverAlt,
+        bodyImage: post.bodyImage,
+        bodyAlt: post.bodyAlt,
         category: post.category,
-        tags: post.tags,
         status: post.status,
-        isPlaceholder: post.isPlaceholder,
         publishedAt: post.publishedAt,
-        readingMinutes: post.readingMinutes,
-        seoTitle: post.seoTitle,
-        seoDescription: post.seoDescription,
       },
     });
   }

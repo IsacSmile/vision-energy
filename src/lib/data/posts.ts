@@ -5,16 +5,13 @@ import { unstable_cache } from "next/cache";
 export const getPublishedBlogPosts = unstable_cache(
   async () => {
     const now = new Date();
-    const isProd = process.env.NODE_ENV === "production";
 
     try {
       return await withDbRetry(() =>
         db.blogPost.findMany({
           where: {
             status: "PUBLISHED",
-            deletedAt: null,
             publishedAt: { lte: now },
-            ...(isProd ? { isPlaceholder: false } : {}),
           },
           orderBy: { publishedAt: "desc" },
         })
@@ -31,7 +28,6 @@ export const getPublishedBlogPosts = unstable_cache(
 export const getPublishedBlogPostBySlug = unstable_cache(
   async (slug: string) => {
     const now = new Date();
-    const isProd = process.env.NODE_ENV === "production";
 
     try {
       return await withDbRetry(() =>
@@ -39,9 +35,7 @@ export const getPublishedBlogPostBySlug = unstable_cache(
           where: {
             slug,
             status: "PUBLISHED",
-            deletedAt: null,
             publishedAt: { lte: now },
-            ...(isProd ? { isPlaceholder: false } : {}),
           },
         })
       );
