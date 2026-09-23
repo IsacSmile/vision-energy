@@ -179,7 +179,7 @@ function ServiceForm({
       serviceSlug: context.serviceSlug,
       serviceTitle: context.serviceTitle,
       phone: '+971 ',
-      sourceUrl: typeof window !== 'undefined' ? window.location.href : '',
+      sourceUrl: '',
       consent: false,
     },
   });
@@ -188,10 +188,14 @@ function ServiceForm({
     setSubmitting(true);
     setServerError(null);
     try {
+      const payload = {
+        ...data,
+        sourceUrl: typeof window !== 'undefined' ? window.location.href : '',
+      };
       const res = await fetch('/api/enquiries/service', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify(payload),
       });
       const result = await res.json();
       if (!res.ok) {
@@ -414,7 +418,7 @@ function ProductForm({
       categoryTitle: context.categoryTitle || 'General Product Enquiry',
       message: context.prefillMessage || '',
       phone: '+971 ',
-      sourceUrl: typeof window !== 'undefined' ? window.location.href : '',
+      sourceUrl: '',
       consent: false,
     },
   });
@@ -423,10 +427,14 @@ function ProductForm({
     setSubmitting(true);
     setServerError(null);
     try {
+      const payload = {
+        ...data,
+        sourceUrl: typeof window !== 'undefined' ? window.location.href : '',
+      };
       const res = await fetch('/api/enquiries/product', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify(payload),
       });
       const result = await res.json();
       if (!res.ok) {

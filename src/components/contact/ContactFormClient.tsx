@@ -21,7 +21,7 @@ export default function ContactFormClient() {
     defaultValues: {
       serviceSlug: 'general-contact-enquiry',
       serviceTitle: 'General Contact Us Enquiry',
-      sourceUrl: typeof window !== 'undefined' ? window.location.href : '',
+      sourceUrl: '',
       consent: false,
     },
   });
@@ -30,10 +30,14 @@ export default function ContactFormClient() {
     setSubmitting(true);
     setServerError(null);
     try {
+      const payload = {
+        ...data,
+        sourceUrl: typeof window !== 'undefined' ? window.location.href : '',
+      };
       const res = await fetch('/api/enquiries/service', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify(payload),
       });
       const result = await res.json();
       if (!res.ok) {

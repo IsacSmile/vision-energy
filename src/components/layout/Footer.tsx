@@ -277,7 +277,7 @@ export default function Footer({ services = [] }: FooterProps) {
 
         {/* BOTTOM BAR */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#A9B4C0] gap-4">
-          <p>© {new Date().getFullYear()} VISION ENERGY INTERNATIONAL. All rights reserved.</p>
+          <p suppressHydrationWarning>© {new Date().getFullYear()} VISION ENERGY INTERNATIONAL. All rights reserved.</p>
 
           <button
             type="button"
