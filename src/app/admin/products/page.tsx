@@ -26,7 +26,7 @@ export default async function AdminProductsPage({
   const category = searchParams.category || "";
   const subcategoryGroup = searchParams.subcategoryGroup || "";
   const page = parseInt(searchParams.page || "1", 10);
-  const limit = 15;
+  const limit = 100;
 
   const where: any = {};
 

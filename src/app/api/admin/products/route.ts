@@ -133,6 +133,38 @@ export async function POST(request: Request) {
       },
     });
 
+    // Sync to ProductCategory table for UI pages
+    try {
+      const groupPrefix = parsed.code.split("-")[0] || "EL";
+      const slug = parsed.code.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+      await (db as any).productCategory.upsert({
+        where: { code: parsed.code },
+        update: {
+          title: parsed.title,
+          description: parsed.description,
+          productFamilies: parsed.includes,
+          image: imageUrl,
+          imageAlt: imageAlt,
+          status: "PUBLISHED",
+        },
+        create: {
+          code: parsed.code,
+          slug,
+          group: groupPrefix,
+          groupLabel: parsed.subcategoryGroup || parsed.category,
+          sortOrder: parsed.sortOrder || 0,
+          title: parsed.title,
+          description: parsed.description,
+          productFamilies: parsed.includes,
+          image: imageUrl,
+          imageAlt: imageAlt,
+          status: "PUBLISHED",
+        },
+      });
+    } catch (catErr) {
+      console.error("Failed to sync created product to ProductCategory:", catErr);
+    }
+
     await recordAuditLog({
       actor: session.email,
       action: "CREATE",
@@ -170,14 +202,28 @@ export async function PUT(request: Request) {
       return NextResponse.json({ error: "No product IDs provided" }, { status: 400 });
     }
 
+    const targetItems = await (db as any).product.findMany({
+      where: { id: { in: ids } },
+      select: { code: true },
+    });
+    const targetCodes = targetItems.map((i: any) => i.code);
+
     if (action === "bulk_archive") {
       await (db as any).product.updateMany({
         where: { id: { in: ids } },
         data: { status: "ARCHIVED" },
       });
+      await (db as any).productCategory.updateMany({
+        where: { code: { in: targetCodes } },
+        data: { status: "DRAFT" },
+      });
     } else if (action === "bulk_restore") {
       await (db as any).product.updateMany({
         where: { id: { in: ids } },
+        data: { status: "PUBLISHED" },
+      });
+      await (db as any).productCategory.updateMany({
+        where: { code: { in: targetCodes } },
         data: { status: "PUBLISHED" },
       });
     } else if (action === "bulk_reassign_category" && newCategory) {

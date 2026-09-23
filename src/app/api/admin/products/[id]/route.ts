@@ -57,6 +57,10 @@ export async function PUT(
         where: { id: params.id },
         data: { status: "ARCHIVED" },
       });
+      await (db as any).productCategory.updateMany({
+        where: { code: existing.code },
+        data: { status: "DRAFT" },
+      });
       await recordAuditLog({
         actor: session.email,
         action: "UNPUBLISH",
@@ -71,6 +75,10 @@ export async function PUT(
     if (body.action === "restore") {
       const updated = await (db as any).product.update({
         where: { id: params.id },
+        data: { status: "PUBLISHED" },
+      });
+      await (db as any).productCategory.updateMany({
+        where: { code: existing.code },
         data: { status: "PUBLISHED" },
       });
       await recordAuditLog({
@@ -106,6 +114,14 @@ export async function PUT(
           imageUrl: fallback.imageUrl,
           imageAlt: fallback.imageAlt,
           isPlaceholder: true,
+        },
+      });
+
+      await (db as any).productCategory.updateMany({
+        where: { code: existing.code },
+        data: {
+          image: fallback.imageUrl,
+          imageAlt: fallback.imageAlt,
         },
       });
 
@@ -190,6 +206,39 @@ export async function PUT(
       },
     });
 
+    // Sync to ProductCategory table
+    try {
+      const groupPrefix = parsed.code.split("-")[0] || "EL";
+      const slug = parsed.code.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+      await (db as any).productCategory.upsert({
+        where: { code: existing.code },
+        update: {
+          code: parsed.code,
+          title: parsed.title,
+          description: parsed.description,
+          productFamilies: parsed.includes,
+          image: imageUrl,
+          imageAlt: imageAlt,
+          status: body.product.status === "ARCHIVED" ? "DRAFT" : "PUBLISHED",
+        },
+        create: {
+          code: parsed.code,
+          slug,
+          group: groupPrefix,
+          groupLabel: parsed.subcategoryGroup || parsed.category,
+          sortOrder: parsed.sortOrder || 0,
+          title: parsed.title,
+          description: parsed.description,
+          productFamilies: parsed.includes,
+          image: imageUrl,
+          imageAlt: imageAlt,
+          status: body.product.status === "ARCHIVED" ? "DRAFT" : "PUBLISHED",
+        },
+      });
+    } catch (catErr) {
+      console.error("Failed to sync updated product to ProductCategory:", catErr);
+    }
+
     await recordAuditLog({
       actor: session.email,
       action: "UPDATE",
@@ -257,6 +306,15 @@ export async function DELETE(
     await (db as any).product.delete({
       where: { id: params.id },
     });
+
+    // Sync deletion to ProductCategory
+    try {
+      await (db as any).productCategory.deleteMany({
+        where: { code: product.code },
+      });
+    } catch (catErr) {
+      console.error("Failed to delete matching ProductCategory row:", catErr);
+    }
 
     await recordAuditLog({
       actor: session.email,
