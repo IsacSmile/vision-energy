@@ -1,92 +1,82 @@
-# VISION ENERGY INTERNATIONAL - Next.js Full-Stack Application & CMS Admin
+# Vision Energy International
 
-Web application, CMS administration panel, and enquiry management system for **VISION ENERGY INTERNATIONAL**, a UAE electrical, mechanical, and solar product trading company with a priority focus on **Lightning Protection & Earthing**.
+Web application, Content Management System (CMS), and client enquiry management platform for Vision Energy International, a UAE-based engineering trading company specializing in lightning protection, earthing networks, mechanical fittings, and renewable energy solutions.
 
 ---
 
-## Connect Neon (PostgreSQL Setup)
+## Technical Overview
 
-The application uses **Neon Serverless PostgreSQL** for production data persistence, session storage, audit logging, and content management.
+The application is built using Next.js (App Router), TypeScript, Tailwind CSS, PostgreSQL, and Prisma ORM.
 
-### Environment Variables
-Configure the database connection strings in `.env`:
+- **Frontend & Server Infrastructure**: Next.js (App Router), React, TypeScript, Tailwind CSS
+- **Database & Persistence**: PostgreSQL (Neon Serverless) via Prisma ORM
+- **Authentication & Security**: HTTP-only signed session cookies, bcrypt password hashing (cost 12), rate-limited authentication endpoints, CSRF origin verification, content sanitization via rehype-sanitize
+- **Storage & Assets**: Support for Vercel Blob storage (`@vercel/blob`) with automatic fallback to hosted image URLs
+- **SEO & Search**: Dynamic XML sitemap generation (`/sitemap.xml`), structured JSON-LD Organization/Product/Article data, configurable `robots.txt`
+
+---
+
+## Environment Setup
+
+Configure environment variables in `.env` or your hosting configuration settings:
 
 ```env
-# Neon Pooled Connection String (Used by runtime queries, contains "-pooler")
-DATABASE_URL="postgresql://user:password@ep-cool-pooler.us-east-2.aws.neon.tech/neondb?sslmode=require"
+# Database Connections (Neon Serverless PostgreSQL)
+DATABASE_URL="postgresql://user:password@ep-pooler.region.neon.tech/neondb?sslmode=require"
+DIRECT_URL="postgresql://user:password@ep-direct.region.neon.tech/neondb?sslmode=require"
 
-# Neon Direct Connection String (Used for migrations & seeding, without "-pooler")
-DIRECT_URL="postgresql://user:password@ep-cool.us-east-2.aws.neon.tech/neondb?sslmode=require"
-
-# Security & Secrets
+# Security Credentials
 ADMIN_EMAIL="admin@visionenergyme.com"
-ADMIN_PASSWORD_HASH="$2b$12$YourBcryptHashHere"
-SESSION_SECRET="random_32_byte_string_secret_key_2026_vision"
-NEXT_PUBLIC_SITE_URL="https://vision-energy.nihatechsolutions.online"
+ADMIN_PASSWORD_HASH="$2b$12$YourBcryptPasswordHashHere"
+SESSION_SECRET="your_secure_32_character_session_secret_key"
+NEXT_PUBLIC_SITE_URL="https://www.visionenergyme.com"
 
-# Optional Vercel Blob Token for Image Uploads
+# Object Storage (Optional)
 BLOB_READ_WRITE_TOKEN=""
 ```
 
-> **Note on Neon Connection Options**:
-> - If connection to Neon fails with a `channel_binding` error in local Prisma execution, remove `channel_binding=gssapi-channel-binding` from your connection URL string.
-> - If connection pool timeouts occur, append `&pgbouncer=true` to your `DATABASE_URL`.
+---
 
-### Database Scripts
-- **Migrations (Dev)**: `npm run db:migrate` (`npx prisma migrate dev`)
-- **Deploy Migrations (Prod/Vercel)**: `npm run db:deploy` (`npx prisma migrate deploy`)
-- **Seed Database**: `npm run db:seed` (`npx tsx prisma/seed.ts`)
-- **Prisma Studio GUI**: `npm run db:studio` (`npx prisma studio`)
+## Database Management
+
+Commands for schema migrations and data seeding:
+
+- **Generate Prisma Client**: `npx prisma generate`
+- **Apply Schema Migrations (Development)**: `npm run db:migrate`
+- **Deploy Schema Migrations (Production)**: `npm run db:deploy`
+- **Seed Initial Data (Standalone)**: `npm run db:seed`
+- **Database GUI**: `npm run db:studio`
 
 ---
 
-## Technical Architecture
+## Application Structure & Routing
 
-- **Framework**: Next.js (App Router) + TypeScript
-- **Styling**: Vanilla CSS + Tailwind CSS dark technical theme tokens (`#050608`, `#0D1117`, `#0B65B3`, `#A3E635`)
-- **Database & ORM**: PostgreSQL (Neon) with Prisma ORM singleton and 2-attempt connection retry resilience
-- **Security & Auth**: Bcrypt cost 12 password verification, 5 attempts / 15 min rate limiter, signed `admin_session` cookie (8h absolute, 60m sliding idle), CSRF origin verification, `rehype-sanitize` HTML sanitization, noindex headers on admin
-- **Image Storage**: Vercel Blob `@vercel/blob` with signature verification & fallback to direct URL input
-
----
-
-## Client Hand-Over Checklist
-
-1. **Admin Email & Password Setup**:
-   - Generate a cost 12 bcrypt password hash:
-     ```bash
-     node -e "const b = require('bcryptjs'); console.log(b.hashSync('YourSecurePasswordHere', 12));"
-     ```
-   - Set `ADMIN_EMAIL` and `ADMIN_PASSWORD_HASH` in environment variables.
-
-2. **Enabling Vercel Blob Uploads**:
-   - In your Vercel project settings, attach a Vercel Blob store.
-   - `BLOB_READ_WRITE_TOKEN` will automatically populate. If token is omitted, the CMS gracefully falls back to direct image URLs.
-
-3. **How to Publish a Service Safely**:
-   - When editing a service scope, clicking **Publish** triggers the mandatory client approval confirmation modal.
-   - You must check *"I confirm this service scope has been approved by the client"* before the confirm button enables.
-   - Unconfirmed process steps (`confirmed: false`) remain hidden from the public website automatically.
-
----
-
-## Route Map
-
-| Path | Description | Access |
+| Route | Description | Access Level |
 |---|---|---|
-| `/` | Home Page with Hero, Pillars, Lightning Highlight, Latest Posts | Public |
-| `/products` | Filterable Product Categories (57 categories) | Public |
-| `/products/[slug]` | Product Category Detail | Public |
-| `/services` | Engineering Services Listing | Public |
-| `/services/[slug]` | Service Scope Detail (Unconfirmed process steps hidden) | Public |
-| `/blog` | Technical Articles Listing | Public |
-| `/blog/[slug]` | Blog Article Detail | Public |
-| `/admin/login` | Secure Admin Login Portal | Public (Rate-limited) |
-| `/admin` | Admin Operations Dashboard | Protected |
-| `/admin/enquiries` | Client Enquiries Management (Products & Services tabs) | Protected |
-| `/admin/products` | Product Categories List, Reorder & JSON Import/Export | Protected |
-| `/admin/services` | Service Scopes List & Accordion Form Editor | Protected |
-| `/admin/blog` | Blog Articles List & Markdown Editor | Protected |
-| `/admin/trash` | Trash Bin & 30-Day Recovery | Protected |
-| `/admin/activity` | Audit Log Read-Only History | Protected |
-| `/admin/preview/[type]/[id]` | Live Draft Preview Banner Mode | Protected |
+| `/` | Corporate homepage and key engineering pillars | Public |
+| `/products` | Catalog of engineering product categories | Public |
+| `/products/[slug]` | Product category detail and technical specifications | Public |
+| `/services` | Engineering services and execution scope listing | Public |
+| `/services/[slug]` | Detailed service scope narrative and process steps | Public |
+| `/blog` | Technical insights and industry articles | Public |
+| `/blog/[slug]` | Individual article editorial view | Public |
+| `/about` | Company background and certification details | Public |
+| `/contact` | Contact information and enquiry forms | Public |
+| `/admin/login` | Secure administrator authentication portal | Public (Rate-limited) |
+| `/admin` | CMS administration dashboard and metrics | Protected |
+| `/admin/enquiries` | Management portal for client product and service enquiries | Protected |
+| `/admin/products` | Management interface for product categories | Protected |
+| `/admin/services` | Content management editor for service scopes | Protected |
+| `/admin/blog` | Content management editor for technical articles | Protected |
+| `/admin/trash` | Soft-deleted content recovery container | Protected |
+| `/admin/activity` | Audit log record of administration actions | Protected |
+
+---
+
+## Production Deployment
+
+1. **Build Process**:
+   Running `npm run build` compiles the Next.js application and applies database migrations (`prisma migrate deploy`). Data seeding is intentionally executed separately to ensure existing production records are preserved.
+
+2. **Storage Credentials**:
+   If `BLOB_READ_WRITE_TOKEN` is configured, file uploads in the CMS will upload directly to Vercel Blob storage. If omitted, the system falls back to direct URL links.
