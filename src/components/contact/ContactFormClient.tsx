@@ -21,6 +21,9 @@ export default function ContactFormClient() {
     defaultValues: {
       serviceSlug: 'general-contact-enquiry',
       serviceTitle: 'General Contact Us Enquiry',
+      phone: '+971 ',
+      emirate: '',
+      projectType: '',
       sourceUrl: '',
       consent: false,
     },

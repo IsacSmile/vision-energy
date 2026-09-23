@@ -176,9 +176,11 @@ function ServiceForm({
   } = useForm<ServiceEnquiryInput>({
     resolver: zodResolver(serviceEnquirySchema),
     defaultValues: {
-      serviceSlug: context.serviceSlug,
-      serviceTitle: context.serviceTitle,
+      serviceSlug: context.serviceSlug || 'general-service',
+      serviceTitle: context.serviceTitle || 'General Technical Service Booking',
       phone: '+971 ',
+      emirate: '',
+      projectType: '',
       sourceUrl: '',
       consent: false,
     },
