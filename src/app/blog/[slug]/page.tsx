@@ -110,10 +110,23 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             {post.title}
           </h1>
 
-          <p className="text-sm sm:text-base text-gray-300 leading-relaxed italic border-l-4 border-[#0B65B3] pl-4">
-            {post.excerpt}
-          </p>
+          {post.excerpt && (
+            <p className="text-sm sm:text-base text-gray-300 leading-relaxed italic border-l-4 border-[#0B65B3] pl-4">
+              {post.excerpt}
+            </p>
+          )}
         </div>
+
+        {/* Single Cover Image */}
+        {post.coverImage && (
+          <div className="max-w-[65ch] mx-auto overflow-hidden rounded-2xl border border-[#1F2937] bg-[#050608]">
+            <img
+              src={post.coverImage}
+              alt={post.coverAlt || post.title}
+              className="w-full max-h-[480px] object-cover"
+            />
+          </div>
+        )}
 
         {/* Body Text rendered with Markdown Sanitizer */}
         <div className="border-t border-[#1F2937] pt-8 max-w-[65ch] mx-auto text-gray-200 space-y-6 leading-relaxed text-[18px] prose prose-invert">
