@@ -110,7 +110,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12 space-y-6 sm:space-y-8">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 space-y-8 sm:space-y-12">
       {/* JSON-LD Article Structured Data */}
       <script
         type="application/ld+json"
@@ -118,80 +118,79 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       />
 
       {/* Back Link */}
-      <Link
-        href="/blog"
-        className="inline-flex items-center gap-2 text-xs font-bold text-[#8DC63F] hover:underline transition-colors min-h-[40px] active-press"
-      >
-        <ArrowLeft className="w-4 h-4" />
-        <span>Back to Blog</span>
-      </Link>
-
-      {/* Article Container */}
-      <article className="bg-[#0D1117] border border-[#1F2937] rounded-2xl sm:rounded-3xl p-6 sm:p-12 space-y-8 shadow-2xl">
-        {/* Header */}
-        <div className="space-y-4 max-w-[65ch] mx-auto">
-          <div className="flex flex-wrap items-center gap-3 text-xs text-gray-400">
-            <span className="font-bold text-[#8DC63F] bg-[#8DC63F]/10 border border-[#8DC63F]/30 px-3 py-1 rounded-full">
-              {post.category}
-            </span>
-            {formattedDate && (
-              <span className="flex items-center gap-1.5 text-gray-400">
-                <Calendar className="w-3.5 h-3.5 text-gray-500" />
-                {formattedDate}
-              </span>
-            )}
-          </div>
-
-          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
-            {post.title}
-          </h1>
-
-          <p className="text-sm sm:text-base text-gray-300 leading-relaxed italic border-l-4 border-[#0B65B3] pl-4">
-            {post.subheading}
-          </p>
-        </div>
-
-        {/* Cover Image Directly Below Header */}
-        {post.coverImage && (
-          <div className="max-w-[65ch] mx-auto overflow-hidden rounded-2xl border border-[#1F2937] bg-[#050608] aspect-video">
-            <img
-              src={post.coverImage}
-              alt={post.coverAlt || post.title}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        )}
-
-        {/* Article Body Content */}
-        <div className="border-t border-[#1F2937] pt-8 max-w-[65ch] mx-auto text-gray-200 space-y-6 leading-relaxed text-[17px] sm:text-[18px]">
-          {post.bodyImage && secondPartHtml ? (
-            <>
-              <div dangerouslySetInnerHTML={{ __html: firstPartHtml }} />
-              <div className="my-8 overflow-hidden rounded-2xl border border-[#1F2937] bg-[#050608]">
-                <img
-                  src={post.bodyImage}
-                  alt={post.bodyAlt || "Article body illustration"}
-                  className="w-full max-h-[420px] object-cover"
-                />
-              </div>
-              <div dangerouslySetInnerHTML={{ __html: secondPartHtml }} />
-            </>
-          ) : (
-            <div dangerouslySetInnerHTML={{ __html: sanitizedBodyHtml }} />
-          )}
-        </div>
-      </article>
-
-      {/* Back to Blog Bottom Link */}
-      <div className="pt-4 border-t border-[#1F2937]">
+      <div>
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-xs font-bold text-[#8DC63F] hover:underline transition-colors min-h-[40px] active-press"
+          className="inline-flex items-center gap-2 text-xs font-semibold text-[#A9B4C0] hover:text-[#8DC63F] transition-colors min-h-[40px] active-press"
         >
-          <ArrowLeft className="w-4 h-4" />
+          <ArrowLeft className="w-4 h-4 text-[#8DC63F]" />
           <span>Back to Blog</span>
         </Link>
       </div>
+
+      {/* Article Header */}
+      <header className="space-y-4">
+        <div className="flex flex-wrap items-center gap-3 text-xs">
+          <span className="font-bold text-[#8DC63F] uppercase tracking-wider bg-[#8DC63F]/10 border border-[#8DC63F]/30 px-3 py-1 rounded-full">
+            {post.category}
+          </span>
+          {formattedDate && (
+            <span className="flex items-center gap-1.5 text-[#A9B4C0] font-medium">
+              <Calendar className="w-3.5 h-3.5 text-gray-500" />
+              {formattedDate}
+            </span>
+          )}
+        </div>
+
+        <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-[1.15]">
+          {post.title}
+        </h1>
+
+        <p className="text-base sm:text-xl text-[#A9B4C0] leading-relaxed font-normal pt-1">
+          {post.subheading}
+        </p>
+      </header>
+
+      {/* Hero Cover Image */}
+      {post.coverImage && (
+        <div className="w-full aspect-[16/9] sm:aspect-[21/9] overflow-hidden rounded-2xl border border-[#1F2937] bg-[#0D1117] shadow-2xl">
+          <img
+            src={post.coverImage}
+            alt={post.coverAlt || post.title}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      )}
+
+      {/* Article Body Content */}
+      <main className="border-t border-[#1F2937]/80 pt-8 text-[#D1D5DB] text-base sm:text-[18px] leading-[1.85] space-y-6">
+        {post.bodyImage && secondPartHtml ? (
+          <>
+            <div dangerouslySetInnerHTML={{ __html: firstPartHtml }} />
+            <div className="my-10 overflow-hidden rounded-2xl border border-[#1F2937] bg-[#0D1117] shadow-xl">
+              <img
+                src={post.bodyImage}
+                alt={post.bodyAlt || "Article illustration"}
+                className="w-full max-h-[460px] object-cover"
+              />
+            </div>
+            <div dangerouslySetInnerHTML={{ __html: secondPartHtml }} />
+          </>
+        ) : (
+          <div dangerouslySetInnerHTML={{ __html: sanitizedBodyHtml }} />
+        )}
+      </main>
+
+      {/* Bottom Footer Link */}
+      <footer className="pt-8 border-t border-[#1F2937]/80">
+        <Link
+          href="/blog"
+          className="inline-flex items-center gap-2 text-xs font-semibold text-[#A9B4C0] hover:text-[#8DC63F] transition-colors min-h-[40px] active-press"
+        >
+          <ArrowLeft className="w-4 h-4 text-[#8DC63F]" />
+          <span>Back to Blog</span>
+        </Link>
+      </footer>
     </div>
   );
 }
