@@ -79,31 +79,35 @@ export default function FormShell({
   return (
     <div className="space-y-6">
       {/* Top Header & Sticky Action Bar */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#1F2937] pb-5 sticky top-14 lg:top-0 z-20 bg-[#050608]/95 backdrop-blur-md pt-2">
-        <div>
-          <div className="flex items-center gap-3">
-            <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight">{title}</h1>
-            <span
-              className={`px-2.5 py-0.5 text-xs font-mono font-bold rounded-full border ${
-                status === "PUBLISHED"
-                  ? "bg-[#A3E635]/10 text-[#A3E635] border-[#A3E635]/30"
-                  : "bg-amber-500/10 text-amber-400 border-amber-500/30"
-              }`}
-            >
-              {status}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#1F2937] pb-3.5 sticky top-14 lg:top-0 z-20 bg-[#050608]/95 backdrop-blur-md pt-2">
+        <div className="flex items-center gap-2.5 min-w-0 flex-1">
+          <h1 className="text-xs sm:text-sm font-semibold text-white tracking-tight truncate max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl" title={title}>
+            {title}
+          </h1>
+          <span
+            className={`shrink-0 px-2 py-0.5 text-[10px] font-mono font-bold uppercase rounded-full border ${
+              status === "PUBLISHED"
+                ? "bg-[#A3E635]/10 text-[#A3E635] border-[#A3E635]/30"
+                : "bg-amber-500/10 text-amber-400 border-amber-500/30"
+            }`}
+          >
+            {status}
+          </span>
+          {isDirty && (
+            <span className="shrink-0 hidden sm:inline-flex px-2 py-0.5 text-[10px] font-medium text-amber-400 bg-amber-500/10 border border-amber-500/20 rounded-full">
+              Unsaved
             </span>
-          </div>
-          {subtitle && <p className="text-xs text-gray-400 mt-1">{subtitle}</p>}
+          )}
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex flex-wrap items-center gap-2">
+        {/* Action Buttons arranged horizontally */}
+        <div className="flex items-center gap-2 shrink-0">
           {id && (
             <a
               href={`/admin/preview/${type}/${id}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-3 py-2 bg-[#0D1117] border border-[#1F2937] hover:border-gray-600 rounded-xl text-xs font-semibold text-gray-300 hover:text-white flex items-center gap-1.5 transition-colors min-h-[44px]"
+              className="px-3 py-1.5 bg-[#0D1117] border border-[#1F2937] hover:border-gray-600 rounded-lg text-xs font-semibold text-gray-300 hover:text-white flex items-center gap-1.5 transition-colors min-h-[36px]"
             >
               <ExternalLink className="w-3.5 h-3.5 text-gray-400" />
               <span>Preview</span>
@@ -114,9 +118,9 @@ export default function FormShell({
             type="button"
             onClick={onSaveDraft}
             disabled={isSubmitting}
-            className="px-4 py-2 bg-[#0D1117] border border-[#1F2937] hover:border-gray-600 text-white font-semibold text-xs rounded-xl flex items-center gap-2 transition-colors disabled:opacity-50 min-h-[44px]"
+            className="px-3.5 py-1.5 bg-[#0D1117] border border-[#1F2937] hover:border-gray-600 text-white font-semibold text-xs rounded-lg flex items-center gap-1.5 transition-colors disabled:opacity-50 min-h-[36px]"
           >
-            {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4 text-gray-400" />}
+            {isSubmitting ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Save className="w-3.5 h-3.5 text-gray-400" />}
             <span>Save Draft</span>
           </button>
 
@@ -124,12 +128,12 @@ export default function FormShell({
             type="button"
             onClick={handlePublishClick}
             disabled={isSubmitting}
-            className="px-5 py-2 bg-[#A3E635] text-[#050608] font-bold text-xs rounded-xl hover:opacity-90 flex items-center gap-2 transition-opacity disabled:opacity-50 shadow-lg min-h-[44px]"
+            className="px-4 py-1.5 bg-[#A3E635] text-[#050608] font-bold text-xs rounded-lg hover:opacity-90 flex items-center gap-1.5 transition-opacity disabled:opacity-50 shadow-md min-h-[36px]"
           >
             {isSubmitting ? (
-              <Loader2 className="w-4 h-4 animate-spin text-[#050608]" />
+              <Loader2 className="w-3.5 h-3.5 animate-spin text-[#050608]" />
             ) : (
-              <Globe className="w-4 h-4 text-[#050608]" />
+              <Globe className="w-3.5 h-3.5 text-[#050608]" />
             )}
             <span>{status === "PUBLISHED" ? "Update" : "Publish"}</span>
           </button>
