@@ -263,7 +263,8 @@ export default function Header() {
         aria-modal="true"
         aria-label="Mobile Navigation Menu"
         aria-hidden={!mobileMenuOpen}
-        inert={(!mobileMenuOpen ? '' : undefined) as unknown as boolean}
+        inert={!mobileMenuOpen ? true : undefined}
+        suppressHydrationWarning
         className={`fixed inset-0 z-40 w-screen h-[100svh] min-h-[100vh] bg-[#050608] lg:hidden flex flex-col justify-between overflow-y-auto px-6 pt-[calc(var(--mobile-header-h,56px)+20px)] pb-[max(24px,env(safe-area-inset-bottom))] transition-all duration-320 ${
           mobileMenuOpen
             ? 'opacity-100 visible pointer-events-auto translate-y-0 ease-[cubic-bezier(0.22,1,0.36,1)]'
