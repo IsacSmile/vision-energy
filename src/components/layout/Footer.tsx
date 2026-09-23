@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronDown, ArrowUp, Phone, Mail, MapPin } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 import { dictionary } from '@/lib/dictionary';
 import { SOCIAL_LINKS } from '@/config/social';
 
@@ -17,8 +18,13 @@ interface FooterProps {
 }
 
 export default function Footer({ services = [] }: FooterProps) {
+  const pathname = usePathname();
   const [openAccordion, setOpenAccordion] = useState<string | null>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');

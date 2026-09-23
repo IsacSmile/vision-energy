@@ -22,6 +22,10 @@ export default function Header() {
   const { openProductModal, openServiceModal } = useEnquiryModal();
   const isHome = pathname === '/';
 
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
+
   // Dispatch custom event for HeroLightning GPU pausing
   useEffect(() => {
     window.dispatchEvent(new CustomEvent('mobile-menu-state', { detail: { open: mobileMenuOpen } }));
