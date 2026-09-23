@@ -6,6 +6,10 @@ import { useEnquiryModal } from '@/components/modals/EnquiryModalProvider';
 import { dictionary } from '@/lib/dictionary';
 import { Phone, MessageSquare, ArrowLeft, CheckCircle2, Package, ShieldCheck, ChevronDown, ChevronUp, ArrowRight } from 'lucide-react';
 
+import { ProductItemCard } from './ProductItemCard';
+import { ProductJsonLd } from './ProductJsonLd';
+import type { ProductItem } from '@/lib/data/product-items';
+
 interface CategoryItem {
   id: string;
   code: string;
@@ -20,9 +24,14 @@ interface CategoryItem {
 interface CategoryDetailProps {
   category: CategoryItem;
   relatedCategories?: CategoryItem[];
+  products?: ProductItem[];
 }
 
-export default function CategoryDetailClient({ category, relatedCategories = [] }: CategoryDetailProps) {
+export default function CategoryDetailClient({
+  category,
+  relatedCategories = [],
+  products = [],
+}: CategoryDetailProps) {
   const { openProductModal } = useEnquiryModal();
   const [expandedDesc, setExpandedDesc] = useState(false);
 
@@ -156,11 +165,36 @@ export default function CategoryDetailClient({ category, relatedCategories = [] 
               className="w-full sm:w-auto h-12 px-8 bg-gradient-brand text-white font-bold text-sm rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2 blue-glow active-press"
             >
               <MessageSquare className="w-4 h-4" />
-              <span>Enquire About This Category</span>
             </button>
           </div>
         </div>
       </div>
+
+      {/* Featured Products Grid */}
+      {products.length > 0 && (
+        <div className="space-y-4 pt-6 border-t border-[#1F2937]">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-xl font-extrabold text-white">Available Product Models & SKUs</h2>
+              <p className="text-xs text-gray-400">
+                Explore engineering SKUs, specifications, and high-resolution photo galleries
+              </p>
+            </div>
+            <span className="text-xs font-mono text-[#8DC63F] bg-[#8DC63F]/10 px-3 py-1 rounded-full border border-[#8DC63F]/30">
+              {products.length} SKUs Available
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {products.map((prod) => (
+              <React.Fragment key={prod.id}>
+                <ProductItemCard product={prod} />
+                <ProductJsonLd product={prod} />
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Related Categories Swipe Row */}
       {relatedCategories.length > 0 && (

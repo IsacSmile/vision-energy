@@ -259,19 +259,19 @@ export default async function AboutPage() {
             <div className="lg:col-span-7 space-y-6 max-w-[60ch]">
               <Reveal>
                 <p className="text-base lg:text-[19px] text-white/85 leading-[1.75]">
-                  VISION ENERGY INTERNATIONAL was founded and officially registered in 2018 in the United Arab Emirates. We supply electrical, mechanical and solar products, and we back them with technical assistance so that customers can select the right solution for their project.
+                  At VISION ENERGY INTERNATIONAL, we power progress through high-performance electrical, mechanical, and solar solutions engineered for reliability, efficiency, and long-term value. Our solutions are selected to meet the most demanding project requirements while maintaining the highest standards of quality, safety, technical compliance, and environmental responsibility.
                 </p>
               </Reveal>
 
               <Reveal delay={70}>
                 <p className="text-base lg:text-[19px] text-[#A9B4C0] leading-[1.75]">
-                  Our work is focused on construction, MEP, oil and gas, utility providers and the renewable industry. We are the authorised agent and distributor for a number of specialised products in the UAE.
+                  We serve the construction, MEP, oil and gas, utilities, infrastructure, and renewable-energy sectors with dependable products and technically sound solutions. By combining strong engineering knowledge, advanced technologies, and responsive project support, we help clients strengthen performance, reduce operational risk, and deliver projects with confidence.
                 </p>
               </Reveal>
 
               <Reveal delay={140}>
                 <p className="text-base lg:text-[19px] text-[#A9B4C0] leading-[1.75]">
-                  We follow emerging trends and customer demands, and we offer on-site technical assistance to streamline product selection and finalisation.
+                  Our commitment to a safer and more sustainable future is uncompromising. We do not supply, support, or promote dangerous, harmful, or non-compliant products that fail to meet recognised international standards. Instead, we provide responsible, certified, and eco-conscious alternatives that protect people, assets, and the environment.
                 </p>
               </Reveal>
 
@@ -538,10 +538,9 @@ export default async function AboutPage() {
 
             {/* 2px lime vertical rule on left with statement */}
             <div className="border-l-2 border-[#8DC63F] pl-6 lg:pl-8">
-              <p className="text-[clamp(1.5rem,3.6vw,3rem)] font-medium text-white leading-[1.3] tracking-[-0.01em] [text-wrap:balance]">
-                We prioritise{' '}
-                <span className="text-[#8DC63F]">environmental sustainability</span>,
-                and we oppose the use of any products that could disrupt the balance of our ecosystems.
+              <p className="text-[clamp(1.5rem,3vw,2.5rem)] font-medium text-white leading-[1.3] tracking-[-0.01em]">
+                Our commitment to a safer and more sustainable future is{' '}
+                <span className="text-[#8DC63F]">uncompromising</span>. We provide responsible, certified, and eco-conscious alternatives that protect people, assets, and the environment.
               </p>
             </div>
           </div>

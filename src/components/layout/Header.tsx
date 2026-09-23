@@ -163,21 +163,20 @@ export default function Header() {
   return (
     <>
       <header className={headerClasses}>
-        <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 h-16 lg:h-[80px] flex items-center justify-between">
-          {/* Brand Logo - 48px on mobile (h-12), 48px on desktop (lg:h-12) */}
+        <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 h-[70px] sm:h-[76px] lg:h-[92px] flex items-center justify-between gap-4">
+          {/* Brand Logo - enlarged on mobile */}
           <Link
             href="/"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center group py-1 active-press"
+            className="flex items-center group shrink-0 active-press py-1"
             id="header-logo-link"
           >
             <Image
               src="/site-main-logo.png"
               alt="VISION ENERGY INTERNATIONAL UAE"
-              width={240}
-              height={60}
-              style={{ width: "auto", height: "auto" }}
-              className="h-[58px] lg:h-[58px] w-auto object-contain transition-transform group-hover:scale-105"
+              width={300}
+              height={75}
+              className="h-[54px] sm:h-[60px] lg:h-[68px] w-auto max-h-[72px] object-contain transition-transform group-hover:scale-105"
               priority
             />
           </Link>
@@ -190,7 +189,7 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-3.5 py-2 text-sm font-medium rounded-lg transition-colors active-press ${
+                  className={`px-3 py-2 text-sm font-medium rounded-lg whitespace-nowrap transition-colors active-press ${
                     isActive
                       ? 'text-[#8DC63F] bg-[#0B65B3]/20 border border-[#0B65B3]/40'
                       : 'text-[#A9B4C0] hover:text-white hover:bg-white/5'
@@ -203,7 +202,7 @@ export default function Header() {
           </nav>
 
           {/* Desktop Action Button */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3 shrink-0">
             <LightningButton
               variant="primary"
               size="md"

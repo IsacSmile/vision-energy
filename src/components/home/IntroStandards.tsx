@@ -49,9 +49,30 @@ export default function IntroStandards({ productCategoryCount }: IntroStandardsP
             </Reveal>
 
             <Reveal staggerIndex={2}>
+              <p className="text-base md:text-[1.0625rem] text-[#A9B4C0] leading-[1.7]">
+                We serve the construction, MEP, oil and gas, utilities, infrastructure, and
+                renewable-energy sectors with dependable products and technically sound solutions.
+                By combining strong engineering knowledge, advanced technologies, and responsive project
+                support, we help clients strengthen performance, reduce operational risk, and deliver
+                projects with confidence.
+              </p>
+            </Reveal>
+
+            <Reveal staggerIndex={3}>
+              <p className="text-base md:text-[1.0625rem] text-[#A9B4C0] leading-[1.7]">
+                Our commitment to a safer and more sustainable future is uncompromising. We do not
+                supply, support, or promote dangerous, harmful, or non-compliant products that fail to
+                meet recognised international standards. Instead, we provide responsible, certified,
+                and eco-conscious alternatives that protect people, assets, and the environment. Through
+                innovation, technical excellence, and customer trust, Vision Energy International is
+                advancing as a reliable force in the energy and engineering industry.
+              </p>
+            </Reveal>
+
+            <Reveal staggerIndex={4}>
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-[#8DC63F] hover:underline active-press group"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-[#8DC63F] hover:underline active-press group pt-2"
               >
                 <span>More about us</span>
                 <ArrowRight className="w-4 h-4 text-[#8DC63F] transition-transform group-hover:translate-x-1" />

@@ -157,3 +157,29 @@ model AuditLog {
   @@index([entity])
 }
 
+enum ProductStatus {
+  PUBLISHED
+  ARCHIVED
+}
+
+model Product {
+  id               String         @id @default(cuid())
+  code             String         @unique
+  title            String
+  description      String         @db.Text
+  includes         String[]
+  category         String
+  subcategoryGroup String
+  sortOrder        Int            @default(0)
+  status           ProductStatus  @default(PUBLISHED)
+  imageUrl         String?
+  imageAlt         String?
+  isPlaceholder    Boolean        @default(false)
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+
+  @@index([category, subcategoryGroup, sortOrder])
+}
+
+
+

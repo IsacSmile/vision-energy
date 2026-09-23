@@ -1,23 +1,8 @@
-import React from "react";
-import { notFound, redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 import { getPublishedCategoryBySlug, getPublishedProductCategories } from "@/lib/data/products";
-import { db } from "@/lib/db";
-import CategoryDetailClient from "@/components/products/CategoryDetailClient";
 
 interface SlugPageProps {
   params?: Promise<{ slug: string }> | { slug: string };
-}
-
-async function resolveParams(params: SlugPageProps["params"]) {
-  if (!params) return { slug: "" };
-  try {
-    if (typeof (params as any).then === "function") {
-      return (await params) || { slug: "" };
-    }
-    return (params as any) || { slug: "" };
-  } catch (e) {
-    return { slug: "" };
-  }
 }
 
 export async function generateStaticParams() {
@@ -29,49 +14,24 @@ export async function generateStaticParams() {
   }
 }
 
-export const dynamicParams = true;
-export const revalidate = 300;
-
-export async function generateMetadata({ params }: SlugPageProps) {
-  const { slug } = await resolveParams(params);
-  if (!slug) return { title: "Category Not Found" };
-
-  const category = await getPublishedCategoryBySlug(slug);
-  if (!category) return { title: "Category Not Found" };
-
-  return {
-    title: category.seoTitle || `[${category.code}] ${category.title} | Vision Energy`,
-    description: category.seoDescription || category.description,
-  };
-}
-
 export default async function CategoryDetailPage({ params }: SlugPageProps) {
-  const { slug } = await resolveParams(params);
-  if (!slug) {
-    notFound();
-  }
-
-  const category = await getPublishedCategoryBySlug(slug);
-
-  if (!category) {
-    // Check if a 301 slug redirect exists for this old slug
-    const fromPath = `/products/${slug}`;
+  let slug = "";
+  if (params) {
     try {
-      const redirectRow = await db.slugRedirect.findUnique({ where: { fromPath } });
-      if (redirectRow) {
-        redirect(redirectRow.toPath);
-      }
-    } catch (err) {
-      console.error("Slug redirect query error:", err);
+      const resolved = (await params) as { slug: string };
+      slug = resolved?.slug || "";
+    } catch {
+      slug = "";
     }
-    notFound();
   }
 
-  // Fetch related categories in the same group
-  const allCategories = await getPublishedProductCategories();
-  const relatedCategories = allCategories
-    .filter((c) => c.group === category.group && c.slug !== category.slug)
-    .slice(0, 6);
+  if (slug) {
+    const category = await getPublishedCategoryBySlug(slug);
+    if (category?.group) {
+      redirect(`/products?group=${category.group}`);
+    }
+  }
 
-  return <CategoryDetailClient category={category as any} relatedCategories={relatedCategories as any} />;
+  redirect("/products");
 }
+

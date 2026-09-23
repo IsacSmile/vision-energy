@@ -40,6 +40,25 @@ export function clearLoginAttempts(key: string) {
   loginAttemptsMap.delete(key);
 }
 
+// In-memory rate limiting map for upload requests: key -> Array of timestamps (ms)
+const uploadAttemptsMap = new Map<string, number[]>();
+
+export function checkUploadRateLimit(key: string, maxUploads = 30, windowMs = 60 * 60 * 1000): { allowed: boolean; retryAfterSeconds?: number } {
+  const now = Date.now();
+  const attempts = uploadAttemptsMap.get(key) || [];
+  const validAttempts = attempts.filter((ts) => now - ts < windowMs);
+
+  if (validAttempts.length >= maxUploads) {
+    const oldest = validAttempts[0];
+    const retryAfterSeconds = Math.ceil((oldest + windowMs - now) / 1000);
+    return { allowed: false, retryAfterSeconds };
+  }
+
+  validAttempts.push(now);
+  uploadAttemptsMap.set(key, validAttempts);
+  return { allowed: true };
+}
+
 export async function verifyAdminPassword(password: string): Promise<boolean> {
   const adminHash = env.ADMIN_PASSWORD_HASH;
   if (!adminHash) return false;

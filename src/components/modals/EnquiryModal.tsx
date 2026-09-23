@@ -74,7 +74,7 @@ export default function EnquiryModal() {
 
         {/* Sticky Header */}
         <div className="sticky top-0 z-10 bg-[#0D1117]/95 backdrop-blur-md px-5 py-3 sm:py-4 border-b border-[#1F2937] flex items-center justify-between">
-          <h2 id="modal-title" className="text-base sm:text-lg font-bold text-white truncate pr-4">
+          <h2 id="modal-title" className="text-sm sm:text-base font-semibold text-white truncate pr-4">
             {successRef
               ? 'Submission Confirmation'
               : modalType === 'SERVICE'

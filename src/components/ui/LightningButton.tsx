@@ -181,11 +181,11 @@ const LightningButton = forwardRef<HTMLElement, LightningButtonProps>(
       }, remaining);
     };
 
-    // Size Specifications (sm: 44px, md: 52px, lg: 56px)
+    // Size Specifications (sm: 40px, md: 44px, lg: 52px)
     const sizeClasses = {
-      sm: 'h-11 px-4 text-xs font-semibold gap-2',
-      md: 'h-[52px] px-[28px] text-base font-semibold gap-[10px]',
-      lg: 'h-[56px] px-[32px] text-base font-semibold gap-[10px]',
+      sm: 'h-10 px-4 text-xs font-semibold gap-2',
+      md: 'h-11 px-5 text-sm font-semibold gap-[8px]',
+      lg: 'h-[52px] px-[28px] text-base font-semibold gap-[10px]',
     };
 
     // Variant Styles (Strictly solid backgrounds, no gradient fills)
@@ -200,7 +200,7 @@ const LightningButton = forwardRef<HTMLElement, LightningButtonProps>(
     const disabledClasses = disabled ? 'opacity-50 pointer-events-none cursor-not-allowed' : '';
 
     const combinedClasses = `
-      group relative isolate rounded-full overflow-hidden select-none inline-flex items-center justify-center transition-all duration-250
+      group relative isolate rounded-full overflow-hidden select-none inline-flex items-center justify-center whitespace-nowrap transition-all duration-250
       hover:shadow-[0_0_32px_rgba(11,101,179,0.4)]
       focus-visible:shadow-[0_0_32px_rgba(11,101,179,0.4)]
       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050608]
@@ -224,7 +224,7 @@ const LightningButton = forwardRef<HTMLElement, LightningButtonProps>(
         />
 
         {/* Layer 3: Content */}
-        <span className="relative z-10 flex items-center justify-center gap-[10px]">
+        <span className="relative z-10 flex items-center justify-center gap-[8px] whitespace-nowrap">
           {iconLeft && (
             <span className="shrink-0 transition-transform group-hover:scale-105">{iconLeft}</span>
           )}

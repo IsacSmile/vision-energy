@@ -299,6 +299,8 @@ async function main() {
   for (const cat of categoriesRaw) {
     const groupPrefix = cat.code.split("-")[0];
     const groupLabel = GROUP_LABELS[groupPrefix] || groupPrefix;
+    const imageUrl = `/product-catalouge/${cat.code}.jpeg`;
+    const imageAlt = `${cat.title} (${cat.code})`;
 
     await prisma.productCategory.upsert({
       where: { code: cat.code },
@@ -311,6 +313,8 @@ async function main() {
         title: cat.title,
         description: cat.description,
         productFamilies: cat.families,
+        image: imageUrl,
+        imageAlt,
         status: ContentStatus.PUBLISHED,
         seoTitle: `${cat.title} UAE | Vision Energy`,
         seoDescription: cat.description,
@@ -325,6 +329,8 @@ async function main() {
         title: cat.title,
         description: cat.description,
         productFamilies: cat.families,
+        image: imageUrl,
+        imageAlt,
         status: ContentStatus.PUBLISHED,
         seoTitle: `${cat.title} UAE | Vision Energy`,
         seoDescription: cat.description,
@@ -433,6 +439,99 @@ Both technologies are backed by rigorous international testing. Vision Energy In
     });
   }
   console.log(`Seeded ${blogPostsData.length} blog posts (upsert).`);
+
+  // 4. Seed Initial Product SKUs (PUBLISHED status, empty images - real photos uploaded via admin)
+  const initialProductsData = [
+    {
+      code: "LP-01",
+      title: "Conventional Franklin Air Terminal Rod",
+      description: "High-grade copper air terminal rod for structural lightning protection systems.",
+      includes: ["Electrolytic copper rod", "Threaded mounting base", "Conductor clamp"],
+      category: "Electrical",
+      subcategoryGroup: "Lightning Protection",
+      sortOrder: 1,
+    },
+    {
+      code: "LP-02",
+      title: "Early Streamer Emission (ESE) Terminal",
+      description: "Ionized ESE air terminal providing extended radius protection up to 107 meters.",
+      includes: ["Stainless steel 316L ESE terminal", "Support mast adapter", "Testing port"],
+      category: "Electrical",
+      subcategoryGroup: "Lightning Protection",
+      sortOrder: 2,
+    },
+    {
+      code: "ER-01",
+      title: "Copper Bonded Earth Rod (5/8 inch x 8ft)",
+      description: "High tensile steel earth rod with 254-micron electrolytic copper bonding.",
+      includes: ["High tensile steel core", "Molecular copper bonding", "Threaded ends"],
+      category: "Electrical",
+      subcategoryGroup: "Earthing & Grounding",
+      sortOrder: 3,
+    },
+    {
+      code: "LT-01",
+      title: "LED High-Bay Industrial Luminaire 200W",
+      description: "IP66 rated high-bay LED light fixture for warehouses, factories, and substations.",
+      includes: ["Meanwell driver", "Bridgelux LED chip", "Surge protector 10kV"],
+      category: "Electrical",
+      subcategoryGroup: "Specialist & LED Lighting",
+      sortOrder: 4,
+    },
+    {
+      code: "ME-01",
+      title: "Industrial Axial Exhaust Fan 600mm",
+      description: "Heavy-duty ventilation axial fan for plant room and warehouse air extraction.",
+      includes: ["Heavy gauge steel housing", "IP55 motor", "Safety finger guard"],
+      category: "Mechanical",
+      subcategoryGroup: "Ventilation Systems",
+      sortOrder: 5,
+    },
+    {
+      code: "EN-01",
+      title: "Solar Photovoltaic Module 550W Mono-PERC",
+      description: "Tier-1 solar PV panel engineered for extreme desert solar radiation and temperatures.",
+      includes: ["Half-cut cell technology", "Anodized aluminium frame", "IP68 junction box"],
+      category: "Solar",
+      subcategoryGroup: "Solar PV Components",
+      sortOrder: 6,
+    },
+  ];
+
+  for (const prod of initialProductsData) {
+    const imageUrl = `/product-catalouge/${prod.code}.jpeg`;
+    const imageAlt = `${prod.title} (${prod.code})`;
+
+    await (prisma as any).product.upsert({
+      where: { code: prod.code },
+      update: {
+        title: prod.title,
+        description: prod.description,
+        includes: prod.includes,
+        category: prod.category,
+        subcategoryGroup: prod.subcategoryGroup,
+        sortOrder: prod.sortOrder,
+        status: "PUBLISHED",
+        imageUrl,
+        imageAlt,
+        isPlaceholder: false,
+      },
+      create: {
+        code: prod.code,
+        title: prod.title,
+        description: prod.description,
+        includes: prod.includes,
+        category: prod.category,
+        subcategoryGroup: prod.subcategoryGroup,
+        sortOrder: prod.sortOrder,
+        status: "PUBLISHED",
+        imageUrl,
+        imageAlt,
+        isPlaceholder: false,
+      },
+    });
+  }
+  console.log(`Seeded ${initialProductsData.length} product SKUs (upsert).`);
   console.log("Database seeding completed successfully.");
 }
 

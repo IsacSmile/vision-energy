@@ -139,33 +139,33 @@ export default function CatalogueIndex({
 
   return (
     <div className="space-y-8 lg:space-y-12">
-      {/* 1. SEARCH INPUT BAR (Full Width) */}
-      <div className="relative w-full">
-        <div className="relative flex items-center">
-          <Search className="absolute left-6 w-5 h-5 text-[#A9B4C0] pointer-events-none" />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === 'Escape') setSearchQuery('');
-            }}
-            placeholder={`Search ${totalCategoryCount} categories by name, code or product`}
-            aria-label="Search categories"
-            className="w-full h-[56px] pl-14 pr-12 rounded-full bg-transparent border border-white/[0.12] text-base text-white placeholder-[#A9B4C0] focus:outline-none focus:border-[#0B65B3] focus:ring-2 focus:ring-[#0B65B3]/40 transition-colors"
-          />
-          {searchQuery && (
-            <button
-              type="button"
-              onClick={() => setSearchQuery('')}
-              aria-label="Clear search"
-              className="absolute right-5 p-1 rounded-full text-[#A9B4C0] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F]"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          )}
-        </div>
-      </div>
+          {/* 1. SEARCH INPUT BAR (Full Width) */}
+          <div className="relative w-full">
+            <div className="relative flex items-center">
+              <Search className="absolute left-6 w-5 h-5 text-[#A9B4C0] pointer-events-none" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Escape') setSearchQuery('');
+                }}
+                placeholder={`Search ${totalCategoryCount} categories by name, code or product`}
+                aria-label="Search categories"
+                className="w-full h-[56px] pl-14 pr-12 rounded-full bg-[#0D1117] border border-white/[0.12] text-base text-white placeholder-[#A9B4C0] focus:outline-none focus:border-[#8DC63F] focus:ring-1 focus:ring-[#8DC63F] transition-colors"
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery('')}
+                  aria-label="Clear search"
+                  className="absolute right-5 p-1 rounded-full text-[#A9B4C0] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F]"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              )}
+            </div>
+          </div>
 
       {/* 2. LIVE SEARCH RESULTS VIEW (Appears when search has text) */}
       {searchQuery.trim() !== '' ? (
@@ -198,8 +198,8 @@ export default function CatalogueIndex({
                     </span>
                     <div className="flex-1 min-w-0">
                       <Link
-                        href={`/products/${cat.slug}`}
-                        className="text-[17px] font-medium text-white group-hover:text-[#8DC63F] transition-colors hover:underline block truncate focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded"
+                        href={`/products?group=${cat.groupPrefix}`}
+                        className="text-[17px] font-medium text-white group-hover:text-[#8DC63F] transition-colors text-left hover:underline block truncate focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded"
                       >
                         {cat.title}
                       </Link>
@@ -339,23 +339,23 @@ export default function CatalogueIndex({
               role="tabpanel"
               id={`panel-${activeGroup.prefix}`}
               aria-labelledby={`tab-${activeGroup.prefix}`}
-              className="col-span-7 sticky top-[7rem] self-start rounded-[24px] border border-white/[0.08] bg-[#0D1117] p-8 min-h-[480px] flex flex-col justify-between overflow-hidden shadow-2xl"
+              className="col-span-7 sticky top-[7rem] self-start rounded-[24px] border border-white/[0.08] bg-[#0D1117] p-6 lg:p-8 min-h-[480px] flex flex-col justify-between overflow-hidden shadow-2xl"
             >
               <div className="space-y-6">
                 {/* Panel Header */}
                 <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
                   <h3 className="text-2xl font-semibold text-white">{activeGroup.label}</h3>
-                  <span className="text-sm text-[#A9B4C0]">
+                  <span className="text-xs font-semibold text-[#8DC63F] bg-[#8DC63F]/10 border border-[#8DC63F]/30 px-3 py-1 rounded-full">
                     {activeGroup.categories.length} categories
                   </span>
                 </div>
 
                 {/* Categories Scrollable List */}
-                <div className="max-h-[380px] overflow-y-auto pr-2 divide-y divide-white/[0.08] space-y-1">
+                <div className="max-h-[380px] overflow-y-auto custom-scrollbar pr-3 divide-y divide-white/[0.08] space-y-1">
                   {activeGroup.categories.map((cat) => (
                     <div
                       key={cat.id}
-                      className="group/row min-h-[72px] py-4 flex items-center justify-between gap-4 transition-colors hover:bg-white/[0.02] px-2 rounded-lg"
+                      className="group/row min-h-[64px] py-3 flex items-center justify-between gap-4 transition-colors hover:bg-white/[0.03] px-3 rounded-xl"
                     >
                       <div className="flex items-center gap-4 flex-1 min-w-0">
                         {/* Code Column (72px) */}
@@ -364,27 +364,27 @@ export default function CatalogueIndex({
                         </span>
 
                         {/* Title & Families Column */}
-                        <div className="flex-1 min-w-0 group-hover/row:translate-x-[6px] transition-transform duration-300">
+                        <div className="flex-1 min-w-0 group-hover/row:translate-x-[4px] transition-transform duration-300">
                           <Link
-                            href={`/products/${cat.slug}`}
-                            className="text-[17px] font-medium text-white group-hover/row:text-[#8DC63F] transition-colors block truncate focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded"
+                            href={`/products?group=${cat.groupPrefix}&codes=${cat.code}`}
+                            className="text-[16px] font-medium text-white group-hover/row:text-[#8DC63F] text-left transition-colors block truncate focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded"
                           >
                             {cat.title}
                           </Link>
-                          <span className="text-sm text-[#A9B4C0] truncate block mt-0.5">
+                          <span className="text-xs text-[#A9B4C0] truncate block mt-0.5">
                             {formatFamilies(cat.families)}
                           </span>
                         </div>
                       </div>
 
-                      {/* 44px Enquire Button */}
+                      {/* 40px Enquire Button */}
                       <button
                         type="button"
                         aria-label={`Send enquiry for ${cat.title}`}
                         onClick={() =>
                           openProductModal({ categoryCode: cat.code, categoryTitle: cat.title })
                         }
-                        className="w-11 h-11 rounded-full border border-white/15 bg-white/5 hover:bg-[#8DC63F]/20 hover:border-[#8DC63F] text-white hover:text-[#8DC63F] flex items-center justify-center shrink-0 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F]"
+                        className="w-10 h-10 rounded-full border border-white/15 bg-white/5 hover:bg-[#8DC63F]/20 hover:border-[#8DC63F] text-white hover:text-[#8DC63F] flex items-center justify-center shrink-0 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F]"
                       >
                         <Send className="w-4 h-4 stroke-[1.5]" />
                       </button>
@@ -478,8 +478,8 @@ export default function CatalogueIndex({
                                   {cat.code}
                                 </span>
                                 <Link
-                                  href={`/products/${cat.slug}`}
-                                  className="text-base font-medium text-white hover:text-[#8DC63F] transition-colors truncate focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded"
+                                  href={`/products?group=${cat.groupPrefix}&codes=${cat.code}`}
+                                  className="text-base font-medium text-white text-left hover:text-[#8DC63F] transition-colors truncate focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded"
                                 >
                                   {cat.title}
                                 </Link>

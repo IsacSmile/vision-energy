@@ -1,463 +1,698 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useTransition } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import FormShell from "./FormShell";
-import ImageUploader from "./ImageUploader";
-import SeoPanel from "./SeoPanel";
-import { showToast } from "./Toast";
-import { X, Plus, Tag } from "lucide-react";
+import { useForm, useFieldArray } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { upload } from "@vercel/blob/client";
+import {
+  Upload,
+  AlertCircle,
+  Plus,
+  Trash2,
+  Save,
+  Archive,
+  RotateCcw,
+  CheckCircle2,
+  Loader2,
+  ShieldAlert,
+  ArrowLeft,
+  ImageIcon,
+  RefreshCw,
+} from "lucide-react";
+import {
+  productSchema,
+  PRODUCT_CATEGORIES,
+  type ProductFormValues,
+} from "@/lib/schemas/product";
+import { getCategoryPlaceholder } from "@/lib/utils/placeholders";
 
 interface ProductFormProps {
-  initialData?: any;
-  id?: string;
+  initialData?: {
+    id: string;
+    code: string;
+    title: string;
+    description: string;
+    includes: string[];
+    category: string;
+    subcategoryGroup: string;
+    sortOrder: number;
+    status: "PUBLISHED" | "ARCHIVED";
+    imageUrl: string | null;
+    imageAlt: string | null;
+    isPlaceholder: boolean;
+  };
+  isEdit?: boolean;
 }
 
-export default function ProductForm({ initialData, id }: ProductFormProps) {
+export function ProductForm({ initialData, isEdit = false }: ProductFormProps) {
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
 
-  const [code, setCode] = useState(initialData?.code || "LP-05");
-  const [slug, setSlug] = useState(initialData?.slug || "");
-  const [slugManuallyEdited, setSlugManuallyEdited] = useState(Boolean(initialData?.slug));
-  const [group, setGroup] = useState(initialData?.group || "LP");
-  const [groupLabel, setGroupLabel] = useState(initialData?.groupLabel || "Lightning Protection");
-  const [isNewGroup, setIsNewGroup] = useState(false);
-  const [sortOrder, setSortOrder] = useState<number>(initialData?.sortOrder ?? 1);
-  const [priority, setPriority] = useState(Boolean(initialData?.priority));
-  const [title, setTitle] = useState(initialData?.title || "");
-  const [description, setDescription] = useState(initialData?.description || "");
-  const [productFamilies, setProductFamilies] = useState<string[]>(initialData?.productFamilies || []);
-  const [familyInput, setFamilyInput] = useState("");
-  const [image, setImage] = useState(initialData?.image || "");
-  const [imageAlt, setImageAlt] = useState(initialData?.imageAlt || "");
-  const [status, setStatus] = useState<"DRAFT" | "PUBLISHED">(initialData?.status || "DRAFT");
-  const [reviewNote, setReviewNote] = useState(initialData?.reviewNote || "");
-  const [seoTitle, setSeoTitle] = useState(initialData?.seoTitle || "");
-  const [seoDescription, setSeoDescription] = useState(initialData?.seoDescription || "");
+  const [serverError, setServerError] = useState<string | null>(null);
+  const [serverSuccess, setServerSuccess] = useState<string | null>(null);
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isDirty, setIsDirty] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  // Single photo state
+  const [imageUrl, setImageUrl] = useState<string>(
+    initialData?.imageUrl ||
+      getCategoryPlaceholder(initialData?.category, initialData?.subcategoryGroup, initialData?.title).imageUrl
+  );
+  const [imageAlt, setImageAlt] = useState<string>(
+    initialData?.imageAlt ||
+      getCategoryPlaceholder(initialData?.category, initialData?.subcategoryGroup, initialData?.title).imageAlt
+  );
+  const [isPlaceholder, setIsPlaceholder] = useState<boolean>(
+    initialData?.isPlaceholder ?? true
+  );
 
-  // Auto generate slug from title if not manually edited
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
+
+  // Danger zone confirmation state
+  const [deleteConfirmCode, setDeleteConfirmCode] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  // Form setup
+  const {
+    register,
+    handleSubmit,
+    control,
+    watch,
+    formState: { errors, isDirty },
+  } = useForm<ProductFormValues>({
+    resolver: zodResolver(productSchema) as any,
+    defaultValues: {
+      code: initialData?.code || "",
+      title: initialData?.title || "",
+      description: initialData?.description || "",
+      includes: initialData?.includes?.length ? initialData.includes : [""],
+      category: (initialData?.category as any) || "Electrical",
+      subcategoryGroup: initialData?.subcategoryGroup || "",
+      sortOrder: initialData?.sortOrder ?? 0,
+      imageUrl: initialData?.imageUrl || "",
+      imageAlt: initialData?.imageAlt || "",
+    },
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "includes" as never,
+  });
+
+  const selectedCategory = watch("category");
+  const selectedSubcategory = watch("subcategoryGroup");
+  const selectedTitle = watch("title");
+
+  // Keep placeholder synced if no real photo uploaded yet
   useEffect(() => {
-    if (!slugManuallyEdited && title) {
-      const generated = title
-        .toLowerCase()
-        .replace(/[^a-z0-9\s-]/g, "")
-        .trim()
-        .replace(/\s+/g, "-")
-        .substring(0, 80);
-      setSlug(generated);
+    if (isPlaceholder) {
+      const fallback = getCategoryPlaceholder(selectedCategory, selectedSubcategory, selectedTitle);
+      setImageUrl(fallback.imageUrl);
+      if (!imageAlt || imageAlt.includes("— sample image")) {
+        setImageAlt(fallback.imageAlt);
+      }
     }
-  }, [title, slugManuallyEdited]);
+  }, [selectedCategory, selectedSubcategory, selectedTitle, isPlaceholder]);
 
-  const handleAddFamily = () => {
-    const trimmed = familyInput.trim();
-    if (!trimmed) return;
-    if (productFamilies.includes(trimmed)) {
-      showToast("Duplicate tag ignored", "info");
-      setFamilyInput("");
-      return;
-    }
-    if (productFamilies.length >= 20) {
-      showToast("Maximum 20 product family tags allowed", "error");
-      return;
-    }
-    setProductFamilies((prev) => [...prev, trimmed]);
-    setFamilyInput("");
-    setIsDirty(true);
-  };
+  // Unsaved changes beforeunload warning
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (isDirty || isUploading) {
+        e.preventDefault();
+        e.returnValue = "";
+      }
+    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, [isDirty, isUploading]);
 
-  const handleRemoveFamily = (index: number) => {
-    setProductFamilies((prev) => prev.filter((_, i) => i !== index));
-    setIsDirty(true);
-  };
+  // Handle single photo upload
+  const handleFileUpload = async (filesList: FileList | null) => {
+    if (!filesList || filesList.length === 0) return;
+    const file = filesList[0];
+    setServerError(null);
 
-  const validate = () => {
-    const newErrors: Record<string, string> = {};
-    if (!code || !/^[A-Z]{2}-\d{2,3}$/.test(code)) {
-      newErrors.code = "Code is required and must follow pattern like LP-01 or ER-02";
-    }
-    if (!slug || slug.length < 3) {
-      newErrors.slug = "Slug must be at least 3 characters";
-    }
-    if (!title || title.length < 2) {
-      newErrors.title = "Title must be at least 2 characters";
-    }
-    if (!description || description.length < 20 || description.length > 600) {
-      newErrors.description = "Description must be between 20 and 600 characters";
-    }
-    if (image && (!imageAlt || imageAlt.trim().length === 0)) {
-      newErrors.imageAlt = "Alt text is required when an image exists";
-    }
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const submitForm = async (targetStatus: "DRAFT" | "PUBLISHED") => {
-    if (!validate()) {
-      showToast("Please fix the errors before saving", "error");
+    if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
+      setServerError("Invalid image type. Only JPEG, PNG, and WebP images are allowed.");
       return;
     }
 
-    setIsSubmitting(true);
+    if (file.size > 5 * 1024 * 1024) {
+      setServerError("Image size exceeds 5MB limit.");
+      return;
+    }
+
+    setIsUploading(true);
+    setUploadProgress(10);
+
     try {
-      const payload = {
-        code,
-        slug,
-        group,
-        groupLabel,
-        sortOrder: Number(sortOrder),
-        priority,
-        title,
-        description,
-        productFamilies,
-        image: image || null,
-        imageAlt: imageAlt || null,
-        status: targetStatus,
-        reviewNote: reviewNote || null,
-        seoTitle: seoTitle || null,
-        seoDescription: seoDescription || null,
-        updatedAt: initialData?.updatedAt,
-      };
-
-      const url = id ? `/api/admin/products/${id}` : "/api/admin/products";
-      const method = id ? "PUT" : "POST";
-
-      const res = await fetch(url, {
-        method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+      const newBlob = await upload(file.name, file, {
+        access: "public",
+        handleUploadUrl: "/api/admin/products/upload-token",
+        clientPayload: JSON.stringify({
+          productId: initialData?.id || "draft",
+        }),
+        onUploadProgress: (p) => setUploadProgress(Math.round(p.percentage)),
       });
 
-      const json = await res.json();
+      setImageUrl(newBlob.url);
+      setIsPlaceholder(false);
+      if (!imageAlt || imageAlt.includes("— sample image")) {
+        setImageAlt(watch("title") || file.name.replace(/\.[^/.]+$/, ""));
+      }
+      setIsUploading(false);
+      setServerSuccess("Photo uploaded. Save form to persist changes.");
+    } catch (err: any) {
+      setServerError(err.message || "Upload failed.");
+      setIsUploading(false);
+    }
+  };
+
+  // Revert real photo back to local category placeholder
+  const handleRemovePhoto = async () => {
+    setServerError(null);
+    if (isEdit && initialData && !initialData.isPlaceholder) {
+      startTransition(async () => {
+        try {
+          const res = await fetch(`/api/admin/products/${initialData.id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ action: "remove_image" }),
+          });
+          if (res.ok) {
+            const fallback = getCategoryPlaceholder(
+              watch("category"),
+              watch("subcategoryGroup"),
+              watch("title")
+            );
+            setImageUrl(fallback.imageUrl);
+            setImageAlt(fallback.imageAlt);
+            setIsPlaceholder(true);
+            setServerSuccess("Real photo removed. Product reverted to sample placeholder.");
+            router.refresh();
+          } else {
+            const data = await res.json();
+            setServerError(data.error || "Failed to remove image.");
+          }
+        } catch (err: any) {
+          setServerError(err.message || "Network error.");
+        }
+      });
+    } else {
+      const fallback = getCategoryPlaceholder(
+        watch("category"),
+        watch("subcategoryGroup"),
+        watch("title")
+      );
+      setImageUrl(fallback.imageUrl);
+      setImageAlt(fallback.imageAlt);
+      setIsPlaceholder(true);
+    }
+  };
+
+  // Form submission handler
+  const onSubmit = async (values: ProductFormValues) => {
+    if (isUploading) {
+      setServerError("Please wait for photo upload to finish before saving.");
+      return;
+    }
+
+    if (!imageAlt || imageAlt.trim().length < 3) {
+      setServerError("Image Alt Text (at least 3 characters) is required.");
+      return;
+    }
+
+    setServerError(null);
+    setServerSuccess(null);
+
+    const payload = {
+      product: {
+        ...values,
+        includes: values.includes.filter(Boolean),
+        status: initialData?.status || "PUBLISHED",
+        imageUrl,
+        imageAlt: imageAlt.trim(),
+      },
+    };
+
+    startTransition(async () => {
+      try {
+        const url = isEdit
+          ? `/api/admin/products/${initialData?.id}`
+          : `/api/admin/products`;
+        const method = isEdit ? "PUT" : "POST";
+
+        const res = await fetch(url, {
+          method,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          setServerError(data.error || "Failed to save product.");
+          return;
+        }
+
+        setServerSuccess(
+          isEdit ? "Product updated successfully!" : "Product created successfully!"
+        );
+        router.push("/admin/products");
+        router.refresh();
+      } catch (err: any) {
+        setServerError(err.message || "Network error occurred.");
+      }
+    });
+  };
+
+  // Archive / Restore handler
+  const handleToggleArchive = async () => {
+    if (!isEdit || !initialData) return;
+    const newStatus = initialData.status === "PUBLISHED" ? "archive" : "restore";
+    setServerError(null);
+
+    startTransition(async () => {
+      try {
+        const res = await fetch(`/api/admin/products/${initialData.id}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action: newStatus }),
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          setServerError(data.error || "Action failed.");
+          return;
+        }
+        router.push("/admin/products");
+        router.refresh();
+      } catch (err: any) {
+        setServerError(err.message || "Failed to change product status.");
+      }
+    });
+  };
+
+  // Permanent Delete handler
+  const handlePermanentDelete = async () => {
+    if (!isEdit || !initialData) return;
+    if (deleteConfirmCode.trim().toUpperCase() !== initialData.code.toUpperCase()) {
+      setServerError(`Please type exact product code "${initialData.code}" to confirm deletion.`);
+      return;
+    }
+
+    setIsDeleting(true);
+    setServerError(null);
+
+    try {
+      const res = await fetch(
+        `/api/admin/products/${initialData.id}?confirmCode=${encodeURIComponent(deleteConfirmCode)}`,
+        { method: "DELETE" }
+      );
+      const data = await res.json();
 
       if (!res.ok) {
-        if (res.status === 409) {
-          throw new Error("changed elsewhere");
-        }
-        showToast(json.error || "Save failed", "error");
+        setServerError(data.error || "Permanent deletion failed.");
+        setIsDeleting(false);
         return;
       }
 
-      showToast(`Product category saved successfully as ${targetStatus}`, "success");
-      setIsDirty(false);
+      setServerSuccess(`Product ${initialData.code} permanently deleted.`);
       router.push("/admin/products");
       router.refresh();
     } catch (err: any) {
-      if (err.message === "changed elsewhere") throw err;
-      showToast("Failed to save product category", "error");
-    } finally {
-      setIsSubmitting(false);
+      setServerError(err.message || "Deletion failed.");
+      setIsDeleting(false);
     }
   };
 
   return (
-    <FormShell
-      title={id ? `Edit Product ${code}` : "New Product Category"}
-      type="product"
-      id={id}
-      status={status}
-      updatedAt={initialData?.updatedAt}
-      isDirty={isDirty}
-      isSubmitting={isSubmitting}
-      errors={errors}
-      onSaveDraft={() => submitForm("DRAFT")}
-      onPublish={() => submitForm("PUBLISHED")}
-    >
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Main Content Area (2 cols) */}
-        <div className="lg:col-span-2 space-y-6">
-          {/* Basic Fields Box */}
-          <div className="bg-[#0D1117] border border-[#1F2937] p-5 rounded-xl space-y-4">
-            <h3 className="text-sm font-bold text-white border-b border-[#1F2937] pb-3">Category Details</h3>
+    <form onSubmit={handleSubmit(onSubmit as any)} className="space-y-8 max-w-5xl mx-auto pb-16">
+      {/* Header Bar */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-800 pb-5">
+        <div className="flex items-center gap-3">
+          <Link
+            href="/admin/products"
+            className="rounded-lg p-2 text-slate-400 hover:bg-slate-800 hover:text-white transition"
+          >
+            <ArrowLeft className="h-5 w-5" />
+          </Link>
+          <div>
+            <h1 className="text-2xl font-bold text-white">
+              {isEdit ? `Edit Product ${initialData?.code}` : "Create New Product"}
+            </h1>
+            <p className="text-sm text-slate-400">
+              Manage SKU details and product photo
+            </p>
+          </div>
+        </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* Category Code */}
-              <div className="space-y-1">
-                <label className="block text-xs font-semibold text-gray-300">
-                  Category Code <span className="text-red-400">*</span>
-                </label>
+        <div className="flex items-center gap-3">
+          {isEdit && (
+            <button
+              type="button"
+              onClick={handleToggleArchive}
+              disabled={isPending}
+              className="flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-800 px-4 py-2 text-xs font-semibold text-slate-200 hover:bg-slate-700 transition disabled:opacity-50"
+            >
+              {initialData?.status === "PUBLISHED" ? (
+                <>
+                  <Archive className="h-4 w-4 text-amber-400" />
+                  <span>Archive Product</span>
+                </>
+              ) : (
+                <>
+                  <RotateCcw className="h-4 w-4 text-emerald-400" />
+                  <span>Restore Product</span>
+                </>
+              )}
+            </button>
+          )}
+
+          <button
+            type="submit"
+            disabled={isPending || isUploading}
+            className="flex items-center gap-2 rounded-lg bg-emerald-500 px-5 py-2 text-sm font-bold text-slate-950 hover:bg-emerald-400 transition shadow-lg shadow-emerald-500/10 disabled:opacity-50"
+          >
+            {isPending ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <Save className="h-4 w-4" />
+            )}
+            <span>{isEdit ? "Update Product" : "Publish Product"}</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Global Alerts */}
+      {serverError && (
+        <div className="flex items-start gap-3 rounded-xl border border-rose-500/50 bg-rose-950/40 p-4 text-rose-200">
+          <AlertCircle className="h-5 w-5 text-rose-400 shrink-0 mt-0.5" />
+          <div className="flex-1 text-sm font-medium">{serverError}</div>
+          <button
+            type="button"
+            onClick={() => setServerError(null)}
+            className="text-rose-400 hover:text-rose-200 text-xs font-bold"
+          >
+            Dismiss
+          </button>
+        </div>
+      )}
+
+      {serverSuccess && (
+        <div className="flex items-center gap-3 rounded-xl border border-emerald-500/50 bg-emerald-950/40 p-4 text-emerald-200">
+          <CheckCircle2 className="h-5 w-5 text-emerald-400 shrink-0" />
+          <div className="flex-1 text-sm font-medium">{serverSuccess}</div>
+        </div>
+      )}
+
+      {/* Core Details Section */}
+      <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 space-y-6">
+        <h2 className="text-lg font-bold text-white border-b border-slate-800/80 pb-3">
+          1. Basic SKU Details
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Code */}
+          <div>
+            <label className="block text-xs font-semibold text-slate-300 mb-2">
+              Product Code (SKU) <span className="text-rose-400">*</span>
+            </label>
+            <input
+              type="text"
+              {...register("code")}
+              placeholder="LP-01 or GEN-01"
+              className="w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-2.5 text-sm font-mono text-emerald-400 uppercase placeholder-slate-600 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+            />
+            {errors.code && (
+              <p className="mt-1 text-xs text-rose-400">{errors.code.message}</p>
+            )}
+          </div>
+
+          {/* Category */}
+          <div>
+            <label className="block text-xs font-semibold text-slate-300 mb-2">
+              Category <span className="text-rose-400">*</span>
+            </label>
+            <select
+              {...register("category")}
+              className="w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-2.5 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+            >
+              {PRODUCT_CATEGORIES.map((cat) => (
+                <option key={cat} value={cat}>
+                  {cat}
+                </option>
+              ))}
+            </select>
+            {errors.category && (
+              <p className="mt-1 text-xs text-rose-400">{errors.category.message}</p>
+            )}
+          </div>
+
+          {/* Subcategory Group */}
+          <div>
+            <label className="block text-xs font-semibold text-slate-300 mb-2">
+              Subcategory / Group <span className="text-rose-400">*</span>
+            </label>
+            <input
+              type="text"
+              {...register("subcategoryGroup")}
+              placeholder="e.g. Low Voltage Panels"
+              className="w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-2.5 text-sm text-slate-100 placeholder-slate-600 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+            />
+            {errors.subcategoryGroup && (
+              <p className="mt-1 text-xs text-rose-400">{errors.subcategoryGroup.message}</p>
+            )}
+          </div>
+        </div>
+
+        {/* Title */}
+        <div>
+          <label className="block text-xs font-semibold text-slate-300 mb-2">
+            Product Title <span className="text-rose-400">*</span>
+          </label>
+          <input
+            type="text"
+            {...register("title")}
+            placeholder="e.g. Main Distribution Board (MDB 400A)"
+            className="w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-2.5 text-sm text-slate-100 placeholder-slate-600 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+          />
+          {errors.title && (
+            <p className="mt-1 text-xs text-rose-400">{errors.title.message}</p>
+          )}
+        </div>
+
+        {/* Description */}
+        <div>
+          <label className="block text-xs font-semibold text-slate-300 mb-2">
+            Description <span className="text-rose-400">*</span>
+          </label>
+          <textarea
+            {...register("description")}
+            rows={4}
+            placeholder="Comprehensive description of specifications, engineering standards, and applications..."
+            className="w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-2.5 text-sm text-slate-100 placeholder-slate-600 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+          />
+          {errors.description && (
+            <p className="mt-1 text-xs text-rose-400">{errors.description.message}</p>
+          )}
+        </div>
+
+        {/* Includes / Key Specs */}
+        <div>
+          <div className="flex items-center justify-between mb-2">
+            <label className="block text-xs font-semibold text-slate-300">
+              Includes / Features (1 to 15 items) <span className="text-rose-400">*</span>
+            </label>
+            <button
+              type="button"
+              onClick={() => append("")}
+              disabled={fields.length >= 15}
+              className="flex items-center gap-1 text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition"
+            >
+              <Plus className="h-3.5 w-3.5" />
+              <span>Add Item</span>
+            </button>
+          </div>
+
+          <div className="space-y-2">
+            {fields.map((field, index) => (
+              <div key={field.id} className="flex items-center gap-2">
                 <input
                   type="text"
-                  value={code}
-                  onChange={(e) => {
-                    setCode(e.target.value.toUpperCase());
-                    setIsDirty(true);
-                  }}
-                  placeholder="LP-01"
-                  className="w-full bg-[#050608] border border-[#1F2937] text-white text-xs font-mono font-bold rounded-xl px-3 py-2.5 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-[#A3E635]"
+                  {...register(`includes.${index}` as const)}
+                  placeholder={`Feature / Included Spec #${index + 1}`}
+                  className="flex-1 rounded-xl border border-slate-800 bg-slate-950 px-4 py-2 text-xs text-slate-100 placeholder-slate-600 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
                 />
-                {errors.code && <p className="text-[11px] text-red-400 font-mono">{errors.code}</p>}
-              </div>
-
-              {/* Group Selection */}
-              <div className="space-y-1">
-                <label className="block text-xs font-semibold text-gray-300">
-                  Group Prefix <span className="text-red-400">*</span>
-                </label>
-                {isNewGroup ? (
-                  <div className="grid grid-cols-2 gap-2">
-                    <input
-                      type="text"
-                      value={group}
-                      onChange={(e) => setGroup(e.target.value.toUpperCase())}
-                      placeholder="Prefix (LP)"
-                      className="bg-[#050608] border border-[#1F2937] text-white text-xs rounded-xl px-3 py-2 min-h-[44px]"
-                    />
-                    <input
-                      type="text"
-                      value={groupLabel}
-                      onChange={(e) => setGroupLabel(e.target.value)}
-                      placeholder="Label (Lightning Protection)"
-                      className="bg-[#050608] border border-[#1F2937] text-white text-xs rounded-xl px-3 py-2 min-h-[44px]"
-                    />
-                  </div>
-                ) : (
-                  <select
-                    value={group}
-                    onChange={(e) => {
-                      if (e.target.value === "NEW") {
-                        setIsNewGroup(true);
-                        setGroup("");
-                        setGroupLabel("");
-                      } else {
-                        setGroup(e.target.value);
-                      }
-                      setIsDirty(true);
-                    }}
-                    className="w-full bg-[#050608] border border-[#1F2937] text-white text-xs rounded-xl px-3 py-2.5 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-[#A3E635]"
+                {fields.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={() => remove(index)}
+                    className="p-2 text-slate-500 hover:text-rose-400 transition"
+                    title="Remove item"
                   >
-                    <option value="LP">LP - Lightning Protection</option>
-                    <option value="ER">ER - Earthing & Grounding</option>
-                    <option value="LT">LT - Specialist & LED Lighting</option>
-                    <option value="CM">CM - Cable Management</option>
-                    <option value="CB">CB - Industrial & Optic Cables</option>
-                    <option value="CT">CT - Conduits & Trunking</option>
-                    <option value="EL">EL - Electrical & Control</option>
-                    <option value="EN">EN - Energy & Renewable Systems</option>
-                    <option value="ME">ME - Mechanical & HVAC</option>
-                    <option value="SG">SG - Security & Fire Systems</option>
-                    <option value="HW">HW - Hardware & Fasteners</option>
-                    <option value="SF">SF - Safety & Traffic Equipment</option>
-                    <option value="PK">PK - Industrial Packaging</option>
-                    <option value="ID">ID - Identification & Marking</option>
-                    <option value="NEW">+ Create New Group...</option>
-                  </select>
+                    <Trash2 className="h-4 w-4" />
+                  </button>
                 )}
+              </div>
+            ))}
+          </div>
+          {errors.includes && (
+            <p className="mt-1 text-xs text-rose-400">{errors.includes.message}</p>
+          )}
+        </div>
+      </div>
+
+      {/* Product Photo Management Section */}
+      <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-800/80 pb-3">
+          <div>
+            <h2 className="text-lg font-bold text-white">2. Product Photo</h2>
+            <p className="text-xs text-slate-400">
+              Upload a real product photo or use the auto-assigned category placeholder.
+            </p>
+          </div>
+          <div className="flex items-center gap-2">
+            <span
+              className={`text-xs font-semibold px-3 py-1 rounded-full border ${
+                isPlaceholder
+                  ? "bg-amber-500/15 text-amber-400 border-amber-500/30"
+                  : "bg-emerald-500/15 text-emerald-400 border-emerald-500/30"
+              }`}
+            >
+              {isPlaceholder ? "Currently showing: Sample image" : "Currently showing: Uploaded photo"}
+            </span>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+          {/* Preview Box */}
+          <div className="space-y-3">
+            <label className="block text-xs font-semibold text-slate-300">Image Preview</label>
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-slate-950 border border-slate-800">
+              <Image
+                src={imageUrl}
+                alt={imageAlt || "Product image preview"}
+                fill
+                sizes="400px"
+                className="object-cover"
+              />
+              {isPlaceholder && (
+                <div className="absolute bottom-3 right-3 rounded-md bg-slate-950/85 px-2.5 py-1 text-xs font-semibold text-slate-300 border border-slate-800 backdrop-blur-sm">
+                  Sample image
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Controls & Alt Text */}
+          <div className="space-y-5">
+            {/* File Upload Input */}
+            <div>
+              <label className="block text-xs font-semibold text-slate-300 mb-2">
+                Upload Real Photo (JPEG, PNG, WebP ≤ 5MB)
+              </label>
+              <div className="relative flex items-center justify-center rounded-xl border border-dashed border-slate-700 bg-slate-950 p-4 text-center transition hover:border-emerald-500/50">
+                <input
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  onChange={(e) => handleFileUpload(e.target.files)}
+                  disabled={isUploading}
+                  className="absolute inset-0 cursor-pointer opacity-0"
+                />
+                <div className="flex items-center gap-2 text-xs font-semibold text-emerald-400">
+                  {isUploading ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                      <span>Uploading ({uploadProgress}%)...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Upload className="h-4 w-4" />
+                      <span>Choose file to replace sample photo</span>
+                    </>
+                  )}
+                </div>
               </div>
             </div>
 
-            {/* Title */}
-            <div className="space-y-1">
-              <label className="block text-xs font-semibold text-gray-300">
-                Category Title <span className="text-red-400">*</span>
+            {/* Remove Real Image Action */}
+            {!isPlaceholder && (
+              <div>
+                <button
+                  type="button"
+                  onClick={handleRemovePhoto}
+                  disabled={isPending}
+                  className="flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-950 px-4 py-2 text-xs font-semibold text-rose-400 hover:bg-rose-950/30 transition"
+                >
+                  <RefreshCw className="h-3.5 w-3.5" />
+                  <span>Remove Uploaded Photo & Revert to Sample Image</span>
+                </button>
+              </div>
+            )}
+
+            {/* Alt Text Input */}
+            <div>
+              <label className="block text-xs font-semibold text-slate-300 mb-2">
+                Image Alt Text <span className="text-rose-400">*</span>
               </label>
               <input
                 type="text"
-                value={title}
-                onChange={(e) => {
-                  setTitle(e.target.value);
-                  setIsDirty(true);
-                }}
-                placeholder="Conventional Lightning Protection Systems"
-                className="w-full bg-[#050608] border border-[#1F2937] text-white text-xs rounded-xl px-3 py-2.5 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-[#A3E635]"
+                value={imageAlt}
+                onChange={(e) => setImageAlt(e.target.value)}
+                placeholder="Descriptive alt text for accessibility & SEO"
+                className="w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:border-emerald-500 focus:outline-none"
               />
-              {errors.title && <p className="text-[11px] text-red-400">{errors.title}</p>}
+              <p className="mt-1 text-[11px] text-slate-500">
+                Alt text is required for accessible rendering and Google product structured data.
+              </p>
             </div>
-
-            {/* Slug */}
-            <div className="space-y-1">
-              <div className="flex items-center justify-between text-xs">
-                <label className="font-semibold text-gray-300">
-                  URL Slug <span className="text-red-400">*</span>
-                </label>
-                {initialData?.status === "PUBLISHED" && slug !== initialData?.slug && (
-                  <span className="text-[11px] text-amber-400 font-semibold">
-                    Warning: Slug change will 301 redirect from old URL
-                  </span>
-                )}
-              </div>
-              <input
-                type="text"
-                value={slug}
-                onChange={(e) => {
-                  setSlug(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, "-"));
-                  setSlugManuallyEdited(true);
-                  setIsDirty(true);
-                }}
-                placeholder="conventional-lightning-protection-systems"
-                className="w-full bg-[#050608] border border-[#1F2937] text-white text-xs font-mono rounded-xl px-3 py-2.5 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-[#A3E635]"
-              />
-              {errors.slug && <p className="text-[11px] text-red-400 font-mono">{errors.slug}</p>}
-            </div>
-
-            {/* Description */}
-            <div className="space-y-1">
-              <div className="flex items-center justify-between text-xs">
-                <label className="font-semibold text-gray-300">
-                  Category Description <span className="text-red-400">*</span>
-                </label>
-                <span
-                  className={`font-mono text-[11px] ${
-                    description.length < 20 || description.length > 600 ? "text-amber-400" : "text-gray-500"
-                  }`}
-                >
-                  {description.length}/600 chars (min 20)
-                </span>
-              </div>
-              <textarea
-                rows={4}
-                value={description}
-                onChange={(e) => {
-                  setDescription(e.target.value);
-                  setIsDirty(true);
-                }}
-                placeholder="Complete conventional lightning protection systems for buildings..."
-                className="w-full bg-[#050608] border border-[#1F2937] text-white text-xs rounded-xl p-3 min-h-[100px] focus:outline-none focus:ring-2 focus:ring-[#A3E635] leading-relaxed resize-none"
-              />
-              {errors.description && <p className="text-[11px] text-red-400">{errors.description}</p>}
-            </div>
-
-            {/* Product Families Tag Input */}
-            <div className="space-y-2">
-              <label className="block text-xs font-semibold text-gray-300">Product Families (Tag Input)</label>
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  value={familyInput}
-                  onChange={(e) => setFamilyInput(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === ",") {
-                      e.preventDefault();
-                      handleAddFamily();
-                    }
-                  }}
-                  placeholder="Type product family and press Enter..."
-                  className="flex-1 bg-[#050608] border border-[#1F2937] text-white text-xs rounded-xl px-3 py-2 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-[#A3E635]"
-                />
-                <button
-                  type="button"
-                  onClick={handleAddFamily}
-                  className="px-4 py-2 bg-[#0B65B3] text-white font-bold text-xs rounded-xl hover:opacity-90 min-h-[44px]"
-                >
-                  Add Tag
-                </button>
-              </div>
-
-              {/* Tag Badges */}
-              <div className="flex flex-wrap gap-2 pt-1">
-                {productFamilies.map((tag, idx) => (
-                  <span
-                    key={idx}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#050608] border border-[#1F2937] rounded-xl text-xs font-mono text-gray-200"
-                  >
-                    <Tag className="w-3 h-3 text-[#A3E635]" />
-                    <span>{tag}</span>
-                    <button
-                      type="button"
-                      onClick={() => handleRemoveFamily(idx)}
-                      className="p-1 text-gray-400 hover:text-red-400 min-h-[44px] min-w-[44px] flex items-center justify-center -mr-1"
-                    >
-                      <X className="w-3.5 h-3.5" />
-                    </button>
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* SEO Panel Component */}
-          <SeoPanel
-            seoTitle={seoTitle}
-            seoDescription={seoDescription}
-            defaultTitle={`${title || "Product Category"} UAE | Vision Energy`}
-            defaultDescription={description || "Specialist electrical and lightning protection category."}
-            slug={`products/${slug}`}
-            onTitleChange={(v) => {
-              setSeoTitle(v);
-              setIsDirty(true);
-            }}
-            onDescriptionChange={(v) => {
-              setSeoDescription(v);
-              setIsDirty(true);
-            }}
-          />
-        </div>
-
-        {/* Sidebar Controls (1 col) */}
-        <div className="space-y-6">
-          {/* Image Uploader */}
-          <ImageUploader
-            value={image}
-            altValue={imageAlt}
-            type="products"
-            label="Category Image"
-            onChange={(url, alt) => {
-              setImage(url);
-              if (alt) setImageAlt(alt);
-              setIsDirty(true);
-            }}
-            onAltChange={(alt) => {
-              setImageAlt(alt);
-              setIsDirty(true);
-            }}
-          />
-
-          {/* Settings & Priority Switch */}
-          <div className="bg-[#0D1117] border border-[#1F2937] p-4 rounded-xl space-y-4">
-            <h4 className="text-xs font-bold text-gray-300 uppercase tracking-wider border-b border-[#1F2937] pb-2">
-              Display & Priority
-            </h4>
-
-            {/* Priority Switch */}
-            <label className="flex items-center justify-between p-3 bg-[#050608] border border-[#1F2937] rounded-xl cursor-pointer">
-              <span className="text-xs font-medium text-gray-200">Show first on the site (Priority)</span>
-              <input
-                type="checkbox"
-                checked={priority}
-                onChange={(e) => {
-                  setPriority(e.target.checked);
-                  setIsDirty(true);
-                }}
-                className="w-4 h-4 rounded border-gray-600 bg-gray-800 text-[#A3E635] focus:ring-[#A3E635]"
-              />
-            </label>
-
-            {/* Sort Order */}
-            <div className="space-y-1">
-              <label className="block text-xs font-semibold text-gray-300">Sort Order</label>
-              <input
-                type="number"
-                value={sortOrder}
-                onChange={(e) => {
-                  setSortOrder(parseInt(e.target.value, 10) || 0);
-                  setIsDirty(true);
-                }}
-                className="w-full bg-[#050608] border border-[#1F2937] text-white text-xs font-mono rounded-xl px-3 py-2.5 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-[#A3E635]"
-              />
-            </div>
-          </div>
-
-          {/* Internal Review Note */}
-          <div className="bg-[#0D1117] border border-[#1F2937] p-4 rounded-xl space-y-2">
-            <label className="block text-xs font-bold text-amber-400 uppercase tracking-wider">
-              Internal Review Note (Never shown on site)
-            </label>
-            <textarea
-              rows={3}
-              value={reviewNote}
-              onChange={(e) => {
-                setReviewNote(e.target.value);
-                setIsDirty(true);
-              }}
-              placeholder="Internal team notes, photo updates needed..."
-              className="w-full bg-[#050608] border border-[#1F2937] text-white text-xs rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-amber-400 resize-none"
-            />
           </div>
         </div>
       </div>
-    </FormShell>
+
+      {/* Danger Zone (Edit Mode Only) */}
+      {isEdit && initialData && (
+        <div className="rounded-2xl border border-rose-900/50 bg-rose-950/20 p-6 space-y-4">
+          <div className="flex items-center gap-3 text-rose-400">
+            <ShieldAlert className="h-6 w-6 shrink-0" />
+            <div>
+              <h3 className="text-base font-bold text-white">Danger Zone: Permanent Deletion</h3>
+              <p className="text-xs text-rose-300">
+                Permanently deletes product record and cleans up any uploaded Vercel Blob asset.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
+            <input
+              type="text"
+              value={deleteConfirmCode}
+              onChange={(e) => setDeleteConfirmCode(e.target.value)}
+              placeholder={`Type "${initialData.code}" to confirm`}
+              className="w-full sm:w-64 rounded-xl border border-rose-800/60 bg-slate-950 px-3.5 py-2 text-xs font-mono text-white placeholder-slate-600 focus:border-rose-500 focus:outline-none"
+            />
+
+            <button
+              type="button"
+              onClick={handlePermanentDelete}
+              disabled={
+                isDeleting ||
+                deleteConfirmCode.trim().toUpperCase() !== initialData.code.toUpperCase()
+              }
+              className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl bg-rose-600 px-5 py-2 text-xs font-bold text-white hover:bg-rose-500 transition disabled:opacity-40"
+            >
+              {isDeleting ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                <Trash2 className="h-4 w-4" />
+              )}
+              <span>Delete Permanently</span>
+            </button>
+          </div>
+        </div>
+      )}
+    </form>
   );
 }

@@ -91,6 +91,9 @@ export default async function ProductsPage({ searchParams }: PageProps) {
         : typeof cat.productFamilies === "string"
         ? (cat.productFamilies as string).split(";").map((f) => f.trim()).filter(Boolean)
         : [],
+      imageUrl: cat.imageUrl || cat.image || null,
+      imageAlt: cat.imageAlt || null,
+      isPlaceholder: cat.isPlaceholder ?? (!cat.imageUrl && !cat.image),
     };
   });
 

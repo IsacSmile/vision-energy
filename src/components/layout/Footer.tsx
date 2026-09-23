@@ -73,6 +73,7 @@ export default function Footer({ services = [] }: FooterProps) {
     { label: 'About Us', href: '/about' },
     { label: 'Blog', href: '/blog' },
     { label: 'Contact Us', href: '/contact' },
+    { label: 'Admin Panel', href: '/admin' },
   ];
 
   return (

@@ -1,10 +1,18 @@
-import React from "react";
-import ProductForm from "@/components/admin/ProductForm";
+import { getAdminSession } from "@/lib/auth";
+import { redirect } from "next/navigation";
+import { ProductForm } from "@/components/admin/ProductForm";
 
-export const metadata = {
-  title: "New Product Category - Vision Energy Admin",
-};
+export const dynamic = "force-dynamic";
 
-export default function NewProductCategoryPage() {
-  return <ProductForm />;
+export default async function NewProductPage() {
+  const session = await getAdminSession();
+  if (!session) {
+    redirect("/admin/login");
+  }
+
+  return (
+    <div className="p-6 md:p-8">
+      <ProductForm />
+    </div>
+  );
 }

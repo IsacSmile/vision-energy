@@ -87,7 +87,7 @@ export const PILLARS_CONFIG: PillarConfig[] = [
     title: 'Technical Solutions',
     iconName: 'ShieldCheck',
     description:
-      'Complex requirements need the right technical response. Explore specialised products, engineered system solutions, and expert support tailored to your project\'s performance and compliance needs.',
+      'Complex requirements need the right technical response. Explore specialized products, engineered system solutions, and expert support tailored to your project’s performance and compliance needs.',
     categoryCodes: [
       'LP-01',
       'LP-02',

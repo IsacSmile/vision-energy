@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { getPublishedProductCategories } from "@/lib/data/products";
 import CatalogueIndex, { GroupData, CategoryData } from "./CatalogueIndex";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 const GROUP_LABELS: Record<string, string> = {
   LP: "Lightning Protection",
@@ -27,9 +28,11 @@ export default async function ProductPreview() {
 
   if (!categories || categories.length === 0) {
     return (
-      <div className="w-full space-y-8">
-        <CatalogueIndex groups={[]} totalCategoryCount={0} />
-      </div>
+      <section aria-labelledby="product-preview-heading" className="py-16 md:py-24 lg:py-32 bg-[#050608] relative">
+        <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          <CatalogueIndex groups={[]} totalCategoryCount={0} />
+        </div>
+      </section>
     );
   }
   const groupsMap = new Map<string, CategoryData[]>();
@@ -72,26 +75,35 @@ export default async function ProductPreview() {
   });
 
   return (
-    <div className="w-full space-y-8">
-      <CatalogueIndex groups={groupsData} totalCategoryCount={categories.length} />
+    <section aria-labelledby="product-preview-heading" className="py-16 md:py-24 lg:py-32 bg-[#050608] relative">
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 space-y-12 lg:space-y-16">
+        <SectionHeader
+          id="product-preview-heading"
+          eyebrow="Product Catalogue"
+          title="Explore Our Product Engineering Ranges"
+          description={`Browse ${categories.length} product categories across lightning protection, earthing, electrical, mechanical and solar.`}
+        />
 
-      {/* Catalog Footer Bar */}
-      <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div className="space-y-1">
-          <p className="text-sm font-semibold text-white">Full Product Catalogue</p>
-          <p className="text-xs text-[#A9B4C0]">
-            Browse all {categories.length} product categories, specifications and family ranges.
-          </p>
+        <CatalogueIndex groups={groupsData} totalCategoryCount={categories.length} />
+
+        {/* Catalog Footer Bar */}
+        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <p className="text-sm font-semibold text-white">Full Product Catalogue</p>
+            <p className="text-xs text-[#A9B4C0]">
+              Browse all {categories.length} product categories, specifications and family ranges.
+            </p>
+          </div>
+
+          <Link
+            href="/products"
+            className="px-6 py-3 bg-[#8DC63F] text-[#050608] font-bold text-xs rounded-full hover:opacity-90 transition-opacity flex items-center gap-2 shadow-lg shrink-0"
+          >
+            <span>View Complete Catalogue ({categories.length} Categories)</span>
+            <ArrowUpRight className="w-4 h-4" />
+          </Link>
         </div>
-
-        <Link
-          href="/products"
-          className="px-6 py-3 bg-[#8DC63F] text-[#050608] font-bold text-xs rounded-full hover:opacity-90 transition-opacity flex items-center gap-2 shadow-lg shrink-0"
-        >
-          <span>View Complete Catalogue ({categories.length} Categories)</span>
-          <ArrowUpRight className="w-4 h-4" />
-        </Link>
       </div>
-    </div>
+    </section>
   );
 }
