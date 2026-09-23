@@ -6,15 +6,32 @@ import { serviceContentSchema } from "@/lib/schemas/service";
 import { recordAuditLog } from "@/lib/audit";
 import { triggerCmsRevalidation } from "@/lib/revalidate";
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+async function resolveParams(params: { id: string } | Promise<{ id: string }>) {
+  if (!params) return { id: "" };
+  try {
+    if (typeof (params as any).then === "function") {
+      return (await params) || { id: "" };
+    }
+    return (params as any) || { id: "" };
+  } catch (e) {
+    return { id: "" };
+  }
+}
+
+export async function GET(request: Request, { params }: { params: { id: string } | Promise<{ id: string }> }) {
   const session = await getAdminSession();
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  const { id } = await resolveParams(params);
+  if (!id) {
+    return NextResponse.json({ error: "Missing service ID" }, { status: 400 });
+  }
+
   try {
     const item = await db.service.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
 
     if (!item) {
@@ -23,14 +40,20 @@ export async function GET(request: Request, { params }: { params: { id: string }
 
     return NextResponse.json({ item });
   } catch (error) {
+    console.error("GET service error:", error);
     return NextResponse.json({ error: "Failed to fetch service" }, { status: 500 });
   }
 }
 
-export async function PUT(request: Request, { params }: { params: { id: string } }) {
+export async function PUT(request: Request, { params }: { params: { id: string } | Promise<{ id: string }> }) {
   const session = await getAdminSession();
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const { id } = await resolveParams(params);
+  if (!id) {
+    return NextResponse.json({ error: "Missing service ID" }, { status: 400 });
   }
 
   try {
@@ -38,7 +61,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
     const parsedBasics = serviceFormSchema.parse(body);
     const parsedContent = serviceContentSchema.parse(body.content || {});
 
-    const existing = await db.service.findUnique({ where: { id: params.id } });
+    const existing = await db.service.findUnique({ where: { id } });
     if (!existing) {
       return NextResponse.json({ error: "Service not found" }, { status: 404 });
     }
@@ -65,7 +88,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
     }
 
     const updated = await db.service.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         slug: parsedBasics.slug,
         title: parsedBasics.title,
@@ -103,24 +126,34 @@ export async function PUT(request: Request, { params }: { params: { id: string }
 
     return NextResponse.json({ item: updated });
   } catch (error: any) {
+    console.error("PUT service error:", error);
+    if (error?.name === "ZodError" || error?.errors) {
+      const messages = error.errors?.map((e: any) => e.message).join(", ");
+      return NextResponse.json({ error: messages || "Validation error" }, { status: 400 });
+    }
     return NextResponse.json({ error: error?.message || "Failed to update service" }, { status: 500 });
   }
 }
 
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {
+export async function DELETE(request: Request, { params }: { params: { id: string } | Promise<{ id: string }> }) {
   const session = await getAdminSession();
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  const { id } = await resolveParams(params);
+  if (!id) {
+    return NextResponse.json({ error: "Missing service ID" }, { status: 400 });
+  }
+
   try {
-    const existing = await db.service.findUnique({ where: { id: params.id } });
+    const existing = await db.service.findUnique({ where: { id } });
     if (!existing) {
       return NextResponse.json({ error: "Service not found" }, { status: 404 });
     }
 
     const trashed = await db.service.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         status: "DRAFT",
         deletedAt: new Date(),
@@ -139,6 +172,7 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
 
     return NextResponse.json({ success: true });
   } catch (error) {
+    console.error("DELETE service error:", error);
     return NextResponse.json({ error: "Failed to trash service" }, { status: 500 });
   }
 }

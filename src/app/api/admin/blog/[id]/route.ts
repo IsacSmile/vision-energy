@@ -5,15 +5,32 @@ import { blogPostSchema } from "@/lib/schemas/admin";
 import { recordAuditLog } from "@/lib/audit";
 import { triggerCmsRevalidation } from "@/lib/revalidate";
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+async function resolveParams(params: { id: string } | Promise<{ id: string }>) {
+  if (!params) return { id: "" };
+  try {
+    if (typeof (params as any).then === "function") {
+      return (await params) || { id: "" };
+    }
+    return (params as any) || { id: "" };
+  } catch (e) {
+    return { id: "" };
+  }
+}
+
+export async function GET(request: Request, { params }: { params: { id: string } | Promise<{ id: string }> }) {
   const session = await getAdminSession();
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  const { id } = await resolveParams(params);
+  if (!id) {
+    return NextResponse.json({ error: "Missing article ID" }, { status: 400 });
+  }
+
   try {
     const item = await db.blogPost.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
 
     if (!item) {
@@ -22,21 +39,27 @@ export async function GET(request: Request, { params }: { params: { id: string }
 
     return NextResponse.json({ item });
   } catch (error) {
+    console.error("GET blog post error:", error);
     return NextResponse.json({ error: "Failed to fetch blog post" }, { status: 500 });
   }
 }
 
-export async function PUT(request: Request, { params }: { params: { id: string } }) {
+export async function PUT(request: Request, { params }: { params: { id: string } | Promise<{ id: string }> }) {
   const session = await getAdminSession();
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const { id } = await resolveParams(params);
+  if (!id) {
+    return NextResponse.json({ error: "Missing article ID" }, { status: 400 });
   }
 
   try {
     const body = await request.json();
     const parsed = blogPostSchema.parse(body);
 
-    const existing = await db.blogPost.findUnique({ where: { id: params.id } });
+    const existing = await db.blogPost.findUnique({ where: { id } });
     if (!existing) {
       return NextResponse.json({ error: "Blog post not found" }, { status: 404 });
     }
@@ -63,7 +86,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
     }
 
     const updated = await db.blogPost.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         title: parsed.title,
         slug: parsed.slug,
@@ -98,24 +121,34 @@ export async function PUT(request: Request, { params }: { params: { id: string }
 
     return NextResponse.json({ item: updated });
   } catch (error: any) {
+    console.error("PUT blog post error:", error);
+    if (error?.name === "ZodError" || error?.errors) {
+      const messages = error.errors?.map((e: any) => e.message).join(", ");
+      return NextResponse.json({ error: messages || "Validation error" }, { status: 400 });
+    }
     return NextResponse.json({ error: error?.message || "Failed to update blog post" }, { status: 500 });
   }
 }
 
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {
+export async function DELETE(request: Request, { params }: { params: { id: string } | Promise<{ id: string }> }) {
   const session = await getAdminSession();
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  const { id } = await resolveParams(params);
+  if (!id) {
+    return NextResponse.json({ error: "Missing article ID" }, { status: 400 });
+  }
+
   try {
-    const existing = await db.blogPost.findUnique({ where: { id: params.id } });
+    const existing = await db.blogPost.findUnique({ where: { id } });
     if (!existing) {
       return NextResponse.json({ error: "Blog post not found" }, { status: 404 });
     }
 
     const trashed = await db.blogPost.delete({
-      where: { id: params.id },
+      where: { id },
     });
 
     await recordAuditLog({
@@ -130,6 +163,7 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
 
     return NextResponse.json({ success: true });
   } catch (error) {
+    console.error("DELETE blog post error:", error);
     return NextResponse.json({ error: "Failed to delete blog post" }, { status: 500 });
   }
 }
