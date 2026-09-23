@@ -1,12 +1,12 @@
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://www.visionenergyme.com';
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.visionenergyme.com').replace(/\/$/, '');
   return {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/admin', '/api/admin'],
+      disallow: ['/admin', '/admin/*', '/api/*'],
     },
     sitemap: `${baseUrl}/sitemap.xml`,
   };
