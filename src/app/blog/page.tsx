@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { getPublishedBlogPosts } from "@/lib/data/posts";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 
 export const metadata = {
   title: "Technical Blog & Engineering Insights | Lightning Protection & Earthing",
@@ -15,17 +15,33 @@ export default async function BlogPage() {
   const posts = await getPublishedBlogPosts();
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
-      {/* Hero Section - untouched per specification */}
-      <div className="space-y-4 text-center max-w-3xl mx-auto">
-        <span className="text-xs font-bold text-[#8DC63F] uppercase tracking-widest bg-[#8DC63F]/10 border border-[#8DC63F]/30 px-3.5 py-1 rounded-full inline-block">
-          Technical Publication & Articles
-        </span>
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-10">
+      {/* Hero Section - Left-Aligned matching Products Page */}
+      <div className="space-y-4 max-w-4xl text-left border-b border-[#1F2937]/80 pb-8">
+        {/* Breadcrumb */}
+        <nav aria-label="Breadcrumb" className="text-[13px] text-[#A9B4C0] font-medium flex items-center gap-2">
+          <Link href="/" className="hover:text-white transition-colors">
+            Home
+          </Link>
+          <ChevronRight className="w-3.5 h-3.5 text-[#A9B4C0]/60" />
+          <span className="text-white" aria-current="page">
+            Blog
+          </span>
+        </nav>
+
+        {/* H1 Title */}
+        <h1 className="text-[clamp(2rem,5vw,3.5rem)] font-semibold text-white leading-[1.1] tracking-[-0.02em]">
           Engineering Insights & Standards
         </h1>
-        <p className="text-sm text-[#A9B4C0] leading-relaxed">
+
+        {/* Description */}
+        <p className="text-base lg:text-[18px] text-[#A9B4C0] leading-[1.65] max-w-[60ch]">
           Knowledge base articles on international electrical codes, lightning risk mitigation, and earthing system design for UAE projects.
+        </p>
+
+        {/* Article Count Meta Line */}
+        <p className="text-[13px] text-[#A9B4C0] font-medium pt-1">
+          {posts.length} technical articles
         </p>
       </div>
 
