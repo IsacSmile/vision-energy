@@ -64,24 +64,46 @@ export async function GET() {
 
     return NextResponse.json({
       counts: {
-        newProductEnquiries: 0,
-        newServiceEnquiries: 0,
-        publishedProducts: 0,
-        draftProducts: 0,
-        publishedServices: 0,
-        draftServices: 0,
-        publishedPosts: 0,
-        draftPosts: 0,
+        newProductEnquiries,
+        newServiceEnquiries,
+        publishedProducts,
+        draftProducts,
+        publishedServices,
+        draftServices,
+        publishedPosts,
+        draftPosts,
       },
       needsAttention: {
-        oldDrafts: [],
-        servicesWithUnconfirmedSteps: [],
+        oldDrafts: [
+          ...oldDraftProducts.map((p) => ({
+            type: "Product Category",
+            title: p.title,
+            href: `/admin/products/${p.id}`,
+            updatedAt: p.updatedAt.toISOString(),
+          })),
+          ...oldDraftServices.map((s) => ({
+            type: "Service Scope",
+            title: s.title,
+            href: `/admin/services/${s.id}`,
+            updatedAt: s.updatedAt.toISOString(),
+          })),
+          ...oldDraftPosts.map((b) => ({
+            type: "Blog Post",
+            title: b.title,
+            href: `/admin/blog/${b.id}`,
+            updatedAt: b.updatedAt.toISOString(),
+          })),
+        ],
+        servicesWithUnconfirmedSteps: servicesWithUnconfirmedSteps.map((s) => ({
+          id: s.id,
+          title: s.title,
+          href: `/admin/services/${s.id}`,
+        })),
       },
       latestEnquiries: {
-        product: [],
-        service: [],
+        product: latestProductEnquiries,
+        service: latestServiceEnquiries,
       },
-      warning: "Database initializing or connection dropped. Displaying fallback metrics.",
     });
   } catch (error) {
     console.error("Dashboard API Error:", error);
