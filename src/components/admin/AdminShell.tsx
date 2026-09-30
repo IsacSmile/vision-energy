@@ -18,6 +18,7 @@ import {
   X,
 } from "lucide-react";
 import { ToastContainer } from "./Toast";
+import AdminClock from "./AdminClock";
 
 interface AdminShellProps {
   children: React.ReactNode;
@@ -63,20 +64,23 @@ export default function AdminShell({ children, userEmail = "admin@visionenergyme
     <div className="min-h-screen bg-[#050608] text-white flex flex-col lg:flex-row antialiased">
       <ToastContainer />
       {/* MOBILE TOP BAR (below lg) */}
-      <header className="lg:hidden sticky top-0 z-40 bg-[#0D1117] border-b border-[#1F2937] px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-3">
+      <header className="lg:hidden sticky top-0 z-40 bg-[#0D1117] border-b border-[#1F2937] px-4 py-2.5 flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 relative rounded-lg overflow-hidden bg-[#050608] border border-[#1F2937] flex items-center justify-center">
             <Image src="/site-main-logo.png" alt="Vision Energy" width={24} height={24} style={{ width: "auto", height: "auto" }} />
           </div>
-          <span className="font-bold text-sm tracking-tight text-white">VISION CMS</span>
+          <span className="font-bold text-xs sm:text-sm tracking-tight text-white">VISION CMS</span>
         </div>
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="p-2 min-h-[44px] min-w-[44px] flex items-center justify-center text-gray-300 hover:text-white bg-[#050608] border border-[#1F2937] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#A3E635]"
-          aria-label="Toggle Menu"
-        >
-          {mobileMenuOpen ? <X className="w-5 h-5 text-gray-300" /> : <Menu className="w-5 h-5 text-gray-300" />}
-        </button>
+        <div className="flex items-center gap-2">
+          <AdminClock />
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 min-h-[40px] min-w-[40px] flex items-center justify-center text-gray-300 hover:text-white bg-[#050608] border border-[#1F2937] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#A3E635]"
+            aria-label="Toggle Menu"
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5 text-gray-300" /> : <Menu className="w-5 h-5 text-gray-300" />}
+          </button>
+        </div>
       </header>
 
       {/* MOBILE FULL-SCREEN NAVIGATION DRAWER */}
@@ -215,6 +219,23 @@ export default function AdminShell({ children, userEmail = "admin@visionenergyme
 
       {/* MAIN CONTENT CONTAINER */}
       <main className="flex-1 lg:pl-[240px] min-h-screen flex flex-col">
+        {/* DESKTOP TOP HEADER BAR */}
+        <header className="hidden lg:flex items-center justify-between px-8 py-3.5 border-b border-[#1F2937] bg-[#050608]/90 backdrop-blur-md sticky top-0 z-30">
+          <div className="flex items-center gap-2 text-xs text-gray-400">
+            <span className="inline-block w-2 h-2 rounded-full bg-[#8DC63F]" />
+            <span className="font-semibold text-gray-200">Vision Energy CMS</span>
+            <span className="text-gray-600">/</span>
+            <span className="text-gray-400 capitalize">
+              {pathname === "/admin"
+                ? "Dashboard"
+                : pathname.replace("/admin/", "").split("/")[0]}
+            </span>
+          </div>
+          <div className="flex items-center gap-3">
+            <AdminClock />
+          </div>
+        </header>
+
         <div className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full">{children}</div>
       </main>
     </div>
