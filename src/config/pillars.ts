@@ -98,8 +98,8 @@ export const PILLARS_CONFIG: PillarConfig[] = [
     title: 'Technical Solutions',
     iconName: 'ShieldCheck',
     imageUrl:
-      'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1000&q=80',
-    imageAlt: 'High-voltage substation and surge protection technical engineering infrastructure',
+      'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1000&q=80',
+    imageAlt: 'High-tech electrical power distribution and surge protection infrastructure',
     description:
       'Engineered protection systems and specialized compliance support for critical infrastructure.',
     categoryCodes: [
@@ -124,8 +124,8 @@ export const PILLARS_CONFIG: PillarConfig[] = [
     title: 'Project Installation & Support',
     iconName: 'ClipboardCheck',
     imageUrl:
-      'https://images.unsplash.com/photo-1590486803833-1c5dc8ddd4c8?auto=format&fit=crop&w=1000&q=80',
-    imageAlt: 'On-site technical engineer and project installation specialist',
+      'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=1000&q=80',
+    imageAlt: 'Professional electrical installation engineer conducting on-site testing and commissioning',
     description:
       'End-to-end technical coordination, installation guidance, and testing to certified standards.',
     metaOverride: 'Installation & after-sales support',
