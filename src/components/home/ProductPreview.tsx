@@ -135,13 +135,13 @@ export default async function ProductPreview() {
           </div>
         </div>
 
-        {/* Horizontal Swipe on Mobile (Slide Left/Right), 3 Cards/Row on Laptops/Desktop */}
-        <div className="flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-4 -mx-5 px-5 md:mx-0 md:px-0 md:grid md:grid-cols-3 lg:grid-cols-3 md:gap-6 pb-3 md:pb-0">
+        {/* Horizontal Swipe on Mobile (Slide Left/Right with margin whitespace), 3 Cards/Row on Laptops/Desktop */}
+        <div className="flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-4 px-1 md:px-0 md:grid md:grid-cols-3 lg:grid-cols-3 md:gap-6 pb-4 md:pb-0">
           {FEATURED_PRODUCTS.map((product, idx) => (
             <Reveal
               key={product.code}
               staggerIndex={idx}
-              className="min-w-[280px] sm:min-w-[320px] max-w-[320px] md:min-w-0 md:max-w-none snap-start shrink-0 md:shrink flex flex-col flex-1"
+              className="w-[82vw] sm:w-[320px] max-w-[320px] md:w-auto md:max-w-none snap-start shrink-0 md:shrink flex flex-col flex-1"
             >
               <Link
                 href={`/products`}
