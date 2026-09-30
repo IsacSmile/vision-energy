@@ -115,14 +115,14 @@ export default function FinalCTA({ bgClass = 'bg-[#0D1117]' }: FinalCTAProps) {
             <Reveal staggerIndex={1}>
               <h2
                 id="final-cta-heading"
-                className="text-[clamp(2.25rem,5.4vw,5rem)] font-semibold text-white leading-[1.05] tracking-[-0.02em] [text-wrap:balance] max-w-[11em]"
+                className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-[1.2] tracking-[-0.02em] [text-wrap:balance] max-w-[16em]"
               >
                 Tell Us About Your Project
               </h2>
             </Reveal>
 
             <Reveal staggerIndex={2}>
-              <p className="text-[1.125rem] lg:text-[1.25rem] text-[#A9B4C0] max-w-[38ch] [text-wrap:pretty] leading-[1.7]">
+              <p className="text-sm sm:text-base text-[#A9B4C0] max-w-[38ch] [text-wrap:pretty] leading-relaxed">
                 Call us or send an enquiry, and our team will get back to you.
               </p>
             </Reveal>
