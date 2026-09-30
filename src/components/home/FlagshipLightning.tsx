@@ -106,45 +106,42 @@ export default function FlagshipLightning() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
           
           {/* LEFT COLUMN: Content, Tiles, Actions, Chips (Sticky on lg+) */}
-          <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-32">
+          <div className="lg:col-span-5 space-y-6 sm:space-y-8 lg:sticky lg:top-32">
             
             {/* Header Block */}
-            <div className="space-y-3">
+            <div className="space-y-2.5 sm:space-y-3">
               <SectionHeader
                 id="flagship-lightning-heading"
                 eyebrow="Our Specialism"
                 title="Lightning Protection and Earthing"
               />
-              <p className="text-[#8DC63F] font-semibold text-lg sm:text-xl">
-                essential safety for your assets
-              </p>
             </div>
 
-            {/* Paragraph 1 */}
+            {/* Concise Description */}
             <Reveal staggerIndex={1}>
-              <p className="text-base text-[#A9B4C0] leading-[1.6]">
-                An engineered protection network of air terminals, down conductors, earthing grids, and surge devices to safeguard lives and property.
+              <p className="text-sm sm:text-base text-[#A9B4C0] leading-relaxed">
+                Engineered protection networks of air terminals, down conductors, and earthing grids to safeguard lives, structures, and critical equipment.
               </p>
             </Reveal>
 
-            {/* Four Safety Tiles (2x2 Grid) */}
-            <div className="grid grid-cols-2 gap-3 pt-2">
+            {/* Minimal Safety Highlights */}
+            <div className="grid grid-cols-2 gap-2 sm:gap-3 pt-1">
               {SAFETY_TILES.map((tile, i) => {
                 const IconComp = tile.icon;
                 return (
                   <Reveal key={tile.id} staggerIndex={i}>
-                    <div className="group bg-[#050608]/60 border border-white/[0.08] hover:border-[#8DC63F]/50 p-3.5 rounded-xl transition-all duration-300 h-full flex flex-col justify-between">
-                      <div className="flex items-center gap-2.5">
-                        <div className="w-8 h-8 rounded-lg bg-[#0B65B3]/10 text-[#0B65B3] group-hover:text-[#8DC63F] group-hover:bg-[#8DC63F]/10 flex items-center justify-center border border-[#0B65B3]/20 group-hover:border-[#8DC63F]/30 transition-colors shrink-0">
-                          <IconComp className="w-4 h-4 stroke-[1.5]" />
-                        </div>
-                        <h4 className="text-xs font-semibold text-white group-hover:text-[#8DC63F] transition-colors leading-snug">
+                    <div className="group bg-[#050608]/50 border border-white/[0.08] hover:border-[#8DC63F]/50 p-2.5 sm:p-3.5 rounded-xl transition-all duration-300 flex items-center sm:flex-col sm:items-start gap-2.5">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#8DC63F]/10 text-[#8DC63F] flex items-center justify-center border border-[#8DC63F]/20 shrink-0">
+                        <IconComp className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[1.5]" />
+                      </div>
+                      <div>
+                        <h4 className="text-xs font-semibold text-white group-hover:text-[#8DC63F] transition-colors leading-tight">
                           {tile.title}
                         </h4>
+                        <p className="hidden sm:block mt-1 text-xs text-[#A9B4C0] leading-snug">
+                          {tile.description}
+                        </p>
                       </div>
-                      <p className="mt-2 text-[13px] text-[#A9B4C0] leading-snug">
-                        {tile.description}
-                      </p>
                     </div>
                   </Reveal>
                 );
@@ -152,11 +149,11 @@ export default function FlagshipLightning() {
             </div>
 
             {/* Popular in this range (Chips) */}
-            <div className="space-y-3 pt-2">
-              <span className="block text-xs font-bold text-[#A9B4C0] uppercase tracking-[0.14em]">
+            <div className="space-y-2.5 pt-1">
+              <span className="block text-[11px] sm:text-xs font-bold text-[#A9B4C0] uppercase tracking-[0.14em]">
                 Popular in this range
               </span>
-              <div className="flex items-center gap-2.5 overflow-x-auto no-scrollbar snap-x snap-mandatory lg:flex-wrap lg:overflow-visible py-1">
+              <div className="flex items-center gap-2 overflow-x-auto no-scrollbar snap-x snap-mandatory lg:flex-wrap lg:overflow-visible py-1">
                 {POPULAR_CHIPS.map((chip, i) => (
                   <Reveal key={chip.code} staggerIndex={i} className="shrink-0">
                     <Link href={chip.href}>
