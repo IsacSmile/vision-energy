@@ -340,20 +340,21 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
         <div className="max-w-[760px] text-center lg:text-left lg:mx-0 space-y-3.5 sm:space-y-6">
           
           {/* Badge Pill */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0D1117]/85 backdrop-blur-md border border-white/15 text-[11px] sm:text-xs font-semibold text-white tracking-wide shadow-xl mx-auto lg:mx-0">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.08] backdrop-blur-xl border border-white/15 text-[11px] sm:text-xs font-semibold text-white tracking-wide shadow-xl mx-auto lg:mx-0">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] animate-pulse" />
             <ActiveIcon className={`w-3.5 h-3.5 ${activeSlide.highlightColor}`} />
             <span className={`${activeSlide.highlightColor} font-bold`}>{activeSlide.category}</span>
-            <span className="text-white/30">•</span>
+            <span className="text-white/25">•</span>
             <span className="text-white/80 text-[10px] sm:text-xs font-medium">{activeSlide.standards}</span>
           </div>
 
           {/* H1 Heading */}
           <h1
             key={`title-${currentSlide}`}
-            className="font-bold tracking-[-0.02em] leading-[1.12] sm:leading-[1.12] transition-all duration-400 animate-fadeIn"
+            className="font-bold tracking-[-0.025em] leading-[1.14] sm:leading-[1.12] transition-all duration-400 animate-fadeIn"
           >
             <span
-              className="block text-white text-[28px] sm:text-[38px] lg:text-[60px]"
+              className="block text-white text-[30px] sm:text-[40px] lg:text-[60px]"
               style={{
                 textShadow: '0 2px 14px rgba(5,6,8,0.95), 0 1px 3px rgba(5,6,8,0.8)',
               }}
@@ -361,9 +362,9 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
               {activeSlide.titleLine1}
             </span>
             <span
-              className={`block font-extrabold text-[28px] sm:text-[38px] lg:text-[60px] ${activeSlide.highlightColor}`}
+              className={`block font-extrabold text-[30px] sm:text-[40px] lg:text-[60px] ${activeSlide.highlightColor}`}
               style={{
-                textShadow: `0 0 20px ${activeSlide.glowColor}, 0 2px 10px rgba(5,6,8,0.95)`,
+                textShadow: `0 0 24px ${activeSlide.glowColor}, 0 2px 12px rgba(5,6,8,0.95)`,
               }}
             >
               {activeSlide.titleLine2}
@@ -373,7 +374,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
           {/* Concise Slide Description */}
           <div key={`desc-${currentSlide}`} className="animate-fadeIn max-w-[340px] sm:max-w-[50ch] mx-auto lg:mx-0">
             <p
-              className="text-[#E2E8F0] font-normal text-[13px] sm:text-base lg:text-lg leading-relaxed"
+              className="text-[#E2E8F0] font-normal text-[13.5px] sm:text-base lg:text-lg leading-relaxed"
               style={{
                 textShadow: '0 2px 14px rgba(5,6,8,0.95)',
               }}
@@ -387,7 +388,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
             {/* Primary Action Button */}
             <Link
               href={activeSlide.ctaLink}
-              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 h-[42px] sm:h-[48px] px-4 sm:px-6 rounded-full bg-gradient-to-r from-[#8DC63F] to-[#7CB332] text-[#050608] text-xs sm:text-sm font-bold shadow-[0_0_20px_rgba(141,198,63,0.35)] hover:shadow-[0_0_30px_rgba(141,198,63,0.55)] transition-all active:scale-[0.98]"
+              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 h-[44px] sm:h-[48px] px-5 sm:px-6 rounded-full bg-gradient-to-r from-[#8DC63F] to-[#7CB332] text-[#050608] text-[13px] sm:text-sm font-bold shadow-[0_0_20px_rgba(141,198,63,0.35)] hover:shadow-[0_0_30px_rgba(141,198,63,0.55)] transition-all active:scale-[0.98]"
             >
               <span>{activeSlide.ctaText}</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -401,7 +402,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
                   serviceTitle: `${activeSlide.category} Technical Consultation`,
                 })
               }
-              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 h-[42px] sm:h-[48px] px-3.5 sm:px-6 rounded-full bg-[#0D1117]/80 hover:bg-[#161B22] border border-white/20 text-white text-xs sm:text-sm font-semibold backdrop-blur-md transition-all active:scale-[0.98]"
+              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 h-[44px] sm:h-[48px] px-4 sm:px-6 rounded-full bg-white/[0.08] hover:bg-white/[0.14] border border-white/20 text-white text-[13px] sm:text-sm font-semibold backdrop-blur-xl transition-all active:scale-[0.98]"
             >
               <PhoneCall className="w-3.5 h-3.5 text-[#8DC63F]" />
               <span>Consultation</span>
