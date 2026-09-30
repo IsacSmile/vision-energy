@@ -4,6 +4,8 @@ export interface PillarConfig {
   title: string;
   iconName: 'Zap' | 'Wrench' | 'Sun' | 'ShieldCheck' | 'ClipboardCheck';
   description: string;
+  imageUrl: string;
+  imageAlt: string;
   categoryCodes?: string[];
   metaOverride?: string;
   href: string;
@@ -16,6 +18,9 @@ export const PILLARS_CONFIG: PillarConfig[] = [
     index: '01',
     title: 'Electrical Solutions',
     iconName: 'Zap',
+    imageUrl:
+      'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1000&q=80',
+    imageAlt: 'Industrial electrical cabling and grounding installation',
     description:
       'Engineered electrical solutions for safety, efficiency, and performance across MEP and industrial projects.',
     categoryCodes: [
@@ -53,6 +58,9 @@ export const PILLARS_CONFIG: PillarConfig[] = [
     index: '02',
     title: 'Mechanical Solutions',
     iconName: 'Wrench',
+    imageUrl:
+      'https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=1000&q=80',
+    imageAlt: 'Mechanical piping, HVAC, and industrial plant installation',
     description:
       'Dependable HVAC, plumbing, fire protection, and piping systems built for demanding environments.',
     categoryCodes: [
@@ -76,6 +84,9 @@ export const PILLARS_CONFIG: PillarConfig[] = [
     index: '03',
     title: 'Renewable Energy Solutions',
     iconName: 'Sun',
+    imageUrl:
+      'https://images.unsplash.com/photo-1497440001374-f26997328c1b?auto=format&fit=crop&w=1000&q=80',
+    imageAlt: 'Solar PV renewable energy installation and clean power systems',
     description:
       'Smart solar and clean energy systems designed to reduce costs and advance energy independence.',
     categoryCodes: ['EN-01', 'EN-02', 'EN-03'],
@@ -86,6 +97,9 @@ export const PILLARS_CONFIG: PillarConfig[] = [
     index: '04',
     title: 'Technical Solutions',
     iconName: 'ShieldCheck',
+    imageUrl:
+      'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1000&q=80',
+    imageAlt: 'Technical engineering testing and surge protection solutions',
     description:
       'Engineered protection systems and specialized compliance support for critical infrastructure.',
     categoryCodes: [
@@ -109,6 +123,9 @@ export const PILLARS_CONFIG: PillarConfig[] = [
     index: '05',
     title: 'Project Installation & Support',
     iconName: 'ClipboardCheck',
+    imageUrl:
+      'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1000&q=80',
+    imageAlt: 'On-site technical support, commissioning, and project installation',
     description:
       'End-to-end technical coordination, installation guidance, and testing to certified standards.',
     metaOverride: 'Installation & after-sales support',
