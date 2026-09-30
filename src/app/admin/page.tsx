@@ -12,7 +12,6 @@ import {
   ArrowRight,
   Clock,
   Loader2,
-  RefreshCw,
 } from "lucide-react";
 
 interface DashboardData {
@@ -72,24 +71,12 @@ export default function AdminDashboardPage() {
 
   return (
     <div className="space-y-8">
-      {/* Page Title & Refresh */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#1F2937] pb-5">
-        <div>
-          <h1 className="text-2xl font-bold text-white tracking-tight">Dashboard Overview</h1>
-          <p className="text-xs text-[#A9B4C0] mt-1">
-            Real-time operations, enquiries breakdown, content counts and attention items.
-          </p>
-        </div>
-
-        <div className="flex items-center gap-3">
-          <button
-            onClick={fetchDashboard}
-            className="p-2.5 text-gray-400 hover:text-white bg-[#0D1117] border border-[#1F2937] rounded-xl hover:bg-white/5 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
-            title="Refresh Dashboard Data"
-          >
-            <RefreshCw className="w-4 h-4" />
-          </button>
-        </div>
+      {/* Page Title */}
+      <div className="border-b border-[#1F2937] pb-5">
+        <h1 className="text-2xl font-bold text-white tracking-tight">Dashboard Overview</h1>
+        <p className="text-xs text-[#A9B4C0] mt-1">
+          Real-time operations, enquiries breakdown, content counts and attention items.
+        </p>
       </div>
 
       {/* QUICK ACTIONS ROW */}

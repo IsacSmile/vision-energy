@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import EnquiryTable from "@/components/admin/EnquiryTable";
-import { Download, Package, Wrench, RefreshCw } from "lucide-react";
+import { Package, Wrench } from "lucide-react";
 
 export default function AdminEnquiriesPage() {
   const [activeTab, setActiveTab] = useState<"product" | "service">("product");
@@ -27,37 +27,14 @@ export default function AdminEnquiriesPage() {
     fetchBadgeCounts();
   }, [fetchBadgeCounts]);
 
-  const handleExportCSV = () => {
-    window.open(`/api/admin/export?type=${activeTab}`, "_blank");
-  };
-
   return (
     <div className="space-y-6">
-      {/* Header Action Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#1F2937] pb-5">
-        <div>
-          <h1 className="text-2xl font-bold text-white tracking-tight">Client Enquiries</h1>
-          <p className="text-xs text-[#A9B4C0] mt-1">
-            Manage product availability enquiries and service booking requests submitted via the portal.
-          </p>
-        </div>
-
-        <div className="flex items-center gap-3">
-          <button
-            onClick={fetchBadgeCounts}
-            className="p-2.5 text-gray-400 hover:text-white bg-[#0D1117] border border-[#1F2937] rounded-xl hover:bg-white/5 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
-            title="Refresh Badge Counts"
-          >
-            <RefreshCw className="w-4 h-4" />
-          </button>
-          <button
-            onClick={handleExportCSV}
-            className="px-4 py-2.5 bg-[#A3E635] text-[#050608] font-bold text-xs rounded-xl hover:opacity-90 transition-opacity flex items-center gap-2 shadow-lg min-h-[44px]"
-          >
-            <Download className="w-4 h-4" />
-            <span>Export {activeTab === "product" ? "Products" : "Services"} CSV</span>
-          </button>
-        </div>
+      {/* Header */}
+      <div className="border-b border-[#1F2937] pb-5">
+        <h1 className="text-2xl font-bold text-white tracking-tight">Client Enquiries</h1>
+        <p className="text-xs text-[#A9B4C0] mt-1">
+          Manage product availability enquiries and service booking requests submitted via the portal.
+        </p>
       </div>
 
       {/* TWO SEPARATED TAB HEADERS */}
