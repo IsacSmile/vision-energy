@@ -15,25 +15,25 @@ const SAFETY_TILES = [
     id: 'personnel',
     icon: Users,
     title: 'Personnel Safety',
-    description: 'Gives lightning energy a controlled path, reducing risk to people.',
+    description: 'Safeguards lives by safely dispersing lightning currents.',
   },
   {
     id: 'structural',
     icon: Building2,
     title: 'Structural Protection',
-    description: 'Helps protect the building fabric from lightning damage.',
+    description: 'Shields building fabric from direct-strike damage.',
   },
   {
     id: 'fire',
     icon: Flame,
     title: 'Fire Prevention',
-    description: 'Reduces the risk of fires caused by lightning strikes.',
+    description: 'Eliminates ignition risks and thermal hazards.',
   },
   {
     id: 'equipment',
     icon: Cpu,
     title: 'Equipment Protection',
-    description: 'Safeguards electrical and electronic equipment and operational continuity.',
+    description: 'Protects critical electrical and electronic systems.',
   },
 ];
 
@@ -122,12 +122,8 @@ export default function FlagshipLightning() {
 
             {/* Paragraph 1 */}
             <Reveal staggerIndex={1}>
-              <p className="text-base text-[#A9B4C0] leading-[1.7]">
-                Lightning is a powerful force of nature that can cause significant damage and pose
-                threats to life and property. A lightning protection system is not simply a lightning
-                rod on a roof. It is a complete engineered protection network comprising air terminals,
-                down conductors, bonding connections, earth electrodes and, where required, surge
-                protection devices.
+              <p className="text-base text-[#A9B4C0] leading-[1.6]">
+                An engineered protection network of air terminals, down conductors, earthing grids, and surge devices to safeguard lives and property.
               </p>
             </Reveal>
 

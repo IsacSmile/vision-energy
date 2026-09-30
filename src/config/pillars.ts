@@ -17,7 +17,7 @@ export const PILLARS_CONFIG: PillarConfig[] = [
     title: 'Electrical Solutions',
     iconName: 'Zap',
     description:
-      'Power your project with reliable electrical solutions engineered for safety, efficiency, and long-term performance. Explore our range of quality products for MEP, industrial, commercial, and infrastructure applications.',
+      'Engineered electrical solutions for safety, efficiency, and performance across MEP and industrial projects.',
     categoryCodes: [
       'EL-01',
       'EL-02',
@@ -54,7 +54,7 @@ export const PILLARS_CONFIG: PillarConfig[] = [
     title: 'Mechanical Solutions',
     iconName: 'Wrench',
     description:
-      'Built for demanding environments, our mechanical solutions combine proven products with practical technical expertise. Discover dependable systems for HVAC, plumbing, fire protection, and industrial projects.',
+      'Dependable HVAC, plumbing, fire protection, and piping systems built for demanding environments.',
     categoryCodes: [
       'ME-01',
       'ME-02',
@@ -77,7 +77,7 @@ export const PILLARS_CONFIG: PillarConfig[] = [
     title: 'Renewable Energy Solutions',
     iconName: 'Sun',
     description:
-      'Advance your energy strategy with smart renewable-energy solutions designed to reduce operating costs, improve energy independence, and support sustainable performance across modern buildings, industrial facilities, and infrastructure projects.',
+      'Smart solar and clean energy systems designed to reduce costs and advance energy independence.',
     categoryCodes: ['EN-01', 'EN-02', 'EN-03'],
     href: '/products?codes=EN-01,EN-02,EN-03&name=Renewable%20Energy%20Solutions',
   },
@@ -87,7 +87,7 @@ export const PILLARS_CONFIG: PillarConfig[] = [
     title: 'Technical Solutions',
     iconName: 'ShieldCheck',
     description:
-      'Complex requirements need the right technical response. Explore specialized products, engineered system solutions, and expert support tailored to your project’s performance and compliance needs.',
+      'Engineered protection systems and specialized compliance support for critical infrastructure.',
     categoryCodes: [
       'LP-01',
       'LP-02',
@@ -110,7 +110,7 @@ export const PILLARS_CONFIG: PillarConfig[] = [
     title: 'Project Installation & Support',
     iconName: 'ClipboardCheck',
     description:
-      'Beyond supply, we help deliver results. From product selection and technical coordination to installation guidance and after-sales support, our team keeps your project moving with confidence. We coordinate with trusted partners and provide installation support to ensure every solution is delivered, installed, and commissioned to the required standard.',
+      'End-to-end technical coordination, installation guidance, and testing to certified standards.',
     metaOverride: 'Installation & after-sales support',
     href: '/services',
     highlightBorder: true,

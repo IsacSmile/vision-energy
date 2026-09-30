@@ -32,7 +32,7 @@ export default function IntroStandards({ productCategoryCount }: IntroStandardsP
             <SectionHeader
               id="intro-standards-heading"
               eyebrow="About Vision Energy"
-              title="Powering Progress with Innovation, Reliability, Safety & Sustainability"
+              title="Powering Progress with Safety & Engineering Excellence"
             />
           </div>
 
@@ -40,7 +40,7 @@ export default function IntroStandards({ productCategoryCount }: IntroStandardsP
           <div className="lg:col-span-7 space-y-6 pt-2 lg:pt-0">
             <Reveal staggerIndex={1}>
               <p className="text-base md:text-lg text-[#A9B4C0] leading-[1.7]">
-                At <strong className="text-white font-medium">Vision Energy International</strong>, we power progress through certified lightning protection, earthing, surge protection, and specialized MEP engineering solutions. We partner with construction, infrastructure, and industrial leaders across the UAE to deliver uncompromising safety, technical compliance, and sustainable engineering excellence.
+                At <strong className="text-white font-medium">Vision Energy International</strong>, we deliver certified lightning protection, earthing, surge protection, and specialized MEP solutions across the UAE with uncompromising safety and technical compliance.
               </p>
             </Reveal>
 
