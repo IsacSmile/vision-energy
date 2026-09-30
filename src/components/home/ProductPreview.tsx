@@ -135,61 +135,63 @@ export default async function ProductPreview() {
           </div>
         </div>
 
-        <div className="flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-5 sm:gap-6 lg:gap-6 px-4 sm:px-6 -mx-4 sm:-mx-6 lg:mx-0 lg:px-0 lg:grid lg:grid-cols-3 pb-4 lg:pb-0">
+        {/* 2 Products Per Row Layout with Prominent High-Resolution Images */}
+        <div className="flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-6 px-5 sm:px-6 -mx-5 sm:-mx-6 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 lg:gap-8 pb-4 md:pb-0">
           {FEATURED_PRODUCTS.map((product, idx) => (
             <Reveal
               key={product.code}
               staggerIndex={idx}
-              className="w-[82vw] min-w-[280px] max-w-[340px] shrink-0 flex-none snap-start lg:w-auto lg:min-w-0 lg:max-w-none lg:shrink lg:flex-1 flex flex-col"
+              className="w-[85vw] min-w-[300px] max-w-[420px] shrink-0 flex-none snap-start md:w-auto md:min-w-0 md:max-w-none md:shrink md:flex-1 flex flex-col"
             >
               <Link
                 href={`/products`}
-                className="group h-full rounded-[20px] bg-[#0D1117] border border-white/[0.08] hover:border-[#8DC63F]/50 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#8DC63F]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] flex flex-col justify-between"
+                className="group h-full rounded-[24px] bg-[#0D1117] border border-white/[0.08] hover:border-[#8DC63F]/50 overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-[#8DC63F]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] flex flex-col justify-between"
               >
-                {/* Image Banner with Badge */}
-                <div className="relative w-full h-44 sm:h-48 overflow-hidden bg-[#050608]">
+                {/* Large Prominent Image Banner with Badge */}
+                <div className="relative w-full h-60 sm:h-72 lg:h-80 overflow-hidden bg-[#050608]">
                   <Image
                     src={product.imageUrl}
                     alt={product.title}
                     fill
-                    className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
-                    sizes="(max-width: 640px) 85vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                    sizes="(max-width: 768px) 90vw, (max-width: 1280px) 50vw, 600px"
+                    quality={90}
                   />
 
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0D1117] via-[#0D1117]/40 to-transparent" />
+                  {/* Gradient Overlay for visual depth */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0D1117] via-[#0D1117]/30 to-transparent" />
 
                   {/* Code Tag Top Left */}
-                  <div className="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#050608]/85 backdrop-blur-md border border-white/15 text-[11px] font-bold text-[#8DC63F] tracking-wide">
+                  <div className="absolute top-4 left-4 px-2.5 py-1 rounded-md bg-[#050608]/90 backdrop-blur-md border border-white/20 text-xs font-bold text-[#8DC63F] tracking-wide shadow-lg">
                     {product.code}
                   </div>
 
                   {/* Standard Tag Top Right */}
-                  <div className="absolute top-3 right-3 px-2 py-0.5 rounded bg-[#0D1117]/80 backdrop-blur-md border border-white/10 text-[10px] font-medium text-white/80">
+                  <div className="absolute top-4 right-4 px-2.5 py-1 rounded-md bg-[#0D1117]/85 backdrop-blur-md border border-white/15 text-[11px] font-medium text-white/90 shadow-lg">
                     {product.tag}
                   </div>
                 </div>
 
                 {/* Card Body */}
-                <div className="p-5 flex-1 flex flex-col justify-between">
+                <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
                   <div>
-                    <span className="text-[11px] font-medium text-[#8DC63F] uppercase tracking-wider block mb-1">
+                    <span className="text-xs font-semibold text-[#8DC63F] uppercase tracking-wider block mb-1.5">
                       {product.categoryName}
                     </span>
 
-                    <h3 className="text-base sm:text-lg font-semibold text-white leading-snug group-hover:text-[#8DC63F] transition-colors line-clamp-2">
+                    <h3 className="text-lg sm:text-xl lg:text-[22px] font-bold text-white leading-snug group-hover:text-[#8DC63F] transition-colors line-clamp-2">
                       {product.title}
                     </h3>
 
-                    <p className="mt-2 text-xs sm:text-[13px] text-[#A9B4C0] leading-relaxed line-clamp-2">
+                    <p className="mt-2.5 text-sm text-[#A9B4C0] leading-relaxed line-clamp-2 sm:line-clamp-3">
                       {product.description}
                     </p>
                   </div>
 
                   {/* Card Footer Link */}
-                  <div className="mt-4 pt-3 border-t border-white/[0.08] flex items-center justify-between text-xs font-semibold text-[#8DC63F] group-hover:underline">
+                  <div className="mt-6 pt-4 border-t border-white/[0.08] flex items-center justify-between text-sm font-semibold text-[#8DC63F] group-hover:underline">
                     <span>View Specifications</span>
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>
               </Link>
