@@ -10,6 +10,7 @@ import WhyChooseUs from '@/components/home/WhyChooseUs';
 import Industries from '@/components/home/Industries';
 import LatestPosts from '@/components/home/LatestPosts';
 import FinalCTA from '@/components/home/FinalCTA';
+import SmoothScroll from '@/components/common/SmoothScroll';
 import { PILLARS_CONFIG } from '@/config/pillars';
 import { FALLBACK_CATEGORIES } from '@/lib/fallback-categories';
 
@@ -60,54 +61,56 @@ export default async function HomePage() {
   );
 
   return (
-    <div className="bg-[#050608]">
-      {/* 1. HERO SECTION */}
-      <HomeHeroClient productCategoryCount={productCategoryCount} />
+    <SmoothScroll>
+      <div className="bg-[#050608]">
+        {/* 1. HERO SECTION */}
+        <HomeHeroClient productCategoryCount={productCategoryCount} />
 
-      <HairlineDivider />
+        <HairlineDivider />
 
-      {/* 2. INTRO & STANDARDS (#0D1117) */}
-      <IntroStandards productCategoryCount={productCategoryCount} />
+        {/* 2. INTRO & STANDARDS (#0D1117) */}
+        <IntroStandards productCategoryCount={productCategoryCount} />
 
-      <HairlineDivider />
+        <HairlineDivider />
 
-      {/* 3. SOLUTION PILLARS (#050608) */}
-      <SolutionPillars countsByPillarId={countsByPillarId} />
+        {/* 3. SOLUTION PILLARS (#050608) */}
+        <SolutionPillars countsByPillarId={countsByPillarId} />
 
-      <HairlineDivider />
+        <HairlineDivider />
 
-      {/* 4. FLAGSHIP LIGHTNING (#0D1117) */}
-      <FlagshipLightning />
+        {/* 4. FLAGSHIP LIGHTNING (#0D1117) */}
+        <FlagshipLightning />
 
-      <HairlineDivider />
+        <HairlineDivider />
 
-      {/* 5. PRODUCT PREVIEW (#050608) */}
-      <ProductPreview />
+        {/* 5. PRODUCT PREVIEW (#050608) */}
+        <ProductPreview />
 
-      <HairlineDivider />
+        <HairlineDivider />
 
-      {/* 6. SERVICES PREVIEW (#0D1117) */}
-      <ServicesPreview />
+        {/* 6. SERVICES PREVIEW (#0D1117) */}
+        <ServicesPreview />
 
-      <HairlineDivider />
+        <HairlineDivider />
 
-      {/* 7. WHY CHOOSE US (#050608) */}
-      <WhyChooseUs />
+        {/* 7. WHY CHOOSE US (#050608) */}
+        <WhyChooseUs />
 
-      <HairlineDivider />
+        <HairlineDivider />
 
-      {/* 8. INDUSTRIES / SECTORS WE SERVE (#0D1117) */}
-      <Industries />
+        {/* 8. INDUSTRIES / SECTORS WE SERVE (#0D1117) */}
+        <Industries />
 
-      <HairlineDivider />
+        <HairlineDivider />
 
-      {/* 9. LATEST POSTS (#050608) - CONDITIONAL */}
-      <LatestPosts />
+        {/* 9. LATEST POSTS (#050608) - CONDITIONAL */}
+        <LatestPosts />
 
-      <HairlineDivider />
+        <HairlineDivider />
 
-      {/* 10. FINAL CTA (#0D1117) */}
-      <FinalCTA />
-    </div>
+        {/* 10. FINAL CTA (#0D1117) */}
+        <FinalCTA />
+      </div>
+    </SmoothScroll>
   );
 }
