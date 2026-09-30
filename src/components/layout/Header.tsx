@@ -26,6 +26,13 @@ export default function Header() {
     return null;
   }
 
+  // Manage overlay inert attribute imperatively to avoid React 18 DOM warnings and TS mismatches
+  useEffect(() => {
+    if (overlayRef.current) {
+      overlayRef.current.inert = !mobileMenuOpen;
+    }
+  }, [mobileMenuOpen]);
+
   // Dispatch custom event for HeroLightning GPU pausing
   useEffect(() => {
     window.dispatchEvent(new CustomEvent('mobile-menu-state', { detail: { open: mobileMenuOpen } }));
@@ -267,7 +274,6 @@ export default function Header() {
         aria-modal="true"
         aria-label="Mobile Navigation Menu"
         aria-hidden={!mobileMenuOpen}
-        inert={!mobileMenuOpen ? '' : undefined}
         suppressHydrationWarning
         className={`fixed inset-0 z-40 w-screen h-[100svh] min-h-[100vh] bg-[#050608] lg:hidden flex flex-col justify-between overflow-y-auto px-6 pt-[calc(var(--mobile-header-h,56px)+20px)] pb-[max(24px,env(safe-area-inset-bottom))] transition-all duration-320 ${
           mobileMenuOpen
