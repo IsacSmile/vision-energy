@@ -57,12 +57,7 @@ export default function ImageUploader({
 
       const json = await res.json();
       if (!res.ok) {
-        if (json.error?.includes("BLOB_READ_WRITE_TOKEN")) {
-          setMode("url");
-          showToast("Vercel Blob token missing. Switched to URL input.", "info");
-        } else {
-          showToast(json.error || "Image upload failed", "error");
-        }
+        showToast(json.error || "Image upload failed", "error");
         return;
       }
 

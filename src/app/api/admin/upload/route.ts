@@ -3,6 +3,8 @@ import { put, del } from "@vercel/blob";
 import { getAdminSession } from "@/lib/auth";
 import { env } from "@/lib/env";
 import crypto from "crypto";
+import fs from "fs/promises";
+import path from "path";
 
 const ALLOWED_MIME_TYPES = ["image/jpeg", "image/png", "image/webp", "image/avif"];
 const MAX_FILE_SIZE_BYTES = 3 * 1024 * 1024; // 3 MB
@@ -52,16 +54,6 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const blobToken = env.BLOB_READ_WRITE_TOKEN;
-  if (!blobToken) {
-    return NextResponse.json(
-      {
-        error: "BLOB_READ_WRITE_TOKEN is not configured. Please use a direct image URL or set BLOB_READ_WRITE_TOKEN in environment variables.",
-      },
-      { status: 400 }
-    );
-  }
-
   try {
     const formData = await request.formData();
     const file = formData.get("file") as File | null;
@@ -99,23 +91,39 @@ export async function POST(request: Request) {
     }
 
     // Generate random filename to strip original file metadata
-    const ext = file.name.split(".").pop() || "jpg";
+    const ext = file.name.split(".").pop()?.toLowerCase() || "jpg";
     const randomName = `${crypto.randomBytes(16).toString("hex")}.${ext}`;
-    const pathName = `cms/${type}/${randomName}`;
+    const blobToken = env.BLOB_READ_WRITE_TOKEN;
 
-    const blob = await put(pathName, buffer, {
-      access: "public",
-      contentType: file.type,
-      token: blobToken,
-    });
+    // 1. If Vercel Blob token is available, upload to Vercel Blob
+    if (blobToken) {
+      const pathName = `cms/${type}/${randomName}`;
+      const blob = await put(pathName, buffer, {
+        access: "public",
+        contentType: file.type,
+        token: blobToken,
+      });
 
+      return NextResponse.json({
+        url: blob.url,
+        pathname: blob.pathname,
+      });
+    }
+
+    // 2. Otherwise, save locally to public/uploads/cms/...
+    const uploadDir = path.join(process.cwd(), "public", "uploads", "cms", type);
+    await fs.mkdir(uploadDir, { recursive: true });
+    const filePath = path.join(uploadDir, randomName);
+    await fs.writeFile(filePath, buffer);
+
+    const localUrl = `/uploads/cms/${type}/${randomName}`;
     return NextResponse.json({
-      url: blob.url,
-      pathname: blob.pathname,
+      url: localUrl,
+      pathname: localUrl,
     });
   } catch (error: any) {
-    console.error("Vercel Blob Upload Error:", error);
-    return NextResponse.json({ error: "Image upload failed" }, { status: 500 });
+    console.error("Upload Error:", error);
+    return NextResponse.json({ error: error?.message || "Image upload failed" }, { status: 500 });
   }
 }
 
@@ -126,17 +134,28 @@ export async function DELETE(request: Request) {
   }
 
   const blobToken = env.BLOB_READ_WRITE_TOKEN;
-  if (!blobToken) {
-    return NextResponse.json({ error: "BLOB_READ_WRITE_TOKEN missing" }, { status: 400 });
-  }
 
   try {
     const { url } = await request.json();
-    if (url && url.includes("public.blob.vercel-storage.com")) {
+
+    // Handle local file deletion
+    if (url && typeof url === "string" && url.startsWith("/uploads/")) {
+      const filePath = path.join(process.cwd(), "public", url.replace(/^\//, ""));
+      try {
+        await fs.unlink(filePath);
+      } catch (err) {
+        // ignore if already deleted
+      }
+      return NextResponse.json({ success: true });
+    }
+
+    // Handle Vercel Blob deletion
+    if (blobToken && url && url.includes("public.blob.vercel-storage.com")) {
       await del(url, { token: blobToken });
     }
+
     return NextResponse.json({ success: true });
   } catch (error) {
-    return NextResponse.json({ error: "Failed to delete blob image" }, { status: 500 });
+    return NextResponse.json({ error: "Failed to delete image" }, { status: 500 });
   }
 }
