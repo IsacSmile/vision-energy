@@ -39,42 +39,17 @@ export default function IntroStandards({ productCategoryCount }: IntroStandardsP
           {/* Right Column (7/12 split on lg+) */}
           <div className="lg:col-span-7 space-y-6 pt-2 lg:pt-0">
             <Reveal staggerIndex={1}>
-              <p className="text-base md:text-[1.0625rem] text-[#A9B4C0] leading-[1.7]">
-                At VISION ENERGY INTERNATIONAL, we power progress through high-performance
-                electrical, mechanical, and solar solutions engineered for reliability,
-                efficiency, and long-term value. Our solutions are selected to meet the most
-                demanding project requirements while maintaining the highest standards of quality,
-                safety, technical compliance, and environmental responsibility.
+              <p className="text-base md:text-lg text-[#A9B4C0] leading-[1.7]">
+                At <strong className="text-white font-medium">Vision Energy International</strong>, we power progress through certified lightning protection, earthing, surge protection, and specialized MEP engineering solutions. We partner with construction, infrastructure, and industrial leaders across the UAE to deliver uncompromising safety, technical compliance, and sustainable engineering excellence.
               </p>
             </Reveal>
 
             <Reveal staggerIndex={2}>
-              <p className="text-base md:text-[1.0625rem] text-[#A9B4C0] leading-[1.7]">
-                We serve the construction, MEP, oil and gas, utilities, infrastructure, and
-                renewable-energy sectors with dependable products and technically sound solutions.
-                By combining strong engineering knowledge, advanced technologies, and responsive project
-                support, we help clients strengthen performance, reduce operational risk, and deliver
-                projects with confidence.
-              </p>
-            </Reveal>
-
-            <Reveal staggerIndex={3}>
-              <p className="text-base md:text-[1.0625rem] text-[#A9B4C0] leading-[1.7]">
-                Our commitment to a safer and more sustainable future is uncompromising. We do not
-                supply, support, or promote dangerous, harmful, or non-compliant products that fail to
-                meet recognised international standards. Instead, we provide responsible, certified,
-                and eco-conscious alternatives that protect people, assets, and the environment. Through
-                innovation, technical excellence, and customer trust, Vision Energy International is
-                advancing as a reliable force in the energy and engineering industry.
-              </p>
-            </Reveal>
-
-            <Reveal staggerIndex={4}>
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-[#8DC63F] hover:underline active-press group pt-2"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0D1117] hover:bg-[#161B22] border border-[#8DC63F]/30 hover:border-[#8DC63F] text-sm font-semibold text-[#8DC63F] hover:text-white transition-all group shadow-lg shadow-[#8DC63F]/5"
               >
-                <span>More about us</span>
+                <span>Discover More About Us</span>
                 <ArrowRight className="w-4 h-4 text-[#8DC63F] transition-transform group-hover:translate-x-1" />
               </Link>
             </Reveal>
