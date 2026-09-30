@@ -67,7 +67,7 @@ export default function ServiceScrollspy({
   return (
     <aside
       aria-label="On this page"
-      className="hidden lg:block sticky top-[calc(var(--header-offset,0px)+32px)] self-start border-l border-white/10 pl-8 space-y-6 select-none"
+      className="w-full border-l border-white/10 pl-6 xl:pl-8 space-y-6 select-none"
     >
       <div>
         <span className="block text-[12px] font-bold text-[#8DC63F] uppercase tracking-[0.14em] mb-4">
@@ -84,7 +84,7 @@ export default function ServiceScrollspy({
                   {/* Sliding 2px Lime Bar */}
                   {isActive && (
                     <span
-                      className="absolute -left-[33px] w-[2px] h-[20px] bg-[#8DC63F] transition-all duration-300"
+                      className="absolute -left-[25px] xl:-left-[33px] w-[2px] h-[20px] bg-[#8DC63F] transition-all duration-300"
                       aria-hidden="true"
                     />
                   )}

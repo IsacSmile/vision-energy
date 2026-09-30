@@ -180,120 +180,131 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
         </div>
       </section>
 
-      {/* Sticky Scrollspy Navigation */}
-      {navSections.length > 0 && (
-        <ServiceScrollspy sections={navSections} serviceSlug={service.slug} serviceTitle={service.title} />
-      )}
+      {/* MAIN CONTENT + STICKY SIDEBAR CONTAINER */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] xl:grid-cols-[1fr_320px] gap-10 lg:gap-14 items-start">
 
-      {/* CONTENT SECTIONS */}
-      <div className="divide-y divide-white/10">
-        {content.overview && (
-          <section id="overview" className="bg-[#0D1117] py-16 lg:py-20 scroll-mt-[calc(var(--header-offset,0px)+56px)]">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
-              <span className="text-xs font-semibold text-[#8DC63F] uppercase tracking-widest block">Overview</span>
-              <h2 className="text-2xl sm:text-3xl font-semibold text-white tracking-tight">System Concept & Scope</h2>
-              <p className="text-base sm:text-lg text-[#A9B4C0] leading-relaxed">{content.overview}</p>
-            </div>
-          </section>
-        )}
+          {/* LEFT: CONTENT SECTIONS */}
+          <div className="min-w-0 space-y-14 lg:space-y-18">
+            {content.overview && (
+              <section id="overview" className="scroll-mt-28 space-y-4">
+                <span className="text-xs font-semibold text-[#8DC63F] uppercase tracking-widest block">Overview</span>
+                <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">System Concept & Scope</h2>
+                <p className="text-base sm:text-lg text-[#A9B4C0] leading-relaxed">{content.overview}</p>
+              </section>
+            )}
 
-        {content.systems && content.systems.length > 0 && (
-          <section id="systems" className="bg-[#050608] py-16 lg:py-20 scroll-mt-[calc(var(--header-offset,0px)+56px)]">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-              <div className="space-y-2">
-                <span className="text-xs font-semibold text-[#8DC63F] uppercase tracking-widest block">Systems</span>
-                <h2 className="text-2xl sm:text-3xl font-semibold text-white">Protection Network Modules</h2>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {content.systems.map((sys: any, idx: number) => (
-                  <div key={idx} className="p-6 bg-[#0D1117] border border-white/10 rounded-2xl space-y-4">
-                    <h3 className="text-xl font-bold text-white">{sys.title}</h3>
-                    <p className="text-sm text-[#A9B4C0] leading-relaxed">{sys.body}</p>
-                    {sys.points && sys.points.length > 0 && (
-                      <ul className="space-y-2 pt-2 border-t border-white/10 text-xs text-gray-300">
-                        {sys.points.map((pt: string, pIdx: number) => (
-                          <li key={pIdx} className="flex items-center gap-2">
-                            <Check className="w-4 h-4 text-[#8DC63F] shrink-0" />
-                            <span>{pt}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
+            {content.systems && content.systems.length > 0 && (
+              <section id="systems" className="scroll-mt-28 space-y-6">
+                <div className="space-y-1.5">
+                  <span className="text-xs font-semibold text-[#8DC63F] uppercase tracking-widest block">Systems</span>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white">Protection Network Modules</h2>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  {content.systems.map((sys: any, idx: number) => (
+                    <div key={idx} className="p-6 bg-[#0D1117] border border-white/10 rounded-2xl space-y-3.5">
+                      <h3 className="text-lg sm:text-xl font-bold text-white">{sys.title}</h3>
+                      <p className="text-sm text-[#A9B4C0] leading-relaxed">{sys.body}</p>
+                      {sys.points && sys.points.length > 0 && (
+                        <ul className="space-y-2 pt-3 border-t border-white/10 text-xs text-gray-300">
+                          {sys.points.map((pt: string, pIdx: number) => (
+                            <li key={pIdx} className="flex items-center gap-2">
+                              <Check className="w-4 h-4 text-[#8DC63F] shrink-0" />
+                              <span>{pt}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
 
-        {slug === "external-lightning-protection-installation" && (
-          <section id="visual" className="bg-[#0D1117] py-16 lg:py-20 scroll-mt-[calc(var(--header-offset,0px)+56px)]">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <ProtectionDiagram />
-            </div>
-          </section>
-        )}
+            {slug === "external-lightning-protection-installation" && (
+              <section id="visual" className="scroll-mt-28 space-y-4">
+                <span className="text-xs font-semibold text-[#8DC63F] uppercase tracking-widest block">Interactive Schematic</span>
+                <ProtectionDiagram />
+              </section>
+            )}
 
-        {content.whereWeInstall && content.whereWeInstall.length > 0 && (
-          <section id="where-we-install" className="bg-[#050608] py-16 lg:py-20 scroll-mt-[calc(var(--header-offset,0px)+56px)]">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-              <span className="text-xs font-semibold text-[#8DC63F] uppercase tracking-widest block">Deployment</span>
-              <h2 className="text-2xl sm:text-3xl font-semibold text-white">Where We Install</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {content.whereWeInstall.map((item: string, i: number) => (
-                  <div key={i} className="p-4 bg-[#0D1117] border border-white/10 rounded-xl flex items-center gap-3">
-                    <Check className="w-4 h-4 text-[#8DC63F] shrink-0" />
-                    <span className="text-xs text-gray-200 font-medium">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
+            {content.whereWeInstall && content.whereWeInstall.length > 0 && (
+              <section id="where-we-install" className="scroll-mt-28 space-y-5">
+                <span className="text-xs font-semibold text-[#8DC63F] uppercase tracking-widest block">Deployment</span>
+                <h2 className="text-2xl sm:text-3xl font-bold text-white">Where We Install</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                  {content.whereWeInstall.map((item: string, i: number) => (
+                    <div key={i} className="p-4 bg-[#0D1117] border border-white/10 rounded-xl flex items-center gap-3">
+                      <Check className="w-4 h-4 text-[#8DC63F] shrink-0" />
+                      <span className="text-xs sm:text-sm text-gray-200 font-medium">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
 
-        {confirmedProcessSteps.length > 0 && (
-          <section id="process" className="bg-[#0D1117] py-16 lg:py-20 scroll-mt-[calc(var(--header-offset,0px)+56px)]">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-              <span className="text-xs font-semibold text-[#8DC63F] uppercase tracking-widest block">Workflow</span>
-              <h2 className="text-2xl sm:text-3xl font-semibold text-white">Execution Process</h2>
-              <ProcessStepper steps={confirmedProcessSteps} />
-            </div>
-          </section>
-        )}
+            {confirmedProcessSteps.length > 0 && (
+              <section id="process" className="scroll-mt-28 space-y-6">
+                <span className="text-xs font-semibold text-[#8DC63F] uppercase tracking-widest block">Workflow</span>
+                <h2 className="text-2xl sm:text-3xl font-bold text-white">Execution Process</h2>
+                <ProcessStepper steps={confirmedProcessSteps} />
+              </section>
+            )}
 
-        {relatedCategories.length > 0 && (
-          <section id="related-products" className="bg-[#050608] py-16 lg:py-20 scroll-mt-[calc(var(--header-offset,0px)+56px)]">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-              <span className="text-xs font-semibold text-[#8DC63F] uppercase tracking-widest block">Products</span>
-              <h2 className="text-2xl sm:text-3xl font-semibold text-white">Related Product Categories</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {relatedCategories.map((cat: any) => (
-                  <Link
-                    key={cat.id}
-                    href={`/products/${cat.slug}`}
-                    className="p-5 bg-[#0D1117] border border-white/10 hover:border-[#8DC63F]/50 rounded-2xl space-y-2 block group transition-all"
-                  >
-                    <span className="text-xs font-mono font-bold text-[#8DC63F]">{cat.code}</span>
-                    <h3 className="text-base font-bold text-white group-hover:text-[#8DC63F] transition-colors">
-                      {cat.title}
-                    </h3>
-                    <p className="text-xs text-gray-400 line-clamp-2">{cat.description}</p>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
+            {content.standards && content.standards.length > 0 && (
+              <section id="standards" className="scroll-mt-28 space-y-5">
+                <span className="text-xs font-semibold text-[#8DC63F] uppercase tracking-widest block">Compliance</span>
+                <h2 className="text-2xl sm:text-3xl font-bold text-white">Applicable Standards & Certifications</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                  {content.standards.map((std: string, i: number) => (
+                    <div key={i} className="p-4 bg-[#0D1117] border border-white/10 rounded-xl flex items-center gap-3">
+                      <Check className="w-4 h-4 text-[#8DC63F] shrink-0" />
+                      <span className="text-xs sm:text-sm text-gray-200 font-medium">{std}</span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
 
-        {content.faq && content.faq.length > 0 && (
-          <section id="faq" className="bg-[#0D1117] py-16 lg:py-20 scroll-mt-[calc(var(--header-offset,0px)+56px)]">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-              <span className="text-xs font-semibold text-[#8DC63F] uppercase tracking-widest block">Support</span>
-              <h2 className="text-2xl sm:text-3xl font-semibold text-white">Frequently Asked Questions</h2>
-              <FAQAccordion items={content.faq} />
+            {relatedCategories.length > 0 && (
+              <section id="related-products" className="scroll-mt-28 space-y-5">
+                <span className="text-xs font-semibold text-[#8DC63F] uppercase tracking-widest block">Products</span>
+                <h2 className="text-2xl sm:text-3xl font-bold text-white">Related Product Categories</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {relatedCategories.map((cat: any) => (
+                    <Link
+                      key={cat.id}
+                      href={`/products/${cat.slug}`}
+                      className="p-5 bg-[#0D1117] border border-white/10 hover:border-[#8DC63F]/50 rounded-2xl space-y-2 block group transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#8DC63F]/5"
+                    >
+                      <span className="text-xs font-mono font-bold text-[#8DC63F]">{cat.code}</span>
+                      <h3 className="text-base font-bold text-white group-hover:text-[#8DC63F] transition-colors">
+                        {cat.title}
+                      </h3>
+                      <p className="text-xs text-gray-400 line-clamp-2">{cat.description}</p>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {content.faq && content.faq.length > 0 && (
+              <section id="faq" className="scroll-mt-28 space-y-5">
+                <span className="text-xs font-semibold text-[#8DC63F] uppercase tracking-widest block">Support</span>
+                <h2 className="text-2xl sm:text-3xl font-bold text-white">Frequently Asked Questions</h2>
+                <FAQAccordion items={content.faq} />
+              </section>
+            )}
+          </div>
+
+          {/* RIGHT: STICKY SCROLLSPY SIDEBAR */}
+          {navSections.length > 0 && (
+            <div className="hidden lg:block sticky top-28 self-start">
+              <ServiceScrollspy sections={navSections} serviceSlug={service.slug} serviceTitle={service.title} />
             </div>
-          </section>
-        )}
+          )}
+
+        </div>
       </div>
 
       <FinalCTA bgClass="bg-[#050608]" />
