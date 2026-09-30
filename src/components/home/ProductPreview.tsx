@@ -197,26 +197,19 @@ export default async function ProductPreview() {
           ))}
         </div>
 
-        {/* Big Bottom CTA to explore all products */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-6 p-6 sm:p-8 rounded-[24px] bg-gradient-to-r from-[#0D1117] to-[#161B22] border border-white/10 shadow-2xl">
-          <div className="space-y-1.5 text-center sm:text-left">
-            <h4 className="text-lg sm:text-xl font-bold text-white">
-              Looking for Complete Product Specifications?
-            </h4>
-            <p className="text-xs sm:text-sm text-[#A9B4C0] max-w-[50ch]">
-              Access all {totalCount} engineering product categories, technical datasheets, and family ranges in our catalogue.
-            </p>
-          </div>
+        {/* Simple & Clean Bottom CTA */}
+        <div className="mt-8 p-4 sm:p-5 rounded-2xl bg-[#0D1117]/60 border border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
+          <p className="text-xs sm:text-sm text-[#A9B4C0] text-center sm:text-left">
+            Looking for full specifications? Access all <span className="text-white font-semibold">{totalCount} product categories</span> and datasheets.
+          </p>
 
-          <LightningButton
-            variant="primary"
-            size="lg"
+          <Link
             href="/products"
-            iconRight={<ArrowRight className="w-4 h-4" />}
-            className="w-full sm:w-auto shadow-[0_0_25px_rgba(141,198,63,0.3)] hover:shadow-[0_0_35px_rgba(141,198,63,0.5)] shrink-0"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#8DC63F] hover:bg-[#7cb332] text-[#050608] text-xs sm:text-sm font-bold shadow-md shadow-[#8DC63F]/20 transition-all shrink-0 group active:scale-[0.98]"
           >
-            Explore Complete Catalogue
-          </LightningButton>
+            <span>View All Products</span>
+            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+          </Link>
         </div>
       </div>
     </section>
