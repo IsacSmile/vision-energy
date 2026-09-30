@@ -13,6 +13,7 @@ interface ImageUploaderProps {
   type?: "products" | "services" | "blog";
   label?: string;
   requiredAlt?: boolean;
+  maxSizeKB?: number;
 }
 
 export default function ImageUploader({
@@ -23,7 +24,10 @@ export default function ImageUploader({
   type = "products",
   label = "Cover Image",
   requiredAlt = true,
+  maxSizeKB,
 }: ImageUploaderProps) {
+  const effectiveLimitKB = maxSizeKB || (type === "services" ? 500 : 3000);
+  const maxSizeBytes = effectiveLimitKB * 1024;
   const [uploading, setUploading] = useState(false);
   const [mode, setMode] = useState<"upload" | "url">("upload");
   const [urlInput, setUrlInput] = useState(value);
@@ -32,8 +36,11 @@ export default function ImageUploader({
     const file = e.target.files?.[0];
     if (!file) return;
 
-    if (file.size > 3 * 1024 * 1024) {
-      showToast("Image size must be less than 3 MB", "error");
+    if (file.size > maxSizeBytes) {
+      showToast(
+        `Image size must be under ${effectiveLimitKB >= 1000 ? `${(effectiveLimitKB / 1024).toFixed(0)} MB` : `${effectiveLimitKB} KB`} (selected: ${(file.size / 1024).toFixed(1)} KB)`,
+        "error"
+      );
       return;
     }
 
@@ -152,7 +159,7 @@ export default function ImageUploader({
             <>
               <ImageIcon className="w-8 h-8 text-gray-500 group-hover:text-[#A3E635] mb-2 transition-colors" />
               <span className="text-xs font-semibold text-gray-300 group-hover:text-white">
-                Click to upload image (max 3 MB)
+                Click to upload image (max {effectiveLimitKB >= 1000 ? `${(effectiveLimitKB / 1024).toFixed(0)} MB` : `${effectiveLimitKB} KB`})
               </span>
               <span className="text-[10px] text-gray-500 mt-1">JPEG, PNG, WEBP, AVIF only</span>
               <input type="file" accept="image/jpeg,image/png,image/webp,image/avif" onChange={handleFileUpload} className="hidden" />

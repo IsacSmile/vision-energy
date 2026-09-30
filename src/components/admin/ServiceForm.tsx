@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import FormShell from "./FormShell";
 import SeoPanel from "./SeoPanel";
+import ImageUploader from "./ImageUploader";
 import { showToast } from "./Toast";
 import { Plus, Trash2, X, MoveUp, MoveDown, Check, HelpCircle, AlertCircle } from "lucide-react";
 
@@ -32,6 +33,8 @@ export default function ServiceForm({ initialData, id }: ServiceFormProps) {
 
   // Content JSON sub-fields
   const content = initialData?.content || {};
+  const [image, setImage] = useState<string>(content.image || initialData?.image || "");
+  const [imageAlt, setImageAlt] = useState<string>(content.imageAlt || initialData?.imageAlt || "");
   const [heroLead, setHeroLead] = useState(content.heroLead || content.hero?.lead || "");
   const [overview, setOverview] = useState(content.overview || "");
 
@@ -123,6 +126,8 @@ export default function ServiceForm({ initialData, id }: ServiceFormProps) {
     setIsSubmitting(true);
     try {
       const formattedContent = {
+        image: image || null,
+        imageAlt: imageAlt || null,
         heroLead,
         overview,
         systems,
@@ -309,6 +314,27 @@ export default function ServiceForm({ initialData, id }: ServiceFormProps) {
                   setIsDirty(true);
                 }}
                 className="w-full bg-[#050608] border border-[#1F2937] text-white text-xs font-mono rounded-xl px-3 py-2.5 min-h-[44px]"
+              />
+            </div>
+
+            {/* Service Cover / Card Image (Max 500 KB) */}
+            <div className="sm:col-span-2 pt-2 border-t border-[#1F2937]">
+              <ImageUploader
+                value={image}
+                altValue={imageAlt}
+                onChange={(url, alt) => {
+                  setImage(url);
+                  if (alt !== undefined) setImageAlt(alt);
+                  setIsDirty(true);
+                }}
+                onAltChange={(alt) => {
+                  setImageAlt(alt);
+                  setIsDirty(true);
+                }}
+                type="services"
+                maxSizeKB={500}
+                label="Service Card & Hero Image (Max 500 KB limit)"
+                requiredAlt={Boolean(image)}
               />
             </div>
           </div>

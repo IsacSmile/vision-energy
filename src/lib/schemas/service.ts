@@ -20,6 +20,8 @@ export const faqItemSchema = z.object({
 export const serviceContentSchema = z.object({
   heroLead: z.string().min(1, 'Hero lead paragraph is required'),
   overview: z.string().optional().default(''),
+  image: z.string().nullable().optional(),
+  imageAlt: z.string().nullable().optional(),
   systems: z.array(systemItemSchema).optional().default([]),
   included: z.array(z.string()).optional().default([]),
   whereWeInstall: z.array(z.string()).optional().default([]),

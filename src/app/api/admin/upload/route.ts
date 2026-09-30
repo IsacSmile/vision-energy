@@ -71,8 +71,14 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
     }
 
-    if (file.size > MAX_FILE_SIZE_BYTES) {
-      return NextResponse.json({ error: "File exceeds maximum allowed size of 3 MB" }, { status: 400 });
+    const maxSizeBytes = type === "services" ? 500 * 1024 : MAX_FILE_SIZE_BYTES;
+    const maxSizeLabel = type === "services" ? "500 KB" : "3 MB";
+
+    if (file.size > maxSizeBytes) {
+      return NextResponse.json(
+        { error: `File exceeds maximum allowed size of ${maxSizeLabel} (uploaded size: ${(file.size / 1024).toFixed(1)} KB)` },
+        { status: 400 }
+      );
     }
 
     if (!ALLOWED_MIME_TYPES.includes(file.type)) {
