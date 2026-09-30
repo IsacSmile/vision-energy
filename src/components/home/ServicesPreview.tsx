@@ -68,7 +68,7 @@ export default async function ServicesPreview() {
               <Reveal key={service.id} staggerIndex={index}>
                 <Link
                   href={`/services#${service.slug}`}
-                  className="group block h-full rounded-[24px] bg-[#050608] border border-white/[0.08] hover:border-[#8DC63F]/50 overflow-hidden transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-[#8DC63F]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] flex flex-col justify-between"
+                  className="group h-full rounded-[24px] bg-[#050608] border border-white/[0.08] hover:border-[#8DC63F]/50 overflow-hidden transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-[#8DC63F]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] flex flex-col justify-between"
                 >
                   {/* Top Image Banner */}
                   <div className="relative w-full h-48 sm:h-56 overflow-hidden bg-[#0D1117]">

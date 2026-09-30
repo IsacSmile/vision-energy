@@ -145,7 +145,7 @@ export default async function ProductPreview() {
             >
               <Link
                 href={`/products`}
-                className="group block h-full rounded-[20px] bg-[#0D1117] border border-white/[0.08] hover:border-[#8DC63F]/50 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#8DC63F]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] flex flex-col justify-between"
+                className="group h-full rounded-[20px] bg-[#0D1117] border border-white/[0.08] hover:border-[#8DC63F]/50 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#8DC63F]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] flex flex-col justify-between"
               >
                 {/* Image Banner with Badge */}
                 <div className="relative w-full h-44 sm:h-48 overflow-hidden bg-[#050608]">
