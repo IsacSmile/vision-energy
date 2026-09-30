@@ -98,9 +98,25 @@
   animation: fadeUpStrip 400ms ease-out 200ms forwards;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-up,
-  .animate-fade-up-strip {
+  .animate-fade-up-strip,
+  .animate-fadeIn {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;

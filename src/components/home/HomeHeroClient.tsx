@@ -1,18 +1,218 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
-import HeroLightning from '@/components/HeroLightning';
 import { useEnquiryModal } from '@/components/modals/EnquiryModalProvider';
-import { ArrowRight, ShieldCheck } from 'lucide-react';
+import {
+  ArrowRight,
+  Zap,
+  Layers,
+  ShieldAlert,
+  Factory,
+  ChevronLeft,
+  ChevronRight,
+  PhoneCall,
+} from 'lucide-react';
 import LightningButton from '@/components/ui/LightningButton';
+
+interface SlideData {
+  id: string;
+  category: string;
+  shortName: string;
+  badge: string;
+  badgeIcon: React.ElementType;
+  titleLine1: string;
+  titleLine2: string;
+  subtitle: string;
+  description: string;
+  ctaText: string;
+  ctaLink: string;
+  imageUrl: string;
+  imageAlt: string;
+  standards: string;
+  highlightColor: string;
+  glowColor: string;
+}
+
+const HERO_SLIDES: SlideData[] = [
+  {
+    id: 'lightning-protection',
+    category: 'Lightning Protection',
+    shortName: 'Lightning',
+    badge: 'Direct-Strike Mitigation',
+    badgeIcon: Zap,
+    titleLine1: 'Advanced Lightning',
+    titleLine2: 'Protection Systems',
+    subtitle: 'Engineered Direct-Strike & Structural Safety',
+    description:
+      'Certified structural lightning interception and ESE systems safeguarding infrastructure across the UAE.',
+    ctaText: 'Explore Lightning',
+    ctaLink: '/products/lp-01-conventional-lightning-protection-systems',
+    imageUrl:
+      'https://plus.unsplash.com/premium_photo-1664298006973-e98eb94d006c?q=80&w=1600&auto=format&fit=crop',
+    imageAlt:
+      'Dramatic cityscape thunderstorm and structural lightning protection system',
+    standards: 'IEC 62305 • NFPA 780',
+    highlightColor: 'text-[#8DC63F]',
+    glowColor: 'rgba(141,198,63,0.45)',
+  },
+  {
+    id: 'earthing',
+    category: 'Earthing & Grounding',
+    shortName: 'Earthing',
+    badge: 'Low-Impedance Grids',
+    badgeIcon: Layers,
+    titleLine1: 'Precision Earthing &',
+    titleLine2: 'Grounding Solutions',
+    subtitle: 'Low-Impedance Foundation & Deep Earth Grids',
+    description:
+      'Engineered copper earthing grids and low-impedance grounding for maximum electrical safety.',
+    ctaText: 'Explore Earthing',
+    ctaLink: '/products/es-01-earth-rods-couplers-accessories',
+    imageUrl:
+      'https://images.unsplash.com/photo-1565249167139-75006b429343?q=80&w=1600&auto=format&fit=crop',
+    imageAlt:
+      'Industrial electrical grounding and power infrastructure installation',
+    standards: 'IEEE 80 • BS 7430',
+    highlightColor: 'text-[#8DC63F]',
+    glowColor: 'rgba(141,198,63,0.45)',
+  },
+  {
+    id: 'surge-protection',
+    category: 'Surge Protection',
+    shortName: 'Surge SPD',
+    badge: 'Transient Overvoltage Defense',
+    badgeIcon: ShieldAlert,
+    titleLine1: 'Mission-Critical Surge',
+    titleLine2: 'Protection Devices',
+    subtitle: 'Safeguarding Power, Control & Data Systems',
+    description:
+      'High-performance Type 1, 2 & 3 SPDs protecting critical power, telemetry, and data networks.',
+    ctaText: 'Explore Surge',
+    ctaLink: '/products/sp-01-surge-protection-devices-spd',
+    imageUrl:
+      'https://images.unsplash.com/photo-1722666825118-02f3c12d4434?q=80&w=1600&auto=format&fit=crop',
+    imageAlt:
+      'High-performance electrical power engineering and surge protection infrastructure',
+    standards: 'IEC 61643-11 • UL 1449',
+    highlightColor: 'text-[#38BDF8]',
+    glowColor: 'rgba(56,189,248,0.45)',
+  },
+  {
+    id: 'industrial-engineering',
+    category: 'Industrial Applications',
+    shortName: 'Industrial',
+    badge: 'Turnkey MEP & Infrastructure',
+    badgeIcon: Factory,
+    titleLine1: 'Industrial & Engineering',
+    titleLine2: 'Turnkey Solutions',
+    subtitle: 'Comprehensive Electrical, Mechanical & Solar Integration',
+    description:
+      'Turnkey MEP engineering, testing, and high-reliability power infrastructure solutions.',
+    ctaText: 'Explore Solutions',
+    ctaLink: '/products',
+    imageUrl:
+      'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop',
+    imageAlt:
+      'Modern commercial high-rise building and industrial engineering architecture in UAE',
+    standards: 'ISO 9001 • UAE Standards',
+    highlightColor: 'text-[#8DC63F]',
+    glowColor: 'rgba(141,198,63,0.45)',
+  },
+];
 
 interface HomeHeroClientProps {
   productCategoryCount?: number;
 }
 
+const SLIDE_DURATION_MS = 3000;
+
 export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientProps) {
   const { openServiceModal } = useEnquiryModal();
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  // Touch swipe handling
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
+
+  const totalSlides = HERO_SLIDES.length;
+
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % totalSlides);
+    setProgress(0);
+  }, [totalSlides]);
+
+  const prevSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+    setProgress(0);
+  }, [totalSlides]);
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+    setProgress(0);
+  };
+
+  // Timer and progress tick every 3 seconds (3000ms)
+  useEffect(() => {
+    if (isPaused) return;
+
+    const intervalStep = 50;
+    const stepIncrement = (intervalStep / SLIDE_DURATION_MS) * 100;
+
+    const timer = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          nextSlide();
+          return 0;
+        }
+        return prev + stepIncrement;
+      });
+    }, intervalStep);
+
+    return () => clearInterval(timer);
+  }, [isPaused, nextSlide]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [nextSlide, prevSlide]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return;
+    const distance = touchStartX.current - touchEndX.current;
+    const minSwipeDistance = 45;
+
+    if (distance > minSwipeDistance) {
+      nextSlide();
+    } else if (distance < -minSwipeDistance) {
+      prevSlide();
+    }
+
+    touchStartX.current = null;
+    touchEndX.current = null;
+  };
+
+  const activeSlide = HERO_SLIDES[currentSlide];
+  const ActiveIcon = activeSlide.badgeIcon;
 
   const chipLinks = [
     { label: 'Lightning Protection', href: '/products/lp-01-conventional-lightning-protection-systems', isPrimary: true },
@@ -25,26 +225,79 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
 
   return (
     <section
-      className="relative w-full h-[100svh] min-h-[100svh] flex flex-col justify-between overflow-hidden bg-[#050608] pt-[var(--mobile-header-h,56px)] lg:pt-[var(--header-h,80px)]"
+      aria-label="Vision Energy Hero Image Slider"
+      className="relative w-full h-[100svh] min-h-[100svh] flex flex-col justify-between overflow-hidden bg-[#050608] pt-[var(--mobile-header-h,56px)] lg:pt-[var(--header-h,80px)] select-none"
       style={{ minHeight: '100svh', height: '100svh' }}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
-      {/* Layer 1: Solid #050608 background */}
-      <div className="absolute inset-0 bg-[#050608] pointer-events-none" />
-
-      {/* Layer 2: WebGL Lightning Canvas Wrapper */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none z-10" aria-hidden="true">
-        <HeroLightning />
+      {/* ============================================================ */}
+      {/* LAYER 1: Background Images Slider (Crossfade + Subtle Scale) */}
+      {/* ============================================================ */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-0">
+        {HERO_SLIDES.map((slide, idx) => {
+          const isActive = idx === currentSlide;
+          return (
+            <div
+              key={slide.id}
+              className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
+                isActive ? 'opacity-100 z-10' : 'opacity-0 z-0'
+              }`}
+              aria-hidden={!isActive}
+            >
+              <Image
+                src={slide.imageUrl}
+                alt={slide.imageAlt}
+                fill
+                priority={idx === 0}
+                loading="eager"
+                fetchPriority={idx === 0 ? 'high' : 'auto'}
+                sizes="100vw"
+                className={`object-cover object-center transition-transform duration-[4000ms] ease-out ${
+                  isActive ? 'scale-105' : 'scale-100'
+                }`}
+                quality={90}
+              />
+            </div>
+          );
+        })}
       </div>
 
-      {/* Layer 3: Text scrim layer (near-black, behind text only) */}
+      {/* ============================================================ */}
+      {/* LAYER 2: Gradient Scrims for Legibility */}
+      {/* ============================================================ */}
+      {/* Base Darkening */}
+      <div className="absolute inset-0 bg-[#050608]/40 pointer-events-none z-10" />
+
+      {/* Desktop Directional Scrim */}
       <div
-        className="absolute inset-0 pointer-events-none z-20"
+        className="absolute inset-0 pointer-events-none z-10 hidden lg:block"
         style={{
-          background: 'radial-gradient(ellipse 90% 42% at 50% 45%, rgba(5,6,8,0.8) 0%, rgba(5,6,8,0.55) 55%, rgba(5,6,8,0) 100%)',
+          background:
+            'linear-gradient(90deg, rgba(5,6,8,0.96) 0%, rgba(5,6,8,0.85) 45%, rgba(5,6,8,0.5) 75%, rgba(5,6,8,0.2) 100%)',
+        }}
+      />
+      {/* Mobile Scrim with enhanced top and bottom protection */}
+      <div
+        className="absolute inset-0 pointer-events-none z-10 lg:hidden"
+        style={{
+          background:
+            'linear-gradient(180deg, rgba(5,6,8,0.88) 0%, rgba(5,6,8,0.7) 45%, rgba(5,6,8,0.95) 100%)',
         }}
       />
 
-      {/* Layer 4: Bottom fade to #050608 over 120px */}
+      {/* Brand Accent Ambient Glow */}
+      <div
+        className="absolute -top-32 -left-32 w-[550px] h-[550px] rounded-full pointer-events-none z-10 opacity-30 blur-[120px]"
+        style={{
+          background: 'radial-gradient(circle, rgba(11,101,179,0.7) 0%, rgba(141,198,63,0.2) 60%, transparent 80%)',
+        }}
+      />
+
+      {/* Bottom Fade to blend seamlessly with next section */}
       <div
         className="absolute bottom-0 inset-x-0 pointer-events-none z-20"
         style={{
@@ -53,140 +306,246 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
         }}
       />
 
-      {/* Layer 5: Main Content (Vertically Centered between Header & Bottom Strip on mobile) */}
+      {/* ============================================================ */}
+      {/* Mobile Top Segmented Progress Bar (Story-Style) */}
+      {/* ============================================================ */}
+      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 pt-2 lg:hidden">
+        <div className="grid grid-cols-4 gap-1.5 w-full">
+          {HERO_SLIDES.map((slide, idx) => {
+            const isSelected = idx === currentSlide;
+            const isPassed = idx < currentSlide;
+            return (
+              <button
+                key={slide.id}
+                onClick={() => goToSlide(idx)}
+                className="h-1 rounded-full bg-white/20 overflow-hidden relative"
+                aria-label={`Jump to ${slide.category}`}
+              >
+                <div
+                  className="h-full bg-[#8DC63F] transition-all duration-75 ease-linear rounded-full"
+                  style={{
+                    width: isPassed ? '100%' : isSelected ? `${progress}%` : '0%',
+                  }}
+                />
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ============================================================ */}
+      {/* LAYER 3: Main Content (Slide Details & CTAs) */}
+      {/* ============================================================ */}
       <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 my-auto flex-1 flex flex-col justify-center py-2 sm:py-8">
-        <div className="max-w-[720px] text-center lg:text-left lg:mx-0 space-y-4 sm:space-y-6">
-          {/* Badge Pill (Hidden below sm, shortened on sm/md, full on lg+) */}
-          <div className="hidden sm:inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0D1117] border border-[#1F2937] text-xs font-semibold text-white tracking-wide shadow-lg">
-            <ShieldCheck className="w-4 h-4 text-[#8DC63F]" />
-            <span className="sm:inline lg:hidden">Lightning Protection • Earthing</span>
-            <span className="hidden lg:inline">Lightning Protection • Earthing • Surge Protection</span>
+        <div className="max-w-[760px] text-center lg:text-left lg:mx-0 space-y-3.5 sm:space-y-6">
+          
+          {/* Badge Pill */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0D1117]/85 backdrop-blur-md border border-white/15 text-[11px] sm:text-xs font-semibold text-white tracking-wide shadow-xl mx-auto lg:mx-0">
+            <ActiveIcon className={`w-3.5 h-3.5 ${activeSlide.highlightColor}`} />
+            <span className={`${activeSlide.highlightColor} font-bold`}>{activeSlide.category}</span>
+            <span className="text-white/30">•</span>
+            <span className="text-white/80 text-[10px] sm:text-xs font-medium">{activeSlide.standards}</span>
           </div>
 
-          {/* H1 Heading - Mobile (2 block spans, nowrap, auto fluid size) */}
+          {/* H1 Heading */}
           <h1
-            className="block lg:hidden font-semibold text-white tracking-[-0.02em] text-center leading-[1.15]"
-            style={{
-              fontSize: 'min(calc((100vw - 32px) / 12.8), 2.5rem)',
-              textShadow: '0 0 18px rgba(5,6,8,0.9), 0 2px 6px rgba(5,6,8,0.8)',
-            }}
+            key={`title-${currentSlide}`}
+            className="font-bold tracking-[-0.02em] leading-[1.12] sm:leading-[1.12] transition-all duration-400 animate-fadeIn"
           >
-            <span className="block whitespace-nowrap">Innovation Engineered</span>
-            <span className="block whitespace-nowrap">for Performance</span>
-          </h1>
-
-          {/* H1 Heading - Desktop */}
-          <h1
-            className="hidden lg:block font-semibold text-white leading-[1.1] tracking-[-0.02em]"
-            style={{
-              fontSize: 'clamp(2.25rem, 3.6vw, 5.5rem)',
-              textShadow: '0 0 18px rgba(5,6,8,0.9), 0 2px 6px rgba(5,6,8,0.8)',
-            }}
-          >
-            <span className="block">Innovation Engineered</span>
-            <span className="block">for Performance</span>
-          </h1>
-
-          {/* Paragraph */}
-          <p
-            className="mt-4 sm:mt-6 text-white/95 font-normal leading-[1.6] lg:leading-[1.7] max-w-[52ch] mx-auto lg:mx-0 text-center lg:text-left"
-            style={{
-              fontSize: 'clamp(1.125rem, 1.25vw, 1.75rem)',
-              color: 'rgba(255,255,255,0.95)',
-              textShadow: '0 0 18px rgba(5,6,8,0.9), 0 2px 6px rgba(5,6,8,0.8)',
-            }}
-          >
-            We deliver reliable, sustainable solutions through engineering expertise, advanced technology, and technical excellence.
-          </p>
-
-          {/* Action Buttons (32px padding-top on mobile, 16px gap between buttons) */}
-          <div className="pt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 w-full max-w-[360px] sm:max-w-none mx-auto lg:mx-0">
-            <LightningButton
-              variant="primary"
-              size="lg"
-              href="/products"
-              iconRight={<ArrowRight className="w-4 h-4" />}
-              fullWidth
-              className="sm:w-auto"
+            <span
+              className="block text-white text-[28px] sm:text-[38px] lg:text-[60px]"
+              style={{
+                textShadow: '0 2px 14px rgba(5,6,8,0.95), 0 1px 3px rgba(5,6,8,0.8)',
+              }}
             >
-              Explore Products
-            </LightningButton>
+              {activeSlide.titleLine1}
+            </span>
+            <span
+              className={`block font-extrabold text-[28px] sm:text-[38px] lg:text-[60px] ${activeSlide.highlightColor}`}
+              style={{
+                textShadow: `0 0 20px ${activeSlide.glowColor}, 0 2px 10px rgba(5,6,8,0.95)`,
+              }}
+            >
+              {activeSlide.titleLine2}
+            </span>
+          </h1>
 
-            {/* Desktop second button (dark glass pill) */}
-            <div className="hidden sm:block">
-              <LightningButton
-                variant="secondary"
-                size="lg"
-                onClick={() =>
-                  openServiceModal({
-                    serviceSlug: 'general-service',
-                    serviceTitle: 'General Technical Service Booking',
-                  })
-                }
-              >
-                Book a Service
-              </LightningButton>
-            </div>
+          {/* Concise Slide Description */}
+          <div key={`desc-${currentSlide}`} className="animate-fadeIn max-w-[340px] sm:max-w-[50ch] mx-auto lg:mx-0">
+            <p
+              className="text-[#E2E8F0] font-normal text-[13px] sm:text-base lg:text-lg leading-relaxed"
+              style={{
+                textShadow: '0 2px 14px rgba(5,6,8,0.95)',
+              }}
+            >
+              {activeSlide.description}
+            </p>
+          </div>
 
-            {/* Mobile secondary CTA text link with arrow */}
+          {/* Action Buttons (Desktop & Mobile Redesigned) */}
+          <div className="pt-2 sm:pt-4 flex flex-row items-center justify-center lg:justify-start gap-2.5 sm:gap-3.5 w-full max-w-[360px] sm:max-w-none mx-auto lg:mx-0">
+            {/* Primary Action Button */}
+            <Link
+              href={activeSlide.ctaLink}
+              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 h-[42px] sm:h-[48px] px-4 sm:px-6 rounded-full bg-gradient-to-r from-[#8DC63F] to-[#7CB332] text-[#050608] text-xs sm:text-sm font-bold shadow-[0_0_20px_rgba(141,198,63,0.35)] hover:shadow-[0_0_30px_rgba(141,198,63,0.55)] transition-all active:scale-[0.98]"
+            >
+              <span>{activeSlide.ctaText}</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+
+            {/* Secondary Action Button */}
             <button
               onClick={() =>
                 openServiceModal({
-                  serviceSlug: 'general-service',
-                  serviceTitle: 'General Technical Service Booking',
+                  serviceSlug: activeSlide.id,
+                  serviceTitle: `${activeSlide.category} Technical Consultation`,
                 })
               }
-              className="sm:hidden min-h-[48px] min-w-[48px] px-4 py-3 text-[#8DC63F] flex items-center justify-center gap-1.5 font-semibold text-sm hover:underline active-press mx-auto"
-              style={{
-                textShadow: '0 0 18px rgba(5,6,8,0.9), 0 2px 6px rgba(5,6,8,0.8)',
-              }}
+              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 h-[42px] sm:h-[48px] px-3.5 sm:px-6 rounded-full bg-[#0D1117]/80 hover:bg-[#161B22] border border-white/20 text-white text-xs sm:text-sm font-semibold backdrop-blur-md transition-all active:scale-[0.98]"
             >
-              <span>Book a Service</span>
-              <ArrowRight className="w-4 h-4 text-[#8DC63F]" />
+              <PhoneCall className="w-3.5 h-3.5 text-[#8DC63F]" />
+              <span>Consultation</span>
             </button>
+          </div>
+
+          {/* ============================================================ */}
+          {/* Desktop Interactive Slider Navigation Tabs */}
+          {/* ============================================================ */}
+          <div className="hidden lg:flex items-center gap-3 pt-6">
+            {HERO_SLIDES.map((slide, idx) => {
+              const isSelected = idx === currentSlide;
+              const SlideIcon = slide.badgeIcon;
+              return (
+                <button
+                  key={slide.id}
+                  onClick={() => goToSlide(idx)}
+                  className={`group relative flex items-center gap-2.5 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-300 border ${
+                    isSelected
+                      ? 'bg-[#0D1117]/90 border-[#8DC63F]/60 text-white shadow-lg shadow-[#8DC63F]/15'
+                      : 'bg-[#0D1117]/40 border-white/10 text-white/70 hover:text-white hover:bg-[#0D1117]/70 hover:border-white/20'
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}: ${slide.category}`}
+                  aria-current={isSelected ? 'true' : 'false'}
+                >
+                  <SlideIcon
+                    className={`w-3.5 h-3.5 transition-colors ${
+                      isSelected ? slide.highlightColor : 'text-white/50 group-hover:text-white/80'
+                    }`}
+                  />
+                  <span>{slide.category}</span>
+
+                  {/* 3s Animated Progress Line */}
+                  {isSelected && (
+                    <div className="absolute bottom-0 left-2 right-2 h-[2px] bg-white/10 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-[#8DC63F] transition-all duration-75 ease-linear"
+                        style={{ width: `${progress}%` }}
+                      />
+                    </div>
+                  )}
+                </button>
+              );
+            })}
+
+            {/* Navigation Arrows */}
+            <div className="flex items-center gap-1.5 ml-2 pl-2 border-l border-white/15">
+              <button
+                onClick={prevSlide}
+                className="w-8 h-8 rounded-lg bg-[#0D1117]/60 hover:bg-[#0D1117] border border-white/10 hover:border-white/25 flex items-center justify-center text-white/70 hover:text-white transition-colors"
+                aria-label="Previous slide"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+
+              <button
+                onClick={nextSlide}
+                className="w-8 h-8 rounded-lg bg-[#0D1117]/60 hover:bg-[#0D1117] border border-white/10 hover:border-white/25 flex items-center justify-center text-white/70 hover:text-white transition-colors"
+                aria-label="Next slide"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Layer 6: Mobile Quick Facts & Category Chips Strip (Mobile only below 1024px) */}
-      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-5 pb-[max(20px,env(safe-area-inset-bottom))] lg:hidden animate-fade-up-strip">
-        {/* Quick Fact Tiles (3 equal tiles in a row) */}
-        <div className={`grid ${productCategoryCount && productCategoryCount > 0 ? 'grid-cols-3' : 'grid-cols-2'} gap-3 w-full mb-3`}>
+      {/* ============================================================ */}
+      {/* Mobile Interactive Quick-Tabs & Stats Bar */}
+      {/* ============================================================ */}
+      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 pb-[max(12px,env(safe-area-inset-bottom))] lg:hidden">
+        
+        {/* Mobile Quick Category Switcher Tabs */}
+        <div className="grid grid-cols-4 gap-1.5 mb-2.5">
+          {HERO_SLIDES.map((slide, idx) => {
+            const isSelected = idx === currentSlide;
+            const SlideIcon = slide.badgeIcon;
+            return (
+              <button
+                key={slide.id}
+                onClick={() => goToSlide(idx)}
+                className={`h-[34px] rounded-lg text-[11px] font-semibold flex items-center justify-center gap-1 transition-all border ${
+                  isSelected
+                    ? 'bg-[#0D1117]/90 border-[#8DC63F] text-white shadow-md shadow-[#8DC63F]/20'
+                    : 'bg-[#0D1117]/50 border-white/10 text-white/60 hover:text-white'
+                }`}
+              >
+                <SlideIcon className={`w-3 h-3 ${isSelected ? 'text-[#8DC63F]' : 'text-white/40'}`} />
+                <span className="truncate">{slide.shortName}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Quick Fact Tiles */}
+        <div
+          className={`grid ${
+            productCategoryCount && productCategoryCount > 0 ? 'grid-cols-3' : 'grid-cols-2'
+          } gap-2 w-full mb-2`}
+        >
           {/* Tile A: 2018 Established */}
-          <div className="h-[88px] max-h-[88px] [media(max-height:640px)]:h-[72px] bg-[#0D1117]/85 border border-white/[0.08] rounded-xl flex flex-col items-center justify-center text-center p-2">
-            <span className="text-[20px] [media(max-height:640px)]:text-[16px] font-semibold text-white leading-tight">2018</span>
-            <span className="text-[12px] [media(max-height:640px)]:text-[10px] text-[#A9B4C0] uppercase tracking-[0.04em] font-medium leading-tight mt-0.5">Established</span>
+          <div className="h-[62px] [media(max-height:640px)]:h-[52px] bg-[#0D1117]/85 backdrop-blur-md border border-white/[0.08] rounded-xl flex flex-col items-center justify-center text-center p-1">
+            <span className="text-[16px] [media(max-height:640px)]:text-[14px] font-bold text-white leading-tight">
+              2018
+            </span>
+            <span className="text-[10px] [media(max-height:640px)]:text-[8px] text-[#A9B4C0] uppercase tracking-[0.04em] font-medium leading-tight mt-0.5">
+              Established
+            </span>
           </div>
 
           {/* Tile B: 3 UAE Locations */}
-          <div className="h-[88px] max-h-[88px] [media(max-height:640px)]:h-[72px] bg-[#0D1117]/85 border border-white/[0.08] rounded-xl flex flex-col items-center justify-center text-center p-2">
-            <span className="text-[20px] [media(max-height:640px)]:text-[16px] font-semibold text-white leading-tight">3</span>
-            <span className="text-[12px] [media(max-height:640px)]:text-[10px] text-[#A9B4C0] uppercase tracking-[0.04em] font-medium leading-tight mt-0.5">UAE Locations</span>
+          <div className="h-[62px] [media(max-height:640px)]:h-[52px] bg-[#0D1117]/85 backdrop-blur-md border border-white/[0.08] rounded-xl flex flex-col items-center justify-center text-center p-1">
+            <span className="text-[16px] [media(max-height:640px)]:text-[14px] font-bold text-white leading-tight">
+              3
+            </span>
+            <span className="text-[10px] [media(max-height:640px)]:text-[8px] text-[#A9B4C0] uppercase tracking-[0.04em] font-medium leading-tight mt-0.5">
+              UAE Locations
+            </span>
           </div>
 
-          {/* Tile C: Product Categories (only if database count is available) */}
+          {/* Tile C: Product Categories */}
           {Boolean(productCategoryCount && productCategoryCount > 0) && (
-            <div className="h-[88px] max-h-[88px] [media(max-height:640px)]:h-[72px] bg-[#0D1117]/85 border border-white/[0.08] rounded-xl flex flex-col items-center justify-center text-center p-2 overflow-hidden">
-              <span className="text-[20px] [media(max-height:640px)]:text-[16px] font-semibold text-white leading-tight">{productCategoryCount}</span>
-              <span className="text-[12px] [media(max-height:640px)]:text-[10px] text-[#A9B4C0] uppercase tracking-[0.04em] font-medium leading-tight mt-0.5 truncate w-full">Product Categories</span>
+            <div className="h-[62px] [media(max-height:640px)]:h-[52px] bg-[#0D1117]/85 backdrop-blur-md border border-white/[0.08] rounded-xl flex flex-col items-center justify-center text-center p-1 overflow-hidden">
+              <span className="text-[16px] [media(max-height:640px)]:text-[14px] font-bold text-white leading-tight">
+                {productCategoryCount}
+              </span>
+              <span className="text-[10px] [media(max-height:640px)]:text-[8px] text-[#A9B4C0] uppercase tracking-[0.04em] font-medium leading-tight mt-0.5 truncate w-full">
+                Categories
+              </span>
             </div>
           )}
         </div>
 
-        {/* Explore Label & Scrollable Chips Row */}
+        {/* Explore Horizontal Chips */}
         <div className="w-full [media(max-height:640px)]:hidden">
-          <span className="text-[12px] uppercase text-[#A9B4C0] font-medium tracking-[0.04em] block mb-1 text-left">
-            Explore
-          </span>
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar snap-x snap-mandatory py-1 w-full">
+          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar snap-x snap-mandatory py-0.5 w-full">
             {chipLinks.map((chip) => (
               <Link
                 key={chip.label}
                 href={chip.href}
-                className={`h-[40px] px-4 rounded-full text-[14px] font-medium shrink-0 flex items-center justify-center border transition-colors snap-start active-press ${
+                className={`h-[32px] px-3 rounded-full text-[12px] font-medium shrink-0 flex items-center justify-center border transition-colors snap-start active:scale-[0.98] backdrop-blur-sm ${
                   chip.isPrimary
-                    ? 'text-[#8DC63F] border-[#8DC63F] bg-transparent'
-                    : 'text-white border-white/15 bg-transparent hover:border-white/30'
+                    ? 'text-[#8DC63F] border-[#8DC63F]/80 bg-[#8DC63F]/10'
+                    : 'text-white/80 border-white/15 bg-[#0D1117]/60 hover:border-white/30'
                 }`}
               >
                 {chip.label}
