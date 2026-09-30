@@ -267,7 +267,7 @@ export default function Header() {
         aria-modal="true"
         aria-label="Mobile Navigation Menu"
         aria-hidden={!mobileMenuOpen}
-        inert={!mobileMenuOpen ? true : undefined}
+        inert={!mobileMenuOpen ? '' : undefined}
         suppressHydrationWarning
         className={`fixed inset-0 z-40 w-screen h-[100svh] min-h-[100vh] bg-[#050608] lg:hidden flex flex-col justify-between overflow-y-auto px-6 pt-[calc(var(--mobile-header-h,56px)+20px)] pb-[max(24px,env(safe-area-inset-bottom))] transition-all duration-320 ${
           mobileMenuOpen
