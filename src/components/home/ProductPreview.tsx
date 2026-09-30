@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowUpRight, ArrowRight, ShieldCheck, Zap } from 'lucide-react';
+import { ArrowUpRight, ArrowRight } from 'lucide-react';
 import { getPublishedProductCategories } from '@/lib/data/products';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Reveal from '@/components/ui/Reveal';
@@ -55,7 +55,7 @@ const FEATURED_PRODUCTS: FeaturedProduct[] = [
     categoryName: 'Earthing & Bonding',
     description: 'Molecular-level copper bonding for permanent, corrosion-free connections.',
     imageUrl:
-      'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&auto=format&fit=crop',
     tag: 'UL 467',
   },
   {
@@ -67,26 +67,6 @@ const FEATURED_PRODUCTS: FeaturedProduct[] = [
     imageUrl:
       'https://images.unsplash.com/photo-1722666825118-02f3c12d4434?q=80&w=800&auto=format&fit=crop',
     tag: 'IEC 61643',
-  },
-  {
-    code: 'CB-01',
-    slug: 'cb-01-power-cables-industrial-wiring',
-    title: 'Power Cables & Industrial Connectivity',
-    categoryName: 'Cables & Connectivity',
-    description: 'Low-voltage power cables, earth wires, and high-conductivity conductors.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=800&auto=format&fit=crop',
-    tag: 'BS 5467',
-  },
-  {
-    code: 'CM-01',
-    slug: 'cm-01-cable-trays-trunking-systems',
-    title: 'Cable Trays & Ladder Management',
-    categoryName: 'Cable Management',
-    description: 'Heavy-duty galvanized cable trays, trunking, and mounting accessories.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1513828583688-c52646db42da?q=80&w=800&auto=format&fit=crop',
-    tag: 'NEMA VE1',
   },
   {
     code: 'EN-01',
@@ -128,8 +108,8 @@ export default async function ProductPreview() {
           </Link>
         </div>
 
-        {/* 4 to 8 Featured Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* 3 Cards per Row on all Laptops & Desktops (md:grid-cols-3 lg:grid-cols-3) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
           {FEATURED_PRODUCTS.map((product, idx) => (
             <Reveal key={product.code} staggerIndex={idx}>
               <Link
@@ -137,13 +117,13 @@ export default async function ProductPreview() {
                 className="group block h-full rounded-[20px] bg-[#0D1117] border border-white/[0.08] hover:border-[#8DC63F]/50 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#8DC63F]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] flex flex-col justify-between"
               >
                 {/* Image Banner with Badge */}
-                <div className="relative w-full h-40 overflow-hidden bg-[#050608]">
+                <div className="relative w-full h-44 sm:h-48 overflow-hidden bg-[#050608]">
                   <Image
                     src={product.imageUrl}
                     alt={product.title}
                     fill
                     className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
 
                   {/* Gradient Overlay */}
@@ -161,13 +141,13 @@ export default async function ProductPreview() {
                 </div>
 
                 {/* Card Body */}
-                <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+                <div className="p-5 flex-1 flex flex-col justify-between">
                   <div>
                     <span className="text-[11px] font-medium text-[#8DC63F] uppercase tracking-wider block mb-1">
                       {product.categoryName}
                     </span>
 
-                    <h3 className="text-base sm:text-[17px] font-semibold text-white leading-snug group-hover:text-[#8DC63F] transition-colors line-clamp-2">
+                    <h3 className="text-base sm:text-lg font-semibold text-white leading-snug group-hover:text-[#8DC63F] transition-colors line-clamp-2">
                       {product.title}
                     </h3>
 
