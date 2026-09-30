@@ -96,9 +96,9 @@ export default function Footer({ services = [] }: FooterProps) {
               <Image
                 src="/site-main-logo.png"
                 alt="VISION ENERGY INTERNATIONAL"
-                width={210}
-                height={48}
-                className="h-9 sm:h-10.5 w-auto max-w-[210px] sm:max-w-[250px] object-contain"
+                width={200}
+                height={200}
+                className="w-[200px] h-auto max-h-[200px] object-contain"
               />
             </Link>
 
