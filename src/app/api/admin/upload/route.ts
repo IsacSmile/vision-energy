@@ -110,17 +110,29 @@ export async function POST(request: Request) {
       });
     }
 
-    // 2. Otherwise, save locally to public/uploads/cms/...
-    const uploadDir = path.join(process.cwd(), "public", "uploads", "cms", type);
-    await fs.mkdir(uploadDir, { recursive: true });
-    const filePath = path.join(uploadDir, randomName);
-    await fs.writeFile(filePath, buffer);
+    // 2. Try to save locally to public/uploads/cms/... (local dev / persistent servers)
+    try {
+      const uploadDir = path.join(process.cwd(), "public", "uploads", "cms", type);
+      await fs.mkdir(uploadDir, { recursive: true });
+      const filePath = path.join(uploadDir, randomName);
+      await fs.writeFile(filePath, buffer);
 
-    const localUrl = `/uploads/cms/${type}/${randomName}`;
-    return NextResponse.json({
-      url: localUrl,
-      pathname: localUrl,
-    });
+      const localUrl = `/uploads/cms/${type}/${randomName}`;
+      return NextResponse.json({
+        url: localUrl,
+        pathname: localUrl,
+      });
+    } catch (fsError: any) {
+      // 3. If running on Serverless / Vercel (read-only filesystem /var/task), fallback to Base64 Data URL
+      console.warn("Filesystem write unavailable (serverless environment), falling back to Data URL:", fsError?.message);
+      const base64Data = buffer.toString("base64");
+      const dataUrl = `data:${file.type};base64,${base64Data}`;
+
+      return NextResponse.json({
+        url: dataUrl,
+        pathname: `data-uri-${randomName}`,
+      });
+    }
   } catch (error: any) {
     console.error("Upload Error:", error);
     return NextResponse.json({ error: error?.message || "Image upload failed" }, { status: 500 });
