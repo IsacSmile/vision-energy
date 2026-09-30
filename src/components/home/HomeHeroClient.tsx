@@ -214,15 +214,6 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
   const activeSlide = HERO_SLIDES[currentSlide];
   const ActiveIcon = activeSlide.badgeIcon;
 
-  const chipLinks = [
-    { label: 'Lightning Protection', href: '/products/lp-01-conventional-lightning-protection-systems', isPrimary: true },
-    { label: 'Earthing', href: '/products/es-01-earth-rods-couplers-accessories', isPrimary: false },
-    { label: 'Surge Protection', href: '/products/sp-01-surge-protection-devices-spd', isPrimary: false },
-    { label: 'Electrical', href: '/products', isPrimary: false },
-    { label: 'Mechanical', href: '/products', isPrimary: false },
-    { label: 'Solar', href: '/products', isPrimary: false },
-  ];
-
   return (
     <section
       aria-label="Vision Energy Hero Image Slider"
@@ -534,25 +525,6 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
               </span>
             </div>
           )}
-        </div>
-
-        {/* Explore Horizontal Chips */}
-        <div className="w-full [media(max-height:640px)]:hidden">
-          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar snap-x snap-mandatory py-0.5 w-full">
-            {chipLinks.map((chip) => (
-              <Link
-                key={chip.label}
-                href={chip.href}
-                className={`h-[32px] px-3 rounded-full text-[12px] font-medium shrink-0 flex items-center justify-center border transition-colors snap-start active:scale-[0.98] backdrop-blur-sm ${
-                  chip.isPrimary
-                    ? 'text-[#8DC63F] border-[#8DC63F]/80 bg-[#8DC63F]/10'
-                    : 'text-white/80 border-white/15 bg-[#0D1117]/60 hover:border-white/30'
-                }`}
-              >
-                {chip.label}
-              </Link>
-            ))}
-          </div>
         </div>
       </div>
     </section>
