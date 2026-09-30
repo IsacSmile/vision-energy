@@ -14,6 +14,7 @@ import {
   Clock,
 } from "lucide-react";
 import { showToast } from "@/components/admin/Toast";
+import { AdminSelect } from "@/components/admin/AdminSelect";
 
 export const dynamic = "force-dynamic";
 
@@ -148,38 +149,40 @@ function AdminBlogContent() {
           />
         </div>
 
-        <select
+        <AdminSelect
           value={status}
-          onChange={(e) => updateParam("status", e.target.value)}
-          className="bg-[#050608] border border-[#1F2937] text-white text-xs rounded-xl px-3 py-2 min-h-[44px]"
-        >
-          <option value="">All Statuses</option>
-          <option value="PUBLISHED">Published</option>
-          <option value="DRAFT">Draft</option>
-        </select>
+          onChange={(val) => updateParam("status", val)}
+          options={[
+            { label: "All Statuses", value: "" },
+            { label: "Published", value: "PUBLISHED" },
+            { label: "Draft", value: "DRAFT" },
+          ]}
+          placeholder="Status"
+          className="w-36"
+        />
 
-        <select
+        <AdminSelect
           value={category}
-          onChange={(e) => updateParam("category", e.target.value)}
-          className="bg-[#050608] border border-[#1F2937] text-white text-xs rounded-xl px-3 py-2 min-h-[44px]"
-        >
-          <option value="">All Categories</option>
-          {categories.map((cat, i) => (
-            <option key={i} value={cat}>
-              {cat}
-            </option>
-          ))}
-        </select>
+          onChange={(val) => updateParam("category", val)}
+          options={[
+            { label: "All Categories", value: "" },
+            ...categories.map((cat) => ({ label: cat, value: cat })),
+          ]}
+          placeholder="Category"
+          className="w-40"
+        />
 
-        <select
+        <AdminSelect
           value={sortBy}
-          onChange={(e) => updateParam("sortBy", e.target.value)}
-          className="bg-[#050608] border border-[#1F2937] text-white text-xs rounded-xl px-3 py-2 min-h-[44px]"
-        >
-          <option value="updatedAt">Sort: Updated</option>
-          <option value="publishedAt">Sort: Published Date</option>
-          <option value="title">Sort: Title</option>
-        </select>
+          onChange={(val) => updateParam("sortBy", val)}
+          options={[
+            { label: "Sort: Updated", value: "updatedAt" },
+            { label: "Sort: Published Date", value: "publishedAt" },
+            { label: "Sort: Title", value: "title" },
+          ]}
+          placeholder="Sort By"
+          className="w-44"
+        />
       </div>
 
       {/* Bulk Action Bar */}

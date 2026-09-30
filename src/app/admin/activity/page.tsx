@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Activity, Filter, RefreshCw, Loader2 } from "lucide-react";
+import { AdminSelect } from "@/components/admin/AdminSelect";
 
 export default function AdminActivityPage() {
   const [logs, setLogs] = useState<any[]>([]);
@@ -86,34 +87,38 @@ export default function AdminActivityPage() {
         </div>
 
         {/* Action Filter */}
-        <select
+        <AdminSelect
           value={actionFilter}
-          onChange={(e) => setActionFilter(e.target.value)}
-          className="bg-[#050608] border border-[#1F2937] text-white text-xs rounded-xl px-3 py-2 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-[#A3E635]"
-        >
-          <option value="">All Actions</option>
-          <option value="CREATE">CREATE</option>
-          <option value="UPDATE">UPDATE</option>
-          <option value="DELETE">DELETE</option>
-          <option value="RESTORE">RESTORE</option>
-          <option value="PUBLISH">PUBLISH</option>
-          <option value="UNPUBLISH">UNPUBLISH</option>
-          <option value="LOGIN">LOGIN</option>
-          <option value="LOGOUT">LOGOUT</option>
-        </select>
+          onChange={(val) => setActionFilter(val)}
+          options={[
+            { label: "All Actions", value: "" },
+            { label: "CREATE", value: "CREATE" },
+            { label: "UPDATE", value: "UPDATE" },
+            { label: "DELETE", value: "DELETE" },
+            { label: "RESTORE", value: "RESTORE" },
+            { label: "PUBLISH", value: "PUBLISH" },
+            { label: "UNPUBLISH", value: "UNPUBLISH" },
+            { label: "LOGIN", value: "LOGIN" },
+            { label: "LOGOUT", value: "LOGOUT" },
+          ]}
+          placeholder="Filter Action"
+          className="w-40"
+        />
 
         {/* Entity Filter */}
-        <select
+        <AdminSelect
           value={entityFilter}
-          onChange={(e) => setEntityFilter(e.target.value)}
-          className="bg-[#050608] border border-[#1F2937] text-white text-xs rounded-xl px-3 py-2 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-[#A3E635]"
-        >
-          <option value="">All Entities</option>
-          <option value="PRODUCT_CATEGORY">PRODUCT_CATEGORY</option>
-          <option value="SERVICE">SERVICE</option>
-          <option value="BLOG_POST">BLOG_POST</option>
-          <option value="ADMIN_AUTH">ADMIN_AUTH</option>
-        </select>
+          onChange={(val) => setEntityFilter(val)}
+          options={[
+            { label: "All Entities", value: "" },
+            { label: "PRODUCT_CATEGORY", value: "PRODUCT_CATEGORY" },
+            { label: "SERVICE", value: "SERVICE" },
+            { label: "BLOG_POST", value: "BLOG_POST" },
+            { label: "ADMIN_AUTH", value: "ADMIN_AUTH" },
+          ]}
+          placeholder="Filter Entity"
+          className="w-52"
+        />
 
         {(actionFilter || entityFilter) && (
           <button

@@ -28,6 +28,7 @@ import {
   type ProductFormValues,
 } from "@/lib/schemas/product";
 import { getCategoryPlaceholder } from "@/lib/utils/placeholders";
+import { AdminSelect } from "./AdminSelect";
 
 interface ProductFormProps {
   initialData?: {
@@ -80,6 +81,7 @@ export function ProductForm({ initialData, isEdit = false }: ProductFormProps) {
     handleSubmit,
     control,
     watch,
+    setValue,
     formState: { errors, isDirty },
   } = useForm<ProductFormValues>({
     resolver: zodResolver(productSchema) as any,
@@ -435,16 +437,16 @@ export function ProductForm({ initialData, isEdit = false }: ProductFormProps) {
             <label className="block text-xs font-semibold text-slate-300 mb-2">
               Category <span className="text-rose-400">*</span>
             </label>
-            <select
-              {...register("category")}
-              className="w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-2.5 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
-            >
-              {PRODUCT_CATEGORIES.map((cat) => (
-                <option key={cat} value={cat}>
-                  {cat}
-                </option>
-              ))}
-            </select>
+            <AdminSelect
+              value={watch("category") || ""}
+              onChange={(val) => setValue("category", val as any, { shouldValidate: true, shouldDirty: true })}
+              options={PRODUCT_CATEGORIES.map((cat) => ({
+                label: cat,
+                value: cat,
+              }))}
+              placeholder="Select category..."
+              className="w-full"
+            />
             {errors.category && (
               <p className="mt-1 text-xs text-rose-400">{errors.category.message}</p>
             )}

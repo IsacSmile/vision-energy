@@ -17,6 +17,7 @@ import {
   Square,
   Layers,
 } from "lucide-react";
+import AdminSelect from "@/components/admin/AdminSelect";
 import { PRODUCT_CATEGORIES } from "@/lib/schemas/product";
 
 import { getCategoryPlaceholder } from "@/lib/utils/placeholders";
@@ -147,44 +148,45 @@ export function ProductListTable({
         </div>
 
         {/* Status Filter */}
-        <select
-          value={currentStatus}
-          onChange={(e) => updateFilters("status", e.target.value)}
-          className="rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-xs text-slate-200 focus:border-emerald-500 focus:outline-none"
-        >
-          <option value="">All Statuses</option>
-          <option value="PUBLISHED">Published Only</option>
-          <option value="ARCHIVED">Archived Only</option>
-        </select>
+        <div className="w-40">
+          <AdminSelect
+            value={currentStatus}
+            onChange={(val) => updateFilters("status", val)}
+            options={[
+              { value: "", label: "All Statuses" },
+              { value: "PUBLISHED", label: "Published Only" },
+              { value: "ARCHIVED", label: "Archived Only" },
+            ]}
+            placeholder="All Statuses"
+          />
+        </div>
 
         {/* Category Filter */}
-        <select
-          value={currentCategory}
-          onChange={(e) => updateFilters("category", e.target.value)}
-          className="rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-xs text-slate-200 focus:border-emerald-500 focus:outline-none"
-        >
-          <option value="">All Categories</option>
-          {PRODUCT_CATEGORIES.map((cat) => (
-            <option key={cat} value={cat}>
-              {cat}
-            </option>
-          ))}
-        </select>
+        <div className="w-48">
+          <AdminSelect
+            value={currentCategory}
+            onChange={(val) => updateFilters("category", val)}
+            options={[
+              { value: "", label: "All Categories" },
+              ...PRODUCT_CATEGORIES.map((cat) => ({ value: cat, label: cat })),
+            ]}
+            placeholder="All Categories"
+          />
+        </div>
 
         {/* Subcategory Filter */}
         {subcategories.length > 0 && (
-          <select
-            value={currentSubcategory}
-            onChange={(e) => updateFilters("subcategoryGroup", e.target.value)}
-            className="rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-xs text-slate-200 focus:border-emerald-500 focus:outline-none max-w-[180px] truncate"
-          >
-            <option value="">All Subcategories</option>
-            {subcategories.map((sub) => (
-              <option key={sub} value={sub}>
-                {sub}
-              </option>
-            ))}
-          </select>
+          <div className="w-48">
+            <AdminSelect
+              value={currentSubcategory}
+              onChange={(val) => updateFilters("subcategoryGroup", val)}
+              options={[
+                { value: "", label: "All Subcategories" },
+                ...subcategories.map((sub) => ({ value: sub, label: sub })),
+              ]}
+              placeholder="All Subcategories"
+            />
+          </div>
         )}
       </div>
 
@@ -197,7 +199,7 @@ export function ProductListTable({
 
           <button
             onClick={() => handleBulkAction("bulk_archive")}
-            className="flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 font-medium text-amber-400 hover:bg-slate-800"
+            className="flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 font-medium text-amber-400 hover:bg-slate-800 min-h-[38px]"
           >
             <Archive className="h-3.5 w-3.5" />
             <span>Bulk Archive</span>
@@ -205,32 +207,31 @@ export function ProductListTable({
 
           <button
             onClick={() => handleBulkAction("bulk_restore")}
-            className="flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 font-medium text-emerald-400 hover:bg-slate-800"
+            className="flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 font-medium text-emerald-400 hover:bg-slate-800 min-h-[38px]"
           >
             <RotateCcw className="h-3.5 w-3.5" />
             <span>Bulk Restore</span>
           </button>
 
-          <div className="flex items-center gap-2">
-            <select
-              value={bulkCategory}
-              onChange={(e) => setBulkCategory(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-2.5 py-1 text-xs text-slate-200"
-            >
-              <option value="">Choose category...</option>
-              {PRODUCT_CATEGORIES.map((cat) => (
-                <option key={cat} value={cat}>
-                  {cat}
-                </option>
-              ))}
-            </select>
+          <div className="flex items-center gap-2 min-w-[220px]">
+            <div className="flex-1">
+              <AdminSelect
+                value={bulkCategory}
+                onChange={(val) => setBulkCategory(val)}
+                options={[
+                  { value: "", label: "Choose category..." },
+                  ...PRODUCT_CATEGORIES.map((cat) => ({ value: cat, label: cat })),
+                ]}
+                placeholder="Choose category..."
+              />
+            </div>
 
             <button
               onClick={() => handleBulkAction("bulk_reassign_category")}
               disabled={!bulkCategory}
-              className="rounded-lg bg-slate-800 px-3 py-1.5 font-medium text-slate-200 hover:bg-slate-700 disabled:opacity-40"
+              className="rounded-xl bg-slate-800 px-3 py-2 font-medium text-slate-200 hover:bg-slate-700 disabled:opacity-40 min-h-[42px] shrink-0 transition-colors"
             >
-              Reassign Category
+              Reassign
             </button>
           </div>
         </div>

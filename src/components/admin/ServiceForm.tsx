@@ -6,6 +6,7 @@ import FormShell from "./FormShell";
 import SeoPanel from "./SeoPanel";
 import ImageUploader from "./ImageUploader";
 import { showToast } from "./Toast";
+import { AdminSelect } from "./AdminSelect";
 import { Plus, Trash2, X, MoveUp, MoveDown, Check, HelpCircle, AlertCircle } from "lucide-react";
 
 interface ServiceFormProps {
@@ -287,21 +288,23 @@ export default function ServiceForm({ initialData, id }: ServiceFormProps) {
 
             <div className="space-y-1">
               <label className="block text-xs font-semibold text-gray-300">Lucide Icon Key</label>
-              <select
+              <AdminSelect
                 value={icon}
-                onChange={(e) => {
-                  setIcon(e.target.value);
+                onChange={(val) => {
+                  setIcon(val);
                   setIsDirty(true);
                 }}
-                className="w-full bg-[#050608] border border-[#1F2937] text-white text-xs rounded-xl px-3 py-2.5 min-h-[44px]"
-              >
-                <option value="zap">zap (Lightning Bolt)</option>
-                <option value="users">users (Manpower & Personnel)</option>
-                <option value="shield">shield (Earthing & Protection)</option>
-                <option value="activity">activity (Surge & Pulse)</option>
-                <option value="wrench">wrench (Engineering Maintenance)</option>
-                <option value="bolt">bolt (High Voltage)</option>
-              </select>
+                options={[
+                  { label: "zap (Lightning Bolt)", value: "zap" },
+                  { label: "users (Manpower & Personnel)", value: "users" },
+                  { label: "shield (Earthing & Protection)", value: "shield" },
+                  { label: "activity (Surge & Pulse)", value: "activity" },
+                  { label: "wrench (Engineering Maintenance)", value: "wrench" },
+                  { label: "bolt (High Voltage)", value: "bolt" },
+                ]}
+                placeholder="Select icon..."
+                className="w-full"
+              />
             </div>
 
             <div className="space-y-1">

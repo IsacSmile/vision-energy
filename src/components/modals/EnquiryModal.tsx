@@ -370,7 +370,14 @@ function ServiceForm({
             <input
               {...register('preferredDate')}
               type="date"
-              className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:outline-none focus:ring-0 focus:border-[#8DC63F] text-base transition-colors"
+              onClick={(e) => {
+                try {
+                  (e.currentTarget as any).showPicker?.();
+                } catch {
+                  // Fallback
+                }
+              }}
+              className="w-full bg-[#050608] border border-[#1F2937] rounded-xl px-3.5 h-12 text-white focus:outline-none focus:ring-0 focus:border-[#8DC63F] text-base transition-colors cursor-pointer [color-scheme:dark]"
             />
           </div>
         </div>

@@ -14,6 +14,7 @@ import {
   Loader2,
 } from "lucide-react";
 import { showToast } from "@/components/admin/Toast";
+import { AdminSelect } from "@/components/admin/AdminSelect";
 
 export const dynamic = "force-dynamic";
 
@@ -144,25 +145,29 @@ function AdminServicesContent() {
           />
         </div>
 
-        <select
+        <AdminSelect
           value={status}
-          onChange={(e) => updateParam("status", e.target.value)}
-          className="bg-[#050608] border border-[#1F2937] text-white text-xs rounded-xl px-3 py-2 min-h-[44px]"
-        >
-          <option value="">All Statuses</option>
-          <option value="PUBLISHED">Published</option>
-          <option value="DRAFT">Draft</option>
-        </select>
+          onChange={(val) => updateParam("status", val)}
+          options={[
+            { label: "All Statuses", value: "" },
+            { label: "Published", value: "PUBLISHED" },
+            { label: "Draft", value: "DRAFT" },
+          ]}
+          placeholder="Status"
+          className="w-36"
+        />
 
-        <select
+        <AdminSelect
           value={sortBy}
-          onChange={(e) => updateParam("sortBy", e.target.value)}
-          className="bg-[#050608] border border-[#1F2937] text-white text-xs rounded-xl px-3 py-2 min-h-[44px]"
-        >
-          <option value="sortOrder">Sort: Order</option>
-          <option value="title">Sort: Title</option>
-          <option value="updatedAt">Sort: Updated</option>
-        </select>
+          onChange={(val) => updateParam("sortBy", val)}
+          options={[
+            { label: "Sort: Order", value: "sortOrder" },
+            { label: "Sort: Title", value: "title" },
+            { label: "Sort: Updated", value: "updatedAt" },
+          ]}
+          placeholder="Sort By"
+          className="w-36"
+        />
       </div>
 
       {/* Bulk Action Bar */}

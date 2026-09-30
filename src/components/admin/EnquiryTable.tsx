@@ -1,161 +1,10 @@
 'use client';
 
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import EnquiryDetailDrawer from './EnquiryDetailDrawer';
-import { Search, Filter, Calendar, ChevronLeft, ChevronRight, ChevronDown, Check, X, Phone, Mail, Loader2, Eye, RotateCcw } from 'lucide-react';
-
-interface CustomSelectOption {
-  value: string;
-  label: string;
-}
-
-function CustomSelect({
-  value,
-  onChange,
-  options,
-  icon: Icon,
-  placeholder = 'Select...',
-}: {
-  value: string;
-  onChange: (val: string) => void;
-  options: CustomSelectOption[];
-  icon?: any;
-  placeholder?: string;
-}) {
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
-        setOpen(false);
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
-  const selectedOption = options.find((o) => o.value === value);
-
-  return (
-    <div ref={ref} className="relative w-full">
-      <button
-        type="button"
-        onClick={() => setOpen(!open)}
-        className={`w-full bg-[#050608] border ${
-          open ? 'border-[#8DC63F]' : 'border-[#1F2937] hover:border-gray-600'
-        } rounded-xl px-3 py-2.5 text-xs text-white flex items-center justify-between gap-2 transition-colors min-h-[42px]`}
-      >
-        <div className="flex items-center gap-2 truncate">
-          {Icon && <Icon className="w-4 h-4 text-gray-400 shrink-0" />}
-          <span className={selectedOption && selectedOption.value ? 'text-white font-medium truncate' : 'text-gray-400 truncate'}>
-            {selectedOption ? selectedOption.label : placeholder}
-          </span>
-        </div>
-        <ChevronDown
-          className={`w-3.5 h-3.5 text-gray-400 transition-transform duration-200 shrink-0 ${
-            open ? 'rotate-180 text-[#8DC63F]' : ''
-          }`}
-        />
-      </button>
-
-      {open && (
-        <div className="absolute top-full left-0 right-0 mt-1.5 bg-[#0D1117] border border-[#1F2937] rounded-xl shadow-2xl py-1 z-30 animate-in fade-in zoom-in-95 duration-150">
-          {options.map((opt) => {
-            const isSelected = opt.value === value;
-            return (
-              <button
-                key={opt.value}
-                type="button"
-                onClick={() => {
-                  onChange(opt.value);
-                  setOpen(false);
-                }}
-                className={`w-full px-3 py-2 text-xs flex items-center justify-between text-left transition-colors ${
-                  isSelected
-                    ? 'bg-[#8DC63F]/10 text-[#8DC63F] font-semibold'
-                    : 'text-gray-300 hover:bg-white/5 hover:text-white'
-                }`}
-              >
-                <span>{opt.label}</span>
-                {isSelected && <Check className="w-3.5 h-3.5 text-[#8DC63F]" />}
-              </button>
-            );
-          })}
-        </div>
-      )}
-    </div>
-  );
-}
-
-function CustomDatePicker({
-  value,
-  onChange,
-  placeholder,
-}: {
-  value: string;
-  onChange: (val: string) => void;
-  placeholder: string;
-}) {
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const handleClick = () => {
-    if (inputRef.current) {
-      if ('showPicker' in HTMLInputElement.prototype && typeof inputRef.current.showPicker === 'function') {
-        try {
-          inputRef.current.showPicker();
-        } catch {
-          inputRef.current.focus();
-        }
-      } else {
-        inputRef.current.focus();
-      }
-    }
-  };
-
-  const handleClear = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    onChange('');
-  };
-
-  return (
-    <div
-      onClick={handleClick}
-      className={`relative w-full bg-[#050608] border ${
-        value ? 'border-[#8DC63F]/50' : 'border-[#1F2937] hover:border-gray-600'
-      } rounded-xl px-3 py-2 text-xs text-white flex items-center justify-between gap-2 cursor-pointer transition-colors min-h-[42px] group`}
-    >
-      <div className="flex items-center gap-2 truncate pointer-events-none">
-        <Calendar className="w-4 h-4 text-gray-400 group-hover:text-[#8DC63F] transition-colors shrink-0" />
-        <span className={value ? 'text-white font-medium' : 'text-gray-400'}>
-          {value ? new Date(value).toLocaleDateString('en-GB') : placeholder}
-        </span>
-      </div>
-
-      <div className="flex items-center gap-1 shrink-0">
-        {value && (
-          <button
-            type="button"
-            onClick={handleClear}
-            className="p-1 text-gray-400 hover:text-white hover:bg-white/10 rounded-md transition-colors"
-            title="Clear date"
-          >
-            <X className="w-3 h-3" />
-          </button>
-        )}
-      </div>
-
-      <input
-        ref={inputRef}
-        type="date"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="absolute inset-0 opacity-0 pointer-events-none w-full h-full [color-scheme:dark]"
-        tabIndex={-1}
-      />
-    </div>
-  );
-}
+import AdminSelect from './AdminSelect';
+import AdminDatePicker from './AdminDatePicker';
+import { Search, Filter, ChevronLeft, ChevronRight, Phone, Mail, Loader2, Eye, RotateCcw } from 'lucide-react';
 
 interface EnquiryTableProps {
   type: 'product' | 'service';
@@ -243,9 +92,9 @@ export default function EnquiryTable({ type, onNewCountChange }: EnquiryTablePro
         </div>
 
         {/* Custom Status Dropdown */}
-        <CustomSelect
+        <AdminSelect
           value={status}
-          onChange={(val) => {
+          onChange={(val: string) => {
             setStatus(val);
             setPage(1);
           }}
@@ -255,9 +104,9 @@ export default function EnquiryTable({ type, onNewCountChange }: EnquiryTablePro
         />
 
         {/* Custom Date Range Start */}
-        <CustomDatePicker
+        <AdminDatePicker
           value={startDate}
-          onChange={(val) => {
+          onChange={(val: string) => {
             setStartDate(val);
             setPage(1);
           }}
@@ -267,9 +116,9 @@ export default function EnquiryTable({ type, onNewCountChange }: EnquiryTablePro
         {/* Custom Date Range End & Reset */}
         <div className="flex items-center gap-2">
           <div className="flex-1">
-            <CustomDatePicker
+            <AdminDatePicker
               value={endDate}
-              onChange={(val) => {
+              onChange={(val: string) => {
                 setEndDate(val);
                 setPage(1);
               }}
