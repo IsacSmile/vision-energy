@@ -96,10 +96,10 @@ export default function Footer({ services = [] }: FooterProps) {
               <Image
                 src="/site-main-logo.png"
                 alt="VISION ENERGY INTERNATIONAL"
-                width={220}
-                height={56}
+                width={160}
+                height={40}
                 style={{ width: "auto", height: "auto" }}
-                className="h-12 w-auto object-contain"
+                className="h-8 sm:h-8.5 w-auto object-contain"
               />
             </Link>
 
