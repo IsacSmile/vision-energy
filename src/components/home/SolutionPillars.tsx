@@ -65,7 +65,7 @@ export default function SolutionPillars({ countsByPillarId = {} }: SolutionPilla
               >
                 <Link
                   href={pillar.href}
-                  className={`group block h-full rounded-[22px] bg-[#050608] border ${borderClass} overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#8DC63F]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] flex flex-col justify-between`}
+                  className={`group h-full rounded-[22px] bg-[#050608] border ${borderClass} overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#8DC63F]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] flex flex-col justify-between`}
                 >
                   {/* Top Image Banner with Badges */}
                   <div className="relative w-full h-44 sm:h-48 overflow-hidden bg-[#0D1117]">
