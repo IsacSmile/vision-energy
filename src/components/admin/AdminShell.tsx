@@ -10,7 +10,6 @@ import {
   Package,
   Wrench,
   FileText,
-  Trash2,
   Activity,
   ExternalLink,
   LogOut,
@@ -41,7 +40,6 @@ export default function AdminShell({ children, userEmail = "admin@visionenergyme
     { label: "Products", href: "/admin/products", icon: Package },
     { label: "Services", href: "/admin/services", icon: Wrench },
     { label: "Blog", href: "/admin/blog", icon: FileText },
-    { label: "Trash", href: "/admin/trash", icon: Trash2 },
     { label: "Activity", href: "/admin/activity", icon: Activity },
   ];
 
