@@ -12,7 +12,23 @@ export const LIGHTNING_SIZE = 1;
 export const BOLT_POSITION = 0.75; // Default 0.75 (75% across hero width, valid 0.65 to 0.85)
 export const MOBILE_WANDER = 0.5; // Named constant (0.4 = nearly straight, 0.7 = more wandering)
 
-export default function HeroLightning() {
+export interface HeroLightningProps {
+  hue?: number;
+  speed?: number;
+  intensity?: number;
+  boltPosition?: number;
+  className?: string;
+  opacityClass?: string;
+}
+
+export default function HeroLightning({
+  hue = LIGHTNING_HUE,
+  speed = LIGHTNING_SPEED,
+  intensity = 1.0,
+  boltPosition = BOLT_POSITION,
+  className = '',
+  opacityClass = 'opacity-70 lg:opacity-100',
+}: HeroLightningProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
   const [inView, setInView] = useState(true);
@@ -20,7 +36,7 @@ export default function HeroLightning() {
   const [isMobile, setIsMobile] = useState(false);
   const [lightningProps, setLightningProps] = useState({
     xOffset: -0.7,
-    intensity: 1.0,
+    intensity: intensity,
     size: 1.0,
   });
 
@@ -50,7 +66,7 @@ export default function HeroLightning() {
         setIsMobile(false);
         // Desktop (>= 1024px): compute xOffset from aspect ratio
         const aspect = width / (height || 1);
-        let targetPos = BOLT_POSITION; // 0.75
+        let targetPos = boltPosition;
 
         // On very wide screens (aspect above 2.2), cap bolt position so it never sits farther than 12rem outside container's right edge
         if (aspect > 2.2) {
@@ -71,7 +87,7 @@ export default function HeroLightning() {
 
         setLightningProps({
           xOffset: calculatedXOffset,
-          intensity: 1.0,
+          intensity: intensity,
           size: calculatedSize,
         });
       } else {
@@ -79,7 +95,7 @@ export default function HeroLightning() {
         setIsMobile(true);
         setLightningProps({
           xOffset: 0,
-          intensity: 0.85,
+          intensity: intensity * 0.85,
           size: LIGHTNING_SIZE,
         });
       }
@@ -128,30 +144,30 @@ export default function HeroLightning() {
   }, []);
 
   if (reducedMotion || !mounted || !inView || menuOpen) {
-    return <div ref={containerRef} style={{ width: '100%', height: '100%', position: 'relative' }} />;
+    return <div ref={containerRef} className={`w-full h-full relative ${className}`} />;
   }
 
   return (
     <div
       ref={containerRef}
-      className="w-full h-full relative opacity-70 lg:opacity-100 transition-opacity duration-300"
+      className={`w-full h-full relative ${opacityClass} transition-opacity duration-300 ${className}`}
     >
       {isMobile ? (
         <LightningCentered
-          hue={LIGHTNING_HUE}
+          hue={hue}
           xOffset={0}
           wander={MOBILE_WANDER}
-          speed={LIGHTNING_SPEED}
-          intensity={0.85}
+          speed={speed}
+          intensity={lightningProps.intensity}
           size={1}
           octaves={6}
           maxDpr={1}
         />
       ) : (
         <Lightning
-          hue={LIGHTNING_HUE}
+          hue={hue}
           xOffset={lightningProps.xOffset}
-          speed={LIGHTNING_SPEED}
+          speed={speed}
           intensity={lightningProps.intensity}
           size={lightningProps.size}
         />

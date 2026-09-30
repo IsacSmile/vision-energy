@@ -7,6 +7,7 @@ import ServicesListRow from '@/components/services/ServicesListRow';
 import HowWeWorkStepper from '@/components/services/HowWeWorkStepper';
 import FinalCTA from '@/components/home/FinalCTA';
 import Reveal from '@/components/ui/Reveal';
+import HeroLightning from '@/components/HeroLightning';
 
 export const metadata = {
   title: 'Services | Lightning Protection Installation & Support | Vision Energy International',
@@ -86,6 +87,17 @@ export default async function ServicesListingPage() {
             className="absolute top-1/4 right-1/4 w-[480px] h-[480px] bg-[#0B65B3]/15 rounded-full filter blur-[128px] pointer-events-none animate-pulse duration-10000"
             aria-hidden="true"
           />
+
+          {/* Thunder Lightning Animation in Services Hero */}
+          <div className="pointer-events-none absolute inset-0 overflow-hidden z-0" aria-hidden="true">
+            <HeroLightning
+              hue={210}
+              speed={0.7}
+              intensity={0.9}
+              boltPosition={0.78}
+              opacityClass="opacity-60 lg:opacity-85"
+            />
+          </div>
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">

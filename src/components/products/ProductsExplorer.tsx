@@ -34,6 +34,7 @@ import LightningButton from '@/components/ui/LightningButton';
 import Reveal from '@/components/ui/Reveal';
 import Card from '@/components/ui/Card';
 import CustomSelect, { SelectOption } from '@/components/ui/CustomSelect';
+import HeroLightning from '@/components/HeroLightning';
 
 const SORT_OPTIONS: SelectOption[] = [
   { value: 'featured', label: 'Featured Order' },
@@ -507,7 +508,7 @@ export default function ProductsExplorer({
   return (
     <div className="min-h-screen bg-[#050608] text-white">
       {/* 3. PAGE HEADER (Compact, Left-Aligned) */}
-      <div className="relative bg-[#050608] overflow-hidden border-b border-[#1F2937]/80">
+      <div className="relative bg-[#050608] overflow-hidden border-b border-[#1F2937]/80 min-h-[260px]">
         {/* Soft radial blue glow at top left */}
         <div
           className="pointer-events-none absolute top-0 left-0 w-[600px] h-[600px] opacity-100"
@@ -517,6 +518,17 @@ export default function ProductsExplorer({
           }}
           aria-hidden="true"
         />
+
+        {/* Thunder Lightning Animation in Product Hero */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden z-0" aria-hidden="true">
+          <HeroLightning
+            hue={210}
+            speed={0.7}
+            intensity={0.9}
+            boltPosition={0.8}
+            opacityClass="opacity-60 lg:opacity-85"
+          />
+        </div>
 
         <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 pt-[calc(var(--header-offset,80px)+32px)] lg:pt-[calc(var(--header-offset,80px)+48px)] pb-8 relative z-10">
           <div className="space-y-4 max-w-4xl">
