@@ -336,11 +336,11 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
       {/* ============================================================ */}
       {/* LAYER 3: Main Content (Slide Details & CTAs) */}
       {/* ============================================================ */}
-      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 my-auto flex-1 flex flex-col justify-center py-2 sm:py-8">
-        <div className="max-w-[760px] text-center lg:text-left lg:mx-0 space-y-4 sm:space-y-6">
+      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-5 sm:px-6 lg:px-8 my-auto flex-1 flex flex-col justify-center py-4 sm:py-8">
+        <div className="max-w-[760px] text-left space-y-4 sm:space-y-6">
           
           {/* Badge Pill */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.08] backdrop-blur-xl border border-white/15 text-[11px] sm:text-xs font-semibold text-white tracking-wide shadow-xl mx-auto lg:mx-0 mb-1">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.08] backdrop-blur-xl border border-white/15 text-[11px] sm:text-xs font-semibold text-white tracking-wide shadow-xl mb-1">
             <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] animate-pulse" />
             <ActiveIcon className={`w-3.5 h-3.5 ${activeSlide.highlightColor}`} />
             <span className={`${activeSlide.highlightColor} font-bold`}>{activeSlide.category}</span>
@@ -351,7 +351,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
           {/* H1 Heading */}
           <h1
             key={`title-${currentSlide}`}
-            className="font-bold tracking-[-0.025em] leading-[1.18] sm:leading-[1.14] transition-all duration-400 animate-fadeIn"
+            className="font-bold tracking-[-0.025em] leading-[1.16] sm:leading-[1.14] transition-all duration-400 animate-fadeIn text-left"
           >
             <span
               className="block text-white text-[30px] sm:text-[40px] lg:text-[60px]"
@@ -372,7 +372,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
           </h1>
 
           {/* Concise Slide Description */}
-          <div key={`desc-${currentSlide}`} className="animate-fadeIn max-w-[340px] sm:max-w-[50ch] mx-auto lg:mx-0 pt-1">
+          <div key={`desc-${currentSlide}`} className="animate-fadeIn max-w-[360px] sm:max-w-[50ch] text-left pt-1">
             <p
               className="text-[#E2E8F0] font-normal text-[13.5px] sm:text-base lg:text-lg leading-relaxed"
               style={{
@@ -384,7 +384,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
           </div>
 
           {/* Action Buttons (Desktop & Mobile Redesigned) */}
-          <div className="pt-3 sm:pt-5 flex flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 w-full max-w-[360px] sm:max-w-none mx-auto lg:mx-0">
+          <div className="pt-3 sm:pt-5 flex flex-row items-center justify-start gap-3 sm:gap-4 w-full max-w-[380px] sm:max-w-none">
             {/* Primary Action Button */}
             <Link
               href={activeSlide.ctaLink}
