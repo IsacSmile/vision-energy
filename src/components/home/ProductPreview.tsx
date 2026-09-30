@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowUpRight, ArrowRight } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, ChevronRight } from 'lucide-react';
 import { getPublishedProductCategories } from '@/lib/data/products';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Reveal from '@/components/ui/Reveal';
@@ -69,6 +69,26 @@ const FEATURED_PRODUCTS: FeaturedProduct[] = [
     tag: 'IEC 61643',
   },
   {
+    code: 'CB-01',
+    slug: 'cb-01-power-cables-industrial-wiring',
+    title: 'Power Cables & Industrial Connectivity',
+    categoryName: 'Cables & Connectivity',
+    description: 'Low-voltage power cables, earth wires, and high-conductivity conductors.',
+    imageUrl:
+      'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=800&auto=format&fit=crop',
+    tag: 'BS 5467',
+  },
+  {
+    code: 'CM-01',
+    slug: 'cm-01-cable-trays-trunking-systems',
+    title: 'Cable Trays & Ladder Management',
+    categoryName: 'Cable Management',
+    description: 'Heavy-duty galvanized cable trays, trunking, and mounting accessories.',
+    imageUrl:
+      'https://images.unsplash.com/photo-1513828583688-c52646db42da?q=80&w=800&auto=format&fit=crop',
+    tag: 'NEMA VE1',
+  },
+  {
     code: 'EN-01',
     slug: 'en-01-solar-energy-pv-infrastructure',
     title: 'Solar PV & Renewable Infrastructure',
@@ -89,29 +109,40 @@ export default async function ProductPreview() {
       aria-labelledby="product-preview-heading"
       className="py-16 md:py-24 lg:py-32 bg-[#050608] relative border-t border-b border-white/[0.08]"
     >
-      <div className="max-w-[80rem] mx-auto px-5 sm:px-6 lg:px-8 space-y-12 lg:space-y-16">
-        {/* Header with Direct Link */}
+      <div className="max-w-[80rem] mx-auto px-5 sm:px-6 lg:px-8 space-y-8 md:space-y-12 lg:space-y-16">
+        {/* Header with Direct Link & Mobile Swipe Prompt */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           <SectionHeader
             id="product-preview-heading"
             eyebrow="Featured Products"
             title="Engineered Product Ranges"
-            description={`Explore flagship lightning protection, earthing, surge suppression, and MEP systems.`}
+            description="Explore flagship lightning protection, earthing, surge suppression, and MEP systems."
           />
 
-          <Link
-            href="/products"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-[#8DC63F] hover:text-white transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded px-1 py-0.5 shrink-0"
-          >
-            <span>View all products ({totalCount})</span>
-            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </Link>
+          <div className="flex items-center justify-between sm:justify-end gap-4 w-full lg:w-auto">
+            <span className="text-xs text-[#8DC63F] font-medium flex items-center gap-1 md:hidden">
+              <span>Swipe to explore</span>
+              <ChevronRight className="w-3.5 h-3.5 animate-pulse" />
+            </span>
+
+            <Link
+              href="/products"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-[#8DC63F] hover:text-white transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded px-1 py-0.5 shrink-0"
+            >
+              <span>View all products ({totalCount})</span>
+              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </Link>
+          </div>
         </div>
 
-        {/* 3 Cards per Row on all Laptops & Desktops (md:grid-cols-3 lg:grid-cols-3) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+        {/* Horizontal Swipe on Mobile (Slide Left/Right), 3 Cards/Row on Laptops/Desktop */}
+        <div className="flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-4 -mx-5 px-5 md:mx-0 md:px-0 md:grid md:grid-cols-3 lg:grid-cols-3 md:gap-6 pb-3 md:pb-0">
           {FEATURED_PRODUCTS.map((product, idx) => (
-            <Reveal key={product.code} staggerIndex={idx}>
+            <Reveal
+              key={product.code}
+              staggerIndex={idx}
+              className="min-w-[280px] sm:min-w-[320px] max-w-[320px] md:min-w-0 md:max-w-none snap-start shrink-0 md:shrink flex flex-col flex-1"
+            >
               <Link
                 href={`/products`}
                 className="group block h-full rounded-[20px] bg-[#0D1117] border border-white/[0.08] hover:border-[#8DC63F]/50 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#8DC63F]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] flex flex-col justify-between"
@@ -123,7 +154,7 @@ export default async function ProductPreview() {
                     alt={product.title}
                     fill
                     className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    sizes="(max-width: 640px) 85vw, (max-width: 1024px) 50vw, 33vw"
                   />
 
                   {/* Gradient Overlay */}
