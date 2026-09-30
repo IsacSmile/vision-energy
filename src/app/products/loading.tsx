@@ -42,7 +42,7 @@ export default function Loading() {
           </aside>
 
           {/* Cards Grid Skeleton (8 Cards) */}
-          <main className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6">
+          <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8">
             {Array.from({ length: 8 }).map((_, i) => (
               <div
                 key={i}

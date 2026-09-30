@@ -1112,7 +1112,7 @@ export default function ProductsExplorer({
                         className={
                           viewParam === 'list'
                             ? 'divide-y divide-[#1F2937]'
-                            : 'grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6'
+                            : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8'
                         }
                       >
                         {sec.items.map((cat, itemIdx) => (
@@ -1136,7 +1136,7 @@ export default function ProductsExplorer({
                 className={
                   viewParam === 'list'
                     ? 'divide-y divide-[#1F2937]'
-                    : 'grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6'
+                    : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8'
                 }
               >
                 {filteredCategories.map((cat, itemIdx) => (
@@ -1477,25 +1477,26 @@ function ItemCardOrRow({
   // Grid Card Layout (md and up)
   return (
     <Reveal staggerIndex={staggerIndex} as="article" className="h-full">
-      <div className="relative group/card bg-[#0D1117] border border-[#1F2937] hover:border-[#0B65B3]/50 hover:bg-[#161B22]/50 rounded-2xl p-4 sm:p-5 flex flex-col h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(11,101,179,0.12)] active-press cursor-pointer">
-        {/* Product Photo Showcase Box */}
-        <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-[#161B22] border border-[#1F2937] mb-4 group/img">
+      <div className="relative group/card bg-[#0D1117] border border-[#1F2937] hover:border-[#8DC63F]/50 hover:bg-[#161B22]/50 rounded-[22px] p-5 sm:p-6 lg:p-6.5 flex flex-col h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#8DC63F]/5 active-press cursor-pointer">
+        {/* Product Photo Showcase Box - Large & Prominent */}
+        <div className="relative w-full aspect-[16/10] min-h-[220px] sm:min-h-[260px] lg:min-h-[280px] rounded-2xl overflow-hidden bg-[#161B22] border border-[#1F2937] mb-5 group/img">
           <Image
             src={photoUrl}
             alt={photoAlt}
             fill
-            className="object-cover transition-transform duration-500 group-hover/card:scale-105"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover transition-transform duration-700 group-hover/card:scale-105"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            quality={90}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0D1117]/70 via-transparent to-black/30 pointer-events-none" />
 
           {/* Floating Top Bar Over Image */}
-          <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between gap-2 pointer-events-none">
-            <div className="w-8 h-8 rounded-lg bg-[#050608]/85 backdrop-blur-md border border-[#0B65B3]/30 text-[#8DC63F] flex items-center justify-center shrink-0">
-              <GroupIcon className="w-4 h-4" />
+          <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 pointer-events-none">
+            <div className="w-9 h-9 rounded-xl bg-[#050608]/90 backdrop-blur-md border border-[#0B65B3]/40 text-[#8DC63F] flex items-center justify-center shrink-0 shadow-lg">
+              <GroupIcon className="w-4.5 h-4.5" />
             </div>
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#050608]/85 backdrop-blur-md border border-white/10">
-              <span className="text-xs font-semibold text-[#8DC63F] tabular-nums">
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#050608]/90 backdrop-blur-md border border-white/15 shadow-lg">
+              <span className="text-xs sm:text-[13px] font-bold text-[#8DC63F] tabular-nums tracking-wide">
                 <HighlightedText text={cat.code} query={searchQuery} />
               </span>
               <ArrowUpRight className="w-3.5 h-3.5 text-[#A9B4C0] group-hover/card:text-[#8DC63F] group-hover/card:translate-x-0.5 group-hover/card:-translate-y-0.5 transition-all duration-250" />
@@ -1504,21 +1505,21 @@ function ItemCardOrRow({
 
           {/* Placeholder Badge */}
           {isPlaceholder && (
-            <span className="absolute bottom-2 right-2 px-2 py-0.5 text-[10px] font-medium text-white/70 bg-[#050608]/85 backdrop-blur-md rounded border border-white/10 pointer-events-none">
+            <span className="absolute bottom-2.5 right-2.5 px-2 py-0.5 text-[10px] font-medium text-white/70 bg-[#050608]/85 backdrop-blur-md rounded border border-white/10 pointer-events-none">
               Sample image
             </span>
           )}
         </div>
 
         {/* Card Content */}
-        <div className="space-y-2.5 mb-4 flex-1">
+        <div className="space-y-2.5 mb-5 flex-1">
           {showGroupMeta && (
-            <span className="text-[12px] font-semibold text-[#8DC63F] uppercase tracking-wider block">
+            <span className="text-xs font-semibold text-[#8DC63F] uppercase tracking-wider block mb-1">
               {cat.groupLabel}
             </span>
           )}
 
-          <h3 className="text-base sm:text-lg font-semibold text-white leading-snug [text-wrap:balance]">
+          <h3 className="text-lg sm:text-xl font-bold text-white leading-snug [text-wrap:balance]">
             <Link
               href={`/products?group=${cat.group}&codes=${cat.code}`}
               prefetch={false}
@@ -1530,13 +1531,13 @@ function ItemCardOrRow({
             </Link>
           </h3>
 
-          <p className="text-xs sm:text-sm text-[#A9B4C0] line-clamp-2 leading-relaxed">
+          <p className="text-sm text-[#A9B4C0] line-clamp-2 sm:line-clamp-3 leading-relaxed">
             {cat.description}
           </p>
 
           {/* Families Paragraph */}
           {cat.productFamilies.length > 0 && (
-            <p className="text-xs text-white/65 line-clamp-2 pt-0.5">
+            <p className="text-xs text-white/65 line-clamp-2 pt-1">
               <span>Includes: {cat.productFamilies.slice(0, 3).join(' · ')}</span>
               {cat.productFamilies.length > 3 && (
                 <span className="text-[#A9B4C0] ml-1 font-medium">
@@ -1552,7 +1553,7 @@ function ItemCardOrRow({
           <EnquireNowButton
             cat={cat}
             openModal={openModal}
-            className="w-full h-11 text-[14px]"
+            className="w-full h-12 text-[14px] font-bold"
           />
         </div>
       </div>
