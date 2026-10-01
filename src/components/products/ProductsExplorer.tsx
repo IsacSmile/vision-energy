@@ -1346,12 +1346,12 @@ function ItemCardOrRow({
           {/* Mobile View (below lg): Flex layout [Image thumbnail] [Content] */}
           <div className="lg:hidden group/card relative flex items-start gap-4 min-h-[88px] cursor-pointer">
             {/* Thumbnail Box */}
-            <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden bg-[#161B22] border border-[#1F2937] shrink-0 mt-0.5 group/img">
+            <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden bg-[#161B22] border border-[#1F2937] shrink-0 mt-0.5 group/img p-1">
               <Image
                 src={photoUrl}
                 alt={photoAlt}
                 fill
-                className="object-cover transition-transform duration-300 group-hover/card:scale-105"
+                className="object-contain transition-transform duration-300 group-hover/card:scale-105"
                 sizes="(max-width: 640px) 80px, 96px"
               />
               <div className="absolute top-1 left-1 w-6 h-6 rounded-md bg-[#050608]/85 backdrop-blur-md border border-[#0B65B3]/30 text-[#8DC63F] flex items-center justify-center">
@@ -1417,12 +1417,12 @@ function ItemCardOrRow({
           {/* Desktop List View (lg and up): Flex [Image thumbnail] [Content] [Button] */}
           <div className="hidden lg:flex group/card relative items-center gap-6 py-2 cursor-pointer">
             {/* Thumbnail Box */}
-            <div className="relative w-28 h-24 rounded-xl overflow-hidden bg-[#161B22] border border-[#1F2937] shrink-0 group/img">
+            <div className="relative w-28 h-24 rounded-xl overflow-hidden bg-[#161B22] border border-[#1F2937] shrink-0 group/img p-1">
               <Image
                 src={photoUrl}
                 alt={photoAlt}
                 fill
-                className="object-cover transition-transform duration-300 group-hover/card:scale-105"
+                className="object-contain transition-transform duration-300 group-hover/card:scale-105"
                 sizes="112px"
               />
               <div className="absolute top-1.5 left-1.5 w-7 h-7 rounded-md bg-[#050608]/85 backdrop-blur-md border border-[#0B65B3]/30 text-[#8DC63F] flex items-center justify-center">
@@ -1491,16 +1491,15 @@ function ItemCardOrRow({
     <Reveal staggerIndex={staggerIndex} as="article" className="h-full">
       <div className="relative group/card bg-[#0D1117] border border-[#1F2937] hover:border-[#8DC63F]/50 hover:bg-[#161B22]/50 rounded-[22px] p-5 sm:p-6 lg:p-6.5 flex flex-col h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#8DC63F]/5 active-press cursor-pointer">
         {/* Product Photo Showcase Box - Large & Prominent */}
-        <div className="relative w-full aspect-[16/10] min-h-[220px] sm:min-h-[260px] lg:min-h-[280px] rounded-2xl overflow-hidden bg-[#161B22] border border-[#1F2937] mb-5 group/img">
+        <div className="relative w-full aspect-[16/10] min-h-[220px] sm:min-h-[260px] lg:min-h-[280px] rounded-2xl overflow-hidden bg-[#161B22] border border-[#1F2937] mb-5 group/img p-3 flex items-center justify-center">
           <Image
             src={photoUrl}
             alt={photoAlt}
             fill
-            className="object-cover transition-transform duration-700 group-hover/card:scale-105"
+            className="object-contain p-3 transition-transform duration-700 group-hover/card:scale-105"
             sizes="(max-width: 768px) 100vw, 50vw"
             quality={90}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0D1117]/70 via-transparent to-black/30 pointer-events-none" />
 
           {/* Floating Top Bar Over Image */}
           <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 pointer-events-none">

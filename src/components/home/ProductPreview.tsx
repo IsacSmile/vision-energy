@@ -24,8 +24,7 @@ const FEATURED_PRODUCTS: FeaturedProduct[] = [
     title: 'Conventional Lightning Protection Systems',
     categoryName: 'Lightning Protection',
     description: 'Complete air terminals, conductors, and test joints for structural safety.',
-    imageUrl:
-      'https://plus.unsplash.com/premium_photo-1664298006973-e98eb94d006c?q=80&w=800&auto=format&fit=crop',
+    imageUrl: '/product-catalouge/LP-01.jpeg',
     tag: 'IEC 62305',
   },
   {
@@ -34,8 +33,7 @@ const FEATURED_PRODUCTS: FeaturedProduct[] = [
     title: 'Early Streamer Emission (ESE) Systems',
     categoryName: 'Lightning Protection',
     description: 'Active ESE air terminals and masts for wide-radius protection zones.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1516912481808-3406841bd33c?q=80&w=800&auto=format&fit=crop',
+    imageUrl: '/product-catalouge/LP-02.jpeg',
     tag: 'NFC 17-102',
   },
   {
@@ -44,8 +42,7 @@ const FEATURED_PRODUCTS: FeaturedProduct[] = [
     title: 'Earthing Enhancement & Grounding Materials',
     categoryName: 'Earthing & Bonding',
     description: 'Conductive backfills and chemical compounds for low earth resistance.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1565249167139-75006b429343?q=80&w=800&auto=format&fit=crop',
+    imageUrl: '/product-catalouge/ER-01.jpeg',
     tag: 'IEEE 80',
   },
   {
@@ -54,8 +51,7 @@ const FEATURED_PRODUCTS: FeaturedProduct[] = [
     title: 'Exothermic Welding Moulds & Powders',
     categoryName: 'Earthing & Bonding',
     description: 'Molecular-level copper bonding for permanent, corrosion-free connections.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&auto=format&fit=crop',
+    imageUrl: '/product-catalouge/ER-02.jpeg',
     tag: 'UL 467',
   },
   {
@@ -64,8 +60,7 @@ const FEATURED_PRODUCTS: FeaturedProduct[] = [
     title: 'Surge Protection Devices (SPD)',
     categoryName: 'Surge Protection',
     description: 'Type 1, 2 & 3 SPDs protecting critical power and telemetry networks.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1722666825118-02f3c12d4434?q=80&w=800&auto=format&fit=crop',
+    imageUrl: '/product-catalouge/EL-06.jpeg',
     tag: 'IEC 61643',
   },
   {
@@ -74,8 +69,7 @@ const FEATURED_PRODUCTS: FeaturedProduct[] = [
     title: 'Power Cables & Industrial Connectivity',
     categoryName: 'Cables & Connectivity',
     description: 'Low-voltage power cables, earth wires, and high-conductivity conductors.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=800&auto=format&fit=crop',
+    imageUrl: '/product-catalouge/CB-01.jpeg',
     tag: 'BS 5467',
   },
   {
@@ -84,8 +78,7 @@ const FEATURED_PRODUCTS: FeaturedProduct[] = [
     title: 'Cable Trays & Ladder Management',
     categoryName: 'Cable Management',
     description: 'Heavy-duty galvanized cable trays, trunking, and mounting accessories.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1513828583688-c52646db42da?q=80&w=800&auto=format&fit=crop',
+    imageUrl: '/product-catalouge/CM-01.jpeg',
     tag: 'NEMA VE1',
   },
   {
@@ -94,8 +87,7 @@ const FEATURED_PRODUCTS: FeaturedProduct[] = [
     title: 'Solar PV & Renewable Infrastructure',
     categoryName: 'Renewable Energy',
     description: 'Complete balance of system (BOS) components and solar power solutions.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1497440001374-f26997328c1b?q=80&w=800&auto=format&fit=crop',
+    imageUrl: '/product-catalouge/EN-01.jpeg',
     tag: 'Clean Energy',
   },
 ];
@@ -148,18 +140,18 @@ export default async function ProductPreview() {
                 className="group h-full rounded-[24px] bg-[#0D1117] border border-white/[0.08] hover:border-[#8DC63F]/50 overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-[#8DC63F]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] flex flex-col justify-between"
               >
                 {/* Large Prominent Image Banner with Badge */}
-                <div className="relative w-full h-60 sm:h-72 lg:h-80 overflow-hidden bg-[#050608]">
+                <div className="relative w-full h-60 sm:h-72 lg:h-80 overflow-hidden bg-[#050608] p-3 flex items-center justify-center">
                   <Image
                     src={product.imageUrl}
                     alt={product.title}
                     fill
-                    className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                    className="object-contain p-3 group-hover:scale-105 transition-transform duration-700 ease-out"
                     sizes="(max-width: 768px) 90vw, (max-width: 1280px) 50vw, 600px"
                     quality={90}
                   />
 
-                  {/* Gradient Overlay for visual depth */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0D1117] via-[#0D1117]/30 to-transparent" />
+                  {/* Subtle bottom blend for seamless transition */}
+                  <div className="absolute bottom-0 inset-x-0 h-10 bg-gradient-to-t from-[#0D1117] to-transparent pointer-events-none" />
 
                   {/* Code Tag Top Left */}
                   <div className="absolute top-4 left-4 px-2.5 py-1 rounded-md bg-[#050608]/90 backdrop-blur-md border border-white/20 text-xs font-bold text-[#8DC63F] tracking-wide shadow-lg">

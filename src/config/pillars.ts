@@ -124,7 +124,7 @@ export const PILLARS_CONFIG: PillarConfig[] = [
     title: 'Project Installation & Support',
     iconName: 'ClipboardCheck',
     imageUrl:
-      'https://plus.unsplash.com/premium_photo-1678766819199-5660bab7085b?q=80&w=1200&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1000&q=80',
     imageAlt: 'Project installation and electrical engineering technician support',
     description:
       'End-to-end technical coordination, installation guidance, and testing to certified standards.',

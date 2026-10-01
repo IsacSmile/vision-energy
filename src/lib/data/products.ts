@@ -19,8 +19,16 @@ function formatCategoryRecord(cat: any) {
     ? cat.families
     : familiesArr.join("; ");
 
+  const image =
+    cat.image ||
+    cat.imageUrl ||
+    (cat.code ? `/product-catalouge/${cat.code}.jpeg` : null);
+
   return {
     ...cat,
+    image,
+    imageUrl: image,
+    imageAlt: cat.imageAlt || `${cat.title} (${cat.code})`,
     productFamilies: familiesArr,
     families: familiesStr,
   };

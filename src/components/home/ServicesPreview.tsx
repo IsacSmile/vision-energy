@@ -17,6 +17,18 @@ const SERVICE_IMAGES: Record<string, { url: string; alt: string }> = {
     url: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=85',
     alt: 'Specialist engineering manpower and certified technicians on site',
   },
+  'earthing-and-grounding': {
+    url: 'https://plus.unsplash.com/premium_photo-1682148175448-8e418fcfbaa7?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    alt: 'Earthing & Grounding System Design & Installation',
+  },
+  'earthing-grounding-system-design-installation': {
+    url: 'https://plus.unsplash.com/premium_photo-1682148175448-8e418fcfbaa7?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    alt: 'Earthing & Grounding System Design & Installation',
+  },
+  'surge-protection-and-bonding': {
+    url: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=85',
+    alt: 'Surge Protection Devices and Equipotential Bonding',
+  },
 };
 
 const DEFAULT_SERVICE_IMAGE = {
@@ -71,7 +83,7 @@ export default async function ServicesPreview() {
                   className="group h-full rounded-[24px] bg-[#050608] border border-white/[0.08] hover:border-[#8DC63F]/50 overflow-hidden transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-[#8DC63F]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] flex flex-col justify-between"
                 >
                   {/* Top Image Banner */}
-                  <div className="relative w-full h-48 sm:h-56 overflow-hidden bg-[#0D1117]">
+                  <div className="relative w-full h-80 sm:h-96 lg:h-[420px] overflow-hidden bg-[#0D1117]">
                     <Image
                       src={imageData.url}
                       alt={imageData.alt}
@@ -80,8 +92,8 @@ export default async function ServicesPreview() {
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
                     
-                    {/* Gradient Overlay for seamless blend into card */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#050608] via-[#050608]/40 to-transparent" />
+                    {/* Subtle bottom blend into card */}
+                    <div className="absolute bottom-0 inset-x-0 h-10 bg-gradient-to-t from-[#050608] to-transparent pointer-events-none" />
 
                     {/* Floating Icon Badge */}
                     <div className="absolute top-4 left-4 w-11 h-11 rounded-xl bg-[#0D1117]/85 backdrop-blur-md text-[#8DC63F] border border-white/15 flex items-center justify-center shadow-lg group-hover:border-[#8DC63F]/50 group-hover:bg-[#8DC63F]/15 transition-all">

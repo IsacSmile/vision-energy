@@ -145,6 +145,13 @@ async function main() {
       seoTitle: "Earthing & Grounding System Design | Vision Energy",
       seoDescription: "Low-resistance earthing grids and chemical earth enhancement systems for industrial facilities.",
       content: {
+        image: "https://plus.unsplash.com/premium_photo-1682148175448-8e418fcfbaa7?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        imageAlt: "Earthing & Grounding System Design & Installation",
+        hero: {
+          imageUrl: "https://plus.unsplash.com/premium_photo-1682148175448-8e418fcfbaa7?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          imageAlt: "Earthing & Grounding System Design & Installation",
+          lead: "Low-resistance earthing grids, chemical earth enhancement, and deep well earth electrodes.",
+        },
         heroLead: "Low-resistance earthing grids, chemical earth enhancement, and deep well earth electrodes.",
         overview:
           "Scope and client confirmation in progress. Low-impedance earthing networks are essential for personnel safety and fault-current dissipation.",

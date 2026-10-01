@@ -126,4 +126,16 @@ export const SERVICES_CONTENT: Record<string, ServiceContentConfig> = {
     metaChips: ['Specialist Manpower', 'Technical Support'],
     // TODO: Client to provide manpower service details (trades, engagement terms, coverage).
   },
+  'earthing-and-grounding': {
+    hero: {
+      lead: 'Low-resistance earthing grids, chemical earth enhancement, and deep well earth electrodes.',
+    },
+    metaChips: ['Grounding Systems', 'Earth Pits'],
+  },
+  'earthing-grounding-system-design-installation': {
+    hero: {
+      lead: 'Low-resistance earthing grids, chemical earth enhancement, and deep well earth electrodes.',
+    },
+    metaChips: ['Grounding Systems', 'Earth Pits'],
+  },
 };

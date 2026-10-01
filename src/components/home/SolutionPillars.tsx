@@ -68,7 +68,7 @@ export default function SolutionPillars({ countsByPillarId = {} }: SolutionPilla
                   className={`group h-full rounded-[22px] bg-[#050608] border ${borderClass} overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#8DC63F]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] flex flex-col justify-between`}
                 >
                   {/* Top Image Banner with Badges */}
-                  <div className="relative w-full h-44 sm:h-48 overflow-hidden bg-[#0D1117]">
+                  <div className="relative w-full h-64 sm:h-72 lg:h-80 overflow-hidden bg-[#0D1117]">
                     <Image
                       src={pillar.imageUrl}
                       alt={pillar.imageAlt}
@@ -77,8 +77,8 @@ export default function SolutionPillars({ countsByPillarId = {} }: SolutionPilla
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
 
-                    {/* Gradient overlay for seamless blending into card body */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#050608] via-[#050608]/45 to-transparent" />
+                    {/* Subtle bottom edge blend for card body transition */}
+                    <div className="absolute bottom-0 inset-x-0 h-10 bg-gradient-to-t from-[#050608] to-transparent pointer-events-none" />
 
                     {/* Top Left: Pillar Index Number */}
                     <div className="absolute top-3.5 left-3.5 px-2.5 py-1 rounded-md bg-[#0D1117]/85 backdrop-blur-md border border-white/10 text-[11px] font-bold text-white tracking-widest uppercase">

@@ -50,7 +50,7 @@ const HERO_SLIDES: SlideData[] = [
     ctaText: 'Explore Lightning',
     ctaLink: '/products/lp-01-conventional-lightning-protection-systems',
     imageUrl:
-      'https://plus.unsplash.com/premium_photo-1664298006973-e98eb94d006c?q=80&w=1600&auto=format&fit=crop',
+      'https://plus.unsplash.com/premium_photo-1664298006973-e98eb94d006c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     imageAlt:
       'Dramatic cityscape thunderstorm and structural lightning protection system',
     standards: 'IEC 62305 • NFPA 780',
@@ -257,45 +257,8 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
         })}
       </div>
 
-      {/* ============================================================ */}
-      {/* LAYER 2: Gradient Scrims for Legibility */}
-      {/* ============================================================ */}
-      {/* Base Darkening */}
-      <div className="absolute inset-0 bg-[#050608]/40 pointer-events-none z-10" />
-
-      {/* Desktop Directional Scrim */}
-      <div
-        className="absolute inset-0 pointer-events-none z-10 hidden lg:block"
-        style={{
-          background:
-            'linear-gradient(90deg, rgba(5,6,8,0.96) 0%, rgba(5,6,8,0.85) 45%, rgba(5,6,8,0.5) 75%, rgba(5,6,8,0.2) 100%)',
-        }}
-      />
-      {/* Mobile Scrim with enhanced top and bottom protection */}
-      <div
-        className="absolute inset-0 pointer-events-none z-10 lg:hidden"
-        style={{
-          background:
-            'linear-gradient(180deg, rgba(5,6,8,0.88) 0%, rgba(5,6,8,0.7) 45%, rgba(5,6,8,0.95) 100%)',
-        }}
-      />
-
-      {/* Brand Accent Ambient Glow */}
-      <div
-        className="absolute -top-32 -left-32 w-[550px] h-[550px] rounded-full pointer-events-none z-10 opacity-30 blur-[120px]"
-        style={{
-          background: 'radial-gradient(circle, rgba(11,101,179,0.7) 0%, rgba(141,198,63,0.2) 60%, transparent 80%)',
-        }}
-      />
-
-      {/* Bottom Fade to blend seamlessly with next section */}
-      <div
-        className="absolute bottom-0 inset-x-0 pointer-events-none z-20"
-        style={{
-          height: '120px',
-          background: 'linear-gradient(to bottom, rgba(5,6,8,0) 0%, #050608 100%)',
-        }}
-      />
+      {/* 10% Overlay Only */}
+      <div className="absolute inset-0 bg-black/10 pointer-events-none z-10" />
 
       {/* ============================================================ */}
       {/* Mobile Top Segmented Progress Bar (Story-Style) */}

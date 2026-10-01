@@ -21,13 +21,13 @@ export function ProductItemCard({ product, view = "grid" }: ProductItemCardProps
     return (
       <div className="group relative flex flex-col sm:flex-row items-center overflow-hidden rounded-xl border border-slate-800 bg-slate-900/80 transition-all duration-300 hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/10 p-3 sm:p-4 gap-4">
         {/* Fixed size thumbnail for list view */}
-        <div className="relative aspect-[4/3] w-full sm:w-36 shrink-0 overflow-hidden rounded-lg bg-slate-950 border border-slate-800">
+        <div className="relative aspect-[4/3] w-full sm:w-36 shrink-0 overflow-hidden rounded-lg bg-slate-950 border border-slate-800 p-1 flex items-center justify-center">
           <Image
             src={imageUrl}
             alt={imageAlt}
             fill
             sizes="144px"
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-contain p-1 transition-transform duration-500 group-hover:scale-105"
           />
           {/* Top-left Code Badge */}
           <div className="absolute top-1.5 left-1.5 z-10 flex items-center gap-1 rounded bg-slate-950/90 px-2 py-0.5 text-[10px] font-bold text-emerald-400 border border-slate-800">
@@ -85,13 +85,13 @@ export function ProductItemCard({ product, view = "grid" }: ProductItemCardProps
   return (
     <div className="group relative flex flex-col overflow-hidden rounded-xl border border-slate-800 bg-slate-900/80 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/10">
       {/* Aspect ratio image container */}
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-950">
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-950 p-2 flex items-center justify-center">
         <Image
           src={imageUrl}
           alt={imageAlt}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-contain p-2 transition-transform duration-500 group-hover:scale-105"
         />
 
         {/* Top-left Code Badge Overlay */}
