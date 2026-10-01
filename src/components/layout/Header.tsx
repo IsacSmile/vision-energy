@@ -10,7 +10,7 @@ import { Phone, Send } from 'lucide-react';
 import LightningButton from '@/components/ui/LightningButton';
 
 export default function Header() {
-  const pathname = usePathname();
+  const pathname = usePathname() || '';
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [visible, setVisible] = useState(true);
@@ -22,7 +22,7 @@ export default function Header() {
   const { openProductModal, openServiceModal } = useEnquiryModal();
   const isHome = pathname === '/';
 
-  if (pathname?.startsWith('/admin')) {
+  if (pathname.startsWith('/admin')) {
     return null;
   }
 

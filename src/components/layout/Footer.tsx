@@ -18,11 +18,11 @@ interface FooterProps {
 }
 
 export default function Footer({ services = [] }: FooterProps) {
-  const pathname = usePathname();
+  const pathname = usePathname() || '';
   const [openAccordion, setOpenAccordion] = useState<string | null>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
-  if (pathname?.startsWith('/admin')) {
+  if (pathname.startsWith('/admin')) {
     return null;
   }
 

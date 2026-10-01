@@ -25,7 +25,7 @@ interface AdminShellProps {
 }
 
 export default function AdminShell({ children, userEmail = "admin@visionenergyme.com" }: AdminShellProps) {
-  const pathname = usePathname();
+  const pathname = usePathname() || "";
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -54,6 +54,7 @@ export default function AdminShell({ children, userEmail = "admin@visionenergyme
   };
 
   const isNavActive = (item: typeof navItems[0]) => {
+    if (!pathname) return false;
     if (item.exact) return pathname === item.href;
     return pathname.startsWith(item.href);
   };
@@ -224,7 +225,7 @@ export default function AdminShell({ children, userEmail = "admin@visionenergyme
             <span className="font-semibold text-gray-200">Vision Energy CMS</span>
             <span className="text-gray-600">/</span>
             <span className="text-gray-400 capitalize">
-              {pathname === "/admin"
+              {!pathname || pathname === "/admin"
                 ? "Dashboard"
                 : pathname.replace("/admin/", "").split("/")[0]}
             </span>

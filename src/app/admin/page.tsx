@@ -38,17 +38,26 @@ interface DashboardData {
 export default function AdminDashboardPage() {
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState<string | null>(null);
 
   const fetchDashboard = async () => {
     setLoading(true);
+    setFetchError(null);
     try {
       const res = await fetch("/api/admin/dashboard");
       if (res.ok) {
         const json = await res.json();
         setData(json);
+      } else {
+        if (res.status === 401) {
+          window.location.href = "/admin/login";
+          return;
+        }
+        setFetchError("Failed to fetch dashboard metrics");
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error("Failed to load dashboard data:", err);
+      setFetchError(err?.message || "Failed to connect to dashboard API");
     } finally {
       setLoading(false);
     }
@@ -58,7 +67,7 @@ export default function AdminDashboardPage() {
     fetchDashboard();
   }, []);
 
-  if (loading || !data) {
+  if (loading) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[400px] gap-3">
         <Loader2 className="w-8 h-8 text-[#A3E635] animate-spin" />
@@ -67,7 +76,39 @@ export default function AdminDashboardPage() {
     );
   }
 
-  const { counts, needsAttention, latestEnquiries } = data;
+  if (fetchError && !data) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[400px] gap-4 text-center">
+        <AlertTriangle className="w-10 h-10 text-amber-400" />
+        <p className="text-sm text-gray-300 font-medium">{fetchError}</p>
+        <button
+          onClick={fetchDashboard}
+          className="px-4 py-2 bg-[#A3E635] text-black text-xs font-bold rounded-xl hover:opacity-90 transition-opacity"
+        >
+          Retry
+        </button>
+      </div>
+    );
+  }
+
+  const counts = data?.counts || {
+    newProductEnquiries: 0,
+    newServiceEnquiries: 0,
+    publishedProducts: 0,
+    draftProducts: 0,
+    publishedServices: 0,
+    draftServices: 0,
+    publishedPosts: 0,
+    draftPosts: 0,
+  };
+  const needsAttention = data?.needsAttention || {
+    oldDrafts: [],
+    servicesWithUnconfirmedSteps: [],
+  };
+  const latestEnquiries = data?.latestEnquiries || {
+    product: [],
+    service: [],
+  };
 
   return (
     <div className="space-y-8">
@@ -237,7 +278,7 @@ export default function AdminDashboardPage() {
                   <p className="text-gray-400 text-[11px] truncate">{item.categoryTitle}</p>
                   <div className="text-[10px] text-gray-500 flex items-center gap-1">
                     <Clock className="w-3 h-3" />
-                    <span>{new Date(item.createdAt).toLocaleDateString("en-GB")}</span>
+                    <span>{item.createdAt ? new Date(item.createdAt).toLocaleDateString("en-GB") : ""}</span>
                   </div>
                 </Link>
               ))
@@ -268,13 +309,13 @@ export default function AdminDashboardPage() {
                   className="block p-3 bg-[#050608] border border-[#1F2937] hover:border-gray-700 rounded-lg text-xs space-y-1 transition-colors"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="font-semibold text-white">{item.name} ({item.emirate})</span>
-                    <span className="text-[10px] font-mono text-[#A3E635]">{item.projectType}</span>
+                    <span className="font-semibold text-white">{item.name || "Enquiry"} ({item.emirate || "UAE"})</span>
+                    <span className="text-[10px] font-mono text-[#A3E635]">{item.projectType || ""}</span>
                   </div>
                   <p className="text-gray-400 text-[11px] truncate">{item.serviceTitle}</p>
                   <div className="text-[10px] text-gray-500 flex items-center gap-1">
                     <Clock className="w-3 h-3" />
-                    <span>{new Date(item.createdAt).toLocaleDateString("en-GB")}</span>
+                    <span>{item.createdAt ? new Date(item.createdAt).toLocaleDateString("en-GB") : ""}</span>
                   </div>
                 </Link>
               ))
