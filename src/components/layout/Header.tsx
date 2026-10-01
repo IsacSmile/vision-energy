@@ -21,22 +21,21 @@ export default function Header() {
 
   const { openProductModal, openServiceModal } = useEnquiryModal();
   const isHome = pathname === '/';
-
-  if (pathname.startsWith('/admin')) {
-    return null;
-  }
+  const isAdmin = pathname.startsWith('/admin');
 
   // Manage overlay inert attribute imperatively to avoid React 18 DOM warnings and TS mismatches
   useEffect(() => {
+    if (isAdmin) return;
     if (overlayRef.current) {
       overlayRef.current.inert = !mobileMenuOpen;
     }
-  }, [mobileMenuOpen]);
+  }, [mobileMenuOpen, isAdmin]);
 
   // Dispatch custom event for HeroLightning GPU pausing
   useEffect(() => {
+    if (isAdmin) return;
     window.dispatchEvent(new CustomEvent('mobile-menu-state', { detail: { open: mobileMenuOpen } }));
-  }, [mobileMenuOpen]);
+  }, [mobileMenuOpen, isAdmin]);
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -45,6 +44,7 @@ export default function Header() {
 
   // Close on viewport resize >= 1024px (lg breakpoint)
   useEffect(() => {
+    if (isAdmin) return;
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
         setMobileMenuOpen(false);
@@ -52,10 +52,11 @@ export default function Header() {
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [isAdmin]);
 
   // Scroll detection for background fade & auto-hide/reappear
   useEffect(() => {
+    if (isAdmin) return;
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       setScrolled(currentScrollY > 24);
@@ -75,10 +76,11 @@ export default function Header() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [mobileMenuOpen]);
+  }, [mobileMenuOpen, isAdmin]);
 
   // Update --header-offset CSS variable on document root for sticky elements
   useEffect(() => {
+    if (isAdmin) return;
     if (typeof document !== 'undefined') {
       const isVisible = visible || mobileMenuOpen;
       const isDesktop = window.innerWidth >= 1024;
@@ -89,11 +91,12 @@ export default function Header() {
         : '0px';
       document.documentElement.style.setProperty('--header-offset', headerOffsetValue);
     }
-  }, [visible, mobileMenuOpen]);
+  }, [visible, mobileMenuOpen, isAdmin]);
 
 
   // Lock body scroll on open, focus management, and restore focus on close
   useEffect(() => {
+    if (isAdmin) return;
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
       const timer = setTimeout(() => {
@@ -106,10 +109,11 @@ export default function Header() {
     } else {
       document.body.style.overflow = '';
     }
-  }, [mobileMenuOpen]);
+  }, [mobileMenuOpen, isAdmin]);
 
   // Keyboard navigation (ESC to close, Tab focus trap)
   useEffect(() => {
+    if (isAdmin) return;
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!mobileMenuOpen) return;
 
@@ -138,7 +142,11 @@ export default function Header() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [mobileMenuOpen]);
+  }, [mobileMenuOpen, isAdmin]);
+
+  if (isAdmin) {
+    return null;
+  }
 
   const navLinks = [
     { href: '/', label: dictionary.nav.home },

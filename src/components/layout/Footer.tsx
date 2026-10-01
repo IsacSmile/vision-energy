@@ -21,18 +21,20 @@ export default function Footer({ services = [] }: FooterProps) {
   const pathname = usePathname() || '';
   const [openAccordion, setOpenAccordion] = useState<string | null>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-
-  if (pathname.startsWith('/admin')) {
-    return null;
-  }
+  const isAdmin = pathname.startsWith('/admin');
 
   useEffect(() => {
+    if (isAdmin) return;
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setPrefersReducedMotion(mediaQuery.matches);
     const handleChange = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
     mediaQuery.addEventListener('change', handleChange);
     return () => mediaQuery.removeEventListener('change', handleChange);
-  }, []);
+  }, [isAdmin]);
+
+  if (isAdmin) {
+    return null;
+  }
 
   const toggleAccordion = (name: string) => {
     setOpenAccordion((prev) => (prev === name ? null : name));
