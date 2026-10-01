@@ -174,8 +174,8 @@ export default function Header() {
   return (
     <>
       <header className={headerClasses}>
-        <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 h-[70px] sm:h-[76px] lg:h-[92px] flex items-center justify-between gap-4">
-          {/* Brand Logo - enlarged on mobile */}
+        <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 h-[74px] sm:h-[82px] lg:h-[98px] flex items-center justify-between gap-4">
+          {/* Brand Logo - Enlarged */}
           <Link
             href="/"
             onClick={() => setMobileMenuOpen(false)}
@@ -185,9 +185,9 @@ export default function Header() {
             <Image
               src="/site-main-logo.png"
               alt="VISION ENERGY INTERNATIONAL UAE"
-              width={300}
-              height={75}
-              className="h-[54px] sm:h-[60px] lg:h-[68px] w-auto max-h-[72px] object-contain transition-transform group-hover:scale-105"
+              width={380}
+              height={95}
+              className="h-[60px] sm:h-[70px] lg:h-[84px] w-auto max-h-[88px] object-contain transition-transform group-hover:scale-105"
               priority
             />
           </Link>
