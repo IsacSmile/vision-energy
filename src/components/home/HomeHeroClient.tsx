@@ -37,27 +37,6 @@ interface SlideData {
 
 const HERO_SLIDES: SlideData[] = [
   {
-    id: 'lightning-protection',
-    category: 'Lightning Protection',
-    shortName: 'Lightning',
-    badge: 'Direct-Strike Mitigation',
-    badgeIcon: Zap,
-    titleLine1: 'Advanced Lightning',
-    titleLine2: 'Protection Systems',
-    subtitle: 'Engineered Direct-Strike & Structural Safety',
-    description:
-      'Certified structural lightning interception and ESE systems safeguarding infrastructure across the UAE.',
-    ctaText: 'Explore Lightning',
-    ctaLink: '/products/lp-01-conventional-lightning-protection-systems',
-    imageUrl:
-      'https://plus.unsplash.com/premium_photo-1664298006973-e98eb94d006c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    imageAlt:
-      'Dramatic cityscape thunderstorm and structural lightning protection system',
-    standards: 'IEC 62305 • NFPA 780',
-    highlightColor: 'text-[#8DC63F]',
-    glowColor: 'rgba(141,198,63,0.45)',
-  },
-  {
     id: 'earthing',
     category: 'Earthing & Grounding',
     shortName: 'Earthing',
@@ -117,6 +96,27 @@ const HERO_SLIDES: SlideData[] = [
     imageAlt:
       'Modern commercial high-rise building and industrial engineering architecture in UAE',
     standards: 'ISO 9001 • UAE Standards',
+    highlightColor: 'text-[#8DC63F]',
+    glowColor: 'rgba(141,198,63,0.45)',
+  },
+  {
+    id: 'lightning-protection',
+    category: 'Lightning Protection',
+    shortName: 'Lightning',
+    badge: 'Direct-Strike Mitigation',
+    badgeIcon: Zap,
+    titleLine1: 'Advanced Lightning',
+    titleLine2: 'Protection Systems',
+    subtitle: 'Engineered Direct-Strike & Structural Safety',
+    description:
+      'Certified structural lightning interception and ESE systems safeguarding infrastructure across the UAE.',
+    ctaText: 'Explore Lightning',
+    ctaLink: '/products/lp-01-conventional-lightning-protection-systems',
+    imageUrl:
+      'https://plus.unsplash.com/premium_photo-1664298006973-e98eb94d006c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    imageAlt:
+      'Dramatic cityscape thunderstorm and structural lightning protection system',
+    standards: 'IEC 62305 • NFPA 780',
     highlightColor: 'text-[#8DC63F]',
     glowColor: 'rgba(141,198,63,0.45)',
   },
