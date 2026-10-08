@@ -26,8 +26,8 @@ const SERVICE_META: Record<
     eyebrow: 'Specialist Protection',
     icon: Zap,
     image: {
-      url: 'https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?auto=format&fit=crop&w=1200&q=85',
-      alt: 'External structural lightning protection installation and engineering',
+      url: '/images/external-lightning-protection-installation.png',
+      alt: 'External structural lightning protection and earthing building installation UAE',
     },
   },
   'earthing-and-grounding': {

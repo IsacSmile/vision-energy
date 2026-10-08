@@ -6,6 +6,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { EnquiryModalProvider } from '@/components/modals/EnquiryModalProvider';
 import EnquiryModal from '@/components/modals/EnquiryModal';
+import { ThemeProvider } from '@/components/theme/ThemeProvider';
 import { getPublishedServices } from '@/lib/data/services';
 
 const poppins = Poppins({
@@ -95,8 +96,13 @@ export default async function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${poppins.variable} dark`}>
+    <html lang="en" className={`${poppins.variable} dark`} suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('vision_theme');if(t==='light'){document.documentElement.classList.remove('dark');document.documentElement.classList.add('light');}else{document.documentElement.classList.add('dark');document.documentElement.classList.remove('light');}}catch(e){}})();`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
@@ -111,13 +117,15 @@ export default async function RootLayout({
           `}
         </Script>
       </head>
-      <body className="bg-[#050608] text-white flex flex-col min-h-screen antialiased">
-        <EnquiryModalProvider>
-          <Header />
-          <main className="grow">{children}</main>
-          <Footer services={publishedServices} />
-          <EnquiryModal />
-        </EnquiryModalProvider>
+      <body className="bg-[#050608] text-white flex flex-col min-h-screen antialiased" suppressHydrationWarning>
+        <ThemeProvider>
+          <EnquiryModalProvider>
+            <Header />
+            <main className="grow">{children}</main>
+            <Footer services={publishedServices} />
+            <EnquiryModal />
+          </EnquiryModalProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

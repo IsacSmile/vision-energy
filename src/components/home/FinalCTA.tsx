@@ -217,7 +217,7 @@ export default function FinalCTA({ bgClass = 'bg-[#0D1117]' }: FinalCTAProps) {
                     <div className="relative inline-block group/item min-w-0">
                       <a
                         href="mailto:info@visionenergyme.com"
-                        className="relative text-[22px] lg:text-[clamp(1.5rem,2.2vw,2rem)] font-medium text-white hover:text-[#8DC63F] transition-colors break-all inline-flex items-center gap-2 min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded px-1 active:opacity-70"
+                        className="relative text-[18px] sm:text-[20px] lg:text-[22px] font-medium text-white hover:text-[#8DC63F] transition-colors whitespace-nowrap inline-flex items-center gap-2 min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded px-1 active:opacity-70"
                       >
                         info@visionenergyme.com
                         <ArrowUpRight className="w-5 h-5 text-[#8DC63F] opacity-0 group-hover/item:opacity-100 group-hover/item:translate-x-1 transition-all shrink-0" />

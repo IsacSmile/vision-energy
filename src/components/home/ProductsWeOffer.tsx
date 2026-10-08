@@ -201,52 +201,60 @@ export default function ProductsWeOffer() {
                   }}
                   className="flex lg:grid lg:grid-cols-3 gap-3.5 sm:gap-4 lg:gap-5 overflow-x-auto lg:overflow-visible scrollbar-none pb-2 sm:pb-1"
                 >
-                  {group.products.map((product) => (
-                    <article
-                      key={product.id}
-                      onClick={() => handleCardClick(product)}
-                      className="w-[82vw] sm:w-[46vw] lg:w-auto shrink-0 snap-start snap-always bg-white rounded-xl shadow-md border border-slate-200/80 hover:border-[#8DC63F]/50 flex flex-col justify-between overflow-hidden group cursor-pointer text-slate-900 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl h-[360px] sm:h-[385px] lg:h-[400px]"
-                    >
-                      {/* Top: Product Image (aspect-[16/10], contain, light neutral background) */}
-                      <div className="relative aspect-[16/10] sm:aspect-[4/3] max-h-[190px] w-full bg-[#F4F6F8] border-b border-slate-100 flex items-center justify-center overflow-hidden shrink-0">
-                        <Image
-                          src={product.image}
-                          alt={product.alt}
-                          fill
-                          sizes="(max-width: 640px) 82vw, (max-width: 1024px) 46vw, 30vw"
-                          className="object-contain p-3 sm:p-3.5 transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-                          loading="lazy"
-                        />
-                      </div>
+                  {group.products.map((product) => {
+                    const productHref = product.slug
+                      ? `/products/${product.slug}`
+                      : product.code
+                      ? `/products?codes=${product.code}`
+                      : '/products';
 
-                      {/* Middle: Black Heading Tab (slanted right edge via clip-path, extending from left edge) */}
-                      <div className="pt-2.5 pb-1 flex justify-start">
-                        <div
-                          className="bg-[#050608] text-white py-1.5 pl-3 sm:pl-3.5 pr-6 sm:pr-7 font-bold text-[11px] sm:text-[12px] uppercase tracking-wide truncate max-w-[94%] select-none shadow-sm"
-                          style={{
-                            clipPath: 'polygon(0 0, calc(100% - 13px) 0, 100% 100%, 0 100%)',
-                          }}
-                        >
-                          {product.name}
+                    return (
+                      <Link
+                        key={product.id}
+                        href={productHref}
+                        className="w-[82vw] sm:w-[46vw] lg:w-auto shrink-0 snap-start snap-always bg-white rounded-xl shadow-md border border-slate-200/80 hover:border-[#8DC63F]/50 flex flex-col justify-between overflow-hidden group cursor-pointer text-slate-900 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl h-[360px] sm:h-[385px] lg:h-[400px] block"
+                      >
+                        {/* Top: Product Image (aspect-[16/10], contain, light neutral background) */}
+                        <div className="relative aspect-[16/10] sm:aspect-[4/3] max-h-[190px] w-full bg-[#F4F6F8] border-b border-slate-100 flex items-center justify-center overflow-hidden shrink-0">
+                          <Image
+                            src={product.image}
+                            alt={product.alt}
+                            fill
+                            sizes="(max-width: 640px) 82vw, (max-width: 1024px) 46vw, 30vw"
+                            className="object-contain p-3 sm:p-3.5 transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                            loading="lazy"
+                          />
                         </div>
-                      </div>
 
-                      {/* Bottom: Description (max ~15 words, line-clamp: 2 to 3) */}
-                      <div className="px-3 sm:px-3.5 pt-0.5 pb-2.5 flex-1 flex flex-col justify-between">
-                        <p className="text-[#475569] text-xs sm:text-[12.5px] leading-[1.55] line-clamp-2 sm:line-clamp-3 font-normal">
-                          {product.description}
-                        </p>
-                      </div>
+                        {/* Middle: Black Heading Tab (slanted right edge via clip-path, extending from left edge) */}
+                        <div className="pt-2.5 pb-1 flex justify-start">
+                          <div
+                            className="bg-[#050608] text-white py-1.5 pl-3 sm:pl-3.5 pr-6 sm:pr-7 font-bold text-[11px] sm:text-[12px] uppercase tracking-wide truncate max-w-[94%] select-none shadow-sm"
+                            style={{
+                              clipPath: 'polygon(0 0, calc(100% - 13px) 0, 100% 100%, 0 100%)',
+                            }}
+                          >
+                            {product.name}
+                          </div>
+                        </div>
 
-                      {/* Card Bottom Action Bar */}
-                      <div className="px-3 sm:px-3.5 py-2 bg-slate-50 border-t border-slate-100 flex items-center justify-between mt-auto">
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-[#0B65B3] group-hover:text-[#8DC63F] transition-colors">
-                          Enquire / Specs
-                        </span>
-                        <ArrowRight className="w-3.5 h-3.5 text-[#0B65B3] group-hover:text-[#8DC63F] transition-transform group-hover:translate-x-1 duration-300" />
-                      </div>
-                    </article>
-                  ))}
+                        {/* Bottom: Description (max ~15 words, line-clamp: 2 to 3) */}
+                        <div className="px-3 sm:px-3.5 pt-0.5 pb-2.5 flex-1 flex flex-col justify-between">
+                          <p className="text-[#475569] text-xs sm:text-[12.5px] leading-[1.55] line-clamp-2 sm:line-clamp-3 font-normal">
+                            {product.description}
+                          </p>
+                        </div>
+
+                        {/* Card Bottom Action Bar */}
+                        <div className="px-3 sm:px-3.5 py-2 bg-slate-50 border-t border-slate-100 flex items-center justify-between mt-auto">
+                          <span className="text-[11px] font-bold uppercase tracking-wider text-[#0B65B3] group-hover:text-[#8DC63F] transition-colors">
+                            Enquire / Specs
+                          </span>
+                          <ArrowRight className="w-3.5 h-3.5 text-[#0B65B3] group-hover:text-[#8DC63F] transition-transform group-hover:translate-x-1 duration-300" />
+                        </div>
+                      </Link>
+                    );
+                  })}
                 </div>
 
                 {/* Mobile & Tablet Dot Indicators under each strip (<1024px) */}

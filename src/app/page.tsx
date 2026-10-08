@@ -6,6 +6,7 @@ import ServicesPreview from '@/components/home/ServicesPreview';
 import ProductsWeOffer from '@/components/home/ProductsWeOffer';
 import WhyVisionEnergy from '@/components/home/WhyVisionEnergy';
 import OurPartners from '@/components/home/OurPartners';
+import HowWeWork from '@/components/home/HowWeWork';
 import FinalCTA from '@/components/home/FinalCTA';
 import SmoothScroll from '@/components/common/SmoothScroll';
 import { FALLBACK_CATEGORIES } from '@/lib/fallback-categories';
@@ -56,6 +57,11 @@ export default async function HomePage() {
 
         {/* 4. OUR PARTNERS (#050608) */}
         <OurPartners />
+
+        <HairlineDivider />
+
+        {/* 5. HOW WE WORK (#06080D) */}
+        <HowWeWork />
 
         <HairlineDivider />
 

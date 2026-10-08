@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { ArrowRight, Check } from "lucide-react";
@@ -40,6 +41,42 @@ export async function generateStaticParams() {
   } catch {
     return [];
   }
+}
+
+const SYSTEM_MODULE_MEDIA: Record<
+  string,
+  {
+    eyebrow: string;
+    body: string;
+    image: string;
+    caption: string;
+  }
+> = {
+  "Conventional Mesh / Faraday Cage Systems": {
+    eyebrow: "EXTERNAL PROTECTION",
+    body: "For buildings requiring multiple controlled paths for lightning energy, Vision Energy provides conventional protection using air terminals, roof conductor mesh, connected down conductors, test joints and a coordinated earthing network.",
+    image: "/images/conventional-mesh-faraday-cage-system.png",
+    caption:
+      "Conventional mesh system: air terminals, roof mesh, continuous down conductors, test joints and earth pits.",
+  },
+  "ESE Coverage Concept": {
+    eyebrow: "EXTERNAL PROTECTION",
+    body: "For suitable structures, an ESE terminal can be incorporated into a complete external lightning protection solution. The terminal is installed on a mast above the highest protected plane, with PVC-covered copper down conductors, test points, equipotential bonding and a dedicated lightning earthing system. Protection coverage is confirmed through the final engineering assessment, installation height and applicable standards.",
+    image: "/images/ese-coverage-concept.png",
+    caption:
+      "ESE coverage concept: protected volume, PVC-covered copper down conductors and dedicated earth pits.",
+  },
+};
+
+function getSystemModuleMedia(title: string) {
+  if (!title) return null;
+  const key = Object.keys(SYSTEM_MODULE_MEDIA).find(
+    (k) =>
+      k.toLowerCase().trim() === title.toLowerCase().trim() ||
+      title.toLowerCase().includes(k.toLowerCase()) ||
+      k.toLowerCase().includes(title.toLowerCase())
+  );
+  return key ? SYSTEM_MODULE_MEDIA[key] : null;
 }
 
 export const dynamicParams = true;
@@ -98,6 +135,148 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
       console.error("Slug redirect query error:", err);
     }
     notFound();
+  }
+
+  // DEDICATED VIEW FOR EXTERNAL LIGHTNING PROTECTION INSTALLATION
+  // Renders exclusively the content & images uploaded by the client
+  if (slug === "external-lightning-protection-installation") {
+    return (
+      <div className="w-full bg-[#050608] text-white">
+        {/* HEADER SECTION */}
+        <section className="relative overflow-hidden bg-[#050608] pt-[calc(var(--header-offset,0px)+40px)] lg:pt-[calc(var(--header-offset,0px)+64px)] pb-12 lg:pb-16 border-b border-white/10">
+          <div className="absolute inset-0 opacity-[0.04] pointer-events-none bg-[radial-gradient(#8DC63F_1px,transparent_1px)] [background-size:24px_24px]" />
+
+          {/* Thunder Lightning Animation */}
+          <div className="pointer-events-none absolute inset-0 overflow-hidden z-0" aria-hidden="true">
+            <HeroLightning
+              hue={210}
+              speed={0.7}
+              intensity={0.9}
+              boltPosition={0.8}
+              opacityClass="opacity-60 lg:opacity-85"
+            />
+          </div>
+
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
+            <nav aria-label="Breadcrumb">
+              <ol className="flex items-center gap-2 text-[13px] text-[#A9B4C0]">
+                <li>
+                  <Link href="/" className="hover:text-white transition-colors">
+                    Home
+                  </Link>
+                </li>
+                <li aria-hidden="true" className="opacity-40">/</li>
+                <li>
+                  <Link href="/services" className="hover:text-white transition-colors">
+                    Services
+                  </Link>
+                </li>
+                <li aria-hidden="true" className="opacity-40">/</li>
+                <li className="text-white font-medium truncate" aria-current="page">
+                  External Lightning Protection Installation
+                </li>
+              </ol>
+            </nav>
+
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+              <div className="space-y-3">
+                <span className="text-xs font-semibold text-[#8DC63F] uppercase tracking-widest block">
+                  Vision Energy International · Specialist Engineering
+                </span>
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight uppercase">
+                  External Lightning Protection Installation
+                </h1>
+              </div>
+
+              <div className="shrink-0">
+                <ServiceCTAGroup serviceTitle={service.title} serviceSlug={service.slug} />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* UPLOADED CONTENT: ONE UNIFIED PRESENTATION CONTAINER */}
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
+          <section className="bg-[#0D1117] border border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xl space-y-10">
+            {/* Unified Top Header Bar */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-6">
+              <div className="flex items-center gap-3">
+                <span className="inline-flex items-center px-3 py-1 rounded bg-[#F39C12]/15 border border-[#F39C12]/30 text-[#F39C12] text-xs font-bold tracking-wider uppercase">
+                  EXTERNAL PROTECTION
+                </span>
+                <span className="text-xs text-gray-400 font-medium hidden sm:inline-block">
+                  Engineered Protection Solutions
+                </span>
+              </div>
+              <span className="text-[11px] sm:text-xs font-mono font-medium tracking-wider text-[#A9B4C0] uppercase">
+                VISION ENERGY INTERNATIONAL | EARTHING &amp; LIGHTNING PROTECTION
+              </span>
+            </div>
+
+            {/* Two Complementary Systems Side by Side */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14">
+              {/* System 1: Conventional Mesh / Faraday Cage Systems */}
+              <div className="flex flex-col space-y-6">
+                <div className="space-y-3">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                    Conventional Mesh / Faraday Cage Systems
+                  </h2>
+                  <p className="text-sm sm:text-base text-[#C9D1D9] leading-relaxed">
+                    For buildings requiring multiple controlled paths for lightning energy, Vision Energy provides conventional protection using air terminals, roof conductor mesh, connected down conductors, test joints and a coordinated earthing network.
+                  </p>
+                </div>
+
+                <div className="space-y-3 pt-2 mt-auto">
+                  <div className="relative w-full aspect-[16/9.8] rounded-xl sm:rounded-2xl overflow-hidden bg-[#050608] border border-white/10 shadow-xl">
+                    <Image
+                      src="/images/conventional-mesh-faraday-cage-system.png"
+                      alt="Conventional Mesh / Faraday Cage Systems"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 550px"
+                      className="object-cover object-center"
+                      priority
+                    />
+                  </div>
+                  <p className="text-sm sm:text-base text-gray-200 leading-relaxed italic px-1">
+                    Conventional mesh system: air terminals, roof mesh, continuous down conductors, test joints and earth pits.
+                  </p>
+                </div>
+              </div>
+
+              {/* System 2: ESE Coverage Concept */}
+              <div className="flex flex-col space-y-6 lg:pl-10 lg:border-l lg:border-white/10 pt-8 lg:pt-0 border-t lg:border-t-0 border-white/10">
+                <div className="space-y-3">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                    ESE Coverage Concept
+                  </h2>
+                  <p className="text-sm sm:text-base text-[#C9D1D9] leading-relaxed">
+                    For suitable structures, an ESE terminal can be incorporated into a complete external lightning protection solution. The terminal is installed on a mast above the highest protected plane, with PVC-covered copper down conductors, test points, equipotential bonding and a dedicated lightning earthing system. Protection coverage is confirmed through the final engineering assessment, installation height and applicable standards.
+                  </p>
+                </div>
+
+                <div className="space-y-3 pt-2 mt-auto">
+                  <div className="relative w-full aspect-[16/9.8] rounded-xl sm:rounded-2xl overflow-hidden bg-[#050608] border border-white/10 shadow-xl">
+                    <Image
+                      src="/images/ese-coverage-concept.png"
+                      alt="ESE Coverage Concept"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 550px"
+                      className="object-cover object-center"
+                      priority
+                    />
+                  </div>
+                  <p className="text-sm sm:text-base text-gray-200 leading-relaxed italic px-1">
+                    ESE coverage concept: protected volume, PVC-covered copper down conductors and dedicated earth pits.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <FinalCTA bgClass="bg-[#050608]" />
+      </div>
+    );
   }
 
   const content = service.content || {};
@@ -212,23 +391,61 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                   <span className="text-xs font-semibold text-[#8DC63F] uppercase tracking-widest block">Systems</span>
                   <h2 className="text-2xl sm:text-3xl font-bold text-white">Protection Network Modules</h2>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  {content.systems.map((sys: any, idx: number) => (
-                    <div key={idx} className="p-6 bg-[#0D1117] border border-white/10 rounded-2xl space-y-3.5">
-                      <h3 className="text-lg sm:text-xl font-bold text-white">{sys.title}</h3>
-                      <p className="text-sm text-[#A9B4C0] leading-relaxed">{sys.body}</p>
-                      {sys.points && sys.points.length > 0 && (
-                        <ul className="space-y-2 pt-3 border-t border-white/10 text-xs text-gray-300">
-                          {sys.points.map((pt: string, pIdx: number) => (
-                            <li key={pIdx} className="flex items-center gap-2">
-                              <Check className="w-4 h-4 text-[#8DC63F] shrink-0" />
-                              <span>{pt}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  ))}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {content.systems.map((sys: any, idx: number) => {
+                    const media = getSystemModuleMedia(sys.title);
+                    return (
+                      <div
+                        key={idx}
+                        className="group flex flex-col p-6 sm:p-7 bg-[#0D1117] border border-white/10 hover:border-[#8DC63F]/40 rounded-2xl transition-all duration-300 space-y-4"
+                      >
+                        {media?.eyebrow && (
+                          <div className="inline-flex items-center self-start px-2.5 py-1 rounded bg-[#F39C12]/15 border border-[#F39C12]/30 text-[#F39C12] text-[11px] font-bold tracking-wider uppercase">
+                            {media.eyebrow}
+                          </div>
+                        )}
+
+                        <div className="space-y-2">
+                          <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                            {sys.title}
+                          </h3>
+                          <p className="text-sm text-[#A9B4C0] leading-relaxed">
+                            {media?.body || sys.body}
+                          </p>
+                        </div>
+
+                        {media?.image && (
+                          <div className="space-y-2.5 pt-1">
+                            <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-[#050608] border border-white/10 group-hover:border-[#8DC63F]/30 transition-all duration-300">
+                              <Image
+                                src={media.image}
+                                alt={sys.title}
+                                fill
+                                sizes="(max-width: 1024px) 100vw, 50vw"
+                                className="object-cover object-center group-hover:scale-[1.02] transition-transform duration-500"
+                              />
+                            </div>
+                            {media.caption && (
+                              <p className="text-xs text-[#9BA3AF] leading-relaxed italic px-0.5">
+                                {media.caption}
+                              </p>
+                            )}
+                          </div>
+                        )}
+
+                        {sys.points && sys.points.length > 0 && (
+                          <ul className="space-y-2 pt-3 border-t border-white/10 text-xs text-gray-300 mt-auto">
+                            {sys.points.map((pt: string, pIdx: number) => (
+                              <li key={pIdx} className="flex items-center gap-2">
+                                <Check className="w-4 h-4 text-[#8DC63F] shrink-0" />
+                                <span>{pt}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               </section>
             )}

@@ -191,9 +191,9 @@ const LightningButton = forwardRef<HTMLElement, LightningButtonProps>(
     // Variant Styles (Strictly solid backgrounds, no gradient fills)
     const variantClasses = {
       primary:
-        'bg-white text-[#050608] border border-transparent hover:bg-[#0D1117] hover:text-white hover:border-[#0B65B3]/60 focus-visible:bg-[#0D1117] focus-visible:text-white focus-visible:border-[#0B65B3]/60 shadow-lg shadow-white/5',
+        'lightning-btn-primary bg-white text-[#050608] border border-transparent hover:bg-[#0D1117] hover:text-white hover:border-[#0B65B3]/60 focus-visible:bg-[#0D1117] focus-visible:text-white focus-visible:border-[#0B65B3]/60 shadow-lg shadow-white/5',
       secondary:
-        'bg-[#050608] border border-white/16 text-white hover:bg-white hover:text-[#050608] hover:border-white focus-visible:bg-white focus-visible:text-[#050608] focus-visible:border-white hover:shadow-[0_0_24px_rgba(141,198,63,0.35)] transition-all duration-300',
+        'lightning-btn-secondary bg-[#050608] border border-white/16 text-white hover:bg-white hover:text-[#050608] hover:border-white focus-visible:bg-white focus-visible:text-[#050608] focus-visible:border-white hover:shadow-[0_0_24px_rgba(141,198,63,0.35)] transition-all duration-300',
     };
 
     const widthClasses = fullWidth ? 'w-full' : 'w-auto';

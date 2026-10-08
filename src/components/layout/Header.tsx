@@ -8,6 +8,7 @@ import { useEnquiryModal } from '@/components/modals/EnquiryModalProvider';
 import { dictionary } from '@/lib/dictionary';
 import { Phone, Clock, Mail, Send } from 'lucide-react';
 import LightningButton from '@/components/ui/LightningButton';
+import ThemeToggle from '@/components/theme/ThemeToggle';
 
 export default function Header() {
   const pathname = usePathname() || '';
@@ -262,8 +263,9 @@ export default function Header() {
             })}
           </nav>
 
-          {/* Desktop Action Button */}
+          {/* Desktop Action Button & Theme Toggle */}
           <div className="hidden lg:flex items-center gap-3 shrink-0">
+            <ThemeToggle id="header-theme-toggle-desktop" />
             <LightningButton
               variant="primary"
               size="md"
@@ -275,8 +277,10 @@ export default function Header() {
             </LightningButton>
           </div>
 
-          {/* Mobile Actions: Call Icon Button & Single Animated Toggle Button (44x44px) */}
+          {/* Mobile Actions: Theme Toggle, Call Icon Button & Single Animated Toggle Button (44x44px) */}
           <div className="flex lg:hidden items-center gap-2">
+            <ThemeToggle id="header-theme-toggle-mobile" />
+
             <a
               href={`tel:${dictionary.company.primaryPhone}`}
               className="w-[44px] h-[44px] flex items-center justify-center rounded-xl text-white bg-[#0D1117]/90 border border-white/12 hover:bg-[#0D1117] focus-visible:ring-2 focus-visible:ring-[#8DC63F] active-press shadow-md"
@@ -371,6 +375,14 @@ export default function Header() {
             mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
           }`}
         >
+          {/* Mobile Theme Switcher Row */}
+          <div className="flex items-center justify-between px-4 py-3 rounded-xl bg-white/[0.05] border border-white/10 mb-1">
+            <span className="text-xs uppercase tracking-wider font-semibold text-[#A9B4C0]">
+              Theme Mode
+            </span>
+            <ThemeToggle id="mobile-drawer-theme-toggle" size="sm" />
+          </div>
+
           {/* Side-by-Side Action Bar */}
           <div className="grid grid-cols-2 gap-3 w-full">
             {/* Button 1: Call Us (Secondary Variant) */}

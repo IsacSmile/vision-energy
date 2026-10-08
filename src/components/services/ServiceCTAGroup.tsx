@@ -55,19 +55,6 @@ export default function ServiceCTAGroup({
           </LightningButton>
         </div>
       </div>
-
-      {/* Alternative Phone Number Link */}
-      <div className="pt-1">
-        <span className="text-[14px] text-[#A9B4C0]">
-          or{' '}
-          <a
-            href={`tel:${dictionary.company.secondaryPhone}`}
-            className="hover:text-white transition-colors underline decoration-white/20 underline-offset-4"
-          >
-            {dictionary.company.secondaryPhone}
-          </a>
-        </span>
-      </div>
     </div>
   );
 }

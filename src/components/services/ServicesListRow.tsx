@@ -11,8 +11,8 @@ import { SERVICES_CONTENT } from '@/lib/services/content';
 
 const DEFAULT_SERVICE_IMAGES: Record<string, { url: string; alt: string }> = {
   'external-lightning-protection-installation': {
-    url: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=1200&q=85',
-    alt: 'External lightning protection installation and engineering testing UAE',
+    url: '/images/external-lightning-protection-installation.png',
+    alt: 'External structural lightning protection and earthing building installation UAE',
   },
   'manpower-supply': {
     url: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=85',

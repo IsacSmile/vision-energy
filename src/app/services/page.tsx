@@ -75,7 +75,7 @@ export default async function ServicesListingPage() {
 
       <div className="w-full bg-[#050608] text-white">
         {/* SECTION A: HEADER (Full Background Hero Image) */}
-        <section className="relative overflow-hidden bg-[#050608] border-b border-[#1F2937]/80 min-h-[360px] sm:min-h-[400px] lg:min-h-[440px] flex flex-col justify-end">
+        <section data-hero-section="true" className="relative overflow-hidden bg-[#050608] border-b border-[#1F2937]/80 min-h-[360px] sm:min-h-[400px] lg:min-h-[440px] flex flex-col justify-end">
           {/* Full Background Hero Image */}
           <div className="absolute inset-0 z-0">
             <Image

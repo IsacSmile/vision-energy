@@ -27,8 +27,11 @@ export default async function CategoryDetailPage({ params }: SlugPageProps) {
 
   if (slug) {
     const category = await getPublishedCategoryBySlug(slug);
-    if (category?.group) {
-      redirect(`/products?group=${category.group}`);
+    if (category) {
+      const groupParam = category.group ? `group=${encodeURIComponent(category.group)}` : "";
+      const codeParam = category.code ? `codes=${encodeURIComponent(category.code)}` : "";
+      const query = [groupParam, codeParam].filter(Boolean).join("&");
+      redirect(`/products${query ? `?${query}` : ""}`);
     }
   }
 
