@@ -212,7 +212,6 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
   };
 
   const activeSlide = HERO_SLIDES[currentSlide];
-  const ActiveIcon = activeSlide.badgeIcon;
 
   return (
     <section
@@ -293,14 +292,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
       <div className="relative z-30 w-full max-w-[80rem] mx-auto px-5 sm:px-6 lg:px-8 my-auto flex-1 flex flex-col justify-center py-4 sm:py-8">
         <div className="max-w-[760px] text-left space-y-4 sm:space-y-6">
           
-          {/* Badge Pill */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.08] backdrop-blur-xl border border-white/15 text-[11px] sm:text-xs font-semibold text-white tracking-wide shadow-xl mb-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] animate-pulse" />
-            <ActiveIcon className={`w-3.5 h-3.5 ${activeSlide.highlightColor}`} />
-            <span className={`${activeSlide.highlightColor} font-bold`}>{activeSlide.category}</span>
-            <span className="text-white/25">•</span>
-            <span className="text-white/80 text-[10px] sm:text-xs font-medium">{activeSlide.standards}</span>
-          </div>
+
 
           {/* H1 Heading */}
           <h1
