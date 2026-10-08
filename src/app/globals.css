@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    --header-h: 80px;
-    --mobile-header-h: 56px;
+    --header-h: 118px;
+    --mobile-header-h: 92px;
     --mobile-bar-h: 56px;
     --bg-main: #050608;
     --bg-card: #0D1117;

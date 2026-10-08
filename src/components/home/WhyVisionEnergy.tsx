@@ -135,12 +135,6 @@ const SECTORS = [
   { name: 'Data, Security & Critical Installations', shortName: 'Data & Critical Sites', icon: CriticalDataSecurityIcon },
 ];
 
-const STATS = [
-  { value: '500+', label: 'UAE Projects Protected' },
-  { value: '2018', label: 'Established in UAE' },
-  { value: '100%', label: 'Compliance & Safety Record' },
-];
-
 export default function WhyVisionEnergy() {
   return (
     <section
@@ -374,22 +368,6 @@ export default function WhyVisionEnergy() {
             </Reveal>
           </div>
         </div>
-
-        {/* Real UAE Facts & Metrics Strip */}
-        <Reveal staggerIndex={7}>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 py-8 border-y border-white/[0.08] divide-y sm:divide-y-0 sm:divide-x divide-white/[0.08]">
-            {STATS.map((stat, idx) => (
-              <div key={idx} className={`pt-4 sm:pt-0 ${idx > 0 ? 'sm:pl-8' : ''} space-y-1`}>
-                <span className="block text-3xl sm:text-4xl lg:text-[40px] font-extrabold text-white tracking-tight">
-                  <span className="text-[#8DC63F]">{stat.value}</span>
-                </span>
-                <span className="block text-xs sm:text-[13px] uppercase tracking-wider text-[#94A3B8] font-medium">
-                  {stat.label}
-                </span>
-              </div>
-            ))}
-          </div>
-        </Reveal>
 
         {/* Industries We Serve */}
         <div className="space-y-6 pt-2">

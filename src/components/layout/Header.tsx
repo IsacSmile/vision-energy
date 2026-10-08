@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useEnquiryModal } from '@/components/modals/EnquiryModalProvider';
 import { dictionary } from '@/lib/dictionary';
-import { Phone, Send } from 'lucide-react';
+import { Phone, Clock, Mail, Send } from 'lucide-react';
 import LightningButton from '@/components/ui/LightningButton';
 
 export default function Header() {
@@ -86,8 +86,8 @@ export default function Header() {
       const isDesktop = window.innerWidth >= 1024;
       const headerOffsetValue = isVisible
         ? isDesktop
-          ? 'var(--header-h, 80px)'
-          : 'var(--mobile-header-h, 56px)'
+          ? 'var(--header-h, 118px)'
+          : 'var(--mobile-header-h, 92px)'
         : '0px';
       document.documentElement.style.setProperty('--header-offset', headerOffsetValue);
     }
@@ -181,6 +181,48 @@ export default function Header() {
   return (
     <>
       <header className={headerClasses}>
+        {/* Top Notch / Sub-Header Utility Bar */}
+        <div className="w-full bg-[#8DC63F] text-white z-50 border-b border-black/10 shadow-sm select-none">
+          <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between h-[36px] sm:h-[40px] text-xs sm:text-[13px] font-semibold">
+              {/* Left Items with Vertical Divider Lines */}
+              <div className="flex items-center divide-x divide-white/30 overflow-x-auto no-scrollbar py-1">
+                {/* Working Hours */}
+                <div className="flex items-center gap-2 pr-3.5 sm:pr-5 shrink-0">
+                  <Clock className="w-3.5 h-3.5 text-white shrink-0 drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)]" />
+                  <span className="drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)]">Sun-Thu 8:30AM-05:30PM</span>
+                </div>
+
+                {/* Telephone */}
+                <a
+                  href="tel:+97172041010"
+                  className="flex items-center gap-2 px-3.5 sm:px-5 shrink-0 hover:text-black transition-colors"
+                  title="Call Vision Energy"
+                >
+                  <Phone className="w-3.5 h-3.5 text-white shrink-0 drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)]" />
+                  <span className="drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)]">+971 7 2041010</span>
+                </a>
+
+                {/* Email */}
+                <a
+                  href="mailto:info@visionenergyme.com"
+                  className="flex items-center gap-2 pl-3.5 sm:px-5 shrink-0 hover:text-black transition-colors"
+                  title="Email Vision Energy"
+                >
+                  <Mail className="w-3.5 h-3.5 text-white shrink-0 drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)]" />
+                  <span className="drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)]">info@visionenergyme.com</span>
+                </a>
+              </div>
+
+              {/* Right Tag (desktop only) */}
+              <div className="hidden lg:flex items-center gap-2 pl-4 border-l border-white/30 text-[11px] sm:text-xs text-white/95 shrink-0 font-semibold drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)]">
+                <span>UAE Certified Specialist MEP & Earthing</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Header Navigation Bar */}
         <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 h-[74px] sm:h-[82px] lg:h-[98px] flex items-center justify-between gap-4">
           {/* Brand Logo - Enlarged */}
           <Link

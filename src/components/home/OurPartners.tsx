@@ -32,8 +32,8 @@ export default function OurPartners() {
         <Reveal>
           <div className="rounded-2xl border border-dashed border-white/20 bg-[#0D1117]/90 backdrop-blur-sm overflow-hidden flex flex-row items-center hover:border-[#8DC63F]/50 transition-colors duration-500 shadow-2xl group/marquee">
             {/* Left Partition: "Our Partners" */}
-            <div className="px-6 sm:px-10 py-6 sm:py-8 flex items-center justify-center border-r border-dashed border-white/20 shrink-0 bg-[#0A0D14]/90">
-              <span className="text-base sm:text-lg lg:text-xl font-bold text-white whitespace-nowrap tracking-tight">
+            <div className="px-6 sm:px-10 lg:px-12 py-6 sm:py-8 flex items-center justify-center border-r border-dashed border-white/20 shrink-0 bg-[#0A0D14]/90">
+              <span className="text-xl sm:text-2xl lg:text-3xl font-bold text-white whitespace-nowrap tracking-tight">
                 Our Partners
               </span>
             </div>
