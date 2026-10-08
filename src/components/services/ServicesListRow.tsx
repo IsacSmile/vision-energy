@@ -41,6 +41,51 @@ const FALLBACK_SERVICE_IMAGE = {
   alt: 'Technical engineering services and industrial support',
 };
 
+const SERVICE_HIGHLIGHTS: Record<string, string[]> = {
+  'external-lightning-protection-installation': [
+    'IEC / BS EN 62305 & NFC 17-102 compliant external protection systems',
+    'Conventional Faraday cage mesh & Early Streamer Emission (ESE) terminals',
+    'Structural down-conductor routing and equipotential bonding networks',
+    'Continuous earth resistance testing and dedicated low-impedance earth pits',
+    'Complete engineering drawings, authority compliance, and handover records',
+  ],
+  'manpower-supply': [
+    'UAE certified lightning protection, earthing, and MEP site technicians',
+    'Full compliance with UAE labor regulations, HSE standards, and site safety',
+    'Flexible mobilization: emergency shutdown, testing, or long-term contracts',
+    'Experienced site supervisors ensuring engineering precision and QA/QC',
+    'Mobilized with calibrated testing meters, specialized tooling, and certified PPE',
+  ],
+  'specialist-engineering-manpower-supply': [
+    'UAE certified lightning protection, earthing, and MEP site technicians',
+    'Full compliance with UAE labor regulations, HSE standards, and site safety',
+    'Flexible mobilization: emergency shutdown, testing, or long-term contracts',
+    'Experienced site supervisors ensuring engineering precision and QA/QC',
+    'Mobilized with calibrated testing meters, specialized tooling, and certified PPE',
+  ],
+  'earthing-grounding-system-design-installation': [
+    'Low-resistance earth grid design achieving target ohmic values (<1Ω / <5Ω)',
+    'Exothermic welding (cadweld) molecular bonds and copper tape networks',
+    'Chemical earthing compound and deep well electrode installation',
+    'Soil resistivity testing, Wenner 4-point survey, and grid simulation',
+    'Comprehensive earth pit inspection, testing, and authority certification',
+  ],
+  'earthing-and-grounding': [
+    'Low-resistance earth grid design achieving target ohmic values (<1Ω / <5Ω)',
+    'Exothermic welding (cadweld) molecular bonds and copper tape networks',
+    'Chemical earthing compound and deep well electrode installation',
+    'Soil resistivity testing, Wenner 4-point survey, and grid simulation',
+    'Comprehensive earth pit inspection, testing, and authority certification',
+  ],
+  'surge-protection-device-installation': [
+    'Type 1, Type 2, and Type 3 SPD coordination across electrical switchboards',
+    'Transient voltage spike protection for critical automation and MEP panels',
+    'Data, telecom, and CCTV signaling surge protection implementation',
+    'Lightning impulse current discharge capacity up to 100kA (10/350µs)',
+    'Pre-installation electrical audit and post-commissioning verification testing',
+  ],
+};
+
 interface ServicesListRowProps {
   service: ServiceRecord;
   index: number;
@@ -69,6 +114,15 @@ export default function ServicesListRow({ service, index }: ServicesListRowProps
     DEFAULT_SERVICE_IMAGES[service.slug]?.alt ||
     service.title;
 
+  const highlights =
+    SERVICE_HIGHLIGHTS[service.slug] ||
+    service.content?.systems?.[0]?.points || [
+      'Engineered system design and compliant site execution',
+      'High-grade certified materials and precision installation',
+      'Testing, continuity verification, and inspection records',
+      'Authority compliance and complete handover documentation',
+    ];
+
   const getIcon = () => {
     if (service.slug === 'external-lightning-protection-installation') {
       return <Building2 className="w-5 h-5 text-[#8DC63F]" />;
@@ -95,90 +149,93 @@ export default function ServicesListRow({ service, index }: ServicesListRowProps
   };
 
   return (
-    <li className="relative group border-t border-white/10 transition-colors duration-300">
-      {/* Top Hairline Gradient on Hover */}
-      <div
-        className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-[#0B65B3] to-[#8DC63F] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-[3]"
-        aria-hidden="true"
-      />
+    <li className="relative group list-none">
+      <div className="relative rounded-2xl sm:rounded-3xl bg-[#0C1017] border border-white/[0.12] hover:border-[#8DC63F]/50 transition-all duration-300 shadow-[0_12px_36px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(11,101,179,0.18)] hover:-translate-y-1 p-5 sm:p-6 lg:p-7 flex flex-col lg:flex-row gap-6 lg:gap-8 items-start overflow-hidden">
+        {/* Ambient Subtle Radial Glow on Hover */}
+        <div
+          className="pointer-events-none absolute -top-24 -right-24 w-80 h-80 bg-[#8DC63F]/[0.03] group-hover:bg-[#8DC63F]/[0.08] rounded-full blur-3xl transition-colors duration-500"
+          aria-hidden="true"
+        />
 
-      <div className="py-8 sm:py-10 lg:py-12 flex flex-col lg:flex-row gap-6 lg:gap-8 items-start lg:items-center">
-        {/* Column 1: Image Thumbnail Card */}
-        <div className="relative w-full sm:w-80 lg:w-96 h-56 sm:h-64 rounded-2xl overflow-hidden bg-[#050608] border border-white/10 shrink-0 group-hover:border-[#8DC63F]/50 transition-all duration-500 shadow-xl">
+        {/* Left Side: Compact Framed Image Thumbnail (Clean & Small) */}
+        <div className="relative w-full sm:w-72 lg:w-80 h-48 sm:h-52 lg:h-56 rounded-xl sm:rounded-2xl overflow-hidden bg-[#050608] border border-white/10 shrink-0 shadow-md group-hover:border-[#8DC63F]/40 transition-all duration-500">
           <Image
             src={imageUrl}
             alt={imageAlt}
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 320px, 384px"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 288px, 320px"
           />
-          <div className="absolute bottom-0 inset-x-0 h-12 bg-gradient-to-t from-[#050608] to-transparent pointer-events-none" />
+          <div className="absolute bottom-0 inset-x-0 h-14 bg-gradient-to-t from-[#050608]/90 to-transparent pointer-events-none" />
 
           {/* Floating Badges */}
           <div className="absolute top-3 left-3 flex items-center gap-2 z-10">
-            <span className="px-2.5 py-1 bg-[#050608]/85 backdrop-blur-md border border-white/15 rounded-lg text-xs font-mono font-bold text-white tracking-wider">
+            <span className="px-2.5 py-1 bg-[#050608]/90 backdrop-blur-md border border-[#8DC63F]/40 rounded-full text-xs font-mono font-bold text-[#8DC63F] shadow-sm tracking-wider">
               {formattedIndex}
             </span>
-            <div className="p-1.5 bg-[#050608]/85 backdrop-blur-md border border-white/15 rounded-lg">
+            <div className="p-1.5 bg-[#050608]/90 backdrop-blur-md border border-white/15 rounded-xl shadow-sm">
               {getIcon()}
             </div>
           </div>
         </div>
 
-        {/* Column 2: Title, Summary, Meta Chips */}
-        <div className="space-y-3.5 flex-1 min-w-0">
-          <h2 className="text-xl sm:text-2xl lg:text-[28px] font-semibold text-white tracking-tight leading-snug group-hover:text-white transition-colors">
-            <Link
-              href={`/services/${service.slug}`}
-              className="before:absolute before:inset-0 before:z-[1] relative inline-block focus-visible:outline-none"
-            >
-              <span>{service.title}</span>
-              {/* Title 1px gradient underline on hover */}
-              <span
-                className="block h-[1px] w-0 group-hover:w-full bg-gradient-to-r from-[#0B65B3] to-[#8DC63F] transition-all duration-300 mt-1"
-                aria-hidden="true"
-              />
-            </Link>
-          </h2>
+        {/* Right Side: Content Area */}
+        <div className="flex-1 min-w-0 flex flex-col justify-between self-stretch">
+          <div>
+            {/* Service Title */}
+            <h2 className="text-xl sm:text-2xl lg:text-[24px] font-bold text-white tracking-tight leading-snug group-hover:text-[#8DC63F] transition-colors">
+              <Link
+                href={`/services/${service.slug}`}
+                className="hover:text-[#8DC63F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded-lg"
+              >
+                {service.title}
+              </Link>
+            </h2>
 
-          <p className="text-sm sm:text-base text-[#A9B4C0] max-w-[58ch] leading-relaxed line-clamp-3">
-            {service.summary}
-          </p>
+            {/* Service Summary */}
+            <p className="text-sm sm:text-[14.5px] text-[#A9B4C0] leading-relaxed mt-2">
+              {service.summary}
+            </p>
 
-          {metaChips.length > 0 && (
-            <div className="flex flex-wrap gap-2 pt-1 z-[2] relative pointer-events-auto">
-              {metaChips.map((chip: string, i: number) => (
-                <span
-                  key={i}
-                  className="text-xs font-medium text-[#8DC63F] bg-[#8DC63F]/10 border border-[#8DC63F]/30 px-3 py-1 rounded-full"
-                >
-                  {chip}
-                </span>
-              ))}
+            {/* Key Highlights Section */}
+            <div className="mt-4 pt-3 border-t border-white/[0.06]">
+              <h3 className="text-xs sm:text-sm font-bold text-[#8DC63F] uppercase tracking-wider flex items-center gap-2 mb-2.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] shrink-0" />
+                <span>Key Highlights</span>
+              </h3>
+
+              {/* Bullet Points List (Clean & Compact) */}
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5 text-xs sm:text-[13px] text-[#CBD5E1]">
+                {highlights.map((point, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-1.5 shrink-0" aria-hidden="true" />
+                    <span className="leading-snug">{point}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-          )}
-        </div>
-
-        {/* Column 3: Actions (Book Service + Learn More) */}
-        <div className="w-full sm:w-auto lg:w-48 flex flex-col sm:flex-row lg:flex-col items-stretch lg:items-end gap-3.5 pt-2 lg:pt-0 z-[2] relative pointer-events-auto shrink-0">
-          <div className="w-full sm:w-44 lg:w-full">
-            <LightningButton
-              variant="primary"
-              size="md"
-              fullWidth
-              onClick={handleBookClick}
-            >
-              Book Service
-            </LightningButton>
           </div>
 
-          <Link
-            href={`/services/${service.slug}`}
-            className="h-[44px] px-3 text-sm font-semibold text-white/80 hover:text-white inline-flex items-center justify-center lg:justify-end gap-2 group/link transition-colors"
-          >
-            <span>Learn more</span>
-            <ArrowRight className="w-4 h-4 text-[#8DC63F] transition-transform duration-300 group-hover/link:translate-x-1" />
-          </Link>
+          {/* Bottom Actions Row */}
+          <div className="pt-4 mt-5 border-t border-white/[0.08] flex items-center justify-between flex-wrap gap-4">
+            <Link
+              href={`/services/${service.slug}`}
+              className="text-sm font-bold text-white group/link hover:text-[#8DC63F] inline-flex items-center gap-2 transition-colors py-1"
+            >
+              <span className="border-b border-transparent group-hover/link:border-[#8DC63F] pb-0.5 transition-all">
+                View Details
+              </span>
+              <ArrowRight className="w-4 h-4 text-[#8DC63F] transition-transform duration-300 group-hover/link:translate-x-1.5" />
+            </Link>
+
+            <button
+              type="button"
+              onClick={handleBookClick}
+              className="py-2 px-5 rounded-full bg-white hover:bg-[#8DC63F] text-[#050608] hover:text-black font-bold text-xs sm:text-sm tracking-wide shadow-md transition-all duration-300 active:scale-95 cursor-pointer"
+            >
+              Book Service
+            </button>
+          </div>
         </div>
       </div>
     </li>

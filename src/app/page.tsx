@@ -2,13 +2,12 @@ import React from 'react';
 import { db } from '@/lib/db';
 import HomeHeroClient from '@/components/home/HomeHeroClient';
 import IntroStandards from '@/components/home/IntroStandards';
-import SolutionPillars from '@/components/home/SolutionPillars';
 import ServicesPreview from '@/components/home/ServicesPreview';
+import ProductsWeOffer from '@/components/home/ProductsWeOffer';
 import WhyVisionEnergy from '@/components/home/WhyVisionEnergy';
 import OurPartners from '@/components/home/OurPartners';
 import FinalCTA from '@/components/home/FinalCTA';
 import SmoothScroll from '@/components/common/SmoothScroll';
-import { PILLARS_CONFIG } from '@/config/pillars';
 import { FALLBACK_CATEGORIES } from '@/lib/fallback-categories';
 
 export const metadata = {
@@ -21,33 +20,13 @@ export const revalidate = 60; // ISR revalidation
 
 export default async function HomePage() {
   let productCategoryCount = FALLBACK_CATEGORIES.length;
-  let allCategoryCodes: string[] = FALLBACK_CATEGORIES.map((c) => c.code);
 
   try {
     const count = await db.productCategory.count();
     if (count > 0) productCategoryCount = count;
-
-    const dbCategories = await db.productCategory.findMany({
-      select: { code: true },
-    });
-    if (dbCategories && dbCategories.length > 0) {
-      allCategoryCodes = dbCategories.map((c) => c.code);
-    }
   } catch (e) {
     console.error('Database query fallback triggered for HomePage:', e);
   }
-
-  const categoryCodesSet = new Set(allCategoryCodes.map((c) => c.toUpperCase()));
-
-  const countsByPillarId: Record<string, number> = {};
-  PILLARS_CONFIG.forEach((pillar) => {
-    if (pillar.categoryCodes) {
-      const count = pillar.categoryCodes.filter((code) =>
-        categoryCodesSet.has(code.toUpperCase())
-      ).length;
-      countsByPillarId[pillar.id] = count;
-    }
-  });
 
   // Hairline divider component
   const HairlineDivider = () => (
@@ -80,13 +59,13 @@ export default async function HomePage() {
 
         <HairlineDivider />
 
-        {/* 5. SOLUTION PILLARS (#050608) */}
-        <SolutionPillars countsByPillarId={countsByPillarId} />
+        {/* 5. SERVICES PREVIEW (#0D1117) */}
+        <ServicesPreview />
 
         <HairlineDivider />
 
-        {/* 5. SERVICES PREVIEW (#0D1117) */}
-        <ServicesPreview />
+        {/* 6. PRODUCTS WE OFFER (#050608) */}
+        <ProductsWeOffer />
 
         <HairlineDivider />
 

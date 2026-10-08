@@ -507,55 +507,60 @@ export default function ProductsExplorer({
 
   return (
     <div className="min-h-screen bg-[#050608] text-white">
-      {/* 3. PAGE HEADER (Compact, Left-Aligned) */}
-      <div className="relative bg-[#050608] overflow-hidden border-b border-[#1F2937]/80 min-h-[260px]">
-        {/* Soft radial blue glow at top left */}
-        <div
-          className="pointer-events-none absolute top-0 left-0 w-[600px] h-[600px] opacity-100"
-          style={{
-            background:
-              'radial-gradient(600px circle at 0% 0%, rgba(11, 101, 179, 0.14), transparent 70%)',
-          }}
-          aria-hidden="true"
-        />
+      {/* 3. PAGE HEADER (Full Background Hero Image) */}
+      <div className="relative bg-[#050608] overflow-hidden border-b border-[#1F2937]/80 min-h-[360px] sm:min-h-[400px] lg:min-h-[440px] flex flex-col justify-end">
+        {/* Full Background Hero Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/products-hero-banner.png"
+            alt="Vision Energy comprehensive electrical, earthing, lightning protection, and MEP product range"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center lg:object-right"
+          />
+          {/* Light gradient overlays so the background image is vibrant and clearly visible */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#050608]/80 via-[#050608]/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050608] via-transparent to-[#050608]/25" />
+        </div>
 
         {/* Thunder Lightning Animation in Product Hero */}
-        <div className="pointer-events-none absolute inset-0 overflow-hidden z-0" aria-hidden="true">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden z-[1]" aria-hidden="true">
           <HeroLightning
             hue={210}
             speed={0.7}
-            intensity={0.9}
+            intensity={0.6}
             boltPosition={0.8}
-            opacityClass="opacity-60 lg:opacity-85"
+            opacityClass="opacity-25 lg:opacity-40"
           />
         </div>
 
-        <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 pt-[calc(var(--header-offset,80px)+32px)] lg:pt-[calc(var(--header-offset,80px)+48px)] pb-8 relative z-10">
+        <div className="max-w-[80rem] w-full mx-auto px-4 sm:px-6 lg:px-8 pt-[calc(var(--header-offset,118px)+32px)] lg:pt-[calc(var(--header-offset,118px)+48px)] pb-10 sm:pb-14 relative z-10">
           <div className="space-y-4 max-w-4xl">
             {/* Breadcrumb */}
-            <nav aria-label="Breadcrumb" className="text-[13px] text-[#A9B4C0] font-medium flex items-center gap-2">
+            <nav aria-label="Breadcrumb" className="text-[13px] text-white/80 font-medium flex items-center gap-2 drop-shadow-sm">
               <Link href="/" className="hover:text-white transition-colors">
                 Home
               </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-[#A9B4C0]/60" />
-              <span className="text-white" aria-current="page">
+              <ChevronRight className="w-3.5 h-3.5 text-white/50" />
+              <span className="text-white font-semibold" aria-current="page">
                 Products
               </span>
             </nav>
 
             {/* H1 Title */}
-            <h1 className="text-[clamp(2rem,5vw,3.5rem)] font-semibold text-white leading-[1.1] tracking-[-0.02em] [text-wrap:balance]">
+            <h1 className="text-[clamp(2.25rem,5vw,3.75rem)] font-bold text-white leading-[1.1] tracking-[-0.02em] [text-wrap:balance] drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">
               Product Catalogue
             </h1>
 
             {/* Description */}
-            <p className="text-base lg:text-[18px] text-[#A9B4C0] leading-[1.65] max-w-[60ch]">
-              Browse {categories.length} product categories across lightning protection, earthing, electrical, mechanical and solar. Select a category to see its product families, or send us an enquiry.
+            <p className="text-base lg:text-[18px] text-slate-100 leading-[1.65] max-w-[62ch] font-normal drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)]">
+              Browse {categories.length} certified product categories across lightning protection, earthing, electrical cables, cable management, and automation. Engineered for high-spec UAE infrastructure.
             </p>
 
             {/* Live Count Meta Line */}
-            <p className="text-[13px] text-[#A9B4C0] font-medium">
-              {filteredCategories.length} categories · {groupsWithCounts.length} groups
+            <p className="text-[13px] text-slate-300 font-medium pt-1 drop-shadow-sm">
+              <span className="text-white font-semibold">{filteredCategories.length}</span> categories · <span className="text-white font-semibold">{groupsWithCounts.length}</span> groups
             </p>
           </div>
         </div>

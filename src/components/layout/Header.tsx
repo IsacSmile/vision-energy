@@ -14,6 +14,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [visible, setVisible] = useState(true);
+  const [showTopNotch, setShowTopNotch] = useState(true);
   const lastScrollY = useRef(0);
   const toggleBtnRef = useRef<HTMLButtonElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
@@ -54,44 +55,42 @@ export default function Header() {
     return () => window.removeEventListener('resize', handleResize);
   }, [isAdmin]);
 
-  // Scroll detection for background fade & auto-hide/reappear
+  // Scroll detection:
+  // Top notch bar is ONLY shown when at hero page (scrollY <= 80).
+  // When scrolling down, or scrolling back up, do NOT show the header top notch until we get back to hero page.
   useEffect(() => {
     if (isAdmin) return;
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       setScrolled(currentScrollY > 24);
 
-      if (currentScrollY > 100 && !mobileMenuOpen) {
-        if (currentScrollY > lastScrollY.current + 5) {
-          setVisible(false);
-        } else if (currentScrollY < lastScrollY.current - 5) {
-          setVisible(true);
-        }
-      } else {
-        setVisible(true);
-      }
+      // Only show top notch when at hero section (top of page)
+      const isAtHero = currentScrollY <= 80;
+      setShowTopNotch(isAtHero);
 
       lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [mobileMenuOpen, isAdmin]);
+  }, [isAdmin]);
 
   // Update --header-offset CSS variable on document root for sticky elements
   useEffect(() => {
     if (isAdmin) return;
     if (typeof document !== 'undefined') {
-      const isVisible = visible || mobileMenuOpen;
-      const isDesktop = window.innerWidth >= 1024;
-      const headerOffsetValue = isVisible
-        ? isDesktop
-          ? 'var(--header-h, 118px)'
-          : 'var(--mobile-header-h, 92px)'
-        : '0px';
-      document.documentElement.style.setProperty('--header-offset', headerOffsetValue);
+      const updateHeaderOffset = () => {
+        const isDesktop = window.innerWidth >= 1024;
+        // When scrolled, main navbar is 80px desktop, 68px mobile
+        const headerOffsetValue = isDesktop ? '80px' : '68px';
+        document.documentElement.style.setProperty('--header-offset', headerOffsetValue);
+      };
+      updateHeaderOffset();
+      window.addEventListener('resize', updateHeaderOffset);
+      return () => window.removeEventListener('resize', updateHeaderOffset);
     }
-  }, [visible, mobileMenuOpen, isAdmin]);
+  }, [isAdmin]);
 
 
   // Lock body scroll on open, focus management, and restore focus on close
@@ -158,16 +157,12 @@ export default function Header() {
 
   const headerVisibilityClass = visible || mobileMenuOpen ? 'translate-y-0' : '-translate-y-full';
 
-  // Header background becomes completely transparent when menu is open so header + overlay look like one screen
+  // Header is solid with website background color (#050608), fully opaque and non-transparent
   const headerClasses = mobileMenuOpen
-    ? `fixed top-0 left-0 right-0 z-50 w-full bg-transparent border-b border-transparent pt-safe transition-all duration-300 ${headerVisibilityClass}`
+    ? `fixed top-0 left-0 right-0 z-50 w-full bg-[#050608] border-b border-transparent pt-safe transition-all duration-300 translate-y-0`
     : isHome
-    ? `fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 pt-safe ${headerVisibilityClass} ${
-        scrolled
-          ? 'bg-[#050608]/85 backdrop-blur-md border-b border-[#0B65B3]/30 shadow-lg'
-          : 'bg-transparent border-b border-transparent'
-      }`
-    : `sticky top-0 z-50 w-full bg-[#050608]/90 backdrop-blur-md border-b border-[#1F2937] pt-safe transition-all duration-300 ${headerVisibilityClass}`;
+    ? `fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 pt-safe translate-y-0 bg-[#050608] border-b border-[#0B65B3]/30 shadow-xl`
+    : `sticky top-0 z-50 w-full bg-[#050608] border-b border-[#1F2937] pt-safe transition-all duration-300 translate-y-0 shadow-xl`;
 
   const handleMobileEnquiry = () => {
     setMobileMenuOpen(false);
@@ -181,8 +176,14 @@ export default function Header() {
   return (
     <>
       <header className={headerClasses}>
-        {/* Top Notch / Sub-Header Utility Bar */}
-        <div className="w-full bg-[#8DC63F] text-white z-50 border-b border-black/10 shadow-sm select-none">
+        {/* Top Notch / Sub-Header Utility Bar - Only shown at hero section, smoothly collapses on scroll away from hero */}
+        <div
+          className={`w-full bg-[#8DC63F] text-white z-50 border-b border-black/10 shadow-sm select-none transition-all duration-300 ease-in-out overflow-hidden ${
+            showTopNotch
+              ? 'max-h-[50px] opacity-100 translate-y-0'
+              : 'max-h-0 opacity-0 -translate-y-full border-b-0 pointer-events-none'
+          }`}
+        >
           <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-[36px] sm:h-[40px] text-xs sm:text-[13px] font-semibold">
               {/* Left Items with Vertical Divider Lines */}
@@ -222,8 +223,8 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Main Header Navigation Bar */}
-        <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 h-[74px] sm:h-[82px] lg:h-[98px] flex items-center justify-between gap-4">
+        {/* Main Header Navigation Bar (Clean 80px desktop, 68px mobile) */}
+        <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 h-[68px] sm:h-[74px] lg:h-[80px] flex items-center justify-between gap-4">
           {/* Brand Logo - Enlarged */}
           <Link
             href="/"
@@ -236,7 +237,7 @@ export default function Header() {
               alt="VISION ENERGY INTERNATIONAL UAE"
               width={380}
               height={95}
-              className="h-[60px] sm:h-[70px] lg:h-[84px] w-auto max-h-[88px] object-contain transition-transform group-hover:scale-105"
+              className="h-[52px] sm:h-[60px] lg:h-[68px] w-auto max-h-[72px] object-contain transition-transform group-hover:scale-105"
               priority
             />
           </Link>
