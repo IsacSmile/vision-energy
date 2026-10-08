@@ -4,11 +4,9 @@ import HomeHeroClient from '@/components/home/HomeHeroClient';
 import IntroStandards from '@/components/home/IntroStandards';
 import SolutionPillars from '@/components/home/SolutionPillars';
 import FlagshipLightning from '@/components/home/FlagshipLightning';
-import ProductPreview from '@/components/home/ProductPreview';
 import ServicesPreview from '@/components/home/ServicesPreview';
 import WhyChooseUs from '@/components/home/WhyChooseUs';
 import Industries from '@/components/home/Industries';
-import LatestPosts from '@/components/home/LatestPosts';
 import FinalCTA from '@/components/home/FinalCTA';
 import SmoothScroll from '@/components/common/SmoothScroll';
 import { PILLARS_CONFIG } from '@/config/pillars';
@@ -83,12 +81,7 @@ export default async function HomePage() {
 
         <HairlineDivider />
 
-        {/* 5. PRODUCT PREVIEW (#050608) */}
-        <ProductPreview />
-
-        <HairlineDivider />
-
-        {/* 6. SERVICES PREVIEW (#0D1117) */}
+        {/* 5. SERVICES PREVIEW (#0D1117) */}
         <ServicesPreview />
 
         <HairlineDivider />
@@ -103,10 +96,6 @@ export default async function HomePage() {
 
         <HairlineDivider />
 
-        {/* 9. LATEST POSTS (#050608) - CONDITIONAL */}
-        <LatestPosts />
-
-        <HairlineDivider />
 
         {/* 10. FINAL CTA (#0D1117) */}
         <FinalCTA />
