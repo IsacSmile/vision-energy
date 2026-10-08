@@ -153,7 +153,6 @@ export default function Header() {
     { href: '/products', label: dictionary.nav.products },
     { href: '/services', label: dictionary.nav.services },
     { href: '/blog', label: dictionary.nav.blog },
-    { href: '/about', label: dictionary.nav.about },
     { href: '/contact', label: dictionary.nav.contact },
   ];
 

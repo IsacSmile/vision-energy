@@ -60,7 +60,6 @@ Commands for schema migrations and data seeding:
 | `/services/[slug]` | Detailed service scope narrative and process steps | Public |
 | `/blog` | Technical insights and industry articles | Public |
 | `/blog/[slug]` | Individual article editorial view | Public |
-| `/about` | Company background and certification details | Public |
 | `/contact` | Contact information and enquiry forms | Public |
 | `/admin/login` | Secure administrator authentication portal | Public (Rate-limited) |
 | `/admin` | CMS administration dashboard and metrics | Protected |

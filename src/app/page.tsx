@@ -3,10 +3,9 @@ import { db } from '@/lib/db';
 import HomeHeroClient from '@/components/home/HomeHeroClient';
 import IntroStandards from '@/components/home/IntroStandards';
 import SolutionPillars from '@/components/home/SolutionPillars';
-import FlagshipLightning from '@/components/home/FlagshipLightning';
 import ServicesPreview from '@/components/home/ServicesPreview';
-import WhyChooseUs from '@/components/home/WhyChooseUs';
-import Industries from '@/components/home/Industries';
+import WhyVisionEnergy from '@/components/home/WhyVisionEnergy';
+import OurPartners from '@/components/home/OurPartners';
 import FinalCTA from '@/components/home/FinalCTA';
 import SmoothScroll from '@/components/common/SmoothScroll';
 import { PILLARS_CONFIG } from '@/config/pillars';
@@ -71,13 +70,18 @@ export default async function HomePage() {
 
         <HairlineDivider />
 
-        {/* 3. SOLUTION PILLARS (#050608) */}
-        <SolutionPillars countsByPillarId={countsByPillarId} />
+        {/* 3. WHY VISION ENERGY (#06080D) */}
+        <WhyVisionEnergy />
 
         <HairlineDivider />
 
-        {/* 4. FLAGSHIP LIGHTNING (#0D1117) */}
-        <FlagshipLightning />
+        {/* 4. OUR PARTNERS (#050608) */}
+        <OurPartners />
+
+        <HairlineDivider />
+
+        {/* 5. SOLUTION PILLARS (#050608) */}
+        <SolutionPillars countsByPillarId={countsByPillarId} />
 
         <HairlineDivider />
 
@@ -86,18 +90,7 @@ export default async function HomePage() {
 
         <HairlineDivider />
 
-        {/* 7. WHY CHOOSE US (#050608) */}
-        <WhyChooseUs />
-
-        <HairlineDivider />
-
-        {/* 8. INDUSTRIES / SECTORS WE SERVE (#0D1117) */}
-        <Industries />
-
-        <HairlineDivider />
-
-
-        {/* 10. FINAL CTA (#0D1117) */}
+        {/* 7. FINAL CTA (#0D1117) */}
         <FinalCTA />
       </div>
     </SmoothScroll>

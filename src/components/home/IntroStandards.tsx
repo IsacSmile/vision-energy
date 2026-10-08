@@ -1,22 +1,10 @@
 import React from 'react';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 import SectionHeader from '@/components/ui/SectionHeader';
-import Chip from '@/components/ui/Chip';
 import Reveal from '@/components/ui/Reveal';
 
 interface IntroStandardsProps {
   productCategoryCount?: number;
 }
-
-const STANDARDS = [
-  'BS EN 62305',
-  'IEC 62305',
-  'IEC 62561',
-  'IEC 60364',
-  'NFC 17-102',
-  'NFPA 780',
-];
 
 export default function IntroStandards({ productCategoryCount }: IntroStandardsProps) {
   return (
@@ -44,16 +32,6 @@ export default function IntroStandards({ productCategoryCount }: IntroStandardsP
               </p>
             </Reveal>
 
-            <Reveal staggerIndex={2}>
-              <Link
-                href="/about"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0D1117] hover:bg-[#161B22] border border-[#8DC63F]/30 hover:border-[#8DC63F] text-sm font-semibold text-[#8DC63F] hover:text-white transition-all group shadow-lg shadow-[#8DC63F]/5"
-              >
-                <span>Discover More About Us</span>
-                <ArrowRight className="w-4 h-4 text-[#8DC63F] transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Reveal>
-
             {/* Desktop-Only 3 Plain Facts (hidden on mobile since hero has facts strip) */}
             <div className="hidden lg:grid grid-cols-3 gap-6 pt-6 border-t border-white/[0.08]">
               <div className="space-y-1">
@@ -74,32 +52,7 @@ export default function IntroStandards({ productCategoryCount }: IntroStandardsP
           </div>
         </div>
 
-        {/* Standards Strip */}
-        <div className="pt-8 border-t border-white/[0.08] space-y-4">
-          <Reveal staggerIndex={0}>
-            <div className="inline-flex items-center gap-2 text-xs font-bold text-[#A9B4C0] uppercase tracking-[0.14em]">
-              <span className="w-6 h-[2px] bg-[#8DC63F] rounded-full shrink-0" aria-hidden="true" />
-              <span>Standards we work to</span>
-            </div>
-          </Reveal>
 
-          {/* Chips Row: Horizontal scroll on mobile, flex-wrap on desktop */}
-          <div className="flex items-center gap-3 overflow-x-auto no-scrollbar snap-x snap-mandatory lg:flex-wrap lg:overflow-visible py-1">
-            {STANDARDS.map((std, i) => (
-              <Reveal key={std} staggerIndex={i} className="shrink-0">
-                <Chip variant="static" className="snap-start">
-                  {std}
-                </Chip>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal staggerIndex={4}>
-            <p className="text-[13px] text-[#A9B4C0]/80">
-              System design and test criteria follow approved project requirements and site conditions.
-            </p>
-          </Reveal>
-        </div>
       </div>
     </section>
   );
