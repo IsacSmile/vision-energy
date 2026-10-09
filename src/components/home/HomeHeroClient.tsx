@@ -46,7 +46,7 @@ const HERO_SLIDES: SlideData[] = [
       'Engineered copper earthing grids and low-impedance grounding for maximum electrical safety across UAE soil conditions.',
     ctaText: 'Explore Earthing',
     ctaLink: '/services/earthing-grounding',
-    imageUrl: '/images/earthing-grounding-hero.png',
+    imageUrl: '/images/earthing-grounding-hero.webp',
     imageAlt:
       'Vision Energy specialist engineers installing rooftop earthing and lightning copper grid network on UAE site',
     standards: 'IEEE 80 • BS 7430',
@@ -66,10 +66,9 @@ const HERO_SLIDES: SlideData[] = [
       'Certified structural lightning interception and ESE systems safeguarding infrastructure across the UAE.',
     ctaText: 'Explore Lightning',
     ctaLink: '/services/external-lightning-protection-installation',
-    imageUrl:
-      'https://plus.unsplash.com/premium_photo-1664298006973-e98eb94d006c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    imageUrl: '/images/lightning-protection-hero-2nd-img.webp',
     imageAlt:
-      'Dramatic cityscape thunderstorm and structural lightning protection system',
+      'Dramatic structural lightning protection and interception system installation UAE',
     standards: 'IEC 62305 • NFPA 780',
     highlightColor: 'text-[#8DC63F]',
     glowColor: 'rgba(141,198,63,0.45)',
