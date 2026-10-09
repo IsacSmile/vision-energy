@@ -381,8 +381,19 @@ html.lenis, html.lenis body {
   animation-play-state: paused;
 }
 
+.animate-marquee-fast {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee-fast:hover {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
+  .animate-marquee,
+  .animate-marquee-fast {
     animation-play-state: paused;
   }
 }
