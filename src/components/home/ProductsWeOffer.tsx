@@ -212,7 +212,7 @@ export default function ProductsWeOffer() {
                       <Link
                         key={product.id}
                         href={productHref}
-                        className="w-[82vw] sm:w-[46vw] lg:w-auto shrink-0 snap-start snap-always bg-white rounded-xl shadow-md border border-slate-200/80 hover:border-[#8DC63F]/50 flex flex-col justify-between overflow-hidden group cursor-pointer text-slate-900 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl h-[360px] sm:h-[385px] lg:h-[400px] block"
+                        className="w-[82vw] sm:w-[46vw] lg:w-auto shrink-0 snap-start snap-always bg-white rounded-xl shadow-md border border-slate-200/80 hover:border-[#8DC63F]/50 flex flex-col justify-between overflow-hidden group cursor-pointer text-slate-900 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl h-[360px] sm:h-[385px] lg:h-[400px]"
                       >
                         {/* Top: Product Image (aspect-[16/10], contain, light neutral background) */}
                         <div className="relative aspect-[16/10] sm:aspect-[4/3] max-h-[190px] w-full bg-[#F4F6F8] border-b border-slate-100 flex items-center justify-center overflow-hidden shrink-0">
