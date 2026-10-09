@@ -15,6 +15,7 @@ import ProtectionDiagram from "@/components/home/ProtectionDiagram";
 import FinalCTA from "@/components/home/FinalCTA";
 import Reveal from "@/components/ui/Reveal";
 import HeroLightning from "@/components/HeroLightning";
+import ManpowerServiceDetail from "@/components/services/ManpowerServiceDetail";
 
 interface ServiceDetailPageProps {
   params: Promise<{ slug: string }> | { slug: string };
@@ -99,9 +100,9 @@ export async function generateMetadata({ params }: ServiceDetailPageProps) {
     if (content.heroLead) {
       pageDesc = content.heroLead;
     }
-  } else if (slug === "manpower-supply") {
-    pageTitle = "Manpower Services UAE | Vision Energy International";
-    pageDesc = "Manpower services from Vision Energy International for engineering and installation projects across the UAE.";
+  } else if (slug === "manpower-supply" || slug === "specialist-engineering-manpower-supply") {
+    pageTitle = "Specialist Engineering Manpower Supply UAE";
+    pageDesc = "Skilled electrical, mechanical and solar manpower for engineering and installation projects across the UAE. Rapid mobilization with certified tools, testing equipment and PPE.";
   }
 
   return {
@@ -135,6 +136,17 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
       console.error("Slug redirect query error:", err);
     }
     notFound();
+  }
+
+  const content = service.content || {};
+
+  // DEDICATED DATA-DRIVEN VIEW FOR MANPOWER SUPPLY SERVICE
+  if (
+    slug === "manpower-supply" ||
+    slug === "specialist-engineering-manpower-supply" ||
+    Boolean(content.manpowerWeSupply)
+  ) {
+    return <ManpowerServiceDetail service={service} content={content} />;
   }
 
   // DEDICATED VIEW FOR EXTERNAL LIGHTNING PROTECTION INSTALLATION
@@ -279,7 +291,6 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
     );
   }
 
-  const content = service.content || {};
   const metaChips = content.metaChips || [];
 
   const headerH1 =

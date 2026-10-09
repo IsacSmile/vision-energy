@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
 @layer base {
   :root {
+    --font-poppins: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     --header-h: 118px;
     --mobile-header-h: 92px;
     --mobile-bar-h: 56px;
@@ -29,8 +31,12 @@
     overflow-x: clip;
     background-color: #050608;
     color: #FFFFFF;
-    font-family: var(--font-poppins), sans-serif;
+    font-family: var(--font-poppins), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
     -webkit-tap-highlight-color: transparent;
+  }
+
+  h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, select {
+    font-family: var(--font-poppins), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   }
 
   /* Fluid typography and orphan prevention */

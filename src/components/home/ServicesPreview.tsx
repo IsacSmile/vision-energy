@@ -42,7 +42,7 @@ const SERVICE_META: Record<
     eyebrow: 'Certified Manpower',
     icon: Users,
     image: {
-      url: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=85',
+      url: '/images/specialist-engineering-manpower-supply.jpg',
       alt: 'Specialist engineering manpower and certified technicians on site in UAE',
     },
   },

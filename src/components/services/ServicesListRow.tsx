@@ -15,12 +15,12 @@ const DEFAULT_SERVICE_IMAGES: Record<string, { url: string; alt: string }> = {
     alt: 'External structural lightning protection and earthing building installation UAE',
   },
   'manpower-supply': {
-    url: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=85',
-    alt: 'Specialist engineering manpower and certified technicians on site',
+    url: '/images/specialist-engineering-manpower-supply.jpg',
+    alt: 'Specialist engineering manpower and certified technicians on site in UAE',
   },
   'specialist-engineering-manpower-supply': {
-    url: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=85',
-    alt: 'Specialist engineering manpower and certified technicians on site',
+    url: '/images/specialist-engineering-manpower-supply.jpg',
+    alt: 'Specialist engineering manpower and certified technicians on site in UAE',
   },
   'earthing-grounding-system-design-installation': {
     url: 'https://plus.unsplash.com/premium_photo-1682148175448-8e418fcfbaa7?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -233,7 +233,7 @@ export default function ServicesListRow({ service, index }: ServicesListRowProps
               onClick={handleBookClick}
               className="py-2 px-5 rounded-full bg-white hover:bg-[#8DC63F] text-[#050608] hover:text-black font-bold text-xs sm:text-sm tracking-wide shadow-md transition-all duration-300 active:scale-95 cursor-pointer"
             >
-              Book Service
+              {service.slug.includes('manpower') ? 'Request Manpower' : 'Book Service'}
             </button>
           </div>
         </div>

@@ -16,11 +16,31 @@ export interface FAQItem {
   a: string;
 }
 
+export interface EngagementOption {
+  title: string;
+  description: string;
+}
+
+export interface HowItWorksStep {
+  step: number;
+  title: string;
+  description: string;
+}
+
 export interface ServiceContentConfig {
   hero?: {
     lead: string;
+    image?: string;
+    imageAlt?: string;
   };
   overview?: string;
+  manpowerWeSupply?: string[];
+  engagementOptions?: EngagementOption[];
+  whatsIncluded?: string[];
+  complianceAndSafety?: string[];
+  whyChooseUs?: string[];
+  howItWorks?: HowItWorksStep[];
+  ctaButtonText?: string;
   systems?: SystemItem[];
   included?: string[];
   whereWeInstall?: string[];
@@ -121,10 +141,159 @@ export const SERVICES_CONTENT: Record<string, ServiceContentConfig> = {
   },
   'manpower-supply': {
     hero: {
-      lead: 'Vision Energy can also provide manpower services for your project.',
+      lead: 'Skilled electrical, mechanical and solar manpower for projects across the UAE. We supply individual technicians or complete site teams, mobilized with their own tools, testing equipment and PPE, for short shutdowns or long-term contracts.',
+      image: '/images/specialist-engineering-manpower-supply.jpg',
+      imageAlt: 'Specialist engineering manpower and certified technicians on site in UAE',
     },
-    metaChips: ['Specialist Manpower', 'Technical Support'],
-    // TODO: Client to provide manpower service details (trades, engagement terms, coverage).
+    metaChips: ['Specialist Manpower', 'Technical Support', 'MOHRE Compliant', 'Rapid Mobilization'],
+    overview:
+      'Skilled electrical, mechanical and solar manpower for projects across the UAE. We supply individual technicians or complete site teams, mobilized with their own tools, testing equipment and PPE, for short shutdowns or long-term contracts.',
+    manpowerWeSupply: [
+      'Electrical technicians and electricians',
+      'Lightning protection and earthing installers',
+      'Solar PV installation technicians',
+      'Mechanical and MEP technicians',
+      'Site engineers and site supervisors',
+      'QA/QC inspectors',
+      'Skilled helpers and installers',
+    ],
+    engagementOptions: [
+      {
+        title: 'Emergency / shutdown support',
+        description: 'Rapid mobilization for urgent repairs and planned shutdowns',
+      },
+      {
+        title: 'Testing & commissioning',
+        description: 'Short-term teams for earth resistance, insulation and system testing',
+      },
+      {
+        title: 'Project-based',
+        description: 'A full crew for the duration of your installation',
+      },
+      {
+        title: 'Long-term contracts',
+        description: 'Dedicated manpower for ongoing operations and maintenance',
+      },
+    ],
+    whatsIncluded: [
+      'Calibrated testing meters with valid calibration certificates',
+      'Specialized installation tooling',
+      'Full PPE for every worker',
+      'On-site supervision and QA/QC reporting',
+    ],
+    complianceAndSafety: [
+      'Workers employed in line with UAE labour law and MOHRE regulations',
+      'HSE-trained personnel following site safety requirements',
+      'Midday work break rules observed during the summer months',
+      'Third-party HSE cards and UAE authority approvals',
+    ],
+    whyChooseUs: [
+      '10+ years supplying technical manpower in the UAE',
+      'Mobilization within 24-48 hours for urgent requests',
+      'Specialists in lightning protection and earthing, not generic labour supply',
+      'One point of contact from mobilization to handover',
+    ],
+    howItWorks: [
+      {
+        step: 1,
+        title: 'Share your requirement',
+        description: 'Trades, headcount, location and duration',
+      },
+      {
+        step: 2,
+        title: 'Receive a quotation and CVs',
+        description: 'Commercial proposal and CVs of the proposed team',
+      },
+      {
+        step: 3,
+        title: 'Mobilization to site',
+        description: 'We mobilize the team to site with tools and PPE',
+      },
+      {
+        step: 4,
+        title: 'Supervised execution',
+        description: 'Supervised execution with regular progress and QA/QC reports',
+      },
+    ],
+    ctaButtonText: 'Request Manpower',
+  },
+  'specialist-engineering-manpower-supply': {
+    hero: {
+      lead: 'Skilled electrical, mechanical and solar manpower for projects across the UAE. We supply individual technicians or complete site teams, mobilized with their own tools, testing equipment and PPE, for short shutdowns or long-term contracts.',
+      image: '/images/specialist-engineering-manpower-supply.jpg',
+      imageAlt: 'Specialist engineering manpower and certified technicians on site in UAE',
+    },
+    metaChips: ['Specialist Manpower', 'Technical Support', 'MOHRE Compliant', 'Rapid Mobilization'],
+    overview:
+      'Skilled electrical, mechanical and solar manpower for projects across the UAE. We supply individual technicians or complete site teams, mobilized with their own tools, testing equipment and PPE, for short shutdowns or long-term contracts.',
+    manpowerWeSupply: [
+      'Electrical technicians and electricians',
+      'Lightning protection and earthing installers',
+      'Solar PV installation technicians',
+      'Mechanical and MEP technicians',
+      'Site engineers and site supervisors',
+      'QA/QC inspectors',
+      'Skilled helpers and installers',
+    ],
+    engagementOptions: [
+      {
+        title: 'Emergency / shutdown support',
+        description: 'Rapid mobilization for urgent repairs and planned shutdowns',
+      },
+      {
+        title: 'Testing & commissioning',
+        description: 'Short-term teams for earth resistance, insulation and system testing',
+      },
+      {
+        title: 'Project-based',
+        description: 'A full crew for the duration of your installation',
+      },
+      {
+        title: 'Long-term contracts',
+        description: 'Dedicated manpower for ongoing operations and maintenance',
+      },
+    ],
+    whatsIncluded: [
+      'Calibrated testing meters with valid calibration certificates',
+      'Specialized installation tooling',
+      'Full PPE for every worker',
+      'On-site supervision and QA/QC reporting',
+    ],
+    complianceAndSafety: [
+      'Workers employed in line with UAE labour law and MOHRE regulations',
+      'HSE-trained personnel following site safety requirements',
+      'Midday work break rules observed during the summer months',
+      'Third-party HSE cards and UAE authority approvals',
+    ],
+    whyChooseUs: [
+      '10+ years supplying technical manpower in the UAE',
+      'Mobilization within 24-48 hours for urgent requests',
+      'Specialists in lightning protection and earthing, not generic labour supply',
+      'One point of contact from mobilization to handover',
+    ],
+    howItWorks: [
+      {
+        step: 1,
+        title: 'Share your requirement',
+        description: 'Trades, headcount, location and duration',
+      },
+      {
+        step: 2,
+        title: 'Receive a quotation and CVs',
+        description: 'Commercial proposal and CVs of the proposed team',
+      },
+      {
+        step: 3,
+        title: 'Mobilization to site',
+        description: 'We mobilize the team to site with tools and PPE',
+      },
+      {
+        step: 4,
+        title: 'Supervised execution',
+        description: 'Supervised execution with regular progress and QA/QC reports',
+      },
+    ],
+    ctaButtonText: 'Request Manpower',
   },
   'earthing-and-grounding': {
     hero: {

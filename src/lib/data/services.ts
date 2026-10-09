@@ -72,10 +72,11 @@ export const getPublishedServices = unstable_cache(
 export const getPublishedServiceBySlug = unstable_cache(
   async (slug: string) => {
     try {
+      const targetSlug = slug === "specialist-engineering-manpower-supply" ? "manpower-supply" : slug;
       const service = await withDbRetry(() =>
         db.service.findFirst({
           where: {
-            slug,
+            OR: [{ slug: targetSlug }, { slug }],
             status: "PUBLISHED",
             deletedAt: null,
           },
@@ -83,7 +84,13 @@ export const getPublishedServiceBySlug = unstable_cache(
       );
 
       if (service) {
-        const content = service.content as any;
+        const fileContent = SERVICES_CONTENT[service.slug] || SERVICES_CONTENT[slug] || {};
+        const dbContent = (typeof service.content === 'object' && service.content !== null) ? service.content : {};
+        const content = {
+          ...dbContent,
+          ...fileContent,
+        } as any;
+
         if (content && Array.isArray(content.process)) {
           content.process = content.process.filter((p: any) => p.confirmed === true);
         }
@@ -97,8 +104,18 @@ export const getPublishedServiceBySlug = unstable_cache(
       console.error(`Failed to fetch published service by slug ${slug} from DB, checking fallbacks:`, err);
     }
 
-    const fallback = FALLBACK_SERVICES_LIST.find((s) => s.slug === slug);
-    return fallback || null;
+    const fallback = FALLBACK_SERVICES_LIST.find((s) => s.slug === slug || (slug === "specialist-engineering-manpower-supply" && s.slug === "manpower-supply"));
+    if (fallback) {
+      const fileContent = SERVICES_CONTENT[fallback.slug] || {};
+      return {
+        ...fallback,
+        content: {
+          ...fileContent,
+          ...(fallback.content || {}),
+        },
+      };
+    }
+    return null;
   },
   ["published-service-by-slug"],
   { tags: ["services"], revalidate: 300 }

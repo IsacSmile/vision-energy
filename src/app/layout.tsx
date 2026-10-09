@@ -14,6 +14,7 @@ const poppins = Poppins({
   weight: ['400', '600', '700'],
   variable: '--font-poppins',
   display: 'swap',
+  fallback: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
 });
 
 export const viewport: Viewport = {
