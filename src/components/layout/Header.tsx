@@ -456,14 +456,6 @@ export default function Header() {
             mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
           }`}
         >
-          {/* Mobile Theme Switcher Row */}
-          <div className="flex items-center justify-between px-4 py-3 rounded-xl bg-white/[0.05] border border-white/10 mb-1">
-            <span className="text-xs uppercase tracking-wider font-semibold text-[#A9B4C0]">
-              Theme Mode
-            </span>
-            <ThemeToggle id="mobile-drawer-theme-toggle" size="sm" />
-          </div>
-
           {/* Side-by-Side Action Bar */}
           <div className="grid grid-cols-2 gap-3 w-full">
             {/* Button 1: Call Us (Secondary Variant) */}
