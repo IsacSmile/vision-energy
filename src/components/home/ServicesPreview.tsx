@@ -34,7 +34,7 @@ const SERVICE_META: Record<
     eyebrow: 'Core Infrastructure',
     icon: Layers,
     image: {
-      url: 'https://images.unsplash.com/photo-1565249167139-75006b429343?auto=format&fit=crop&w=1200&q=85',
+      url: '/images/earthing-grounding-hero.webp',
       alt: 'Earthing and grounding system design, copper grid and installation',
     },
   },
