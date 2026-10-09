@@ -295,13 +295,13 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Main Header Navigation Bar (Clean 80px desktop, 68px mobile) */}
-        <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 h-[68px] sm:h-[74px] lg:h-[80px] flex items-center justify-between gap-4">
-          {/* Brand Logo - Enlarged */}
+        {/* Main Header Navigation Bar */}
+        <div className="max-w-[80rem] mx-auto px-3.5 sm:px-6 lg:px-8 h-[74px] sm:h-[78px] lg:h-[80px] flex items-center justify-between gap-3 sm:gap-4">
+          {/* Brand Logo - Enlarged on Mobile & Desktop */}
           <Link
             href="/"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center group shrink-0 active-press py-1"
+            className="flex items-center group shrink-0 active-press py-0.5"
             id="header-logo-link"
           >
             <Image
@@ -309,7 +309,7 @@ export default function Header() {
               alt="VISION ENERGY INTERNATIONAL UAE"
               width={380}
               height={95}
-              className="h-[52px] sm:h-[60px] lg:h-[68px] w-auto max-h-[72px] object-contain transition-transform group-hover:scale-105"
+              className="h-[62px] sm:h-[68px] lg:h-[72px] w-auto max-h-[76px] object-contain transition-transform group-hover:scale-105"
               priority
             />
           </Link>
