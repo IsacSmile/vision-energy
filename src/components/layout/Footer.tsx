@@ -97,16 +97,16 @@ export default function Footer({ services = [] }: FooterProps) {
               <Image
                 src="/site-main-logo.png"
                 alt="VISION ENERGY INTERNATIONAL"
-                width={200}
-                height={200}
-                className="dark-theme-logo w-[200px] h-auto max-h-[200px] object-contain"
+                width={240}
+                height={240}
+                className="dark-theme-logo w-[230px] h-auto max-h-[230px] object-contain"
               />
               <Image
                 src="/site-main-logo-light.png"
                 alt="VISION ENERGY INTERNATIONAL"
-                width={200}
-                height={200}
-                className="light-theme-logo w-[200px] h-auto max-h-[200px] object-contain"
+                width={240}
+                height={240}
+                className="light-theme-logo w-[230px] h-auto max-h-[230px] object-contain"
               />
             </Link>
 

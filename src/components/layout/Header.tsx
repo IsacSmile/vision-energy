@@ -83,8 +83,8 @@ export default function Header() {
     if (typeof document !== 'undefined') {
       const updateHeaderOffset = () => {
         const isDesktop = window.innerWidth >= 1024;
-        // When scrolled, main navbar is 80px desktop, 68px mobile
-        const headerOffsetValue = isDesktop ? '80px' : '68px';
+        // When scrolled, main navbar is 88px desktop, 78px mobile
+        const headerOffsetValue = isDesktop ? '88px' : '78px';
         document.documentElement.style.setProperty('--header-offset', headerOffsetValue);
       };
       updateHeaderOffset();
@@ -296,7 +296,7 @@ export default function Header() {
         </div>
 
         {/* Main Header Navigation Bar */}
-        <div className="max-w-[80rem] mx-auto px-3.5 sm:px-6 lg:px-8 h-[74px] sm:h-[78px] lg:h-[80px] flex items-center justify-between gap-3 sm:gap-4">
+        <div className="max-w-[80rem] mx-auto px-3.5 sm:px-6 lg:px-8 h-[78px] sm:h-[84px] lg:h-[88px] flex items-center justify-between gap-3 sm:gap-4">
           {/* Brand Logo - Enlarged on Mobile & Desktop */}
           <Link
             href="/"
@@ -308,18 +308,18 @@ export default function Header() {
             <Image
               src="/site-main-logo.png"
               alt="VISION ENERGY INTERNATIONAL UAE"
-              width={380}
-              height={95}
-              className="dark-theme-logo h-[62px] sm:h-[68px] lg:h-[72px] w-auto max-h-[76px] object-contain transition-transform group-hover:scale-105"
+              width={420}
+              height={105}
+              className="dark-theme-logo h-[68px] sm:h-[76px] lg:h-[82px] xl:h-[84px] w-auto max-h-[86px] object-contain transition-transform group-hover:scale-105"
               priority
             />
             {/* Light Theme Logo (Dark 'ENERGY INTERNATIONAL' text) */}
             <Image
               src="/site-main-logo-light.png"
               alt="VISION ENERGY INTERNATIONAL UAE"
-              width={380}
-              height={95}
-              className="light-theme-logo h-[62px] sm:h-[68px] lg:h-[72px] w-auto max-h-[76px] object-contain transition-transform group-hover:scale-105"
+              width={420}
+              height={105}
+              className="light-theme-logo h-[68px] sm:h-[76px] lg:h-[82px] xl:h-[84px] w-auto max-h-[86px] object-contain transition-transform group-hover:scale-105"
               priority
             />
           </Link>
