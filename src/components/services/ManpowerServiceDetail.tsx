@@ -513,33 +513,34 @@ export default function ManpowerServiceDetail({
 
         {/* SECTION 8: CTA */}
         <section id="cta" className="scroll-mt-28">
-          <div className="relative rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#0C1017] via-[#050608] to-[#0D1420] border border-[#8DC63F]/30 p-8 sm:p-12 lg:p-16 text-center space-y-6 overflow-hidden shadow-2xl">
+          <div className="relative rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#0C1017] via-[#050608] to-[#0D1420] border border-[#8DC63F]/30 p-6 sm:p-10 lg:p-12 overflow-hidden shadow-2xl">
             <div className="pointer-events-none absolute -top-24 -right-24 w-80 h-80 bg-[#8DC63F]/10 rounded-full blur-3xl" />
             <div className="pointer-events-none absolute -bottom-24 -left-24 w-80 h-80 bg-[#0B65B3]/10 rounded-full blur-3xl" />
 
-            <div className="relative z-10 max-w-3xl mx-auto space-y-4">
-              <span className="text-xs font-bold text-[#8DC63F] uppercase tracking-widest inline-block px-3 py-1 bg-[#8DC63F]/10 border border-[#8DC63F]/30 rounded-full">
-                READY TO MOBILIZE
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight uppercase">
-                Request Specialist Engineering Manpower
-              </h2>
-              <p className="text-sm sm:text-base text-[#CBD5E1] leading-relaxed">
-                Connect with our technical staffing desk. We will evaluate your trades, project location, and required duration to mobilize certified personnel with full tools and PPE.
-              </p>
+            <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6 lg:gap-10">
+              {/* Left Side: Title & Description */}
+              <div className="max-w-2xl space-y-2.5 text-left">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight uppercase leading-tight">
+                  Request Specialist Engineering Manpower
+                </h2>
+                <p className="text-sm sm:text-base text-[#CBD5E1] leading-relaxed">
+                  Connect with our technical staffing desk. We will evaluate your trades, project location, and required duration to mobilize certified personnel with full tools and PPE.
+                </p>
+              </div>
 
-              <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
+              {/* Right Side: CTAs */}
+              <div className="shrink-0 flex flex-wrap sm:flex-nowrap items-center gap-3.5">
                 <button
                   type="button"
                   onClick={handleRequestClick}
-                  className="py-3.5 px-8 rounded-full bg-[#8DC63F] hover:bg-[#9ee047] text-[#050608] font-bold text-sm tracking-wide shadow-[0_12px_36px_rgba(141,198,63,0.35)] transition-all duration-300 active:scale-95 cursor-pointer inline-flex items-center gap-2"
+                  className="py-3.5 px-7 rounded-full bg-[#8DC63F] hover:bg-[#9ee047] text-[#050608] font-bold text-sm tracking-wide shadow-[0_10px_30px_rgba(141,198,63,0.35)] transition-all duration-300 active:scale-95 cursor-pointer inline-flex items-center gap-2"
                 >
                   <span>Request Manpower</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
                 <a
                   href="tel:+97172042763"
-                  className="py-3.5 px-6 rounded-full bg-[#050608] hover:bg-white/10 text-white font-bold text-sm border border-white/20 transition-all duration-300 inline-flex items-center gap-2"
+                  className="py-3.5 px-5 rounded-full bg-[#050608] hover:bg-white/10 text-white font-bold text-sm border border-white/20 transition-all duration-300 inline-flex items-center gap-2 whitespace-nowrap"
                 >
                   <PhoneCall className="w-4 h-4 text-[#8DC63F]" />
                   <span>+971 7 204 2763</span>
