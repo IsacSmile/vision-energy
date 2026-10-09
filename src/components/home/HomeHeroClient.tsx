@@ -8,13 +8,10 @@ import {
   ArrowRight,
   Zap,
   Layers,
-  ShieldAlert,
-  Factory,
   ChevronLeft,
   ChevronRight,
   PhoneCall,
 } from 'lucide-react';
-import LightningButton from '@/components/ui/LightningButton';
 
 interface SlideData {
   id: string;
@@ -46,56 +43,13 @@ const HERO_SLIDES: SlideData[] = [
     titleLine2: 'Grounding Solutions',
     subtitle: 'Low-Impedance Foundation & Deep Earth Grids',
     description:
-      'Engineered copper earthing grids and low-impedance grounding for maximum electrical safety.',
+      'Engineered copper earthing grids and low-impedance grounding for maximum electrical safety across UAE soil conditions.',
     ctaText: 'Explore Earthing',
-    ctaLink: '/products/es-01-earth-rods-couplers-accessories',
-    imageUrl:
-      'https://images.unsplash.com/photo-1565249167139-75006b429343?q=80&w=1600&auto=format&fit=crop',
+    ctaLink: '/services/earthing-grounding',
+    imageUrl: '/images/earthing-grounding-hero.png',
     imageAlt:
-      'Industrial electrical grounding and power infrastructure installation',
+      'Vision Energy specialist engineers installing rooftop earthing and lightning copper grid network on UAE site',
     standards: 'IEEE 80 • BS 7430',
-    highlightColor: 'text-[#8DC63F]',
-    glowColor: 'rgba(141,198,63,0.45)',
-  },
-  {
-    id: 'surge-protection',
-    category: 'Surge Protection',
-    shortName: 'Surge SPD',
-    badge: 'Transient Overvoltage Defense',
-    badgeIcon: ShieldAlert,
-    titleLine1: 'Mission-Critical Surge',
-    titleLine2: 'Protection Devices',
-    subtitle: 'Safeguarding Power, Control & Data Systems',
-    description:
-      'High-performance Type 1, 2 & 3 SPDs protecting critical power, telemetry, and data networks.',
-    ctaText: 'Explore Surge',
-    ctaLink: '/products/sp-01-surge-protection-devices-spd',
-    imageUrl:
-      'https://images.unsplash.com/photo-1722666825118-02f3c12d4434?q=80&w=1600&auto=format&fit=crop',
-    imageAlt:
-      'High-performance electrical power engineering and surge protection infrastructure',
-    standards: 'IEC 61643-11 • UL 1449',
-    highlightColor: 'text-[#38BDF8]',
-    glowColor: 'rgba(56,189,248,0.45)',
-  },
-  {
-    id: 'industrial-engineering',
-    category: 'Industrial Applications',
-    shortName: 'Industrial',
-    badge: 'Turnkey MEP & Infrastructure',
-    badgeIcon: Factory,
-    titleLine1: 'Industrial & Engineering',
-    titleLine2: 'Turnkey Solutions',
-    subtitle: 'Comprehensive Electrical, Mechanical & Solar Integration',
-    description:
-      'Turnkey MEP engineering, testing, and high-reliability power infrastructure solutions.',
-    ctaText: 'Explore Solutions',
-    ctaLink: '/products',
-    imageUrl:
-      'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop',
-    imageAlt:
-      'Modern commercial high-rise building and industrial engineering architecture in UAE',
-    standards: 'ISO 9001 • UAE Standards',
     highlightColor: 'text-[#8DC63F]',
     glowColor: 'rgba(141,198,63,0.45)',
   },
@@ -111,7 +65,7 @@ const HERO_SLIDES: SlideData[] = [
     description:
       'Certified structural lightning interception and ESE systems safeguarding infrastructure across the UAE.',
     ctaText: 'Explore Lightning',
-    ctaLink: '/products/lp-01-conventional-lightning-protection-systems',
+    ctaLink: '/services/external-lightning-protection-installation',
     imageUrl:
       'https://plus.unsplash.com/premium_photo-1664298006973-e98eb94d006c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     imageAlt:
@@ -265,7 +219,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
       {/* Mobile Top Segmented Progress Bar (Story-Style) */}
       {/* ============================================================ */}
       <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 pt-2 lg:hidden">
-        <div className="grid grid-cols-4 gap-1.5 w-full">
+        <div className="grid grid-cols-2 gap-2 w-full">
           {HERO_SLIDES.map((slide, idx) => {
             const isSelected = idx === currentSlide;
             const isPassed = idx < currentSlide;
@@ -424,7 +378,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
       <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 pb-[max(12px,env(safe-area-inset-bottom))] lg:hidden">
         
         {/* Mobile Quick Category Switcher Tabs */}
-        <div className="grid grid-cols-4 gap-1.5 mb-2.5">
+        <div className="grid grid-cols-2 gap-2 mb-2.5">
           {HERO_SLIDES.map((slide, idx) => {
             const isSelected = idx === currentSlide;
             const SlideIcon = slide.badgeIcon;
