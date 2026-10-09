@@ -45,7 +45,7 @@ const HERO_SLIDES: SlideData[] = [
     description:
       'Engineered copper earthing grids and low-impedance grounding for maximum electrical safety across UAE soil conditions.',
     ctaText: 'Explore Earthing',
-    ctaLink: '/services/earthing-grounding',
+    ctaLink: '/services/manpower-supply',
     imageUrl: '/images/earthing-grounding-hero.webp',
     imageAlt:
       'Vision Energy specialist engineers installing rooftop earthing and lightning copper grid network on UAE site',
