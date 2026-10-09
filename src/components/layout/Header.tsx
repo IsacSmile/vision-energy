@@ -270,7 +270,7 @@ export default function Header() {
               variant="primary"
               size="md"
               href={`tel:${dictionary.company.primaryPhone}`}
-              iconLeft={<Phone className="w-4 h-4 text-[#0B65B3]" />}
+              iconLeft={<Phone className="w-4 h-4 text-[#0B65B3] [html.light_&]:text-white" />}
               id="header-call-button"
             >
               {dictionary.nav.callNow}

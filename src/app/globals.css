@@ -614,6 +614,9 @@ html.light [class*="bg-[#8DC63F]"] .text-white,
 html.light [class*="bg-[#8DC63F]"].text-white,
 html.light .lightning-btn-primary,
 html.light .lightning-btn-primary span,
+html.light .lightning-btn-primary svg,
+html.light .lightning-btn-primary svg *,
+html.light .lightning-btn-primary .lucide,
 html.light .lightning-btn-primary .text-white,
 html.light .badge-dark,
 html.light .badge-dark .text-white,
@@ -652,6 +655,11 @@ html.light header .w-\[44px\].bg-\[\#0D1117\]\/90 {
   background-color: #F1F5F9 !important;
   border-color: #CBD5E1 !important;
   color: #0F172A !important;
+}
+
+html.light header .w-\[44px\].bg-\[\#0D1117\]\/90 svg {
+  color: #0B65B3 !important;
+  stroke: #0B65B3 !important;
 }
 
 html.light #mobile-nav-overlay {
@@ -713,10 +721,23 @@ html.light .lightning-btn-primary {
   box-shadow: 0 4px 14px 0 rgba(11, 101, 179, 0.3) !important;
 }
 
+html.light .lightning-btn-primary svg,
+html.light .lightning-btn-primary .lucide,
+html.light #header-call-button svg {
+  color: #FFFFFF !important;
+  stroke: #FFFFFF !important;
+}
+
 html.light .lightning-btn-primary:hover,
 html.light .lightning-btn-primary:focus-visible {
   background-color: #084c88 !important;
   color: #FFFFFF !important;
+}
+
+html.light .lightning-btn-primary:hover svg,
+html.light .lightning-btn-primary:focus-visible svg {
+  color: #FFFFFF !important;
+  stroke: #FFFFFF !important;
 }
 
 html.light .lightning-btn-secondary {
@@ -724,6 +745,12 @@ html.light .lightning-btn-secondary {
   color: #0F172A !important;
   border-color: #CBD5E1 !important;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.06) !important;
+}
+
+html.light .lightning-btn-secondary svg,
+html.light .lightning-btn-secondary .lucide {
+  color: #0B65B3 !important;
+  stroke: #0B65B3 !important;
 }
 
 html.light .lightning-btn-secondary:hover,
