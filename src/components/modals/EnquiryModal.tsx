@@ -16,24 +16,9 @@ export default function EnquiryModal() {
   const [serverError, setServerError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
-  // Bulletproof scroll lock for both html and body when modal is active
+  // Ironclad scroll lock for both html and body when modal is active
   useEffect(() => {
-    if (modalType) {
-      const originalHtmlOverflow = document.documentElement.style.overflow;
-      const originalBodyOverflow = document.body.style.overflow;
-
-      document.documentElement.classList.add('modal-open');
-      document.body.classList.add('modal-open');
-      document.documentElement.style.overflow = 'hidden';
-      document.body.style.overflow = 'hidden';
-
-      return () => {
-        document.documentElement.classList.remove('modal-open');
-        document.body.classList.remove('modal-open');
-        document.documentElement.style.overflow = originalHtmlOverflow;
-        document.body.style.overflow = originalBodyOverflow;
-      };
-    } else {
+    if (!modalType) {
       document.documentElement.classList.remove('modal-open');
       document.body.classList.remove('modal-open');
       document.documentElement.style.overflow = '';
@@ -41,7 +26,69 @@ export default function EnquiryModal() {
       setSuccessRef(null);
       setServerError(null);
       setCopied(false);
+      return;
     }
+
+    // Save current scroll position
+    const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+    const originalBodyPosition = document.body.style.position;
+    const originalBodyTop = document.body.style.top;
+    const originalBodyWidth = document.body.style.width;
+    const originalBodyOverflow = document.body.style.overflow;
+    const originalHtmlOverflow = document.documentElement.style.overflow;
+
+    // Freeze html and body in place
+    document.documentElement.classList.add('modal-open');
+    document.body.classList.add('modal-open');
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+
+    // Native wheel and touchmove interceptor with { passive: false } to prevent background scroll leaking
+    const preventBackdropScroll = (e: TouchEvent | WheelEvent) => {
+      const target = e.target as HTMLElement | null;
+      const scrollable = target?.closest('.modal-scrollable-content');
+
+      if (!scrollable) {
+        // Any gesture outside the modal scrollable content (e.g. backdrop, modal header, actions) is blocked
+        if (e.cancelable) e.preventDefault();
+        return;
+      }
+
+      // Inside scrollable area: stop wheel bounce from bubbling to window
+      if (e instanceof WheelEvent) {
+        const atTop = scrollable.scrollTop <= 0 && e.deltaY < 0;
+        const atBottom = scrollable.scrollTop + scrollable.clientHeight >= scrollable.scrollHeight - 1 && e.deltaY > 0;
+        if ((atTop || atBottom) && e.cancelable) {
+          e.preventDefault();
+        }
+      }
+    };
+
+    window.addEventListener('wheel', preventBackdropScroll, { passive: false });
+    window.addEventListener('touchmove', preventBackdropScroll, { passive: false });
+
+    return () => {
+      window.removeEventListener('wheel', preventBackdropScroll);
+      window.removeEventListener('touchmove', preventBackdropScroll);
+
+      document.documentElement.classList.remove('modal-open');
+      document.body.classList.remove('modal-open');
+      document.documentElement.style.overflow = originalHtmlOverflow;
+      document.body.style.overflow = originalBodyOverflow;
+      document.body.style.position = originalBodyPosition;
+      document.body.style.top = originalBodyTop;
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = originalBodyWidth;
+
+      // Restore exact scroll position
+      window.scrollTo(0, scrollY);
+    };
   }, [modalType]);
 
   // Handle ESC key press
@@ -67,19 +114,9 @@ export default function EnquiryModal() {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200 overscroll-contain"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200"
       onClick={(e) => {
         if (e.target === e.currentTarget) closeModal();
-      }}
-      onTouchMove={(e) => {
-        if (e.target === e.currentTarget) {
-          e.preventDefault();
-        }
-      }}
-      onWheel={(e) => {
-        if (e.target === e.currentTarget) {
-          e.preventDefault();
-        }
       }}
     >
       <div
@@ -113,7 +150,7 @@ export default function EnquiryModal() {
 
         {/* Content Body: Confirmation or Forms */}
         {successRef ? (
-          <div className="flex-1 min-h-0 overflow-y-auto custom-scrollbar p-5 sm:p-6 text-center space-y-6">
+          <div className="flex-1 min-h-0 overflow-y-auto custom-scrollbar p-5 sm:p-6 text-center space-y-6 modal-scrollable-content">
             {/* Minimal Success Badge */}
             <div className="w-14 h-14 rounded-full bg-[#8DC63F]/10 border border-[#8DC63F]/30 text-[#8DC63F] flex items-center justify-center mx-auto">
               <Check className="w-7 h-7 stroke-[2.5]" />
@@ -260,7 +297,7 @@ function ServiceForm({
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col flex-1 min-h-0 overflow-hidden">
       {/* Scrollable Form Body */}
       <div
-        className="flex-1 min-h-0 overflow-y-auto custom-scrollbar p-5 sm:p-6 space-y-4 overscroll-contain"
+        className="flex-1 min-h-0 overflow-y-auto custom-scrollbar p-5 sm:p-6 space-y-4 modal-scrollable-content overscroll-contain"
         style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y', overscrollBehavior: 'contain' }}
       >
         {serverError && (
@@ -523,7 +560,7 @@ function ProductForm({
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col flex-1 min-h-0 overflow-hidden">
       {/* Scrollable Form Body */}
       <div
-        className="flex-1 min-h-0 overflow-y-auto custom-scrollbar p-5 sm:p-6 space-y-4 overscroll-contain"
+        className="flex-1 min-h-0 overflow-y-auto custom-scrollbar p-5 sm:p-6 space-y-4 modal-scrollable-content overscroll-contain"
         style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y', overscrollBehavior: 'contain' }}
       >
         {serverError && (
