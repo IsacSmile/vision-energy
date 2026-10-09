@@ -188,6 +188,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
         {/* HEADER SECTION */}
         <section
           data-dark-hero="true"
+          data-preserve-contrast="true"
           className="service-detail-hero relative overflow-hidden bg-[#050608] pt-[calc(var(--header-offset,0px)+40px)] lg:pt-[calc(var(--header-offset,0px)+64px)] pb-12 lg:pb-16 border-b border-white/10"
         >
           <div className="absolute inset-0 opacity-[0.04] pointer-events-none bg-[radial-gradient(#8DC63F_1px,transparent_1px)] [background-size:24px_24px]" />
@@ -218,7 +219,12 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                   </Link>
                 </li>
                 <li aria-hidden="true" className="opacity-40">/</li>
-                <li className="text-white font-medium truncate" aria-current="page">
+                <li
+                  data-preserve-contrast="true"
+                  className="text-white font-medium truncate"
+                  style={{ color: '#FFFFFF' }}
+                  aria-current="page"
+                >
                   External Lightning Protection Installation
                 </li>
               </ol>
@@ -229,7 +235,11 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                 <span className="text-xs font-semibold text-[#8DC63F] uppercase tracking-widest block">
                   Vision Energy International · Specialist Engineering
                 </span>
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight uppercase">
+                <h1
+                  data-preserve-contrast="true"
+                  className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight uppercase"
+                  style={{ color: '#FFFFFF', textShadow: '0 2px 14px rgba(0,0,0,0.95)' }}
+                >
                   External Lightning Protection Installation
                 </h1>
               </div>
@@ -360,6 +370,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
       {/* HEADER SECTION */}
       <section
         data-dark-hero="true"
+        data-preserve-contrast="true"
         className="service-detail-hero relative overflow-hidden bg-[#050608] pt-[calc(var(--header-offset,0px)+40px)] lg:pt-[calc(var(--header-offset,0px)+72px)] pb-16 lg:pb-24 border-b border-white/10"
       >
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none bg-[radial-gradient(#8DC63F_1px,transparent_1px)] [background-size:24px_24px]" />
@@ -389,7 +400,12 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                 </Link>
               </li>
               <li aria-hidden="true" className="opacity-40">/</li>
-              <li className="text-white font-medium truncate max-w-[24ch]" aria-current="page">
+              <li
+                data-preserve-contrast="true"
+                className="text-white font-medium truncate max-w-[24ch]"
+                style={{ color: '#FFFFFF' }}
+                aria-current="page"
+              >
                 {service.title}
               </li>
             </ol>
@@ -405,11 +421,19 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
             </div>
           )}
 
-          <h1 className="text-[clamp(2.25rem,5vw,3.75rem)] font-semibold text-white leading-[1.08] tracking-[-0.02em] max-w-[32ch]">
+          <h1
+            data-preserve-contrast="true"
+            className="text-[clamp(2.25rem,5vw,3.75rem)] font-semibold text-white leading-[1.08] tracking-[-0.02em] max-w-[32ch]"
+            style={{ color: '#FFFFFF', textShadow: '0 2px 14px rgba(0,0,0,0.95)' }}
+          >
             {headerH1}
           </h1>
 
-          <p className="text-base sm:text-lg lg:text-xl text-[#A9B4C0] leading-relaxed max-w-[54ch]">
+          <p
+            data-preserve-contrast="true"
+            className="text-base sm:text-lg lg:text-xl text-[#A9B4C0] leading-relaxed max-w-[54ch]"
+            style={{ color: '#CBD5E1' }}
+          >
             {leadText}
           </p>
 

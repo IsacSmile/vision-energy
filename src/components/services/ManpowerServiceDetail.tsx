@@ -135,6 +135,7 @@ export default function ManpowerServiceDetail({
       {/* 1. TOP HEADER & BREADCRUMB */}
       <section
         data-dark-hero="true"
+        data-preserve-contrast="true"
         className="service-detail-hero relative overflow-hidden bg-[#050608] pt-[calc(var(--header-offset,0px)+32px)] lg:pt-[calc(var(--header-offset,0px)+48px)] pb-10 lg:pb-14 border-b border-white/10"
       >
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(#8DC63F_1px,transparent_1px)] [background-size:24px_24px]" />
@@ -164,7 +165,12 @@ export default function ManpowerServiceDetail({
                   </Link>
                 </li>
                 <li aria-hidden="true" className="opacity-40">/</li>
-                <li className="text-white font-medium truncate max-w-[22ch]" aria-current="page">
+                <li
+                  data-preserve-contrast="true"
+                  className="text-white font-medium truncate max-w-[22ch]"
+                  style={{ color: '#FFFFFF' }}
+                  aria-current="page"
+                >
                   {service.title}
                 </li>
               </ol>
@@ -189,10 +195,18 @@ export default function ManpowerServiceDetail({
               <span className="text-xs font-bold text-[#8DC63F] uppercase tracking-widest block">
                 VISION ENERGY INTERNATIONAL · SPECIALIST TECHNICAL MANPOWER
               </span>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight uppercase leading-[1.12]">
+              <h1
+                data-preserve-contrast="true"
+                className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight uppercase leading-[1.12]"
+                style={{ color: '#FFFFFF', textShadow: '0 2px 14px rgba(0,0,0,0.95)' }}
+              >
                 {service.title}
               </h1>
-              <p className="text-base sm:text-lg text-[#CBD5E1] leading-relaxed">
+              <p
+                data-preserve-contrast="true"
+                className="text-base sm:text-lg text-[#CBD5E1] leading-relaxed"
+                style={{ color: '#CBD5E1' }}
+              >
                 {overviewText}
               </p>
             </div>
