@@ -221,7 +221,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                   <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
                     Conventional Mesh / Faraday Cage Systems
                   </h2>
-                  <p className="text-sm sm:text-base text-[#C9D1D9] leading-relaxed">
+                  <p className="text-sm sm:text-base text-slate-700 dark:text-[#C9D1D9] leading-relaxed">
                     For buildings requiring multiple controlled paths for lightning energy, Vision Energy provides conventional protection using air terminals, roof conductor mesh, connected down conductors, test joints and a coordinated earthing network.
                   </p>
                 </div>
@@ -237,7 +237,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                       priority
                     />
                   </div>
-                  <p className="text-sm sm:text-base text-gray-200 leading-relaxed italic px-1">
+                  <p className="text-sm sm:text-base text-slate-600 dark:text-gray-200 leading-relaxed italic px-1">
                     Conventional mesh system: air terminals, roof mesh, continuous down conductors, test joints and earth pits.
                   </p>
                 </div>
@@ -249,7 +249,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                   <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
                     ESE Coverage Concept
                   </h2>
-                  <p className="text-sm sm:text-base text-[#C9D1D9] leading-relaxed">
+                  <p className="text-sm sm:text-base text-slate-700 dark:text-[#C9D1D9] leading-relaxed">
                     For suitable structures, an ESE terminal can be incorporated into a complete external lightning protection solution. The terminal is installed on a mast above the highest protected plane, with PVC-covered copper down conductors, test points, equipotential bonding and a dedicated lightning earthing system. Protection coverage is confirmed through the final engineering assessment, installation height and applicable standards.
                   </p>
                 </div>
@@ -265,7 +265,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                       priority
                     />
                   </div>
-                  <p className="text-sm sm:text-base text-gray-200 leading-relaxed italic px-1">
+                  <p className="text-sm sm:text-base text-slate-600 dark:text-gray-200 leading-relaxed italic px-1">
                     ESE coverage concept: protected volume, PVC-covered copper down conductors and dedicated earth pits.
                   </p>
                 </div>

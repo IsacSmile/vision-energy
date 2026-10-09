@@ -471,30 +471,34 @@ html.light .text-white {
 
 html.light .text-\[\#A9B4C0\],
 html.light [class*="text-[#A9B4C0]"] {
-  color: #475569 !important;
+  color: #334155 !important;
 }
 
+html.light .text-\[\#C9D1D9\],
+html.light [class*="text-[#C9D1D9]"],
 html.light .text-\[\#CBD5E1\],
 html.light [class*="text-[#CBD5E1]"],
 html.light .text-\[\#E2E8F0\],
 html.light [class*="text-[#E2E8F0]"] {
-  color: #334155 !important;
+  color: #1E293B !important;
 }
 
 html.light .text-\[\#94A3B8\],
 html.light [class*="text-[#94A3B8]"],
 html.light .text-\[\#8B949E\],
-html.light [class*="text-[#8B949E]"] {
-  color: #64748B !important;
+html.light [class*="text-[#8B949E]"],
+html.light .text-\[\#9BA3AF\],
+html.light [class*="text-[#9BA3AF]"] {
+  color: #475569 !important;
 }
 
 html.light .text-gray-200,
 html.light .text-gray-300 {
-  color: #334155 !important;
+  color: #1E293B !important;
 }
 
 html.light .text-gray-400 {
-  color: #475569 !important;
+  color: #334155 !important;
 }
 
 html.light .text-white\/90,
@@ -503,7 +507,14 @@ html.light .text-white\/70,
 html.light .text-white\/65,
 html.light .text-white\/60,
 html.light .text-white\/50 {
-  color: #475569 !important;
+  color: #334155 !important;
+}
+
+/* Ensure all paragraphs inside sections have high-contrast clear readable text in light mode */
+html.light section p:not([data-preserve-contrast] *),
+html.light article p:not([data-preserve-contrast] *),
+html.light main p:not([data-preserve-contrast] *) {
+  color: #334155;
 }
 
 /* 5. Photographic Hero Contrast Preservations */
