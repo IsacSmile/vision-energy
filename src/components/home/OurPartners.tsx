@@ -31,32 +31,32 @@ export default function OurPartners() {
       <div className="max-w-[80rem] mx-auto px-5 sm:px-6 lg:px-8">
         <Reveal>
           <div className="rounded-2xl border border-dashed border-white/20 bg-[#0D1117]/90 backdrop-blur-sm overflow-hidden flex flex-row items-center hover:border-[#8DC63F]/50 transition-colors duration-500 shadow-2xl group/marquee">
-            {/* Left Partition: "Our Partners" */}
-            <div className="px-6 sm:px-10 lg:px-12 py-6 sm:py-8 flex items-center justify-center border-r border-dashed border-white/20 shrink-0 bg-[#0A0D14]/90">
-              <span className="text-xl sm:text-2xl lg:text-3xl font-bold text-white whitespace-nowrap tracking-tight">
+            {/* Left Partition: "Our Partners" - Compact on mobile to maximize visible logos */}
+            <div className="px-3 sm:px-8 lg:px-12 py-3 sm:py-6 lg:py-8 flex items-center justify-center border-r border-dashed border-white/20 shrink-0 bg-[#0A0D14]/90">
+              <span className="text-xs sm:text-xl lg:text-3xl font-bold text-white whitespace-nowrap tracking-tight">
                 Our Partners
               </span>
             </div>
 
             {/* Right Track: Continuous Auto-Scrolling Marquee */}
-            <div className="relative flex-1 overflow-hidden py-5 sm:py-7">
+            <div className="relative flex-1 overflow-hidden py-3 sm:py-6 lg:py-7">
               {/* Left Edge Gradient Fade */}
               <div
-                className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-r from-[#0D1117] to-transparent z-10"
+                className="pointer-events-none absolute left-0 top-0 bottom-0 w-4 sm:w-16 lg:w-24 bg-gradient-to-r from-[#0D1117] to-transparent z-10"
                 aria-hidden="true"
               />
               {/* Right Edge Gradient Fade */}
               <div
-                className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-l from-[#0D1117] to-transparent z-10"
+                className="pointer-events-none absolute right-0 top-0 bottom-0 w-4 sm:w-16 lg:w-24 bg-gradient-to-l from-[#0D1117] to-transparent z-10"
                 aria-hidden="true"
               />
 
               {/* Infinite Moving Loop Track */}
-              <div className="animate-marquee flex items-center gap-6 sm:gap-8 pl-8">
+              <div className="animate-marquee flex items-center gap-3 sm:gap-6 lg:gap-8 pl-3 sm:pl-8">
                 {[...PARTNER_TRACK, ...PARTNER_TRACK].map((partner, idx) => (
                   <div
                     key={`${partner.id}-${idx}`}
-                    className="h-16 sm:h-20 px-6 sm:px-8 py-3 rounded-2xl bg-white flex items-center justify-center shrink-0 shadow-md hover:scale-105 hover:shadow-xl transition-all duration-300"
+                    className="h-12 sm:h-16 lg:h-20 px-3.5 sm:px-6 lg:px-8 py-2 sm:py-3 rounded-xl sm:rounded-2xl bg-white flex items-center justify-center shrink-0 shadow-md hover:scale-105 hover:shadow-xl transition-all duration-300"
                     title={partner.name}
                   >
                     <Image
@@ -64,7 +64,7 @@ export default function OurPartners() {
                       alt={partner.name}
                       width={160}
                       height={60}
-                      className="h-9 sm:h-11 w-auto max-w-[130px] sm:max-w-[160px] object-contain"
+                      className="h-7 sm:h-9 lg:h-11 w-auto max-w-[95px] sm:max-w-[130px] lg:max-w-[160px] object-contain"
                     />
                   </div>
                 ))}
