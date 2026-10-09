@@ -332,7 +332,7 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-3 py-2 text-sm font-medium rounded-lg whitespace-nowrap transition-colors active-press ${
+                  className={`px-3.5 py-2 text-sm font-semibold rounded-lg whitespace-nowrap transition-colors active-press ${
                     isActive
                       ? 'text-[#8DC63F] bg-[#0B65B3]/20 border border-[#0B65B3]/40'
                       : 'text-[#A9B4C0] hover:text-white hover:bg-white/5'
@@ -435,7 +435,7 @@ export default function Header() {
                   ref={idx === 0 ? firstLinkRef : undefined}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`w-full py-2.5 flex items-center gap-3 text-[26px] font-medium leading-tight text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded-lg ${
+                  className={`w-full py-2.5 flex items-center gap-3 text-[26px] font-semibold leading-tight text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded-lg ${
                     isActive ? 'text-[#8DC63F]' : 'text-white/90 hover:text-white'
                   }`}
                 >
