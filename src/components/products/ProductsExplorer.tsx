@@ -508,7 +508,12 @@ export default function ProductsExplorer({
   return (
     <div className="min-h-screen bg-[#050608] text-white">
       {/* 3. PAGE HEADER (Full Background Hero Image) */}
-      <div className="relative bg-[#050608] overflow-hidden border-b border-[#1F2937]/80 min-h-[360px] sm:min-h-[400px] lg:min-h-[440px] flex flex-col justify-end">
+      <div
+        id="products-hero"
+        data-dark-hero="true"
+        data-hero-section="true"
+        className="products-hero relative bg-[#050608] overflow-hidden border-b border-[#1F2937]/80 min-h-[360px] sm:min-h-[400px] lg:min-h-[440px] flex flex-col justify-end"
+      >
         {/* Full Background Hero Image */}
         <div className="absolute inset-0 z-0">
           <Image

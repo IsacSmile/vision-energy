@@ -155,7 +155,10 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
     return (
       <div className="w-full bg-[#050608] text-white">
         {/* HEADER SECTION */}
-        <section className="relative overflow-hidden bg-[#050608] pt-[calc(var(--header-offset,0px)+40px)] lg:pt-[calc(var(--header-offset,0px)+64px)] pb-12 lg:pb-16 border-b border-white/10">
+        <section
+          data-dark-hero="true"
+          className="service-detail-hero relative overflow-hidden bg-[#050608] pt-[calc(var(--header-offset,0px)+40px)] lg:pt-[calc(var(--header-offset,0px)+64px)] pb-12 lg:pb-16 border-b border-white/10"
+        >
           <div className="absolute inset-0 opacity-[0.04] pointer-events-none bg-[radial-gradient(#8DC63F_1px,transparent_1px)] [background-size:24px_24px]" />
 
           {/* Thunder Lightning Animation */}
@@ -324,7 +327,10 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
   return (
     <div className="w-full bg-[#050608] text-white">
       {/* HEADER SECTION */}
-      <section className="relative overflow-hidden bg-[#050608] pt-[calc(var(--header-offset,0px)+40px)] lg:pt-[calc(var(--header-offset,0px)+72px)] pb-16 lg:pb-24 border-b border-white/10">
+      <section
+        data-dark-hero="true"
+        className="service-detail-hero relative overflow-hidden bg-[#050608] pt-[calc(var(--header-offset,0px)+40px)] lg:pt-[calc(var(--header-offset,0px)+72px)] pb-16 lg:pb-24 border-b border-white/10"
+      >
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none bg-[radial-gradient(#8DC63F_1px,transparent_1px)] [background-size:24px_24px]" />
         
         {/* Thunder Lightning Animation in Service Detail Hero */}

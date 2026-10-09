@@ -133,7 +133,10 @@ export default function ManpowerServiceDetail({
   return (
     <div className="w-full bg-[#050608] text-white selection:bg-[#8DC63F]/20 selection:text-[#8DC63F] pb-24 lg:pb-16">
       {/* 1. TOP HEADER & BREADCRUMB */}
-      <section className="relative overflow-hidden bg-[#050608] pt-[calc(var(--header-offset,0px)+32px)] lg:pt-[calc(var(--header-offset,0px)+48px)] pb-10 lg:pb-14 border-b border-white/10">
+      <section
+        data-dark-hero="true"
+        className="service-detail-hero relative overflow-hidden bg-[#050608] pt-[calc(var(--header-offset,0px)+32px)] lg:pt-[calc(var(--header-offset,0px)+48px)] pb-10 lg:pb-14 border-b border-white/10"
+      >
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(#8DC63F_1px,transparent_1px)] [background-size:24px_24px]" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
