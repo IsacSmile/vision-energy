@@ -350,7 +350,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
                   serviceTitle: `${activeSlide.category} Technical Consultation`,
                 })
               }
-              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 h-[46px] sm:h-[48px] px-4 sm:px-6 rounded-full bg-white/[0.08] hover:bg-white/[0.14] border border-white/20 text-white text-[13px] sm:text-sm font-semibold backdrop-blur-xl transition-all active:scale-[0.98]"
+              className="hero-consultation-btn flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 h-[46px] sm:h-[48px] px-4 sm:px-6 rounded-full bg-white/[0.08] hover:bg-white/[0.14] border border-white/20 text-white text-[13px] sm:text-sm font-semibold backdrop-blur-xl transition-all active:scale-[0.98]"
             >
               <PhoneCall className="w-3.5 h-3.5 text-[#8DC63F]" />
               <span>Consultation</span>
@@ -368,7 +368,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
                 <button
                   key={slide.id}
                   onClick={() => goToSlide(idx)}
-                  className={`group relative flex items-center gap-2.5 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-300 border ${
+                  className={`hero-slider-tab group relative flex items-center gap-2.5 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-300 border ${
                     isSelected
                       ? 'bg-[#0D1117]/90 border-[#8DC63F]/60 text-white shadow-lg shadow-[#8DC63F]/15'
                       : 'bg-[#0D1117]/40 border-white/10 text-white/70 hover:text-white hover:bg-[#0D1117]/70 hover:border-white/20'
@@ -400,7 +400,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
             <div className="flex items-center gap-1.5 ml-2 pl-2 border-l border-white/15">
               <button
                 onClick={prevSlide}
-                className="w-8 h-8 rounded-lg bg-[#0D1117]/60 hover:bg-[#0D1117] border border-white/10 hover:border-white/25 flex items-center justify-center text-white/70 hover:text-white transition-colors"
+                className="hero-arrow-btn w-8 h-8 rounded-lg bg-[#0D1117]/60 hover:bg-[#0D1117] border border-white/10 hover:border-white/25 flex items-center justify-center text-white/70 hover:text-white transition-colors"
                 aria-label="Previous slide"
               >
                 <ChevronLeft className="w-4 h-4" />
@@ -408,7 +408,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
 
               <button
                 onClick={nextSlide}
-                className="w-8 h-8 rounded-lg bg-[#0D1117]/60 hover:bg-[#0D1117] border border-white/10 hover:border-white/25 flex items-center justify-center text-white/70 hover:text-white transition-colors"
+                className="hero-arrow-btn w-8 h-8 rounded-lg bg-[#0D1117]/60 hover:bg-[#0D1117] border border-white/10 hover:border-white/25 flex items-center justify-center text-white/70 hover:text-white transition-colors"
                 aria-label="Next slide"
               >
                 <ChevronRight className="w-4 h-4" />
