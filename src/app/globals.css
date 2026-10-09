@@ -1000,6 +1000,7 @@ html.light section[aria-label="Our Trusted Partners"] .bg-\[\#0D1117\]\/90 {
 html.light section[aria-label="Our Trusted Partners"] .bg-\[\#0A0D14\]\/90 {
   background-color: #FFFFFF !important;
   border-right-color: #E2E8F0 !important;
+  border-bottom-color: #E2E8F0 !important;
 }
 
 html.light section[aria-label="Our Trusted Partners"] .pointer-events-none.bg-gradient-to-r {

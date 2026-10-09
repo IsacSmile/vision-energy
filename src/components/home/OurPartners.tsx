@@ -30,24 +30,24 @@ export default function OurPartners() {
     <section aria-label="Our Trusted Partners" className="py-10 md:py-14 bg-[#050608] relative overflow-hidden">
       <div className="max-w-[80rem] mx-auto px-5 sm:px-6 lg:px-8">
         <Reveal>
-          <div className="rounded-2xl border border-dashed border-white/20 bg-[#0D1117]/90 backdrop-blur-sm overflow-hidden flex flex-row items-center hover:border-[#8DC63F]/50 transition-colors duration-500 shadow-2xl group/marquee">
-            {/* Left Partition: "Our Partners" - Compact on mobile to maximize visible logos */}
-            <div className="px-3 sm:px-8 lg:px-12 py-3 sm:py-6 lg:py-8 flex items-center justify-center border-r border-dashed border-white/20 shrink-0 bg-[#0A0D14]/90">
-              <span className="text-xs sm:text-xl lg:text-3xl font-bold text-white whitespace-nowrap tracking-tight">
+          <div className="rounded-2xl border border-dashed border-white/20 bg-[#0D1117]/90 backdrop-blur-sm overflow-hidden flex flex-col md:flex-row items-stretch md:items-center hover:border-[#8DC63F]/50 transition-colors duration-500 shadow-2xl group/marquee">
+            {/* Partition: "Our Partners" - Top on mobile, Left on desktop */}
+            <div className="w-full md:w-auto px-4 py-3 sm:py-3.5 md:px-8 lg:px-12 md:py-6 lg:py-8 flex items-center justify-center border-b md:border-b-0 md:border-r border-dashed border-white/20 shrink-0 bg-[#0A0D14]/90">
+              <span className="text-sm sm:text-base md:text-xl lg:text-3xl font-bold text-white whitespace-nowrap tracking-tight">
                 Our Partners
               </span>
             </div>
 
-            {/* Right Track: Continuous Auto-Scrolling Marquee */}
-            <div className="relative flex-1 overflow-hidden py-3 sm:py-6 lg:py-7">
+            {/* Track: Continuous Auto-Scrolling Marquee - Full width underneath on mobile */}
+            <div className="relative w-full flex-1 overflow-hidden py-3 sm:py-5 md:py-6 lg:py-7">
               {/* Left Edge Gradient Fade */}
               <div
-                className="pointer-events-none absolute left-0 top-0 bottom-0 w-4 sm:w-16 lg:w-24 bg-gradient-to-r from-[#0D1117] to-transparent z-10"
+                className="pointer-events-none absolute left-0 top-0 bottom-0 w-6 sm:w-16 lg:w-24 bg-gradient-to-r from-[#0D1117] to-transparent z-10"
                 aria-hidden="true"
               />
               {/* Right Edge Gradient Fade */}
               <div
-                className="pointer-events-none absolute right-0 top-0 bottom-0 w-4 sm:w-16 lg:w-24 bg-gradient-to-l from-[#0D1117] to-transparent z-10"
+                className="pointer-events-none absolute right-0 top-0 bottom-0 w-6 sm:w-16 lg:w-24 bg-gradient-to-l from-[#0D1117] to-transparent z-10"
                 aria-hidden="true"
               />
 
