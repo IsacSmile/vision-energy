@@ -131,7 +131,7 @@ export default function ManpowerServiceDetail({
   ];
 
   return (
-    <div className="w-full bg-[#050608] text-white selection:bg-[#8DC63F]/20 selection:text-[#8DC63F] pb-24 lg:pb-16">
+    <div className="w-full bg-white dark:bg-[#050608] text-slate-900 dark:text-white selection:bg-[#8DC63F]/20 selection:text-[#8DC63F] pb-24 lg:pb-16">
       {/* 1. TOP HEADER & BREADCRUMB */}
       <section
         data-dark-hero="true"
@@ -216,39 +216,39 @@ export default function ManpowerServiceDetail({
         
         {/* SECTION 1: OVERVIEW */}
         <section id="overview" className="scroll-mt-28">
-          <div className="bg-[#0C1017] border border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl space-y-8">
+          <div className="bg-slate-50/80 dark:bg-[#0C1017] border border-slate-200/80 dark:border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 shadow-sm dark:shadow-2xl space-y-8">
             <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
               {/* Left: Overview Text */}
               <div className="flex-1 space-y-5">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#8DC63F]/10 border border-[#8DC63F]/30 text-[#8DC63F] text-xs font-bold uppercase tracking-wider">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#8DC63F]/15 dark:bg-[#8DC63F]/10 border border-[#8DC63F]/35 dark:border-[#8DC63F]/30 text-[#5B8C1E] dark:text-[#8DC63F] text-xs font-bold uppercase tracking-wider">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F]" />
                   <span>Section 01 · Overview</span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
                   Specialist Engineering &amp; Technical Teams on Demand
                 </h2>
-                <p className="text-base sm:text-lg text-[#CBD5E1] leading-relaxed">
+                <p className="text-base sm:text-lg text-slate-600 dark:text-[#CBD5E1] leading-relaxed">
                   {overviewText}
                 </p>
                 <div className="pt-2 grid grid-cols-2 sm:grid-cols-3 gap-3">
-                  <div className="p-3.5 rounded-xl bg-[#050608] border border-white/10">
-                    <p className="text-xs text-[#A9B4C0]">Coverage</p>
-                    <p className="text-sm font-bold text-white mt-1">All 7 UAE Emirates</p>
+                  <div className="p-3.5 rounded-xl bg-white dark:bg-[#050608] border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none">
+                    <p className="text-xs text-slate-500 dark:text-[#A9B4C0]">Coverage</p>
+                    <p className="text-sm font-bold text-slate-900 dark:text-white mt-1">All 7 UAE Emirates</p>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-[#050608] border border-white/10">
-                    <p className="text-xs text-[#A9B4C0]">Mobilization</p>
-                    <p className="text-sm font-bold text-[#8DC63F] mt-1">Within 24–48 Hours</p>
+                  <div className="p-3.5 rounded-xl bg-white dark:bg-[#050608] border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none">
+                    <p className="text-xs text-slate-500 dark:text-[#A9B4C0]">Mobilization</p>
+                    <p className="text-sm font-bold text-[#5B8C1E] dark:text-[#8DC63F] mt-1">Within 24–48 Hours</p>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-[#050608] border border-white/10 col-span-2 sm:col-span-1">
-                    <p className="text-xs text-[#A9B4C0]">Compliance</p>
-                    <p className="text-sm font-bold text-white mt-1">100% MOHRE &amp; HSE</p>
+                  <div className="p-3.5 rounded-xl bg-white dark:bg-[#050608] border border-slate-200 dark:border-white/10 col-span-2 sm:col-span-1 shadow-sm dark:shadow-none">
+                    <p className="text-xs text-slate-500 dark:text-[#A9B4C0]">Compliance</p>
+                    <p className="text-sm font-bold text-slate-900 dark:text-white mt-1">100% MOHRE &amp; HSE</p>
                   </div>
                 </div>
               </div>
 
               {/* Right: Uploaded Real Site Photography */}
               <div className="w-full lg:w-[480px] shrink-0 space-y-2.5">
-                <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-[#050608] border border-white/10 shadow-xl group">
+                <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100 dark:bg-[#050608] border border-slate-200 dark:border-white/10 shadow-xl group">
                   <Image
                     src={heroImage}
                     alt={heroImageAlt}
@@ -263,7 +263,7 @@ export default function ManpowerServiceDetail({
                     <span className="text-[#8DC63F] font-mono text-[11px]">UAE Substation Deployment</span>
                   </div>
                 </div>
-                <p className="text-xs text-[#A9B4C0] italic text-center">
+                <p className="text-xs text-slate-500 dark:text-[#A9B4C0] italic text-center">
                   Certified technicians equipped with PPE and calibrated testing tools during site safety briefing.
                 </p>
               </div>
@@ -274,14 +274,14 @@ export default function ManpowerServiceDetail({
         {/* SECTION 2: MANPOWER WE SUPPLY */}
         <section id="manpower-we-supply" className="scroll-mt-28 space-y-6">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8DC63F]">
+            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#5B8C1E] dark:text-[#8DC63F]">
               <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F]" />
               <span>Section 02 · Disciplines</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
               Manpower We Supply
             </h2>
-            <p className="text-sm sm:text-base text-[#A9B4C0]">
+            <p className="text-sm sm:text-base text-slate-600 dark:text-[#A9B4C0]">
               Certified personnel specialized in electrical infrastructure, earthing, lightning protection, and solar systems.
             </p>
           </div>
@@ -290,10 +290,10 @@ export default function ManpowerServiceDetail({
             {manpowerList.map((trade, idx) => (
               <div
                 key={idx}
-                className="p-5 rounded-2xl bg-[#0C1017] border border-white/10 hover:border-[#8DC63F]/50 transition-all duration-300 flex items-center gap-3.5 group shadow-md"
+                className="p-5 rounded-2xl bg-white dark:bg-[#0C1017] border border-slate-200 dark:border-white/10 hover:border-[#8DC63F]/70 transition-all duration-300 flex items-center gap-3.5 group shadow-sm hover:shadow-md dark:shadow-md"
               >
                 <div className="w-2.5 h-2.5 rounded-full bg-[#8DC63F] shrink-0 group-hover:scale-125 transition-transform shadow-[0_0_8px_#8DC63F]" />
-                <span className="text-sm sm:text-[15px] font-semibold text-white group-hover:text-[#8DC63F] transition-colors leading-snug">
+                <span className="text-sm sm:text-[15px] font-semibold text-slate-800 dark:text-white group-hover:text-[#5B8C1E] dark:group-hover:text-[#8DC63F] transition-colors leading-snug">
                   {trade}
                 </span>
               </div>
@@ -304,14 +304,14 @@ export default function ManpowerServiceDetail({
         {/* SECTION 3: ENGAGEMENT OPTIONS */}
         <section id="engagement-options" className="scroll-mt-28 space-y-6">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8DC63F]">
+            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#5B8C1E] dark:text-[#8DC63F]">
               <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F]" />
               <span>Section 03 · Flexibility</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
               Engagement Options
             </h2>
-            <p className="text-sm sm:text-base text-[#A9B4C0]">
+            <p className="text-sm sm:text-base text-slate-600 dark:text-[#A9B4C0]">
               Custom staffing arrangements designed around your installation milestones, shifts, and shutdowns.
             </p>
           </div>
@@ -320,18 +320,18 @@ export default function ManpowerServiceDetail({
             {engagementOptions.map((opt, idx) => (
               <div
                 key={idx}
-                className="p-6 sm:p-7 rounded-2xl bg-[#0C1017] border border-white/10 hover:border-[#8DC63F]/40 transition-all duration-300 space-y-3 group shadow-lg"
+                className="p-6 sm:p-7 rounded-2xl bg-white dark:bg-[#0C1017] border border-slate-200 dark:border-white/10 hover:border-[#8DC63F]/70 transition-all duration-300 space-y-3 group shadow-sm hover:shadow-md dark:shadow-lg"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono font-bold text-[#8DC63F] bg-[#8DC63F]/10 border border-[#8DC63F]/30 px-2.5 py-1 rounded-full">
+                  <span className="text-xs font-mono font-bold text-[#5B8C1E] dark:text-[#8DC63F] bg-[#8DC63F]/15 dark:bg-[#8DC63F]/10 border border-[#8DC63F]/40 dark:border-[#8DC63F]/30 px-2.5 py-1 rounded-full">
                     MODEL 0{idx + 1}
                   </span>
-                  <Clock className="w-4 h-4 text-[#A9B4C0] group-hover:text-[#8DC63F] transition-colors" />
+                  <Clock className="w-4 h-4 text-slate-400 dark:text-[#A9B4C0] group-hover:text-[#5B8C1E] dark:group-hover:text-[#8DC63F] transition-colors" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight group-hover:text-[#8DC63F] transition-colors">
+                <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-[#5B8C1E] dark:group-hover:text-[#8DC63F] transition-colors">
                   {opt.title}
                 </h3>
-                <p className="text-sm text-[#CBD5E1] leading-relaxed">
+                <p className="text-sm text-slate-600 dark:text-[#CBD5E1] leading-relaxed">
                   {opt.description}
                 </p>
               </div>
@@ -342,14 +342,14 @@ export default function ManpowerServiceDetail({
         {/* SECTION 4: WHAT'S INCLUDED */}
         <section id="whats-included" className="scroll-mt-28 space-y-6">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8DC63F]">
+            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#5B8C1E] dark:text-[#8DC63F]">
               <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F]" />
               <span>Section 04 · Equipment &amp; Support</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
               What’s Included
             </h2>
-            <p className="text-sm sm:text-base text-[#A9B4C0]">
+            <p className="text-sm sm:text-base text-slate-600 dark:text-[#A9B4C0]">
               Every team arrives fully equipped with certified tooling, testing equipment, and supervisory backing.
             </p>
           </div>
@@ -358,12 +358,12 @@ export default function ManpowerServiceDetail({
             {whatsIncluded.map((item, idx) => (
               <div
                 key={idx}
-                className="p-6 rounded-2xl bg-[#0C1017] border border-white/10 hover:border-[#8DC63F]/40 transition-all duration-300 space-y-3 flex flex-col justify-between shadow-md"
+                className="p-6 rounded-2xl bg-white dark:bg-[#0C1017] border border-slate-200 dark:border-white/10 hover:border-[#8DC63F]/70 transition-all duration-300 space-y-3 flex flex-col justify-between shadow-sm hover:shadow-md dark:shadow-md"
               >
-                <div className="w-10 h-10 rounded-xl bg-[#8DC63F]/10 border border-[#8DC63F]/30 flex items-center justify-center text-[#8DC63F]">
+                <div className="w-10 h-10 rounded-xl bg-[#8DC63F]/15 dark:bg-[#8DC63F]/10 border border-[#8DC63F]/40 dark:border-[#8DC63F]/30 flex items-center justify-center text-[#5B8C1E] dark:text-[#8DC63F]">
                   <Wrench className="w-5 h-5" />
                 </div>
-                <p className="text-sm sm:text-[14.5px] font-semibold text-white leading-relaxed">
+                <p className="text-sm sm:text-[14.5px] font-semibold text-slate-800 dark:text-white leading-relaxed">
                   {item}
                 </p>
               </div>
@@ -374,35 +374,35 @@ export default function ManpowerServiceDetail({
         {/* SECTION 5: COMPLIANCE & SAFETY */}
         <section id="compliance-and-safety" className="scroll-mt-28 space-y-6">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8DC63F]">
+            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#5B8C1E] dark:text-[#8DC63F]">
               <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F]" />
               <span>Section 05 · Standards</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
               Compliance &amp; Safety
             </h2>
-            <p className="text-sm sm:text-base text-[#A9B4C0]">
+            <p className="text-sm sm:text-base text-slate-600 dark:text-[#A9B4C0]">
               Strict compliance with UAE labor regulations, occupational health, and site-specific HSE mandates.
             </p>
           </div>
 
-          <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-[#0C1017] border border-white/10 space-y-6 shadow-xl">
+          <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-slate-50/80 dark:bg-[#0C1017] border border-slate-200/80 dark:border-white/10 space-y-6 shadow-sm dark:shadow-xl">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {complianceList.map((item, idx) => (
                 <div
                   key={idx}
-                  className="p-4 sm:p-5 rounded-xl bg-[#050608] border border-white/10 flex items-start gap-3.5"
+                  className="p-4 sm:p-5 rounded-xl bg-white dark:bg-[#050608] border border-slate-200 dark:border-white/10 flex items-start gap-3.5 shadow-sm dark:shadow-none"
                 >
-                  <ShieldCheck className="w-5 h-5 text-[#8DC63F] shrink-0 mt-0.5" />
-                  <span className="text-sm text-[#CBD5E1] font-medium leading-relaxed">
+                  <ShieldCheck className="w-5 h-5 text-[#5B8C1E] dark:text-[#8DC63F] shrink-0 mt-0.5" />
+                  <span className="text-sm text-slate-700 dark:text-[#CBD5E1] font-medium leading-relaxed">
                     {item}
                   </span>
                 </div>
               ))}
             </div>
 
-            <div className="p-4 rounded-xl bg-[#8DC63F]/5 border border-[#8DC63F]/20 flex items-center gap-3 text-xs sm:text-sm text-[#CBD5E1]">
-              <CheckCircle2 className="w-5 h-5 text-[#8DC63F] shrink-0" />
+            <div className="p-4 rounded-xl bg-[#8DC63F]/10 dark:bg-[#8DC63F]/5 border border-[#8DC63F]/30 dark:border-[#8DC63F]/20 flex items-center gap-3 text-xs sm:text-sm text-slate-800 dark:text-[#CBD5E1]">
+              <CheckCircle2 className="w-5 h-5 text-[#5B8C1E] dark:text-[#8DC63F] shrink-0" />
               <span>
                 All field staff are verified under valid UAE employment visas, medical insurance, and MOHRE registration.
               </span>
@@ -413,14 +413,14 @@ export default function ManpowerServiceDetail({
         {/* SECTION 6: WHY CHOOSE US */}
         <section id="why-choose-us" className="scroll-mt-28 space-y-6">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8DC63F]">
+            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#5B8C1E] dark:text-[#8DC63F]">
               <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F]" />
               <span>Section 06 · The Advantage</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
               Why Choose Us
             </h2>
-            <p className="text-sm sm:text-base text-[#A9B4C0]">
+            <p className="text-sm sm:text-base text-slate-600 dark:text-[#A9B4C0]">
               Specialist engineering capability and dedicated technical supervision, not generic labor supply.
             </p>
           </div>
@@ -429,15 +429,15 @@ export default function ManpowerServiceDetail({
             {whyChooseUs.map((point, idx) => (
               <div
                 key={idx}
-                className="p-6 rounded-2xl bg-[#0C1017] border border-white/10 hover:border-[#8DC63F]/50 transition-all duration-300 space-y-3 group shadow-md"
+                className="p-6 rounded-2xl bg-white dark:bg-[#0C1017] border border-slate-200 dark:border-white/10 hover:border-[#8DC63F]/70 transition-all duration-300 space-y-3 group shadow-sm hover:shadow-md dark:shadow-md"
               >
-                <div className="flex items-center gap-2 text-[#8DC63F]">
+                <div className="flex items-center gap-2 text-[#5B8C1E] dark:text-[#8DC63F]">
                   <span className="w-2 h-2 rounded-full bg-[#8DC63F]" />
                   <span className="text-xs font-mono font-bold uppercase tracking-wider">
                     PROMISE 0{idx + 1}
                   </span>
                 </div>
-                <p className="text-sm sm:text-[15px] font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-snug">
+                <p className="text-sm sm:text-[15px] font-bold text-slate-800 dark:text-white group-hover:text-[#5B8C1E] dark:group-hover:text-[#8DC63F] transition-colors leading-snug">
                   {point}
                 </p>
               </div>
@@ -448,14 +448,14 @@ export default function ManpowerServiceDetail({
         {/* SECTION 7: HOW IT WORKS (Numbered Horizontal Stepper on Desktop, Vertical on Mobile) */}
         <section id="how-it-works" className="scroll-mt-28 space-y-8">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8DC63F]">
+            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#5B8C1E] dark:text-[#8DC63F]">
               <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F]" />
               <span>Section 07 · Workflow</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
               How It Works
             </h2>
-            <p className="text-sm sm:text-base text-[#A9B4C0]">
+            <p className="text-sm sm:text-base text-slate-600 dark:text-[#A9B4C0]">
               Simple, transparent 4-step deployment from requirement briefing to supervised handover.
             </p>
           </div>
@@ -464,23 +464,23 @@ export default function ManpowerServiceDetail({
           <div className="hidden lg:block">
             <div className="relative">
               {/* Connecting Horizontal Line across the steps */}
-              <div className="absolute top-7 left-12 right-12 h-[2px] bg-white/10 z-0" />
+              <div className="absolute top-7 left-12 right-12 h-[2px] bg-slate-200 dark:bg-white/10 z-0" />
               <div className="absolute top-7 left-12 w-3/4 h-[2px] bg-gradient-to-r from-[#8DC63F] via-[#8DC63F]/70 to-transparent z-0" />
 
               <div className="grid grid-cols-4 gap-6 relative z-10">
                 {howItWorks.map((step) => (
                   <div
                     key={step.step}
-                    className="p-6 rounded-2xl bg-[#0C1017] border border-white/10 hover:border-[#8DC63F]/50 transition-all duration-300 flex flex-col space-y-4 group shadow-lg"
+                    className="p-6 rounded-2xl bg-white dark:bg-[#0C1017] border border-slate-200 dark:border-white/10 hover:border-[#8DC63F]/70 transition-all duration-300 flex flex-col space-y-4 group shadow-sm hover:shadow-md dark:shadow-lg"
                   >
-                    <div className="w-14 h-14 rounded-2xl bg-[#050608] border-2 border-[#8DC63F] flex items-center justify-center text-[#8DC63F] font-mono font-bold text-lg shadow-[0_0_15px_rgba(141,198,63,0.2)] group-hover:bg-[#8DC63F] group-hover:text-black transition-colors">
+                    <div className="w-14 h-14 rounded-2xl bg-slate-100 dark:bg-[#050608] border-2 border-[#8DC63F] flex items-center justify-center text-slate-900 dark:text-[#8DC63F] font-mono font-bold text-lg shadow-[0_0_15px_rgba(141,198,63,0.15)] group-hover:bg-[#8DC63F] group-hover:text-black transition-colors">
                       0{step.step}
                     </div>
                     <div className="space-y-2 flex-1">
-                      <h3 className="text-base font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-snug">
+                      <h3 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-[#5B8C1E] dark:group-hover:text-[#8DC63F] transition-colors leading-snug">
                         {step.title}
                       </h3>
-                      <p className="text-xs sm:text-sm text-[#CBD5E1] leading-relaxed">
+                      <p className="text-xs sm:text-sm text-slate-600 dark:text-[#CBD5E1] leading-relaxed">
                         {step.description}
                       </p>
                     </div>
@@ -495,14 +495,14 @@ export default function ManpowerServiceDetail({
             {howItWorks.map((step) => (
               <div key={step.step} className="relative space-y-2">
                 {/* Stepper Dot */}
-                <div className="absolute -left-[35px] top-0 w-8 h-8 rounded-full bg-[#050608] border-2 border-[#8DC63F] flex items-center justify-center text-[#8DC63F] font-mono font-bold text-xs shadow-md">
+                <div className="absolute -left-[35px] top-0 w-8 h-8 rounded-full bg-slate-100 dark:bg-[#050608] border-2 border-[#8DC63F] flex items-center justify-center text-slate-900 dark:text-[#8DC63F] font-mono font-bold text-xs shadow-sm">
                   0{step.step}
                 </div>
-                <div className="p-5 rounded-2xl bg-[#0C1017] border border-white/10 space-y-2">
-                  <h3 className="text-base font-bold text-white text-[#8DC63F]">
+                <div className="p-5 rounded-2xl bg-white dark:bg-[#0C1017] border border-slate-200 dark:border-white/10 space-y-2 shadow-sm dark:shadow-none">
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white">
                     {step.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#CBD5E1] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-[#CBD5E1] leading-relaxed">
                     {step.description}
                   </p>
                 </div>
@@ -513,17 +513,17 @@ export default function ManpowerServiceDetail({
 
         {/* SECTION 8: CTA */}
         <section id="cta" className="scroll-mt-28">
-          <div className="relative rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#0C1017] via-[#050608] to-[#0D1420] border border-[#8DC63F]/30 p-6 sm:p-10 lg:p-12 overflow-hidden shadow-2xl">
+          <div className="relative rounded-2xl sm:rounded-3xl bg-slate-50 dark:bg-gradient-to-br dark:from-[#0C1017] dark:via-[#050608] dark:to-[#0D1420] border border-slate-200 dark:border-[#8DC63F]/30 p-6 sm:p-10 lg:p-12 overflow-hidden shadow-md dark:shadow-2xl">
             <div className="pointer-events-none absolute -top-24 -right-24 w-80 h-80 bg-[#8DC63F]/10 rounded-full blur-3xl" />
             <div className="pointer-events-none absolute -bottom-24 -left-24 w-80 h-80 bg-[#0B65B3]/10 rounded-full blur-3xl" />
 
             <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6 lg:gap-10">
               {/* Left Side: Title & Description */}
               <div className="max-w-2xl space-y-2.5 text-left">
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight uppercase leading-tight">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 dark:text-white tracking-tight uppercase leading-tight">
                   Request Specialist Engineering Manpower
                 </h2>
-                <p className="text-sm sm:text-base text-[#CBD5E1] leading-relaxed">
+                <p className="text-sm sm:text-base text-slate-600 dark:text-[#CBD5E1] leading-relaxed">
                   Connect with our technical staffing desk. We will evaluate your trades, project location, and required duration to mobilize certified personnel with full tools and PPE.
                 </p>
               </div>
@@ -540,9 +540,9 @@ export default function ManpowerServiceDetail({
                 </button>
                 <a
                   href="tel:+97172042763"
-                  className="py-3.5 px-5 rounded-full bg-[#050608] hover:bg-white/10 text-white font-bold text-sm border border-white/20 transition-all duration-300 inline-flex items-center gap-2 whitespace-nowrap"
+                  className="py-3.5 px-5 rounded-full bg-white dark:bg-[#050608] hover:bg-slate-100 dark:hover:bg-white/10 text-slate-900 dark:text-white font-bold text-sm border border-slate-300 dark:border-white/20 transition-all duration-300 inline-flex items-center gap-2 whitespace-nowrap shadow-sm dark:shadow-none"
                 >
-                  <PhoneCall className="w-4 h-4 text-[#8DC63F]" />
+                  <PhoneCall className="w-4 h-4 text-[#5B8C1E] dark:text-[#8DC63F]" />
                   <span>+971 7 204 2763</span>
                 </a>
               </div>
@@ -553,10 +553,10 @@ export default function ManpowerServiceDetail({
       </main>
 
       {/* STICKY "REQUEST MANPOWER" CTA ON MOBILE */}
-      <div className="lg:hidden fixed bottom-0 inset-x-0 bg-[#0C1017]/95 backdrop-blur-lg border-t border-white/15 p-3.5 z-40 shadow-[0_-10px_30px_rgba(0,0,0,0.8)] flex items-center justify-between gap-4">
+      <div className="lg:hidden fixed bottom-0 inset-x-0 bg-white/95 dark:bg-[#0C1017]/95 backdrop-blur-lg border-t border-slate-200 dark:border-white/15 p-3.5 z-40 shadow-[0_-10px_30px_rgba(0,0,0,0.15)] dark:shadow-[0_-10px_30px_rgba(0,0,0,0.8)] flex items-center justify-between gap-4">
         <div className="min-w-0">
-          <p className="text-xs font-bold text-white truncate">Specialist Manpower</p>
-          <p className="text-[11px] text-[#8DC63F] font-medium truncate">MOHRE Compliant · UAE Wide</p>
+          <p className="text-xs font-bold text-slate-900 dark:text-white truncate">Specialist Manpower</p>
+          <p className="text-[11px] text-[#5B8C1E] dark:text-[#8DC63F] font-semibold truncate">MOHRE Compliant · UAE Wide</p>
         </div>
         <button
           type="button"

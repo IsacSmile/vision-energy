@@ -523,6 +523,25 @@ html.light main:not([data-dark-hero="true"]) p:not([data-preserve-contrast] *) {
   color: #334155;
 }
 
+/* Ensure all content headings (h2, h3, h4) and cards inside main/sections are crisp dark #0F172A in light mode */
+html.light main h2,
+html.light main h3,
+html.light main h4,
+html.light section:not([data-dark-hero="true"]):not([data-hero-section]):not(.services-hero):not(.service-detail-hero):not(#home-hero) h2,
+html.light section:not([data-dark-hero="true"]):not([data-hero-section]):not(.services-hero):not(.service-detail-hero):not(#home-hero) h3,
+html.light section:not([data-dark-hero="true"]):not([data-hero-section]):not(.services-hero):not(.service-detail-hero):not(#home-hero) h4 {
+  color: #0F172A !important;
+  text-shadow: none !important;
+}
+
+/* Ensure all text-white spans and elements inside main/sections render with dark high contrast */
+html.light main .text-white:not([data-preserve-contrast]):not([data-preserve-contrast] *),
+html.light section:not([data-dark-hero="true"]):not([data-hero-section]):not(.services-hero):not(.service-detail-hero):not(#home-hero) .text-white:not([data-preserve-contrast]):not([data-preserve-contrast] *) {
+  color: #0F172A !important;
+  text-shadow: none !important;
+}
+
+
 /* 5. Photographic Hero Contrast Preservations */
 /* Hero banners over dark photography (Home, Products, Services, Service Detail) MUST preserve bright white/light typography with text-shadow */
 html.light [data-dark-hero="true"],
@@ -539,8 +558,6 @@ html.light #home-hero {
 
 html.light [data-dark-hero="true"] h1,
 html.light [data-dark-hero="true"] h1 *,
-html.light [data-dark-hero="true"] h2,
-html.light [data-dark-hero="true"] h2 *,
 html.light .products-hero h1,
 html.light .products-hero h1 *,
 html.light #products-hero h1,
@@ -716,12 +733,10 @@ html.light header .bg-\[\#8DC63F\] .text-white {
   color: #FFFFFF !important;
 }
 
-html.light .bg-\[\#0B65B3\] .text-white,
-html.light .bg-\[\#0B65B3\].text-white,
-html.light [class*="bg-[#0B65B3]"] .text-white,
-html.light [class*="bg-[#0B65B3]"].text-white,
-html.light [class*="bg-[#8DC63F]"] .text-white,
-html.light [class*="bg-[#8DC63F]"].text-white,
+html.light button.bg-\[\#0B65B3\],
+html.light button.bg-\[\#0B65B3\] *,
+html.light a.bg-\[\#0B65B3\],
+html.light a.bg-\[\#0B65B3\] *,
 html.light .lightning-btn-primary,
 html.light .lightning-btn-primary span,
 html.light .lightning-btn-primary svg,
