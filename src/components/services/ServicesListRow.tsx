@@ -148,6 +148,9 @@ export default function ServicesListRow({ service, index }: ServicesListRowProps
     });
   };
 
+  const isEarthingService = service.slug === 'earthing-and-grounding' || service.slug === 'earthing-grounding';
+  const serviceHref = isEarthingService ? '/services/earthing-grounding' : `/services/${service.slug}`;
+
   return (
     <li className="relative group list-none">
       <div className="relative rounded-2xl sm:rounded-3xl bg-[#0C1017] border border-white/[0.12] hover:border-[#8DC63F]/50 transition-all duration-300 shadow-[0_12px_36px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(11,101,179,0.18)] hover:-translate-y-1 p-5 sm:p-6 lg:p-7 flex flex-col lg:flex-row gap-6 lg:gap-8 items-start overflow-hidden">
@@ -158,7 +161,10 @@ export default function ServicesListRow({ service, index }: ServicesListRowProps
         />
 
         {/* Left Side: Compact Framed Image Thumbnail (Clean & Small) */}
-        <div className="relative w-full sm:w-72 lg:w-80 h-48 sm:h-52 lg:h-56 rounded-xl sm:rounded-2xl overflow-hidden bg-[#050608] border border-white/10 shrink-0 shadow-md group-hover:border-[#8DC63F]/40 transition-all duration-500">
+        <Link
+          href={serviceHref}
+          className="relative block w-full sm:w-72 lg:w-80 h-48 sm:h-52 lg:h-56 rounded-xl sm:rounded-2xl overflow-hidden bg-[#050608] border border-white/10 shrink-0 shadow-md group-hover:border-[#8DC63F]/40 transition-all duration-500"
+        >
           <Image
             src={imageUrl}
             alt={imageAlt}
@@ -177,7 +183,7 @@ export default function ServicesListRow({ service, index }: ServicesListRowProps
               {getIcon()}
             </div>
           </div>
-        </div>
+        </Link>
 
         {/* Right Side: Content Area */}
         <div className="flex-1 min-w-0 flex flex-col justify-between self-stretch">
@@ -185,7 +191,7 @@ export default function ServicesListRow({ service, index }: ServicesListRowProps
             {/* Service Title */}
             <h2 className="text-xl sm:text-2xl lg:text-[24px] font-bold text-white tracking-tight leading-snug group-hover:text-[#8DC63F] transition-colors">
               <Link
-                href={`/services/${service.slug}`}
+                href={serviceHref}
                 className="hover:text-[#8DC63F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded-lg"
               >
                 {service.title}
@@ -219,7 +225,7 @@ export default function ServicesListRow({ service, index }: ServicesListRowProps
           {/* Bottom Actions Row */}
           <div className="pt-4 mt-5 border-t border-white/[0.08] flex items-center justify-between flex-wrap gap-4">
             <Link
-              href={`/services/${service.slug}`}
+              href={serviceHref}
               className="text-sm font-bold text-white group/link hover:text-[#8DC63F] inline-flex items-center gap-2 transition-colors py-1"
             >
               <span className="border-b border-transparent group-hover/link:border-[#8DC63F] pb-0.5 transition-all">
@@ -233,7 +239,7 @@ export default function ServicesListRow({ service, index }: ServicesListRowProps
               onClick={handleBookClick}
               className="py-2 px-5 rounded-full bg-white hover:bg-[#8DC63F] text-[#050608] hover:text-black font-bold text-xs sm:text-sm tracking-wide shadow-md transition-all duration-300 active:scale-95 cursor-pointer"
             >
-              {service.slug.includes('manpower') ? 'Request Manpower' : 'Book Service'}
+              {service.slug.includes('manpower') ? 'Request Manpower' : 'Get a Quote'}
             </button>
           </div>
         </div>

@@ -16,6 +16,8 @@ import FinalCTA from "@/components/home/FinalCTA";
 import Reveal from "@/components/ui/Reveal";
 import HeroLightning from "@/components/HeroLightning";
 import ManpowerServiceDetail from "@/components/services/ManpowerServiceDetail";
+import StandardServiceDetail from "@/components/services/StandardServiceDetail";
+import { getStandardServicePage } from "@/lib/data/service-detail-pages";
 
 interface ServiceDetailPageProps {
   params: Promise<{ slug: string }> | { slug: string };
@@ -36,11 +38,14 @@ async function resolveParams(params: ServiceDetailPageProps["params"]) {
 export async function generateStaticParams() {
   try {
     const publishedServices = await getPublishedServices();
-    return publishedServices.map((service) => ({
-      slug: service.slug,
+    const slugs = new Set(publishedServices.map((service) => service.slug));
+    slugs.add("earthing-grounding");
+    slugs.add("earthing-and-grounding");
+    return Array.from(slugs).map((slug) => ({
+      slug,
     }));
   } catch {
-    return [];
+    return [{ slug: "earthing-grounding" }];
   }
 }
 
@@ -85,6 +90,25 @@ export const revalidate = 300;
 
 export async function generateMetadata({ params }: ServiceDetailPageProps) {
   const { slug } = await resolveParams(params);
+
+  // Reusable data-driven service page metadata (Earthing & Grounding, etc.)
+  const standardPage = getStandardServicePage(slug);
+  if (standardPage) {
+    return {
+      title: standardPage.seo.title,
+      description: standardPage.seo.description,
+      alternates: {
+        canonical: `https://www.visionenergyme.com/services/${standardPage.slug}`,
+      },
+      openGraph: {
+        title: standardPage.seo.title,
+        description: standardPage.seo.description,
+        url: `https://www.visionenergyme.com/services/${standardPage.slug}`,
+        type: "article",
+      },
+    };
+  }
+
   const service = await getServiceBySlug(slug);
 
   if (!service) {
@@ -122,6 +146,13 @@ export async function generateMetadata({ params }: ServiceDetailPageProps) {
 
 export default async function ServiceDetailPage({ params }: ServiceDetailPageProps) {
   const { slug } = await resolveParams(params);
+
+  // 1. REUSABLE DATA-DRIVEN SERVICE TEMPLATE (Earthing & Grounding, etc.)
+  const standardPage = getStandardServicePage(slug);
+  if (standardPage) {
+    return <StandardServiceDetail data={standardPage} />;
+  }
+
   const service = await getServiceBySlug(slug);
 
   // STRICT RULE: Unknown or unpublished services must check redirect then 404
