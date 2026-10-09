@@ -195,7 +195,7 @@ export default function StandardServiceDetail({ data }: StandardServiceDetailPro
                   Earthing That Holds Up in UAE Ground
                 </h2>
                 <p className="text-base sm:text-lg text-slate-600 dark:text-[#CBD5E1] leading-relaxed">
-                  Every electrical system depends on the earthing network beneath it. When a fault or lightning strike happens, that network decides whether the current goes safely into the ground or through equipment and people. Vision Energy International designs and installs low-impedance earthing systems engineered for the region's demanding ground conditions.
+                  Certified low-resistance earthing networks engineered for critical infrastructure across UAE ground conditions.
                 </p>
                 <div className="pt-2 grid grid-cols-2 sm:grid-cols-3 gap-3">
                   <div className="p-3.5 rounded-xl bg-white dark:bg-[#050608] border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none">

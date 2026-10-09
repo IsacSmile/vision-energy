@@ -43,7 +43,7 @@ export const SERVICE_DETAIL_PAGES: Record<string, StandardServiceDetailPage> = {
     badgeLabel: 'EARTHING & BONDING',
     title: 'Earthing That Holds Up in UAE Ground: How Vision Energy Builds Systems That Pass the Test',
     intro:
-      "Every electrical system depends on one thing most people never see: the earthing network beneath it. When a fault or lightning strike happens, that network decides whether the current goes safely into the ground or through equipment and people. As an earthing and lightning protection contractor in the UAE, Vision Energy International designs and installs earthing systems built for the region's demanding ground conditions.",
+      'Certified low-impedance earthing systems engineered for demanding UAE ground conditions.',
     sectionsBeforeProcess: [
       {
         id: 'why-uae-soil-is-a-challenge',
