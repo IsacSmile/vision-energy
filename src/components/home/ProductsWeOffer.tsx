@@ -29,7 +29,7 @@ export default function ProductsWeOffer() {
     }
   }, []);
 
-  // Track stacking scale and dimming of covered rows on scroll
+  // Track stacking scale and dimming of covered rows on scroll (desktop only)
   useEffect(() => {
     if (prefersReducedMotion || typeof window === 'undefined') return;
 
@@ -37,6 +37,13 @@ export default function ProductsWeOffer() {
       if (!isTickingRef.current) {
         window.requestAnimationFrame(() => {
           const isDesktop = window.innerWidth >= 1024;
+          if (!isDesktop) {
+            // On mobile & tablet, rows flow naturally with clean vertical scroll, no sticky stacking
+            setCoveredRows({});
+            isTickingRef.current = false;
+            return;
+          }
+
           const newCovered: Record<number, boolean> = {};
 
           rowContainersRef.current.forEach((el, idx) => {
@@ -46,8 +53,7 @@ export default function ProductsWeOffer() {
             const nextEl = rowContainersRef.current[idx + 1];
             if (nextEl) {
               const nextRect = nextEl.getBoundingClientRect();
-              const triggerDistance = isDesktop ? 25 : 15;
-              if (nextRect.top <= rect.top + triggerDistance) {
+              if (nextRect.top <= rect.top + 25) {
                 newCovered[idx] = true;
               }
             }
@@ -146,14 +152,12 @@ export default function ProductsWeOffer() {
           </Reveal>
         </div>
 
-        {/* 9 Sticky Stacking Rows Container */}
-        <div className="relative space-y-12 lg:space-y-16 pb-20 lg:pb-28">
+        {/* 9 Stacking Rows: Natural fluid scrolling on Mobile, Sticky Stacking on Desktop (lg+) */}
+        <div className="relative space-y-10 sm:space-y-12 lg:space-y-16 pb-16 sm:pb-20 lg:pb-28">
           {PRODUCTS_WE_OFFER_ROWS.map((group, rowIdx) => {
             const isCovered = Boolean(coveredRows[rowIdx]);
-            // Sticky top: header offset (80px desktop, 68px mobile) + margin + subtle 4px tab offset per row
-            // Guarantees all row headings (including ROW 06) stay completely visible below the fixed navbar
+            // Desktop sticky offset: header (80px) + margin + subtle 4px tab offset per row
             const desktopTop = `calc(var(--header-offset, 80px) + 16px + ${rowIdx * 4}px)`;
-            const mobileTop = `calc(var(--header-offset, 68px) + 10px + ${rowIdx * 2}px)`;
 
             return (
               <div
@@ -162,14 +166,13 @@ export default function ProductsWeOffer() {
                   rowContainersRef.current[rowIdx] = el;
                 }}
                 style={{
-                  ['--row-top-mobile' as string]: mobileTop,
                   ['--row-top-desktop' as string]: desktopTop,
                   zIndex: 10 + rowIdx,
                   transform: !prefersReducedMotion && isCovered ? 'scale(0.96)' : 'scale(1)',
                   opacity: !prefersReducedMotion && isCovered ? 0.45 : 1,
                   transformOrigin: 'top center',
                 }}
-                className={`sticky top-[var(--row-top-mobile)] lg:top-[var(--row-top-desktop)] rounded-2xl sm:rounded-3xl bg-[#0C1017] border border-white/[0.14] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.95)] p-4 sm:p-5 lg:p-6 transition-all duration-300 ease-out`}
+                className={`relative lg:sticky lg:top-[var(--row-top-desktop)] rounded-2xl sm:rounded-3xl bg-[#0C1017] border border-white/[0.14] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.95)] p-4 sm:p-5 lg:p-6 transition-all duration-300 ease-out`}
               >
 
                 {/* Row Header Bar - High contrast, guaranteed visible */}
@@ -195,7 +198,9 @@ export default function ProductsWeOffer() {
                   }}
                   onScroll={() => handleStripScroll(rowIdx)}
                   style={{
-                    touchAction: 'pan-x',
+                    touchAction: 'pan-y pan-x',
+                    overscrollBehaviorX: 'contain',
+                    overscrollBehaviorY: 'auto',
                     scrollSnapType: 'x mandatory',
                     WebkitOverflowScrolling: 'touch',
                   }}
