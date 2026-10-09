@@ -1023,4 +1023,17 @@ html.light .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #0B65B3 !important;
 }
 
+/* 16. Modal Body Scroll Lock */
+html.modal-open,
+body.modal-open {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+}
+
+.modal-open [role="dialog"],
+.modal-open [role="dialog"] form,
+.modal-open [role="dialog"] .overflow-y-auto {
+  overscroll-behavior: contain !important;
+}
+
 

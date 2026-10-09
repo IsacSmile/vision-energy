@@ -16,19 +16,32 @@ export default function EnquiryModal() {
   const [serverError, setServerError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
-  // Lock body scroll when modal is active (without blocking touch panning)
+  // Bulletproof scroll lock for both html and body when modal is active
   useEffect(() => {
     if (modalType) {
+      const originalHtmlOverflow = document.documentElement.style.overflow;
+      const originalBodyOverflow = document.body.style.overflow;
+
+      document.documentElement.classList.add('modal-open');
+      document.body.classList.add('modal-open');
+      document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
+
+      return () => {
+        document.documentElement.classList.remove('modal-open');
+        document.body.classList.remove('modal-open');
+        document.documentElement.style.overflow = originalHtmlOverflow;
+        document.body.style.overflow = originalBodyOverflow;
+      };
     } else {
+      document.documentElement.classList.remove('modal-open');
+      document.body.classList.remove('modal-open');
+      document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
       setSuccessRef(null);
       setServerError(null);
       setCopied(false);
     }
-    return () => {
-      document.body.style.overflow = '';
-    };
   }, [modalType]);
 
   // Handle ESC key press
@@ -54,16 +67,26 @@ export default function EnquiryModal() {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200 overscroll-contain"
       onClick={(e) => {
         if (e.target === e.currentTarget) closeModal();
+      }}
+      onTouchMove={(e) => {
+        if (e.target === e.currentTarget) {
+          e.preventDefault();
+        }
+      }}
+      onWheel={(e) => {
+        if (e.target === e.currentTarget) {
+          e.preventDefault();
+        }
       }}
     >
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-title"
-        className="relative w-full max-w-lg sm:max-w-xl max-h-[92vh] sm:max-h-[88vh] flex flex-col bg-[#0D1117] border border-[#1F2937] rounded-2xl shadow-2xl text-white overflow-hidden"
+        className="relative w-full max-w-lg sm:max-w-xl max-h-[92vh] sm:max-h-[88vh] flex flex-col bg-[#0D1117] border border-[#1F2937] rounded-2xl shadow-2xl text-white overflow-hidden overscroll-contain"
       >
         {/* Mobile Drag Handle Indicator */}
         <div className="w-12 h-1 bg-gray-600/60 rounded-full mx-auto my-1.5 shrink-0 sm:hidden" aria-hidden="true" />
@@ -237,8 +260,8 @@ function ServiceForm({
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col flex-1 min-h-0 overflow-hidden">
       {/* Scrollable Form Body */}
       <div
-        className="flex-1 min-h-0 overflow-y-auto custom-scrollbar p-5 sm:p-6 space-y-4"
-        style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y' }}
+        className="flex-1 min-h-0 overflow-y-auto custom-scrollbar p-5 sm:p-6 space-y-4 overscroll-contain"
+        style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y', overscrollBehavior: 'contain' }}
       >
         {serverError && (
           <div className="p-3 bg-red-950/60 border border-red-500/50 rounded-xl text-red-200 text-xs flex items-center gap-2">
@@ -500,8 +523,8 @@ function ProductForm({
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col flex-1 min-h-0 overflow-hidden">
       {/* Scrollable Form Body */}
       <div
-        className="flex-1 min-h-0 overflow-y-auto custom-scrollbar p-5 sm:p-6 space-y-4"
-        style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y' }}
+        className="flex-1 min-h-0 overflow-y-auto custom-scrollbar p-5 sm:p-6 space-y-4 overscroll-contain"
+        style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y', overscrollBehavior: 'contain' }}
       >
         {serverError && (
           <div className="p-3 bg-red-950/60 border border-red-500/50 rounded-xl text-red-200 text-xs flex items-center gap-2">
