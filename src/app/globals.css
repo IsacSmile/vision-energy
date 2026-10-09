@@ -817,13 +817,38 @@ html.light [role="dialog"] {
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
 }
 
+html.light [role="dialog"] .modal-header,
+html.light [role="dialog"] .modal-footer {
+  background-color: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
+}
+
 html.light [role="dialog"] h2,
 html.light [role="dialog"] h3 {
   color: #0F172A !important;
 }
 
+html.light [role="dialog"] label {
+  color: #334155 !important;
+}
+
 html.light [role="dialog"] p {
   color: #475569 !important;
+}
+
+html.light [role="dialog"] input[readonly] {
+  background-color: #F1F5F9 !important;
+  border-color: #CBD5E1 !important;
+  color: #0B65B3 !important;
+}
+
+html.light [role="dialog"] button:not(.lightning-btn-primary):not([type="submit"]) {
+  color: #475569 !important;
+}
+
+html.light [role="dialog"] button:not(.lightning-btn-primary):not([type="submit"]):hover {
+  color: #0F172A !important;
+  background-color: #F1F5F9 !important;
 }
 
 /* 13. Footer in Light Mode */
