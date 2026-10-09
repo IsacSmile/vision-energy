@@ -226,10 +226,10 @@ export default function ProductsWeOffer() {
                           />
                         </div>
 
-                        {/* Middle: Black Heading Tab (slanted right edge via clip-path, extending from left edge) */}
-                        <div className="pt-2.5 pb-1 flex justify-start">
+                        {/* Middle: Heading Tab */}
+                        <div className="pt-3 pb-1.5 flex justify-start">
                           <div
-                            className="bg-[#050608] text-white py-1.5 pl-3 sm:pl-3.5 pr-6 sm:pr-7 font-bold text-[11px] sm:text-[12px] uppercase tracking-wide truncate max-w-[94%] select-none shadow-sm"
+                            className="bg-[#050608] text-white py-1.5 pl-3 sm:pl-3.5 pr-6 sm:pr-7 font-bold text-[13.5px] sm:text-[15px] uppercase tracking-wide truncate max-w-[96%] select-none shadow-sm"
                             style={{
                               clipPath: 'polygon(0 0, calc(100% - 13px) 0, 100% 100%, 0 100%)',
                             }}
@@ -238,16 +238,16 @@ export default function ProductsWeOffer() {
                           </div>
                         </div>
 
-                        {/* Bottom: Description (max ~15 words, line-clamp: 2 to 3) */}
-                        <div className="px-3 sm:px-3.5 pt-0.5 pb-2.5 flex-1 flex flex-col justify-between">
-                          <p className="text-[#475569] text-xs sm:text-[12.5px] leading-[1.55] line-clamp-2 sm:line-clamp-3 font-normal">
+                        {/* Bottom: Description (Readable font size) */}
+                        <div className="px-3 sm:px-3.5 pt-1 pb-3 flex-1 flex flex-col justify-between">
+                          <p className="text-[#334155] text-[13.5px] sm:text-[14px] lg:text-[14.5px] leading-[1.6] line-clamp-2 sm:line-clamp-3 font-normal">
                             {product.description}
                           </p>
                         </div>
 
                         {/* Card Bottom Action Bar */}
-                        <div className="px-3 sm:px-3.5 py-2 bg-slate-50 border-t border-slate-100 flex items-center justify-between mt-auto">
-                          <span className="text-[11px] font-bold uppercase tracking-wider text-[#0B65B3] group-hover:text-[#8DC63F] transition-colors">
+                        <div className="px-3 sm:px-3.5 py-2.5 bg-slate-50 border-t border-slate-100 flex items-center justify-between mt-auto">
+                          <span className="text-xs sm:text-[12.5px] font-bold uppercase tracking-wider text-[#0B65B3] group-hover:text-[#8DC63F] transition-colors">
                             Enquire / Specs
                           </span>
                           <ArrowRight className="w-3.5 h-3.5 text-[#0B65B3] group-hover:text-[#8DC63F] transition-transform group-hover:translate-x-1 duration-300" />
