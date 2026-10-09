@@ -99,7 +99,14 @@ export default function Footer({ services = [] }: FooterProps) {
                 alt="VISION ENERGY INTERNATIONAL"
                 width={200}
                 height={200}
-                className="w-[200px] h-auto max-h-[200px] object-contain"
+                className="dark-theme-logo w-[200px] h-auto max-h-[200px] object-contain"
+              />
+              <Image
+                src="/site-main-logo-light.png"
+                alt="VISION ENERGY INTERNATIONAL"
+                width={200}
+                height={200}
+                className="light-theme-logo w-[200px] h-auto max-h-[200px] object-contain"
               />
             </Link>
 

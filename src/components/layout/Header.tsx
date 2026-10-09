@@ -304,12 +304,22 @@ export default function Header() {
             className="flex items-center group shrink-0 active-press py-0.5"
             id="header-logo-link"
           >
+            {/* Dark Theme Logo (White 'ENERGY INTERNATIONAL' text) */}
             <Image
               src="/site-main-logo.png"
               alt="VISION ENERGY INTERNATIONAL UAE"
               width={380}
               height={95}
-              className="h-[62px] sm:h-[68px] lg:h-[72px] w-auto max-h-[76px] object-contain transition-transform group-hover:scale-105"
+              className="dark-theme-logo h-[62px] sm:h-[68px] lg:h-[72px] w-auto max-h-[76px] object-contain transition-transform group-hover:scale-105"
+              priority
+            />
+            {/* Light Theme Logo (Dark 'ENERGY INTERNATIONAL' text) */}
+            <Image
+              src="/site-main-logo-light.png"
+              alt="VISION ENERGY INTERNATIONAL UAE"
+              width={380}
+              height={95}
+              className="light-theme-logo h-[62px] sm:h-[68px] lg:h-[72px] w-auto max-h-[76px] object-contain transition-transform group-hover:scale-105"
               priority
             />
           </Link>
