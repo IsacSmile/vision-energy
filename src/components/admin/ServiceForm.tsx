@@ -245,7 +245,7 @@ export default function ServiceForm({ initialData, id }: ServiceFormProps) {
                   setTitle(e.target.value);
                   setIsDirty(true);
                 }}
-                placeholder="External Lightning Protection Installation"
+                placeholder="Lightning Protection Installation"
                 className="w-full bg-[#050608] border border-[#1F2937] text-white text-xs rounded-xl px-3 py-2.5 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-[#A3E635]"
               />
               {errors.title && <p className="text-[11px] text-red-400">{errors.title}</p>}

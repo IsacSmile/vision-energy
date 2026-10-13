@@ -120,13 +120,13 @@ export async function generateMetadata({ params }: ServiceDetailPageProps) {
   let pageDesc = service.summary;
 
   if (slug === "external-lightning-protection-installation") {
-    pageTitle = "External Lightning Protection Installation UAE | Vision Energy International";
+    pageTitle = "Lightning Protection Installation UAE | Vision Energy International";
     if (content.heroLead) {
       pageDesc = content.heroLead;
     }
   } else if (slug === "manpower-supply" || slug === "specialist-engineering-manpower-supply") {
-    pageTitle = "Specialist Engineering Manpower Supply UAE";
-    pageDesc = "Skilled electrical, mechanical and solar manpower for engineering and installation projects across the UAE. Rapid mobilization with certified tools, testing equipment and PPE.";
+    pageTitle = "Manpower Supply UAE | Vision Energy International";
+    pageDesc = "Skilled and unskilled manpower for electrical, mechanical and solar projects across the UAE — including labourers, technicians, engineers and supervisors.";
   }
 
   return {
@@ -225,7 +225,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                   style={{ color: '#FFFFFF' }}
                   aria-current="page"
                 >
-                  External Lightning Protection Installation
+                  Lightning Protection Installation
                 </li>
               </ol>
             </nav>
@@ -240,7 +240,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                   className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight uppercase"
                   style={{ color: '#FFFFFF', textShadow: '0 2px 14px rgba(0,0,0,0.95)' }}
                 >
-                  External Lightning Protection Installation
+                  Lightning Protection Installation
                 </h1>
               </div>
 
@@ -339,7 +339,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
 
   const headerH1 =
     slug === "external-lightning-protection-installation"
-      ? "External Lightning Protection Installation in the UAE"
+      ? "Lightning Protection Installation in the UAE"
       : service.title;
 
   const leadText = content.heroLead || content.hero?.lead || service.summary;

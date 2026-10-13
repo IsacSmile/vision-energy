@@ -20,7 +20,7 @@ export default function IntroStandards({ productCategoryCount }: IntroStandardsP
             <SectionHeader
               id="intro-standards-heading"
               eyebrow="About Vision Energy"
-              title="Powering Progress with Safety & Engineering Excellence"
+              title="Powering Progress Through Engineering Excellence"
             />
           </div>
 
@@ -28,10 +28,10 @@ export default function IntroStandards({ productCategoryCount }: IntroStandardsP
           <div className="lg:col-span-7 space-y-6 pt-2 lg:pt-0">
             <Reveal staggerIndex={1}>
               <p className="text-base md:text-lg text-[#A9B4C0] leading-[1.7]">
-                At <strong className="text-white font-medium">Vision Energy International</strong>, we deliver certified lightning protection, earthing, surge protection, and specialized MEP solutions across the UAE with uncompromising safety and technical compliance.
+                Founded in 2018, Vision Energy International has rapidly established itself in the GCC market as a leading supplier of mechanical, electrical, and solar solutions for a variety of industries, including construction, MEP, oil and gas and renewables. With over a decade of experience in the respective fields we must ensure that our dedication adhere to the international standards, local requirements, and regulatory guidelines for quality and safety.
               </p>
               <p className="text-[15px] sm:text-base text-[#8B949E] dark:text-[#94A3B8] leading-[1.7] mt-4">
-                Within a year of our inception, we established a robust presence across the UAE. As authorized agent and distributor for numerous specialized products, we partner with globally renowned manufacturers to deliver Electrical, Mechanical and Solar solutions for Construction, MEP, Oil &amp; Gas, Utilities and Renewables, backed by on-site technical assistance.
+                Vision Energy International enrolled as a authorized agent and distributor for numerous specialized products in the UAE, we combine integrated cutting edge technology with expertise to provide superior solutions that prioritize environmental sustainability. With a strong regional presence throughout the Middle East we continue to deliver high quality innovative solutions in every project we take on.
               </p>
             </Reveal>
 

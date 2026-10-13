@@ -66,11 +66,11 @@ export default function Footer({ services = [] }: FooterProps) {
   const defaultServices: FooterServiceItem[] = [
     {
       slug: 'external-lightning-protection-installation',
-      title: 'External Lightning Protection Installation',
+      title: 'Lightning Protection Installation',
     },
     {
       slug: 'manpower-supply',
-      title: 'Manpower Services',
+      title: 'Manpower Supply',
     },
   ];
 

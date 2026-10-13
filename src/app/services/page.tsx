@@ -12,14 +12,14 @@ import HeroLightning from '@/components/HeroLightning';
 export const metadata = {
   title: 'Services | Lightning Protection Installation & Support | Vision Energy International',
   description:
-    'Installation and support services from Vision Energy International: external lightning protection installation and manpower services across the UAE.',
+    'Installation and support services from Vision Energy International: lightning protection installation and manpower services across the UAE.',
   alternates: {
     canonical: 'https://www.visionenergyme.com/services',
   },
   openGraph: {
     title: 'Services | Lightning Protection Installation & Support | Vision Energy International',
     description:
-      'Installation and support services from Vision Energy International: external lightning protection installation and manpower services across the UAE.',
+      'Installation and support services from Vision Energy International: lightning protection installation and manpower services across the UAE.',
     url: 'https://www.visionenergyme.com/services',
     type: 'website',
   },

@@ -3,7 +3,7 @@ import Reveal from '@/components/ui/Reveal';
 
 interface SectionHeaderProps {
   eyebrow: string;
-  title: string;
+  title: string | React.ReactNode;
   description?: string;
   align?: 'left' | 'center';
   id?: string;

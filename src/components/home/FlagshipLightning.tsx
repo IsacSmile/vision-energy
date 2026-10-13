@@ -66,7 +66,7 @@ export default function FlagshipLightning() {
   const handleBookInstallation = () => {
     openServiceModal({
       serviceSlug: 'external-lightning-protection-installation',
-      serviceTitle: 'External Lightning Protection Installation',
+      serviceTitle: 'Lightning Protection Installation',
     });
   };
 

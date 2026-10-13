@@ -7,7 +7,7 @@ const FALLBACK_SERVICES_LIST = [
   {
     id: "ext-lp-inst",
     slug: "external-lightning-protection-installation",
-    title: "External Lightning Protection Installation",
+    title: "Lightning Protection Installation",
     summary: SERVICES_CONTENT["external-lightning-protection-installation"]?.hero?.lead || "Installation of external lightning protection systems for commercial buildings, industrial plants, warehouses, and critical installations.",
     icon: "zap",
     metaChips: SERVICES_CONTENT["external-lightning-protection-installation"]?.metaChips || ["Conventional mesh systems", "ESE systems"],
@@ -21,8 +21,8 @@ const FALLBACK_SERVICES_LIST = [
   {
     id: "manpower-sup",
     slug: "manpower-supply",
-    title: "Manpower Supply Services",
-    summary: SERVICES_CONTENT["manpower-supply"]?.hero?.lead || "Manpower services for engineering and installation projects across the UAE.",
+    title: "Manpower Supply",
+    summary: "Skilled and unskilled manpower for electrical, mechanical and solar projects across the UAE — including labourers, technicians, engineers and supervisors.",
     icon: "users",
     metaChips: SERVICES_CONTENT["manpower-supply"]?.metaChips || ["Specialist Manpower", "Technical Support"],
     content: SERVICES_CONTENT["manpower-supply"],
