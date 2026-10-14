@@ -168,7 +168,7 @@ export default function WhyVisionEnergy() {
               id="why-vision-energy-heading"
               className="text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-bold text-white leading-[1.2] tracking-[-0.02em] text-balance"
             >
-              Engineering that keeps people, buildings, and operations safe when reliability matters most.
+              Advanced Solutions. Assured Quality. Lasting Value.
             </h2>
           </Reveal>
         </div>

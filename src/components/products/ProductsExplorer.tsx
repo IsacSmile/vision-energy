@@ -560,12 +560,17 @@ export default function ProductsExplorer({
 
             {/* Description */}
             <p className="text-base lg:text-[18px] text-slate-100 leading-[1.65] max-w-[62ch] font-normal drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)]">
-              Browse {categories.length} certified product categories across lightning protection, earthing, electrical cables, cable management, and automation. Engineered for high-spec UAE infrastructure.
+              Browse multiple certified product categories across lightning protection, earthing, electrical cables, cable management, and automation. Engineered for high-spec UAE infrastructure.
             </p>
 
             {/* Live Count Meta Line */}
             <p className="text-[13px] text-slate-300 font-medium pt-1 drop-shadow-sm">
-              <span className="text-white font-semibold">{filteredCategories.length}</span> categories · <span className="text-white font-semibold">{groupsWithCounts.length}</span> groups
+              <span className="text-white font-semibold">
+                {deferredSearchInput || (groupParam && groupParam !== 'ALL') || activeCodes.length > 0
+                  ? `${filteredCategories.length} categories`
+                  : 'Multiple categories'}
+              </span>
+              {' '}· <span className="text-white font-semibold">{groupsWithCounts.length}</span> groups
             </p>
           </div>
         </div>
@@ -708,7 +713,7 @@ export default function ProductsExplorer({
                 : 'bg-[#0D1117] border-[#1F2937] text-[#A9B4C0] hover:text-white'
             }`}
           >
-            <span>All ({categories.length})</span>
+            <span>All Categories</span>
           </Link>
 
           {/* Group Chips */}
@@ -883,7 +888,7 @@ export default function ProductsExplorer({
                     : 'text-white hover:bg-white/5'
                 }`}
               >
-                <span>All products ({categories.length})</span>
+                <span>All categories</span>
                 {(!groupParam || groupParam === 'ALL') && <Check className="w-5 h-5 text-[#8DC63F]" />}
               </button>
 

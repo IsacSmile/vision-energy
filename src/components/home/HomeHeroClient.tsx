@@ -399,11 +399,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
         </div>
 
         {/* Quick Fact Tiles */}
-        <div
-          className={`grid ${
-            productCategoryCount && productCategoryCount > 0 ? 'grid-cols-3' : 'grid-cols-2'
-          } gap-2 w-full mb-2`}
-        >
+        <div className="grid grid-cols-3 gap-2 w-full mb-2">
           {/* Tile A: 2018 Established */}
           <div className="h-[62px] [media(max-height:640px)]:h-[52px] bg-[#0D1117]/85 backdrop-blur-md border border-white/[0.08] rounded-xl flex flex-col items-center justify-center text-center p-1">
             <span className="text-[16px] [media(max-height:640px)]:text-[14px] font-bold text-white leading-tight">
@@ -425,16 +421,14 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
           </div>
 
           {/* Tile C: Product Categories */}
-          {Boolean(productCategoryCount && productCategoryCount > 0) && (
-            <div className="h-[62px] [media(max-height:640px)]:h-[52px] bg-[#0D1117]/85 backdrop-blur-md border border-white/[0.08] rounded-xl flex flex-col items-center justify-center text-center p-1 overflow-hidden">
-              <span className="text-[16px] [media(max-height:640px)]:text-[14px] font-bold text-white leading-tight">
-                {productCategoryCount}
-              </span>
-              <span className="text-[10px] [media(max-height:640px)]:text-[8px] text-[#A9B4C0] uppercase tracking-[0.04em] font-medium leading-tight mt-0.5 truncate w-full">
-                Categories
-              </span>
-            </div>
-          )}
+          <div className="h-[62px] [media(max-height:640px)]:h-[52px] bg-[#0D1117]/85 backdrop-blur-md border border-white/[0.08] rounded-xl flex flex-col items-center justify-center text-center p-1 overflow-hidden">
+            <span className="text-[16px] [media(max-height:640px)]:text-[14px] font-bold text-white leading-tight">
+              Multiple
+            </span>
+            <span className="text-[10px] [media(max-height:640px)]:text-[8px] text-[#A9B4C0] uppercase tracking-[0.04em] font-medium leading-tight mt-0.5 truncate w-full">
+              Categories
+            </span>
+          </div>
         </div>
       </div>
     </section>

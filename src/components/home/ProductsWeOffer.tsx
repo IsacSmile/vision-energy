@@ -146,7 +146,7 @@ export default function ProductsWeOffer() {
               href="/products"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0D1117] hover:bg-[#161B22] border border-white/10 hover:border-[#8DC63F]/50 text-sm font-semibold text-white hover:text-[#8DC63F] transition-all group shrink-0 shadow-lg"
             >
-              <span>Explore Full 57+ Categories</span>
+              <span>Explore Multiple Categories</span>
               <ChevronRight className="w-4 h-4 text-[#8DC63F] group-hover:translate-x-1 transition-transform" />
             </Link>
           </Reveal>

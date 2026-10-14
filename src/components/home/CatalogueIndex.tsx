@@ -150,7 +150,7 @@ export default function CatalogueIndex({
                 onKeyDown={(e) => {
                   if (e.key === 'Escape') setSearchQuery('');
                 }}
-                placeholder={`Search ${totalCategoryCount} categories by name, code or product`}
+                placeholder="Search categories by name, code or product"
                 aria-label="Search categories"
                 className="w-full h-[56px] pl-14 pr-12 rounded-full bg-[#0D1117] border border-white/[0.12] text-base text-white placeholder-[#A9B4C0] focus:outline-none focus:border-[#8DC63F] focus:ring-1 focus:ring-[#8DC63F] transition-colors"
               />

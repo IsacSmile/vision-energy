@@ -2,7 +2,6 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight, ArrowRight, ChevronRight } from 'lucide-react';
-import { getPublishedProductCategories } from '@/lib/data/products';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Reveal from '@/components/ui/Reveal';
 import LightningButton from '@/components/ui/LightningButton';
@@ -92,10 +91,7 @@ const FEATURED_PRODUCTS: FeaturedProduct[] = [
   },
 ];
 
-export default async function ProductPreview() {
-  const categories = await getPublishedProductCategories();
-  const totalCount = categories.length || 57;
-
+export default function ProductPreview() {
   return (
     <section
       aria-labelledby="product-preview-heading"
@@ -121,7 +117,7 @@ export default async function ProductPreview() {
               href="/products"
               className="inline-flex items-center gap-2 text-sm font-semibold text-[#8DC63F] hover:text-white transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded px-1 py-0.5 shrink-0"
             >
-              <span>View all products ({totalCount})</span>
+              <span>View all products</span>
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Link>
           </div>
@@ -194,7 +190,7 @@ export default async function ProductPreview() {
         {/* Simple & Clean Bottom CTA */}
         <div className="mt-8 p-4 sm:p-5 rounded-2xl bg-[#0D1117]/60 border border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
           <p className="text-xs sm:text-sm text-[#A9B4C0] text-center sm:text-left">
-            Looking for full specifications? Access all <span className="text-white font-semibold">{totalCount} product categories</span> and datasheets.
+            Looking for full specifications? Access our <span className="text-white font-semibold">multiple product categories</span> and datasheets.
           </p>
 
           <Link

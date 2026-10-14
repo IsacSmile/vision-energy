@@ -34,14 +34,6 @@ async function resolveSearchParams(searchParams: PageProps["searchParams"]) {
 
 export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
   const params = await resolveSearchParams(searchParams);
-  let totalCount = 57;
-
-  try {
-    const items = await getPublishedProductCategories();
-    if (items && items.length > 0) totalCount = items.length;
-  } catch (e) {
-    // Graceful fallback
-  }
 
   const hasQueryParams = Boolean(
     params.q || params.group || params.codes || params.sort || params.view
@@ -49,7 +41,7 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
 
   return {
     title: "Products | Lightning Protection, Earthing, Electrical & Solar | Vision Energy International",
-    description: `Browse ${totalCount} product categories from Vision Energy International: lightning protection, earthing, cables, lighting, electrical, mechanical and solar products across the UAE.`,
+    description: "Browse multiple product categories from Vision Energy International: lightning protection, earthing, cables, lighting, electrical, mechanical and solar products across the UAE.",
     alternates: {
       canonical: "/products",
     },
