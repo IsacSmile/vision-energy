@@ -97,11 +97,11 @@ export default async function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${poppins.variable} dark`} suppressHydrationWarning>
+    <html lang="en" className={`${poppins.variable} light`} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('vision_theme');if(t==='light'){document.documentElement.classList.remove('dark');document.documentElement.classList.add('light');}else{document.documentElement.classList.add('dark');document.documentElement.classList.remove('light');}}catch(e){}})();`,
+            __html: `(function(){try{var t=localStorage.getItem('vision_theme');if(t==='dark'){document.documentElement.classList.remove('light');document.documentElement.classList.add('dark');}else{document.documentElement.classList.remove('dark');document.documentElement.classList.add('light');}}catch(e){}})();`,
           }}
         />
         <script
@@ -118,7 +118,7 @@ export default async function RootLayout({
           `}
         </Script>
       </head>
-      <body className="bg-[#050608] text-white flex flex-col min-h-screen antialiased" suppressHydrationWarning>
+      <body className="bg-white text-[#0F172A] dark:bg-[#050608] dark:text-white flex flex-col min-h-screen antialiased" suppressHydrationWarning>
         <ThemeProvider>
           <EnquiryModalProvider>
             <Header />

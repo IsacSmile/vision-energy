@@ -16,8 +16,8 @@ export default function ThemeToggle({
   id = 'theme-toggle-button',
 }: ThemeToggleProps) {
   const { theme, toggleTheme, mounted } = useTheme();
-
-  const isDark = !mounted || theme === 'dark';
+ 
+  const isDark = mounted ? theme === 'dark' : false;
 
   return (
     <button

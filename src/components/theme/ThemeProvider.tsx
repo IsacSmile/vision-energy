@@ -12,7 +12,7 @@ interface ThemeContextType {
 }
 
 const ThemeContext = createContext<ThemeContextType>({
-  theme: 'dark',
+  theme: 'light',
   toggleTheme: () => {},
   setTheme: () => {},
   mounted: false,
@@ -21,36 +21,36 @@ const ThemeContext = createContext<ThemeContextType>({
 const STORAGE_KEY = 'vision_theme';
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  // Default is dark mode per requirements
-  const [theme, setThemeState] = useState<Theme>('dark');
+  // Default is light mode per requirements
+  const [theme, setThemeState] = useState<Theme>('light');
   const [mounted, setMounted] = useState(false);
 
   // Synchronize document classes
   const applyTheme = useCallback((newTheme: Theme) => {
     const root = document.documentElement;
-    if (newTheme === 'light') {
-      root.classList.remove('dark');
-      root.classList.add('light');
-    } else {
+    if (newTheme === 'dark') {
       root.classList.remove('light');
       root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+      root.classList.add('light');
     }
   }, []);
 
   useEffect(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEY) as Theme | null;
-      if (stored === 'light' || stored === 'dark') {
-        setThemeState(stored);
-        applyTheme(stored);
-      } else {
-        // Default is dark
+      if (stored === 'dark') {
         setThemeState('dark');
         applyTheme('dark');
+      } else {
+        // Default is light mode (when stored is 'light' or null/unset)
+        setThemeState('light');
+        applyTheme('light');
       }
     } catch {
       // Fallback
-      applyTheme('dark');
+      applyTheme('light');
     }
     setMounted(true);
   }, [applyTheme]);
