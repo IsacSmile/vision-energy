@@ -179,7 +179,7 @@ export default function Header() {
       <header className={headerClasses}>
         {/* Top Notch / Sub-Header Utility Bar - Only shown at hero section, smoothly collapses on scroll away from hero */}
         <div
-          className={`w-full bg-[#0D3B3E] text-[#F2F5F5] z-50 border-b border-black/20 shadow-sm select-none transition-all duration-300 ease-in-out overflow-hidden ${
+          className={`w-full bg-[#8DC63F] text-[#0A192F] z-50 border-b border-[#0A192F]/15 shadow-sm select-none transition-all duration-300 ease-in-out overflow-hidden ${
             showTopNotch
               ? 'max-h-[50px] opacity-100 translate-y-0'
               : 'max-h-0 opacity-0 -translate-y-full border-b-0 pointer-events-none'
@@ -189,66 +189,66 @@ export default function Header() {
           <div className="md:hidden relative flex items-center h-[34px] overflow-hidden">
             {/* Subtle left/right fade gradients */}
             <div
-              className="pointer-events-none absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-[#0D3B3E] to-transparent z-10"
+              className="pointer-events-none absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-[#8DC63F] to-transparent z-10"
               aria-hidden="true"
             />
             <div
-              className="pointer-events-none absolute right-0 top-0 bottom-0 w-4 bg-gradient-to-l from-[#0D3B3E] to-transparent z-10"
+              className="pointer-events-none absolute right-0 top-0 bottom-0 w-4 bg-gradient-to-l from-[#8DC63F] to-transparent z-10"
               aria-hidden="true"
             />
 
             {/* Seamless Infinite Marquee Track (2 identical copies) */}
             <div className="animate-marquee-fast flex items-center text-[11.5px] font-semibold py-1">
               {/* Copy 1 */}
-              <div className="flex items-center divide-x divide-white/20 shrink-0">
+              <div className="flex items-center divide-x divide-[#0A192F]/20 shrink-0">
                 <div className="flex items-center gap-1.5 px-3.5 shrink-0">
-                  <Clock className="w-3.5 h-3.5 text-[#8DC63F] shrink-0 drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)]" />
-                  <span className="drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)] whitespace-nowrap">Sun-Thu 8:30AM-05:30PM</span>
+                  <Clock className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                  <span className="whitespace-nowrap">Sun-Thu 8:30AM-05:30PM</span>
                 </div>
                 <a
                   href="tel:+97172041010"
-                  className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-[#8DC63F] transition-colors"
+                  className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
                   title="Call Vision Energy"
                 >
-                  <Phone className="w-3.5 h-3.5 text-[#8DC63F] shrink-0 drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)]" />
-                  <span className="drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)] whitespace-nowrap">+971 7 2041010</span>
+                  <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                  <span className="whitespace-nowrap">+971 7 2041010</span>
                 </a>
                 <a
                   href="mailto:info@visionenergyme.com"
-                  className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-[#8DC63F] transition-colors"
+                  className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
                   title="Email Vision Energy"
                 >
-                  <Mail className="w-3.5 h-3.5 text-[#8DC63F] shrink-0 drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)]" />
-                  <span className="drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)] whitespace-nowrap">info@visionenergyme.com</span>
+                  <Mail className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                  <span className="whitespace-nowrap">info@visionenergyme.com</span>
                 </a>
-                <div className="flex items-center gap-1.5 px-3.5 shrink-0 text-[#F2F5F5]/90">
+                <div className="flex items-center gap-1.5 px-3.5 shrink-0 text-[#0A192F]/90">
                   <span className="whitespace-nowrap">UAE Certified Specialist MEP & Earthing</span>
                 </div>
               </div>
 
               {/* Copy 2 (identically repeated for seamless loop) */}
-              <div className="flex items-center divide-x divide-white/20 shrink-0">
+              <div className="flex items-center divide-x divide-[#0A192F]/20 shrink-0">
                 <div className="flex items-center gap-1.5 px-3.5 shrink-0">
-                  <Clock className="w-3.5 h-3.5 text-[#8DC63F] shrink-0 drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)]" />
-                  <span className="drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)] whitespace-nowrap">Sun-Thu 8:30AM-05:30PM</span>
+                  <Clock className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                  <span className="whitespace-nowrap">Sun-Thu 8:30AM-05:30PM</span>
                 </div>
                 <a
                   href="tel:+97172041010"
-                  className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-[#8DC63F] transition-colors"
+                  className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
                   title="Call Vision Energy"
                 >
-                  <Phone className="w-3.5 h-3.5 text-[#8DC63F] shrink-0 drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)]" />
-                  <span className="drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)] whitespace-nowrap">+971 7 2041010</span>
+                  <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                  <span className="whitespace-nowrap">+971 7 2041010</span>
                 </a>
                 <a
                   href="mailto:info@visionenergyme.com"
-                  className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-[#8DC63F] transition-colors"
+                  className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
                   title="Email Vision Energy"
                 >
-                  <Mail className="w-3.5 h-3.5 text-[#8DC63F] shrink-0 drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)]" />
-                  <span className="drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)] whitespace-nowrap">info@visionenergyme.com</span>
+                  <Mail className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                  <span className="whitespace-nowrap">info@visionenergyme.com</span>
                 </a>
-                <div className="flex items-center gap-1.5 px-3.5 shrink-0 text-[#F2F5F5]/90">
+                <div className="flex items-center gap-1.5 px-3.5 shrink-0 text-[#0A192F]/90">
                   <span className="whitespace-nowrap">UAE Certified Specialist MEP & Earthing</span>
                 </div>
               </div>
@@ -259,36 +259,36 @@ export default function Header() {
           <div className="hidden md:block max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-[36px] sm:h-[40px] text-xs sm:text-[13px] font-semibold">
               {/* Left Items with Vertical Divider Lines */}
-              <div className="flex items-center divide-x divide-white/20 overflow-x-auto no-scrollbar py-1">
+              <div className="flex items-center divide-x divide-[#0A192F]/20 overflow-x-auto no-scrollbar py-1">
                 {/* Working Hours */}
                 <div className="flex items-center gap-2 pr-3.5 sm:pr-5 shrink-0">
-                  <Clock className="w-3.5 h-3.5 text-[#8DC63F] shrink-0 drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)]" />
-                  <span className="drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)]">Sun-Thu 8:30AM-05:30PM</span>
+                  <Clock className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                  <span>Sun-Thu 8:30AM-05:30PM</span>
                 </div>
 
                 {/* Telephone */}
                 <a
                   href="tel:+97172041010"
-                  className="flex items-center gap-2 px-3.5 sm:px-5 shrink-0 hover:text-[#8DC63F] transition-colors"
+                  className="flex items-center gap-2 px-3.5 sm:px-5 shrink-0 hover:text-black transition-colors"
                   title="Call Vision Energy"
                 >
-                  <Phone className="w-3.5 h-3.5 text-[#8DC63F] shrink-0 drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)]" />
-                  <span className="drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)]">+971 7 2041010</span>
+                  <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                  <span>+971 7 2041010</span>
                 </a>
 
                 {/* Email */}
                 <a
                   href="mailto:info@visionenergyme.com"
-                  className="flex items-center gap-2 pl-3.5 sm:px-5 shrink-0 hover:text-[#8DC63F] transition-colors"
+                  className="flex items-center gap-2 pl-3.5 sm:px-5 shrink-0 hover:text-black transition-colors"
                   title="Email Vision Energy"
                 >
-                  <Mail className="w-3.5 h-3.5 text-[#8DC63F] shrink-0 drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)]" />
-                  <span className="drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)]">info@visionenergyme.com</span>
+                  <Mail className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                  <span>info@visionenergyme.com</span>
                 </a>
               </div>
 
               {/* Right Tag (desktop only) */}
-              <div className="hidden lg:flex items-center gap-2 pl-4 border-l border-white/20 text-[11px] sm:text-xs text-[#F2F5F5]/90 shrink-0 font-semibold drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)]">
+              <div className="hidden lg:flex items-center gap-2 pl-4 border-l border-[#0A192F]/20 text-[11px] sm:text-xs text-[#0A192F]/90 shrink-0 font-semibold">
                 <span>UAE Certified Specialist MEP & Earthing</span>
               </div>
             </div>
@@ -351,7 +351,7 @@ export default function Header() {
               variant="primary"
               size="md"
               href={`tel:${dictionary.company.primaryPhone}`}
-              iconLeft={<Phone className="w-4 h-4 text-[#0B65B3] [html.light_&]:text-white" />}
+              iconLeft={<Phone className="w-4 h-4 text-[#8DC63F]" />}
               id="header-call-button"
             >
               {dictionary.nav.callNow}
@@ -364,7 +364,7 @@ export default function Header() {
 
             <a
               href={`tel:${dictionary.company.primaryPhone}`}
-              className="w-[44px] h-[44px] flex items-center justify-center rounded-xl text-white bg-[#0D1117]/90 border border-white/12 hover:bg-[#0D1117] focus-visible:ring-2 focus-visible:ring-[#8DC63F] active-press shadow-md"
+              className="w-[44px] h-[44px] flex items-center justify-center rounded-xl bg-[#0B65B3] hover:bg-[#095292] border border-[#8DC63F]/50 hover:border-[#8DC63F] hover:shadow-[0_0_16px_rgba(141,198,63,0.4)] focus-visible:ring-2 focus-visible:ring-[#8DC63F] active-press shadow-md transition-all"
               aria-label="Call Vision Energy"
             >
               <Phone className="w-5 h-5 text-[#8DC63F]" />
@@ -475,7 +475,7 @@ export default function Header() {
               variant="primary"
               size="md"
               onClick={handleMobileEnquiry}
-              iconLeft={<Send className="w-4 h-4" />}
+              iconLeft={<Send className="w-4 h-4 text-[#8DC63F]" />}
               fullWidth
             >
               Enquire

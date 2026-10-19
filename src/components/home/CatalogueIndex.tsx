@@ -7,6 +7,7 @@ import {
   X,
   ChevronDown,
   ArrowUpRight,
+  ArrowRight,
   Send,
   MessageSquare,
 } from 'lucide-react';
@@ -495,7 +496,7 @@ export default function CatalogueIndex({
                               onClick={() =>
                                 openProductModal({ categoryCode: cat.code, categoryTitle: cat.title })
                               }
-                              className="w-11 h-11 rounded-full border border-white/15 bg-white/5 hover:bg-[#8DC63F]/20 hover:border-[#8DC63F] text-white hover:text-[#8DC63F] flex items-center justify-center shrink-0 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F]"
+                              className="w-11 h-11 rounded-full border border-[#8DC63F]/40 bg-[#0B65B3]/20 hover:bg-[#0B65B3] hover:border-[#8DC63F] text-[#8DC63F] hover:text-white flex items-center justify-center shrink-0 transition-all hover:shadow-[0_0_16px_rgba(141,198,63,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F]"
                             >
                               <Send className="w-4 h-4 stroke-[1.5]" />
                             </button>
@@ -520,7 +521,13 @@ export default function CatalogueIndex({
 
             {/* View All Products Primary Pill Button */}
             <div className="pt-4 text-center">
-              <LightningButton variant="primary" size="md" href="/products" fullWidth>
+              <LightningButton
+                variant="primary"
+                size="md"
+                href="/products"
+                iconRight={<ArrowRight className="w-4 h-4 text-[#8DC63F]" />}
+                fullWidth
+              >
                 View all products
               </LightningButton>
             </div>

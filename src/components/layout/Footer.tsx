@@ -84,7 +84,10 @@ export default function Footer({ services = [] }: FooterProps) {
   ];
 
   return (
-    <footer aria-label="Site Footer" className="bg-[#050608] relative text-white border-t border-white/10">
+    <footer aria-label="Site Footer" className="bg-[#0A192F] relative text-white border-t border-[#8DC63F]/30 shadow-2xl">
+      {/* Signature Lime Green Gradient Top Accent Line */}
+      <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-[#8DC63F] to-transparent" />
+
       <div className="max-w-[80rem] mx-auto px-5 sm:px-6 lg:px-8 pt-16 pb-8 lg:pt-20 lg:pb-10">
         {/* MAIN LAYOUT: 12 COLUMNS ON DESKTOP */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 pb-12 border-b border-white/10">
@@ -99,22 +102,15 @@ export default function Footer({ services = [] }: FooterProps) {
                 alt="VISION ENERGY INTERNATIONAL"
                 width={240}
                 height={240}
-                className="dark-theme-logo w-[230px] h-auto max-h-[230px] object-contain"
-              />
-              <Image
-                src="/site-main-logo-light.png"
-                alt="VISION ENERGY INTERNATIONAL"
-                width={240}
-                height={240}
-                className="light-theme-logo w-[230px] h-auto max-h-[230px] object-contain"
+                className="w-[230px] h-auto max-h-[230px] object-contain"
               />
             </Link>
 
             <div className="space-y-2 max-w-[34ch]">
-              <p className="text-sm font-semibold text-white leading-snug">
+              <p className="text-sm font-semibold !text-white leading-snug">
                 Redefined, Innovative And Quality Assured Engineering Product Solutions
               </p>
-              <p className="text-xs text-[#A9B4C0] leading-relaxed">
+              <p className="text-xs !text-white/80 leading-relaxed">
                 Electrical, mechanical and solar product solutions across the UAE.
               </p>
             </div>
@@ -137,11 +133,12 @@ export default function Footer({ services = [] }: FooterProps) {
                 aria-controls="footer-products-list"
                 className="w-full py-2 flex items-center justify-between text-left lg:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded"
               >
-                <span className="text-xs font-semibold text-white/90 uppercase tracking-widest">
+                <span className="text-xs font-bold !text-white uppercase tracking-widest flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F]" />
                   Products
                 </span>
                 <ChevronDown
-                  className={`w-4 h-4 text-[#A9B4C0] lg:hidden transition-transform duration-300 ${
+                  className={`w-4 h-4 text-white/60 lg:hidden transition-transform duration-300 ${
                     openAccordion === 'products' ? 'rotate-180 text-[#8DC63F]' : ''
                   }`}
                 />
@@ -149,7 +146,7 @@ export default function Footer({ services = [] }: FooterProps) {
 
               <ul
                 id="footer-products-list"
-                className={`space-y-2.5 text-xs sm:text-sm text-[#A9B4C0] mt-3 ${
+                className={`space-y-2.5 text-xs sm:text-sm !text-white/80 mt-3 ${
                   openAccordion === 'products' ? 'block' : 'hidden lg:block'
                 }`}
               >
@@ -157,7 +154,7 @@ export default function Footer({ services = [] }: FooterProps) {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="hover:text-[#8DC63F] transition-colors inline-block py-0.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8DC63F] rounded"
+                      className="!text-white/80 hover:!text-[#8DC63F] hover:translate-x-0.5 transition-all inline-block py-0.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8DC63F] rounded"
                     >
                       {item.label}
                     </Link>
@@ -175,11 +172,12 @@ export default function Footer({ services = [] }: FooterProps) {
                 aria-controls="footer-services-list"
                 className="w-full py-2 flex items-center justify-between text-left lg:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded"
               >
-                <span className="text-xs font-semibold text-white/90 uppercase tracking-widest">
+                <span className="text-xs font-bold !text-white uppercase tracking-widest flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F]" />
                   Services
                 </span>
                 <ChevronDown
-                  className={`w-4 h-4 text-[#A9B4C0] lg:hidden transition-transform duration-300 ${
+                  className={`w-4 h-4 text-white/60 lg:hidden transition-transform duration-300 ${
                     openAccordion === 'services' ? 'rotate-180 text-[#8DC63F]' : ''
                   }`}
                 />
@@ -187,7 +185,7 @@ export default function Footer({ services = [] }: FooterProps) {
 
               <ul
                 id="footer-services-list"
-                className={`space-y-2.5 text-xs sm:text-sm text-[#A9B4C0] mt-3 ${
+                className={`space-y-2.5 text-xs sm:text-sm !text-white/80 mt-3 ${
                   openAccordion === 'services' ? 'block' : 'hidden lg:block'
                 }`}
               >
@@ -195,7 +193,7 @@ export default function Footer({ services = [] }: FooterProps) {
                   <li key={service.slug}>
                     <Link
                       href={`/services/${service.slug}`}
-                      className="hover:text-[#8DC63F] transition-colors inline-block py-0.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8DC63F] rounded"
+                      className="!text-white/80 hover:!text-[#8DC63F] hover:translate-x-0.5 transition-all inline-block py-0.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8DC63F] rounded"
                     >
                       {service.title}
                     </Link>
@@ -213,11 +211,12 @@ export default function Footer({ services = [] }: FooterProps) {
                 aria-controls="footer-company-list"
                 className="w-full py-2 flex items-center justify-between text-left lg:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded"
               >
-                <span className="text-xs font-semibold text-white/90 uppercase tracking-widest">
+                <span className="text-xs font-bold !text-white uppercase tracking-widest flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F]" />
                   Company
                 </span>
                 <ChevronDown
-                  className={`w-4 h-4 text-[#A9B4C0] lg:hidden transition-transform duration-300 ${
+                  className={`w-4 h-4 text-white/60 lg:hidden transition-transform duration-300 ${
                     openAccordion === 'company' ? 'rotate-180 text-[#8DC63F]' : ''
                   }`}
                 />
@@ -225,7 +224,7 @@ export default function Footer({ services = [] }: FooterProps) {
 
               <ul
                 id="footer-company-list"
-                className={`space-y-2.5 text-xs sm:text-sm text-[#A9B4C0] mt-3 ${
+                className={`space-y-2.5 text-xs sm:text-sm !text-white/80 mt-3 ${
                   openAccordion === 'company' ? 'block' : 'hidden lg:block'
                 }`}
               >
@@ -233,7 +232,7 @@ export default function Footer({ services = [] }: FooterProps) {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="hover:text-[#8DC63F] transition-colors inline-block py-0.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8DC63F] rounded"
+                      className="!text-white/80 hover:!text-[#8DC63F] hover:translate-x-0.5 transition-all inline-block py-0.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8DC63F] rounded"
                     >
                       {item.label}
                     </Link>
@@ -244,26 +243,27 @@ export default function Footer({ services = [] }: FooterProps) {
 
             {/* CONTACT */}
             <div className="space-y-3">
-              <span className="text-xs font-semibold text-white/90 uppercase tracking-widest block py-2">
+              <span className="text-xs font-bold !text-white uppercase tracking-widest flex items-center gap-2 py-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F]" />
                 Contact
               </span>
 
-              <div className="space-y-3 text-xs sm:text-sm text-[#A9B4C0]">
+              <div className="space-y-3 text-xs sm:text-sm !text-white/85">
                 <div className="flex items-center gap-2.5">
-                  <Phone className="w-4 h-4 text-[#0B65B3] shrink-0" />
+                  <Phone className="w-4 h-4 text-[#8DC63F] shrink-0" />
                   <a
                     href={`tel:${dictionary.company.primaryPhone}`}
-                    className="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8DC63F] rounded"
+                    className="hover:!text-[#8DC63F] !text-white/90 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8DC63F] rounded"
                   >
                     {dictionary.company.primaryPhone}
                   </a>
                 </div>
 
                 <div className="flex items-center gap-2.5">
-                  <Phone className="w-4 h-4 text-[#0B65B3] shrink-0" />
+                  <Phone className="w-4 h-4 text-[#8DC63F] shrink-0" />
                   <a
                     href={`tel:${dictionary.company.secondaryPhone}`}
-                    className="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8DC63F] rounded"
+                    className="hover:!text-[#8DC63F] !text-white/90 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8DC63F] rounded"
                   >
                     {dictionary.company.secondaryPhone}
                   </a>
@@ -273,13 +273,13 @@ export default function Footer({ services = [] }: FooterProps) {
                   <Mail className="w-4 h-4 text-[#8DC63F] shrink-0" />
                   <a
                     href={`mailto:${dictionary.company.email}`}
-                    className="hover:text-white text-[#8DC63F] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8DC63F] rounded"
+                    className="hover:!text-white !text-[#8DC63F] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8DC63F] rounded"
                   >
                     {dictionary.company.email}
                   </a>
                 </div>
 
-                <div className="flex items-start gap-2.5 pt-1 text-[#A9B4C0]">
+                <div className="flex items-start gap-2.5 pt-1 !text-white/80">
                   <MapPin className="w-4 h-4 text-[#8DC63F] shrink-0 mt-0.5" />
                   <span>Abu Dhabi | Dubai | Ras Al Khaimah</span>
                 </div>
@@ -289,16 +289,16 @@ export default function Footer({ services = [] }: FooterProps) {
         </div>
 
         {/* BOTTOM BAR */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#A9B4C0] gap-4">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs !text-white/70 gap-4">
           <p suppressHydrationWarning>© {new Date().getFullYear()} VISION ENERGY INTERNATIONAL. All rights reserved.</p>
 
           <button
             type="button"
             onClick={handleScrollToTop}
-            className="inline-flex items-center gap-2 font-medium text-[#8DC63F] hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8DC63F] rounded py-1"
+            className="group inline-flex items-center gap-2 font-semibold !text-[#8DC63F] hover:!text-white transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8DC63F] rounded py-1"
           >
             <span>Back to top</span>
-            <ArrowUp className="w-3.5 h-3.5" />
+            <ArrowUp className="w-3.5 h-3.5 transition-transform group-hover:-translate-y-0.5" />
           </button>
         </div>
       </div>

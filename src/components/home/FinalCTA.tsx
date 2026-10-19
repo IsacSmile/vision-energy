@@ -134,7 +134,7 @@ export default function FinalCTA({ bgClass = 'bg-[#0D1117]' }: FinalCTAProps) {
                   variant="primary"
                   size="lg"
                   onClick={handleOpenEnquiry}
-                  iconRight={<ArrowRight className="w-4 h-4" />}
+                  iconRight={<ArrowRight className="w-4 h-4 text-[#8DC63F]" />}
                   fullWidth
                   className="sm:w-auto shadow-lg"
                 >
@@ -194,12 +194,12 @@ export default function FinalCTA({ bgClass = 'bg-[#0D1117]' }: FinalCTAProps) {
                       type="button"
                       aria-label="Copy phone number"
                       onClick={() => copyToClipboard('+971 7 204 2763', 'phone')}
-                      className="w-11 h-11 rounded-full border border-white/15 bg-white/5 hover:bg-[#8DC63F]/20 hover:border-[#8DC63F] text-white hover:text-[#8DC63F] flex items-center justify-center shrink-0 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] opacity-100 lg:opacity-0 lg:group-hover:opacity-100 lg:group-focus-within:opacity-100 mt-1"
+                      className="w-11 h-11 rounded-full border border-[#8DC63F]/40 bg-[#0B65B3]/20 hover:bg-[#0B65B3] hover:border-[#8DC63F] text-[#8DC63F] hover:text-white flex items-center justify-center shrink-0 transition-all hover:shadow-[0_0_16px_rgba(141,198,63,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] opacity-100 lg:opacity-0 lg:group-hover:opacity-100 lg:group-focus-within:opacity-100 mt-1"
                     >
                       {copiedPhone ? (
                         <Check className="w-4 h-4 text-[#8DC63F]" />
                       ) : (
-                        <Copy className="w-4 h-4" />
+                        <Copy className="w-4 h-4 text-[#8DC63F]" />
                       )}
                     </button>
                   </dd>
@@ -229,12 +229,12 @@ export default function FinalCTA({ bgClass = 'bg-[#0D1117]' }: FinalCTAProps) {
                       type="button"
                       aria-label="Copy email address"
                       onClick={() => copyToClipboard('info@visionenergyme.com', 'email')}
-                      className="w-11 h-11 rounded-full border border-white/15 bg-white/5 hover:bg-[#8DC63F]/20 hover:border-[#8DC63F] text-white hover:text-[#8DC63F] flex items-center justify-center shrink-0 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] opacity-100 lg:opacity-0 lg:group-hover:opacity-100 lg:group-focus-within:opacity-100 mt-1"
+                      className="w-11 h-11 rounded-full border border-[#8DC63F]/40 bg-[#0B65B3]/20 hover:bg-[#0B65B3] hover:border-[#8DC63F] text-[#8DC63F] hover:text-white flex items-center justify-center shrink-0 transition-all hover:shadow-[0_0_16px_rgba(141,198,63,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] opacity-100 lg:opacity-0 lg:group-hover:opacity-100 lg:group-focus-within:opacity-100 mt-1"
                     >
                       {copiedEmail ? (
                         <Check className="w-4 h-4 text-[#8DC63F]" />
                       ) : (
-                        <Copy className="w-4 h-4" />
+                        <Copy className="w-4 h-4 text-[#8DC63F]" />
                       )}
                     </button>
                   </dd>

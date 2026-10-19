@@ -188,12 +188,12 @@ const LightningButton = forwardRef<HTMLElement, LightningButtonProps>(
       lg: 'h-[52px] px-[28px] text-base font-semibold gap-[10px]',
     };
 
-    // Variant Styles (Strictly solid backgrounds, no gradient fills)
+    // Variant Styles (Logo Blue with Lime Green Highlights)
     const variantClasses = {
       primary:
-        'lightning-btn-primary bg-white text-[#050608] border border-transparent hover:bg-[#0D1117] hover:text-white hover:border-[#0B65B3]/60 focus-visible:bg-[#0D1117] focus-visible:text-white focus-visible:border-[#0B65B3]/60 shadow-lg shadow-white/5',
+        'lightning-btn-primary bg-[#0B65B3] hover:bg-[#095292] text-white border border-[#8DC63F]/50 hover:border-[#8DC63F] shadow-[0_0_20px_rgba(11,101,179,0.4)] hover:shadow-[0_0_32px_rgba(141,198,63,0.5)] focus-visible:bg-[#095292] focus-visible:border-[#8DC63F] transition-all duration-300',
       secondary:
-        'lightning-btn-secondary bg-[#050608] border border-white/16 text-white hover:bg-white hover:text-[#050608] hover:border-white focus-visible:bg-white focus-visible:text-[#050608] focus-visible:border-white hover:shadow-[0_0_24px_rgba(141,198,63,0.35)] transition-all duration-300',
+        'lightning-btn-secondary bg-[#0B65B3]/15 border-2 border-[#0B65B3] text-white hover:bg-[#0B65B3] hover:border-[#8DC63F] hover:shadow-[0_0_28px_rgba(141,198,63,0.45)] focus-visible:bg-[#0B65B3] focus-visible:border-[#8DC63F] transition-all duration-300',
     };
 
     const widthClasses = fullWidth ? 'w-full' : 'w-auto';
@@ -201,8 +201,8 @@ const LightningButton = forwardRef<HTMLElement, LightningButtonProps>(
 
     const combinedClasses = `
       group relative isolate rounded-full overflow-hidden select-none inline-flex items-center justify-center whitespace-nowrap transition-all duration-250
-      hover:shadow-[0_0_32px_rgba(11,101,179,0.4)]
-      focus-visible:shadow-[0_0_32px_rgba(11,101,179,0.4)]
+      hover:shadow-[0_0_32px_rgba(141,198,63,0.4)]
+      focus-visible:shadow-[0_0_32px_rgba(141,198,63,0.4)]
       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050608]
       active:scale-[0.98]
       ${sizeClasses[size]}
@@ -217,20 +217,20 @@ const LightningButton = forwardRef<HTMLElement, LightningButtonProps>(
         {/* Layer 0 & 1: WebGL Canvas FX Layer */}
         <div ref={fxRef} className="absolute inset-0 pointer-events-none z-[1]" aria-hidden="true" />
 
-        {/* Layer 2: 1px Blue-to-Lime Gradient Border Overlay ONLY ON FOCUS-VISIBLE (Never on hover or rest) */}
+        {/* Layer 2: 1px Blue-to-Lime Gradient Border Overlay (Visible on Hover and Focus) */}
         <div
-          className="absolute inset-0 rounded-full p-[1px] bg-gradient-to-r from-[#0B65B3] to-[#8DC63F] opacity-0 group-focus-visible:opacity-100 transition-opacity duration-300 pointer-events-none z-[2]"
+          className="absolute inset-0 rounded-full p-[1px] bg-gradient-to-r from-[#0B65B3] via-[#8DC63F] to-[#0B65B3] opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300 pointer-events-none z-[2]"
           aria-hidden="true"
         />
 
         {/* Layer 3: Content */}
-        <span className="relative z-10 flex items-center justify-center gap-[8px] whitespace-nowrap">
+        <span className="relative z-10 flex items-center justify-center gap-[8px] whitespace-nowrap font-bold">
           {iconLeft && (
-            <span className="shrink-0 transition-transform group-hover:scale-105">{iconLeft}</span>
+            <span className="shrink-0 text-[#8DC63F] transition-transform group-hover:scale-110">{iconLeft}</span>
           )}
           <span>{children}</span>
           {iconRight && (
-            <span className="shrink-0 group-hover:translate-x-1 group-focus-visible:translate-x-1 transition-transform duration-300">
+            <span className="shrink-0 text-[#8DC63F] group-hover:translate-x-1 group-focus-visible:translate-x-1 transition-transform duration-300">
               {iconRight}
             </span>
           )}

@@ -392,7 +392,7 @@ export default function WhyVisionEnergy() {
                     key={i}
                     className="inline-flex items-center gap-3 px-4 py-2.5 rounded-xl bg-[#0D1117] border border-white/10 hover:border-[#8DC63F]/50 hover:bg-[#131924] text-white/90 hover:text-white transition-all duration-300 text-sm sm:text-[14.5px] font-medium shadow-sm group cursor-default"
                   >
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-white/[0.04] border border-white/[0.08] group-hover:border-[#8DC63F]/40 group-hover:bg-[#8DC63F]/10 flex items-center justify-center shrink-0 transition-colors">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#0B65B3]/15 border border-[#0B65B3]/40 group-hover:border-[#8DC63F] group-hover:bg-[#0B65B3] group-hover:shadow-[0_0_14px_rgba(141,198,63,0.45)] flex items-center justify-center shrink-0 transition-all duration-300">
                       <IconComponent className="w-4 h-4 text-[#8DC63F] group-hover:scale-110 transition-transform duration-300" />
                     </div>
                     <span>{sector.name}</span>

@@ -96,9 +96,9 @@ export default function CategoryDetailClient({
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <a
                 href={`tel:${dictionary.company.primaryPhone}`}
-                className="w-full sm:w-auto h-12 min-h-[48px] px-6 bg-white text-[#050608] font-bold text-sm rounded-xl flex items-center justify-center gap-2 active-press"
+                className="w-full sm:w-auto h-12 min-h-[48px] px-6 bg-[#0B65B3]/15 hover:bg-[#0B65B3] border-2 border-[#0B65B3] hover:border-[#8DC63F] text-white font-bold text-sm rounded-xl flex items-center justify-center gap-2 transition-all active-press"
               >
-                <Phone className="w-4 h-4 text-[#0B65B3]" />
+                <Phone className="w-4 h-4 text-[#8DC63F]" />
                 <span>Call Now</span>
               </a>
 
@@ -109,9 +109,9 @@ export default function CategoryDetailClient({
                     categoryTitle: category.title,
                   })
                 }
-                className="w-full sm:w-auto h-12 min-h-[48px] px-6 bg-gradient-brand text-white font-bold text-sm rounded-xl flex items-center justify-center gap-2 active-press"
+                className="w-full sm:w-auto h-12 min-h-[48px] px-6 bg-[#0B65B3] hover:bg-[#095292] text-white font-bold text-sm rounded-xl border border-[#8DC63F]/50 hover:border-[#8DC63F] shadow-[0_0_20px_rgba(11,101,179,0.4)] hover:shadow-[0_0_28px_rgba(141,198,63,0.5)] flex items-center justify-center gap-2 transition-all active-press"
               >
-                <MessageSquare className="w-4 h-4" />
+                <MessageSquare className="w-4 h-4 text-[#8DC63F]" />
                 <span>Enquire About This Product</span>
               </button>
             </div>
@@ -149,9 +149,9 @@ export default function CategoryDetailClient({
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
             <a
               href={`tel:${dictionary.company.primaryPhone}`}
-              className="w-full sm:w-auto h-12 px-8 bg-white text-[#050608] font-bold text-sm rounded-full hover:bg-gray-100 transition-all flex items-center justify-center gap-2 pill-glow active-press"
+              className="w-full sm:w-auto h-12 px-8 bg-[#0B65B3]/15 hover:bg-[#0B65B3] border-2 border-[#0B65B3] hover:border-[#8DC63F] text-white font-bold text-sm rounded-full transition-all flex items-center justify-center gap-2 active-press"
             >
-              <Phone className="w-4 h-4 text-[#0B65B3]" />
+              <Phone className="w-4 h-4 text-[#8DC63F]" />
               <span>Call: {dictionary.company.primaryPhone}</span>
             </a>
 
@@ -162,9 +162,10 @@ export default function CategoryDetailClient({
                   categoryTitle: category.title,
                 })
               }
-              className="w-full sm:w-auto h-12 px-8 bg-gradient-brand text-white font-bold text-sm rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2 blue-glow active-press"
+              className="w-full sm:w-auto h-12 px-8 bg-[#0B65B3] hover:bg-[#095292] text-white font-bold text-sm rounded-full border border-[#8DC63F]/50 hover:border-[#8DC63F] shadow-[0_0_20px_rgba(11,101,179,0.4)] hover:shadow-[0_0_28px_rgba(141,198,63,0.5)] flex items-center justify-center gap-2 transition-all active-press"
             >
-              <MessageSquare className="w-4 h-4" />
+              <MessageSquare className="w-4 h-4 text-[#8DC63F]" />
+              <span>Enquire About This Product</span>
             </button>
           </div>
         </div>

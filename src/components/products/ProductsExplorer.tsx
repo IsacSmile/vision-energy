@@ -1220,7 +1220,7 @@ export default function ProductsExplorer({
                   <button
                     type="button"
                     onClick={clearAllFilters}
-                    className="px-5 py-2.5 rounded-full bg-[#0B65B3] text-white text-xs font-bold hover:bg-[#0B65B3]/80 transition-colors"
+                    className="px-5 py-2.5 rounded-full bg-[#0B65B3] hover:bg-[#095292] text-white text-xs font-bold border border-[#8DC63F]/50 hover:border-[#8DC63F] shadow-[0_0_14px_rgba(11,101,179,0.35)] transition-all"
                   >
                     Clear all filters
                   </button>
@@ -1268,7 +1268,7 @@ export default function ProductsExplorer({
                 variant="primary"
                 size="lg"
                 onClick={() => openProductModal()}
-                iconLeft={<Send className="w-4 h-4" />}
+                iconLeft={<Send className="w-4 h-4 text-[#8DC63F]" />}
               >
                 Send Enquiry
               </LightningButton>
@@ -1309,9 +1309,9 @@ function EnquireNowButton({
         e.stopPropagation();
         openModal({ categoryCode: cat.code, categoryTitle: cat.title });
       }}
-      className={`group/btn relative z-10 inline-flex items-center justify-center gap-2 rounded-full border border-white/16 bg-[#050608] hover:bg-white focus-visible:bg-white hover:text-[#050608] focus-visible:text-[#050608] hover:border-white focus-visible:border-white text-white font-semibold transition-all duration-300 active-press select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] ${className}`}
+      className={`group/btn relative z-10 inline-flex items-center justify-center gap-2 rounded-full border border-[#8DC63F]/50 hover:border-[#8DC63F] bg-[#0B65B3] hover:bg-[#095292] focus-visible:bg-[#095292] text-white font-semibold shadow-[0_0_16px_rgba(11,101,179,0.35)] hover:shadow-[0_0_24px_rgba(141,198,63,0.45)] transition-all duration-300 active-press select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] ${className}`}
     >
-      <Send className="w-4 h-4 text-[#8DC63F] group-hover/btn:text-[#050608] group-focus-visible/btn:text-[#050608] transition-colors shrink-0" />
+      <Send className="w-4 h-4 text-[#8DC63F] group-hover/btn:scale-110 transition-transform shrink-0" />
       <span>Enquire Now</span>
     </button>
   );

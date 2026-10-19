@@ -195,10 +195,10 @@ export default function ProductPreview() {
 
           <Link
             href="/products"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#8DC63F] hover:bg-[#7cb332] text-[#050608] text-xs sm:text-sm font-bold shadow-md shadow-[#8DC63F]/20 transition-all shrink-0 group active:scale-[0.98]"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0B65B3] hover:bg-[#095292] text-white text-xs sm:text-sm font-bold border border-[#8DC63F]/50 hover:border-[#8DC63F] shadow-md shadow-[#0B65B3]/30 hover:shadow-[0_0_20px_rgba(141,198,63,0.45)] transition-all shrink-0 group active:scale-[0.98]"
           >
             <span>View All Products</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+            <ArrowRight className="w-3.5 h-3.5 text-[#8DC63F] transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
       </div>

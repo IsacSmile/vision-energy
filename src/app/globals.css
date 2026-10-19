@@ -471,7 +471,7 @@ html.light .bg-white\/10 {
 }
 
 /* 4. Text Contrast Overrides - Only for light content sections, NEVER inside dark heroes */
-html.light .text-white:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(#home-hero *):not([data-preserve-contrast]):not([data-preserve-contrast] *) {
+html.light .text-white:not(footer *):not(footer):not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(#home-hero *):not([data-preserve-contrast]):not([data-preserve-contrast] *) {
   color: #0F172A !important;
 }
 
@@ -507,12 +507,12 @@ html.light .text-gray-400:not([data-dark-hero="true"] *):not(.service-detail-her
   color: #334155 !important;
 }
 
-html.light .text-white\/90:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not([data-preserve-contrast] *),
-html.light .text-white\/80:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not([data-preserve-contrast] *),
-html.light .text-white\/70:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not([data-preserve-contrast] *),
-html.light .text-white\/65:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not([data-preserve-contrast] *),
-html.light .text-white\/60:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not([data-preserve-contrast] *),
-html.light .text-white\/50:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not([data-preserve-contrast] *) {
+html.light .text-white\/90:not(footer *):not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not([data-preserve-contrast] *),
+html.light .text-white\/80:not(footer *):not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not([data-preserve-contrast] *),
+html.light .text-white\/70:not(footer *):not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not([data-preserve-contrast] *),
+html.light .text-white\/65:not(footer *):not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not([data-preserve-contrast] *),
+html.light .text-white\/60:not(footer *):not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not([data-preserve-contrast] *),
+html.light .text-white\/50:not(footer *):not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not([data-preserve-contrast] *) {
   color: #334155 !important;
 }
 
@@ -653,24 +653,31 @@ html.light .service-detail-hero [class*="text-[#8DC63F]"] {
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
 }
 
-/* Hero Consultation Button in Light Mode: Crisp white pill with dark text */
+/* Hero Consultation Button in Light Mode: Logo Blue tint with lime highlight */
 html.light #home-hero button:has(svg.lucide-phone-call),
 html.light #home-hero button.hero-consultation-btn {
-  background-color: #FFFFFF !important;
-  color: #0F172A !important;
-  border: 1px solid #CBD5E1 !important;
-  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.1) !important;
+  background-color: rgba(11, 101, 179, 0.25) !important;
+  color: #FFFFFF !important;
+  border: 2px solid #0B65B3 !important;
+  box-shadow: 0 4px 14px 0 rgba(11, 101, 179, 0.25) !important;
 }
 
 html.light #home-hero button:has(svg.lucide-phone-call) span,
 html.light #home-hero button.hero-consultation-btn span {
-  color: #0F172A !important;
+  color: #FFFFFF !important;
   font-weight: 700 !important;
 }
 
 html.light #home-hero button:has(svg.lucide-phone-call) svg,
 html.light #home-hero button.hero-consultation-btn svg {
-  color: #5B8C1E !important;
+  color: #8DC63F !important;
+}
+
+html.light #home-hero button:has(svg.lucide-phone-call):hover,
+html.light #home-hero button.hero-consultation-btn:hover {
+  background-color: #0B65B3 !important;
+  border-color: #8DC63F !important;
+  box-shadow: 0 0 24px rgba(141, 198, 63, 0.45) !important;
 }
 
 /* Hero Slider Tabs in Light Mode: High-contrast white cards with crisp dark text */
@@ -700,18 +707,30 @@ html.light #home-hero div.hidden.lg\:flex button[aria-label*="Go to slide"]:hove
   border-color: #8DC63F !important;
 }
 
-/* Hero Slider Navigation Arrows in Light Mode */
+/* Hero Slider Navigation Arrows in Light Mode: Logo Blue with Lime Green highlight */
 html.light .hero-arrow-btn svg,
 html.light #home-hero div.hidden.lg\:flex button[aria-label*="slide"] svg {
-  color: #0F172A !important;
+  color: #8DC63F !important;
 }
 
 html.light .hero-arrow-btn,
 html.light #home-hero div.hidden.lg\:flex button[aria-label*="slide"]:not([aria-label*="Go to slide"]) {
-  background-color: #FFFFFF !important;
-  border-color: #CBD5E1 !important;
-  color: #0F172A !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08) !important;
+  background-color: rgba(11, 101, 179, 0.2) !important;
+  border-color: rgba(141, 198, 63, 0.4) !important;
+  color: #8DC63F !important;
+  box-shadow: 0 2px 8px rgba(11, 101, 179, 0.2) !important;
+}
+
+html.light .hero-arrow-btn:hover,
+html.light #home-hero div.hidden.lg\:flex button[aria-label*="slide"]:not([aria-label*="Go to slide"]):hover {
+  background-color: #0B65B3 !important;
+  border-color: #8DC63F !important;
+  box-shadow: 0 0 16px rgba(141, 198, 63, 0.45) !important;
+}
+
+html.light .hero-arrow-btn:hover svg,
+html.light #home-hero div.hidden.lg\:flex button[aria-label*="slide"]:not([aria-label*="Go to slide"]):hover svg {
+  color: #FFFFFF !important;
 }
 
 html.light #home-hero div.hidden.lg\:flex div.border-l {
@@ -748,28 +767,38 @@ html.light #home-hero div.lg\:hidden .rounded-xl span.text-\[\#A9B4C0\] {
 }
 
 /* 6. Colored Buttons & Badges Contrast Preservations */
+html.light header .bg-\[\#8DC63F\],
 html.light header .bg-\[\#8DC63F\] span,
 html.light header .bg-\[\#8DC63F\] a,
-html.light header .bg-\[\#8DC63F\] svg,
-html.light header .bg-\[\#8DC63F\] .text-white {
-  color: #FFFFFF !important;
+html.light header .bg-\[\#8DC63F\] svg {
+  color: #0A192F !important;
 }
 
 html.light button.bg-\[\#0B65B3\],
-html.light button.bg-\[\#0B65B3\] *,
+html.light button.bg-\[\#0B65B3\] span,
 html.light a.bg-\[\#0B65B3\],
-html.light a.bg-\[\#0B65B3\] *,
+html.light a.bg-\[\#0B65B3\] span,
 html.light .lightning-btn-primary,
 html.light .lightning-btn-primary span,
-html.light .lightning-btn-primary svg,
-html.light .lightning-btn-primary svg *,
-html.light .lightning-btn-primary .lucide,
 html.light .lightning-btn-primary .text-white,
 html.light .badge-dark,
 html.light .badge-dark .text-white,
 html.light [data-preserve-contrast],
-html.light [data-preserve-contrast] * {
+html.light [data-preserve-contrast] *:not(.text-\[\#8DC63F\]):not(svg.text-\[\#8DC63F\]) {
   color: #FFFFFF !important;
+}
+
+/* Explicitly preserve Lime Green highlight on icons and badges in both Light & Dark modes */
+html.light .text-\[\#8DC63F\],
+html.light [class*="text-[#8DC63F]"],
+html.light button .text-\[\#8DC63F\],
+html.light a .text-\[\#8DC63F\],
+html.light .lightning-btn-primary .text-\[\#8DC63F\],
+html.light .lightning-btn-secondary .text-\[\#8DC63F\],
+html.light svg.text-\[\#8DC63F\],
+html.light svg[stroke="#8DC63F"] {
+  color: #8DC63F !important;
+  stroke: #8DC63F !important;
 }
 
 /* Logo Theme Switching (White text in dark mode, dark text in light mode) */
@@ -879,51 +908,74 @@ html.light [class*="rounded-"][class*="bg-[#0C1017]"] {
   box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.04) !important;
 }
 
-/* 10. Buttons in Light Mode */
+/* 10. Buttons in Light Mode: Logo Blue with Lime Green Highlights */
 html.light .lightning-btn-primary {
   background-color: #0B65B3 !important;
   color: #FFFFFF !important;
-  border-color: transparent !important;
+  border-color: rgba(141, 198, 63, 0.5) !important;
   box-shadow: 0 4px 14px 0 rgba(11, 101, 179, 0.3) !important;
+}
+
+html.light .lightning-btn-primary span {
+  color: #FFFFFF !important;
 }
 
 html.light .lightning-btn-primary svg,
 html.light .lightning-btn-primary .lucide,
 html.light #header-call-button svg {
-  color: #FFFFFF !important;
-  stroke: #FFFFFF !important;
+  color: #8DC63F !important;
+  stroke: #8DC63F !important;
 }
 
 html.light .lightning-btn-primary:hover,
 html.light .lightning-btn-primary:focus-visible {
   background-color: #084c88 !important;
   color: #FFFFFF !important;
+  border-color: #8DC63F !important;
+  box-shadow: 0 0 24px rgba(141, 198, 63, 0.5) !important;
 }
 
 html.light .lightning-btn-primary:hover svg,
 html.light .lightning-btn-primary:focus-visible svg {
-  color: #FFFFFF !important;
-  stroke: #FFFFFF !important;
+  color: #8DC63F !important;
+  stroke: #8DC63F !important;
 }
 
 html.light .lightning-btn-secondary {
-  background-color: #FFFFFF !important;
-  color: #0F172A !important;
-  border-color: #CBD5E1 !important;
+  background-color: rgba(11, 101, 179, 0.12) !important;
+  color: #0B65B3 !important;
+  border: 2px solid #0B65B3 !important;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.06) !important;
+}
+
+html.light .lightning-btn-secondary span {
+  color: #0B65B3 !important;
+  font-weight: 700 !important;
 }
 
 html.light .lightning-btn-secondary svg,
 html.light .lightning-btn-secondary .lucide {
-  color: #0B65B3 !important;
-  stroke: #0B65B3 !important;
+  color: #8DC63F !important;
+  stroke: #8DC63F !important;
 }
 
 html.light .lightning-btn-secondary:hover,
 html.light .lightning-btn-secondary:focus-visible {
-  background-color: #F8FAFC !important;
-  color: #0B65B3 !important;
-  border-color: #0B65B3 !important;
+  background-color: #0B65B3 !important;
+  color: #FFFFFF !important;
+  border-color: #8DC63F !important;
+  box-shadow: 0 0 24px rgba(141, 198, 63, 0.45) !important;
+}
+
+html.light .lightning-btn-secondary:hover span,
+html.light .lightning-btn-secondary:focus-visible span {
+  color: #FFFFFF !important;
+}
+
+html.light .lightning-btn-secondary:hover svg,
+html.light .lightning-btn-secondary:focus-visible svg {
+  color: #8DC63F !important;
+  stroke: #8DC63F !important;
 }
 
 /* 11. Form Inputs in Light Mode */
@@ -989,25 +1041,89 @@ html.light [role="dialog"] button:not(.lightning-btn-primary):not([type="submit"
   background-color: #F1F5F9 !important;
 }
 
-/* 13. Footer in Light Mode */
-html.light footer {
-  background-color: #F8FAFC !important;
-  border-top-color: #E2E8F0 !important;
-  color: #0F172A !important;
+/* 13. Footer (Consistently Dark Navy with White Text and Lime Green Accents across all themes) */
+html.light footer,
+html.light footer[aria-label="Site Footer"],
+html.light footer.bg-\[\#0A192F\] {
+  background-color: #0A192F !important;
+  border-top-color: rgba(141, 198, 63, 0.3) !important;
+  color: #FFFFFF !important;
 }
 
+/* Ensure all titles, spans, headings, paragraphs, and buttons inside footer are crisp white */
+html.light footer .text-white,
+html.light footer [class*="text-white"],
+html.light footer span,
+html.light footer p,
+html.light footer h1,
+html.light footer h2,
 html.light footer h3,
 html.light footer h4,
-html.light footer p.font-semibold {
-  color: #0F172A !important;
+html.light footer button,
+html.light footer button span,
+html.light footer .font-bold,
+html.light footer .font-semibold {
+  color: #FFFFFF !important;
 }
 
+/* Soft opacity for secondary text */
+html.light footer .text-white\/90,
+html.light footer [class*="text-white/90"] {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+html.light footer .text-white\/85,
+html.light footer [class*="text-white/85"] {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+html.light footer .text-white\/80,
+html.light footer [class*="text-white/80"] {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+html.light footer .text-white\/70,
+html.light footer [class*="text-white/70"] {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+html.light footer .text-white\/60,
+html.light footer [class*="text-white/60"] {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Footer links */
 html.light footer a {
-  color: #475569 !important;
+  color: rgba(255, 255, 255, 0.85) !important;
 }
 
-html.light footer a:hover {
-  color: #0B65B3 !important;
+html.light footer a:hover,
+html.light footer button:hover {
+  color: #8DC63F !important;
+}
+
+/* Brand Lime Green Accents MUST stay vibrant lime green */
+html.light footer .text-\[\#8DC63F\],
+html.light footer [class*="text-[#8DC63F]"],
+html.light footer a.text-\[\#8DC63F\],
+html.light footer span.text-\[\#8DC63F\],
+html.light footer svg.text-\[\#8DC63F\],
+html.light footer button.text-\[\#8DC63F\],
+html.light footer .group:hover .text-\[\#8DC63F\] {
+  color: #8DC63F !important;
+}
+
+html.light footer .bg-\[\#8DC63F\],
+html.light footer [class*="bg-[#8DC63F]"],
+html.light footer span.bg-\[\#8DC63F\] {
+  background-color: #8DC63F !important;
+}
+
+/* Footer borders */
+html.light footer .border-white\/10,
+html.light footer [class*="border-white/10"],
+html.light footer .border-b {
+  border-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 /* 14. Partner Marquee */

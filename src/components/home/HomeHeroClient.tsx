@@ -289,10 +289,10 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
             {/* Primary Action Button */}
             <Link
               href={activeSlide.ctaLink}
-              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 h-[46px] sm:h-[48px] px-5 sm:px-6 rounded-full bg-gradient-to-r from-[#8DC63F] to-[#7CB332] text-[#050608] text-[13px] sm:text-sm font-bold shadow-[0_0_20px_rgba(141,198,63,0.35)] hover:shadow-[0_0_30px_rgba(141,198,63,0.55)] transition-all active:scale-[0.98]"
+              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 h-[46px] sm:h-[48px] px-5 sm:px-6 rounded-full bg-[#0B65B3] hover:bg-[#095292] text-white text-[13px] sm:text-sm font-bold border border-[#8DC63F]/60 hover:border-[#8DC63F] shadow-[0_0_20px_rgba(11,101,179,0.4)] hover:shadow-[0_0_28px_rgba(141,198,63,0.5)] transition-all active:scale-[0.98]"
             >
               <span>{activeSlide.ctaText}</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-3.5 h-3.5 text-[#8DC63F]" />
             </Link>
 
             {/* Secondary Action Button */}
@@ -303,7 +303,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
                   serviceTitle: `${activeSlide.category} Technical Consultation`,
                 })
               }
-              className="hero-consultation-btn flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 h-[46px] sm:h-[48px] px-4 sm:px-6 rounded-full bg-white/[0.08] hover:bg-white/[0.14] border border-white/20 text-white text-[13px] sm:text-sm font-semibold backdrop-blur-xl transition-all active:scale-[0.98]"
+              className="hero-consultation-btn flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 h-[46px] sm:h-[48px] px-4 sm:px-6 rounded-full bg-[#0B65B3]/20 hover:bg-[#0B65B3] border-2 border-[#0B65B3] hover:border-[#8DC63F] text-white text-[13px] sm:text-sm font-semibold backdrop-blur-xl hover:shadow-[0_0_24px_rgba(141,198,63,0.4)] transition-all active:scale-[0.98]"
             >
               <PhoneCall className="w-3.5 h-3.5 text-[#8DC63F]" />
               <span>Consultation</span>
@@ -353,7 +353,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
             <div className="flex items-center gap-1.5 ml-2 pl-2 border-l border-white/15">
               <button
                 onClick={prevSlide}
-                className="hero-arrow-btn w-8 h-8 rounded-lg bg-[#0D1117]/60 hover:bg-[#0D1117] border border-white/10 hover:border-white/25 flex items-center justify-center text-white/70 hover:text-white transition-colors"
+                className="hero-arrow-btn w-8 h-8 rounded-lg bg-[#0B65B3]/20 hover:bg-[#0B65B3] border border-[#8DC63F]/40 hover:border-[#8DC63F] flex items-center justify-center text-[#8DC63F] hover:text-white hover:shadow-[0_0_14px_rgba(141,198,63,0.4)] transition-all"
                 aria-label="Previous slide"
               >
                 <ChevronLeft className="w-4 h-4" />
@@ -361,7 +361,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
 
               <button
                 onClick={nextSlide}
-                className="hero-arrow-btn w-8 h-8 rounded-lg bg-[#0D1117]/60 hover:bg-[#0D1117] border border-white/10 hover:border-white/25 flex items-center justify-center text-white/70 hover:text-white transition-colors"
+                className="hero-arrow-btn w-8 h-8 rounded-lg bg-[#0B65B3]/20 hover:bg-[#0B65B3] border border-[#8DC63F]/40 hover:border-[#8DC63F] flex items-center justify-center text-[#8DC63F] hover:text-white hover:shadow-[0_0_14px_rgba(141,198,63,0.4)] transition-all"
                 aria-label="Next slide"
               >
                 <ChevronRight className="w-4 h-4" />

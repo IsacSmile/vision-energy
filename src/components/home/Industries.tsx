@@ -91,11 +91,13 @@ function IndustryCell({ sector, index, isActive, onActivate }: IndustryCellProps
           {/* Top Row: Icon top-left, Arrow top-right */}
           <div className="relative z-10 flex items-center justify-between">
             <div
-              className={`transition-colors duration-300 ${
-                isActive ? 'text-[#8DC63F]' : 'text-[#0B65B3]'
+              className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                isActive
+                  ? 'bg-[#0B65B3] border border-[#8DC63F] shadow-[0_0_16px_rgba(141,198,63,0.45)] text-[#8DC63F]'
+                  : 'bg-[#0B65B3]/15 border border-[#0B65B3]/40 text-[#8DC63F]'
               }`}
             >
-              <IconComp className="w-7 h-7 stroke-[1.5]" />
+              <IconComp className="w-6 h-6 stroke-[1.5]" />
             </div>
             <ArrowUpRight
               className={`w-5 h-5 text-[#8DC63F] transition-all duration-300 ${

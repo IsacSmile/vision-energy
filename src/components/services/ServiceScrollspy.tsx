@@ -130,7 +130,7 @@ export default function ServiceScrollspy({
           href={`tel:${dictionary.company.primaryPhone}`}
           className="inline-flex items-center gap-2 text-sm text-[#A9B4C0] hover:text-white transition-colors pt-1"
         >
-          <Phone className="w-4 h-4 text-[#0B65B3]" />
+          <Phone className="w-4 h-4 text-[#8DC63F]" />
           <span>Call {dictionary.company.primaryPhone}</span>
         </a>
       </div>

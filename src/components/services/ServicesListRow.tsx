@@ -237,7 +237,7 @@ export default function ServicesListRow({ service, index }: ServicesListRowProps
             <button
               type="button"
               onClick={handleBookClick}
-              className="py-2 px-5 rounded-full bg-white hover:bg-[#8DC63F] text-[#050608] hover:text-black font-bold text-xs sm:text-sm tracking-wide shadow-md transition-all duration-300 active:scale-95 cursor-pointer"
+              className="py-2 px-5 rounded-full bg-[#0B65B3] hover:bg-[#095292] text-white border border-[#8DC63F]/50 hover:border-[#8DC63F] shadow-[0_0_16px_rgba(11,101,179,0.35)] hover:shadow-[0_0_24px_rgba(141,198,63,0.5)] font-bold text-xs sm:text-sm tracking-wide transition-all duration-300 active:scale-95 cursor-pointer"
             >
               {service.slug.includes('manpower') ? 'Request Manpower' : 'Get a Quote'}
             </button>

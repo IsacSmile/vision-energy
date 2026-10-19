@@ -107,14 +107,14 @@ export function ProductGalleryLightbox({
           <>
             <button
               onClick={handlePrev}
-              className="absolute left-2 z-20 rounded-full bg-slate-900/80 p-3 text-white backdrop-blur hover:bg-slate-800 border border-slate-700 transition"
+              className="absolute left-2 z-20 rounded-full bg-[#0B65B3]/80 p-3 text-[#8DC63F] hover:text-white backdrop-blur hover:bg-[#0B65B3] border border-[#8DC63F]/50 hover:border-[#8DC63F] hover:shadow-[0_0_16px_rgba(141,198,63,0.45)] transition"
               aria-label="Previous Image"
             >
               <ChevronLeft className="h-6 w-6" />
             </button>
             <button
               onClick={handleNext}
-              className="absolute right-2 z-20 rounded-full bg-slate-900/80 p-3 text-white backdrop-blur hover:bg-slate-800 border border-slate-700 transition"
+              className="absolute right-2 z-20 rounded-full bg-[#0B65B3]/80 p-3 text-[#8DC63F] hover:text-white backdrop-blur hover:bg-[#0B65B3] border border-[#8DC63F]/50 hover:border-[#8DC63F] hover:shadow-[0_0_16px_rgba(141,198,63,0.45)] transition"
               aria-label="Next Image"
             >
               <ChevronRight className="h-6 w-6" />

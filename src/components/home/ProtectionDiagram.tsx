@@ -386,10 +386,10 @@ export default function ProtectionDiagram({
               <div className="flex items-start gap-3.5">
                 {/* Step Number Circle */}
                 <div
-                  className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0 transition-colors duration-300 ${
+                  className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0 transition-all duration-300 ${
                     isActive
-                      ? 'bg-[#8DC63F] text-[#050608]'
-                      : 'bg-white/10 text-white/70'
+                      ? 'bg-[#0B65B3] text-[#8DC63F] border border-[#8DC63F] shadow-[0_0_12px_rgba(141,198,63,0.45)]'
+                      : 'bg-[#0B65B3]/20 text-white/80 border border-[#0B65B3]/40'
                   }`}
                 >
                   {step.id}

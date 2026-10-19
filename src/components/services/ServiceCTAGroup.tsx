@@ -36,7 +36,7 @@ export default function ServiceCTAGroup({
             variant="primary"
             size={compact ? 'sm' : 'md'}
             fullWidth
-            iconLeft={<Calendar className="w-4 h-4 text-[#050608]" />}
+            iconLeft={<Calendar className="w-4 h-4 text-[#8DC63F]" />}
             onClick={handleBookClick}
           >
             Book Service
@@ -49,7 +49,7 @@ export default function ServiceCTAGroup({
             size={compact ? 'sm' : 'md'}
             href={`tel:${dictionary.company.primaryPhone}`}
             fullWidth
-            iconLeft={<Phone className="w-4 h-4 text-[#0B65B3]" />}
+            iconLeft={<Phone className="w-4 h-4 text-[#8DC63F]" />}
           >
             Call Now
           </LightningButton>
