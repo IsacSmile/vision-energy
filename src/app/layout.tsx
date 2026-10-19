@@ -82,7 +82,7 @@ export default async function RootLayout({
     '@type': 'Organization',
     name: 'VISION ENERGY INTERNATIONAL',
     url: 'https://www.visionenergyme.com',
-    logo: 'https://www.visionenergyme.com/site-main-logo.png',
+    logo: 'https://www.visionenergyme.com/main-logo-vision.png',
     telephone: ['+971 7 204 2763', '+971 54 700 4616'],
     email: 'info@visionenergyme.com',
     address: {

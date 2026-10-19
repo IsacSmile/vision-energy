@@ -98,11 +98,11 @@ export default function Footer({ services = [] }: FooterProps) {
               className="inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded"
             >
               <Image
-                src="/site-main-logo.png"
+                src="/main-logo-vision.png"
                 alt="VISION ENERGY INTERNATIONAL"
-                width={240}
-                height={240}
-                className="w-[230px] h-auto max-h-[230px] object-contain"
+                width={320}
+                height={123}
+                className="w-[240px] sm:w-[270px] h-auto max-h-[110px] object-contain"
               />
             </Link>
 

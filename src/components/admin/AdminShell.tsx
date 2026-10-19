@@ -66,7 +66,7 @@ export default function AdminShell({ children, userEmail = "admin@visionenergyme
       <header className="lg:hidden sticky top-0 z-40 bg-[#0D1117] border-b border-[#1F2937] px-4 py-2.5 flex items-center justify-between gap-2">
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 relative rounded-lg overflow-hidden bg-[#050608] border border-[#1F2937] flex items-center justify-center">
-            <Image src="/site-main-logo.png" alt="Vision Energy" width={24} height={24} style={{ width: "auto", height: "auto" }} />
+            <Image src="/main-logo-vision.png" alt="Vision Energy" width={24} height={24} style={{ width: "auto", height: "auto" }} />
           </div>
           <span className="font-bold text-xs sm:text-sm tracking-tight text-white">VISION CMS</span>
         </div>
@@ -88,7 +88,7 @@ export default function AdminShell({ children, userEmail = "admin@visionenergyme
           <div className="p-4 border-b border-[#1F2937] flex items-center justify-between bg-[#0D1117]">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 relative rounded-lg overflow-hidden bg-[#050608] border border-[#1F2937] flex items-center justify-center">
-                <Image src="/site-main-logo.png" alt="Vision Energy" width={24} height={24} style={{ width: "auto", height: "auto" }} />
+                <Image src="/main-logo-vision.png" alt="Vision Energy" width={24} height={24} style={{ width: "auto", height: "auto" }} />
               </div>
               <span className="font-bold text-sm text-white">VISION CMS</span>
             </div>
@@ -153,7 +153,7 @@ export default function AdminShell({ children, userEmail = "admin@visionenergyme
         {/* Brand Header */}
         <div className="p-5 border-b border-[#1F2937] flex items-center gap-3">
           <div className="w-9 h-9 relative rounded-xl overflow-hidden bg-[#050608] border border-[#1F2937] flex items-center justify-center shrink-0">
-            <Image src="/site-main-logo.png" alt="Vision Energy" width={26} height={26} style={{ width: "auto", height: "auto" }} />
+            <Image src="/main-logo-vision.png" alt="Vision Energy" width={26} height={26} style={{ width: "auto", height: "auto" }} />
           </div>
           <div>
             <h2 className="font-bold text-sm tracking-tight text-white leading-tight">VISION ENERGY</h2>

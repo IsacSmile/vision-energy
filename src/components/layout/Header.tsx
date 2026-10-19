@@ -83,8 +83,8 @@ export default function Header() {
     if (typeof document !== 'undefined') {
       const updateHeaderOffset = () => {
         const isDesktop = window.innerWidth >= 1024;
-        // When scrolled, main navbar is 88px desktop, 78px mobile
-        const headerOffsetValue = isDesktop ? '88px' : '78px';
+        // When scrolled, main navbar is 100px desktop, 86px mobile
+        const headerOffsetValue = isDesktop ? '100px' : '86px';
         document.documentElement.style.setProperty('--header-offset', headerOffsetValue);
       };
       updateHeaderOffset();
@@ -296,7 +296,7 @@ export default function Header() {
         </div>
 
         {/* Main Header Navigation Bar */}
-        <div className="max-w-[80rem] mx-auto px-3.5 sm:px-6 lg:px-8 h-[78px] sm:h-[84px] lg:h-[88px] flex items-center justify-between gap-3 sm:gap-4">
+        <div className="max-w-[80rem] mx-auto px-3.5 sm:px-6 lg:px-8 h-[86px] sm:h-[94px] lg:h-[100px] xl:h-[104px] flex items-center justify-between gap-3 sm:gap-4">
           {/* Brand Logo - Enlarged on Mobile & Desktop */}
           <Link
             href="/"
@@ -306,20 +306,20 @@ export default function Header() {
           >
             {/* Dark Theme Logo (White 'ENERGY INTERNATIONAL' text) */}
             <Image
-              src="/site-main-logo.png"
+              src="/main-logo-vision.png"
               alt="VISION ENERGY INTERNATIONAL UAE"
-              width={420}
-              height={105}
-              className="dark-theme-logo h-[68px] sm:h-[76px] lg:h-[82px] xl:h-[84px] w-auto max-h-[86px] object-contain transition-transform group-hover:scale-105"
+              width={490}
+              height={188}
+              className="dark-theme-logo h-[75px] sm:h-[84px] lg:h-[91px] xl:h-[96px] w-auto max-h-[98px] object-contain transition-transform group-hover:scale-105"
               priority
             />
             {/* Light Theme Logo (Dark 'ENERGY INTERNATIONAL' text) */}
             <Image
-              src="/site-main-logo-light.png"
+              src="/main-logo-vision-light.png"
               alt="VISION ENERGY INTERNATIONAL UAE"
-              width={420}
-              height={105}
-              className="light-theme-logo h-[68px] sm:h-[76px] lg:h-[82px] xl:h-[84px] w-auto max-h-[86px] object-contain transition-transform group-hover:scale-105"
+              width={490}
+              height={188}
+              className="light-theme-logo h-[75px] sm:h-[84px] lg:h-[91px] xl:h-[96px] w-auto max-h-[98px] object-contain transition-transform group-hover:scale-105"
               priority
             />
           </Link>
