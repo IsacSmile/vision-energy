@@ -963,9 +963,6 @@ export default function ProductsExplorer({
                     }`}
                   >
                     <span>All products</span>
-                    <span className="text-[13px] tabular-nums text-[#A9B4C0]">
-                      {categories.length}
-                    </span>
                   </Link>
 
                   {/* Individual Groups */}
