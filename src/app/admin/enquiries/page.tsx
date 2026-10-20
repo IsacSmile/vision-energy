@@ -30,29 +30,29 @@ export default function AdminEnquiriesPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="border-b border-[#1F2937] pb-5">
-        <h1 className="text-2xl font-bold text-white tracking-tight">Client Enquiries</h1>
-        <p className="text-xs text-[#A9B4C0] mt-1">
+      <div className="border-b border-slate-200 dark:border-[#1F2937] pb-5">
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Client Enquiries</h1>
+        <p className="text-xs text-slate-600 dark:text-[#A9B4C0] mt-1">
           Manage product availability enquiries and service booking requests submitted via the portal.
         </p>
       </div>
 
       {/* TWO SEPARATED TAB HEADERS */}
-      <div className="flex border-b border-[#1F2937] gap-2 sm:gap-4 overflow-x-auto pb-px">
+      <div className="flex border-b border-slate-200 dark:border-[#1F2937] gap-2 sm:gap-4 overflow-x-auto pb-px">
         {/* Tab 1: Product Enquiries */}
         <button
           onClick={() => setActiveTab("product")}
           className={`py-3 px-5 text-sm font-bold border-b-2 flex items-center gap-3 transition-colors shrink-0 min-h-[44px] ${
             activeTab === "product"
               ? "border-[#0B65B3] text-[#0B65B3] bg-[#0B65B3]/10 rounded-t-xl"
-              : "border-transparent text-gray-400 hover:text-white hover:bg-white/5 rounded-t-xl"
+              : "border-transparent text-slate-500 hover:text-slate-900 hover:bg-slate-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-white/5 rounded-t-xl"
           }`}
         >
           <Package className="w-4 h-4" />
           <span>Product Enquiries</span>
           <span
             className={`px-2.5 py-0.5 text-xs font-mono rounded-full font-bold ${
-              newCounts.product > 0 ? "bg-[#8DC63F] text-[#050608]" : "bg-gray-800 text-gray-400"
+              newCounts.product > 0 ? "bg-[#0B65B3] text-white dark:bg-[#8DC63F] dark:text-[#050608]" : "bg-slate-200 dark:bg-gray-800 text-slate-600 dark:text-gray-400"
             }`}
           >
             {newCounts.product} NEW
@@ -64,15 +64,15 @@ export default function AdminEnquiriesPage() {
           onClick={() => setActiveTab("service")}
           className={`py-3 px-5 text-sm font-bold border-b-2 flex items-center gap-3 transition-colors shrink-0 min-h-[44px] ${
             activeTab === "service"
-              ? "border-[#8DC63F] text-[#8DC63F] bg-[#8DC63F]/10 rounded-t-xl"
-              : "border-transparent text-gray-400 hover:text-white hover:bg-white/5 rounded-t-xl"
+              ? "border-[#0B65B3] text-[#0B65B3] bg-[#0B65B3]/10 dark:border-[#8DC63F] dark:text-[#8DC63F] dark:bg-[#8DC63F]/10 rounded-t-xl"
+              : "border-transparent text-slate-500 hover:text-slate-900 hover:bg-slate-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-white/5 rounded-t-xl"
           }`}
         >
           <Wrench className="w-4 h-4" />
           <span>Service Enquiries</span>
           <span
             className={`px-2.5 py-0.5 text-xs font-mono rounded-full font-bold ${
-              newCounts.service > 0 ? "bg-[#8DC63F] text-[#050608]" : "bg-gray-800 text-gray-400"
+              newCounts.service > 0 ? "bg-[#0B65B3] text-white dark:bg-[#8DC63F] dark:text-[#050608]" : "bg-slate-200 dark:bg-gray-800 text-slate-600 dark:text-gray-400"
             }`}
           >
             {newCounts.service} NEW

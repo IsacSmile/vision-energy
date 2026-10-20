@@ -131,8 +131,8 @@ export default function EnquiryTable({ type, onNewCountChange }: EnquiryTablePro
             onClick={handleResetFilters}
             className={`min-h-[42px] px-3.5 py-2 text-xs font-semibold rounded-xl border transition-colors shrink-0 flex items-center gap-1.5 ${
               hasActiveFilters
-                ? 'text-white bg-white/10 border-white/20 hover:bg-white/20'
-                : 'text-gray-400 bg-[#050608] border-[#1F2937] hover:text-white hover:bg-white/5'
+                ? 'text-slate-900 dark:text-white bg-slate-200 dark:bg-white/10 border-slate-300 dark:border-white/20 hover:bg-slate-300 dark:hover:bg-white/20'
+                : 'text-slate-500 dark:text-gray-400 bg-white dark:bg-[#050608] border-slate-200 dark:border-[#1F2937] hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
             }`}
           >
             <RotateCcw className="w-3 h-3" />
@@ -159,36 +159,36 @@ export default function EnquiryTable({ type, onNewCountChange }: EnquiryTablePro
               <div
                 key={item.id}
                 onClick={() => setSelectedRecord(item)}
-                className="p-4 space-y-3 hover:bg-white/5 cursor-pointer transition-colors active:bg-white/10"
+                className="p-4 space-y-3 hover:bg-slate-100 dark:hover:bg-white/5 cursor-pointer transition-colors active:bg-slate-200 dark:active:bg-white/10"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs font-bold text-[#8DC63F] bg-[#8DC63F]/10 px-2.5 py-1 rounded-full border border-[#8DC63F]/30">
+                  <span className="font-mono text-xs font-bold text-[#0B65B3] bg-[#0B65B3]/10 dark:text-[#8DC63F] dark:bg-[#8DC63F]/10 px-2.5 py-1 rounded-full border border-[#0B65B3]/30 dark:border-[#8DC63F]/30">
                     {item.reference}
                   </span>
                   <StatusBadge status={item.status} />
                 </div>
 
                 <div>
-                  <h3 className="font-bold text-white text-sm">{item.name}</h3>
-                  <p className="text-xs text-gray-400">{item.company || 'Private Client'}</p>
+                  <h3 className="font-bold text-slate-900 dark:text-white text-sm">{item.name}</h3>
+                  <p className="text-xs text-slate-500 dark:text-gray-400">{item.company || 'Private Client'}</p>
                 </div>
 
-                <div className="bg-[#050608] p-3 rounded-xl border border-[#1F2937]/60 space-y-1 text-xs">
+                <div className="bg-slate-50 dark:bg-[#050608] p-3 rounded-xl border border-slate-200 dark:border-[#1F2937]/60 space-y-1 text-xs">
                   <div className="font-semibold text-[#0B65B3]">
                     {type === 'product' ? `[${item.categoryCode}] ${item.categoryTitle}` : item.serviceTitle}
                   </div>
-                  <div className="flex flex-wrap items-center gap-4 pt-1 text-[11px] text-gray-400">
-                    <span className="flex items-center gap-1 text-[#8DC63F] font-mono">
-                      <Phone className="w-3 h-3" /> {item.phone}
+                  <div className="flex flex-wrap items-center gap-4 pt-1 text-[11px] text-slate-600 dark:text-gray-400">
+                    <span className="flex items-center gap-1 text-slate-800 dark:text-[#8DC63F] font-mono">
+                      <Phone className="w-3 h-3 text-[#0B65B3] dark:text-[#8DC63F]" /> {item.phone}
                     </span>
                     <span className="flex items-center gap-1 truncate">
-                      <Mail className="w-3 h-3" /> {item.email}
+                      <Mail className="w-3 h-3 text-slate-400 dark:text-gray-400" /> {item.email}
                     </span>
                   </div>
                 </div>
 
                 <div className="flex items-center justify-between text-xs pt-1">
-                  <span className="text-gray-400">{new Date(item.createdAt).toLocaleDateString()}</span>
+                  <span className="text-slate-500 dark:text-gray-400">{new Date(item.createdAt).toLocaleDateString()}</span>
                   <button className="min-h-[36px] px-3 bg-[#0B65B3] hover:bg-[#0B65B3]/80 text-white font-bold rounded-lg flex items-center gap-1">
                     <Eye className="w-3.5 h-3.5" />
                     <span>View Details</span>
@@ -203,7 +203,7 @@ export default function EnquiryTable({ type, onNewCountChange }: EnquiryTablePro
         <div className="hidden lg:block overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-[#050608] border-b border-[#1F2937] text-[11px] font-bold uppercase tracking-wider text-[#A9B4C0]">
+              <tr className="bg-slate-50 dark:bg-[#050608] border-b border-slate-200 dark:border-[#1F2937] text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-[#A9B4C0]">
                 <th className="py-3.5 px-4">Reference</th>
                 <th className="py-3.5 px-4">Date</th>
                 <th className="py-3.5 px-4">Client / Company</th>
@@ -214,17 +214,17 @@ export default function EnquiryTable({ type, onNewCountChange }: EnquiryTablePro
                 <th className="py-3.5 px-4">Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#1F2937] text-xs">
+            <tbody className="divide-y divide-slate-200 dark:divide-[#1F2937] text-xs">
               {loading ? (
                 <tr>
-                  <td colSpan={6} className="py-12 text-center text-gray-400">
+                  <td colSpan={6} className="py-12 text-center text-slate-500 dark:text-gray-400">
                     <Loader2 className="w-6 h-6 animate-spin mx-auto mb-2 text-[#0B65B3]" />
                     <span>Loading enquiries...</span>
                   </td>
                 </tr>
               ) : data.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="py-12 text-center text-gray-400">
+                  <td colSpan={6} className="py-12 text-center text-slate-500 dark:text-gray-400">
                     No {type} enquiries found matching your filter criteria.
                   </td>
                 </tr>
@@ -233,36 +233,36 @@ export default function EnquiryTable({ type, onNewCountChange }: EnquiryTablePro
                   <tr
                     key={item.id}
                     onClick={() => setSelectedRecord(item)}
-                    className="hover:bg-white/5 cursor-pointer transition-colors"
+                    className="hover:bg-slate-100/70 dark:hover:bg-white/5 cursor-pointer transition-colors"
                   >
-                    <td className="py-3.5 px-4 font-mono font-bold text-[#8DC63F]">
+                    <td className="py-3.5 px-4 font-mono font-bold text-[#0B65B3] dark:text-[#8DC63F]">
                       {item.reference}
                     </td>
-                    <td className="py-3.5 px-4 text-gray-400 whitespace-nowrap">
+                    <td className="py-3.5 px-4 text-slate-500 dark:text-gray-400 whitespace-nowrap">
                       {new Date(item.createdAt).toLocaleDateString()}
                     </td>
                     <td className="py-3.5 px-4">
-                      <div className="font-semibold text-white">{item.name}</div>
-                      <div className="text-[11px] text-gray-400">{item.company || '—'}</div>
+                      <div className="font-semibold text-slate-900 dark:text-white">{item.name}</div>
+                      <div className="text-[11px] text-slate-500 dark:text-gray-400">{item.company || '—'}</div>
                     </td>
                     <td className="py-3.5 px-4 space-y-0.5">
-                      <div className="text-[#8DC63F] flex items-center gap-1 font-mono">
-                        <Phone className="w-3 h-3" /> {item.phone}
+                      <div className="text-slate-700 dark:text-[#8DC63F] flex items-center gap-1 font-mono">
+                        <Phone className="w-3 h-3 text-[#0B65B3] dark:text-[#8DC63F]" /> {item.phone}
                       </div>
-                      <div className="text-gray-400 flex items-center gap-1">
-                        <Mail className="w-3 h-3" /> {item.email}
+                      <div className="text-slate-500 dark:text-gray-400 flex items-center gap-1">
+                        <Mail className="w-3 h-3 text-slate-400 dark:text-gray-400" /> {item.email}
                       </div>
                     </td>
                     <td className="py-3.5 px-4">
                       {type === 'product' ? (
                         <div>
                           <span className="font-bold text-[#0B65B3] mr-1">[{item.categoryCode}]</span>
-                          <span className="text-white font-medium">{item.categoryTitle}</span>
+                          <span className="text-slate-800 dark:text-white font-medium">{item.categoryTitle}</span>
                         </div>
                       ) : (
                         <div>
-                          <span className="text-white font-semibold">{item.serviceTitle}</span>
-                          <div className="text-[11px] text-[#8DC63F] font-mono">{item.emirate}</div>
+                          <span className="text-slate-900 dark:text-white font-semibold">{item.serviceTitle}</span>
+                          <div className="text-[11px] text-[#0B65B3] dark:text-[#8DC63F] font-mono font-medium">{item.emirate}</div>
                         </div>
                       )}
                     </td>
@@ -277,27 +277,27 @@ export default function EnquiryTable({ type, onNewCountChange }: EnquiryTablePro
         </div>
 
         {/* Pagination Footer */}
-        <div className="p-4 bg-[#050608] border-t border-[#1F2937] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
+        <div className="p-4 bg-slate-50 dark:bg-[#050608] border-t border-slate-200 dark:border-[#1F2937] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600 dark:text-gray-400">
           <div>
-            Showing <span className="text-white font-bold">{data.length}</span> of{' '}
-            <span className="text-white font-bold">{totalCount}</span> total records (Page {page} of {totalPages})
+            Showing <span className="text-slate-900 dark:text-white font-bold">{data.length}</span> of{' '}
+            <span className="text-slate-900 dark:text-white font-bold">{totalCount}</span> total records (Page {page} of {totalPages})
           </div>
 
           <div className="flex items-center gap-2">
             <button
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={page === 1}
-              className="p-2.5 bg-[#0D1117] border border-[#1F2937] rounded-lg disabled:opacity-40 hover:bg-white/5 text-white min-w-[40px] min-h-[40px] flex items-center justify-center"
+              className="p-2.5 bg-white dark:bg-[#0D1117] border border-slate-200 dark:border-[#1F2937] rounded-lg disabled:opacity-40 hover:bg-slate-100 dark:hover:bg-white/5 text-slate-800 dark:text-white min-w-[40px] min-h-[40px] flex items-center justify-center shadow-sm dark:shadow-none"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
-            <span className="px-3 py-2 font-semibold text-white bg-[#0D1117] border border-[#1F2937] rounded-lg">
+            <span className="px-3 py-2 font-semibold text-slate-900 dark:text-white bg-white dark:bg-[#0D1117] border border-slate-200 dark:border-[#1F2937] rounded-lg shadow-sm dark:shadow-none">
               {page}
             </span>
             <button
               onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
               disabled={page >= totalPages}
-              className="p-2.5 bg-[#0D1117] border border-[#1F2937] rounded-lg disabled:opacity-40 hover:bg-white/5 text-white min-w-[40px] min-h-[40px] flex items-center justify-center"
+              className="p-2.5 bg-white dark:bg-[#0D1117] border border-slate-200 dark:border-[#1F2937] rounded-lg disabled:opacity-40 hover:bg-slate-100 dark:hover:bg-white/5 text-slate-800 dark:text-white min-w-[40px] min-h-[40px] flex items-center justify-center shadow-sm dark:shadow-none"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
@@ -319,20 +319,20 @@ export default function EnquiryTable({ type, onNewCountChange }: EnquiryTablePro
 function StatusBadge({ status }: { status: string }) {
   if (status === 'NEW') {
     return (
-      <span className="px-2.5 py-1 text-[11px] font-bold text-[#8DC63F] bg-[#8DC63F]/10 border border-[#8DC63F]/40 rounded-full pill-glow">
+      <span className="px-2.5 py-1 text-[11px] font-bold text-emerald-700 dark:text-[#8DC63F] bg-emerald-50 dark:bg-[#8DC63F]/10 border border-emerald-300 dark:border-[#8DC63F]/40 rounded-full">
         NEW
       </span>
     );
   }
   if (status === 'CONTACTED') {
     return (
-      <span className="px-2.5 py-1 text-[11px] font-bold text-[#F2C230] bg-[#F2C230]/10 border border-[#F2C230]/40 rounded-full">
+      <span className="px-2.5 py-1 text-[11px] font-bold text-amber-700 dark:text-[#F2C230] bg-amber-50 dark:bg-[#F2C230]/10 border border-amber-300 dark:border-[#F2C230]/40 rounded-full">
         CONTACTED
       </span>
     );
   }
   return (
-    <span className="px-2.5 py-1 text-[11px] font-bold text-gray-400 bg-gray-800 border border-gray-700 rounded-full">
+    <span className="px-2.5 py-1 text-[11px] font-bold text-slate-600 dark:text-gray-400 bg-slate-100 dark:bg-gray-800 border border-slate-300 dark:border-gray-700 rounded-full">
       CLOSED
     </span>
   );

@@ -139,13 +139,13 @@ export default function AdminDashboardPage() {
 
         <Link
           href="/admin/services/new"
-          className="flex items-center justify-between p-4 bg-[#0D1117] border border-[#1F2937] hover:border-[#A3E635]/60 rounded-xl transition-all group min-h-[44px]"
+          className="flex items-center justify-between p-4 bg-[#0D1117] border border-[#1F2937] hover:border-[#0B65B3]/60 dark:hover:border-[#A3E635]/60 rounded-xl transition-all group min-h-[44px]"
         >
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-[#A3E635]/10 text-[#A3E635] rounded-lg">
+            <div className="p-2 bg-[#0B65B3]/10 text-[#0B65B3] dark:bg-[#A3E635]/10 dark:text-[#A3E635] rounded-lg">
               <Wrench className="w-5 h-5" />
             </div>
-            <span className="text-sm font-semibold text-white group-hover:text-[#A3E635] transition-colors">
+            <span className="text-sm font-semibold text-white group-hover:text-[#0B65B3] dark:group-hover:text-[#A3E635] transition-colors">
               New Service Scope
             </span>
           </div>
@@ -182,10 +182,10 @@ export default function AdminDashboardPage() {
         <Link href="/admin/enquiries" className="p-5 bg-[#0D1117] border border-[#1F2937] rounded-xl space-y-2 hover:border-gray-700 transition-all block">
           <div className="flex items-center justify-between text-gray-400">
             <span className="text-xs font-semibold uppercase tracking-wider">Service Enquiries</span>
-            <Inbox className="w-4 h-4 text-[#A3E635]" />
+            <Inbox className="w-4 h-4 text-[#0B65B3] dark:text-[#A3E635]" />
           </div>
           <div className="text-3xl font-bold text-white font-mono">{counts.newServiceEnquiries}</div>
-          <p className="text-[11px] text-[#A3E635] font-medium">New unhandled requests</p>
+          <p className="text-[11px] text-[#0B65B3] dark:text-[#A3E635] font-medium">New unhandled requests</p>
         </Link>
 
         <Link href="/admin/products" className="p-5 bg-[#0D1117] border border-[#1F2937] rounded-xl space-y-2 hover:border-gray-700 transition-all block">
@@ -195,7 +195,7 @@ export default function AdminDashboardPage() {
           </div>
           <div className="text-3xl font-bold text-white font-mono">{counts.publishedProducts}</div>
           <p className="text-[11px] text-gray-400">
-            <span className="text-[#A3E635] font-semibold">{counts.publishedProducts} published</span> • {counts.draftProducts} drafts
+            <span className="text-emerald-700 dark:text-[#A3E635] font-semibold">{counts.publishedProducts} published</span> • {counts.draftProducts} drafts
           </p>
         </Link>
 
@@ -225,7 +225,7 @@ export default function AdminDashboardPage() {
                 <span className="text-gray-300">
                   Service <strong className="text-white">{s.title}</strong> has unconfirmed process steps (hidden on site).
                 </span>
-                <Link href={s.href} className="text-[#A3E635] hover:underline font-semibold flex items-center gap-1 shrink-0 ml-2">
+                <Link href={s.href} className="text-[#0B65B3] dark:text-[#A3E635] hover:underline font-semibold flex items-center gap-1 shrink-0 ml-2">
                   <span>Edit Service</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
@@ -237,7 +237,7 @@ export default function AdminDashboardPage() {
                 <span className="text-gray-300">
                   {d.type} draft <strong className="text-white">{d.title}</strong> has been unupdated for over 14 days.
                 </span>
-                <Link href={d.href} className="text-[#A3E635] hover:underline font-semibold flex items-center gap-1 shrink-0 ml-2">
+                <Link href={d.href} className="text-[#0B65B3] dark:text-[#A3E635] hover:underline font-semibold flex items-center gap-1 shrink-0 ml-2">
                   <span>Review Draft</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
@@ -290,10 +290,10 @@ export default function AdminDashboardPage() {
         <div className="bg-[#0D1117] border border-[#1F2937] rounded-xl p-5 space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Wrench className="w-4 h-4 text-[#A3E635]" />
+              <Wrench className="w-4 h-4 text-[#0B65B3] dark:text-[#A3E635]" />
               <h3 className="font-bold text-sm text-white">Latest Service Enquiries</h3>
             </div>
-            <Link href="/admin/enquiries" className="text-xs text-[#A3E635] hover:underline font-medium">
+            <Link href="/admin/enquiries" className="text-xs text-[#0B65B3] dark:text-[#A3E635] hover:underline font-medium">
               View all
             </Link>
           </div>
@@ -310,7 +310,7 @@ export default function AdminDashboardPage() {
                 >
                   <div className="flex items-center justify-between">
                     <span className="font-semibold text-white">{item.name || "Enquiry"} ({item.emirate || "UAE"})</span>
-                    <span className="text-[10px] font-mono text-[#A3E635]">{item.projectType || ""}</span>
+                    <span className="text-[10px] font-mono text-[#0B65B3] dark:text-[#A3E635]">{item.projectType || ""}</span>
                   </div>
                   <p className="text-gray-400 text-[11px] truncate">{item.serviceTitle}</p>
                   <div className="text-[10px] text-gray-500 flex items-center gap-1">

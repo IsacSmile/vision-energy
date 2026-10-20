@@ -53,8 +53,8 @@ export default function AdminClock() {
 
   if (!mounted) {
     return (
-      <div className="flex items-center gap-2 px-3 py-1.5 bg-[#0D1117] border border-[#1F2937] rounded-xl text-xs text-gray-500 animate-pulse">
-        <Clock className="w-3.5 h-3.5 text-gray-500" />
+      <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-100 dark:bg-[#0D1117] border border-slate-200 dark:border-[#1F2937] rounded-xl text-xs text-slate-500 dark:text-gray-500 animate-pulse">
+        <Clock className="w-3.5 h-3.5 text-slate-500 dark:text-gray-500" />
         <span>Loading UAE time...</span>
       </div>
     );
@@ -62,33 +62,33 @@ export default function AdminClock() {
 
   return (
     <div
-      className="inline-flex items-center gap-2.5 px-3 py-1.5 bg-[#0D1117]/90 hover:bg-[#0D1117] border border-[#1F2937] hover:border-[#8DC63F]/40 rounded-xl shadow-lg shadow-black/40 backdrop-blur-md transition-all select-none group"
+      className="inline-flex items-center gap-2.5 px-3 py-1.5 bg-slate-50/90 dark:bg-[#0D1117]/90 hover:bg-slate-100 dark:hover:bg-[#0D1117] border border-slate-200 dark:border-[#1F2937] hover:border-[#0B65B3]/40 dark:hover:border-[#8DC63F]/40 rounded-xl shadow-sm dark:shadow-lg dark:shadow-black/40 backdrop-blur-md transition-all select-none group"
       title="UAE Standard Time (Abu Dhabi | Dubai | Ras Al Khaimah) • UTC+4"
     >
       {/* Live Pulse Indicator & Clock Icon */}
       <div className="relative flex items-center justify-center shrink-0">
-        <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-[#8DC63F] rounded-full animate-ping opacity-75" />
-        <span className="w-1.5 h-1.5 bg-[#8DC63F] rounded-full absolute -top-0.5 -right-0.5" />
-        <Clock className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#8DC63F] transition-colors" />
+        <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-emerald-500 dark:bg-[#8DC63F] rounded-full animate-ping opacity-75" />
+        <span className="w-1.5 h-1.5 bg-emerald-500 dark:bg-[#8DC63F] rounded-full absolute -top-0.5 -right-0.5" />
+        <Clock className="w-3.5 h-3.5 text-slate-400 dark:text-gray-400 group-hover:text-[#0B65B3] dark:group-hover:text-[#8DC63F] transition-colors" />
       </div>
 
       {/* Clock Details */}
       <div className="flex flex-col text-left leading-tight">
         {/* Time with Seconds */}
         <div className="flex items-baseline gap-1 font-mono">
-          <span className="text-xs font-bold text-white tracking-wider">{timeStr}</span>
-          <span className="text-[11px] font-semibold text-[#8DC63F]">{secondsStr}</span>
-          <span className="text-[9px] font-bold text-gray-400 uppercase tracking-tight ml-0.5">
+          <span className="text-xs font-bold text-slate-900 dark:text-white tracking-wider">{timeStr}</span>
+          <span className="text-[11px] font-semibold text-[#0B65B3] dark:text-[#8DC63F]">{secondsStr}</span>
+          <span className="text-[9px] font-bold text-slate-500 dark:text-gray-400 uppercase tracking-tight ml-0.5">
             {periodStr}
           </span>
-          <span className="text-[9px] font-medium text-gray-500 ml-1">GST</span>
+          <span className="text-[9px] font-medium text-slate-400 dark:text-gray-500 ml-1">GST</span>
         </div>
 
         {/* Date & Location Subtitle */}
-        <div className="flex items-center gap-1.5 text-[10px] text-gray-400">
-          <span className="font-medium text-gray-300">{dateStr}</span>
-          <span className="text-gray-600">•</span>
-          <span className="text-[9px] text-gray-400 group-hover:text-[#8DC63F]/90 transition-colors truncate max-w-[140px] sm:max-w-none">
+        <div className="flex items-center gap-1.5 text-[10px] text-slate-500 dark:text-gray-400">
+          <span className="font-medium text-slate-700 dark:text-gray-300">{dateStr}</span>
+          <span className="text-slate-400 dark:text-gray-600">•</span>
+          <span className="text-[9px] text-slate-500 dark:text-gray-400 group-hover:text-[#0B65B3] dark:group-hover:text-[#8DC63F]/90 transition-colors truncate max-w-[140px] sm:max-w-none">
             Abu Dhabi | Dubai | RAK
           </span>
         </div>
