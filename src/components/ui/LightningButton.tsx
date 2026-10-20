@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useEffect, useState, forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import Link from 'next/link';
 
 export interface LightningButtonProps {
@@ -38,149 +38,6 @@ const LightningButton = forwardRef<HTMLElement, LightningButtonProps>(
     },
     ref
   ) => {
-    const fxRef = useRef<HTMLDivElement>(null);
-    const buttonRef = useRef<HTMLElement | null>(null);
-    const controllerRef = useRef<typeof import('@/lib/button-lightning/controller') | null>(null);
-    const rafId = useRef<number | null>(null);
-    const touchTimeout = useRef<NodeJS.Timeout | null>(null);
-    const touchStartTime = useRef<number>(0);
-    const isTouchActive = useRef<boolean>(false);
-    const [shouldEnableFx, setShouldEnableFx] = useState(false);
-
-    // Merge refs
-    const setCombinedRef = (node: HTMLElement | null) => {
-      buttonRef.current = node;
-      if (typeof ref === 'function') {
-        ref(node);
-      } else if (ref) {
-        (ref as React.MutableRefObject<HTMLElement | null>).current = node;
-      }
-    };
-
-    // Check device capabilities on mount
-    useEffect(() => {
-      if (typeof window === 'undefined') return;
-
-      const mediaMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-      if (mediaMotion.matches) return;
-
-      // Check Save-Data or low-end device
-      const nav = navigator as unknown as {
-        connection?: { saveData?: boolean };
-        hardwareConcurrency?: number;
-      };
-      if (nav.connection?.saveData || (nav.hardwareConcurrency && nav.hardwareConcurrency <= 2)) {
-        return;
-      }
-
-      setShouldEnableFx(true);
-
-      // Pre-warm controller on idle for fine-pointer desktop devices
-      const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
-      if (finePointer.matches && 'requestIdleCallback' in window) {
-        (window as unknown as { requestIdleCallback: (cb: () => void) => void }).requestIdleCallback(() => {
-          import('@/lib/button-lightning/controller').then((mod) => {
-            controllerRef.current = mod;
-            mod.prewarm();
-          });
-        });
-      }
-
-      return () => {
-        if (rafId.current) cancelAnimationFrame(rafId.current);
-        if (touchTimeout.current) clearTimeout(touchTimeout.current);
-        if (controllerRef.current) controllerRef.current.detach();
-      };
-    }, []);
-
-    // Helper to dynamically load controller if not loaded
-    const getController = async () => {
-      if (controllerRef.current) return controllerRef.current;
-      const mod = await import('@/lib/button-lightning/controller');
-      controllerRef.current = mod;
-      return mod;
-    };
-
-    const getXNorm = (clientX: number): number => {
-      if (!buttonRef.current) return 0.5;
-      const rect = buttonRef.current.getBoundingClientRect();
-      if (rect.width === 0) return 0.5;
-      return Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-    };
-
-    // Mouse & Pen Pointer Events
-    const handlePointerEnter = (e: React.PointerEvent<HTMLElement>) => {
-      if (!shouldEnableFx || disabled || e.pointerType === 'touch') return;
-      const xNorm = getXNorm(e.clientX);
-      getController().then((ctrl) => {
-        if (fxRef.current) ctrl.attach(fxRef.current, xNorm);
-      });
-    };
-
-    const handlePointerMove = (e: React.PointerEvent<HTMLElement>) => {
-      if (!shouldEnableFx || disabled || e.pointerType === 'touch') return;
-      if (rafId.current) return;
-      const xNorm = getXNorm(e.clientX);
-      rafId.current = requestAnimationFrame(() => {
-        rafId.current = null;
-        if (controllerRef.current) {
-          controllerRef.current.setPointer(xNorm);
-        }
-      });
-    };
-
-    const handlePointerLeave = (e: React.PointerEvent<HTMLElement>) => {
-      if (e.pointerType === 'touch') {
-        handleTouchRelease();
-        return;
-      }
-      if (!shouldEnableFx || disabled) return;
-      if (controllerRef.current) {
-        controllerRef.current.detach();
-      }
-    };
-
-    // Keyboard Focus Events
-    const handleFocus = () => {
-      if (!shouldEnableFx || disabled) return;
-      getController().then((ctrl) => {
-        if (fxRef.current) ctrl.attach(fxRef.current, 0.5);
-      });
-    };
-
-    const handleBlur = () => {
-      if (controllerRef.current) {
-        controllerRef.current.detach();
-      }
-    };
-
-    // Touch Events (No navigation delay, minimum 450ms burst)
-    const handlePointerDown = (e: React.PointerEvent<HTMLElement>) => {
-      if (!shouldEnableFx || disabled || e.pointerType !== 'touch') return;
-      isTouchActive.current = true;
-      touchStartTime.current = Date.now();
-      const xNorm = getXNorm(e.clientX);
-      getController().then((ctrl) => {
-        if (fxRef.current) {
-          ctrl.attach(fxRef.current, xNorm);
-        }
-      });
-    };
-
-    const handleTouchRelease = () => {
-      if (!isTouchActive.current) return;
-      isTouchActive.current = false;
-      const elapsed = Date.now() - touchStartTime.current;
-      const remaining = Math.max(0, 450 - elapsed);
-
-      if (touchTimeout.current) clearTimeout(touchTimeout.current);
-      touchTimeout.current = setTimeout(() => {
-        if (controllerRef.current) {
-          controllerRef.current.detach();
-        }
-      }, remaining);
-    };
-
     // Size Specifications (sm: 40px, md: 44px, lg: 52px)
     const sizeClasses = {
       sm: 'h-10 px-4 text-xs font-semibold gap-2',
@@ -214,16 +71,13 @@ const LightningButton = forwardRef<HTMLElement, LightningButtonProps>(
 
     const innerContent = (
       <>
-        {/* Layer 0 & 1: WebGL Canvas FX Layer */}
-        <div ref={fxRef} className="absolute inset-0 pointer-events-none z-[1]" aria-hidden="true" />
-
         {/* Layer 2: 1px Blue-to-Lime Gradient Border Overlay (Visible on Hover and Focus) */}
         <div
           className="absolute inset-0 rounded-full p-[1px] bg-gradient-to-r from-[#0B65B3] via-[#8DC63F] to-[#0B65B3] opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300 pointer-events-none z-[2]"
           aria-hidden="true"
         />
 
-        {/* Layer 3: Content */}
+        {/* Content */}
         <span className="relative z-10 flex items-center justify-center gap-[8px] whitespace-nowrap font-bold">
           {iconLeft && (
             <span className="shrink-0 text-[#8DC63F] transition-transform group-hover:scale-110">{iconLeft}</span>
@@ -244,19 +98,11 @@ const LightningButton = forwardRef<HTMLElement, LightningButtonProps>(
       if (isExternal) {
         return (
           <a
-            ref={setCombinedRef as React.Ref<HTMLAnchorElement>}
+            ref={ref as React.Ref<HTMLAnchorElement>}
             id={id}
             href={href}
             aria-label={ariaLabel}
             onClick={onClick as React.MouseEventHandler<HTMLAnchorElement>}
-            onPointerEnter={handlePointerEnter}
-            onPointerMove={handlePointerMove}
-            onPointerLeave={handlePointerLeave}
-            onPointerDown={handlePointerDown}
-            onPointerUp={handleTouchRelease}
-            onPointerCancel={handleTouchRelease}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
             className={combinedClasses}
           >
             {innerContent}
@@ -266,19 +112,11 @@ const LightningButton = forwardRef<HTMLElement, LightningButtonProps>(
 
       return (
         <Link
-          ref={setCombinedRef as React.Ref<HTMLAnchorElement>}
+          ref={ref as React.Ref<HTMLAnchorElement>}
           id={id}
           href={href}
           aria-label={ariaLabel}
           onClick={onClick as React.MouseEventHandler<HTMLAnchorElement>}
-          onPointerEnter={handlePointerEnter}
-          onPointerMove={handlePointerMove}
-          onPointerLeave={handlePointerLeave}
-          onPointerDown={handlePointerDown}
-          onPointerUp={handleTouchRelease}
-          onPointerCancel={handleTouchRelease}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
           className={combinedClasses}
         >
           {innerContent}
@@ -288,20 +126,12 @@ const LightningButton = forwardRef<HTMLElement, LightningButtonProps>(
 
     return (
       <button
-        ref={setCombinedRef as React.Ref<HTMLButtonElement>}
+        ref={ref as React.Ref<HTMLButtonElement>}
         id={id}
         type={type}
         disabled={disabled}
         aria-label={ariaLabel}
         onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
-        onPointerEnter={handlePointerEnter}
-        onPointerMove={handlePointerMove}
-        onPointerLeave={handlePointerLeave}
-        onPointerDown={handlePointerDown}
-        onPointerUp={handleTouchRelease}
-        onPointerCancel={handleTouchRelease}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
         className={combinedClasses}
       >
         {innerContent}

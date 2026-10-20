@@ -33,12 +33,6 @@ export default function Header() {
     }
   }, [mobileMenuOpen, isAdmin]);
 
-  // Dispatch custom event for HeroLightning GPU pausing
-  useEffect(() => {
-    if (isAdmin) return;
-    window.dispatchEvent(new CustomEvent('mobile-menu-state', { detail: { open: mobileMenuOpen } }));
-  }, [mobileMenuOpen, isAdmin]);
-
   // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);

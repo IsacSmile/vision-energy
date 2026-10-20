@@ -34,7 +34,6 @@ import LightningButton from '@/components/ui/LightningButton';
 import Reveal from '@/components/ui/Reveal';
 import Card from '@/components/ui/Card';
 import CustomSelect, { SelectOption } from '@/components/ui/CustomSelect';
-import HeroLightning from '@/components/HeroLightning';
 
 const SORT_OPTIONS: SelectOption[] = [
   { value: 'featured', label: 'Featured Order' },
@@ -527,17 +526,6 @@ export default function ProductsExplorer({
           {/* Light gradient overlays so the background image is vibrant and clearly visible */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#050608]/80 via-[#050608]/40 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050608] via-transparent to-[#050608]/25" />
-        </div>
-
-        {/* Thunder Lightning Animation in Product Hero */}
-        <div className="pointer-events-none absolute inset-0 overflow-hidden z-[1]" aria-hidden="true">
-          <HeroLightning
-            hue={210}
-            speed={0.7}
-            intensity={0.6}
-            boltPosition={0.8}
-            opacityClass="opacity-25 lg:opacity-40"
-          />
         </div>
 
         <div className="max-w-[80rem] w-full mx-auto px-4 sm:px-6 lg:px-8 pt-[calc(var(--header-offset,118px)+32px)] lg:pt-[calc(var(--header-offset,118px)+48px)] pb-10 sm:pb-14 relative z-10">

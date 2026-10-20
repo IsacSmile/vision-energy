@@ -38,15 +38,14 @@ export default function IntroStandards({ productCategoryCount }: IntroStandardsP
             {/* 3 Plain Facts (stacked cleanly on mobile and desktop) */}
             <div className="grid grid-cols-3 gap-3 sm:gap-6 pt-6 border-t border-white/[0.08]">
               <div className="space-y-1">
-                <span className="block text-xl sm:text-2xl font-semibold text-white">2018</span>
+                <span className="block text-xl sm:text-2xl font-bold text-white">2018</span>
                 <span className="block text-[10px] sm:text-xs uppercase tracking-wider text-[#A9B4C0]">Established</span>
               </div>
               <div className="space-y-1 border-l border-white/[0.08] pl-3 sm:pl-6">
-                <span className="block text-xl sm:text-2xl font-semibold text-white">3</span>
-                <span className="block text-[10px] sm:text-xs uppercase tracking-wider text-[#A9B4C0]">UAE Locations</span>
+                <span className="block text-xl sm:text-2xl font-bold text-white">UAE and GCC</span>
               </div>
               <div className="space-y-1 border-l border-white/[0.08] pl-3 sm:pl-6">
-                <span className="block text-xl sm:text-2xl font-semibold text-white">Multiple</span>
+                <span className="block text-xl sm:text-2xl font-bold text-white">Multiple</span>
                 <span className="block text-[10px] sm:text-xs uppercase tracking-wider text-[#A9B4C0] truncate">Product categories</span>
               </div>
             </div>

@@ -19,6 +19,21 @@ const FALLBACK_SERVICES_LIST = [
     updatedAt: new Date(),
   },
   {
+    id: "earthing-grounding",
+    slug: "earthing-and-grounding",
+    title: "Earthing & Grounding System Design & Installation",
+    summary:
+      "Low-resistance earthing grids, chemical earth enhancement, and deep well earth electrodes for industrial facilities.",
+    icon: "layers",
+    metaChips: ["Grounding Systems", "Earth Pits"],
+    content: SERVICES_CONTENT["earthing-and-grounding"],
+    status: "PUBLISHED",
+    sortOrder: 2,
+    deletedAt: null,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
     id: "manpower-sup",
     slug: "manpower-supply",
     title: "Manpower Supply",
@@ -27,7 +42,7 @@ const FALLBACK_SERVICES_LIST = [
     metaChips: SERVICES_CONTENT["manpower-supply"]?.metaChips || ["Specialist Manpower", "Technical Support"],
     content: SERVICES_CONTENT["manpower-supply"],
     status: "PUBLISHED",
-    sortOrder: 2,
+    sortOrder: 3,
     deletedAt: null,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -48,7 +63,9 @@ export const getPublishedServices = unstable_cache(
       );
 
       if (services && services.length > 0) {
-        return services.map((service) => {
+        return [...services]
+          .sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0))
+          .map((service) => {
           const content = service.content as any;
           if (content && Array.isArray(content.process)) {
             content.process = content.process.filter((p: any) => p.confirmed === true);

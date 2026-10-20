@@ -34,26 +34,6 @@ interface SlideData {
 
 const HERO_SLIDES: SlideData[] = [
   {
-    id: 'earthing',
-    category: 'Earthing & Grounding',
-    shortName: 'Earthing',
-    badge: 'Low-Impedance Grids',
-    badgeIcon: Layers,
-    titleLine1: 'Precision Earthing &',
-    titleLine2: 'Grounding Solutions',
-    subtitle: 'Low-Impedance Foundation & Deep Earth Grids',
-    description:
-      'Engineered copper earthing grids and low-impedance grounding for maximum electrical safety across UAE soil conditions.',
-    ctaText: 'Explore Earthing',
-    ctaLink: '/services/manpower-supply',
-    imageUrl: '/images/earthing-grounding-hero.webp',
-    imageAlt:
-      'Vision Energy specialist engineers installing rooftop earthing and lightning copper grid network on UAE site',
-    standards: 'IEEE 80 • BS 7430',
-    highlightColor: 'text-[#8DC63F]',
-    glowColor: 'rgba(141,198,63,0.45)',
-  },
-  {
     id: 'lightning-protection',
     category: 'Lightning Protection',
     shortName: 'Lightning',
@@ -70,6 +50,26 @@ const HERO_SLIDES: SlideData[] = [
     imageAlt:
       'Dramatic structural lightning protection and interception system installation UAE',
     standards: 'IEC 62305 • NFPA 780',
+    highlightColor: 'text-[#8DC63F]',
+    glowColor: 'rgba(141,198,63,0.45)',
+  },
+  {
+    id: 'earthing',
+    category: 'Earthing & Grounding',
+    shortName: 'Earthing',
+    badge: 'Low-Impedance Grids',
+    badgeIcon: Layers,
+    titleLine1: 'Precision Earthing &',
+    titleLine2: 'Grounding Solutions',
+    subtitle: 'Low-Impedance Foundation & Deep Earth Grids',
+    description:
+      'Engineered copper earthing grids and low-impedance grounding for maximum electrical safety across UAE soil conditions.',
+    ctaText: 'Explore Earthing',
+    ctaLink: '/services/earthing-and-grounding',
+    imageUrl: '/images/earthing-grounding-hero.webp',
+    imageAlt:
+      'Vision Energy specialist engineers installing rooftop earthing and lightning copper grid network on UAE site',
+    standards: 'IEEE 80 • BS 7430',
     highlightColor: 'text-[#8DC63F]',
     glowColor: 'rgba(141,198,63,0.45)',
   },
@@ -410,13 +410,10 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
             </span>
           </div>
 
-          {/* Tile B: 3 UAE Locations */}
+          {/* Tile B: UAE and GCC */}
           <div className="h-[62px] [media(max-height:640px)]:h-[52px] bg-[#0D1117]/85 backdrop-blur-md border border-white/[0.08] rounded-xl flex flex-col items-center justify-center text-center p-1">
-            <span className="text-[16px] [media(max-height:640px)]:text-[14px] font-bold text-white leading-tight">
-              3
-            </span>
-            <span className="text-[10px] [media(max-height:640px)]:text-[8px] text-[#A9B4C0] uppercase tracking-[0.04em] font-medium leading-tight mt-0.5">
-              UAE Locations
+            <span className="text-[13px] [media(max-height:640px)]:text-[12px] font-bold text-white leading-tight">
+              UAE and GCC
             </span>
           </div>
 

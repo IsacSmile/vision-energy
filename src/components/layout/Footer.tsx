@@ -69,6 +69,10 @@ export default function Footer({ services = [] }: FooterProps) {
       title: 'Lightning Protection Installation',
     },
     {
+      slug: 'earthing-and-grounding',
+      title: 'Earthing & Grounding System Design & Installation',
+    },
+    {
       slug: 'manpower-supply',
       title: 'Manpower Supply',
     },

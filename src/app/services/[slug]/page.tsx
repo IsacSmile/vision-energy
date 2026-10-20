@@ -14,7 +14,6 @@ import FAQAccordion from "@/components/services/FAQAccordion";
 import ProtectionDiagram from "@/components/home/ProtectionDiagram";
 import FinalCTA from "@/components/home/FinalCTA";
 import Reveal from "@/components/ui/Reveal";
-import HeroLightning from "@/components/HeroLightning";
 import ManpowerServiceDetail from "@/components/services/ManpowerServiceDetail";
 import StandardServiceDetail from "@/components/services/StandardServiceDetail";
 import { getStandardServicePage } from "@/lib/data/service-detail-pages";
@@ -193,17 +192,6 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
         >
           <div className="absolute inset-0 opacity-[0.04] pointer-events-none bg-[radial-gradient(#8DC63F_1px,transparent_1px)] [background-size:24px_24px]" />
 
-          {/* Thunder Lightning Animation */}
-          <div className="pointer-events-none absolute inset-0 overflow-hidden z-0" aria-hidden="true">
-            <HeroLightning
-              hue={210}
-              speed={0.7}
-              intensity={0.9}
-              boltPosition={0.8}
-              opacityClass="opacity-60 lg:opacity-85"
-            />
-          </div>
-
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
             <nav aria-label="Breadcrumb">
               <ol className="flex items-center gap-2 text-[13px] text-[#A9B4C0]">
@@ -374,17 +362,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
         className="service-detail-hero relative overflow-hidden bg-[#050608] pt-[calc(var(--header-offset,0px)+40px)] lg:pt-[calc(var(--header-offset,0px)+72px)] pb-16 lg:pb-24 border-b border-white/10"
       >
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none bg-[radial-gradient(#8DC63F_1px,transparent_1px)] [background-size:24px_24px]" />
-        
-        {/* Thunder Lightning Animation in Service Detail Hero */}
-        <div className="pointer-events-none absolute inset-0 overflow-hidden z-0" aria-hidden="true">
-          <HeroLightning
-            hue={210}
-            speed={0.7}
-            intensity={0.9}
-            boltPosition={0.8}
-            opacityClass="opacity-60 lg:opacity-85"
-          />
-        </div>
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
           <nav aria-label="Breadcrumb" className="mb-2">
             <ol className="flex items-center gap-2 text-[13px] text-[#A9B4C0]">

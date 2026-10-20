@@ -67,7 +67,9 @@ const DEFAULT_META = {
 
 export default async function ServicesPreview() {
   const servicesAll = await getPublishedServices();
-  const services = servicesAll.slice(0, 3);
+  const services = [...servicesAll]
+    .sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0))
+    .slice(0, 3);
 
   return (
     <section

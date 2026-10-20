@@ -95,53 +95,15 @@ async function main() {
       },
     },
     {
-      slug: "manpower-supply",
-      title: "Specialist Engineering Manpower Supply",
-      summary:
-        "Certified electrical, mechanical, and solar technicians, site engineers, and installers for project execution across UAE.",
-      icon: "users",
-      metaChips: ["Specialist Manpower", "Technical Support"],
-      status: ContentStatus.PUBLISHED,
-      publishedAt: new Date("2026-01-01T00:00:00Z"),
-      sortOrder: 2,
-      seoTitle: "Engineering Manpower Supply UAE | Vision Energy",
-      seoDescription:
-        "Certified electrical, mechanical, and solar technicians, site engineers, and installers for project execution across UAE.",
-      content: {
-        heroLead: "Vision Energy can also provide manpower services for your project.",
-        overview:
-          "Vision Energy International provides highly skilled, site-tested engineering personnel for short-term and long-term project deployments across Abu Dhabi, Dubai, Ras Al Khaimah, and the Northern Emirates.",
-        systems: [],
-        included: [
-          "Certified High & Low Voltage Electricians",
-          "Lightning Protection & Earthing System Specialists",
-          "Solar PV & Renewable Energy Technicians",
-          "Mechanical & HVAC Maintenance Technicians",
-          "HSE Compliant Site Supervisors & QA/QC Officers",
-        ],
-        whereWeInstall: [],
-        process: [
-          { title: "Evaluation", description: "Project Scope & Technical Skill Requirement Evaluation", confirmed: true },
-          { title: "Verification", description: "Candidate Trade Testing & HSE Certification Verification", confirmed: true },
-          { title: "Mobilisation", description: "Mobilisation, Site Induction & Tooling Provision", confirmed: true },
-          { title: "Support", description: "Dedicated On-Site Supervisory Support & Performance Audits", confirmed: false },
-        ],
-        standards: [],
-        complianceNote: "Personnel undergo rigorous technical and HSE safety evaluations before site placement.",
-        faq: [],
-        relatedCategoryCodes: [],
-      },
-    },
-    {
       slug: "earthing-and-grounding",
       title: "Earthing & Grounding System Design & Installation",
       summary:
         "Low-resistance earthing grids, chemical earth enhancement, and deep well earth electrodes for industrial facilities.",
       icon: "shield",
       metaChips: ["Grounding Systems", "Earth Pits"],
-      status: ContentStatus.DRAFT,
-      publishedAt: null,
-      sortOrder: 3,
+      status: ContentStatus.PUBLISHED,
+      publishedAt: new Date("2026-01-01T00:00:00Z"),
+      sortOrder: 2,
       seoTitle: "Earthing & Grounding System Design | Vision Energy",
       seoDescription: "Low-resistance earthing grids and chemical earth enhancement systems for industrial facilities.",
       content: {
@@ -172,6 +134,44 @@ async function main() {
         complianceNote: "Draft scope pending client approval.",
         faq: [],
         relatedCategoryCodes: ["ER-01", "ER-02", "ER-03", "ER-04"],
+      },
+    },
+    {
+      slug: "manpower-supply",
+      title: "Specialist Engineering Manpower Supply",
+      summary:
+        "Certified electrical, mechanical, and solar technicians, site engineers, and installers for project execution across UAE.",
+      icon: "users",
+      metaChips: ["Specialist Manpower", "Technical Support"],
+      status: ContentStatus.PUBLISHED,
+      publishedAt: new Date("2026-01-01T00:00:00Z"),
+      sortOrder: 3,
+      seoTitle: "Engineering Manpower Supply UAE | Vision Energy",
+      seoDescription:
+        "Certified electrical, mechanical, and solar technicians, site engineers, and installers for project execution across UAE.",
+      content: {
+        heroLead: "Vision Energy can also provide manpower services for your project.",
+        overview:
+          "Vision Energy International provides highly skilled, site-tested engineering personnel for short-term and long-term project deployments across Abu Dhabi, Dubai, Ras Al Khaimah, and the Northern Emirates.",
+        systems: [],
+        included: [
+          "Certified High & Low Voltage Electricians",
+          "Lightning Protection & Earthing System Specialists",
+          "Solar PV & Renewable Energy Technicians",
+          "Mechanical & HVAC Maintenance Technicians",
+          "HSE Compliant Site Supervisors & QA/QC Officers",
+        ],
+        whereWeInstall: [],
+        process: [
+          { title: "Evaluation", description: "Project Scope & Technical Skill Requirement Evaluation", confirmed: true },
+          { title: "Verification", description: "Candidate Trade Testing & HSE Certification Verification", confirmed: true },
+          { title: "Mobilisation", description: "Mobilisation, Site Induction & Tooling Provision", confirmed: true },
+          { title: "Support", description: "Dedicated On-Site Supervisory Support & Performance Audits", confirmed: false },
+        ],
+        standards: [],
+        complianceNote: "Personnel undergo rigorous technical and HSE safety evaluations before site placement.",
+        faq: [],
+        relatedCategoryCodes: [],
       },
     },
     {
