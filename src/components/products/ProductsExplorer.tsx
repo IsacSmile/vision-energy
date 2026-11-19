@@ -560,12 +560,6 @@ export default function ProductsExplorer({
             <p className="text-base lg:text-[18px] text-slate-100 leading-[1.65] max-w-[62ch] font-normal drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)]">
               Browse multiple certified product categories across lightning protection, earthing, electrical cables, cable management, and automation. Engineered for high-spec UAE infrastructure.
             </p>
-
-            {/* Meta Line */}
-            <p className="text-[13px] text-slate-300 font-medium pt-1 drop-shadow-sm">
-              <span className="text-white font-semibold">Multiple categories</span>
-              {' '}· <span className="text-white font-semibold">Comprehensive product groups</span>
-            </p>
           </div>
         </div>
       </div>
