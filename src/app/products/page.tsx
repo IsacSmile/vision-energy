@@ -40,17 +40,58 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   );
 
   return {
-    title: "Products | Lightning Protection, Earthing, Electrical & Solar | Vision Energy International",
-    description: "Browse multiple product categories from Vision Energy International: lightning protection, earthing, cables, lighting, electrical, mechanical and solar products across the UAE.",
+    title: "Electrical Equipment, Earthing & Lightning Protection Products Dubai UAE | Vision Energy",
+    description:
+      "Explore 57 certified product categories across lightning protection, low-resistance earthing, industrial electrical cables, heavy-duty clamps, and generator equipment in Dubai & UAE. Compliant with DEWA, SEWA & Civil Defense.",
+    keywords: [
+      "Lightning Protection Products Dubai",
+      "Earthing Materials UAE",
+      "Electrical Equipment Dubai",
+      "Exothermic Welding Supplies UAE",
+      "Cable Trays and Supports Dubai",
+      "Industrial Generator Equipment UAE",
+      "Heavy Duty Clamps UAE",
+      "Vision Energy Catalogue",
+    ],
     alternates: {
-      canonical: "/products",
+      canonical: "https://www.visionenergyme.com/products",
+    },
+    openGraph: {
+      title: "Electrical Equipment, Earthing & Lightning Protection Products Dubai UAE | Vision Energy",
+      description:
+        "Explore 57 certified product categories across lightning protection, low-resistance earthing, industrial electrical cables, and generator equipment in Dubai & UAE.",
+      url: "https://www.visionenergyme.com/products",
+      type: "website",
+      images: [
+        {
+          url: "https://www.visionenergyme.com/images/products-collage-banner.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Vision Energy Product Catalogue Dubai UAE",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Electrical Equipment, Earthing & Lightning Protection Products Dubai UAE | Vision Energy",
+      description:
+        "Explore 57 certified product categories across lightning protection, earthing, electrical cables, and generator equipment in Dubai & UAE.",
+      images: ["https://www.visionenergyme.com/images/products-collage-banner.jpg"],
     },
     robots: hasQueryParams
       ? {
           index: false,
           follow: true,
         }
-      : undefined,
+      : {
+          index: true,
+          follow: true,
+          googleBot: {
+            index: true,
+            follow: true,
+            "max-image-preview": "large",
+          },
+        },
   };
 }
 
@@ -89,6 +130,21 @@ export default async function ProductsPage({ searchParams }: PageProps) {
     };
   });
 
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Vision Energy Certified Engineering & Electrical Supplies",
+    description: "Certified product categories for lightning protection, earthing, electrical cables, and machinery in Dubai and across the UAE.",
+    numberOfItems: categories.length,
+    itemListElement: categories.map((cat, idx) => ({
+      "@type": "ListItem",
+      position: idx + 1,
+      name: `[${cat.code}] ${cat.title}`,
+      url: `https://www.visionenergyme.com/products/${cat.slug}`,
+      description: cat.description,
+    })),
+  };
+
   const initialQ = params.q ? params.q.slice(0, 80) : "";
   const initialGroup = params.group ? params.group.toUpperCase() : "ALL";
   const initialCodes = params.codes
@@ -101,15 +157,21 @@ export default async function ProductsPage({ searchParams }: PageProps) {
   const initialView = params.view === "list" ? "list" : "grid";
 
   return (
-    <Suspense fallback={<ProductsLoading />}>
-      <ProductsExplorer
-        categories={categories}
-        initialQ={initialQ}
-        initialGroup={initialGroup}
-        initialCodes={initialCodes}
-        initialSort={initialSort}
-        initialView={initialView}
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
       />
-    </Suspense>
+      <Suspense fallback={<ProductsLoading />}>
+        <ProductsExplorer
+          categories={categories}
+          initialQ={initialQ}
+          initialGroup={initialGroup}
+          initialCodes={initialCodes}
+          initialSort={initialSort}
+          initialView={initialView}
+        />
+      </Suspense>
+    </>
   );
 }

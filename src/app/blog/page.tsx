@@ -4,9 +4,26 @@ import { getPublishedBlogPosts } from "@/lib/data/posts";
 import { ArrowRight, ChevronRight } from "lucide-react";
 
 export const metadata = {
-  title: "Technical Blog & Engineering Insights | Lightning Protection & Earthing",
+  title: "Engineering Blog & Technical Guides UAE | Lightning Protection & Earthing",
   description:
-    "Read technical articles and standards guides on IEC 62305 lightning protection, low resistance earthing networks, ESE vs conventional air terminals, and UAE safety regulations.",
+    "Expert technical articles on IEC 62305 lightning protection, low resistance earthing in high-resistivity desert soils, ESE air terminals, and UAE DEWA/Civil Defense regulations.",
+  keywords: [
+    "Lightning Protection Guide UAE",
+    "Earthing Soil Resistivity Dubai",
+    "IEC 62305 Compliance UAE",
+    "ESE vs Conventional Lightning Protection",
+    "Vision Energy Blog",
+  ],
+  alternates: {
+    canonical: "https://www.visionenergyme.com/blog",
+  },
+  openGraph: {
+    title: "Engineering Blog & Technical Guides UAE | Vision Energy",
+    description:
+      "Expert technical guides on lightning protection, low-resistance earthing, and electrical codes across the UAE.",
+    url: "https://www.visionenergyme.com/blog",
+    type: "website",
+  },
 };
 
 export const revalidate = 300;

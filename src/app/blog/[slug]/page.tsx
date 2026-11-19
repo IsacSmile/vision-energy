@@ -41,13 +41,27 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
   const post = await getPublishedBlogPostBySlug(slug);
   if (!post) return { title: "Article Not Found" };
 
+  const title = `${post.title} | Vision Energy UAE`;
+  const description = post.subheading;
+
   return {
-    title: `${post.title} | Vision Energy`,
-    description: post.subheading,
+    title,
+    description,
+    alternates: {
+      canonical: `https://www.visionenergyme.com/blog/${post.slug}`,
+    },
     openGraph: {
-      title: post.title,
-      description: post.subheading,
-      images: post.coverImage ? [{ url: post.coverImage }] : [],
+      title,
+      description,
+      url: `https://www.visionenergyme.com/blog/${post.slug}`,
+      type: "article",
+      images: post.coverImage ? [{ url: post.coverImage }] : ["https://www.visionenergyme.com/images/products-collage-banner.jpg"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: post.coverImage ? [post.coverImage] : ["https://www.visionenergyme.com/images/products-collage-banner.jpg"],
     },
   };
 }

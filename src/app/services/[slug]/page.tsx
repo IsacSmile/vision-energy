@@ -93,17 +93,40 @@ export async function generateMetadata({ params }: ServiceDetailPageProps) {
   // Reusable data-driven service page metadata (Earthing & Grounding, etc.)
   const standardPage = getStandardServicePage(slug);
   if (standardPage) {
+    const title = `${standardPage.seo.title} Dubai UAE | Vision Energy`;
     return {
-      title: standardPage.seo.title,
+      title,
       description: standardPage.seo.description,
+      keywords: [
+        standardPage.title,
+        `${standardPage.badgeLabel} Dubai`,
+        'Earthing Systems Dubai',
+        'Grounding Networks UAE',
+        'Soil Resistivity Testing Dubai',
+        'DEWA Approved Earthing UAE',
+      ],
       alternates: {
         canonical: `https://www.visionenergyme.com/services/${standardPage.slug}`,
       },
       openGraph: {
-        title: standardPage.seo.title,
+        title,
         description: standardPage.seo.description,
         url: `https://www.visionenergyme.com/services/${standardPage.slug}`,
         type: "article",
+        images: [
+          {
+            url: "https://www.visionenergyme.com/images/products-collage-banner.jpg",
+            width: 1200,
+            height: 630,
+            alt: `${standardPage.title} Dubai UAE`,
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title,
+        description: standardPage.seo.description,
+        images: ["https://www.visionenergyme.com/images/products-collage-banner.jpg"],
       },
     };
   }
@@ -115,22 +138,31 @@ export async function generateMetadata({ params }: ServiceDetailPageProps) {
   }
 
   const content = service.content || {};
-  let pageTitle = `${service.title} | Vision Energy International`;
+  let pageTitle = `${service.title} Dubai UAE | Vision Energy International`;
   let pageDesc = service.summary;
 
   if (slug === "external-lightning-protection-installation") {
-    pageTitle = "Lightning Protection Installation UAE | Vision Energy International";
-    if (content.heroLead) {
-      pageDesc = content.heroLead;
-    }
+    pageTitle = "Lightning Protection Installation Dubai UAE | Vision Energy International";
+    pageDesc =
+      content.heroLead ||
+      "Certified external lightning protection installation in Dubai and UAE. Faraday cage, air terminals, and ESE systems compliant with IEC 62305 & Civil Defense.";
   } else if (slug === "manpower-supply" || slug === "specialist-engineering-manpower-supply") {
-    pageTitle = "Manpower Supply UAE | Vision Energy International";
-    pageDesc = "Skilled and unskilled manpower for electrical, mechanical and solar projects across the UAE — including labourers, technicians, engineers and supervisors.";
+    pageTitle = "Specialist Engineering & MEP Manpower Supply Dubai UAE | Vision Energy";
+    pageDesc =
+      "Certified MEP technicians, electrical engineers, earthing specialists, and equipment operators across Dubai, Abu Dhabi, and UAE.";
   }
 
   return {
     title: pageTitle,
     description: pageDesc,
+    keywords: [
+      service.title,
+      `${service.title} Dubai`,
+      `${service.title} UAE`,
+      "Lightning Protection Dubai",
+      "Engineering Contractor UAE",
+      "MEP Specialist Dubai",
+    ],
     alternates: {
       canonical: `https://www.visionenergyme.com/services/${slug}`,
     },
@@ -139,6 +171,20 @@ export async function generateMetadata({ params }: ServiceDetailPageProps) {
       description: pageDesc,
       url: `https://www.visionenergyme.com/services/${slug}`,
       type: "article",
+      images: [
+        {
+          url: "https://www.visionenergyme.com/images/products-collage-banner.jpg",
+          width: 1200,
+          height: 630,
+          alt: `${service.title} Dubai UAE`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: pageTitle,
+      description: pageDesc,
+      images: ["https://www.visionenergyme.com/images/products-collage-banner.jpg"],
     },
   };
 }

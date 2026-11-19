@@ -9,18 +9,43 @@ import FinalCTA from '@/components/home/FinalCTA';
 import Reveal from '@/components/ui/Reveal';
 
 export const metadata = {
-  title: 'Services | Lightning Protection Installation & Support | Vision Energy International',
+  title: 'Engineering Services, Lightning Protection & Manpower Dubai UAE | Vision Energy',
   description:
-    'Installation and support services from Vision Energy International: lightning protection installation and manpower services across the UAE.',
+    'Specialist engineering services in Dubai & across the UAE: lightning protection installation, low-impedance earthing design, soil resistivity testing, and certified MEP manpower supply. DEWA & Civil Defense compliant.',
+  keywords: [
+    'Lightning Protection Installation Dubai',
+    'Lightning Protection UAE',
+    'Earthing System Design UAE',
+    'Soil Resistivity Testing UAE',
+    'Engineering Manpower Supply Dubai',
+    'Specialist MEP Services Dubai',
+    'Surge Protection Installation UAE',
+    'Civil Defense Lightning Approval Dubai',
+  ],
   alternates: {
     canonical: 'https://www.visionenergyme.com/services',
   },
   openGraph: {
-    title: 'Services | Lightning Protection Installation & Support | Vision Energy International',
+    title: 'Engineering Services, Lightning Protection & Manpower Dubai UAE | Vision Energy',
     description:
-      'Installation and support services from Vision Energy International: lightning protection installation and manpower services across the UAE.',
+      'Specialist engineering services in Dubai & across the UAE: lightning protection installation, earthing design, soil resistivity testing, and certified MEP manpower supply.',
     url: 'https://www.visionenergyme.com/services',
     type: 'website',
+    images: [
+      {
+        url: 'https://www.visionenergyme.com/images/products-collage-banner.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Vision Energy Engineering Services Dubai UAE',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Engineering Services, Lightning Protection & Manpower Dubai UAE | Vision Energy',
+    description:
+      'Specialist engineering services across Dubai & UAE: lightning protection, earthing networks, and certified manpower supply.',
+    images: ['https://www.visionenergyme.com/images/products-collage-banner.jpg'],
   },
 };
 

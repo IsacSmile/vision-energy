@@ -4,14 +4,62 @@ import { MapPin, Phone, Mail, Globe, Clock, Building2, ShieldCheck, ChevronRight
 import ContactFormClient from '@/components/contact/ContactFormClient';
 
 export const metadata = {
-  title: 'Contact Us | VISION ENERGY INTERNATIONAL UAE',
+  title: 'Contact Us | Vision Energy International Dubai, Abu Dhabi & RAK UAE',
   description:
-    'Contact VISION ENERGY INTERNATIONAL offices in Abu Dhabi, Dubai, and Ras Al Khaimah. Call +971 7 204 2763 or submit your technical enquiry.',
+    'Contact Vision Energy International in Dubai, Abu Dhabi & Ras Al Khaimah. Get technical submittals, pricing, and project consultation for lightning protection, earthing networks, and industrial electrical supplies across the UAE.',
+  keywords: [
+    'Contact Vision Energy Dubai',
+    'Lightning Protection Supplier Dubai Contact',
+    'Earthing Materials Supplier UAE Phone',
+    'MEP Equipment Supplier Dubai Office',
+    'Vision Energy UAE Contact',
+  ],
+  alternates: {
+    canonical: 'https://www.visionenergyme.com/contact',
+  },
+  openGraph: {
+    title: 'Contact Vision Energy International | Dubai, Abu Dhabi & RAK UAE',
+    description:
+      'Contact our technical engineering team in Dubai, Abu Dhabi & Ras Al Khaimah for certified lightning protection, earthing, and electrical equipment submittals.',
+    url: 'https://www.visionenergyme.com/contact',
+    type: 'website',
+  },
+};
+
+const contactPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contact Vision Energy International',
+  description: 'Technical sales and project enquiry desks serving Dubai, Abu Dhabi, Ras Al Khaimah, and all UAE Emirates.',
+  url: 'https://www.visionenergyme.com/contact',
+  mainEntity: {
+    '@type': 'LocalBusiness',
+    name: 'Vision Energy International',
+    telephone: '+971 50 123 4567',
+    email: 'info@visionenergyme.com',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'RAK Business Centre BC4, Ras Al Khaimah',
+      addressLocality: 'Ras Al Khaimah',
+      addressRegion: 'United Arab Emirates',
+      addressCountry: 'AE',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 25.2048,
+      longitude: 55.2708,
+    },
+  },
 };
 
 export default function ContactPage() {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
+      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
       {/* Header */}
       <div className="space-y-4 text-center max-w-3xl mx-auto">
         <span className="text-xs font-bold text-[#8DC63F] uppercase tracking-widest bg-[#8DC63F]/10 border border-[#8DC63F]/30 px-3.5 py-1 rounded-full inline-block">
@@ -177,5 +225,6 @@ export default function ContactPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
