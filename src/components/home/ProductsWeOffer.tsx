@@ -77,8 +77,8 @@ export default function ProductsWeOffer() {
           src="/images/products-collage-banner.jpg"
           alt="Vision Energy Certified Engineering Supplies"
           fill
-          priority
-          unoptimized
+          loading="lazy"
+          quality={80}
           sizes="100vw"
           className={`object-cover object-center transition-all duration-700 ease-out ${
             isHovered

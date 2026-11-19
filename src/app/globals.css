@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
@@ -790,17 +789,26 @@ html.light [data-preserve-contrast] *:not(.text-\[\#8DC63F\]):not(svg.text-\[\#8
   color: #FFFFFF !important;
 }
 
-/* Explicitly preserve Lime Green highlight on icons and badges in both Light & Dark modes */
-html.light .text-\[\#8DC63F\],
-html.light [class*="text-[#8DC63F]"],
-html.light button .text-\[\#8DC63F\],
-html.light a .text-\[\#8DC63F\],
+/* Preserve Lime Green highlights on dark backgrounds, buttons and icons; ensure WCAG AA contrast on white */
+html.light [data-dark-hero="true"] .text-\[\#8DC63F\],
+html.light [data-dark-hero="true"] [class*="text-[#8DC63F]"],
+html.light [data-preserve-contrast] .text-\[\#8DC63F\],
+html.light [data-preserve-contrast] [class*="text-[#8DC63F]"],
+html.light footer .text-\[\#8DC63F\],
+html.light footer [class*="text-[#8DC63F]"],
 html.light .lightning-btn-primary .text-\[\#8DC63F\],
-html.light .lightning-btn-secondary .text-\[\#8DC63F\],
+html.light .lightning-btn-secondary .text-\[\#8DC63F\] {
+  color: #8DC63F !important;
+}
+
 html.light svg.text-\[\#8DC63F\],
 html.light svg[stroke="#8DC63F"] {
-  color: #8DC63F !important;
   stroke: #8DC63F !important;
+}
+
+html.light .text-\[\#8DC63F\]:not(footer *):not([data-dark-hero="true"] *):not([data-preserve-contrast] *):not(.lightning-btn-primary *),
+html.light [class*="text-[#8DC63F]"]:not(footer *):not([data-dark-hero="true"] *):not([data-preserve-contrast] *):not(.lightning-btn-primary *) {
+  color: #38700D !important;
 }
 
 /* Logo Theme Switching (White text in dark mode, dark text in light mode) */

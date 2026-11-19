@@ -158,9 +158,9 @@ export default function FinalCTA({ bgClass = 'bg-[#0D1117]' }: FinalCTAProps) {
 
           {/* RIGHT COLUMN: The Contact List (<dl>) (lg:col-span-6) */}
           <div className="lg:col-span-6 mt-16 lg:mt-0">
-            <dl className="divide-y divide-white/[0.08] border-y border-white/[0.08]">
-              {/* ROW 1: CALL */}
-              <Reveal staggerIndex={4}>
+            <Reveal staggerIndex={4}>
+              <dl className="divide-y divide-white/[0.08] border-y border-white/[0.08]">
+                {/* ROW 1: CALL */}
                 <div className="py-6 lg:py-8 grid grid-cols-1 md:grid-cols-[140px_1fr] gap-2 md:gap-0 items-baseline group relative">
                   <dt className="text-xs uppercase tracking-[0.14em] text-[#A9B4C0] font-medium pt-0.5 select-none">
                     CALL
@@ -204,10 +204,8 @@ export default function FinalCTA({ bgClass = 'bg-[#0D1117]' }: FinalCTAProps) {
                     </button>
                   </dd>
                 </div>
-              </Reveal>
 
-              {/* ROW 2: EMAIL */}
-              <Reveal staggerIndex={5}>
+                {/* ROW 2: EMAIL */}
                 <div className="py-6 lg:py-8 grid grid-cols-1 md:grid-cols-[140px_1fr] gap-2 md:gap-0 items-baseline group relative">
                   <dt className="text-xs uppercase tracking-[0.14em] text-[#A9B4C0] font-medium pt-0.5 select-none">
                     EMAIL
@@ -239,10 +237,8 @@ export default function FinalCTA({ bgClass = 'bg-[#0D1117]' }: FinalCTAProps) {
                     </button>
                   </dd>
                 </div>
-              </Reveal>
 
-              {/* ROW 3: HQ */}
-              <Reveal staggerIndex={6}>
+                {/* ROW 3: HQ */}
                 <div className="py-6 lg:py-8 grid grid-cols-1 md:grid-cols-[140px_1fr] gap-2 md:gap-0 items-baseline">
                   <dt className="text-xs uppercase tracking-[0.14em] text-[#A9B4C0] font-medium pt-0.5 select-none">
                     HQ
@@ -264,10 +260,8 @@ export default function FinalCTA({ bgClass = 'bg-[#0D1117]' }: FinalCTAProps) {
                     </a>
                   </dd>
                 </div>
-              </Reveal>
 
-              {/* ROW 4: LOCATIONS */}
-              <Reveal staggerIndex={7}>
+                {/* ROW 4: LOCATIONS */}
                 <div className="py-6 lg:py-8 grid grid-cols-1 md:grid-cols-[140px_1fr] gap-2 md:gap-0 items-baseline">
                   <dt className="text-xs uppercase tracking-[0.14em] text-[#A9B4C0] font-medium pt-0.5 select-none">
                     LOCATIONS
@@ -280,8 +274,8 @@ export default function FinalCTA({ bgClass = 'bg-[#0D1117]' }: FinalCTAProps) {
                     </p>
                   </dd>
                 </div>
-              </Reveal>
-            </dl>
+              </dl>
+            </Reveal>
           </div>
         </div>
       </div>

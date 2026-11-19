@@ -198,13 +198,13 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
                 alt={slide.imageAlt}
                 fill
                 priority={idx === 0}
-                loading="eager"
-                fetchPriority={idx === 0 ? 'high' : 'auto'}
+                loading={idx === 0 ? 'eager' : 'lazy'}
+                fetchPriority={idx === 0 ? 'high' : 'low'}
                 sizes="100vw"
                 className={`object-cover object-center transition-transform duration-[4000ms] ease-out ${
                   isActive ? 'scale-105' : 'scale-100'
                 }`}
-                quality={90}
+                quality={80}
               />
             </div>
           );
