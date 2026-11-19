@@ -1034,11 +1034,11 @@ html.light [role="dialog"] input[readonly] {
   color: #0B65B3 !important;
 }
 
-html.light [role="dialog"] button:not(.lightning-btn-primary):not([type="submit"]) {
+html.light [role="dialog"] button:not(.lightning-btn-primary):not([type="submit"]):not([class*="bg-[#0B65B3]"]) {
   color: #475569 !important;
 }
 
-html.light [role="dialog"] button:not(.lightning-btn-primary):not([type="submit"]):hover {
+html.light [role="dialog"] button:not(.lightning-btn-primary):not([type="submit"]):not([class*="bg-[#0B65B3]"]):hover {
   color: #0F172A !important;
   background-color: #F1F5F9 !important;
 }

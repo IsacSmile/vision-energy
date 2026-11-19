@@ -295,9 +295,9 @@ export default function ProductPreviewModal({
                 <button
                   type="button"
                   onClick={onClose}
-                  className="px-8 py-3 rounded-xl bg-[#0B65B3] hover:bg-[#0c72ca] text-white font-bold text-sm border border-[#8DC63F]/50 transition-all shadow-lg active-press"
+                  className="lightning-btn-primary px-8 py-3 rounded-xl bg-[#0B65B3] hover:bg-[#084c88] text-white font-bold text-sm border border-[#8DC63F]/50 transition-all shadow-lg active-press"
                 >
-                  Done / Close
+                  <span>Done / Close</span>
                 </button>
               </div>
             </div>
@@ -366,10 +366,10 @@ export default function ProductPreviewModal({
                 <button
                   type="button"
                   onClick={() => setShowEnquiryForm(true)}
-                  className="w-full h-12 sm:h-13 py-3 px-6 rounded-xl bg-[#0B65B3] hover:bg-[#0c72ca] border border-[#8DC63F]/50 hover:border-[#8DC63F] text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-[0_0_20px_rgba(11,101,179,0.35)] transition-all duration-200 active-press"
+                  className="lightning-btn-primary w-full h-12 sm:h-13 py-3 px-6 rounded-xl bg-[#0B65B3] hover:bg-[#084c88] border border-[#8DC63F]/50 hover:border-[#8DC63F] text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-[0_0_20px_rgba(11,101,179,0.35)] transition-all duration-200 active-press"
                 >
                   <Send className="w-4 h-4 text-[#8DC63F] -rotate-45" />
-                  <span>Enquire Now for {category.code}</span>
+                  <span className="text-white font-bold">Enquire Now for {category.code}</span>
                 </button>
 
                 <div className="flex items-center justify-between text-xs text-[#A9B4C0] px-1">
@@ -544,7 +544,7 @@ export default function ProductPreviewModal({
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="flex-1 h-11 px-5 rounded-xl bg-[#0B65B3] hover:bg-[#0c72ca] border border-[#8DC63F]/50 hover:border-[#8DC63F] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-[0_0_18px_rgba(11,101,179,0.3)] transition-all disabled:opacity-50 active-press"
+                  className="lightning-btn-primary flex-1 h-11 px-5 rounded-xl bg-[#0B65B3] hover:bg-[#084c88] border border-[#8DC63F]/50 hover:border-[#8DC63F] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-[0_0_18px_rgba(11,101,179,0.3)] transition-all disabled:opacity-50 active-press"
                 >
                   {submitting ? (
                     <>
