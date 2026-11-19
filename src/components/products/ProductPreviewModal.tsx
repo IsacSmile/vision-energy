@@ -193,7 +193,7 @@ export default function ProductPreviewModal({
 
       {/* Modal Dialog Window */}
       <div
-        className="relative w-full max-w-5xl max-h-[92vh] bg-[#0D1117] border border-[#1F2937] rounded-[24px] shadow-2xl flex flex-col lg:flex-row overflow-hidden z-10"
+        className="relative w-full max-w-6xl max-h-[92vh] bg-[#0D1117] border border-[#1F2937] rounded-[24px] shadow-2xl flex flex-col lg:flex-row overflow-hidden z-10"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button (Top Right Cross Icon) */}
@@ -208,7 +208,7 @@ export default function ProductPreviewModal({
         </button>
 
         {/* LEFT SIDE: Bigger Image Showcase Container */}
-        <div className="relative w-full lg:w-[48%] bg-[#161B22] border-b lg:border-b-0 lg:border-r border-[#1F2937] flex flex-col items-center justify-center shrink-0 min-h-[240px] sm:min-h-[300px] lg:min-h-[520px] p-4 sm:p-6 lg:p-8 overflow-hidden group">
+        <div className="relative w-full lg:w-[54%] xl:w-[56%] bg-[#161B22] border-b lg:border-b-0 lg:border-r border-[#1F2937] flex flex-col items-center justify-center shrink-0 min-h-[280px] sm:min-h-[380px] lg:min-h-[540px] p-2 sm:p-3 lg:p-4 overflow-hidden group">
           {/* Subtle Ambient Radial Highlight */}
           <div
             className="absolute inset-0 bg-radial-gradient from-[#0B65B3]/10 via-transparent to-transparent pointer-events-none"
@@ -216,7 +216,7 @@ export default function ProductPreviewModal({
           />
 
           {/* Top Floating Badges */}
-          <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20 flex items-center gap-2 pointer-events-none">
+          <div className="absolute top-3.5 left-3.5 sm:top-4 sm:left-4 z-20 flex items-center gap-2 pointer-events-none">
             <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#050608]/90 backdrop-blur-md border border-[#0B65B3]/40 text-[#8DC63F] flex items-center justify-center shadow-lg">
               <GroupIcon className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
             </div>
@@ -228,13 +228,13 @@ export default function ProductPreviewModal({
           </div>
 
           {/* Prominent Large Product Image */}
-          <div className="relative w-full h-[220px] sm:h-[280px] lg:h-[420px] flex items-center justify-center">
+          <div className="relative w-full h-[280px] sm:h-[380px] lg:h-[480px] xl:h-[520px] flex items-center justify-center">
             <Image
               src={photoUrl}
               alt={photoAlt}
               fill
-              className="object-contain p-2 sm:p-4 transition-transform duration-500 group-hover:scale-105"
-              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-contain transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 1024px) 100vw, 60vw"
               quality={95}
               priority
             />
@@ -251,7 +251,7 @@ export default function ProductPreviewModal({
         {/* RIGHT SIDE: Heading, Text Content & Requirement Form */}
         <div
           ref={scrollableRef}
-          className="flex-1 flex flex-col overflow-y-auto max-h-[92vh] p-5 sm:p-7 lg:p-9 text-white modal-scrollable-content"
+          className="flex-1 flex flex-col overflow-y-auto max-h-[92vh] p-5 sm:p-7 lg:p-8 text-white modal-scrollable-content"
         >
           {successRef ? (
             /* SUCCESS STATE (Immediately shown after database insertion) */
