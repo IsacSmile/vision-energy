@@ -195,6 +195,9 @@ export default function Header() {
             <div className="animate-marquee-fast flex items-center text-[11.5px] font-semibold py-1">
               {/* Copy 1 */}
               <div className="flex items-center divide-x divide-[#0A192F]/20 shrink-0">
+                <div className="flex items-center px-3.5 shrink-0 text-[#0A192F]">
+                  <span className="whitespace-nowrap">UAE Certified Specialist MEP &amp; Earthing</span>
+                </div>
                 <a
                   href="tel:+971501234567"
                   className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
@@ -204,6 +207,14 @@ export default function Header() {
                   <span className="whitespace-nowrap">+971 50 123 4567</span>
                 </a>
                 <a
+                  href="tel:+971541234567"
+                  className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
+                  title="Call Vision Energy"
+                >
+                  <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                  <span className="whitespace-nowrap">+971 54 123 4567</span>
+                </a>
+                <a
                   href="mailto:info@visionenergyme.com"
                   className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
                   title="Email Vision Energy"
@@ -211,13 +222,13 @@ export default function Header() {
                   <Mail className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
                   <span className="whitespace-nowrap">info@visionenergyme.com</span>
                 </a>
-                <div className="flex items-center gap-1.5 px-3.5 shrink-0 text-[#0A192F]/90">
-                  <span className="whitespace-nowrap">UAE Certified Specialist MEP & Earthing</span>
-                </div>
               </div>
 
               {/* Copy 2 (identically repeated for seamless loop) */}
               <div className="flex items-center divide-x divide-[#0A192F]/20 shrink-0">
+                <div className="flex items-center px-3.5 shrink-0 text-[#0A192F]">
+                  <span className="whitespace-nowrap">UAE Certified Specialist MEP &amp; Earthing</span>
+                </div>
                 <a
                   href="tel:+971501234567"
                   className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
@@ -227,6 +238,14 @@ export default function Header() {
                   <span className="whitespace-nowrap">+971 50 123 4567</span>
                 </a>
                 <a
+                  href="tel:+971541234567"
+                  className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
+                  title="Call Vision Energy"
+                >
+                  <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                  <span className="whitespace-nowrap">+971 54 123 4567</span>
+                </a>
+                <a
                   href="mailto:info@visionenergyme.com"
                   className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
                   title="Email Vision Energy"
@@ -234,9 +253,6 @@ export default function Header() {
                   <Mail className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
                   <span className="whitespace-nowrap">info@visionenergyme.com</span>
                 </a>
-                <div className="flex items-center gap-1.5 px-3.5 shrink-0 text-[#0A192F]/90">
-                  <span className="whitespace-nowrap">UAE Certified Specialist MEP & Earthing</span>
-                </div>
               </div>
             </div>
           </div>
@@ -244,32 +260,42 @@ export default function Header() {
           {/* Desktop/Tablet Static View (md+) */}
           <div className="hidden md:block max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-[36px] sm:h-[40px] text-xs sm:text-[13px] font-semibold">
-              {/* Left Items with Vertical Divider Lines */}
+              {/* Left Side: Tag Text */}
+              <div className="flex items-center text-[11px] sm:text-xs lg:text-[13px] text-[#0A192F] shrink-0 font-semibold">
+                <span>UAE Certified Specialist MEP &amp; Earthing</span>
+              </div>
+
+              {/* Right Side: 2 Phone Numbers + Email with Vertical Dividers */}
               <div className="flex items-center divide-x divide-[#0A192F]/20 overflow-x-auto no-scrollbar py-1">
-                {/* Telephone */}
+                {/* Telephone 1 */}
                 <a
                   href="tel:+971501234567"
-                  className="flex items-center gap-2 pr-3.5 sm:pr-5 shrink-0 hover:text-black transition-colors"
+                  className="flex items-center gap-2 pr-3.5 sm:pr-4 shrink-0 hover:text-black transition-colors"
                   title="Call Vision Energy"
                 >
                   <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
                   <span>+971 50 123 4567</span>
                 </a>
 
+                {/* Telephone 2 */}
+                <a
+                  href="tel:+971541234567"
+                  className="flex items-center gap-2 px-3.5 sm:px-4 shrink-0 hover:text-black transition-colors"
+                  title="Call Vision Energy"
+                >
+                  <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                  <span>+971 54 123 4567</span>
+                </a>
+
                 {/* Email */}
                 <a
                   href="mailto:info@visionenergyme.com"
-                  className="flex items-center gap-2 pl-3.5 sm:px-5 shrink-0 hover:text-black transition-colors"
+                  className="flex items-center gap-2 pl-3.5 sm:pl-4 shrink-0 hover:text-black transition-colors"
                   title="Email Vision Energy"
                 >
                   <Mail className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
                   <span>info@visionenergyme.com</span>
                 </a>
-              </div>
-
-              {/* Right Tag (desktop only) */}
-              <div className="hidden lg:flex items-center gap-2 pl-4 border-l border-[#0A192F]/20 text-[11px] sm:text-xs text-[#0A192F]/90 shrink-0 font-semibold">
-                <span>UAE Certified Specialist MEP & Earthing</span>
               </div>
             </div>
           </div>
