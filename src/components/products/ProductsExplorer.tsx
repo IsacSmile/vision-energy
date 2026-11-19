@@ -590,8 +590,8 @@ export default function ProductsExplorer({
               onKeyDown={(e) => {
                 if (e.key === 'Escape') setSearchInput('');
               }}
-              placeholder="Search by name, code or product (e.g. LP-01, cable tray)"
-              aria-label="Search product categories"
+              placeholder="Search products (e.g. cable, security alarm etc.)"
+              aria-label="Search products"
               className="w-full h-12 lg:h-11 pl-11 pr-11 lg:pr-12 rounded-full bg-[#050608] border border-[#1F2937] text-base lg:text-sm text-white placeholder-[#A9B4C0] focus:outline-none focus:border-[#8DC63F] focus:ring-1 focus:ring-[#8DC63F] transition-colors"
             />
             {/* Clear Button */}
