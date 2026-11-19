@@ -34,6 +34,7 @@ import LightningButton from '@/components/ui/LightningButton';
 import Reveal from '@/components/ui/Reveal';
 import Card from '@/components/ui/Card';
 import CustomSelect, { SelectOption } from '@/components/ui/CustomSelect';
+import ProductPreviewModal from './ProductPreviewModal';
 
 const SORT_OPTIONS: SelectOption[] = [
   { value: 'featured', label: 'Featured Order' },
@@ -110,6 +111,15 @@ export default function ProductsExplorer({
   const router = useRouter();
   const searchParams = useSearchParams();
   const { openProductModal } = useEnquiryModal();
+
+  // Product Preview Modal state
+  const [previewCategory, setPreviewCategory] = useState<CategoryExplorerItem | null>(null);
+  const [previewInitialForm, setPreviewInitialForm] = useState(false);
+
+  const handleOpenPreview = (cat: CategoryExplorerItem, showForm = false) => {
+    setPreviewCategory(cat);
+    setPreviewInitialForm(showForm);
+  };
 
   // URL state
   const qParam = searchParams?.get('q') ?? initialQ;
@@ -1126,7 +1136,8 @@ export default function ProductsExplorer({
                             view={viewParam}
                             searchQuery={deferredSearchInput}
                             staggerIndex={secIdx < 2 && itemIdx < 12 ? secIdx * 4 + itemIdx : undefined}
-                            openModal={openProductModal}
+                            openModal={() => handleOpenPreview(cat, true)}
+                            openPreview={() => handleOpenPreview(cat, false)}
                           />
                         ))}
                       </div>
@@ -1151,7 +1162,8 @@ export default function ProductsExplorer({
                     searchQuery={deferredSearchInput}
                     showGroupMeta
                     staggerIndex={itemIdx < 12 ? itemIdx : undefined}
-                    openModal={openProductModal}
+                    openModal={() => handleOpenPreview(cat, true)}
+                    openPreview={() => handleOpenPreview(cat, false)}
                   />
                 ))}
               </div>
@@ -1261,6 +1273,14 @@ export default function ProductsExplorer({
           </Reveal>
         </div>
       </section>
+
+      {/* Product Preview & Requirement Modal */}
+      <ProductPreviewModal
+        category={previewCategory}
+        isOpen={!!previewCategory}
+        onClose={() => setPreviewCategory(null)}
+        initialShowForm={previewInitialForm}
+      />
     </div>
   );
 }
@@ -1304,6 +1324,7 @@ function ItemCardOrRow({
   showGroupMeta = false,
   staggerIndex,
   openModal,
+  openPreview,
 }: {
   cat: CategoryExplorerItem;
   view: 'grid' | 'list';
@@ -1311,6 +1332,7 @@ function ItemCardOrRow({
   showGroupMeta?: boolean;
   staggerIndex?: number;
   openModal: (ctx: { categoryCode: string; categoryTitle: string }) => void;
+  openPreview: (cat: CategoryExplorerItem) => void;
 }) {
   const router = useRouter();
   const GroupIcon = getGroupIcon(cat.group);
@@ -1336,7 +1358,10 @@ function ItemCardOrRow({
       <Reveal staggerIndex={staggerIndex} as="article">
         <div className="px-4 sm:px-6 py-5 border-b border-[#1F2937] last:border-b-0">
           {/* Mobile View (below lg): Flex layout [Image thumbnail] [Content] */}
-          <div className="lg:hidden group/card relative flex items-start gap-4 min-h-[88px] cursor-pointer">
+          <div
+            onClick={() => openPreview(cat)}
+            className="lg:hidden group/card relative flex items-start gap-4 min-h-[88px] cursor-pointer"
+          >
             {/* Thumbnail Box */}
             <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden bg-[#161B22] border border-[#1F2937] shrink-0 mt-0.5 group/img p-1">
               <Image
@@ -1372,17 +1397,11 @@ function ItemCardOrRow({
                 <ArrowUpRight className="w-4.5 h-4.5 text-[#A9B4C0] group-hover/card:text-[#8DC63F] group-hover/card:translate-x-0.5 group-hover/card:-translate-y-0.5 transition-all duration-250 shrink-0" />
               </div>
 
-              {/* Title Link with Stretched-link pseudo element and gradient underline */}
+              {/* Title */}
               <h3 className="text-base font-semibold text-white leading-snug">
-                <Link
-                  href={`/products?group=${cat.group}&codes=${cat.code}`}
-                  prefetch={false}
-                  className="relative z-0 group/link inline-block focus-visible:outline-none after:absolute after:inset-0 after:z-0 after:rounded-lg after:content-[''] after:cursor-pointer focus-visible:after:outline focus-visible:after:outline-2 focus-visible:after:outline-[#8DC63F] focus-visible:after:outline-offset-2"
-                >
-                  <span className="relative inline-block after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-gradient-to-r after:from-[#0B65B3] after:to-[#8DC63F] after:scale-x-0 group-hover/card:after:scale-x-100 group-focus-within/card:after:scale-x-100 focus-visible:after:scale-x-100 after:origin-left after:transition-transform after:duration-350">
-                    <HighlightedText text={cat.title} query={searchQuery} />
-                  </span>
-                </Link>
+                <span className="relative inline-block after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-gradient-to-r after:from-[#0B65B3] after:to-[#8DC63F] after:scale-x-0 group-hover/card:after:scale-x-100 group-focus-within/card:after:scale-x-100 focus-visible:after:scale-x-100 after:origin-left after:transition-transform after:duration-350">
+                  <HighlightedText text={cat.title} query={searchQuery} />
+                </span>
               </h3>
 
               <p className="text-xs text-[#A9B4C0] line-clamp-2 leading-relaxed">
@@ -1396,7 +1415,7 @@ function ItemCardOrRow({
               )}
 
               {/* Enquire Now Button */}
-              <div className="pt-2">
+              <div className="pt-2" onClick={(e) => e.stopPropagation()}>
                 <EnquireNowButton
                   cat={cat}
                   openModal={openModal}
@@ -1407,7 +1426,10 @@ function ItemCardOrRow({
           </div>
 
           {/* Desktop List View (lg and up): Flex [Image thumbnail] [Content] [Button] */}
-          <div className="hidden lg:flex group/card relative items-center gap-6 py-2 cursor-pointer">
+          <div
+            onClick={() => openPreview(cat)}
+            className="hidden lg:flex group/card relative items-center gap-6 py-2 cursor-pointer"
+          >
             {/* Thumbnail Box */}
             <div className="relative w-28 h-24 rounded-xl overflow-hidden bg-[#161B22] border border-[#1F2937] shrink-0 group/img p-1">
               <Image
@@ -1442,15 +1464,9 @@ function ItemCardOrRow({
               </div>
 
               <h3 className="text-lg font-semibold text-white leading-snug">
-                <Link
-                  href={`/products?group=${cat.group}&codes=${cat.code}`}
-                  prefetch={false}
-                  className="relative z-0 group/link inline-block focus-visible:outline-none after:absolute after:inset-0 after:z-0 after:rounded-lg after:content-[''] after:cursor-pointer focus-visible:after:outline focus-visible:after:outline-2 focus-visible:after:outline-[#8DC63F] focus-visible:after:outline-offset-2"
-                >
-                  <span className="relative inline-block after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-gradient-to-r after:from-[#0B65B3] after:to-[#8DC63F] after:scale-x-0 group-hover/card:after:scale-x-100 group-focus-within/card:after:scale-x-100 focus-visible:after:scale-x-100 after:origin-left after:transition-transform after:duration-350">
-                    <HighlightedText text={cat.title} query={searchQuery} />
-                  </span>
-                </Link>
+                <span className="relative inline-block after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-gradient-to-r after:from-[#0B65B3] after:to-[#8DC63F] after:scale-x-0 group-hover/card:after:scale-x-100 group-focus-within/card:after:scale-x-100 focus-visible:after:scale-x-100 after:origin-left after:transition-transform after:duration-350">
+                  <HighlightedText text={cat.title} query={searchQuery} />
+                </span>
               </h3>
 
               <p className="text-sm text-[#A9B4C0] line-clamp-2 leading-relaxed">
@@ -1465,7 +1481,7 @@ function ItemCardOrRow({
             </div>
 
             {/* Vertically Centered Enquire Now Pill (44px) */}
-            <div className="shrink-0">
+            <div className="shrink-0" onClick={(e) => e.stopPropagation()}>
               <EnquireNowButton
                 cat={cat}
                 openModal={openModal}
@@ -1481,7 +1497,10 @@ function ItemCardOrRow({
   // Grid Card Layout (md and up)
   return (
     <Reveal staggerIndex={staggerIndex} as="article" className="h-full">
-      <div className="relative group/card bg-[#0D1117] border border-[#1F2937] hover:border-[#8DC63F]/50 hover:bg-[#161B22]/50 rounded-[22px] p-5 sm:p-6 lg:p-6.5 flex flex-col h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#8DC63F]/5 active-press cursor-pointer">
+      <div
+        onClick={() => openPreview(cat)}
+        className="relative group/card bg-[#0D1117] border border-[#1F2937] hover:border-[#8DC63F]/50 hover:bg-[#161B22]/50 rounded-[22px] p-5 sm:p-6 lg:p-6.5 flex flex-col h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#8DC63F]/5 active-press cursor-pointer"
+      >
         {/* Product Photo Showcase Box - Large & Prominent */}
         <div className="relative w-full aspect-[16/10] min-h-[220px] sm:min-h-[260px] lg:min-h-[280px] rounded-2xl overflow-hidden bg-[#161B22] border border-[#1F2937] mb-5 group/img p-3 flex items-center justify-center">
           <Image
@@ -1523,15 +1542,9 @@ function ItemCardOrRow({
           )}
 
           <h3 className="text-lg sm:text-xl font-bold text-white leading-snug [text-wrap:balance]">
-            <Link
-              href={`/products?group=${cat.group}&codes=${cat.code}`}
-              prefetch={false}
-              className="relative z-0 group/link inline-block focus-visible:outline-none after:absolute after:inset-0 after:z-0 after:rounded-2xl after:content-[''] after:cursor-pointer focus-visible:after:outline focus-visible:after:outline-2 focus-visible:after:outline-[#8DC63F] focus-visible:after:outline-offset-2"
-            >
-              <span className="relative inline-block after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-gradient-to-r after:from-[#0B65B3] after:to-[#8DC63F] after:scale-x-0 group-hover/card:after:scale-x-100 group-focus-within/card:after:scale-x-100 focus-visible:after:scale-x-100 after:origin-left after:transition-transform after:duration-350">
-                <HighlightedText text={cat.title} query={searchQuery} />
-              </span>
-            </Link>
+            <span className="relative inline-block after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-gradient-to-r after:from-[#0B65B3] after:to-[#8DC63F] after:scale-x-0 group-hover/card:after:scale-x-100 group-focus-within/card:after:scale-x-100 focus-visible:after:scale-x-100 after:origin-left after:transition-transform after:duration-350">
+              <HighlightedText text={cat.title} query={searchQuery} />
+            </span>
           </h3>
 
           <p className="text-sm text-[#A9B4C0] line-clamp-2 sm:line-clamp-3 leading-relaxed">
@@ -1552,7 +1565,7 @@ function ItemCardOrRow({
         </div>
 
         {/* Card Footer (Pinned to bottom): ONE Enquire Now button full-width */}
-        <div className="pt-4 border-t border-[#1F2937] mt-auto">
+        <div className="pt-4 border-t border-[#1F2937] mt-auto" onClick={(e) => e.stopPropagation()}>
           <EnquireNowButton
             cat={cat}
             openModal={openModal}
