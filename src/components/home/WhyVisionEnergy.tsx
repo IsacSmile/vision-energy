@@ -1,9 +1,7 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import Reveal from '@/components/ui/Reveal';
-import { CheckCircle2 } from 'lucide-react';
 
 // Decent, authentic industrial engineering icons (designed specifically for UAE engineering & infrastructure sectors, avoiding generic AI template cliches)
 function CommercialIcon({ className = 'w-4 h-4' }: { className?: string }) {
@@ -173,200 +171,222 @@ export default function WhyVisionEnergy() {
           </Reveal>
         </div>
 
-        {/* Feature Cards: 1 Horizontal Flagship Banner on Top + 4-Card Grid Below */}
-        <div className="space-y-6 sm:space-y-8">
-          {/* Flagship Horizontal Card: Specialist Engineering Approach */}
-          <Reveal staggerIndex={2}>
-            <div className="group rounded-xl bg-[#0D1117] border border-white/[0.1] hover:border-[#8DC63F]/50 transition-all duration-500 shadow-xl overflow-hidden p-6 sm:p-8 lg:p-10 relative">
-              {/* Subtle Corner Glow on Hover */}
-              <div
-                className="absolute -top-24 -left-24 w-48 h-48 bg-[#8DC63F]/10 blur-3xl pointer-events-none group-hover:scale-150 transition-transform duration-700"
-                aria-hidden="true"
-              />
+        {/* Feature Cards: Unified Grid of 5 Standard Card Boxes */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 lg:gap-8 items-stretch">
+          {/* Card 1: Specialist Engineering Approach */}
+          <Reveal staggerIndex={2} className="h-full md:col-span-1 lg:col-span-2">
+            <div className="group h-full flex flex-col justify-between p-6 sm:p-8 rounded-xl bg-[#0D1117] border border-white/[0.1] hover:border-[#8DC63F]/50 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
+              <div className="space-y-4">
+                <div>
+                  <span className="text-xs uppercase tracking-wider text-[#8DC63F] font-bold block mb-1.5">
+                    Core Discipline
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-snug">
+                    Specialist Engineering Approach
+                  </h3>
+                </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center relative z-10">
-                {/* Left/Content Column (7 cols on lg) */}
-                <div className="lg:col-span-7 space-y-4">
-                  <div>
-                    <span className="text-xs sm:text-[13px] uppercase tracking-wider text-[#8DC63F] font-bold block mb-2">
-                      Core Discipline
+                <ul className="space-y-2.5 sm:space-y-3 pt-2">
+                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
+                    <span>
+                      <strong className="text-white font-semibold">Core Focus:</strong> 100% earthing &amp; lightning systems.
                     </span>
-                    <h3 className="text-2xl sm:text-3xl lg:text-[34px] font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-tight">
-                      Specialist Engineering Approach
-                    </h3>
-                  </div>
-
-                  <p className="text-[15px] sm:text-base lg:text-[17px] text-[#CBD5E1] group-hover:text-white transition-colors leading-relaxed">
-                    Lightning protection and earthing aren't an afterthought or a side gig for us — it's our core engineering focus. We calculate, design, and verify every path to earth so you get proven safety, not guesswork.
-                  </p>
-
-                  {/* Verified Engineering Badges */}
-                  <div className="pt-4 border-t border-white/[0.08] grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <div className="flex items-center gap-2 text-xs sm:text-[13px] text-[#CBD5E1]">
-                      <CheckCircle2 className="w-4 h-4 text-[#8DC63F] shrink-0" />
-                      <span>BS EN / IEC 62305</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-xs sm:text-[13px] text-[#CBD5E1]">
-                      <CheckCircle2 className="w-4 h-4 text-[#8DC63F] shrink-0" />
-                      <span>Soil Resistivity Testing</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-xs sm:text-[13px] text-[#CBD5E1]">
-                      <CheckCircle2 className="w-4 h-4 text-[#8DC63F] shrink-0" />
-                      <span>DEWA & Civil Defense NOCs</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Right/Image Column (5 cols on lg) */}
-                <div className="lg:col-span-5">
-                  <div className="relative w-full h-[220px] sm:h-[260px] lg:h-[290px] rounded-lg overflow-hidden border border-white/10 group-hover:border-[#8DC63F]/40 transition-all duration-500 shadow-md bg-[#06080D]">
-                    <Image
-                      src="/images/specialist-engineering-approach.jpg"
-                      alt="Specialist engineering earthing and lightning protection testing on site"
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 42vw"
-                      className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-                  </div>
-                </div>
+                  </li>
+                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
+                    <span>
+                      <strong className="text-white font-semibold">Engineered Safety:</strong> Calculated low-impedance paths.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
+                    <span>
+                      <strong className="text-white font-semibold">Global Standards:</strong> Full BS EN / IEC 62305 compliance.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
+                    <span>
+                      <strong className="text-white font-semibold">Authority NOCs:</strong> DEWA, SEWA &amp; Civil Defense clearances.
+                    </span>
+                  </li>
+                </ul>
               </div>
             </div>
           </Reveal>
 
-          {/* 4 Feature Cards: Spacious 2x2 Grid (2 columns on md/lg, easy to read, humanized) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
-            {/* Card 1: UAE Project Experience */}
-            <Reveal staggerIndex={3} className="h-full">
-              <div className="group h-full flex flex-col justify-between p-6 sm:p-8 rounded-xl bg-[#0D1117] border border-white/[0.1] hover:border-[#8DC63F]/50 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
+          {/* Card 2: UAE Project Experience */}
+          <Reveal staggerIndex={3} className="h-full md:col-span-1 lg:col-span-2">
+            <div className="group h-full flex flex-col justify-between p-6 sm:p-8 rounded-xl bg-[#0D1117] border border-white/[0.1] hover:border-[#8DC63F]/50 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
+              <div className="space-y-4">
                 <div>
-                  {/* Real UAE Site Construction Photo */}
-                  <div className="relative w-full h-[210px] sm:h-[230px] rounded-lg overflow-hidden border border-white/10 group-hover:border-[#8DC63F]/40 transition-all duration-500 shadow-md mb-5 bg-[#06080D]">
-                    <Image
-                      src="/images/uae-project-experience.jpg"
-                      alt="Vision Energy engineers on site coordinating electrical and protection installations in UAE"
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-                  </div>
-
                   <span className="text-xs uppercase tracking-wider text-[#8DC63F] font-bold block mb-1.5">
                     Local Site Realities
                   </span>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-snug mb-3">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-snug">
                     UAE Project Experience
                   </h3>
-                  <p className="text-[15px] sm:text-base text-[#CBD5E1] group-hover:text-white transition-colors leading-relaxed">
-                    Our engineers work directly on-site across the Emirates. We know how to navigate crowded rooftop plant rooms, coordinate hidden facade down-conductors with cladding teams, treat high-resistivity desert soil, and clear consultant inspections without delays.
-                  </p>
                 </div>
 
-                <div className="pt-4 mt-5 border-t border-white/[0.08] flex items-center gap-2 text-xs sm:text-[13px] text-[#A9B4C0]">
-                  <CheckCircle2 className="w-4 h-4 text-[#8DC63F] shrink-0" />
-                  <span>On-site coordination across Abu Dhabi, Dubai & Northern Emirates</span>
-                </div>
+                <ul className="space-y-2.5 sm:space-y-3 pt-2">
+                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
+                    <span>
+                      <strong className="text-white font-semibold">Direct Site Presence:</strong> On-site engineers across the UAE.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
+                    <span>
+                      <strong className="text-white font-semibold">Plant Room Routing:</strong> Safe navigation of risers &amp; plant.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
+                    <span>
+                      <strong className="text-white font-semibold">Desert Grounding:</strong> Deep-well solutions for desert soil.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
+                    <span>
+                      <strong className="text-white font-semibold">Fast Clearances:</strong> Milestone-ready consultant sign-offs.
+                    </span>
+                  </li>
+                </ul>
               </div>
-            </Reveal>
+            </div>
+          </Reveal>
 
-            {/* Card 2: Complete Project Support */}
-            <Reveal staggerIndex={4} className="h-full">
-              <div className="group h-full flex flex-col justify-between p-6 sm:p-8 rounded-xl bg-[#0D1117] border border-white/[0.1] hover:border-[#8DC63F]/50 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
+          {/* Card 3: Complete Project Support */}
+          <Reveal staggerIndex={4} className="h-full md:col-span-1 lg:col-span-2">
+            <div className="group h-full flex flex-col justify-between p-6 sm:p-8 rounded-xl bg-[#0D1117] border border-white/[0.1] hover:border-[#8DC63F]/50 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
+              <div className="space-y-4">
                 <div>
-                  {/* Real Technical Team Coordination Photo */}
-                  <div className="relative w-full h-[210px] sm:h-[230px] rounded-lg overflow-hidden border border-white/10 group-hover:border-[#8DC63F]/40 transition-all duration-500 shadow-md mb-5 bg-[#06080D]">
-                    <Image
-                      src="/images/complete-project-support-vision-energy.jpg"
-                      alt="Vision Energy engineers reviewing substation blueprints and testing documentation on site"
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-                  </div>
-
                   <span className="text-xs uppercase tracking-wider text-[#8DC63F] font-bold block mb-1.5">
                     Single Accountability
                   </span>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-snug mb-3">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-snug">
                     Complete Project Support
                   </h3>
-                  <p className="text-[15px] sm:text-base text-[#CBD5E1] group-hover:text-white transition-colors leading-relaxed">
-                    One accountable team from initial shop drawings to final testing. We handle calculations, supply certified materials, supervise on-site installation, and provide the complete test certificates your handover demands.
-                  </p>
                 </div>
 
-                <div className="pt-4 mt-5 border-t border-white/[0.08] flex items-center gap-2 text-xs sm:text-[13px] text-[#A9B4C0]">
-                  <CheckCircle2 className="w-4 h-4 text-[#8DC63F] shrink-0" />
-                  <span>Shop drawings, calculations, material submittals & final sign-off</span>
-                </div>
+                <ul className="space-y-2.5 sm:space-y-3 pt-2">
+                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
+                    <span>
+                      <strong className="text-white font-semibold">Single Contact:</strong> One accountable team through handover.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
+                    <span>
+                      <strong className="text-white font-semibold">Design &amp; Modeling:</strong> Detailed CAD/BIM drawings &amp; risk studies.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
+                    <span>
+                      <strong className="text-white font-semibold">Certified Supply:</strong> Authority-approved supply with submittals.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
+                    <span>
+                      <strong className="text-white font-semibold">Testing &amp; Handover:</strong> Calibrated continuity tests &amp; certificates.
+                    </span>
+                  </li>
+                </ul>
               </div>
-            </Reveal>
+            </div>
+          </Reveal>
 
-            {/* Card 3: Quality Materials */}
-            <Reveal staggerIndex={5} className="h-full">
-              <div className="group h-full flex flex-col justify-between p-6 sm:p-8 rounded-xl bg-[#0D1117] border border-white/[0.1] hover:border-[#8DC63F]/50 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
+          {/* Card 4: Quality Materials */}
+          <Reveal staggerIndex={5} className="h-full md:col-span-1 lg:col-span-2 lg:col-start-2">
+            <div className="group h-full flex flex-col justify-between p-6 sm:p-8 rounded-xl bg-[#0D1117] border border-white/[0.1] hover:border-[#8DC63F]/50 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
+              <div className="space-y-4">
                 <div>
-                  {/* Real Materials & Inspection Photo */}
-                  <div className="relative w-full h-[210px] sm:h-[230px] rounded-lg overflow-hidden border border-white/10 group-hover:border-[#8DC63F]/40 transition-all duration-500 shadow-md mb-5 bg-[#06080D]">
-                    <Image
-                      src="/images/quality-materials-vision-energy.jpg"
-                      alt="Vision Energy certified earthing materials, copper tape, rods, and inspection pits on project site"
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-                  </div>
-
                   <span className="text-xs uppercase tracking-wider text-[#8DC63F] font-bold block mb-1.5">
                     Gulf-Grade Durability
                   </span>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-snug mb-3">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-snug">
                     Quality Materials
                   </h3>
-                  <p className="text-[15px] sm:text-base text-[#CBD5E1] group-hover:text-white transition-colors leading-relaxed">
-                    We only supply tested, corrosion-resistant copper tapes, earth rods, exothermic welds, and SPDs built for harsh Gulf heat and salinity. No shortcuts, no substandard alloys — materials that outlast the structure.
-                  </p>
                 </div>
 
-                <div className="pt-4 mt-5 border-t border-white/[0.08] flex items-center gap-2 text-xs sm:text-[13px] text-[#A9B4C0]">
-                  <CheckCircle2 className="w-4 h-4 text-[#8DC63F] shrink-0" />
-                  <span>Pure copper conductors & tested alloys built for high thermal & saline soil</span>
-                </div>
+                <ul className="space-y-2.5 sm:space-y-3 pt-2">
+                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
+                    <span>
+                      <strong className="text-white font-semibold">Pure Copper:</strong> High-conductivity tapes, rods &amp; electrodes.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
+                    <span>
+                      <strong className="text-white font-semibold">Exothermic Welds:</strong> Permanent molecular bonds that never corrode.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
+                    <span>
+                      <strong className="text-white font-semibold">Gulf-Rated SPDs:</strong> Certified surge devices built for heat.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
+                    <span>
+                      <strong className="text-white font-semibold">Saline Resistance:</strong> Anti-corrosion alloys for desert soils.
+                    </span>
+                  </li>
+                </ul>
               </div>
-            </Reveal>
+            </div>
+          </Reveal>
 
-            {/* Card 4: Built for Long-Term Reliability */}
-            <Reveal staggerIndex={6} className="h-full">
-              <div className="group h-full flex flex-col justify-between p-6 sm:p-8 rounded-xl bg-[#0D1117] border border-white/[0.1] hover:border-[#8DC63F]/50 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
+          {/* Card 5: Built for Long-Term Reliability */}
+          <Reveal staggerIndex={6} className="h-full md:col-span-2 md:max-w-md md:mx-auto w-full lg:col-span-2 lg:col-start-4 lg:max-w-none lg:mx-0">
+            <div className="group h-full flex flex-col justify-between p-6 sm:p-8 rounded-xl bg-[#0D1117] border border-white/[0.1] hover:border-[#8DC63F]/50 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
+              <div className="space-y-4">
                 <div>
-                  {/* Real Testing & Earth Pit Inspection Photo */}
-                  <div className="relative w-full h-[210px] sm:h-[230px] rounded-lg overflow-hidden border border-white/10 group-hover:border-[#8DC63F]/40 transition-all duration-500 shadow-md mb-5 bg-[#06080D]">
-                    <Image
-                      src="/images/built-for-long-term-reliability.jpg"
-                      alt="Vision Energy engineers testing earth inspection pit resistance with digital tester on site"
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-                  </div>
-
                   <span className="text-xs uppercase tracking-wider text-[#8DC63F] font-bold block mb-1.5">
                     Maintenance-Ready
                   </span>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-snug mb-3">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-snug">
                     Built for Long-Term Reliability
                   </h3>
-                  <p className="text-[15px] sm:text-base text-[#CBD5E1] group-hover:text-white transition-colors leading-relaxed">
-                    Buildings settle and weather shifts. We build systems with clearly tagged inspection pits, accessible test joints, and secure mechanical fixings so your maintenance team can test earth resistance safely for decades to come.
-                  </p>
                 </div>
 
-                <div className="pt-4 mt-5 border-t border-white/[0.08] flex items-center gap-2 text-xs sm:text-[13px] text-[#A9B4C0]">
-                  <CheckCircle2 className="w-4 h-4 text-[#8DC63F] shrink-0" />
-                  <span>Accessible test disconnect joints & clearly marked earth inspection pits</span>
-                </div>
+                <ul className="space-y-2.5 sm:space-y-3 pt-2">
+                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
+                    <span>
+                      <strong className="text-white font-semibold">Tagged Inspection Pits:</strong> Heavy-duty pits for easy audits.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
+                    <span>
+                      <strong className="text-white font-semibold">Accessible Test Joints:</strong> Disconnect links for rapid testing.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
+                    <span>
+                      <strong className="text-white font-semibold">Movement Tolerance:</strong> Flexible fixings for thermal shifts.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
+                    <span>
+                      <strong className="text-white font-semibold">Handover Records:</strong> Baseline logs &amp; complete records.
+                    </span>
+                  </li>
+                </ul>
               </div>
-            </Reveal>
-          </div>
+            </div>
+          </Reveal>
         </div>
 
         {/* Industries We Serve */}

@@ -8,7 +8,7 @@ export const dictionary = {
     email: 'info@visionenergyme.com',
     website: 'www.visionenergyme.com',
     locations: ['Abu Dhabi', 'Dubai', 'Ras Al Khaimah'],
-    headquarters: 'RAK Business Centre BC4, RAK Business Park, P.O Box 17111, Al Nakheel, Ras Al Khaimah, UAE',
+    headquarters: 'RAK Business Centre BC4, Ras Al Khaimah, United Arab Emirates',
     founded: '2018',
     type: 'Trading Company & Authorised Distributor'
   },

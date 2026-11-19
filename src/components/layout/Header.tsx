@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useEnquiryModal } from '@/components/modals/EnquiryModalProvider';
 import { dictionary } from '@/lib/dictionary';
-import { Phone, Clock, Mail, Send } from 'lucide-react';
+import { Phone, Mail, Send } from 'lucide-react';
 import LightningButton from '@/components/ui/LightningButton';
 import ThemeToggle from '@/components/theme/ThemeToggle';
 
@@ -195,17 +195,13 @@ export default function Header() {
             <div className="animate-marquee-fast flex items-center text-[11.5px] font-semibold py-1">
               {/* Copy 1 */}
               <div className="flex items-center divide-x divide-[#0A192F]/20 shrink-0">
-                <div className="flex items-center gap-1.5 px-3.5 shrink-0">
-                  <Clock className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
-                  <span className="whitespace-nowrap">Sun-Thu 8:30AM-05:30PM</span>
-                </div>
                 <a
-                  href="tel:+97172041010"
+                  href="tel:+971501234567"
                   className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
                   title="Call Vision Energy"
                 >
                   <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
-                  <span className="whitespace-nowrap">+971 7 2041010</span>
+                  <span className="whitespace-nowrap">+971 50 123 4567</span>
                 </a>
                 <a
                   href="mailto:info@visionenergyme.com"
@@ -222,17 +218,13 @@ export default function Header() {
 
               {/* Copy 2 (identically repeated for seamless loop) */}
               <div className="flex items-center divide-x divide-[#0A192F]/20 shrink-0">
-                <div className="flex items-center gap-1.5 px-3.5 shrink-0">
-                  <Clock className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
-                  <span className="whitespace-nowrap">Sun-Thu 8:30AM-05:30PM</span>
-                </div>
                 <a
-                  href="tel:+97172041010"
+                  href="tel:+971501234567"
                   className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
                   title="Call Vision Energy"
                 >
                   <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
-                  <span className="whitespace-nowrap">+971 7 2041010</span>
+                  <span className="whitespace-nowrap">+971 50 123 4567</span>
                 </a>
                 <a
                   href="mailto:info@visionenergyme.com"
@@ -254,20 +246,14 @@ export default function Header() {
             <div className="flex items-center justify-between h-[36px] sm:h-[40px] text-xs sm:text-[13px] font-semibold">
               {/* Left Items with Vertical Divider Lines */}
               <div className="flex items-center divide-x divide-[#0A192F]/20 overflow-x-auto no-scrollbar py-1">
-                {/* Working Hours */}
-                <div className="flex items-center gap-2 pr-3.5 sm:pr-5 shrink-0">
-                  <Clock className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
-                  <span>Sun-Thu 8:30AM-05:30PM</span>
-                </div>
-
                 {/* Telephone */}
                 <a
-                  href="tel:+97172041010"
-                  className="flex items-center gap-2 px-3.5 sm:px-5 shrink-0 hover:text-black transition-colors"
+                  href="tel:+971501234567"
+                  className="flex items-center gap-2 pr-3.5 sm:pr-5 shrink-0 hover:text-black transition-colors"
                   title="Call Vision Energy"
                 >
                   <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
-                  <span>+971 7 2041010</span>
+                  <span>+971 50 123 4567</span>
                 </a>
 
                 {/* Email */}

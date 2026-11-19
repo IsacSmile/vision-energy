@@ -723,7 +723,6 @@ export default function ProductsExplorer({
                 }`}
               >
                 <span>{g.label}</span>
-                <span className="text-[11px] opacity-75 tabular-nums">({g.count})</span>
               </Link>
             );
           })}
@@ -898,7 +897,6 @@ export default function ProductsExplorer({
                   >
                     <div className="flex items-center gap-3">
                       <span>{g.label}</span>
-                      <span className="text-xs text-[#A9B4C0] tabular-nums">({g.count})</span>
                     </div>
                     {isActive && <Check className="w-5 h-5 text-[#8DC63F]" />}
                   </button>
@@ -983,10 +981,7 @@ export default function ProductsExplorer({
                             : 'text-white/65 hover:text-white hover:bg-white/[0.02]'
                         }`}
                       >
-                        <span className="truncate pr-2">{g.label}</span>
-                        <span className="text-[13px] tabular-nums text-[#A9B4C0] shrink-0">
-                          {g.count}
-                        </span>
+                        <span className="truncate">{g.label}</span>
                       </Link>
                     );
                   })}
@@ -1105,9 +1100,6 @@ export default function ProductsExplorer({
                             <h2 className="text-lg sm:text-xl lg:text-[clamp(1.5rem,2.6vw,2.25rem)] font-semibold text-white leading-snug">
                               {sec.label}
                             </h2>
-                            <span className="text-xs sm:text-sm font-medium text-[#A9B4C0] tabular-nums">
-                              ({sec.items.length})
-                            </span>
                           </div>
                           <Link
                             href={`/products?group=${sec.groupKey}`}
@@ -1194,7 +1186,7 @@ export default function ProductsExplorer({
                         }}
                         className="px-4 py-2 rounded-full bg-[#050608] border border-[#1F2937] text-xs font-semibold text-white hover:border-[#8DC63F] hover:text-[#8DC63F] transition-colors"
                       >
-                        {g.label} ({g.count})
+                        {g.label}
                       </button>
                     ))}
                   </div>

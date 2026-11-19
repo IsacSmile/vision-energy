@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { ArrowRight, ChevronRight } from 'lucide-react';
 import { getPublishedServices } from '@/lib/services/get-services';
 import ServicesListRow from '@/components/services/ServicesListRow';
-import HowWeWorkStepper from '@/components/services/HowWeWorkStepper';
+import HowWeWork from '@/components/services/HowWeWork';
 import FinalCTA from '@/components/home/FinalCTA';
 import Reveal from '@/components/ui/Reveal';
 
@@ -143,25 +143,8 @@ export default async function ServicesListingPage() {
           </div>
         </section>
 
-        {/* SECTION C: HOW WE WORK WITH YOU (#050608) */}
-        <section className="bg-[#050608] py-16 lg:py-24 border-b border-white/10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-            <Reveal>
-              <div className="space-y-2">
-                <span className="text-[13px] font-semibold text-[#8DC63F] uppercase tracking-widest block">
-                  Working with us
-                </span>
-                <h2 className="text-[clamp(1.75rem,4vw,2.75rem)] font-semibold text-white tracking-tight leading-tight">
-                  How We Support Your Project
-                </h2>
-              </div>
-            </Reveal>
-
-            <Reveal delay={100}>
-              <HowWeWorkStepper />
-            </Reveal>
-          </div>
-        </section>
+        {/* SECTION C: HOW WE WORK (#050608) */}
+        <HowWeWork />
 
         {/* SECTION D: CROSS-LINK (#0D1117) */}
         <section className="bg-[#0D1117] py-12 lg:py-16 border-b border-white/10">

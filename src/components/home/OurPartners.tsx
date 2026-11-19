@@ -32,7 +32,7 @@ export default function OurPartners() {
         <Reveal>
           <div className="rounded-2xl border border-dashed border-white/20 bg-[#0D1117]/90 backdrop-blur-sm overflow-hidden flex flex-col md:flex-row items-stretch md:items-center hover:border-[#8DC63F]/50 transition-colors duration-500 shadow-2xl group/marquee">
             {/* Partition: "Our Partners" - Top on mobile, Left on desktop */}
-            <div className="w-full md:w-auto px-4 py-3 sm:py-3.5 md:px-8 lg:px-12 md:py-6 lg:py-8 flex items-center justify-center border-b md:border-b-0 md:border-r border-dashed border-white/20 shrink-0 bg-[#0A0D14]/90">
+            <div className="w-full md:w-auto px-4 py-3 sm:py-3.5 md:px-8 lg:px-12 md:py-6 lg:py-8 flex items-center justify-center border-b md:border-b-0 md:border-r border-dashed border-white/20 shrink-0 bg-[#0A0D14]/90 self-stretch">
               <span className="text-sm sm:text-base md:text-xl lg:text-3xl font-bold text-white whitespace-nowrap tracking-tight">
                 Our Partners
               </span>
@@ -52,19 +52,19 @@ export default function OurPartners() {
               />
 
               {/* Infinite Moving Loop Track */}
-              <div className="animate-marquee flex items-center gap-3 sm:gap-6 lg:gap-8 pl-3 sm:pl-8">
+              <div className="animate-marquee flex items-center gap-4 sm:gap-7 lg:gap-9 pl-3 sm:pl-8">
                 {[...PARTNER_TRACK, ...PARTNER_TRACK].map((partner, idx) => (
                   <div
                     key={`${partner.id}-${idx}`}
-                    className="h-12 sm:h-16 lg:h-20 px-3.5 sm:px-6 lg:px-8 py-2 sm:py-3 rounded-xl sm:rounded-2xl bg-white flex items-center justify-center shrink-0 shadow-md hover:scale-105 hover:shadow-xl transition-all duration-300"
+                    className="h-16 sm:h-[76px] lg:h-[96px] px-5 sm:px-7 lg:px-9 py-2.5 sm:py-3.5 rounded-xl sm:rounded-2xl bg-white flex items-center justify-center shrink-0 shadow-md hover:scale-105 hover:shadow-xl transition-all duration-300"
                     title={partner.name}
                   >
                     <Image
                       src={partner.src}
                       alt={partner.name}
-                      width={160}
-                      height={60}
-                      className="h-7 sm:h-9 lg:h-11 w-auto max-w-[95px] sm:max-w-[130px] lg:max-w-[160px] object-contain"
+                      width={225}
+                      height={85}
+                      className="h-10 sm:h-[50px] lg:h-[62px] w-auto max-w-[135px] sm:max-w-[185px] lg:max-w-[225px] object-contain"
                     />
                   </div>
                 ))}

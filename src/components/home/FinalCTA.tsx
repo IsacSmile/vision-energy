@@ -241,21 +241,20 @@ export default function FinalCTA({ bgClass = 'bg-[#0D1117]' }: FinalCTAProps) {
                 </div>
               </Reveal>
 
-              {/* ROW 3: VISIT */}
+              {/* ROW 3: HQ */}
               <Reveal staggerIndex={6}>
                 <div className="py-6 lg:py-8 grid grid-cols-1 md:grid-cols-[140px_1fr] gap-2 md:gap-0 items-baseline">
                   <dt className="text-xs uppercase tracking-[0.14em] text-[#A9B4C0] font-medium pt-0.5 select-none">
-                    VISIT
+                    HQ
                   </dt>
 
                   <dd className="space-y-3">
                     <p className="text-base lg:text-[1.0625rem] leading-[1.7] text-[#A9B4C0] max-w-[34ch]">
-                      RAK Business Centre BC4, RAK Business Park, P.O Box 17111, Al Nakheel, Ras Al
-                      Khaimah, United Arab Emirates
+                      RAK Business Centre BC4, Ras Al Khaimah, United Arab Emirates
                     </p>
 
                     <a
-                      href="https://www.google.com/maps/search/?api=1&query=RAK+Business+Centre+BC4+RAK+Business+Park+Ras+Al+Khaimah"
+                      href="https://www.google.com/maps/search/?api=1&query=RAK+Business+Centre+BC4+Ras+Al+Khaimah+United+Arab+Emirates"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 text-base font-semibold text-[#8DC63F] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded min-h-[48px] active:opacity-70"

@@ -26,11 +26,11 @@ export default function IntroStandards({ productCategoryCount }: IntroStandardsP
 
           {/* Right Column (7/12 split on lg+) */}
           <div className="lg:col-span-7 space-y-6 pt-2 lg:pt-0">
-            <Reveal staggerIndex={1}>
+            <Reveal staggerIndex={1} className="space-y-4">
               <p className="text-base md:text-lg text-[#A9B4C0] leading-[1.7]">
                 Founded in 2018, Vision Energy International has rapidly established itself in the GCC market as a leading supplier of mechanical, electrical, and solar solutions for a variety of industries, including construction, MEP, oil and gas and renewables. With over a decade of experience in the respective fields we must ensure that our dedication adhere to the international standards, local requirements, and regulatory guidelines for quality and safety.
               </p>
-              <p className="text-[15px] sm:text-base text-[#8B949E] dark:text-[#94A3B8] leading-[1.7] mt-4">
+              <p className="text-base md:text-lg text-[#A9B4C0] leading-[1.7]">
                 Vision Energy International enrolled as a authorized agent and distributor for numerous specialized products in the UAE, we combine integrated cutting edge technology with expertise to provide superior solutions that prioritize environmental sustainability. With a strong regional presence throughout the Middle East we continue to deliver high quality innovative solutions in every project we take on.
               </p>
             </Reveal>
