@@ -561,14 +561,10 @@ export default function ProductsExplorer({
               Browse multiple certified product categories across lightning protection, earthing, electrical cables, cable management, and automation. Engineered for high-spec UAE infrastructure.
             </p>
 
-            {/* Live Count Meta Line */}
+            {/* Meta Line */}
             <p className="text-[13px] text-slate-300 font-medium pt-1 drop-shadow-sm">
-              <span className="text-white font-semibold">
-                {deferredSearchInput || (groupParam && groupParam !== 'ALL') || activeCodes.length > 0
-                  ? `${filteredCategories.length} categories`
-                  : 'Multiple categories'}
-              </span>
-              {' '}· <span className="text-white font-semibold">{groupsWithCounts.length}</span> groups
+              <span className="text-white font-semibold">Multiple categories</span>
+              {' '}· <span className="text-white font-semibold">Comprehensive product groups</span>
             </p>
           </div>
         </div>
@@ -640,9 +636,9 @@ export default function ProductsExplorer({
 
           {/* DESKTOP TOOLBAR RIGHT: Live Count + Sort Select + View Toggle */}
           <div className="hidden lg:flex items-center gap-6">
-            {/* Result Count */}
-            <span className="text-sm font-medium text-[#A9B4C0] tabular-nums" aria-live="polite">
-              Showing {filteredCategories.length} {filteredCategories.length === 1 ? 'category' : 'categories'}
+            {/* Result Label */}
+            <span className="text-sm font-medium text-[#A9B4C0]" aria-live="polite">
+              Showing categories
             </span>
 
             {/* Sort Select */}
@@ -741,7 +737,7 @@ export default function ProductsExplorer({
         {/* Mobile Summary Row & Active Filters */}
         <div className="px-5 py-2.5 flex items-center justify-between border-t border-[#1F2937]/40 text-xs text-[#A9B4C0]">
           <span aria-live="polite" aria-atomic="true">
-            Showing {filteredCategories.length} of {categories.length} categories
+            Showing categories
           </span>
 
           {/* Mobile Sort Dropdown */}
