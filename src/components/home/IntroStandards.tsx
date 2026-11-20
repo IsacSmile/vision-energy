@@ -20,7 +20,7 @@ export default function IntroStandards({ productCategoryCount }: IntroStandardsP
             <SectionHeader
               id="intro-standards-heading"
               eyebrow="About Vision Energy"
-              title="Powering Progress Through Engineering Excellence"
+              title="Specialist Supply. Practical Engineering."
             />
           </div>
 
@@ -28,10 +28,10 @@ export default function IntroStandards({ productCategoryCount }: IntroStandardsP
           <div className="lg:col-span-7 space-y-6 pt-2 lg:pt-0">
             <Reveal staggerIndex={1} className="space-y-4">
               <p className="text-base md:text-lg text-[#A9B4C0] leading-[1.7]">
-                Founded in 2018, Vision Energy International has rapidly established itself in the GCC market as a leading supplier of mechanical, electrical, and solar solutions for a variety of industries, including construction, MEP, oil and gas and renewables. With over a decade of experience in the respective fields we must ensure that our dedication adhere to the international standards, local requirements, and regulatory guidelines for quality and safety.
+                Founded in 2018, Vision Energy International supplies electrical, mechanical and renewable energy solutions to construction, MEP, oil and gas, and renewable energy projects across the GCC. Our portfolio also includes laboratory and gym equipment and specialize in lightning protection and earthing systems.
               </p>
               <p className="text-base md:text-lg text-[#A9B4C0] leading-[1.7]">
-                Vision Energy International enrolled as a authorized agent and distributor for numerous specialized products in the UAE, we combine integrated cutting edge technology with expertise to provide superior solutions that prioritize environmental sustainability. With a strong regional presence throughout the Middle East we continue to deliver high quality innovative solutions in every project we take on.
+                As an authorised agent and distributor for specialist products in the UAE, we draw on over a decade of industry experience to help clients select equipment that meets project specifications, applicable international standards and local regulatory requirements.
               </p>
             </Reveal>
 
