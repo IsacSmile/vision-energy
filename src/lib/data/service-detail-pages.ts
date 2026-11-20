@@ -321,6 +321,77 @@ export const SERVICE_DETAIL_PAGES: Record<string, StandardServiceDetailPage> = {
         'Certified heavy equipment, generator, and machinery rental across Dubai, Abu Dhabi, and the UAE. Third-party certified with 24/7 support.',
     },
   },
+  'custom-engraving-and-identification': {
+    slug: 'custom-engraving-and-identification',
+    aliases: ['engraved-plates-and-equipment-identification', 'engraving'],
+    badgeLabel: 'CUSTOM ENGRAVING',
+    title: 'Custom Engraved Plates, Cable Tags & Equipment Identification in the UAE',
+    intro:
+      'Precision laser-engraved stainless steel, aluminium, and acrylic tags, warning plates, and cable labels engineered for harsh UAE industrial and MEP environments.',
+    sectionsBeforeProcess: [
+      {
+        id: 'durable-industrial-identification',
+        title: 'Built to Last in Gulf Operating Conditions',
+        content:
+          'Vision Energy manufactures custom engraved labels, valve tags, warning signs, earth pit labels, and cable markers. Designed for electrical switchgear, substations, solar plants, and oil & gas installations, our plates resist UV degradation, extreme heat, and coastal corrosion.',
+      },
+    ],
+    processSection: {
+      title: 'Our Custom Engraving Process',
+      description:
+        'Rapid turnaround from schedule verification to precision CNC laser engraving and site delivery.',
+      steps: [
+        {
+          step: 1,
+          stepLabel: 'Step 1',
+          title: 'Schedule Review',
+          description:
+            'We review your equipment tag schedules, font specifications, text sizes, and hole punching requirements.',
+        },
+        {
+          step: 2,
+          stepLabel: 'Step 2',
+          title: 'Material Selection',
+          description:
+            'Choice of 316 stainless steel, anodized aluminium, brass, or multi-layered traffolyte suited to indoor or outdoor exposure.',
+        },
+        {
+          step: 3,
+          stepLabel: 'Step 3',
+          title: 'Precision Engraving',
+          description:
+            'High-contrast fiber laser and rotary engraving ensuring permanent, crisp legibility.',
+        },
+        {
+          step: 4,
+          stepLabel: 'Step 4',
+          title: 'Quality Verification & Dispatch',
+          description:
+            'Every batch is verified against site schedules, packaged by panel / system, and delivered with compatible fixings and rivets.',
+        },
+      ],
+    },
+    sectionsAfterProcess: [
+      {
+        id: 'applications-and-materials',
+        title: 'Comprehensive Material & Format Options',
+        content:
+          'We supply stainless steel cable tags with ball-lock ties, traffolyte panel labels, valve tags, warning & hazard signs, earth pit identification markers, and asset barcodes adhering to DEWA, SEWA, and Civil Defence standards.',
+      },
+    ],
+    contactSection: {
+      heading: 'Order Custom Engraved Plates & Tags',
+      text:
+        'Send us your schedule or drawings for immediate pricing, material samples, and fast delivery across the UAE.',
+      buttonText: 'Request Engraving Quote',
+      buttonLink: '/contact',
+    },
+    seo: {
+      title: 'Custom Engraved Plates & Tags UAE | Vision Energy International',
+      description:
+        'Custom laser engraved stainless steel plates, aluminium tags, traffolyte labels, and warning signs across Dubai and UAE. Fast delivery for MEP and industrial projects.',
+    },
+  },
 };
 
 /**

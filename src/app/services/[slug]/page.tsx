@@ -43,6 +43,7 @@ export async function generateStaticParams() {
     slugs.add("system-design-and-installation");
     slugs.add("risk-assessment");
     slugs.add("heavy-equipment-rental");
+    slugs.add("custom-engraving-and-identification");
     return Array.from(slugs).map((slug) => ({
       slug,
     }));
@@ -52,6 +53,7 @@ export async function generateStaticParams() {
       { slug: "system-design-and-installation" },
       { slug: "risk-assessment" },
       { slug: "heavy-equipment-rental" },
+      { slug: "custom-engraving-and-identification" },
     ];
   }
 }

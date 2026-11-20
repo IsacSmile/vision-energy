@@ -5,71 +5,63 @@ import {
   ArrowRight,
   ArrowUpRight,
   Zap,
-  Layers,
   Users,
-  ShieldCheck,
-  Wrench,
+  Tag,
 } from 'lucide-react';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Reveal from '@/components/ui/Reveal';
 import { getPublishedServices } from '@/lib/data/services';
 
-const SERVICE_META: Record<
-  string,
+const FEATURED_SERVICES = [
   {
-    eyebrow: string;
-    icon: React.ElementType;
-    image: { url: string; alt: string };
-  }
-> = {
-  'external-lightning-protection-installation': {
+    id: 'external-lightning-protection',
+    slug: 'external-lightning-protection-installation',
+    title: 'Lightning Protection Installation',
+    summary:
+      'Installation of external lightning protection systems for commercial buildings, industrial plants, warehouses, and critical installations.',
     eyebrow: 'Specialist Protection',
     icon: Zap,
     image: {
       url: '/images/external-lightning-protection-installation.png',
       alt: 'External structural lightning protection and earthing building installation UAE',
     },
+    metaChip: 'Mesh & ESE Systems',
+    href: '/services/external-lightning-protection-installation',
   },
-  'earthing-and-grounding': {
-    eyebrow: 'Core Infrastructure',
-    icon: Layers,
+  {
+    id: 'custom-engraving-identification',
+    slug: 'custom-engraving-and-identification',
+    title: 'Engraving & Equipment Identification',
+    summary:
+      'Laser-engraved stainless steel plates, aluminium tags, warning signs, and cable labels for industrial MEP sites.',
+    eyebrow: 'Custom Engraving',
+    icon: Tag,
     image: {
-      url: '/images/earthing-grounding-hero.webp',
-      alt: 'Earthing and grounding system design, copper grid and installation',
+      url: '/images/custom-engraved-plates-identification.webp',
+      alt: 'Custom engraved stainless steel plates, cable tags, caution and earthing system plates',
     },
+    metaChip: 'Laser Engraved',
+    href: '/services/custom-engraving-and-identification',
   },
-  'manpower-supply': {
+  {
+    id: 'manpower-supply',
+    slug: 'manpower-supply',
+    title: 'Manpower Supply',
+    summary:
+      'Skilled and certified manpower for electrical, mechanical and solar projects across the UAE — including technicians, engineers and supervisors.',
     eyebrow: 'Certified Manpower',
     icon: Users,
     image: {
       url: '/images/specialist-engineering-manpower-supply.jpg',
       alt: 'Specialist engineering manpower and certified technicians on site in UAE',
     },
+    metaChip: 'Specialist Manpower',
+    href: '/services/manpower-supply',
   },
-  'surge-protection-and-bonding': {
-    eyebrow: 'Transient Defense',
-    icon: ShieldCheck,
-    image: {
-      url: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=85',
-      alt: 'Surge protection device installation and equipotential bonding',
-    },
-  },
-};
-
-const DEFAULT_META = {
-  eyebrow: 'Engineering Services',
-  icon: Wrench,
-  image: {
-    url: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1200&q=85',
-    alt: 'Technical engineering services and industrial support',
-  },
-};
+];
 
 export default async function ServicesPreview() {
   const servicesAll = await getPublishedServices();
-  const services = [...servicesAll]
-    .sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0))
-    .slice(0, 3);
 
   return (
     <section
@@ -103,31 +95,21 @@ export default async function ServicesPreview() {
 
         {/* 3-Column Architectural Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-8 items-stretch">
-          {services.map((service, index) => {
-            const meta = SERVICE_META[service.slug] || DEFAULT_META;
-            const IconComponent = meta.icon;
-
-            const imageData =
-              (service.content as any)?.hero?.imageUrl
-                ? {
-                    url: (service.content as any).hero.imageUrl,
-                    alt: service.title,
-                  }
-                : meta.image;
-
+          {FEATURED_SERVICES.map((service, index) => {
+            const IconComponent = service.icon;
             const formattedIndex = String(index + 1).padStart(2, '0');
 
             return (
               <Reveal key={service.id} staggerIndex={index} className="h-full">
                 <Link
-                  href={`/services/${service.slug}`}
+                  href={service.href}
                   className="group relative flex flex-col h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded-[24px]"
                 >
                   {/* Top Image Container with High-Res Photography */}
                   <div className="relative w-full h-[260px] sm:h-[280px] lg:h-[300px] rounded-[20px] overflow-hidden bg-[#050608] border border-white/[0.08] shadow-xl group-hover:border-[#8DC63F]/40 transition-all duration-500">
                     <Image
-                      src={imageData.url}
-                      alt={imageData.alt}
+                      src={service.image.url}
+                      alt={service.image.alt}
                       fill
                       className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -158,7 +140,7 @@ export default async function ServicesPreview() {
                       <div className="flex items-center gap-2.5 mb-3.5">
                         <span className="w-2 h-2 rounded-full bg-[#8DC63F] animate-pulse" />
                         <span className="text-[13px] sm:text-[13px] font-bold uppercase tracking-wider text-[#8DC63F]">
-                          {meta.eyebrow}
+                          {service.eyebrow}
                         </span>
                       </div>
 
@@ -182,9 +164,9 @@ export default async function ServicesPreview() {
                       </div>
 
                       {/* Subtle Meta Chip / Standards Indicator */}
-                      {service.metaChips && service.metaChips.length > 0 && (
+                      {service.metaChip && (
                         <span className="text-xs sm:text-[13px] font-semibold text-white/70 bg-white/[0.08] border border-white/10 px-3 py-1 rounded-full transition-colors truncate max-w-[140px]">
-                          {service.metaChips[0]}
+                          {service.metaChip}
                         </span>
                       )}
                     </div>
