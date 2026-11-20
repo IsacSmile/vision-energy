@@ -538,7 +538,7 @@ export default function ProductsExplorer({
           <div className="absolute inset-0 bg-gradient-to-t from-[#050608] via-transparent to-[#050608]/25" />
         </div>
 
-        <div className="max-w-[80rem] w-full mx-auto px-4 sm:px-6 lg:px-8 pt-[calc(var(--header-offset,100px)+32px)] lg:pt-[calc(var(--header-offset,100px)+48px)] pb-10 sm:pb-14 relative z-10">
+        <div className="max-w-[80rem] w-full mx-auto px-4 sm:px-6 lg:px-8 pt-[calc(var(--header-offset,118px)+32px)] lg:pt-[calc(var(--header-offset,118px)+48px)] pb-10 sm:pb-14 relative z-10">
           <div className="space-y-4 max-w-4xl">
             {/* Breadcrumb */}
             <nav aria-label="Breadcrumb" className="text-[13px] text-white/80 font-medium flex items-center gap-2 drop-shadow-sm">

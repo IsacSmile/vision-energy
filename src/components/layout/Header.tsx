@@ -6,13 +6,16 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useEnquiryModal } from '@/components/modals/EnquiryModalProvider';
 import { dictionary } from '@/lib/dictionary';
-import { Phone, Send } from 'lucide-react';
+import { Phone, Mail, Send } from 'lucide-react';
 import LightningButton from '@/components/ui/LightningButton';
 import ThemeToggle from '@/components/theme/ThemeToggle';
 
 export default function Header() {
   const pathname = usePathname() || '';
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [showTopNotch, setShowTopNotch] = useState(true);
+  const lastScrollY = useRef(0);
   const toggleBtnRef = useRef<HTMLButtonElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -46,16 +49,42 @@ export default function Header() {
     return () => window.removeEventListener('resize', handleResize);
   }, [isAdmin]);
 
+  // Scroll detection: throttled with requestAnimationFrame to prevent main-thread layout thrashing
+  useEffect(() => {
+    if (isAdmin) return;
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          const isScrolled = currentScrollY > 24;
+          const isAtHero = currentScrollY <= 80;
+
+          setScrolled((prev) => (prev !== isScrolled ? isScrolled : prev));
+          setShowTopNotch((prev) => (prev !== isAtHero ? isAtHero : prev));
+
+          lastScrollY.current = currentScrollY;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isAdmin]);
+
   // Update --header-offset CSS variable on document root for sticky elements
   useEffect(() => {
     if (isAdmin) return;
     if (typeof document !== 'undefined') {
       const updateHeaderOffset = () => {
         const isDesktop = window.innerWidth >= 1024;
+        // When scrolled, main navbar is 100px desktop, 86px mobile
         const headerOffsetValue = isDesktop ? '100px' : '86px';
         document.documentElement.style.setProperty('--header-offset', headerOffsetValue);
-        document.documentElement.style.setProperty('--header-h', headerOffsetValue);
-        document.documentElement.style.setProperty('--mobile-header-h', '86px');
       };
       updateHeaderOffset();
       window.addEventListener('resize', updateHeaderOffset);
@@ -145,6 +174,125 @@ export default function Header() {
   return (
     <>
       <header className={headerClasses}>
+        {/* Top Notch / Sub-Header Utility Bar - Only shown at hero section, smoothly collapses on scroll away from hero */}
+        <div
+          className={`w-full bg-[#8DC63F] text-[#0A192F] z-50 border-b border-[#0A192F]/15 shadow-sm select-none transition-all duration-300 ease-in-out overflow-hidden ${
+            showTopNotch
+              ? 'max-h-[50px] opacity-100 translate-y-0'
+              : 'max-h-0 opacity-0 -translate-y-full border-b-0 pointer-events-none'
+          }`}
+        >
+          {/* Mobile View: Infinite Smooth Marquee (<md) */}
+          <div className="md:hidden relative flex items-center h-[34px] overflow-hidden">
+            {/* Subtle left/right fade gradients */}
+            <div
+              className="pointer-events-none absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-[#8DC63F] to-transparent z-10"
+              aria-hidden="true"
+            />
+            <div
+              className="pointer-events-none absolute right-0 top-0 bottom-0 w-4 bg-gradient-to-l from-[#8DC63F] to-transparent z-10"
+              aria-hidden="true"
+            />
+
+            {/* Seamless Infinite Marquee Track (2 identical copies) */}
+            <div className="animate-marquee-fast flex items-center text-[11.5px] font-semibold py-1">
+              {/* Copy 1 */}
+              <div className="flex items-center divide-x divide-[#0A192F]/20 shrink-0">
+                <a
+                  href="tel:+971501234567"
+                  className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
+                  title="Call Vision Energy"
+                >
+                  <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                  <span className="whitespace-nowrap">+971 50 123 4567</span>
+                </a>
+                <a
+                  href="tel:+971541234567"
+                  className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
+                  title="Call Vision Energy"
+                >
+                  <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                  <span className="whitespace-nowrap">+971 54 123 4567</span>
+                </a>
+                <a
+                  href="mailto:info@visionenergyme.com"
+                  className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
+                  title="Email Vision Energy"
+                >
+                  <Mail className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                  <span className="whitespace-nowrap">info@visionenergyme.com</span>
+                </a>
+              </div>
+
+              {/* Copy 2 (identically repeated for seamless loop) */}
+              <div className="flex items-center divide-x divide-[#0A192F]/20 shrink-0">
+                <a
+                  href="tel:+971501234567"
+                  className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
+                  title="Call Vision Energy"
+                >
+                  <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                  <span className="whitespace-nowrap">+971 50 123 4567</span>
+                </a>
+                <a
+                  href="tel:+971541234567"
+                  className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
+                  title="Call Vision Energy"
+                >
+                  <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                  <span className="whitespace-nowrap">+971 54 123 4567</span>
+                </a>
+                <a
+                  href="mailto:info@visionenergyme.com"
+                  className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
+                  title="Email Vision Energy"
+                >
+                  <Mail className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                  <span className="whitespace-nowrap">info@visionenergyme.com</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop/Tablet Static View (md+) */}
+          <div className="hidden md:block max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-end h-[36px] sm:h-[40px] text-xs sm:text-[13px] font-semibold">
+              {/* Right Side: 2 Phone Numbers + Email with Vertical Dividers */}
+              <div className="flex items-center divide-x divide-[#0A192F]/20 overflow-x-auto no-scrollbar py-1">
+                {/* Telephone 1 */}
+                <a
+                  href="tel:+971501234567"
+                  className="flex items-center gap-2 pr-3.5 sm:pr-4 shrink-0 hover:text-black transition-colors"
+                  title="Call Vision Energy"
+                >
+                  <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                  <span>+971 50 123 4567</span>
+                </a>
+
+                {/* Telephone 2 */}
+                <a
+                  href="tel:+971541234567"
+                  className="flex items-center gap-2 px-3.5 sm:px-4 shrink-0 hover:text-black transition-colors"
+                  title="Call Vision Energy"
+                >
+                  <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                  <span>+971 54 123 4567</span>
+                </a>
+
+                {/* Email */}
+                <a
+                  href="mailto:info@visionenergyme.com"
+                  className="flex items-center gap-2 pl-3.5 sm:pl-4 shrink-0 hover:text-black transition-colors"
+                  title="Email Vision Energy"
+                >
+                  <Mail className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                  <span>info@visionenergyme.com</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Main Header Navigation Bar */}
         <div className="max-w-[80rem] mx-auto px-3.5 sm:px-6 lg:px-8 h-[86px] sm:h-[94px] lg:h-[100px] xl:h-[104px] flex items-center justify-between gap-3 sm:gap-4">
           {/* Brand Logo - Enlarged on Mobile & Desktop */}

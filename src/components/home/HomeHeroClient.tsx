@@ -163,7 +163,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
       id="home-hero"
       data-hero-section="true"
       aria-label="Vision Energy Hero Image Slider"
-      className="relative w-full h-[100svh] min-h-[100svh] flex flex-col justify-between overflow-hidden bg-[#050608] pt-[var(--mobile-header-h,86px)] lg:pt-[var(--header-h,100px)] select-none"
+      className="relative w-full h-[100svh] min-h-[100svh] flex flex-col justify-between overflow-hidden bg-[#050608] pt-[var(--mobile-header-h,56px)] lg:pt-[var(--header-h,80px)] select-none"
       style={{ minHeight: '100svh', height: '100svh' }}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}

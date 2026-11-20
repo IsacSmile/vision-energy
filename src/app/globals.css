@@ -5,8 +5,8 @@
 @layer base {
   :root {
     --font-poppins: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    --header-h: 100px;
-    --mobile-header-h: 86px;
+    --header-h: 118px;
+    --mobile-header-h: 92px;
     --mobile-bar-h: 56px;
     --bg-main: #050608;
     --bg-card: #0D1117;
