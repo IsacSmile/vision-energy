@@ -908,10 +908,19 @@ html.light .rounded-xl.bg-\[\#0D1117\],
 html.light .rounded-2xl.bg-\[\#0D1117\],
 html.light .rounded-\[22px\].bg-\[\#0D1117\],
 html.light .rounded-\[20px\].bg-\[\#0A0E17\]\/95,
-html.light [class*="rounded-"][class*="bg-[#0D1117]"],
+html.light [class*="rounded-"][class*="bg-[#0D1117]"]:not(.partner-marquee-container),
 html.light [class*="rounded-"][class*="bg-[#0C1017]"] {
   border-color: #E2E8F0 !important;
   box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .partner-marquee-container {
+  border-color: rgba(212, 175, 55, 0.25) !important;
+  box-shadow: 0 4px 20px -2px rgba(212, 175, 55, 0.08) !important;
+}
+
+html.light .partner-marquee-divider {
+  border-color: rgba(212, 175, 55, 0.2) !important;
 }
 
 /* 10. Buttons in Light Mode: Logo Blue with Lime Green Highlights */
