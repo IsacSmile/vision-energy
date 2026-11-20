@@ -109,6 +109,16 @@ function ModernVillaIcon({ className = 'w-4 h-4' }: { className?: string }) {
   );
 }
 
+function DefenceMilitaryIcon({ className = 'w-4 h-4' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M12 2l7 3.5v5.5c0 5-3.5 8.8-7 10.5-3.5-1.7-7-5.5-7-10.5V5.5L12 2z" />
+      <path d="M9 10l3-3 3 3" />
+      <path d="M9 14l3-3 3 3" />
+    </svg>
+  );
+}
+
 function CriticalDataSecurityIcon({ className = 'w-4 h-4' }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
@@ -130,6 +140,7 @@ const SECTORS = [
   { name: 'Substations, Utility & Telecom Sites', shortName: 'Substations & Telecom', icon: SubstationUtilityIcon },
   { name: 'Hotels, Schools & Healthcare Facilities', shortName: 'Hotels & Healthcare', icon: HealthcareInstitutionalIcon },
   { name: 'Villas, Compounds & Community Facilities', shortName: 'Villas & Compounds', icon: ModernVillaIcon },
+  { name: 'Defence & Military Facilities', shortName: 'Defence & Military', icon: DefenceMilitaryIcon },
   { name: 'Data, Security & Critical Installations', shortName: 'Data & Critical Sites', icon: CriticalDataSecurityIcon },
 ];
 
