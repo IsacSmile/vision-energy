@@ -282,14 +282,14 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
           </div>
 
           {/* Action Buttons (Desktop & Mobile Redesigned) */}
-          <div className="pt-3 sm:pt-5 flex flex-row items-center justify-start gap-3 sm:gap-4 w-full max-w-[380px] sm:max-w-none">
+          <div className="pt-3 sm:pt-5 flex flex-row items-center justify-start gap-2 sm:gap-4 w-full max-w-[420px] sm:max-w-none">
             {/* Primary Action Button */}
             <Link
               href={activeSlide.ctaLink}
-              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 h-[46px] sm:h-[48px] px-5 sm:px-6 rounded-full bg-[#0B65B3] hover:bg-[#095292] text-white text-[13px] sm:text-sm font-bold border border-[#8DC63F]/60 hover:border-[#8DC63F] shadow-[0_0_20px_rgba(11,101,179,0.4)] hover:shadow-[0_0_28px_rgba(141,198,63,0.5)] transition-all active:scale-[0.98]"
+              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 h-[44px] sm:h-[48px] px-3 sm:px-6 rounded-full bg-[#0B65B3] hover:bg-[#095292] text-white text-[12px] min-[360px]:text-[13px] sm:text-sm font-bold border border-[#8DC63F]/60 hover:border-[#8DC63F] shadow-[0_0_20px_rgba(11,101,179,0.4)] hover:shadow-[0_0_28px_rgba(141,198,63,0.5)] transition-all active:scale-[0.98] whitespace-nowrap"
             >
-              <span>{activeSlide.ctaText}</span>
-              <ArrowRight className="w-3.5 h-3.5 text-[#8DC63F]" />
+              <span className="whitespace-nowrap">{activeSlide.ctaText}</span>
+              <ArrowRight className="w-3.5 h-3.5 text-[#8DC63F] shrink-0" />
             </Link>
 
             {/* Secondary Action Button */}
@@ -300,10 +300,10 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
                   serviceTitle: `${activeSlide.category} Technical Consultation`,
                 })
               }
-              className="hero-consultation-btn flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 h-[46px] sm:h-[48px] px-4 sm:px-6 rounded-full bg-[#0B65B3]/20 hover:bg-[#0B65B3] border-2 border-[#0B65B3] hover:border-[#8DC63F] text-white text-[13px] sm:text-sm font-semibold backdrop-blur-xl hover:shadow-[0_0_24px_rgba(141,198,63,0.4)] transition-all active:scale-[0.98]"
+              className="hero-consultation-btn flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 h-[44px] sm:h-[48px] px-3 sm:px-6 rounded-full bg-[#0B65B3]/20 hover:bg-[#0B65B3] border-2 border-[#0B65B3] hover:border-[#8DC63F] text-white text-[12px] min-[360px]:text-[13px] sm:text-sm font-semibold backdrop-blur-xl hover:shadow-[0_0_24px_rgba(141,198,63,0.4)] transition-all active:scale-[0.98] whitespace-nowrap"
             >
-              <PhoneCall className="w-3.5 h-3.5 text-[#8DC63F]" />
-              <span>Consultation</span>
+              <PhoneCall className="w-3.5 h-3.5 text-[#8DC63F] shrink-0" />
+              <span className="whitespace-nowrap">Consultation</span>
             </button>
           </div>
 
@@ -398,8 +398,8 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
           })}
         </div>
 
-        {/* Quick Fact Tiles */}
-        <div className="grid grid-cols-3 gap-2 w-full mb-2">
+        {/* Quick Fact Tiles (2 Columns, Balanced) */}
+        <div className="grid grid-cols-2 gap-2.5 w-full mb-2">
           {/* Tile A: 2018 Established */}
           <div className="h-[62px] [media(max-height:640px)]:h-[52px] bg-[#0D1117]/85 backdrop-blur-md border border-white/[0.08] rounded-xl flex flex-col items-center justify-center text-center p-1">
             <span className="text-[16px] [media(max-height:640px)]:text-[14px] font-bold text-white leading-tight">
@@ -412,18 +412,11 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
 
           {/* Tile B: UAE and GCC */}
           <div className="h-[62px] [media(max-height:640px)]:h-[52px] bg-[#0D1117]/85 backdrop-blur-md border border-white/[0.08] rounded-xl flex flex-col items-center justify-center text-center p-1">
-            <span className="text-[13px] [media(max-height:640px)]:text-[12px] font-bold text-white leading-tight">
+            <span className="text-[15px] [media(max-height:640px)]:text-[13px] font-bold text-white leading-tight">
               UAE and GCC
             </span>
-          </div>
-
-          {/* Tile C: Product Categories */}
-          <div className="h-[62px] [media(max-height:640px)]:h-[52px] bg-[#0D1117]/85 backdrop-blur-md border border-white/[0.08] rounded-xl flex flex-col items-center justify-center text-center p-1 overflow-hidden">
-            <span className="text-[16px] [media(max-height:640px)]:text-[14px] font-bold text-white leading-tight">
-              Multiple
-            </span>
-            <span className="text-[10px] [media(max-height:640px)]:text-[8px] text-[#A9B4C0] uppercase tracking-[0.04em] font-medium leading-tight mt-0.5 truncate w-full">
-              Categories
+            <span className="text-[10px] [media(max-height:640px)]:text-[8px] text-[#A9B4C0] uppercase tracking-[0.04em] font-medium leading-tight mt-0.5">
+              Coverage
             </span>
           </div>
         </div>
