@@ -876,12 +876,7 @@ export default function ProductsExplorer({
                 }`}
               >
                 <span>All categories</span>
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-white/10 text-white/60 tabular-nums">
-                    {categories.length}
-                  </span>
-                  {(!groupParam || groupParam === 'ALL') && <Check className="w-5 h-5 text-[#8DC63F]" />}
-                </div>
+                {(!groupParam || groupParam === 'ALL') && <Check className="w-5 h-5 text-[#8DC63F]" />}
               </button>
 
               {/* Group Rows */}
@@ -903,12 +898,7 @@ export default function ProductsExplorer({
                     <div className="flex items-center gap-3">
                       <span>{g.label}</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-white/10 text-white/60 tabular-nums">
-                        {g.count}
-                      </span>
-                      {isActive && <Check className="w-5 h-5 text-[#8DC63F]" />}
-                    </div>
+                    {isActive && <Check className="w-5 h-5 text-[#8DC63F]" />}
                   </button>
                 );
               })}
@@ -971,9 +961,6 @@ export default function ProductsExplorer({
                     }`}
                   >
                     <span className="truncate">All products</span>
-                    <span className="text-[11px] font-mono px-1.5 py-0.5 rounded bg-white/[0.06] text-white/50 group-hover:text-white/70 tabular-nums shrink-0 ml-2">
-                      {categories.length}
-                    </span>
                   </Link>
 
                   {/* Individual Groups */}
@@ -995,9 +982,6 @@ export default function ProductsExplorer({
                         }`}
                       >
                         <span className="truncate">{g.label}</span>
-                        <span className="text-[11px] font-mono px-1.5 py-0.5 rounded bg-white/[0.06] text-white/50 group-hover:text-white/70 tabular-nums shrink-0 ml-2">
-                          {g.count}
-                        </span>
                       </Link>
                     );
                   })}
