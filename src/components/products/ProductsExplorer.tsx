@@ -869,14 +869,19 @@ export default function ProductsExplorer({
                   setSheetOpen(false);
                   groupsButtonRef.current?.focus();
                 }}
-                className={`w-full min-h-[56px] px-6 flex items-center justify-between text-left text-base font-semibold transition-colors ${
+                className={`w-full min-h-[52px] px-6 flex items-center justify-between text-left text-base font-semibold transition-colors ${
                   !groupParam || groupParam === 'ALL'
                     ? 'bg-[#8DC63F]/10 text-[#8DC63F]'
                     : 'text-white hover:bg-white/5'
                 }`}
               >
                 <span>All categories</span>
-                {(!groupParam || groupParam === 'ALL') && <Check className="w-5 h-5 text-[#8DC63F]" />}
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-white/10 text-white/60 tabular-nums">
+                    {categories.length}
+                  </span>
+                  {(!groupParam || groupParam === 'ALL') && <Check className="w-5 h-5 text-[#8DC63F]" />}
+                </div>
               </button>
 
               {/* Group Rows */}
@@ -891,14 +896,19 @@ export default function ProductsExplorer({
                       setSheetOpen(false);
                       groupsButtonRef.current?.focus();
                     }}
-                    className={`w-full min-h-[56px] px-6 flex items-center justify-between text-left text-base font-semibold transition-colors ${
+                    className={`w-full min-h-[52px] px-6 flex items-center justify-between text-left text-base font-semibold transition-colors ${
                       isActive ? 'bg-[#8DC63F]/10 text-[#8DC63F]' : 'text-white hover:bg-white/5'
                     }`}
                   >
                     <div className="flex items-center gap-3">
                       <span>{g.label}</span>
                     </div>
-                    {isActive && <Check className="w-5 h-5 text-[#8DC63F]" />}
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-white/10 text-white/60 tabular-nums">
+                        {g.count}
+                      </span>
+                      {isActive && <Check className="w-5 h-5 text-[#8DC63F]" />}
+                    </div>
                   </button>
                 );
               })}
@@ -935,13 +945,13 @@ export default function ProductsExplorer({
                 <div className="relative space-y-0.5 border-l border-[#1F2937]">
                   {/* 2px Lime Indicator Bar */}
                   <div
-                    className={`absolute left-0 w-[2px] h-[48px] bg-[#8DC63F] z-10 ${
+                    className={`absolute left-0 w-[2px] h-[38px] bg-[#8DC63F] z-10 ${
                       prefersReducedMotion
                         ? ''
                         : 'transition-transform duration-350 cubic-bezier(0.22, 1, 0.36, 1)'
                     }`}
                     style={{
-                      transform: `translateY(${activeSidebarIndex * 48}px)`,
+                      transform: `translateY(${activeSidebarIndex * 38}px)`,
                     }}
                     aria-hidden="true"
                   />
@@ -954,13 +964,16 @@ export default function ProductsExplorer({
                       e.preventDefault();
                       setGroupFilter('ALL');
                     }}
-                    className={`h-[48px] px-4 flex items-center justify-between text-[15px] font-medium transition-colors rounded-r-lg ${
+                    className={`h-[38px] px-3 flex items-center justify-between text-[13.5px] font-medium transition-colors rounded-r-lg group ${
                       !groupParam || groupParam === 'ALL'
-                        ? 'text-white font-semibold bg-white/5'
-                        : 'text-white/65 hover:text-white hover:bg-white/[0.02]'
+                        ? 'text-white font-semibold bg-white/[0.08]'
+                        : 'text-white/65 hover:text-white hover:bg-white/[0.03]'
                     }`}
                   >
-                    <span>All products</span>
+                    <span className="truncate">All products</span>
+                    <span className="text-[11px] font-mono px-1.5 py-0.5 rounded bg-white/[0.06] text-white/50 group-hover:text-white/70 tabular-nums shrink-0 ml-2">
+                      {categories.length}
+                    </span>
                   </Link>
 
                   {/* Individual Groups */}
@@ -975,37 +988,40 @@ export default function ProductsExplorer({
                           e.preventDefault();
                           setGroupFilter(g.key);
                         }}
-                        className={`h-[48px] px-4 flex items-center justify-between text-[15px] font-medium transition-colors rounded-r-lg ${
+                        className={`h-[38px] px-3 flex items-center justify-between text-[13.5px] font-medium transition-colors rounded-r-lg group ${
                           isActive
-                            ? 'text-white font-semibold bg-white/5'
-                            : 'text-white/65 hover:text-white hover:bg-white/[0.02]'
+                            ? 'text-white font-semibold bg-white/[0.08]'
+                            : 'text-white/65 hover:text-white hover:bg-white/[0.03]'
                         }`}
                       >
                         <span className="truncate">{g.label}</span>
+                        <span className="text-[11px] font-mono px-1.5 py-0.5 rounded bg-white/[0.06] text-white/50 group-hover:text-white/70 tabular-nums shrink-0 ml-2">
+                          {g.count}
+                        </span>
                       </Link>
                     );
                   })}
                 </div>
-              </div>
 
-              {/* Part 3 Bottom (flex-none): Hairline & Help Block */}
-              <div className="flex-none pt-4 border-t border-[#1F2937] space-y-3 px-3 mt-auto bg-[#050608] z-10">
-                <p className="text-sm font-semibold text-white">Need help choosing?</p>
-                <div className="flex flex-col space-y-2 text-xs">
-                  <a
-                    href="tel:+97172042763"
-                    className="inline-flex items-center gap-2 text-[#8DC63F] hover:underline font-semibold"
-                  >
-                    <Phone className="w-3.5 h-3.5" />
-                    <span>+971 7 204 2763</span>
-                  </a>
-                  <button
-                    type="button"
-                    onClick={() => openProductModal()}
-                    className="text-left text-[#A9B4C0] hover:text-white transition-colors underline underline-offset-2"
-                  >
-                    Send an enquiry
-                  </button>
+                {/* Part 3 Bottom: Hairline & Help Block inside scroll container */}
+                <div className="pt-4 mt-4 border-t border-[#1F2937]/80 space-y-2 px-3 pb-3">
+                  <p className="text-xs uppercase tracking-wider font-semibold text-white/70">Need help choosing?</p>
+                  <div className="flex flex-col space-y-1.5 text-xs">
+                    <a
+                      href="tel:+97172042763"
+                      className="inline-flex items-center gap-2 text-[#8DC63F] hover:underline font-semibold"
+                    >
+                      <Phone className="w-3.5 h-3.5" />
+                      <span>+971 7 204 2763</span>
+                    </a>
+                    <button
+                      type="button"
+                      onClick={() => openProductModal()}
+                      className="text-left text-[#A9B4C0] hover:text-white transition-colors underline underline-offset-2"
+                    >
+                      Send an enquiry
+                    </button>
+                  </div>
                 </div>
               </div>
             </nav>

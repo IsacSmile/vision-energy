@@ -24,7 +24,7 @@ export const GROUP_LABELS: Record<string, string> = {
   LT: 'Lighting & Signalling',
   CM: 'Cable Management',
   CB: 'Cables & Connectivity',
-  CT: 'Conduit Systems',
+  CT: 'Conduits & Trunking',
   EL: 'Electrical Equipment',
   EN: 'Energy & Power',
   ME: 'Mechanical & HVAC',
