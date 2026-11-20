@@ -37,7 +37,7 @@ function PartnerLogoItem({ partner }: { partner: Partner }) {
 
   return (
     <div
-      className="h-16 sm:h-[76px] lg:h-[96px] px-5 sm:px-7 lg:px-9 py-2.5 sm:py-3.5 rounded-xl sm:rounded-2xl bg-white border border-[#D4AF37]/15 hover:border-[#D4AF37]/40 flex items-center justify-center shrink-0 shadow-sm hover:scale-105 hover:shadow-md transition-all duration-300 select-none"
+      className="partner-logo-card h-16 sm:h-[76px] lg:h-[96px] px-5 sm:px-7 lg:px-9 py-2.5 sm:py-3.5 rounded-xl sm:rounded-2xl bg-white border border-[#D4AF37]/35 hover:border-[#D4AF37]/70 flex items-center justify-center shrink-0 shadow-sm hover:scale-105 hover:shadow-md transition-all duration-300 select-none"
       title={partner.name}
     >
       {!hasFailed ? (
@@ -71,9 +71,9 @@ export default function OurPartners() {
     <section aria-label="Our Trusted Partners" className="py-10 md:py-14 bg-[#050608] relative overflow-hidden">
       <div className="max-w-[80rem] mx-auto px-5 sm:px-6 lg:px-8">
         <Reveal>
-          <div className="partner-marquee-container rounded-2xl border border-dashed border-[#D4AF37]/25 bg-[#0D1117]/90 backdrop-blur-sm overflow-hidden flex flex-col md:flex-row items-stretch md:items-center hover:border-[#D4AF37]/50 hover:shadow-[0_0_25px_rgba(212,175,55,0.12)] transition-all duration-500 shadow-2xl group/marquee">
+          <div className="partner-marquee-container rounded-2xl border border-dashed border-[#D4AF37]/40 bg-[#0D1117]/90 backdrop-blur-sm overflow-hidden flex flex-col md:flex-row items-stretch md:items-center hover:border-[#D4AF37]/70 hover:shadow-[0_0_30px_rgba(212,175,55,0.16)] transition-all duration-500 shadow-2xl group/marquee">
             {/* Partition: "Our Partners" - Top on mobile, Left on desktop */}
-            <div className="partner-marquee-divider w-full md:w-auto px-4 py-3 sm:py-3.5 md:px-8 lg:px-12 md:py-6 lg:py-8 flex items-center justify-center border-b md:border-b-0 md:border-r border-dashed border-[#D4AF37]/20 shrink-0 bg-[#0A0D14]/90 self-stretch">
+            <div className="partner-marquee-divider w-full md:w-auto px-4 py-3 sm:py-3.5 md:px-8 lg:px-12 md:py-6 lg:py-8 flex items-center justify-center border-b md:border-b-0 md:border-r border-dashed border-[#D4AF37]/32 shrink-0 bg-[#0A0D14]/90 self-stretch">
               <span className="text-sm sm:text-base md:text-xl lg:text-3xl font-bold text-white whitespace-nowrap tracking-tight">
                 Our Partners
               </span>
