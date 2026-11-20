@@ -50,20 +50,26 @@ export default function Header() {
     return () => window.removeEventListener('resize', handleResize);
   }, [isAdmin]);
 
-  // Scroll detection:
-  // Top notch bar is ONLY shown when at hero page (scrollY <= 80).
-  // When scrolling down, or scrolling back up, do NOT show the header top notch until we get back to hero page.
+  // Scroll detection: throttled with requestAnimationFrame to prevent main-thread layout thrashing
   useEffect(() => {
     if (isAdmin) return;
+    let ticking = false;
+
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setScrolled(currentScrollY > 24);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          const isScrolled = currentScrollY > 24;
+          const isAtHero = currentScrollY <= 80;
 
-      // Only show top notch when at hero section (top of page)
-      const isAtHero = currentScrollY <= 80;
-      setShowTopNotch(isAtHero);
+          setScrolled((prev) => (prev !== isScrolled ? isScrolled : prev));
+          setShowTopNotch((prev) => (prev !== isAtHero ? isAtHero : prev));
 
-      lastScrollY.current = currentScrollY;
+          lastScrollY.current = currentScrollY;
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -316,6 +322,8 @@ export default function Header() {
               alt="VISION ENERGY INTERNATIONAL UAE"
               width={490}
               height={188}
+              sizes="(max-width: 640px) 240px, (max-width: 1024px) 320px, 490px"
+              quality={80}
               className="dark-theme-logo h-[75px] sm:h-[84px] lg:h-[91px] xl:h-[96px] w-auto max-h-[98px] object-contain transition-transform group-hover:scale-105"
               priority
             />
@@ -325,6 +333,8 @@ export default function Header() {
               alt="VISION ENERGY INTERNATIONAL UAE"
               width={490}
               height={188}
+              sizes="(max-width: 640px) 240px, (max-width: 1024px) 320px, 490px"
+              quality={80}
               className="light-theme-logo h-[75px] sm:h-[84px] lg:h-[91px] xl:h-[96px] w-auto max-h-[98px] object-contain transition-transform group-hover:scale-105"
               priority
             />

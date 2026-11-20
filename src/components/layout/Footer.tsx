@@ -106,6 +106,8 @@ export default function Footer({ services = [] }: FooterProps) {
                 alt="VISION ENERGY INTERNATIONAL"
                 width={320}
                 height={123}
+                sizes="(max-width: 640px) 240px, 320px"
+                quality={80}
                 className="w-[240px] sm:w-[270px] h-auto max-h-[110px] object-contain"
               />
             </Link>

@@ -1,52 +1,80 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import Lenis from 'lenis';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 interface SmoothScrollProps {
   children?: React.ReactNode;
 }
 
 export default function SmoothScroll({ children }: SmoothScrollProps) {
-  const lenisRef = useRef<Lenis | null>(null);
+  const lenisRef = useRef<any>(null);
 
   useEffect(() => {
-    // Respect user's motion preference
-    if (typeof window === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    // Only initialize smooth scroll on desktop with mouse pointer (never on mobile touch)
+    if (
+      typeof window === 'undefined' ||
+      window.innerWidth < 1024 ||
+      window.matchMedia('(pointer: coarse)').matches ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
       return;
     }
 
-    gsap.registerPlugin(ScrollTrigger);
+    let isMounted = true;
+    let tickerHandler: any = null;
 
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 0.95,
-      touchMultiplier: 1.2,
-    });
+    // Asynchronously import Lenis and GSAP when the main thread is idle
+    const initLenis = async () => {
+      try {
+        const [{ default: Lenis }, { default: gsap }, { ScrollTrigger }] = await Promise.all([
+          import('lenis'),
+          import('gsap'),
+          import('gsap/ScrollTrigger'),
+        ]);
 
-    lenisRef.current = lenis;
+        if (!isMounted) return;
 
-    // Synchronize Lenis scroll position with GSAP ScrollTrigger
-    lenis.on('scroll', ScrollTrigger.update);
+        gsap.registerPlugin(ScrollTrigger);
 
-    // Drive Lenis animations via GSAP ticker for synchronized 60/120fps loop
-    const updateTicker = (time: number) => {
-      lenis.raf(time * 1000);
+        const lenis = new Lenis({
+          duration: 1.1,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          orientation: 'vertical',
+          gestureOrientation: 'vertical',
+          smoothWheel: true,
+          wheelMultiplier: 0.95,
+        });
+
+        lenisRef.current = lenis;
+
+        lenis.on('scroll', ScrollTrigger.update);
+
+        tickerHandler = (time: number) => {
+          lenis.raf(time * 1000);
+        };
+
+        gsap.ticker.add(tickerHandler);
+        gsap.ticker.lagSmoothing(0);
+      } catch (err) {
+        console.warn('SmoothScroll initialization deferred or skipped:', err);
+      }
     };
 
-    gsap.ticker.add(updateTicker);
-    gsap.ticker.lagSmoothing(0);
+    if ('requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(initLenis, { timeout: 2000 });
+    } else {
+      setTimeout(initLenis, 1000);
+    }
 
     return () => {
-      gsap.ticker.remove(updateTicker);
-      lenis.destroy();
-      lenisRef.current = null;
+      isMounted = false;
+      if (lenisRef.current) {
+        lenisRef.current.destroy();
+        lenisRef.current = null;
+      }
+      if (tickerHandler) {
+        import('gsap').then(({ default: gsap }) => gsap.ticker.remove(tickerHandler)).catch(() => {});
+      }
     };
   }, []);
 

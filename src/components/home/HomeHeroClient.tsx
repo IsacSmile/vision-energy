@@ -85,7 +85,11 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
   const { openServiceModal } = useEnquiryModal();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const [hasHydrated, setHasHydrated] = useState(false);
+
+  useEffect(() => {
+    setHasHydrated(true);
+  }, []);
 
   // Touch swipe handling
   const touchStartX = useRef<number | null>(null);
@@ -95,38 +99,26 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
 
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % totalSlides);
-    setProgress(0);
   }, [totalSlides]);
 
   const prevSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
-    setProgress(0);
   }, [totalSlides]);
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
-    setProgress(0);
   };
 
-  // Timer and progress tick every 3 seconds (3000ms)
+  // Timer: triggers once per slide duration (no high-frequency 50ms interval churn)
   useEffect(() => {
     if (isPaused) return;
 
-    const intervalStep = 50;
-    const stepIncrement = (intervalStep / SLIDE_DURATION_MS) * 100;
+    const timer = setTimeout(() => {
+      nextSlide();
+    }, SLIDE_DURATION_MS);
 
-    const timer = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          nextSlide();
-          return 0;
-        }
-        return prev + stepIncrement;
-      });
-    }, intervalStep);
-
-    return () => clearInterval(timer);
-  }, [isPaused, nextSlide]);
+    return () => clearTimeout(timer);
+  }, [isPaused, currentSlide, nextSlide]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -185,6 +177,9 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
       <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-0">
         {HERO_SLIDES.map((slide, idx) => {
           const isActive = idx === currentSlide;
+          // Don't render inactive slides in initial SSR HTML to save critical LCP network bandwidth
+          if (idx !== 0 && !hasHydrated) return null;
+
           return (
             <div
               key={slide.id}
@@ -204,7 +199,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
                 className={`object-cover object-center transition-transform duration-[4000ms] ease-out ${
                   isActive ? 'scale-105' : 'scale-100'
                 }`}
-                quality={80}
+                quality={75}
               />
             </div>
           );
@@ -215,7 +210,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
       <div className="absolute inset-0 bg-black/10 pointer-events-none z-10" />
 
       {/* ============================================================ */}
-      {/* Mobile Top Segmented Progress Bar (Story-Style) */}
+      {/* Mobile Top Segmented Progress Bar (Story-Style, Composited GPU Animation) */}
       {/* ============================================================ */}
       <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 pt-2 lg:hidden">
         <div className="grid grid-cols-2 gap-2 w-full">
@@ -230,9 +225,11 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
                 aria-label={`Jump to ${slide.category}`}
               >
                 <div
-                  className="h-full bg-[#8DC63F] transition-all duration-75 ease-linear rounded-full"
+                  key={`mobile-progress-${idx}-${currentSlide}`}
+                  className="h-full bg-[#8DC63F] rounded-full origin-left will-change-transform"
                   style={{
-                    width: isPassed ? '100%' : isSelected ? `${progress}%` : '0%',
+                    transform: isPassed ? 'scaleX(1)' : isSelected ? undefined : 'scaleX(0)',
+                    animation: isSelected && !isPaused ? `heroProgressFill ${SLIDE_DURATION_MS}ms linear forwards` : 'none',
                   }}
                 />
               </button>
@@ -336,12 +333,15 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
                   />
                   <span>{slide.category}</span>
 
-                  {/* 3s Animated Progress Line */}
+                  {/* 3s Animated Progress Line (GPU-composited scaleX animation) */}
                   {isSelected && (
                     <div className="absolute bottom-0 left-2 right-2 h-[2px] bg-white/10 rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-[#8DC63F] transition-all duration-75 ease-linear"
-                        style={{ width: `${progress}%` }}
+                        key={`desktop-progress-${currentSlide}`}
+                        className="h-full bg-[#8DC63F] origin-left will-change-transform"
+                        style={{
+                          animation: !isPaused ? `heroProgressFill ${SLIDE_DURATION_MS}ms linear forwards` : 'none',
+                        }}
                       />
                     </div>
                   )}

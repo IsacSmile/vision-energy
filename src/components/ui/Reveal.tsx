@@ -11,6 +11,32 @@ interface RevealProps {
   style?: React.CSSProperties;
 }
 
+// Global shared IntersectionObserver singleton to minimize mobile main-thread CPU overhead
+let sharedObserver: IntersectionObserver | null = null;
+const observerCallbacks = new Map<Element, () => void>();
+
+function getSharedObserver() {
+  if (typeof window === 'undefined') return null;
+  if (!sharedObserver) {
+    sharedObserver = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            const cb = observerCallbacks.get(entry.target);
+            if (cb) {
+              cb();
+              observerCallbacks.delete(entry.target);
+              sharedObserver?.unobserve(entry.target);
+            }
+          }
+        }
+      },
+      { threshold: 0.1, rootMargin: '50px' }
+    );
+  }
+  return sharedObserver;
+}
+
 export default function Reveal({
   children,
   delay,
@@ -35,20 +61,18 @@ export default function Reveal({
       return;
     }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.15 }
-    );
+    const observer = getSharedObserver();
+    if (!observer) {
+      setIsVisible(true);
+      return;
+    }
 
+    observerCallbacks.set(el, () => setIsVisible(true));
     observer.observe(el);
 
     return () => {
-      observer.disconnect();
+      observerCallbacks.delete(el);
+      observer.unobserve(el);
     };
   }, []);
 
