@@ -63,22 +63,34 @@ export default function Footer({ services = [] }: FooterProps) {
     { label: 'All Products', href: '/products' },
   ];
 
-  const defaultServices: FooterServiceItem[] = [
+  const footerServices: FooterServiceItem[] = [
     {
       slug: 'external-lightning-protection-installation',
       title: 'Lightning Protection Installation',
     },
     {
       slug: 'earthing-and-grounding',
-      title: 'Earthing & Grounding System Design & Installation',
+      title: 'Earthing and Grounding',
+    },
+    {
+      slug: 'system-design-and-installation',
+      title: 'System Design and Installation',
+    },
+    {
+      slug: 'risk-assessment',
+      title: 'Risk Assessment',
     },
     {
       slug: 'manpower-supply',
       title: 'Manpower Supply',
     },
+    {
+      slug: 'heavy-equipment-rental',
+      title: 'Heavy Equipment Rental',
+    },
   ];
 
-  const displayServices = services.length > 0 ? services : defaultServices;
+  const displayServices = footerServices;
 
   const companyLinks = [
     { label: 'Home', href: '/' },
@@ -114,10 +126,10 @@ export default function Footer({ services = [] }: FooterProps) {
 
             <div className="space-y-2 max-w-[34ch]">
               <p className="text-sm font-semibold !text-white leading-snug">
-                Redefined, Innovative And Quality Assured Engineering Product Solutions
+                One Company. Multiple Solutions. A Commitment to Quality
               </p>
               <p className="text-xs !text-white/80 leading-relaxed">
-                Electrical, mechanical and solar product solutions across the UAE.
+                Specialist electrical, mechanical, renewable energy, and earthing solutions across the UAE and GCC.
               </p>
             </div>
 

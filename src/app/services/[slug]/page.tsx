@@ -40,11 +40,19 @@ export async function generateStaticParams() {
     const slugs = new Set(publishedServices.map((service) => service.slug));
     slugs.add("earthing-grounding");
     slugs.add("earthing-and-grounding");
+    slugs.add("system-design-and-installation");
+    slugs.add("risk-assessment");
+    slugs.add("heavy-equipment-rental");
     return Array.from(slugs).map((slug) => ({
       slug,
     }));
   } catch {
-    return [{ slug: "earthing-grounding" }];
+    return [
+      { slug: "earthing-grounding" },
+      { slug: "system-design-and-installation" },
+      { slug: "risk-assessment" },
+      { slug: "heavy-equipment-rental" },
+    ];
   }
 }
 
