@@ -166,23 +166,23 @@ export default function WhyVisionEnergy() {
               id="why-vision-energy-heading"
               className="text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-bold text-white leading-[1.2] tracking-[-0.02em] text-balance"
             >
-              Advanced Solutions. Assured Quality. Lasting Value.
+              Specialist Products and Technical Support Across the UAE and GCC
             </h2>
           </Reveal>
         </div>
 
         {/* Feature Cards: Unified Grid of 5 Standard Card Boxes */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 lg:gap-8 items-stretch">
-          {/* Card 1: Specialist Engineering Approach */}
+          {/* Card 1: Technical Expertise */}
           <Reveal staggerIndex={2} className="h-full md:col-span-1 lg:col-span-2">
             <div className="group h-full flex flex-col justify-between p-6 sm:p-8 rounded-xl bg-[#0D1117] border border-white/[0.1] hover:border-[#8DC63F]/50 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
               <div className="space-y-4">
                 <div>
                   <span className="text-xs uppercase tracking-wider text-[#8DC63F] font-bold block mb-1.5">
-                    Core Discipline
+                    1. Technical Expertise
                   </span>
                   <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-snug">
-                    Specialist Engineering Approach
+                    Product Selection for Your Project
                   </h3>
                 </div>
 
@@ -190,25 +190,25 @@ export default function WhyVisionEnergy() {
                   <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
                     <span>
-                      <strong className="text-white font-semibold">Core Focus:</strong> 100% earthing &amp; lightning systems.
+                      <strong className="text-white font-semibold">Broad Portfolio:</strong> Electrical, mechanical and renewable energy solutions, laboratory and gym equipment, and specialist lightning protection and earthing systems.
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
                     <span>
-                      <strong className="text-white font-semibold">Engineered Safety:</strong> Calculated low-impedance paths.
+                      <strong className="text-white font-semibold">Specification Review:</strong> We review ratings, materials, dimensions and compatibility against project requirements.
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
                     <span>
-                      <strong className="text-white font-semibold">Global Standards:</strong> Full BS EN / IEC 62305 compliance.
+                      <strong className="text-white font-semibold">Practical Alternatives:</strong> Where suitable, we propose options based on performance, availability and budget.
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
                     <span>
-                      <strong className="text-white font-semibold">Authority NOCs:</strong> DEWA, SEWA &amp; Civil Defense clearances.
+                      <strong className="text-white font-semibold">Technical Submittals:</strong> We provide manufacturer datasheets and supporting documentation for consultant review.
                     </span>
                   </li>
                 </ul>
@@ -216,16 +216,16 @@ export default function WhyVisionEnergy() {
             </div>
           </Reveal>
 
-          {/* Card 2: UAE Project Experience */}
+          {/* Card 2: Standards & Regulations */}
           <Reveal staggerIndex={3} className="h-full md:col-span-1 lg:col-span-2">
             <div className="group h-full flex flex-col justify-between p-6 sm:p-8 rounded-xl bg-[#0D1117] border border-white/[0.1] hover:border-[#8DC63F]/50 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
               <div className="space-y-4">
                 <div>
                   <span className="text-xs uppercase tracking-wider text-[#8DC63F] font-bold block mb-1.5">
-                    Local Site Realities
+                    2. Standards &amp; Regulations
                   </span>
                   <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-snug">
-                    UAE Project Experience
+                    Aligned with Project and Authority Requirements
                   </h3>
                 </div>
 
@@ -233,25 +233,19 @@ export default function WhyVisionEnergy() {
                   <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
                     <span>
-                      <strong className="text-white font-semibold">Direct Site Presence:</strong> On-site engineers across the UAE.
+                      <strong className="text-white font-semibold">Applicable Standards:</strong> We reference the relevant project and product-specific standards for each scope where permitted by the relevant authority and project specifications.
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
                     <span>
-                      <strong className="text-white font-semibold">Plant Room Routing:</strong> Safe navigation of risers &amp; plant.
+                      <strong className="text-white font-semibold">Local Authority Requirements:</strong> We account for applicable regulations, technical circulars and notices issued by municipalities and Civil Defence authorities.
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
                     <span>
-                      <strong className="text-white font-semibold">Desert Grounding:</strong> Deep-well solutions for desert soil.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
-                    <span>
-                      <strong className="text-white font-semibold">Fast Clearances:</strong> Milestone-ready consultant sign-offs.
+                      <strong className="text-white font-semibold">Utility and Energy Requirements:</strong> Where relevant, we support documentation for projects subject to requirements from TAQA, DEWA, DoE, EtihadWE, Sharjah Electricity, Water and Gas Authority, and the ADCDA Civil Defence Authorities.
                     </span>
                   </li>
                 </ul>
@@ -259,16 +253,16 @@ export default function WhyVisionEnergy() {
             </div>
           </Reveal>
 
-          {/* Card 3: Complete Project Support */}
+          {/* Card 3: Project Coordination */}
           <Reveal staggerIndex={4} className="h-full md:col-span-1 lg:col-span-2">
             <div className="group h-full flex flex-col justify-between p-6 sm:p-8 rounded-xl bg-[#0D1117] border border-white/[0.1] hover:border-[#8DC63F]/50 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
               <div className="space-y-4">
                 <div>
                   <span className="text-xs uppercase tracking-wider text-[#8DC63F] font-bold block mb-1.5">
-                    Single Accountability
+                    3. Project Coordination
                   </span>
                   <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-snug">
-                    Complete Project Support
+                    Support from Enquiry to Handover
                   </h3>
                 </div>
 
@@ -276,25 +270,25 @@ export default function WhyVisionEnergy() {
                   <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
                     <span>
-                      <strong className="text-white font-semibold">Single Contact:</strong> One accountable team through handover.
+                      <strong className="text-white font-semibold">Single Point of Contact:</strong> One team coordinates technical queries, quotations, submittals and delivery.
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
                     <span>
-                      <strong className="text-white font-semibold">Design &amp; Modeling:</strong> Detailed CAD/BIM drawings &amp; risk studies.
+                      <strong className="text-white font-semibold">Site and Design Coordination:</strong> We work with clients, consultants and contractors to address site constraints and installation requirements.
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
                     <span>
-                      <strong className="text-white font-semibold">Certified Supply:</strong> Authority-approved supply with submittals.
+                      <strong className="text-white font-semibold">Installation Support:</strong> We coordinate specialist installation through qualified partners where included in the project scope.
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
                     <span>
-                      <strong className="text-white font-semibold">Testing &amp; Handover:</strong> Calibrated continuity tests &amp; certificates.
+                      <strong className="text-white font-semibold">Testing and Handover:</strong> Where included, we coordinate testing, commissioning and handover documentation.
                     </span>
                   </li>
                 </ul>
@@ -302,16 +296,16 @@ export default function WhyVisionEnergy() {
             </div>
           </Reveal>
 
-          {/* Card 4: Quality Materials */}
+          {/* Card 4: Quality & Sourcing */}
           <Reveal staggerIndex={5} className="h-full md:col-span-1 lg:col-span-2 lg:col-start-2">
             <div className="group h-full flex flex-col justify-between p-6 sm:p-8 rounded-xl bg-[#0D1117] border border-white/[0.1] hover:border-[#8DC63F]/50 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
               <div className="space-y-4">
                 <div>
                   <span className="text-xs uppercase tracking-wider text-[#8DC63F] font-bold block mb-1.5">
-                    Gulf-Grade Durability
+                    4. Quality &amp; Sourcing
                   </span>
                   <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-snug">
-                    Quality Materials
+                    Products Suited to the Application
                   </h3>
                 </div>
 
@@ -319,25 +313,25 @@ export default function WhyVisionEnergy() {
                   <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
                     <span>
-                      <strong className="text-white font-semibold">Pure Copper:</strong> High-conductivity tapes, rods &amp; electrodes.
+                      <strong className="text-white font-semibold">Authorised Distribution:</strong> We represent specialist manufacturers in the UAE across selected product lines.
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
                     <span>
-                      <strong className="text-white font-semibold">Exothermic Welds:</strong> Permanent molecular bonds that never corrode.
+                      <strong className="text-white font-semibold">Application-Specific Selection:</strong> We consider operating conditions such as heat, dust, humidity and corrosion exposure.
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
                     <span>
-                      <strong className="text-white font-semibold">Gulf-Rated SPDs:</strong> Certified surge devices built for heat.
+                      <strong className="text-white font-semibold">Product Documentation:</strong> We provide available certificates, test reports and manufacturer warranty details as required.
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
                     <span>
-                      <strong className="text-white font-semibold">Saline Resistance:</strong> Anti-corrosion alloys for desert soils.
+                      <strong className="text-white font-semibold">Supply Planning:</strong> We confirm stock status, lead times and delivery requirements during procurement.
                     </span>
                   </li>
                 </ul>
@@ -345,16 +339,16 @@ export default function WhyVisionEnergy() {
             </div>
           </Reveal>
 
-          {/* Card 5: Built for Long-Term Reliability */}
+          {/* Card 5: Long-Term Performance */}
           <Reveal staggerIndex={6} className="h-full md:col-span-2 md:max-w-md md:mx-auto w-full lg:col-span-2 lg:col-start-4 lg:max-w-none lg:mx-0">
             <div className="group h-full flex flex-col justify-between p-6 sm:p-8 rounded-xl bg-[#0D1117] border border-white/[0.1] hover:border-[#8DC63F]/50 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
               <div className="space-y-4">
                 <div>
                   <span className="text-xs uppercase tracking-wider text-[#8DC63F] font-bold block mb-1.5">
-                    Maintenance-Ready
+                    5. Long-Term Performance
                   </span>
                   <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-snug">
-                    Built for Long-Term Reliability
+                    Equipment That’s Easier to Maintain
                   </h3>
                 </div>
 
@@ -362,25 +356,25 @@ export default function WhyVisionEnergy() {
                   <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
                     <span>
-                      <strong className="text-white font-semibold">Tagged Inspection Pits:</strong> Heavy-duty pits for easy audits.
+                      <strong className="text-white font-semibold">Serviceability:</strong> We consider access for inspection, maintenance and replacement when recommending equipment.
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
                     <span>
-                      <strong className="text-white font-semibold">Accessible Test Joints:</strong> Disconnect links for rapid testing.
+                      <strong className="text-white font-semibold">Spares and Accessories:</strong> We assist with compatible consumables, accessories and replacement parts.
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
                     <span>
-                      <strong className="text-white font-semibold">Movement Tolerance:</strong> Flexible fixings for thermal shifts.
+                      <strong className="text-white font-semibold">Operating Documentation:</strong> We provide available manufacturer operation and maintenance manuals.
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
                     <span>
-                      <strong className="text-white font-semibold">Handover Records:</strong> Baseline logs &amp; complete records.
+                      <strong className="text-white font-semibold">After-Sales Support:</strong> We assist with technical queries, warranty coordination and replacement sourcing.
                     </span>
                   </li>
                 </ul>
