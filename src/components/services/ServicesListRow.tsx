@@ -64,14 +64,14 @@ const SERVICE_HIGHLIGHTS: Record<string, string[]> = {
     'Mobilized with calibrated testing meters, specialized tooling, and certified PPE',
   ],
   'earthing-grounding-system-design-installation': [
-    'Low-resistance earth grid design achieving target ohmic values (<1Ω / <5Ω)',
+    'Low-resistance earth grid design achieving target ohmic values (<1Ω / <2Ω)',
     'Exothermic welding (cadweld) molecular bonds and copper tape networks',
     'Chemical earthing compound and deep well electrode installation',
     'Soil resistivity testing, Wenner 4-point survey, and grid simulation',
     'Comprehensive earth pit inspection, testing, and authority certification',
   ],
   'earthing-and-grounding': [
-    'Low-resistance earth grid design achieving target ohmic values (<1Ω / <5Ω)',
+    'Low-resistance earth grid design achieving target ohmic values (<1Ω / <2Ω)',
     'Exothermic welding (cadweld) molecular bonds and copper tape networks',
     'Chemical earthing compound and deep well electrode installation',
     'Soil resistivity testing, Wenner 4-point survey, and grid simulation',
