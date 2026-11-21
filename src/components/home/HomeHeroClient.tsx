@@ -13,6 +13,7 @@ import {
   PhoneCall,
   ShieldCheck,
   Wrench,
+  Microscope,
 } from 'lucide-react';
 
 interface SlideData {
@@ -112,6 +113,26 @@ const HERO_SLIDES: SlideData[] = [
     imageAlt:
       'Advanced electrical and mechanical solutions for industrial and infrastructure applications UAE',
     standards: 'DEWA • SEWA • ISO 9001 Compliant',
+    highlightColor: 'text-[#8DC63F]',
+    glowColor: 'rgba(141,198,63,0.45)',
+  },
+  {
+    id: 'laboratory-equipment',
+    category: 'Laboratory Equipment',
+    shortName: 'Laboratory',
+    badge: 'Research & Diagnostics',
+    badgeIcon: Microscope,
+    titleLine1: 'Complete Laboratory Equipments',
+    titleLine2: 'for Better Tomorrow',
+    subtitle: 'Quality Laboratory Equipment, Consumables & Accessories',
+    description:
+      'Quality laboratory equipment, consumables and accessories for multiple applications.',
+    ctaText: 'Explore Equipment',
+    ctaLink: '/products',
+    imageUrl: '/images/laboratory-equipment-hero.webp',
+    imageAlt:
+      'Complete laboratory equipments for better tomorrow - Quality laboratory equipment, consumables and accessories',
+    standards: 'ISO 17025 • GLP • CE Certified',
     highlightColor: 'text-[#8DC63F]',
     glowColor: 'rgba(141,198,63,0.45)',
   },
@@ -422,7 +443,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
       <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 pb-[max(12px,env(safe-area-inset-bottom))] lg:hidden">
         
         {/* Mobile Quick Category Switcher Tabs */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-2.5">
+        <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none sm:grid sm:grid-cols-5 mb-2.5">
           {HERO_SLIDES.map((slide, idx) => {
             const isSelected = idx === currentSlide;
             const SlideIcon = slide.badgeIcon;
@@ -430,14 +451,14 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
               <button
                 key={slide.id}
                 onClick={() => goToSlide(idx)}
-                className={`h-[34px] rounded-lg text-[11px] font-semibold flex items-center justify-center gap-1 transition-all border ${
+                className={`h-[34px] px-2.5 sm:px-1 shrink-0 sm:shrink rounded-lg text-[11px] font-semibold flex items-center justify-center gap-1.5 transition-all border ${
                   isSelected
                     ? 'bg-[#0D1117]/90 border-[#8DC63F] text-white shadow-md shadow-[#8DC63F]/20'
                     : 'bg-[#0D1117]/50 border-white/10 text-white/60 hover:text-white'
                 }`}
               >
-                <SlideIcon className={`w-3 h-3 ${isSelected ? 'text-[#8DC63F]' : 'text-white/40'}`} />
-                <span className="truncate">{slide.shortName}</span>
+                <SlideIcon className={`w-3 h-3 shrink-0 ${isSelected ? 'text-[#8DC63F]' : 'text-white/40'}`} />
+                <span className="whitespace-nowrap sm:truncate">{slide.shortName}</span>
               </button>
             );
           })}
