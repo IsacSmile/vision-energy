@@ -11,6 +11,8 @@ import {
   ChevronLeft,
   ChevronRight,
   PhoneCall,
+  ShieldCheck,
+  Wrench,
 } from 'lucide-react';
 
 interface SlideData {
@@ -70,6 +72,46 @@ const HERO_SLIDES: SlideData[] = [
     imageAlt:
       'Vision Energy specialist engineers installing rooftop earthing and lightning copper grid network on UAE site',
     standards: 'IEEE 80 • BS 7430',
+    highlightColor: 'text-[#8DC63F]',
+    glowColor: 'rgba(141,198,63,0.45)',
+  },
+  {
+    id: 'industrial-technical-products',
+    category: 'Industrial & Technical',
+    shortName: 'Industrial',
+    badge: 'Trusted Industrial Supplier',
+    badgeIcon: ShieldCheck,
+    titleLine1: 'A Trusted Supplier of',
+    titleLine2: 'Quality Industrial & Technical Products',
+    subtitle: 'Delivering Quality Products & Dependable Solutions',
+    description:
+      'Delivering quality products and dependable solutions to support industries, infrastructure and projects across diverse sectors.',
+    ctaText: 'Explore Products',
+    ctaLink: '/products',
+    imageUrl: '/images/industrial-technical-products-hero.webp',
+    imageAlt:
+      'Vision Energy - A trusted supplier of quality industrial and technical products delivering dependable solutions across diverse sectors',
+    standards: 'DEWA • SEWA • Civil Defense Compliant',
+    highlightColor: 'text-[#8DC63F]',
+    glowColor: 'rgba(141,198,63,0.45)',
+  },
+  {
+    id: 'electrical-mechanical-solutions',
+    category: 'Electrical & Mechanical',
+    shortName: 'Electrical',
+    badge: 'Industrial & Infrastructure',
+    badgeIcon: Wrench,
+    titleLine1: 'Advanced Electrical &',
+    titleLine2: 'Mechanical Solutions',
+    subtitle: 'Engineered for Industrial & Infrastructure Applications',
+    description:
+      'Advanced electrical and mechanical solutions for industrial and infrastructure applications.',
+    ctaText: 'Explore Solutions',
+    ctaLink: '/services',
+    imageUrl: '/images/electrical-mechanical-solutions-hero.webp',
+    imageAlt:
+      'Advanced electrical and mechanical solutions for industrial and infrastructure applications UAE',
+    standards: 'DEWA • SEWA • ISO 9001 Compliant',
     highlightColor: 'text-[#8DC63F]',
     glowColor: 'rgba(141,198,63,0.45)',
   },
@@ -213,7 +255,10 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
       {/* Mobile Top Segmented Progress Bar (Story-Style, Composited GPU Animation) */}
       {/* ============================================================ */}
       <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 pt-2 lg:hidden">
-        <div className="grid grid-cols-2 gap-2 w-full">
+        <div
+          className="grid gap-2 w-full"
+          style={{ gridTemplateColumns: `repeat(${totalSlides}, minmax(0, 1fr))` }}
+        >
           {HERO_SLIDES.map((slide, idx) => {
             const isSelected = idx === currentSlide;
             const isPassed = idx < currentSlide;
@@ -310,7 +355,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
           {/* ============================================================ */}
           {/* Desktop Interactive Slider Navigation Tabs */}
           {/* ============================================================ */}
-          <div className="hidden lg:flex items-center gap-3 pt-6">
+          <div className="hidden lg:flex flex-wrap items-center gap-2 pt-6">
             {HERO_SLIDES.map((slide, idx) => {
               const isSelected = idx === currentSlide;
               const SlideIcon = slide.badgeIcon;
@@ -377,7 +422,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
       <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 pb-[max(12px,env(safe-area-inset-bottom))] lg:hidden">
         
         {/* Mobile Quick Category Switcher Tabs */}
-        <div className="grid grid-cols-2 gap-2 mb-2.5">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-2.5">
           {HERO_SLIDES.map((slide, idx) => {
             const isSelected = idx === currentSlide;
             const SlideIcon = slide.badgeIcon;
