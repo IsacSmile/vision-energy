@@ -19,6 +19,11 @@ export const metadata = {
     'Lightning Protection UAE',
     'Earthing Systems Dubai',
     'Electrical Equipment Supplier Dubai',
+    'LED Lights Supplier Dubai UAE',
+    'Industrial Automation Items UAE',
+    'Controls and Switchgear Accessories Dubai',
+    'Electrical Tools Supplier UAE',
+    'Laboratory Equipment Supplier UAE',
     'Heavy Equipment Rental UAE',
     'Heavy Vehicle Rental Dubai',
     'Industrial Generator Equipment UAE',
@@ -101,6 +106,30 @@ const faqSchema = {
       acceptedAnswer: {
         '@type': 'Answer',
         text: 'We maintain extensive local inventory in the UAE, enabling rapid dispatch and same-day or 24-hour job site delivery across Dubai, Abu Dhabi, Sharjah, and all other Emirates.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does Vision Energy supply industrial automation, PLCs, and switchgear accessories in the UAE?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. We supply cutting-edge automation solutions including PLCs, HMI touchscreen panels, variable frequency drives (VFDs), contactors, circuit breakers, and comprehensive switchgear accessories engineered for seamless industrial control and plant safety.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What types of energy-efficient LED lighting and luminaires do you supply?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'We supply high-efficiency industrial high-bay LEDs, architectural floodlights, weatherproof luminaires, commercial panel lights, and street lighting from leading international and regional manufacturers, delivering high lumen output and substantial operational energy savings.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you provide professional electrical installation tools and calibrated test equipment?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Our catalog includes 1000V insulated hand tools, hydraulic cable crimpers, heavy-duty cable cutters, digital multimeters, earth clamp testers, and voltage indicators built for rugged industrial site environments.',
       },
     },
   ],

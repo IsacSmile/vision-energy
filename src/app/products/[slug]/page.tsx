@@ -41,6 +41,11 @@ export async function generateMetadata({ params }: SlugPageProps): Promise<Metad
 
   const title = `[${category.code}] ${category.title} Dubai UAE | Vision Energy`;
   const description = `${category.description} Certified engineering supplier in Dubai & across the UAE. Fully compliant with DEWA, SEWA & Civil Defense.`;
+  const absoluteImageUrl = category.imageUrl?.startsWith("http")
+    ? category.imageUrl
+    : category.imageUrl
+    ? `https://www.visionenergyme.com${category.imageUrl.startsWith("/") ? "" : "/"}${category.imageUrl}`
+    : "https://www.visionenergyme.com/images/products-collage-banner.jpg";
 
   return {
     title,
@@ -63,7 +68,9 @@ export async function generateMetadata({ params }: SlugPageProps): Promise<Metad
       type: "article",
       images: [
         {
-          url: category.imageUrl || "https://www.visionenergyme.com/images/products-collage-banner.jpg",
+          url: absoluteImageUrl,
+          width: 1200,
+          height: 630,
           alt: category.imageAlt || `${category.title} Dubai UAE`,
         },
       ],
@@ -72,7 +79,7 @@ export async function generateMetadata({ params }: SlugPageProps): Promise<Metad
       card: "summary_large_image",
       title,
       description,
-      images: [category.imageUrl || "https://www.visionenergyme.com/images/products-collage-banner.jpg"],
+      images: [absoluteImageUrl],
     },
   };
 }
@@ -136,13 +143,19 @@ export default async function CategoryDetailPage({ params }: SlugPageProps) {
     ],
   };
 
+  const absoluteImageUrl = category.imageUrl?.startsWith("http")
+    ? category.imageUrl
+    : category.imageUrl
+    ? `https://www.visionenergyme.com${category.imageUrl.startsWith("/") ? "" : "/"}${category.imageUrl}`
+    : "https://www.visionenergyme.com/images/products-collage-banner.jpg";
+
   const productJsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: `[${category.code}] ${category.title}`,
     description: category.description,
     sku: category.code,
-    image: category.imageUrl || "https://www.visionenergyme.com/images/products-collage-banner.jpg",
+    image: absoluteImageUrl,
     brand: {
       "@type": "Brand",
       name: "Vision Energy International",
@@ -150,6 +163,8 @@ export default async function CategoryDetailPage({ params }: SlugPageProps) {
     offers: {
       "@type": "AggregateOffer",
       priceCurrency: "AED",
+      lowPrice: "100.00",
+      offerCount: "1",
       availability: "https://schema.org/InStock",
       areaServed: {
         "@type": "Country",

@@ -205,7 +205,46 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
   // 1. REUSABLE DATA-DRIVEN SERVICE TEMPLATE (Earthing & Grounding, etc.)
   const standardPage = getStandardServicePage(slug);
   if (standardPage) {
-    return <StandardServiceDetail data={standardPage} />;
+    const breadcrumbJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://www.visionenergyme.com" },
+        { "@type": "ListItem", position: 2, name: "Services", item: "https://www.visionenergyme.com/services" },
+        { "@type": "ListItem", position: 3, name: standardPage.title, item: `https://www.visionenergyme.com/services/${standardPage.slug}` },
+      ],
+    };
+    const serviceJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: standardPage.title,
+      description: standardPage.seo.description,
+      url: `https://www.visionenergyme.com/services/${standardPage.slug}`,
+      provider: {
+        "@type": "Organization",
+        name: "Vision Energy International",
+        url: "https://www.visionenergyme.com",
+      },
+      areaServed: {
+        "@type": "Country",
+        name: "United Arab Emirates",
+      },
+      serviceType: "Specialist Electrical & Earthing Engineering",
+    };
+
+    return (
+      <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+        />
+        <StandardServiceDetail data={standardPage} />
+      </>
+    );
   }
 
   const service = await getServiceBySlug(slug);
@@ -225,6 +264,34 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
   }
 
   const content = service.content || {};
+  const pageTitle = service.title;
+  const pageDesc = service.summary || (service.content && (service.content as any).heroLead) || "";
+  const serviceBreadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.visionenergyme.com" },
+      { "@type": "ListItem", position: 2, name: "Services", item: "https://www.visionenergyme.com/services" },
+      { "@type": "ListItem", position: 3, name: pageTitle, item: `https://www.visionenergyme.com/services/${slug}` },
+    ],
+  };
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: pageTitle,
+    description: pageDesc,
+    url: `https://www.visionenergyme.com/services/${slug}`,
+    provider: {
+      "@type": "Organization",
+      name: "Vision Energy International",
+      url: "https://www.visionenergyme.com",
+    },
+    areaServed: {
+      "@type": "Country",
+      name: "United Arab Emirates",
+    },
+    serviceType: "Engineering & Technical Services",
+  };
 
   // DEDICATED DATA-DRIVEN VIEW FOR MANPOWER SUPPLY SERVICE
   if (
@@ -232,14 +299,35 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
     slug === "specialist-engineering-manpower-supply" ||
     Boolean(content.manpowerWeSupply)
   ) {
-    return <ManpowerServiceDetail service={service} content={content} />;
+    return (
+      <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceBreadcrumbJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+        />
+        <ManpowerServiceDetail service={service} content={content} />
+      </>
+    );
   }
 
   // DEDICATED VIEW FOR EXTERNAL LIGHTNING PROTECTION INSTALLATION
   // Renders exclusively the content & images uploaded by the client
   if (slug === "external-lightning-protection-installation") {
     return (
-      <div className="w-full bg-[#050608] text-white">
+      <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceBreadcrumbJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+        />
+        <div className="w-full bg-[#050608] text-white">
         {/* HEADER SECTION */}
         <section
           data-dark-hero="true"
@@ -376,8 +464,9 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
 
         <FinalCTA bgClass="bg-[#050608]" />
       </div>
-    );
-  }
+    </>
+  );
+}
 
   const metaChips = content.metaChips || [];
 
@@ -410,7 +499,16 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
   if (content.faq && content.faq.length > 0) navSections.push({ id: "faq", label: "FAQ" });
 
   return (
-    <div className="w-full bg-[#050608] text-white">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceBreadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
+      <div className="w-full bg-[#050608] text-white">
       {/* HEADER SECTION */}
       <section
         data-dark-hero="true"
@@ -644,5 +742,6 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
 
       <FinalCTA bgClass="bg-[#050608]" />
     </div>
+  </>
   );
 }

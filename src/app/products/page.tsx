@@ -42,14 +42,19 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   return {
     title: "Engineering Supplies, Laboratory Equipment & Electrical Products Dubai UAE | Vision Energy",
     description:
-      "Explore certified product categories across lightning protection, earthing, electrical cables, generator machinery, and laboratory equipment in Dubai & UAE. Compliant with DEWA, SEWA & Civil Defense.",
+      "Explore certified product categories across lightning protection, earthing, industrial electrical supplies, LED lights, automation systems, switchgear accessories, electrical tools, and laboratory equipment in Dubai & UAE. Compliant with DEWA, SEWA & Civil Defense.",
     keywords: [
       "Lightning Protection Products Dubai",
       "Earthing Materials UAE",
       "Electrical Equipment Dubai",
+      "LED Lights Supplier Dubai UAE",
+      "Automation Items and PLC Controls UAE",
+      "Controls and Switchgear Accessories Dubai",
+      "Electrical Tools and Test Equipment UAE",
       "Laboratory Equipment Dubai UAE",
       "General Laboratory Equipment UAE",
       "Laboratory Glassware Dubai",
+      "Sports Equipment and Court Accessories UAE",
       "Exothermic Welding Supplies UAE",
       "Cable Trays and Supports Dubai",
       "Industrial Generator Equipment UAE",

@@ -113,13 +113,26 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     "@type": "Article",
     "headline": post.title,
     "description": post.subheading,
-    "image": post.coverImage ? [post.coverImage] : [],
+    "image": post.coverImage ? [post.coverImage] : ["https://www.visionenergyme.com/images/products-collage-banner.jpg"],
     "datePublished": post.publishedAt ? new Date(post.publishedAt).toISOString() : undefined,
     "dateModified": post.updatedAt ? new Date(post.updatedAt).toISOString() : undefined,
+    "author": {
+      "@type": "Organization",
+      "name": "Vision Energy Engineering Team",
+      "url": "https://www.visionenergyme.com",
+    },
     "publisher": {
       "@type": "Organization",
       "name": "Vision Energy International UAE",
-      "url": "https://visionenergyme.com",
+      "url": "https://www.visionenergyme.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.visionenergyme.com/main-logo-vision.png",
+      },
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://www.visionenergyme.com/blog/${post.slug}`,
     },
   };
 
