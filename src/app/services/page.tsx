@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, ChevronRight, ShieldCheck } from 'lucide-react';
+import { ArrowRight, ChevronRight } from 'lucide-react';
 import { getPublishedServices } from '@/lib/services/get-services';
 import ServicesListRow from '@/components/services/ServicesListRow';
 import HowWeWork from '@/components/services/HowWeWork';
@@ -171,36 +171,25 @@ export default async function ServicesListingPage() {
         {/* SECTION C: HOW WE WORK (#050608) */}
         <HowWeWork />
 
-        {/* SECTION D: CROSS-LINK (#0D1117) */}
-        <section className="bg-[#0D1117] py-12 lg:py-16 border-b border-white/10 relative overflow-hidden">
+        {/* SECTION D: CROSS-LINK (CLEAN WHITE CARD - NO BADGES) */}
+        <section className="bg-white py-12 lg:py-16 border-t border-b border-gray-200 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <Reveal>
-              <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-[#090D14] border border-white/10 hover:border-[#8DC63F]/40 p-6 sm:p-8 lg:p-10 transition-all duration-300 shadow-xl flex flex-col md:flex-row items-center justify-between gap-8 group">
-                {/* Background Subtle Gradient Glow */}
-                <div
-                  className="absolute inset-0 bg-gradient-to-r from-[#0B65B3]/10 via-transparent to-[#8DC63F]/10 pointer-events-none group-hover:opacity-100 opacity-60 transition-opacity duration-500"
-                  aria-hidden="true"
-                />
-
+              <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-white border border-gray-200/90 p-6 sm:p-8 lg:p-10 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col md:flex-row items-center justify-between gap-8 group">
                 {/* Left: Content Block */}
                 <div className="relative z-10 flex-1 space-y-3 sm:space-y-4 text-left">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0B65B3]/20 border border-[#0B65B3]/40 text-xs font-bold text-[#8DC63F] uppercase tracking-wider">
-                    <ShieldCheck className="w-3.5 h-3.5 text-[#8DC63F]" />
-                    <span>Certified Product Range</span>
-                  </div>
-
-                  <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-tight">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight leading-tight">
                     Looking for lightning protection or earthing products?
                   </h2>
 
-                  <p className="text-sm sm:text-base text-[#A9B4C0] max-w-2xl leading-relaxed">
+                  <p className="text-base sm:text-lg text-gray-600 max-w-2xl leading-relaxed">
                     Explore our DEWA, SEWA & Civil Defense compliant catalogue of air terminals, copper conductors, earthing enhancement compounds, and surge protection devices.
                   </p>
 
                   <div className="pt-2">
                     <Link
                       href="/products?group=LP"
-                      className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#0B65B3] hover:bg-[#0c72ca] text-white font-semibold text-sm sm:text-base transition-all duration-300 shadow-lg hover:shadow-[#8DC63F]/20 group/btn"
+                      className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-[#0B65B3] hover:bg-[#0c72ca] text-white font-semibold text-sm sm:text-base transition-all duration-300 shadow-md hover:shadow-lg group/btn"
                     >
                       <span>Browse lightning protection products</span>
                       <ArrowRight className="w-4.5 h-4.5 text-[#8DC63F] transition-transform duration-300 group-hover/btn:translate-x-1" />
@@ -208,27 +197,16 @@ export default async function ServicesListingPage() {
                   </div>
                 </div>
 
-                {/* Right: Short Size Showcase Image */}
-                <div className="relative z-10 w-full sm:w-80 md:w-72 lg:w-80 shrink-0">
-                  <div className="relative aspect-[16/10] sm:aspect-[4/3] w-full rounded-2xl overflow-hidden border border-white/15 bg-black/40 shadow-2xl group/img">
+                {/* Right: Short Size Showcase Image (Clean, No Badges) */}
+                <div className="relative z-10 w-full sm:w-80 md:w-80 lg:w-96 shrink-0">
+                  <div className="relative aspect-[16/10] sm:aspect-[4/3] w-full rounded-2xl overflow-hidden border border-gray-200 shadow-md group/img">
                     <Image
                       src="/images/products-collage-banner.webp"
                       alt="Vision Energy Certified Lightning Protection and Earthing Products"
                       fill
-                      sizes="(max-width: 768px) 100vw, 320px"
+                      sizes="(max-width: 768px) 100vw, 384px"
                       className="object-cover object-center group-hover/img:scale-105 transition-transform duration-500"
                     />
-                    {/* Gradient Overlay for Sleek Contrast */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
-                    {/* Floating Product Tag */}
-                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] font-semibold text-white/90">
-                      <span className="px-2.5 py-1 rounded-md bg-black/75 backdrop-blur-md border border-white/15">
-                        IEC 62305 & BS 7430
-                      </span>
-                      <span className="px-2 py-1 rounded-md bg-[#8DC63F]/90 text-black font-bold">
-                        Certified
-                      </span>
-                    </div>
                   </div>
                 </div>
               </div>
