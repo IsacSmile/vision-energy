@@ -187,8 +187,8 @@ export const PRODUCTS_WE_OFFER_ROWS: ProductRowGroup[] = [
       {
         id: 'p-16',
         name: 'LED Lights',
-        description: 'Energy-efficient indoor and outdoor LED lighting solutions.',
-        image: '/product-catalouge/LT-02.jpeg',
+        description: 'Illuminate your space with energy-efficient LED lights from international and local manufacturers, offering superior brightness, longevity, and cost savings.',
+        image: '/product-catalouge/LT-02.webp',
         alt: 'Vision Energy LED Lights',
         slug: 'led-light-fixtures-and-luminaires',
         code: 'LT-02',

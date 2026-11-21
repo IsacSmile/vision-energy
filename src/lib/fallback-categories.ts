@@ -96,9 +96,9 @@ export const FALLBACK_CATEGORIES: FallbackCategory[] = [
     slug: "led-light-fixtures-and-luminaires",
     groupPrefix: "LT",
     sortOrder: 10,
-    title: "LED Light Fixtures and Luminaires",
-    description: "Energy-efficient LED luminaires for commercial, industrial, architectural and outdoor lighting applications.",
-    families: "LED floodlights; high-bay lights; panel lights; linear lights; downlights; streetlights; wall lights; weatherproof fittings"
+    title: "LED Lights & Luminaires",
+    description: "Illuminate your space with energy-efficient LED lights from different international and local manufacturers. Our extensive range of lighting solutions offers superior brightness and longevity, contributing to reduced energy consumption and cost savings for both indoor and outdoor environments.",
+    families: "LED floodlights; high-bay lights; panel lights; linear lights; downlights; streetlights; wall lights; weatherproof fittings; indoor and outdoor LED lighting"
   },
   {
     code: "LT-03",

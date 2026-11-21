@@ -89,6 +89,15 @@ const FEATURED_PRODUCTS: FeaturedProduct[] = [
     imageUrl: '/product-catalouge/EN-01.jpeg',
     tag: 'Clean Energy',
   },
+  {
+    code: 'LT-02',
+    slug: 'led-light-fixtures-and-luminaires',
+    title: 'LED Lights & Luminaires',
+    categoryName: 'Specialist & LED Lighting',
+    description: 'Energy-efficient LED lighting solutions offering superior brightness and longevity for indoor and outdoor environments.',
+    imageUrl: '/product-catalouge/LT-02.webp',
+    tag: 'Energy Efficient',
+  },
 ];
 
 export default function ProductPreview() {
