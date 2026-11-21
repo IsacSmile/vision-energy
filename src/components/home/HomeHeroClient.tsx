@@ -16,6 +16,7 @@ import {
   Microscope,
   Dumbbell,
   HardHat,
+  Boxes,
 } from 'lucide-react';
 
 interface SlideData {
@@ -175,6 +176,26 @@ const HERO_SLIDES: SlideData[] = [
     imageAlt:
       'Safety equipment supply - Reliable safety equipment solutions to ensure workplace protection, compliance and peace of mind',
     standards: 'EN 397 • ANSI Z87.1 • OSHA Compliant',
+    highlightColor: 'text-[#8DC63F]',
+    glowColor: 'rgba(141,198,63,0.45)',
+  },
+  {
+    id: 'commercial-packaging-solutions',
+    category: 'Commercial Packaging',
+    shortName: 'Packaging',
+    badge: 'Packaging & Signage',
+    badgeIcon: Boxes,
+    titleLine1: 'Safety Equipment &',
+    titleLine2: 'Commercial Packaging Solutions',
+    subtitle: 'Reliable Safety & Packaging Products',
+    description:
+      'Reliable safety and packaging products ensuring workplace protection, product safety, and efficient handling.',
+    ctaText: 'Explore Packaging',
+    ctaLink: '/products',
+    imageUrl: '/images/commercial-packaging-safety-hero.webp',
+    imageAlt:
+      'Safety Equipment & Commercial Packaging Solutions - Reliable safety and packaging products ensuring workplace protection, product safety, and efficient handling',
+    standards: 'ISO 9001 • Eco-Friendly • Heavy Duty Material',
     highlightColor: 'text-[#8DC63F]',
     glowColor: 'rgba(141,198,63,0.45)',
   },
@@ -485,7 +506,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
       <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 pb-[max(12px,env(safe-area-inset-bottom))] lg:hidden">
         
         {/* Mobile Quick Category Switcher Tabs */}
-        <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none sm:grid sm:grid-cols-7 mb-2.5">
+        <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none sm:grid sm:grid-cols-4 md:grid-cols-8 mb-2.5">
           {HERO_SLIDES.map((slide, idx) => {
             const isSelected = idx === currentSlide;
             const SlideIcon = slide.badgeIcon;
