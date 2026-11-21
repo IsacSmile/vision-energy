@@ -907,11 +907,21 @@ html.light [class*="divide-[#1F2937]"] > :not([hidden]) ~ :not([hidden]) {
 html.light .rounded-xl.bg-\[\#0D1117\],
 html.light .rounded-2xl.bg-\[\#0D1117\],
 html.light .rounded-\[22px\].bg-\[\#0D1117\],
-html.light .rounded-\[20px\].bg-\[\#0A0E17\]\/95,
 html.light [class*="rounded-"][class*="bg-[#0D1117]"]:not(.partner-marquee-container),
 html.light [class*="rounded-"][class*="bg-[#0C1017]"] {
   border-color: #E2E8F0 !important;
   box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .rounded-\[20px\].bg-\[\#0A0E17\]\/95 {
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 10px 25px -4px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.04) !important;
+  transition: all 0.4s ease !important;
+}
+
+html.light .group:hover .rounded-\[20px\].bg-\[\#0A0E17\]\/95 {
+  border-color: rgba(141, 198, 63, 0.6) !important;
+  box-shadow: 0 20px 35px -6px rgba(0, 0, 0, 0.12), 0 8px 16px -4px rgba(141, 198, 63, 0.15) !important;
 }
 
 html.light .partner-marquee-container {

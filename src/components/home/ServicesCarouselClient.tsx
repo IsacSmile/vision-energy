@@ -322,25 +322,13 @@ export default function ServicesCarouselClient({
         {/* HORIZONTAL CAROUSEL WITH PREVIOUS ARCHITECTURAL CARD DESIGN  */}
         {/* ============================================================ */}
         <div className="relative">
-          {/* Edge Fade Gradients for Desktop */}
-          <div
-            className={`hidden lg:block absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-[#0D1117] to-transparent z-20 pointer-events-none transition-opacity duration-300 ${
-              canScrollLeft ? 'opacity-100' : 'opacity-0'
-            }`}
-          />
-          <div
-            className={`hidden lg:block absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-[#0D1117] to-transparent z-20 pointer-events-none transition-opacity duration-300 ${
-              canScrollRight ? 'opacity-100' : 'opacity-0'
-            }`}
-          />
-
           <div
             ref={scrollRef}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseLeave}
-            className="flex gap-6 sm:gap-7 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pt-2 pb-8 cursor-grab active:cursor-grabbing select-none items-stretch"
+            className="flex gap-6 sm:gap-7 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pt-2 pb-8 cursor-grab active:cursor-grabbing select-none items-stretch px-1"
             style={{
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
@@ -361,7 +349,7 @@ export default function ServicesCarouselClient({
                     className="group relative flex flex-col h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded-[24px]"
                   >
                     {/* Top Image Container with High-Res Photography */}
-                    <div className="relative w-full h-[240px] sm:h-[260px] lg:h-[280px] rounded-[20px] overflow-hidden bg-[#050608] border border-white/[0.08] shadow-xl group-hover:border-[#8DC63F]/40 transition-all duration-500">
+                    <div className="relative w-full h-[240px] sm:h-[260px] lg:h-[280px] rounded-[20px] overflow-hidden bg-[#050608] border border-white/[0.08] shadow-md group-hover:border-[#8DC63F]/40 transition-all duration-500">
                       <Image
                         src={service.image.url}
                         alt={service.image.alt}
@@ -388,8 +376,8 @@ export default function ServicesCarouselClient({
                       </div>
                     </div>
 
-                    {/* Overlapping Elevated Architectural Card */}
-                    <div className="-mt-16 sm:-mt-18 relative z-10 mx-2.5 sm:mx-3.5 flex-1 flex flex-col justify-between p-5 sm:p-6 lg:p-7 rounded-[20px] bg-[#0A0E17]/95 backdrop-blur-xl border border-white/[0.1] shadow-[0_20px_50px_rgba(0,0,0,0.85)] group-hover:border-[#8DC63F]/50 group-hover:shadow-[0_25px_60px_rgba(0,0,0,0.95),0_0_35px_rgba(141,198,63,0.12)] group-hover:-translate-y-1 transition-all duration-500">
+                    {/* Overlapping Elevated Architectural Card with Smooth Shadow */}
+                    <div className="-mt-16 sm:-mt-18 relative z-10 mx-2.5 sm:mx-3.5 flex-1 flex flex-col justify-between p-5 sm:p-6 lg:p-7 rounded-[20px] bg-[#0A0E17]/95 backdrop-blur-xl border border-white/[0.1] shadow-[0_10px_30px_rgba(0,0,0,0.1),0_4px_12px_rgba(0,0,0,0.06)] group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.16),0_8px_20px_rgba(141,198,63,0.18)] group-hover:border-[#8DC63F]/50 group-hover:-translate-y-1 transition-all duration-500">
                       <div>
                         {/* Eyebrow Category */}
                         <div className="flex items-center gap-2 mb-3">
