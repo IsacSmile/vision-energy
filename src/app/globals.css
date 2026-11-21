@@ -252,6 +252,23 @@ select:focus-visible {
   box-shadow: none !important;
 }
 
+/* Hide native browser search cancel and clear buttons to avoid double 'x' buttons */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none !important;
+}
+
+input::-ms-clear,
+input::-ms-reveal {
+  display: none !important;
+  width: 0;
+  height: 0;
+}
+
 /* Custom Minimal Dark Scrollbar */
 .custom-scrollbar {
   scrollbar-width: thin;

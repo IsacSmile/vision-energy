@@ -131,6 +131,7 @@ export default function ProductsExplorer({
   // Local state for search input (debounced with deferred value)
   const [searchInput, setSearchInput] = useState(qParam);
   const deferredSearchInput = useDeferredValue(searchInput);
+  const lastPushedQueryRef = useRef(qParam);
 
   // Mobile Groups Sheet state
   const [sheetOpen, setSheetOpen] = useState(false);
@@ -210,10 +211,28 @@ export default function ProductsExplorer({
     }
   }, [groupParam, prefersReducedMotion]);
 
-  // Update search input if URL q changes externally
+  // Update search input if URL q changes externally (e.g., direct navigation)
   useEffect(() => {
-    setSearchInput(qParam);
+    if (
+      qParam !== lastPushedQueryRef.current &&
+      document.activeElement !== searchInputRef.current
+    ) {
+      lastPushedQueryRef.current = qParam;
+      setSearchInput(qParam);
+    }
   }, [qParam]);
+
+  // Handle browser back/forward buttons (popstate)
+  useEffect(() => {
+    const handlePopState = () => {
+      const url = new URL(window.location.href);
+      const urlQ = url.searchParams.get('q') || '';
+      lastPushedQueryRef.current = urlQ;
+      setSearchInput(urlQ);
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   // Active codes list
   const activeCodes = useMemo(() => {
@@ -265,23 +284,39 @@ export default function ProductsExplorer({
     }));
   }, [categories]);
 
-  // Sync search input to URL with router.replace and 150ms debounce
+  // Clear search input handler
+  const clearSearch = useCallback(() => {
+    setSearchInput('');
+    lastPushedQueryRef.current = '';
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('q');
+      window.history.replaceState(window.history.state, '', url.pathname + url.search);
+    }
+    searchInputRef.current?.focus();
+  }, []);
+
+  // Sync search input to URL with replaceState and 250ms debounce (no RSC refetch / focus disruption)
   useEffect(() => {
     const timer = setTimeout(() => {
       const trimmed = deferredSearchInput.trim().slice(0, 80);
-      if (trimmed !== qParam) {
-        const params = new URLSearchParams(searchParams ? searchParams.toString() : '');
-        if (trimmed) {
-          params.set('q', trimmed);
-        } else {
-          params.delete('q');
+      if (typeof window !== 'undefined') {
+        const url = new URL(window.location.href);
+        const currentQ = url.searchParams.get('q') || '';
+        if (trimmed !== currentQ) {
+          lastPushedQueryRef.current = trimmed;
+          if (trimmed) {
+            url.searchParams.set('q', trimmed);
+          } else {
+            url.searchParams.delete('q');
+          }
+          window.history.replaceState(window.history.state, '', url.pathname + url.search);
         }
-        router.replace(`/products?${params.toString()}`, { scroll: false });
       }
-    }, 150);
+    }, 250);
 
     return () => clearTimeout(timer);
-  }, [deferredSearchInput, qParam, router, searchParams]);
+  }, [deferredSearchInput]);
 
   // URL state update helper for group (router.push)
   const setGroupFilter = useCallback(
@@ -314,6 +349,7 @@ export default function ProductsExplorer({
   // Clear all filters handler
   const clearAllFilters = useCallback(() => {
     setSearchInput('');
+    lastPushedQueryRef.current = '';
     router.replace('/products', { scroll: false });
   }, [router]);
 
@@ -575,14 +611,15 @@ export default function ProductsExplorer({
             <Search className="w-4 h-4 text-[#A9B4C0] absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               ref={searchInputRef}
-              type="search"
+              type="text"
               inputMode="search"
+              role="searchbox"
               enterKeyHint="search"
               autoComplete="off"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
               onKeyDown={(e) => {
-                if (e.key === 'Escape') setSearchInput('');
+                if (e.key === 'Escape') clearSearch();
               }}
               placeholder="Search products (e.g. cable, security alarm etc.)"
               aria-label="Search products"
@@ -592,7 +629,7 @@ export default function ProductsExplorer({
             {searchInput ? (
               <button
                 type="button"
-                onClick={() => setSearchInput('')}
+                onClick={clearSearch}
                 aria-label="Clear search input"
                 className="absolute right-1 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center text-[#A9B4C0] hover:text-white rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F]"
               >
