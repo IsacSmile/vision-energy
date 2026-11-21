@@ -130,8 +130,8 @@ export const PRODUCTS_WE_OFFER_ROWS: ProductRowGroup[] = [
       {
         id: 'p-11',
         name: 'Automation Items',
-        description: 'PLCs, HMIs and control modules for industrial automation.',
-        image: '/product-catalouge/EL-08.jpeg',
+        description: 'Cutting-edge automation items, PLCs, HMIs, and control modules for efficient control and management systems.',
+        image: '/product-catalouge/EL-08.webp',
         alt: 'Vision Energy Automation Items & Sensors',
         slug: 'industrial-automation-and-sensors',
         code: 'EL-08',

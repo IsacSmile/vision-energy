@@ -285,9 +285,9 @@ export const FALLBACK_CATEGORIES: FallbackCategory[] = [
     slug: "industrial-automation-and-sensors",
     groupPrefix: "EL",
     sortOrder: 31,
-    title: "Industrial Automation and Sensors",
-    description: "Industrial automation products for machine control, process monitoring and connected operations.",
-    families: "PLCs; HMI panels; VFDs; remote I/O; industrial Ethernet; safety controllers; power supplies; automation modules"
+    title: "Automation Items & Industrial Sensors",
+    description: "Cutting-edge automation items for efficient control and management systems, offering a comprehensive range of controls and switchgear accessories ensuring seamless operation and enhanced safety across various industries.",
+    families: "PLCs; HMI panels; VFDs; remote I/O; industrial Ethernet; safety controllers; power supplies; automation modules; control systems"
   },
   {
     code: "EL-09",

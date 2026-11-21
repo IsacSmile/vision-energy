@@ -98,6 +98,15 @@ const FEATURED_PRODUCTS: FeaturedProduct[] = [
     imageUrl: '/product-catalouge/LT-02.webp',
     tag: 'Energy Efficient',
   },
+  {
+    code: 'EL-08',
+    slug: 'industrial-automation-and-sensors',
+    title: 'Automation Items & Sensors',
+    categoryName: 'Electrical & Control',
+    description: 'Cutting-edge automation items, PLCs, and HMIs for efficient control and management systems.',
+    imageUrl: '/product-catalouge/EL-08.webp',
+    tag: 'Industrial Automation',
+  },
 ];
 
 export default function ProductPreview() {
