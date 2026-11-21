@@ -397,13 +397,10 @@ export default function WhyVisionEnergy() {
         {/* Industries We Serve */}
         <div className="space-y-6 pt-2">
           <Reveal staggerIndex={8}>
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div className="flex items-center justify-between gap-2">
               <h3 className="text-2xl sm:text-3xl font-bold text-white">
                 Industries We Serve
               </h3>
-              <span className="text-sm sm:text-base text-[#94A3B8]">
-                Proven protection engineered across critical UAE infrastructures
-              </span>
             </div>
           </Reveal>
 
