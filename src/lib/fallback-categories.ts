@@ -456,9 +456,9 @@ export const FALLBACK_CATEGORIES: FallbackCategory[] = [
     slug: "tools-and-equipment",
     groupPrefix: "HW",
     sortOrder: 50,
-    title: "Tools and Equipment",
-    description: "Professional electrical, mechanical and installation tools for site work, maintenance and project execution.",
-    families: "Insulated hand tools; crimping tools; cable cutters; measuring instruments; power tools; cable rollers; tool kits; test equipment"
+    title: "Electrical Tools & Equipment",
+    description: "Complete your electrical projects with ease using high-quality electrical tools ranging from cable cutters to voltage testers, our tools are designed for precision and durability, ensuring smooth installations and maintenance.",
+    families: "Insulated hand tools; crimping tools; cable cutters; voltage testers; digital multimeters; measuring instruments; power tools; cable rollers; tool kits; test equipment"
   },
   {
     code: "HW-04",

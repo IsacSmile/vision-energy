@@ -295,8 +295,8 @@ export const PRODUCTS_WE_OFFER_ROWS: ProductRowGroup[] = [
       {
         id: 'p-26',
         name: 'Electrical Tools',
-        description: 'Cutters, strippers, testers and precision installation tools.',
-        image: '/product-catalouge/HW-03.jpeg',
+        description: 'Complete your electrical projects with ease using high-quality electrical tools ranging from cable cutters to voltage testers.',
+        image: '/product-catalouge/HW-03.webp',
         alt: 'Vision Energy Electrical Tools & Testers',
         slug: 'tools-and-equipment',
         code: 'HW-03',

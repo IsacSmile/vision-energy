@@ -116,6 +116,15 @@ const FEATURED_PRODUCTS: FeaturedProduct[] = [
     imageUrl: '/product-catalouge/EL-05.webp',
     tag: 'Switchgear & Protection',
   },
+  {
+    code: 'HW-03',
+    slug: 'tools-and-equipment',
+    title: 'Electrical Tools & Equipment',
+    categoryName: 'Hardware & Tools',
+    description: 'High-quality electrical tools ranging from cable cutters to voltage testers for precision installations.',
+    imageUrl: '/product-catalouge/HW-03.webp',
+    tag: 'Installation Tools',
+  },
 ];
 
 export default function ProductPreview() {
