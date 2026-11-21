@@ -258,9 +258,9 @@ export const FALLBACK_CATEGORIES: FallbackCategory[] = [
     slug: "electrical-protection-and-control-components",
     groupPrefix: "EL",
     sortOrder: 28,
-    title: "Electrical Protection and Control Components",
-    description: "Protection and control components for electrical distribution and machinery, including fuses, relay products, current transformers, monitoring devices and terminal systems.",
-    families: "Fuses; fuse holders; current transformers; monitoring relays; timers; terminal blocks; control relays; contactors; overload protection"
+    title: "Controls & Switchgear Accessories",
+    description: "Our product range encompasses a diverse range of components crucial for electrical systems. From circuit breakers to contactors and relays, these accessories ensure efficient and safe operation, playing a pivotal role in managing electrical currents and safeguarding equipment from overloads or faults.",
+    families: "Circuit breakers; contactors; monitoring relays; timers; terminal blocks; control relays; overload protection; push buttons; pilot lights; motor starters; switchgear accessories"
   },
   {
     code: "EL-06",

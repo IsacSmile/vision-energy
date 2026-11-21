@@ -107,6 +107,15 @@ const FEATURED_PRODUCTS: FeaturedProduct[] = [
     imageUrl: '/product-catalouge/EL-08.webp',
     tag: 'Industrial Automation',
   },
+  {
+    code: 'EL-05',
+    slug: 'electrical-protection-and-control-components',
+    title: 'Controls & Switchgear Accessories',
+    categoryName: 'Electrical & Control',
+    description: 'Circuit breakers, contactors, relays, and switchgear accessories ensuring safe operation and fault protection.',
+    imageUrl: '/product-catalouge/EL-05.webp',
+    tag: 'Switchgear & Protection',
+  },
 ];
 
 export default function ProductPreview() {

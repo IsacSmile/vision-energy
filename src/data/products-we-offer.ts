@@ -139,8 +139,8 @@ export const PRODUCTS_WE_OFFER_ROWS: ProductRowGroup[] = [
       {
         id: 'p-12',
         name: 'Controls & Switchgear Accessories',
-        description: 'Breakers, contactors and relays for safe current management.',
-        image: '/product-catalouge/EL-05.jpeg',
+        description: 'Circuit breakers, contactors, relays, and switchgear accessories ensuring safe operation and fault protection.',
+        image: '/product-catalouge/EL-05.webp',
         alt: 'Vision Energy Controls & Switchgear Accessories',
         slug: 'electrical-protection-and-control-components',
         code: 'EL-05',
