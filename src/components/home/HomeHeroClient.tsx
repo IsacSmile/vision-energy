@@ -17,6 +17,8 @@ import {
   Dumbbell,
   HardHat,
   Boxes,
+  Trophy,
+  Globe,
 } from 'lucide-react';
 
 interface SlideData {
@@ -196,6 +198,46 @@ const HERO_SLIDES: SlideData[] = [
     imageAlt:
       'Safety Equipment & Commercial Packaging Solutions - Reliable safety and packaging products ensuring workplace protection, product safety, and efficient handling',
     standards: 'ISO 9001 • Eco-Friendly • Heavy Duty Material',
+    highlightColor: 'text-[#8DC63F]',
+    glowColor: 'rgba(141,198,63,0.45)',
+  },
+  {
+    id: 'sports-equipment-solutions',
+    category: 'Sports & Athletics',
+    shortName: 'Sports',
+    badge: 'Sports & Recreational Infrastructure',
+    badgeIcon: Trophy,
+    titleLine1: 'Sports Equipment &',
+    titleLine2: 'Facility Solutions',
+    subtitle: 'Quality Sports Equipment & Athletic Infrastructure',
+    description:
+      'High-performance sports equipment, athletic surfacing, and court solutions for educational, recreational, and professional facilities.',
+    ctaText: 'Explore Sports Equipment',
+    ctaLink: '/products',
+    imageUrl: '/images/sports-equipment-solutions-hero.webp',
+    imageAlt:
+      'Sports equipment and facility solutions - High-performance sports equipment, athletic surfacing and infrastructure',
+    standards: 'FIFA • FIBA • ITF Approved Standards',
+    highlightColor: 'text-[#8DC63F]',
+    glowColor: 'rgba(141,198,63,0.45)',
+  },
+  {
+    id: 'delivering-excellence-multiple-sectors',
+    category: 'Multi-Sector Solutions',
+    shortName: 'Multi-Sector',
+    badge: 'Delivering Excellence',
+    badgeIcon: Globe,
+    titleLine1: 'Delivering Excellence Across',
+    titleLine2: 'Multiple Sectors',
+    subtitle: 'One Company. Multiple Solutions. A Commitment to Quality.',
+    description:
+      'One company. Multiple solutions. A commitment to quality delivering dependable engineering, safety, laboratory, and industrial solutions across the UAE.',
+    ctaText: 'Explore All Solutions',
+    ctaLink: '/services',
+    imageUrl: '/images/delivering-excellence-multiple-sectors-hero.webp',
+    imageAlt:
+      'Delivering Excellence Across Multiple Sectors - One Company. Multiple Solutions. A Commitment to Quality',
+    standards: 'DEWA • SEWA • Civil Defense • ISO 9001 Compliant',
     highlightColor: 'text-[#8DC63F]',
     glowColor: 'rgba(141,198,63,0.45)',
   },
@@ -506,7 +548,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
       <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 pb-[max(12px,env(safe-area-inset-bottom))] lg:hidden">
         
         {/* Mobile Quick Category Switcher Tabs */}
-        <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none sm:grid sm:grid-cols-4 md:grid-cols-8 mb-2.5">
+        <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none sm:grid sm:grid-cols-5 md:grid-cols-10 mb-2.5">
           {HERO_SLIDES.map((slide, idx) => {
             const isSelected = idx === currentSlide;
             const SlideIcon = slide.badgeIcon;
