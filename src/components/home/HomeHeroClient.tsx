@@ -14,6 +14,7 @@ import {
   ShieldCheck,
   Wrench,
   Microscope,
+  Dumbbell,
 } from 'lucide-react';
 
 interface SlideData {
@@ -133,6 +134,26 @@ const HERO_SLIDES: SlideData[] = [
     imageAlt:
       'Complete laboratory equipments for better tomorrow - Quality laboratory equipment, consumables and accessories',
     standards: 'ISO 17025 • GLP • CE Certified',
+    highlightColor: 'text-[#8DC63F]',
+    glowColor: 'rgba(141,198,63,0.45)',
+  },
+  {
+    id: 'gym-equipment-maintenance',
+    category: 'Gym Equipment Maintenance',
+    shortName: 'Gym Care',
+    badge: 'Fitness Equipment Care',
+    badgeIcon: Dumbbell,
+    titleLine1: 'Gym Equipment',
+    titleLine2: 'Maintenance Services',
+    subtitle: 'Expert Maintenance & Repair Solutions',
+    description:
+      "Expert maintenance and repair solutions to keep your gym equipment safe, reliable, and performing at its best.",
+    ctaText: 'Book Maintenance',
+    ctaLink: '/services',
+    imageUrl: '/images/gym-equipment-maintenance-hero.webp',
+    imageAlt:
+      "Gym equipment maintenance services - Expert maintenance and repair solutions to keep your gym equipment safe, reliable, and performing at its best",
+    standards: 'Certified Technicians • Preventive AMC • OEM Genuine Parts',
     highlightColor: 'text-[#8DC63F]',
     glowColor: 'rgba(141,198,63,0.45)',
   },
@@ -443,7 +464,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
       <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 pb-[max(12px,env(safe-area-inset-bottom))] lg:hidden">
         
         {/* Mobile Quick Category Switcher Tabs */}
-        <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none sm:grid sm:grid-cols-5 mb-2.5">
+        <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none sm:grid sm:grid-cols-6 mb-2.5">
           {HERO_SLIDES.map((slide, idx) => {
             const isSelected = idx === currentSlide;
             const SlideIcon = slide.badgeIcon;
