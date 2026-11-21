@@ -15,6 +15,7 @@ import {
   Wrench,
   Microscope,
   Dumbbell,
+  HardHat,
 } from 'lucide-react';
 
 interface SlideData {
@@ -154,6 +155,26 @@ const HERO_SLIDES: SlideData[] = [
     imageAlt:
       "Gym equipment maintenance services - Expert maintenance and repair solutions to keep your gym equipment safe, reliable, and performing at its best",
     standards: 'Certified Technicians • Preventive AMC • OEM Genuine Parts',
+    highlightColor: 'text-[#8DC63F]',
+    glowColor: 'rgba(141,198,63,0.45)',
+  },
+  {
+    id: 'safety-equipment-supply',
+    category: 'Safety Equipment Supply',
+    shortName: 'Safety',
+    badge: 'Workplace Protection & PPE',
+    badgeIcon: HardHat,
+    titleLine1: 'Safety Equipment Supply',
+    titleLine2: '& Workplace Protection',
+    subtitle: 'Reliable Safety Equipment Solutions & Certified PPE',
+    description:
+      'Reliable safety equipment solutions to ensure workplace protection, compliance and peace of mind.',
+    ctaText: 'Explore Safety Products',
+    ctaLink: '/products',
+    imageUrl: '/images/safety-equipment-supply-hero.webp',
+    imageAlt:
+      'Safety equipment supply - Reliable safety equipment solutions to ensure workplace protection, compliance and peace of mind',
+    standards: 'EN 397 • ANSI Z87.1 • OSHA Compliant',
     highlightColor: 'text-[#8DC63F]',
     glowColor: 'rgba(141,198,63,0.45)',
   },
@@ -464,7 +485,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
       <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 pb-[max(12px,env(safe-area-inset-bottom))] lg:hidden">
         
         {/* Mobile Quick Category Switcher Tabs */}
-        <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none sm:grid sm:grid-cols-6 mb-2.5">
+        <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none sm:grid sm:grid-cols-7 mb-2.5">
           {HERO_SLIDES.map((slide, idx) => {
             const isSelected = idx === currentSlide;
             const SlideIcon = slide.badgeIcon;
