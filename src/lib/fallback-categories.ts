@@ -1026,5 +1026,23 @@ export const FALLBACK_CATEGORIES: FallbackCategory[] = [
     title: "Industrial Inspection Instruments",
     description: "Advanced inspection instruments designed for accurate defect detection, material evaluation, and quality assessment to ensure industrial safety and operational reliability.",
     families: "Coating thickness gauges; hardness testers; inspection tools"
+  },
+  {
+    code: "SP-01",
+    slug: "sports-equipment-and-athletic-accessories",
+    groupPrefix: "SP",
+    sortOrder: 114,
+    title: "Sports Equipment & Athletic Accessories",
+    description: "High-grade sports balls, tournament netting, protective court padding, and multi-sport field accessories certified for institutional and commercial facilities.",
+    families: "Football goal systems; basketball hoops & backboards; tennis & padel court accessories; athletic training cones; boundary markers; sports netting; referee & coaching gear"
+  },
+  {
+    code: "SP-02",
+    slug: "commercial-fitness-and-gym-accessories",
+    groupPrefix: "SP",
+    sortOrder: 115,
+    title: "Commercial Fitness & Gym Accessories",
+    description: "Heavy-duty commercial gym accessories, weight plates, resistance bands, studio mats, and barbell storage systems for fitness centres and sports clubs.",
+    families: "Cast iron & bumper plates; Olympic barbells; resistance bands; gym flooring tiles; kettlebells; studio fitness dumbbells; equipment storage racks"
   }
 ];

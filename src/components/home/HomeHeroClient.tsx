@@ -53,7 +53,7 @@ const HERO_SLIDES: SlideData[] = [
     description:
       'Certified structural lightning interception and ESE systems safeguarding infrastructure across the UAE.',
     ctaText: 'Explore Lightning',
-    ctaLink: '/services/external-lightning-protection-installation',
+    ctaLink: '/products?group=LP',
     imageUrl: '/images/lightning-protection-hero-2nd-img.webp',
     imageAlt:
       'Dramatic structural lightning protection and interception system installation UAE',
@@ -73,7 +73,7 @@ const HERO_SLIDES: SlideData[] = [
     description:
       'Engineered copper earthing grids and low-impedance grounding for maximum electrical safety across UAE soil conditions.',
     ctaText: 'Explore Earthing',
-    ctaLink: '/services/earthing-and-grounding',
+    ctaLink: '/products?group=ER',
     imageUrl: '/images/earthing-grounding-hero.webp',
     imageAlt:
       'Vision Energy specialist engineers installing rooftop earthing and lightning copper grid network on UAE site',
@@ -93,7 +93,7 @@ const HERO_SLIDES: SlideData[] = [
     description:
       'Delivering quality products and dependable solutions to support industries, infrastructure and projects across diverse sectors.',
     ctaText: 'Explore Products',
-    ctaLink: '/products',
+    ctaLink: '/products?group=EL',
     imageUrl: '/images/industrial-technical-products-hero.webp',
     imageAlt:
       'Vision Energy - A trusted supplier of quality industrial and technical products delivering dependable solutions across diverse sectors',
@@ -113,7 +113,7 @@ const HERO_SLIDES: SlideData[] = [
     description:
       'Advanced electrical and mechanical solutions for industrial and infrastructure applications.',
     ctaText: 'Explore Solutions',
-    ctaLink: '/services',
+    ctaLink: '/products?group=ME',
     imageUrl: '/images/electrical-mechanical-solutions-hero.webp',
     imageAlt:
       'Advanced electrical and mechanical solutions for industrial and infrastructure applications UAE',
@@ -133,7 +133,7 @@ const HERO_SLIDES: SlideData[] = [
     description:
       'Quality laboratory equipment, consumables and accessories for multiple applications.',
     ctaText: 'Explore Equipment',
-    ctaLink: '/products',
+    ctaLink: '/products?group=LE',
     imageUrl: '/images/laboratory-equipment-hero.webp',
     imageAlt:
       'Complete laboratory equipments for better tomorrow - Quality laboratory equipment, consumables and accessories',
@@ -152,8 +152,8 @@ const HERO_SLIDES: SlideData[] = [
     subtitle: 'Expert Maintenance & Repair Solutions',
     description:
       "Expert maintenance and repair solutions to keep your gym equipment safe, reliable, and performing at its best.",
-    ctaText: 'Book Maintenance',
-    ctaLink: '/services',
+    ctaText: 'Explore Gym & Fitness',
+    ctaLink: '/products?group=SP',
     imageUrl: '/images/gym-equipment-maintenance-hero.webp',
     imageAlt:
       "Gym equipment maintenance services - Expert maintenance and repair solutions to keep your gym equipment safe, reliable, and performing at its best",
@@ -173,7 +173,7 @@ const HERO_SLIDES: SlideData[] = [
     description:
       'Reliable safety equipment solutions to ensure workplace protection, compliance and peace of mind.',
     ctaText: 'Explore Safety Products',
-    ctaLink: '/products',
+    ctaLink: '/products?group=SF',
     imageUrl: '/images/safety-equipment-supply-hero.webp',
     imageAlt:
       'Safety equipment supply - Reliable safety equipment solutions to ensure workplace protection, compliance and peace of mind',
@@ -193,7 +193,7 @@ const HERO_SLIDES: SlideData[] = [
     description:
       'Reliable safety and packaging products ensuring workplace protection, product safety, and efficient handling.',
     ctaText: 'Explore Packaging',
-    ctaLink: '/products',
+    ctaLink: '/products?group=PK',
     imageUrl: '/images/commercial-packaging-safety-hero.webp',
     imageAlt:
       'Safety Equipment & Commercial Packaging Solutions - Reliable safety and packaging products ensuring workplace protection, product safety, and efficient handling',
@@ -213,7 +213,7 @@ const HERO_SLIDES: SlideData[] = [
     description:
       'Premium sports products and accessories designed to support every game and fitness activity.',
     ctaText: 'Explore Sports Products',
-    ctaLink: '/products',
+    ctaLink: '/products?group=SP',
     imageUrl: '/images/sports-equipment-solutions-hero.webp',
     imageAlt:
       'Sports Equipment & Accessories - Premium sports products and accessories designed to support every game and fitness activity',
@@ -233,7 +233,7 @@ const HERO_SLIDES: SlideData[] = [
     description:
       'One company. Multiple solutions. A commitment to quality delivering dependable engineering, safety, laboratory, and industrial solutions across the UAE.',
     ctaText: 'Explore All Solutions',
-    ctaLink: '/services',
+    ctaLink: '/products?group=EN',
     imageUrl: '/images/delivering-excellence-multiple-sectors-hero.webp',
     imageAlt:
       'Delivering Excellence Across Multiple Sectors - One Company. Multiple Solutions. A Commitment to Quality',

@@ -24,6 +24,7 @@ import {
   ShieldCheck,
   Sparkles,
   Activity,
+  Trophy,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -43,6 +44,7 @@ export const GROUP_LABELS: Record<string, string> = {
   SF: 'Safety Marking & PPE',
   PK: 'Packaging',
   ID: 'Identification & Engraving',
+  SP: 'Sports & Fitness Equipment',
   // Laboratory Equipment Groups
   LE: 'General Laboratory Equipment',
   LPE: 'Laboratory PPE & Safety Supplies',
@@ -74,6 +76,7 @@ export const GROUP_ICONS: Record<string, LucideIcon> = {
   SF: HardHat,
   PK: Package,
   ID: Tag,
+  SP: Trophy,
   // Laboratory Equipment Icons
   LE: FlaskConical,
   LPE: ShieldAlert,
