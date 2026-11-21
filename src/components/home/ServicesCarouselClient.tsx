@@ -15,7 +15,7 @@ import {
   Wrench,
   ShieldCheck,
   Activity,
-  Truck,
+  Cog,
 } from 'lucide-react';
 import SectionHeader from '@/components/ui/SectionHeader';
 
@@ -28,95 +28,131 @@ interface ServiceCardItem {
   icon: React.ElementType;
   metaChip: string;
   href: string;
+  image: {
+    url: string;
+    alt: string;
+  };
 }
 
 const CAROUSEL_SERVICES: ServiceCardItem[] = [
   {
     id: 'lightning-protection',
     number: '01',
-    title: 'Lightning Protection',
+    title: 'Lightning Protection Installation',
     eyebrow: 'Specialist Protection',
     summary:
-      'Certified structural Faraday mesh, air interception terminals, and ESE systems compliant with IEC 62305.',
+      'Certified external structural lightning protection, Faraday mesh grids, air terminals, and early streamer emission (ESE) systems compliant with IEC 62305.',
     icon: Zap,
+    image: {
+      url: '/images/external-lightning-protection-installation.png',
+      alt: 'External structural lightning protection and earthing building installation UAE',
+    },
     metaChip: 'IEC 62305 • ESE',
     href: '/services/external-lightning-protection-installation',
   },
   {
     id: 'custom-engraving',
     number: '02',
-    title: 'Custom Engraving',
+    title: 'Engraving & Equipment Identification',
     eyebrow: 'Industrial Tagging',
     summary:
-      'Laser-engraved 316 stainless steel, brass, and acrylic asset tags, caution labels, and schematic mimic panels.',
+      'Laser-engraved 316 stainless steel plates, aluminium tags, warning signs, cable identification, and schematic mimic panels for UAE infrastructure.',
     icon: Tag,
+    image: {
+      url: '/images/custom-engraved-plates-identification.webp',
+      alt: 'Custom engraved stainless steel plates, cable tags, caution and earthing system plates',
+    },
     metaChip: 'Laser Engraved • 316 SS',
     href: '/services/custom-engraving-and-identification',
   },
   {
     id: 'manpower-supply',
     number: '03',
-    title: 'Manpower Supply',
+    title: 'Specialist Manpower Supply',
     eyebrow: 'Certified Workforce',
     summary:
-      'Vetted electrical engineers, QA/QC inspectors, and site technicians for MEP, solar, and industrial execution.',
+      'Skilled and certified electrical engineers, QA/QC inspectors, cable jointers, and site supervisors deployed across commercial, MEP, and industrial projects.',
     icon: Users,
+    image: {
+      url: '/images/specialist-engineering-manpower-supply.jpg',
+      alt: 'Specialist engineering manpower and certified technicians on site in UAE',
+    },
     metaChip: 'Certified Technicians',
     href: '/services/manpower-supply',
   },
   {
     id: 'turnkey-installation',
     number: '04',
-    title: 'Turnkey Installation',
-    eyebrow: 'Site Execution',
+    title: 'Earthing & Grounding Solutions',
+    eyebrow: 'Ground Potential Control',
     summary:
-      'Low-impedance earth grounding grids, deep well ground electrodes, exothermic welding, and cable containment.',
+      'Engineered low-resistance earth grids (<1Ω / <2Ω), deep well ground electrodes, exothermic welding, and equipotential bonding compliant with DEWA and BS 7430.',
     icon: Layers,
+    image: {
+      url: '/images/earthing-grounding-hero.webp',
+      alt: 'Engineered earthing and grounding system installation UAE',
+    },
     metaChip: 'DEWA & SEWA Compliant',
     href: '/services/earthing-and-grounding',
   },
   {
-    id: 'equipment-maintenance',
-    number: '05',
-    title: 'Equipment Maintenance',
-    eyebrow: 'Preventive Care',
-    summary:
-      'Preventive and corrective maintenance for commercial gym machinery, electromechanical systems, and AMC.',
-    icon: Wrench,
-    metaChip: 'Preventive AMC Contracts',
-    href: '/services',
-  },
-  {
     id: 'surge-protection',
-    number: '06',
+    number: '05',
     title: 'Surge Protection & Bonding',
     eyebrow: 'Transient Defense',
     summary:
-      'Type 1, 2, and 3 SPD panel integration, equipotential bonding, and transient voltage suppression for sensitive electrical networks.',
+      'Type 1, Type 2, and Type 3 SPD panel integration, equipotential bonding bars, and transient voltage suppression protecting sensitive automation equipment.',
     icon: ShieldCheck,
+    image: {
+      url: '/images/surge-protection-bonding.webp',
+      alt: 'Surge protection device SPD switchboard installation and copper bonding',
+    },
     metaChip: 'IEC 61643 • IEEE C62.41',
     href: '/services',
   },
   {
     id: 'soil-testing',
-    number: '07',
+    number: '06',
     title: 'Testing & Commissioning',
-    eyebrow: 'Geological Survey',
+    eyebrow: 'Geological Survey & NOC',
     summary:
-      'Wenner 4-pin soil resistivity modeling, earth pit loop impedance testing, and consultant authority NOC submittals.',
+      'Wenner 4-pin soil resistivity modeling, earth pit loop impedance testing, continuity verification, and certified third-party NOC submittals for UAE authorities.',
     icon: Activity,
+    image: {
+      url: '/images/testing-commissioning-survey.webp',
+      alt: 'Wenner 4-pin soil resistivity testing and earth pit inspection verification UAE',
+    },
     metaChip: 'IEEE 81 • Third-Party NOC',
     href: '/services',
   },
   {
-    id: 'equipment-rentals',
-    number: '08',
-    title: 'Heavy Equipment Rentals',
-    eyebrow: 'Fleet & Logistics',
+    id: 'equipment-maintenance',
+    number: '07',
+    title: 'Equipment Maintenance & AMC',
+    eyebrow: 'Preventive Lifecycle Care',
     summary:
-      'Heavy mobile cranes, boom trucks, industrial diesel generator units, and cable-pulling equipment rentals across all UAE Emirates.',
-    icon: Truck,
-    metaChip: 'Heavy Fleet Rental',
+      'Preventive and corrective electromechanical maintenance, fitness and commercial machinery upkeep, periodic safety audits, and guaranteed SLA response times.',
+    icon: Wrench,
+    image: {
+      url: '/images/gym-equipment-maintenance-hero.webp',
+      alt: 'Commercial electromechanical equipment maintenance and AMC',
+    },
+    metaChip: 'Preventive AMC Contracts',
+    href: '/services',
+  },
+  {
+    id: 'electrical-mechanical-solutions',
+    number: '08',
+    title: 'Electrical & Mechanical Solutions',
+    eyebrow: 'Turnkey MEP Integration',
+    summary:
+      'End-to-end electrical containment, cable management, switchgear installation, distribution boards, and heavy industrial utility infrastructure delivery.',
+    icon: Cog,
+    image: {
+      url: '/images/electrical-mechanical-solutions-hero.webp',
+      alt: 'Electrical and mechanical turnkey solutions engineering UAE',
+    },
+    metaChip: 'Full Turnkey MEP',
     href: '/services',
   },
 ];
@@ -145,9 +181,8 @@ export default function ServicesCarouselClient({
     setCanScrollLeft(scrollLeft > 10);
     setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
 
-    // Calculate approximate active card index
     const cardEl = scrollRef.current.firstElementChild as HTMLElement | null;
-    const cardWidth = cardEl ? cardEl.offsetWidth + 16 : 320;
+    const cardWidth = cardEl ? cardEl.offsetWidth + 24 : 380;
     const currentIdx = Math.round(scrollLeft / cardWidth);
     setActiveIndex(Math.min(Math.max(currentIdx, 0), CAROUSEL_SERVICES.length - 1));
   }, []);
@@ -170,7 +205,7 @@ export default function ServicesCarouselClient({
     if (!scrollRef.current) return;
     const container = scrollRef.current;
     const cardEl = container.firstElementChild as HTMLElement | null;
-    const cardWidth = cardEl ? cardEl.offsetWidth + 16 : 340;
+    const cardWidth = cardEl ? cardEl.offsetWidth + 24 : 380;
     const offset = direction === 'left' ? -cardWidth : cardWidth;
     container.scrollBy({ left: offset, behavior: 'smooth' });
   };
@@ -179,11 +214,11 @@ export default function ServicesCarouselClient({
     if (!scrollRef.current) return;
     const container = scrollRef.current;
     const cardEl = container.firstElementChild as HTMLElement | null;
-    const cardWidth = cardEl ? cardEl.offsetWidth + 16 : 340;
+    const cardWidth = cardEl ? cardEl.offsetWidth + 24 : 380;
     container.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
   };
 
-  // Mouse Drag Events
+  // Mouse Drag Events for Desktop Swipe
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!scrollRef.current) return;
     isDragging.current = true;
@@ -195,8 +230,8 @@ export default function ServicesCarouselClient({
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDragging.current || !scrollRef.current) return;
     const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX.current) * 1.5; // Drag sensitivity
-    if (Math.abs(walk) > 5) {
+    const walk = (x - startX.current) * 1.4;
+    if (Math.abs(walk) > 6) {
       hasMoved.current = true;
     }
     scrollRef.current.scrollLeft = scrollStart.current - walk;
@@ -211,7 +246,7 @@ export default function ServicesCarouselClient({
   };
 
   const handleCardClick = (e: React.MouseEvent) => {
-    // If the user dragged more than 5px, don't trigger the link navigation
+    // If the user dragged, don't trigger link navigation
     if (hasMoved.current) {
       e.preventDefault();
     }
@@ -220,18 +255,17 @@ export default function ServicesCarouselClient({
   return (
     <section
       aria-labelledby="services-preview-heading"
-      className="py-16 md:py-24 lg:py-28 bg-[#0D1117] relative border-t border-b border-white/[0.08] overflow-hidden"
+      className="py-16 md:py-24 lg:py-32 bg-[#0D1117] relative border-t border-b border-white/[0.08] overflow-hidden"
     >
       {/* Background Radial Glow */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[550px] bg-[#8DC63F]/[0.02] blur-[150px] pointer-events-none rounded-full"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[550px] bg-[#8DC63F]/[0.025] blur-[140px] pointer-events-none rounded-full"
         aria-hidden="true"
       />
 
-      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-8 sm:space-y-10">
-        
+      <div className="max-w-[84rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-10 sm:space-y-12">
         {/* ============================================================ */}
-        {/* HEADER BLOCK: Title, Description & Carousel Controls */}
+        {/* HEADER BLOCK: Title, Description & Carousel Arrow Controls  */}
         {/* ============================================================ */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           <SectionHeader
@@ -241,7 +275,7 @@ export default function ServicesCarouselClient({
             description="From consultation and risk evaluation to site installation guidance and after-sales support."
           />
 
-          {/* Right Action: All Services Link + Next/Prev Arrows */}
+          {/* Right Action: All Services Link + Prev/Next Controls */}
           <div className="flex items-center gap-4 shrink-0 self-start lg:self-end">
             <Link
               href="/services"
@@ -251,97 +285,51 @@ export default function ServicesCarouselClient({
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Link>
 
-            {/* Carousel Arrow Controls */}
-            <div className="flex items-center gap-1.5 pl-3 border-l border-white/15">
+            {/* Carousel Previous & Next Arrow Controls */}
+            <div className="flex items-center gap-2 pl-3 border-l border-white/15">
               <button
+                type="button"
                 onClick={() => scroll('left')}
                 disabled={!canScrollLeft}
-                className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all ${
+                aria-label="Previous service"
+                className={`w-10 h-10 rounded-xl border flex items-center justify-center transition-all ${
                   canScrollLeft
-                    ? 'bg-[#050608]/90 border-white/20 text-[#8DC63F] hover:bg-[#8DC63F] hover:text-[#050608] hover:border-[#8DC63F] shadow-lg active:scale-95'
+                    ? 'bg-[#050608]/90 border-white/20 text-[#8DC63F] hover:bg-[#8DC63F] hover:text-[#050608] hover:border-[#8DC63F] shadow-lg active:scale-95 cursor-pointer'
                     : 'bg-[#050608]/40 border-white/5 text-white/20 cursor-not-allowed'
                 }`}
-                aria-label="Previous service"
               >
-                <ChevronLeft className="w-4 h-4" />
+                <ChevronLeft className="w-5 h-5" />
               </button>
 
               <button
+                type="button"
                 onClick={() => scroll('right')}
                 disabled={!canScrollRight}
-                className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all ${
+                aria-label="Next service"
+                className={`w-10 h-10 rounded-xl border flex items-center justify-center transition-all ${
                   canScrollRight
-                    ? 'bg-[#050608]/90 border-white/20 text-[#8DC63F] hover:bg-[#8DC63F] hover:text-[#050608] hover:border-[#8DC63F] shadow-lg active:scale-95'
+                    ? 'bg-[#050608]/90 border-white/20 text-[#8DC63F] hover:bg-[#8DC63F] hover:text-[#050608] hover:border-[#8DC63F] shadow-lg active:scale-95 cursor-pointer'
                     : 'bg-[#050608]/40 border-white/5 text-white/20 cursor-not-allowed'
                 }`}
-                aria-label="Next service"
               >
-                <ChevronRight className="w-4 h-4" />
+                <ChevronRight className="w-5 h-5" />
               </button>
             </div>
           </div>
         </div>
 
         {/* ============================================================ */}
-        {/* ONE COMMON MAIN IMAGE SHOWCASE BANNER */}
-        {/* ============================================================ */}
-        <div className="relative w-full h-[180px] sm:h-[230px] lg:h-[280px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 shadow-2xl group">
-          <Image
-            src="/images/turnkey-solutions-main.webp"
-            alt="Vision Energy Turnkey Engineering Solutions & Operations UAE"
-            fill
-            sizes="(max-width: 1280px) 100vw, 1280px"
-            className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-          />
-
-          {/* Cinematic Scrim Overlays for Depth and Contrast */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0E17]/95 via-[#0A0E17]/40 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0A0E17]/90 via-[#0A0E17]/35 to-transparent" />
-
-          {/* Floating Badges inside Banner */}
-          <div className="absolute top-3 left-3 sm:top-5 sm:left-6 flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#050608]/85 backdrop-blur-md border border-white/15 text-[11px] sm:text-xs font-semibold text-white shadow-lg">
-              <span className="w-2 h-2 rounded-full bg-[#8DC63F] animate-pulse" />
-              <span>Turnkey Engineering Operations • UAE & GCC</span>
-            </span>
-            <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0B65B3]/30 backdrop-blur-md border border-[#0B65B3]/40 text-xs font-semibold text-[#8DC63F]">
-              DEWA • SEWA • Civil Defense Compliant
-            </span>
-          </div>
-
-          {/* Bottom Content inside Banner */}
-          <div className="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4">
-            <div>
-              <p className="text-[10px] sm:text-xs uppercase tracking-widest text-[#8DC63F] font-bold mb-1">
-                Integrated Capabilities
-              </p>
-              <h3 className="text-base sm:text-2xl font-bold text-white tracking-tight leading-tight">
-                Single-Source Accountability for Engineering Infrastructure
-              </h3>
-            </div>
-            <div className="flex items-center gap-2 text-[11px] sm:text-xs font-semibold text-white/80 shrink-0">
-              <span className="px-2.5 py-1 rounded-lg bg-white/10 backdrop-blur-md border border-white/15">
-                {CAROUSEL_SERVICES.length} Core Disciplines
-              </span>
-              <span className="px-2.5 py-1 rounded-lg bg-[#8DC63F]/20 text-[#8DC63F] border border-[#8DC63F]/30">
-                Swipe to Explore →
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* ============================================================ */}
-        {/* HORIZONTAL SLIDING CAROUSEL OF SERVICE CARDS */}
+        {/* HORIZONTAL CAROUSEL WITH PREVIOUS ARCHITECTURAL CARD DESIGN  */}
         {/* ============================================================ */}
         <div className="relative">
           {/* Edge Fade Gradients for Desktop */}
           <div
-            className={`hidden lg:block absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-[#0D1117] to-transparent z-10 pointer-events-none transition-opacity duration-300 ${
+            className={`hidden lg:block absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-[#0D1117] to-transparent z-20 pointer-events-none transition-opacity duration-300 ${
               canScrollLeft ? 'opacity-100' : 'opacity-0'
             }`}
           />
           <div
-            className={`hidden lg:block absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-[#0D1117] to-transparent z-10 pointer-events-none transition-opacity duration-300 ${
+            className={`hidden lg:block absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-[#0D1117] to-transparent z-20 pointer-events-none transition-opacity duration-300 ${
               canScrollRight ? 'opacity-100' : 'opacity-0'
             }`}
           />
@@ -352,74 +340,90 @@ export default function ServicesCarouselClient({
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseLeave}
-            className="flex gap-4 sm:gap-5 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory py-2 cursor-grab active:cursor-grabbing select-none"
+            className="flex gap-6 sm:gap-7 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pt-2 pb-8 cursor-grab active:cursor-grabbing select-none items-stretch"
             style={{
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
               WebkitOverflowScrolling: 'touch',
             }}
           >
-            {CAROUSEL_SERVICES.map((service, idx) => {
+            {CAROUSEL_SERVICES.map((service) => {
               const IconComponent = service.icon;
 
               return (
                 <div
                   key={service.id}
-                  className="w-[82vw] min-w-[260px] max-w-[320px] sm:w-[320px] lg:w-[360px] shrink-0 snap-start"
+                  className="w-[84vw] min-w-[280px] max-w-[340px] sm:w-[350px] md:w-[370px] lg:w-[380px] shrink-0 snap-start flex flex-col"
                 >
                   <Link
                     href={service.href}
                     onClick={handleCardClick}
-                    className="group relative flex flex-col justify-between h-full p-5 sm:p-6 lg:p-7 rounded-2xl bg-[#0A0E17]/90 hover:bg-[#0A0E17] backdrop-blur-xl border border-white/[0.1] hover:border-[#8DC63F]/60 transition-all duration-300 shadow-xl hover:shadow-[0_12px_35px_rgba(141,198,63,0.15)] hover:-translate-y-1"
+                    className="group relative flex flex-col h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded-[24px]"
                   >
-                    <div>
-                      {/* Top Row: Index Badge & Icon */}
-                      <div className="flex items-center justify-between mb-5">
-                        <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#050608] border border-white/10 text-xs font-semibold text-white">
-                          <span className="font-mono text-[#8DC63F] font-bold text-[11px]">
-                            {service.number}
-                          </span>
-                          <span className="text-white/20">•</span>
-                          <span className="text-white/60 text-[11px] uppercase tracking-wider">
-                            Services
-                          </span>
-                        </div>
+                    {/* Top Image Container with High-Res Photography */}
+                    <div className="relative w-full h-[240px] sm:h-[260px] lg:h-[280px] rounded-[20px] overflow-hidden bg-[#050608] border border-white/[0.08] shadow-xl group-hover:border-[#8DC63F]/40 transition-all duration-500">
+                      <Image
+                        src={service.image.url}
+                        alt={service.image.alt}
+                        fill
+                        className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                        sizes="(max-width: 640px) 85vw, (max-width: 1024px) 370px, 380px"
+                      />
 
-                        <div className="w-10 h-10 rounded-xl bg-[#050608] border border-white/10 flex items-center justify-center text-[#8DC63F] group-hover:border-[#8DC63F]/60 group-hover:scale-105 transition-all shadow-md">
-                          <IconComponent className="w-5 h-5" />
-                        </div>
-                      </div>
+                      {/* Gradient Overlay for Depth */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/40 pointer-events-none" />
 
-                      {/* Eyebrow */}
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F]" />
-                        <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#8DC63F]">
-                          {service.eyebrow}
+                      {/* Top Floating Badge: Index & Icon */}
+                      <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#050608]/85 backdrop-blur-md border border-white/15 text-xs font-semibold text-white shadow-lg">
+                        <span className="font-mono text-[#8DC63F] font-bold text-[11px]">
+                          {service.number}
                         </span>
+                        <span className="text-white/20">•</span>
+                        <IconComponent className="w-3.5 h-3.5 text-white/90" />
                       </div>
 
-                      {/* Service Title */}
-                      <h4 className="text-lg sm:text-xl lg:text-[22px] font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-[1.3] mb-3">
-                        {service.title}
-                      </h4>
-
-                      {/* Concise Description */}
-                      <p className="text-[13px] sm:text-sm text-[#E2E8F0] font-normal leading-relaxed line-clamp-3 mb-4">
-                        {service.summary}
-                      </p>
+                      {/* Top Right Quick Action Indicator */}
+                      <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-[#050608]/80 backdrop-blur-md border border-white/15 flex items-center justify-center text-white/70 group-hover:text-[#8DC63F] group-hover:border-[#8DC63F]/50 group-hover:scale-110 transition-all duration-300 shadow-lg">
+                        <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                      </div>
                     </div>
 
-                    {/* Bottom Meta & Read More */}
-                    <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between">
-                      {/* Standard Pill Tag */}
-                      <span className="text-[11px] font-semibold text-white/70 bg-white/[0.06] border border-white/10 px-2.5 py-1 rounded-full truncate max-w-[170px]">
-                        {service.metaChip}
-                      </span>
+                    {/* Overlapping Elevated Architectural Card */}
+                    <div className="-mt-16 sm:-mt-18 relative z-10 mx-2.5 sm:mx-3.5 flex-1 flex flex-col justify-between p-5 sm:p-6 lg:p-7 rounded-[20px] bg-[#0A0E17]/95 backdrop-blur-xl border border-white/[0.1] shadow-[0_20px_50px_rgba(0,0,0,0.85)] group-hover:border-[#8DC63F]/50 group-hover:shadow-[0_25px_60px_rgba(0,0,0,0.95),0_0_35px_rgba(141,198,63,0.12)] group-hover:-translate-y-1 transition-all duration-500">
+                      <div>
+                        {/* Eyebrow Category */}
+                        <div className="flex items-center gap-2 mb-3">
+                          <span className="w-2 h-2 rounded-full bg-[#8DC63F] animate-pulse" />
+                          <span className="text-[12px] sm:text-[13px] font-bold uppercase tracking-wider text-[#8DC63F]">
+                            {service.eyebrow}
+                          </span>
+                        </div>
 
-                      {/* Action Arrow */}
-                      <div className="flex items-center gap-1 text-xs font-bold text-[#8DC63F] group-hover:text-white transition-colors shrink-0">
-                        <span>Details</span>
-                        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                        {/* Service Title */}
+                        <h3 className="text-xl sm:text-[22px] lg:text-[23px] font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-[1.3] mb-3">
+                          {service.title}
+                        </h3>
+
+                        {/* Service Summary */}
+                        <p className="text-[14px] sm:text-[14px] lg:text-[15px] text-[#E2E8F0] font-normal leading-[1.6] line-clamp-3">
+                          {service.summary}
+                        </p>
+                      </div>
+
+                      {/* Bottom Action Area: Read More with Animated Underline */}
+                      <div className="mt-5 pt-4 border-t border-white/[0.08] flex items-center justify-between">
+                        <div className="relative inline-flex items-center gap-2 text-sm sm:text-base font-bold text-white group-hover:text-[#8DC63F] transition-colors">
+                          <span>Read More</span>
+                          <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#8DC63F] group-hover:translate-x-1.5 transition-transform duration-300" />
+                          <span className="absolute -bottom-1 left-0 w-8 h-[2px] bg-[#8DC63F] group-hover:w-full transition-all duration-300 rounded-full" />
+                        </div>
+
+                        {/* Subtle Meta Chip / Standards Indicator */}
+                        {service.metaChip && (
+                          <span className="text-[11px] sm:text-xs font-semibold text-white/70 bg-white/[0.08] border border-white/10 px-2.5 py-1 rounded-full transition-colors truncate max-w-[130px] sm:max-w-[150px]">
+                            {service.metaChip}
+                          </span>
+                        )}
                       </div>
                     </div>
                   </Link>
@@ -430,12 +434,13 @@ export default function ServicesCarouselClient({
         </div>
 
         {/* ============================================================ */}
-        {/* CAROUSEL PAGINATION DOTS (Interactive for Mobile & Desktop) */}
+        {/* CAROUSEL PAGINATION DOTS (Interactive) */}
         {/* ============================================================ */}
-        <div className="flex items-center justify-center gap-1.5 pt-2">
+        <div className="flex items-center justify-center gap-1.5 pt-1">
           {CAROUSEL_SERVICES.map((_, i) => (
             <button
               key={i}
+              type="button"
               onClick={() => scrollToIndex(i)}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 activeIndex === i
@@ -446,9 +451,7 @@ export default function ServicesCarouselClient({
             />
           ))}
         </div>
-
       </div>
     </section>
   );
 }
-
