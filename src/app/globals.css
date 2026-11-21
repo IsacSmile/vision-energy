@@ -924,6 +924,45 @@ html.light .group:hover .rounded-\[20px\].bg-\[\#0A0E17\]\/95 {
   box-shadow: 0 20px 35px -6px rgba(0, 0, 0, 0.12), 0 8px 16px -4px rgba(141, 198, 63, 0.15) !important;
 }
 
+/* Carousel Navigation Buttons - Visible disabled arrow states */
+.carousel-nav-btn:disabled {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}
+
+html.light .carousel-nav-btn:disabled {
+  background-color: #F8FAFC !important;
+  border-color: #E2E8F0 !important;
+  color: #94A3B8 !important;
+}
+
+html.light .carousel-nav-btn:disabled svg {
+  color: #94A3B8 !important;
+  stroke: #94A3B8 !important;
+}
+
+html.light .carousel-nav-btn:not(:disabled) {
+  background-color: #FFFFFF !important;
+  border-color: #CBD5E1 !important;
+  color: #8DC63F !important;
+}
+
+html.light .carousel-nav-btn:not(:disabled) svg {
+  color: #8DC63F !important;
+  stroke: #8DC63F !important;
+}
+
+html.light .carousel-nav-btn:not(:disabled):hover {
+  background-color: #8DC63F !important;
+  border-color: #8DC63F !important;
+  color: #050608 !important;
+}
+
+html.light .carousel-nav-btn:not(:disabled):hover svg {
+  color: #050608 !important;
+  stroke: #050608 !important;
+}
+
 html.light .partner-marquee-container {
   border-color: rgba(212, 175, 55, 0.40) !important;
   box-shadow: 0 4px 20px -2px rgba(212, 175, 55, 0.12) !important;

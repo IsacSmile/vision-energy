@@ -292,13 +292,13 @@ export default function ServicesCarouselClient({
                 onClick={() => scroll('left')}
                 disabled={!canScrollLeft}
                 aria-label="Previous service"
-                className={`w-10 h-10 rounded-xl border flex items-center justify-center transition-all ${
+                className={`carousel-nav-btn w-10 h-10 rounded-xl border flex items-center justify-center transition-all ${
                   canScrollLeft
-                    ? 'bg-[#050608]/90 border-white/20 text-[#8DC63F] hover:bg-[#8DC63F] hover:text-[#050608] hover:border-[#8DC63F] shadow-lg active:scale-95 cursor-pointer'
-                    : 'bg-[#050608]/40 border-white/5 text-white/20 cursor-not-allowed'
+                    ? 'bg-white border-slate-300 text-[#8DC63F] hover:bg-[#8DC63F] hover:text-[#050608] hover:border-[#8DC63F] dark:bg-[#0A0E17] dark:border-white/20 dark:text-[#8DC63F] dark:hover:bg-[#8DC63F] dark:hover:text-[#050608] dark:hover:border-[#8DC63F] shadow-sm hover:shadow-md active:scale-95 cursor-pointer'
+                    : 'bg-slate-100 border-slate-200 text-slate-400 dark:bg-[#0A0E17]/40 dark:border-white/10 dark:text-white/30 cursor-not-allowed opacity-60'
                 }`}
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="w-5 h-5 stroke-[2.2]" />
               </button>
 
               <button
@@ -306,13 +306,13 @@ export default function ServicesCarouselClient({
                 onClick={() => scroll('right')}
                 disabled={!canScrollRight}
                 aria-label="Next service"
-                className={`w-10 h-10 rounded-xl border flex items-center justify-center transition-all ${
+                className={`carousel-nav-btn w-10 h-10 rounded-xl border flex items-center justify-center transition-all ${
                   canScrollRight
-                    ? 'bg-[#050608]/90 border-white/20 text-[#8DC63F] hover:bg-[#8DC63F] hover:text-[#050608] hover:border-[#8DC63F] shadow-lg active:scale-95 cursor-pointer'
-                    : 'bg-[#050608]/40 border-white/5 text-white/20 cursor-not-allowed'
+                    ? 'bg-white border-slate-300 text-[#8DC63F] hover:bg-[#8DC63F] hover:text-[#050608] hover:border-[#8DC63F] dark:bg-[#0A0E17] dark:border-white/20 dark:text-[#8DC63F] dark:hover:bg-[#8DC63F] dark:hover:text-[#050608] dark:hover:border-[#8DC63F] shadow-sm hover:shadow-md active:scale-95 cursor-pointer'
+                    : 'bg-slate-100 border-slate-200 text-slate-400 dark:bg-[#0A0E17]/40 dark:border-white/10 dark:text-white/30 cursor-not-allowed opacity-60'
                 }`}
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-5 h-5 stroke-[2.2]" />
               </button>
             </div>
           </div>
