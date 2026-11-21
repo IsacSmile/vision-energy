@@ -518,6 +518,7 @@ function ProductForm({
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<ProductEnquiryInput>({
     resolver: zodResolver(productEnquirySchema),
@@ -530,6 +531,17 @@ function ProductForm({
       consent: false,
     },
   });
+
+  useEffect(() => {
+    reset({
+      categoryCode: context.categoryCode || 'GENERAL',
+      categoryTitle: context.categoryTitle || 'General Product Enquiry',
+      message: context.prefillMessage || '',
+      phone: '+971 ',
+      sourceUrl: typeof window !== 'undefined' ? window.location.href : '',
+      consent: false,
+    });
+  }, [context, reset]);
 
   const onSubmit = async (data: ProductEnquiryInput) => {
     setSubmitting(true);

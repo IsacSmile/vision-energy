@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { Package } from "lucide-react";
+import { Package, MessageSquare } from "lucide-react";
 import type { ProductItem } from "@/lib/data/product-items";
 import { getCategoryPlaceholder } from "@/lib/utils/placeholders";
+import { useEnquiryModal } from "@/components/modals/EnquiryModalProvider";
 
 interface ProductItemCardProps {
   product: ProductItem;
@@ -11,6 +12,17 @@ interface ProductItemCardProps {
 }
 
 export function ProductItemCard({ product, view = "grid" }: ProductItemCardProps) {
+  const { openProductModal } = useEnquiryModal();
+
+  const handleEnquire = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    openProductModal({
+      categoryCode: product.code,
+      categoryTitle: product.title,
+      prefillMessage: `I would like to enquire about ${product.title} (SKU: ${product.code}). Please share pricing, availability, and technical documentation.`,
+    });
+  };
+
   // Resolve image URL, alt text, and placeholder flag
   const fallback = getCategoryPlaceholder(product.category, product.subcategoryGroup, product.title);
   const imageUrl = product.imageUrl || fallback.imageUrl;
@@ -19,7 +31,10 @@ export function ProductItemCard({ product, view = "grid" }: ProductItemCardProps
 
   if (view === "list") {
     return (
-      <div className="group relative flex flex-col sm:flex-row items-center overflow-hidden rounded-xl border border-slate-800 bg-slate-900/80 transition-all duration-300 hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/10 p-3 sm:p-4 gap-4">
+      <div
+        onClick={handleEnquire}
+        className="group relative flex flex-col sm:flex-row items-center overflow-hidden rounded-xl border border-slate-800 bg-slate-900/80 transition-all duration-300 hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/10 p-3 sm:p-4 gap-4 cursor-pointer"
+      >
         {/* Fixed size thumbnail for list view */}
         <div className="relative aspect-[4/3] w-full sm:w-36 shrink-0 overflow-hidden rounded-lg bg-slate-950 border border-slate-800 p-1 flex items-center justify-center">
           <Image
@@ -54,6 +69,14 @@ export function ProductItemCard({ product, view = "grid" }: ProductItemCardProps
                 {product.subcategoryGroup}
               </span>
             </div>
+            <button
+              type="button"
+              onClick={handleEnquire}
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0B65B3] hover:bg-[#095292] text-white text-xs font-bold transition-all border border-[#8DC63F]/40"
+            >
+              <MessageSquare className="w-3.5 h-3.5 text-[#8DC63F]" />
+              <span>Enquire</span>
+            </button>
           </div>
 
           <h3 className="text-base font-bold text-white transition-colors group-hover:text-emerald-400">
@@ -64,18 +87,28 @@ export function ProductItemCard({ product, view = "grid" }: ProductItemCardProps
             {product.description}
           </p>
 
-          {product.includes && product.includes.length > 0 && (
-            <div className="flex flex-wrap gap-1 pt-1">
-              {product.includes.slice(0, 4).map((inc, i) => (
-                <span
-                  key={i}
-                  className="rounded bg-slate-800/60 px-2 py-0.5 text-[10px] text-slate-300 border border-slate-700/50"
-                >
-                  {inc}
-                </span>
-              ))}
-            </div>
-          )}
+          <div className="flex items-center justify-between gap-2 pt-1">
+            {product.includes && product.includes.length > 0 && (
+              <div className="flex flex-wrap gap-1">
+                {product.includes.slice(0, 4).map((inc, i) => (
+                  <span
+                    key={i}
+                    className="rounded bg-slate-800/60 px-2 py-0.5 text-[10px] text-slate-300 border border-slate-700/50"
+                  >
+                    {inc}
+                  </span>
+                ))}
+              </div>
+            )}
+            <button
+              type="button"
+              onClick={handleEnquire}
+              className="sm:hidden inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#0B65B3] hover:bg-[#095292] text-white text-xs font-bold transition-all border border-[#8DC63F]/40 ml-auto"
+            >
+              <MessageSquare className="w-3 h-3 text-[#8DC63F]" />
+              <span>Enquire</span>
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -83,7 +116,10 @@ export function ProductItemCard({ product, view = "grid" }: ProductItemCardProps
 
   // Grid view (Default)
   return (
-    <div className="group relative flex flex-col overflow-hidden rounded-xl border border-slate-800 bg-slate-900/80 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/10">
+    <div
+      onClick={handleEnquire}
+      className="group relative flex flex-col overflow-hidden rounded-xl border border-slate-800 bg-slate-900/80 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/10 cursor-pointer"
+    >
       {/* Aspect ratio image container */}
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-950 p-2 flex items-center justify-center">
         <Image
@@ -150,6 +186,18 @@ export function ProductItemCard({ product, view = "grid" }: ProductItemCardProps
             </div>
           </div>
         )}
+
+        {/* 1-Click Enquire Action Button */}
+        <div className="pt-4 mt-2 border-t border-slate-800/60">
+          <button
+            type="button"
+            onClick={handleEnquire}
+            className="w-full py-2.5 px-4 rounded-lg bg-[#0B65B3]/20 hover:bg-[#0B65B3] text-[#8DC63F] hover:text-white border border-[#0B65B3]/40 hover:border-[#8DC63F] text-xs font-bold flex items-center justify-center gap-2 transition-all duration-200"
+          >
+            <MessageSquare className="w-3.5 h-3.5" />
+            <span>Enquire for this SKU</span>
+          </button>
+        </div>
       </div>
     </div>
   );

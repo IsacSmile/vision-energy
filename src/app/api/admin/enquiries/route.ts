@@ -34,13 +34,13 @@ export async function GET(request: Request) {
       if (startDate || endDate) where.createdAt = dateFilter;
       if (search) {
         where.OR = [
-          { reference: { contains: search } },
-          { name: { contains: search } },
-          { email: { contains: search } },
-          { phone: { contains: search } },
-          { company: { contains: search } },
-          { categoryCode: { contains: search } },
-          { categoryTitle: { contains: search } },
+          { reference: { contains: search, mode: 'insensitive' } },
+          { name: { contains: search, mode: 'insensitive' } },
+          { email: { contains: search, mode: 'insensitive' } },
+          { phone: { contains: search, mode: 'insensitive' } },
+          { company: { contains: search, mode: 'insensitive' } },
+          { categoryCode: { contains: search, mode: 'insensitive' } },
+          { categoryTitle: { contains: search, mode: 'insensitive' } },
         ];
       }
 
@@ -65,14 +65,14 @@ export async function GET(request: Request) {
       if (startDate || endDate) where.createdAt = dateFilter;
       if (search) {
         where.OR = [
-          { reference: { contains: search } },
-          { name: { contains: search } },
-          { email: { contains: search } },
-          { phone: { contains: search } },
-          { company: { contains: search } },
-          { serviceSlug: { contains: search } },
-          { serviceTitle: { contains: search } },
-          { emirate: { contains: search } },
+          { reference: { contains: search, mode: 'insensitive' } },
+          { name: { contains: search, mode: 'insensitive' } },
+          { email: { contains: search, mode: 'insensitive' } },
+          { phone: { contains: search, mode: 'insensitive' } },
+          { company: { contains: search, mode: 'insensitive' } },
+          { serviceSlug: { contains: search, mode: 'insensitive' } },
+          { serviceTitle: { contains: search, mode: 'insensitive' } },
+          { emirate: { contains: search, mode: 'insensitive' } },
         ];
       }
 
