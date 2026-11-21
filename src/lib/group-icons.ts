@@ -14,7 +14,17 @@ import {
   Package,
   Tag,
   Boxes,
-  LucideIcon,
+  FlaskConical,
+  Beaker,
+  Pipette,
+  Gauge,
+  Microscope,
+  Armchair,
+  Snowflake,
+  ShieldCheck,
+  Sparkles,
+  Activity,
+  type LucideIcon,
 } from 'lucide-react';
 
 export const GROUP_LABELS: Record<string, string> = {
@@ -33,6 +43,19 @@ export const GROUP_LABELS: Record<string, string> = {
   SF: 'Safety Marking & PPE',
   PK: 'Packaging',
   ID: 'Identification & Engraving',
+  // Laboratory Equipment Groups
+  LE: 'General Laboratory Equipment',
+  LPE: 'Laboratory PPE & Safety Supplies',
+  LG: 'Laboratory Glassware & Plasticware',
+  LH: 'Liquid Handling & Sample Preparation',
+  LC: 'Laboratory Consumables & Accessories',
+  LM: 'Measurement & Monitoring Instruments',
+  MO: 'Microscopes & Optical Instruments',
+  LF: 'Laboratory Furniture & Storage',
+  TS: 'Temperature-Controlled Storage',
+  LS: 'Laboratory Safety & Containment Systems',
+  WS: 'Water Purification & Sterilization',
+  AT: 'Analytical & Industrial Testing Instruments',
 };
 
 export const GROUP_ICONS: Record<string, LucideIcon> = {
@@ -51,6 +74,19 @@ export const GROUP_ICONS: Record<string, LucideIcon> = {
   SF: HardHat,
   PK: Package,
   ID: Tag,
+  // Laboratory Equipment Icons
+  LE: FlaskConical,
+  LPE: ShieldAlert,
+  LG: Beaker,
+  LH: Pipette,
+  LC: Boxes,
+  LM: Gauge,
+  MO: Microscope,
+  LF: Armchair,
+  TS: Snowflake,
+  LS: ShieldCheck,
+  WS: Sparkles,
+  AT: Activity,
 };
 
 export function getGroupIcon(groupPrefix: string): LucideIcon {

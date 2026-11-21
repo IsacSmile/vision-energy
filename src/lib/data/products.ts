@@ -2,6 +2,7 @@ import "server-only";
 import { db, withDbRetry } from "@/lib/db";
 import { unstable_cache } from "next/cache";
 import { FALLBACK_CATEGORIES } from "@/lib/fallback-categories";
+import { getGroupLabel } from "@/lib/group-icons";
 
 function formatCategoryRecord(cat: any) {
   if (!cat) return null;
@@ -41,34 +42,7 @@ const FORMATTED_FALLBACK_CATEGORIES = FALLBACK_CATEGORIES.map((c) =>
     slug: c.slug,
     group: c.groupPrefix,
     groupPrefix: c.groupPrefix,
-    groupLabel:
-      c.groupPrefix === "LP"
-        ? "Lightning Protection"
-        : c.groupPrefix === "ER"
-        ? "Earthing & Grounding"
-        : c.groupPrefix === "LT"
-        ? "Specialized Lighting"
-        : c.groupPrefix === "CM"
-        ? "Cable Management"
-        : c.groupPrefix === "CB"
-        ? "Cables & Connectivity"
-        : c.groupPrefix === "CT"
-        ? "Conduits & Trunking"
-        : c.groupPrefix === "EL"
-        ? "Electrical Components"
-        : c.groupPrefix === "EN"
-        ? "Solar & Energy"
-        : c.groupPrefix === "ME"
-        ? "Mechanical & HVAC"
-        : c.groupPrefix === "SG"
-        ? "Security & Fire Systems"
-        : c.groupPrefix === "HW"
-        ? "Hardware & Fasteners"
-        : c.groupPrefix === "SF"
-        ? "Safety Marking"
-        : c.groupPrefix === "PK"
-        ? "Packaging Supplies"
-        : "Equipment Identification",
+    groupLabel: getGroupLabel(c.groupPrefix),
     sortOrder: c.sortOrder,
     priority: c.groupPrefix === "LP" || c.groupPrefix === "ER",
     title: c.title,

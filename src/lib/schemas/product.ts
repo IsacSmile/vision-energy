@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const PRODUCT_CATEGORIES = ["Electrical", "Mechanical", "Solar"] as const;
+export const PRODUCT_CATEGORIES = ["Electrical", "Mechanical", "Solar", "Laboratory"] as const;
 export type ProductCategoryType = (typeof PRODUCT_CATEGORIES)[number];
 
 export const productSchema = z
@@ -31,7 +31,7 @@ export const productSchema = z
       .min(1, "At least 1 included item is required")
       .max(15, "At most 15 included items allowed"),
     category: z.enum(PRODUCT_CATEGORIES, {
-      message: "Category must be Electrical, Mechanical, or Solar",
+      message: "Category must be Electrical, Mechanical, Solar, or Laboratory",
     }),
     subcategoryGroup: z
       .string()

@@ -40,13 +40,16 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   );
 
   return {
-    title: "Electrical Equipment, Earthing & Lightning Protection Products Dubai UAE | Vision Energy",
+    title: "Engineering Supplies, Laboratory Equipment & Electrical Products Dubai UAE | Vision Energy",
     description:
-      "Explore 57 certified product categories across lightning protection, low-resistance earthing, industrial electrical cables, heavy-duty clamps, and generator equipment in Dubai & UAE. Compliant with DEWA, SEWA & Civil Defense.",
+      "Explore certified product categories across lightning protection, earthing, electrical cables, generator machinery, and laboratory equipment in Dubai & UAE. Compliant with DEWA, SEWA & Civil Defense.",
     keywords: [
       "Lightning Protection Products Dubai",
       "Earthing Materials UAE",
       "Electrical Equipment Dubai",
+      "Laboratory Equipment Dubai UAE",
+      "General Laboratory Equipment UAE",
+      "Laboratory Glassware Dubai",
       "Exothermic Welding Supplies UAE",
       "Cable Trays and Supports Dubai",
       "Industrial Generator Equipment UAE",
@@ -57,9 +60,9 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
       canonical: "https://www.visionenergyme.com/products",
     },
     openGraph: {
-      title: "Electrical Equipment, Earthing & Lightning Protection Products Dubai UAE | Vision Energy",
+      title: "Engineering Supplies, Laboratory Equipment & Electrical Products Dubai UAE | Vision Energy",
       description:
-        "Explore 57 certified product categories across lightning protection, low-resistance earthing, industrial electrical cables, and generator equipment in Dubai & UAE.",
+        "Explore certified product categories across lightning protection, earthing, industrial electrical supplies, and comprehensive laboratory equipment in Dubai & UAE.",
       url: "https://www.visionenergyme.com/products",
       type: "website",
       images: [
@@ -73,9 +76,9 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
     },
     twitter: {
       card: "summary_large_image",
-      title: "Electrical Equipment, Earthing & Lightning Protection Products Dubai UAE | Vision Energy",
+      title: "Engineering Supplies, Laboratory Equipment & Electrical Products Dubai UAE | Vision Energy",
       description:
-        "Explore 57 certified product categories across lightning protection, earthing, electrical cables, and generator equipment in Dubai & UAE.",
+        "Explore certified product categories across lightning protection, earthing, electrical supplies, and laboratory equipment in Dubai & UAE.",
       images: ["https://www.visionenergyme.com/images/products-collage-banner.jpg"],
     },
     robots: hasQueryParams

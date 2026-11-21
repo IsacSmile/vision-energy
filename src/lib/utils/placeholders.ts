@@ -53,6 +53,15 @@ export function getCategoryPlaceholder(
     subLower.includes("panel")
   ) {
     placeholderPath = "/placeholders/electrical-generic.svg";
+  } else if (
+    catLower.includes("laboratory") ||
+    catLower.includes("lab") ||
+    subLower.includes("laboratory") ||
+    subLower.includes("glassware") ||
+    subLower.includes("microscope") ||
+    titleLower.includes("laboratory")
+  ) {
+    placeholderPath = "/placeholders/fallback-generic.svg";
   }
 
   const sampleTitle = title || subcategoryGroupOrTitle || category || "Product";

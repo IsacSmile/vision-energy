@@ -522,5 +522,509 @@ export const FALLBACK_CATEGORIES: FallbackCategory[] = [
     title: "Engraved Plates and Equipment Identification",
     description: "Custom engraved plates, cable tags, warning labels and equipment identification solutions for electrical, industrial and safety applications.",
     families: "Engraved labels; stainless-steel plates; aluminium tags; traffolyte labels; cable markers; danger signs; asset tags; equipment nameplates"
+  },
+  {
+    code: "LE-01",
+    slug: "laboratory-balances",
+    groupPrefix: "LE",
+    sortOrder: 58,
+    title: "Laboratory Balances",
+    description: "Laboratory balances are precision weighing instruments designed to measure the mass of samples and materials accurately for research, testing, educational and industrial laboratory applications.",
+    families: "Analytical balances; precision balances; weighing scale"
+  },
+  {
+    code: "LE-02",
+    slug: "heating-and-stirring-equipment",
+    groupPrefix: "LE",
+    sortOrder: 59,
+    title: "Heating and Stirring Equipment",
+    description: "Heating and stirring equipment are essential laboratory instruments used to heat, mix and maintain substances at controlled temperatures",
+    families: "Hotplates; magnetic stirrers; dry block heaters"
+  },
+  {
+    code: "LE-03",
+    slug: "mixing-and-shaking-equipment",
+    groupPrefix: "LE",
+    sortOrder: 60,
+    title: "Mixing and Shaking Equipment",
+    description: "Mixing and shaking equipment are laboratory instruments used to blend, agitate and homogenize samples and solutions",
+    families: "Vortex mixers; orbital shakers; laboratory mixers"
+  },
+  {
+    code: "LE-04",
+    slug: "centrifuges-and-cleaning-equipment",
+    groupPrefix: "LE",
+    sortOrder: 61,
+    title: "Centrifuges and Cleaning Equipment",
+    description: "Equipment used for sample separation and cleaning laboratory instruments, glassware and accessories.",
+    families: "Bench centrifuges; ultrasonic cleaners"
+  },
+  {
+    code: "LE-05",
+    slug: "ovens-and-incubators",
+    groupPrefix: "LE",
+    sortOrder: 62,
+    title: "Ovens and Incubators",
+    description: "Laboratory ovens and incubators provide precise temperature control for drying, heating, sterilization and sample incubation across research, testing and industrial applications.",
+    families: "Drying ovens; laboratory incubators; heating chambers"
+  },
+  {
+    code: "LE-06",
+    slug: "vacuum-equipment",
+    groupPrefix: "LE",
+    sortOrder: 63,
+    title: "Vacuum Equipment",
+    description: "Equipment designed for vacuum filtration, drying, degassing and sample preparation in laboratory applications.",
+    families: "Vacuum pumps; desiccators; vacuum accessories"
+  },
+  {
+    code: "LPE-01",
+    slug: "laboratory-gloves",
+    groupPrefix: "LPE",
+    sortOrder: 64,
+    title: "Laboratory Gloves",
+    description: "Protective gloves designed for safe handling of laboratory materials and substances.",
+    families: "Nitrile; latex; chemical-resistant; heat-resistant gloves"
+  },
+  {
+    code: "LPE-02",
+    slug: "protective-clothing",
+    groupPrefix: "LPE",
+    sortOrder: 65,
+    title: "Protective Clothing",
+    description: "Protective clothing designed to ensure safety and hygiene in laboratory environments.",
+    families: "Lab coats; gowns; coveralls; protective aprons"
+  },
+  {
+    code: "LPE-03",
+    slug: "masks-and-respirators",
+    groupPrefix: "LPE",
+    sortOrder: 66,
+    title: "Masks and Respirators",
+    description: "Protective masks and respirators designed to reduce exposure to airborne particles and contaminants.",
+    families: "Surgical masks; N95; FFP2; FFP3; respirators"
+  },
+  {
+    code: "LPE-04",
+    slug: "eye-and-face-protection",
+    groupPrefix: "LPE",
+    sortOrder: 67,
+    title: "Eye and Face Protection",
+    description: "Protective eyewear and face shields designed to safeguard against chemical splashes, particles and laboratory hazards.",
+    families: "Safety goggles; glasses; face shields"
+  },
+  {
+    code: "LPE-05",
+    slug: "foot-protection",
+    groupPrefix: "LPE",
+    sortOrder: 68,
+    title: "Foot Protection",
+    description: "Protective footwear designed to safeguard against spills, impact and workplace hazards in laboratory environments.",
+    families: "Safety shoes; chemical-resistant boots; shoe covers"
+  },
+  {
+    code: "LPE-06",
+    slug: "head-protection",
+    groupPrefix: "LPE",
+    sortOrder: 69,
+    title: "Head Protection",
+    description: "Protective headwear engineered for reliable impact protection and workplace safety.",
+    families: "Bouffant caps; hair covers; hoods; beard covers"
+  },
+  {
+    code: "LG-01",
+    slug: "laboratory-glassware",
+    groupPrefix: "LG",
+    sortOrder: 70,
+    title: "Laboratory Glassware",
+    description: "High-quality laboratory glassware designed for accurate measurements, reliable experimentation, and safe handling of chemicals.",
+    families: "Beakers; flasks; measuring cylinders; funnels"
+  },
+  {
+    code: "LG-02",
+    slug: "tubes-and-bottles",
+    groupPrefix: "LG",
+    sortOrder: 71,
+    title: "Tubes and Bottles",
+    description: "Durable, high-quality laboratory tubes and bottles designed for secure sample storage, handling, and reliable laboratory applications.",
+    families: "Test tubes; reagent bottles; sample bottles"
+  },
+  {
+    code: "LG-03",
+    slug: "laboratory-plasticware",
+    groupPrefix: "LG",
+    sortOrder: 72,
+    title: "Laboratory Plasticware",
+    description: "High-quality laboratory plasticware designed for safe sample handling, storage, and efficient everyday laboratory applications.",
+    families: "Petri dishes; plastic containers; wash bottles"
+  },
+  {
+    code: "LG-04",
+    slug: "storage-and-handling-accessories",
+    groupPrefix: "LG",
+    sortOrder: 73,
+    title: "Storage and Handling Accessories",
+    description: "Reliable laboratory storage and handling solutions designed for organized sample management, secure storage, and efficient laboratory workflows.",
+    families: "Tube racks; bottle carriers; laboratory storage boxes"
+  },
+  {
+    code: "LH-01",
+    slug: "pipettes-and-micropipettes",
+    groupPrefix: "LH",
+    sortOrder: 74,
+    title: "Pipettes and Micropipettes",
+    description: "Precision-engineered pipettes and micropipettes designed for accurate liquid measurement, controlled dispensing, and reliable laboratory applications.",
+    families: "Manual pipettes; adjustable micropipettes; accessories"
+  },
+  {
+    code: "LH-02",
+    slug: "pipette-tips-and-tubes",
+    groupPrefix: "LH",
+    sortOrder: 75,
+    title: "Pipette Tips and Tubes",
+    description: "High-quality pipette tips and tubes designed for precise liquid handling, secure sample collection, and contamination-free laboratory workflows.",
+    families: "Pipette tips; centrifuge tubes; microtubes"
+  },
+  {
+    code: "LH-03",
+    slug: "liquid-dispensing-equipment",
+    groupPrefix: "LH",
+    sortOrder: 76,
+    title: "Liquid Dispensing Equipment",
+    description: "Reliable liquid dispensing solutions designed for precise volume control, consistent delivery, and efficient laboratory operations.",
+    families: "Bottle-top dispensers; pipette controllers"
+  },
+  {
+    code: "LH-04",
+    slug: "sample-preparation-accessories",
+    groupPrefix: "LH",
+    sortOrder: 77,
+    title: "Sample Preparation Accessories",
+    description: "Essential laboratory accessories designed for efficient sample preparation, accurate processing, and reliable results across various testing applications.",
+    families: "Cuvettes; weighing boats; sample handling accessories"
+  },
+  {
+    code: "LC-01",
+    slug: "microscope-slides-and-cover-slips",
+    groupPrefix: "LC",
+    sortOrder: 78,
+    title: "Microscope Slides and Cover Slips",
+    description: "High-quality microscope slides and cover slips designed for clear specimen observation, precise microscopy, and reliable laboratory analysis.",
+    families: "Glass slides; cover slips; slide accessories"
+  },
+  {
+    code: "LC-02",
+    slug: "filter-papers-and-membranes",
+    groupPrefix: "LC",
+    sortOrder: 79,
+    title: "Filter Papers and Membranes",
+    description: "High-performance filtration solutions designed for efficient particle separation, sample purification, and consistent laboratory results.",
+    families: "Filter papers; membrane filters; filtration accessories"
+  },
+  {
+    code: "LC-03",
+    slug: "sealing-and-labelling-products",
+    groupPrefix: "LC",
+    sortOrder: 80,
+    title: "Sealing and Labelling Products",
+    description: "Reliable sealing and labelling solutions designed for secure sample protection, clear identification, and organized laboratory storage.",
+    families: "Sealing films; laboratory labels; identification accessories"
+  },
+  {
+    code: "LC-04",
+    slug: "general-laboratory-consumables",
+    groupPrefix: "LC",
+    sortOrder: 81,
+    title: "General Laboratory Consumables",
+    description: "Essential laboratory consumables designed to support everyday testing, sample handling, and smooth, efficient laboratory operations.",
+    families: "Laboratory wipes; disposable accessories; cleaning supplies"
+  },
+  {
+    code: "LM-01",
+    slug: "ph-and-conductivity-meters",
+    groupPrefix: "LM",
+    sortOrder: 82,
+    title: "pH and Conductivity Meters",
+    description: "Precision measuring instruments designed for accurate pH and conductivity testing, reliable monitoring, and consistent laboratory analysis.",
+    families: "Digital pH meters; conductivity measurement instruments"
+  },
+  {
+    code: "LM-02",
+    slug: "temperature-and-humidity-instruments",
+    groupPrefix: "LM",
+    sortOrder: 83,
+    title: "Temperature and Humidity Instruments",
+    description: "Reliable monitoring instruments designed for accurate temperature and humidity measurement, environmental control, and consistent laboratory conditions.",
+    families: "Thermometers; temperature meters; humidity meters"
+  },
+  {
+    code: "LM-03",
+    slug: "data-loggers-and-monitoring-systems",
+    groupPrefix: "LM",
+    sortOrder: 84,
+    title: "Data Loggers and Monitoring Systems",
+    description: "Advanced monitoring solutions designed for continuous data recording, accurate measurement tracking, and reliable environmental monitoring.",
+    families: "Data loggers; temperature monitors; alarms"
+  },
+  {
+    code: "LM-04",
+    slug: "timers-and-measuring-accessories",
+    groupPrefix: "LM",
+    sortOrder: 85,
+    title: "Timers and Measuring Accessories",
+    description: "Precision timing and measuring tools designed for accurate measurements, controlled laboratory procedures, and efficient experimental workflows.",
+    families: "Digital timers; stopwatches; measurement accessories"
+  },
+  {
+    code: "MO-01",
+    slug: "optical-microscopes",
+    groupPrefix: "MO",
+    sortOrder: 86,
+    title: "Optical Microscopes",
+    description: "High-performance optical microscopes designed for clear magnification, detailed specimen observation, and precise laboratory examination.",
+    families: "Compound; binocular; monocular microscopes"
+  },
+  {
+    code: "MO-02",
+    slug: "digital-microscopes",
+    groupPrefix: "MO",
+    sortOrder: 87,
+    title: "Digital Microscopes",
+    description: "Advanced digital microscopes designed for high-resolution imaging, real-time specimen viewing, and accurate analysis with enhanced visual clarity.",
+    families: "Digital microscopes; imaging systems"
+  },
+  {
+    code: "MO-03",
+    slug: "microscope-accessories",
+    groupPrefix: "MO",
+    sortOrder: 88,
+    title: "Microscope Accessories",
+    description: "Essential microscope accessories designed to enhance imaging performance, improve functionality, and support accurate specimen observation.",
+    families: "Objective lenses; eyepieces; illumination systems"
+  },
+  {
+    code: "LF-01",
+    slug: "laboratory-benches-and-worktops",
+    groupPrefix: "LF",
+    sortOrder: 89,
+    title: "Laboratory Benches and Worktops",
+    description: "Durable, chemical-resistant laboratory work surfaces designed for safe experimentation, efficient workflows, and long-lasting performance.",
+    families: "Wall benches; island benches; worktops"
+  },
+  {
+    code: "LF-02",
+    slug: "laboratory-cabinets",
+    groupPrefix: "LF",
+    sortOrder: 90,
+    title: "Laboratory Cabinets",
+    description: "Durable laboratory storage cabinets designed for safe equipment organization, secure chemical storage, and efficient use of workspace.",
+    families: "Storage cabinets; mobile pedestals; cupboards"
+  },
+  {
+    code: "LF-03",
+    slug: "instrument-tables-and-workstations",
+    groupPrefix: "LF",
+    sortOrder: 91,
+    title: "Instrument Tables and Workstations",
+    description: "Sturdy, ergonomic workstations designed to support laboratory instruments, optimize workspace organization, and ensure stable, efficient operations.",
+    families: "Instrument tables; balance tables; workstations"
+  },
+  {
+    code: "LF-04",
+    slug: "laboratory-furniture-accessories",
+    groupPrefix: "LF",
+    sortOrder: 92,
+    title: "Laboratory Furniture Accessories",
+    description: "Functional laboratory accessories designed to enhance workspace organization, improve furniture usability, and support safe, efficient laboratory operations.",
+    families: "Stools; shelving; sinks; taps; drying racks"
+  },
+  {
+    code: "TS-01",
+    slug: "laboratory-refrigerators",
+    groupPrefix: "TS",
+    sortOrder: 93,
+    title: "Laboratory Refrigerators",
+    description: "High-performance laboratory refrigeration systems designed for precise temperature control and safe storage of samples, reagents, and sensitive materials.",
+    families: "Laboratory refrigerators; sample storage refrigerators"
+  },
+  {
+    code: "TS-02",
+    slug: "laboratory-freezers",
+    groupPrefix: "TS",
+    sortOrder: 94,
+    title: "Laboratory Freezers",
+    description: "Reliable laboratory freezing systems designed for stable low-temperature storage and preservation of sensitive samples, biological materials, and reagents.",
+    families: "Upright; chest laboratory freezers"
+  },
+  {
+    code: "TS-03",
+    slug: "ultra-low-temperature-storage",
+    groupPrefix: "TS",
+    sortOrder: 95,
+    title: "Ultra-Low Temperature Storage",
+    description: "Advanced ultra-low temperature storage solutions designed for long-term preservation of sensitive biological samples, vaccines, and laboratory materials.",
+    families: "Ultra-low-temperature freezers; storage systems"
+  },
+  {
+    code: "TS-04",
+    slug: "storage-monitoring-accessories",
+    groupPrefix: "TS",
+    sortOrder: 96,
+    title: "Storage Monitoring Accessories",
+    description: "Reliable monitoring accessories designed to track storage conditions, maintain temperature stability, and ensure the safe preservation of laboratory materials.",
+    families: "Temperature alarms; monitoring systems; storage racks"
+  },
+  {
+    code: "LS-01",
+    slug: "fume-cupboards",
+    groupPrefix: "LS",
+    sortOrder: 97,
+    title: "Fume Cupboards",
+    description: "High-performance fume cupboards designed to safely extract hazardous fumes,  vapours , and airborne contaminants, ensuring a safer laboratory working environment.",
+    families: "Laboratory fume hoods; exhaust containment systems"
+  },
+  {
+    code: "LS-02",
+    slug: "biological-safety-cabinets",
+    groupPrefix: "LS",
+    sortOrder: 98,
+    title: "Biological Safety Cabinets",
+    description: "Advanced containment systems designed to protect personnel, samples, and the laboratory environment from biological hazards during sensitive procedures.",
+    families: "Biological safety cabinets; containment workstations"
+  },
+  {
+    code: "LS-03",
+    slug: "emergency-safety-equipment",
+    groupPrefix: "LS",
+    sortOrder: 99,
+    title: "Emergency Safety Equipment",
+    description: "Essential emergency safety solutions designed for rapid response, hazard control, and protection of laboratory personnel in critical situations.",
+    families: "Eyewash stations; safety showers; eyewash bottles"
+  },
+  {
+    code: "LS-04",
+    slug: "chemical-storage-and-safety-cabinets",
+    groupPrefix: "LS",
+    sortOrder: 100,
+    title: "Chemical Storage and Safety Cabinets",
+    description: "Specialized safety cabinets designed for secure chemical storage, hazardous material containment, and improved laboratory safety and organization.",
+    families: "Chemical storage cabinets; hazardous material storage"
+  },
+  {
+    code: "LS-05",
+    slug: "spill-and-waste-management-supplies",
+    groupPrefix: "LS",
+    sortOrder: 101,
+    title: "Spill and Waste Management Supplies",
+    description: "Essential spill control and waste management solutions designed for safe hazardous material handling, effective spill containment, and responsible laboratory waste disposal.",
+    families: "Spill kits; biohazard bags; sharps containers"
+  },
+  {
+    code: "WS-01",
+    slug: "water-purification-systems",
+    groupPrefix: "WS",
+    sortOrder: 102,
+    title: "Water Purification Systems",
+    description: "Advanced water purification solutions designed to deliver high-quality purified water for accurate testing, reliable experiments, and diverse laboratory applications.",
+    families: "Laboratory water purification; ultrapure water systems"
+  },
+  {
+    code: "WS-02",
+    slug: "filtration-systems",
+    groupPrefix: "WS",
+    sortOrder: 103,
+    title: "Filtration Systems",
+    description: "Advanced filtration solutions designed to remove impurities, separate contaminants, and deliver clean, high-quality water for reliable laboratory applications.",
+    families: "Water filtration units; laboratory filtration equipment"
+  },
+  {
+    code: "WS-03",
+    slug: "glassware-washing-equipment",
+    groupPrefix: "WS",
+    sortOrder: 104,
+    title: "Glassware Washing Equipment",
+    description: "Efficient glassware cleaning systems designed to remove residues, ensure thorough washing, and maintain hygiene for reliable laboratory use.",
+    families: "Automatic laboratory glassware washers"
+  },
+  {
+    code: "WS-04",
+    slug: "sterilization-equipment",
+    groupPrefix: "WS",
+    sortOrder: 105,
+    title: "Sterilization Equipment",
+    description: "Reliable sterilization solutions designed to eliminate microorganisms, ensure effective decontamination, and maintain safe, hygienic laboratory environments.",
+    families: "Laboratory autoclaves; steam sterilizers"
+  },
+  {
+    code: "WS-05",
+    slug: "laboratory-drying-systems",
+    groupPrefix: "WS",
+    sortOrder: 106,
+    title: "Laboratory Drying Systems",
+    description: "High-performance drying solutions designed for efficient moisture removal, controlled drying processes, and reliable preparation of laboratory equipment and materials.",
+    families: "Glassware drying cabinets; drying accessories"
+  },
+  {
+    code: "AT-01",
+    slug: "spectroscopy-instruments",
+    groupPrefix: "AT",
+    sortOrder: 107,
+    title: "Spectroscopy Instruments",
+    description: "Advanced analytical instruments designed for precise material identification, chemical composition analysis, and accurate measurement across diverse laboratory applications.",
+    families: "UV-Visible; FTIR spectroscopy systems"
+  },
+  {
+    code: "AT-02",
+    slug: "chromatography-systems",
+    groupPrefix: "AT",
+    sortOrder: 108,
+    title: "Chromatography Systems",
+    description: "Advanced chromatography solutions designed for precise compound separation, chemical analysis, and reliable identification of components in complex samples.",
+    families: "HPLC; gas chromatography systems"
+  },
+  {
+    code: "AT-03",
+    slug: "elemental-analysis-instruments",
+    groupPrefix: "AT",
+    sortOrder: 109,
+    title: "Elemental Analysis Instruments",
+    description: "High-precision analytical instruments designed to determine elemental composition, measure chemical concentrations, and deliver accurate results for laboratory testing and research.",
+    families: "Atomic absorption spectrometers; related instruments"
+  },
+  {
+    code: "AT-04",
+    slug: "physical-and-particle-analysis",
+    groupPrefix: "AT",
+    sortOrder: 110,
+    title: "Physical and Particle Analysis",
+    description: "Advanced analytical instruments designed to measure physical properties, characterize particle size and distribution, and ensure accurate material analysis across laboratory applications.",
+    families: "Moisture  analysers; particle measurement instruments"
+  },
+  {
+    code: "AT-05",
+    slug: "concrete-and-cement-testing",
+    groupPrefix: "AT",
+    sortOrder: 111,
+    title: "Concrete and Cement Testing",
+    description: "Reliable testing equipment designed to evaluate concrete strength, cement properties, durability, and quality to ensure compliance with construction standards.",
+    families: "Compression testing machines; cement testing apparatus"
+  },
+  {
+    code: "AT-06",
+    slug: "soil-and-aggregate-testing",
+    groupPrefix: "AT",
+    sortOrder: 112,
+    title: "Soil and Aggregate Testing",
+    description: "Precision testing equipment designed to evaluate soil properties, aggregate characteristics, compaction, and strength for reliable geotechnical and construction quality assessments.",
+    families: "Soil testing apparatus; aggregate testing; sieve shakers"
+  },
+  {
+    code: "AT-07",
+    slug: "industrial-inspection-instruments",
+    groupPrefix: "AT",
+    sortOrder: 113,
+    title: "Industrial Inspection Instruments",
+    description: "Advanced inspection instruments designed for accurate defect detection, material evaluation, and quality assessment to ensure industrial safety and operational reliability.",
+    families: "Coating thickness gauges; hardness testers; inspection tools"
   }
 ];
