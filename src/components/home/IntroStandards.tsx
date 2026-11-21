@@ -104,62 +104,52 @@ export default function IntroStandards({ productCategoryCount }: IntroStandardsP
           {/* Right Column (7/12 split on lg+) */}
           <div className="lg:col-span-7 space-y-5 pt-2 lg:pt-0">
             <Reveal staggerIndex={1} className="space-y-3.5">
-              <p className="text-base md:text-lg text-[#A9B4C0] leading-[1.7]">
+              <p className="text-base md:text-lg text-slate-600 dark:text-[#A9B4C0] leading-[1.7]">
                 Founded in 2018, Vision Energy International supplies electrical, mechanical and renewable energy solutions to construction, MEP, oil and gas, and renewable energy projects across the GCC. Our portfolio also includes laboratory and gym equipment and specialize in lightning protection and earthing systems.
               </p>
-              <p className="text-base md:text-lg text-[#A9B4C0] leading-[1.7]">
+              <p className="text-base md:text-lg text-slate-600 dark:text-[#A9B4C0] leading-[1.7]">
                 As an authorised agent and distributor for specialist products in the UAE, we draw on over a decade of industry experience to help clients select equipment that meets project specifications, applicable international standards and local regulatory requirements.
               </p>
             </Reveal>
 
             {/* 3 Plain Facts (stacked cleanly on mobile and desktop) */}
-            <div className="grid grid-cols-3 gap-3 sm:gap-6 pt-5 border-t border-white/[0.08]">
+            <div className="grid grid-cols-3 gap-3 sm:gap-6 pt-5 border-t border-slate-200/80 dark:border-white/[0.08]">
               <div className="space-y-1">
-                <span className="block text-xl sm:text-2xl font-bold text-white">2018</span>
-                <span className="block text-[10px] sm:text-xs uppercase tracking-wider text-[#A9B4C0]">Established</span>
+                <span className="block text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">2018</span>
+                <span className="block text-[10px] sm:text-xs uppercase tracking-wider text-slate-500 dark:text-[#A9B4C0]">Established</span>
               </div>
-              <div className="space-y-1 border-l border-white/[0.08] pl-3 sm:pl-6">
-                <span className="block text-xl sm:text-2xl font-bold text-white">UAE and GCC</span>
-                <span className="block text-[10px] sm:text-xs uppercase tracking-wider text-[#A9B4C0]">Coverage</span>
+              <div className="space-y-1 border-l border-slate-200/80 dark:border-white/[0.08] pl-3 sm:pl-6">
+                <span className="block text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">UAE and GCC</span>
+                <span className="block text-[10px] sm:text-xs uppercase tracking-wider text-slate-500 dark:text-[#A9B4C0]">Coverage</span>
               </div>
-              <div className="space-y-1 border-l border-white/[0.08] pl-3 sm:pl-6">
-                <span className="block text-xl sm:text-2xl font-bold text-white">Multiple</span>
-                <span className="block text-[10px] sm:text-xs uppercase tracking-wider text-[#A9B4C0] truncate">Product categories</span>
+              <div className="space-y-1 border-l border-slate-200/80 dark:border-white/[0.08] pl-3 sm:pl-6">
+                <span className="block text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">Multiple</span>
+                <span className="block text-[10px] sm:text-xs uppercase tracking-wider text-slate-500 dark:text-[#A9B4C0] truncate">Product categories</span>
               </div>
             </div>
           </div>
         </div>
 
         {/* Compact, High-Visibility Standards & Authority Compliance Cards */}
-        <div className="pt-6 border-t border-white/[0.08]">
+        <div className="pt-6 border-t border-slate-200/80 dark:border-white/[0.08]">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 max-w-6xl mx-auto">
-            {/* Card 1: LPS Standards (Compact & Easily Visible) */}
+            {/* Card 1: LPS Standards (Clean White Card with Lightweight Border & Smooth Shadow) */}
             <Reveal staggerIndex={2}>
-              <div className="group relative h-full rounded-2xl bg-[#0D1117]/95 border border-white/10 hover:border-[#8DC63F]/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(141,198,63,0.12)] p-4 sm:p-5 flex flex-col justify-between overflow-hidden">
-                {/* Glowing Ambient Gradient on Card Hover */}
-                <div
-                  className="absolute inset-0 bg-gradient-to-br from-[#0B65B3]/5 via-transparent to-[#8DC63F]/5 group-hover:from-[#0B65B3]/10 group-hover:to-[#8DC63F]/10 transition-all duration-300 pointer-events-none"
-                  aria-hidden="true"
-                />
-
+              <div className="standards-clean-card group relative h-full rounded-2xl bg-white dark:bg-[#0D1117] border border-slate-200/90 dark:border-white/10 shadow-sm hover:shadow-md hover:border-[#8DC63F]/50 transition-all duration-300 hover:-translate-y-1 p-4 sm:p-5 flex flex-col justify-between overflow-hidden">
                 <div className="relative z-10 space-y-3.5">
-                  {/* Compact Card Header */}
-                  <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
+                  {/* Card Header (Without 7 Codes Badge) */}
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-200/80 dark:border-white/[0.08]">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-lg bg-[#0B65B3]/20 border border-[#0B65B3]/35 flex items-center justify-center text-[#8DC63F] group-hover:bg-[#8DC63F] group-hover:text-black transition-colors duration-300">
+                      <div className="w-8 h-8 rounded-lg bg-[#0B65B3]/10 dark:bg-[#0B65B3]/20 border border-[#0B65B3]/25 dark:border-[#0B65B3]/35 flex items-center justify-center text-[#0B65B3] dark:text-[#8DC63F] group-hover:bg-[#8DC63F] group-hover:text-black transition-colors duration-300">
                         <ShieldCheck className="w-4 h-4" />
                       </div>
                       <div>
-                        <h3 className="text-base sm:text-lg font-bold text-white tracking-tight flex items-center gap-2">
-                          <span>LPS Standards</span>
+                        <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight">
+                          LPS Standards
                         </h3>
-                        <p className="text-[11px] text-[#A9B4C0]">International Engineering Codes</p>
+                        <p className="text-[11px] text-slate-500 dark:text-[#A9B4C0]">International Engineering Codes</p>
                       </div>
                     </div>
-
-                    <span className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-[#8DC63F]/10 text-[#8DC63F] border border-[#8DC63F]/25 shrink-0">
-                      7 Codes
-                    </span>
                   </div>
 
                   {/* Standards 2-Column Compact Grid */}
@@ -169,19 +159,19 @@ export default function IntroStandards({ productCategoryCount }: IntroStandardsP
                       return (
                         <div
                           key={idx}
-                          className={`group/item flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-white/[0.025] hover:bg-white/[0.07] border border-white/[0.06] hover:border-[#8DC63F]/50 transition-all duration-200 hover:scale-[1.01] cursor-default ${
+                          className={`group/item flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-slate-50/80 hover:bg-slate-100/90 dark:bg-white/[0.025] dark:hover:bg-white/[0.07] border border-slate-200/70 dark:border-white/[0.06] hover:border-[#8DC63F]/50 transition-all duration-200 hover:scale-[1.01] cursor-default ${
                             isLastOdd ? 'sm:col-span-2' : ''
                           }`}
                         >
                           <div className="flex items-center gap-2 min-w-0">
-                            <div className="w-5 h-5 rounded bg-[#0B65B3]/20 flex items-center justify-center shrink-0 text-[#8DC63F] group-hover/item:text-white">
+                            <div className="w-5 h-5 rounded bg-[#0B65B3]/10 dark:bg-[#0B65B3]/20 flex items-center justify-center shrink-0 text-[#0B65B3] dark:text-[#8DC63F] group-hover/item:text-[#8DC63F]">
                               <Zap className="w-3 h-3" />
                             </div>
                             <div className="min-w-0">
-                              <span className="block text-xs sm:text-[13px] font-bold text-white group-hover/item:text-[#8DC63F] transition-colors truncate">
+                              <span className="block text-xs sm:text-[13px] font-bold text-slate-900 dark:text-white group-hover/item:text-[#0B65B3] dark:group-hover/item:text-[#8DC63F] transition-colors truncate">
                                 {std.code}
                               </span>
-                              <span className="block text-[10px] text-[#94A3B8] group-hover/item:text-[#CBD5E1] transition-colors truncate">
+                              <span className="block text-[10px] text-slate-500 dark:text-[#94A3B8] group-hover/item:text-slate-700 dark:group-hover/item:text-[#CBD5E1] transition-colors truncate">
                                 {std.title}
                               </span>
                             </div>
@@ -196,43 +186,33 @@ export default function IntroStandards({ productCategoryCount }: IntroStandardsP
                 </div>
 
                 {/* Bottom Compact Assurance Strip */}
-                <div className="relative z-10 mt-3.5 pt-2.5 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-[#94A3B8]">
-                  <span className="flex items-center gap-1.5 text-white/80">
+                <div className="relative z-10 mt-3.5 pt-2.5 border-t border-slate-200/80 dark:border-white/[0.06] flex items-center justify-between text-[11px] text-slate-500 dark:text-[#94A3B8]">
+                  <span className="flex items-center gap-1.5 text-slate-700 dark:text-white/80">
                     <CheckCircle2 className="w-3.5 h-3.5 text-[#8DC63F]" />
                     <span>Technical Submittals Included</span>
                   </span>
-                  <span className="text-[#8DC63F] font-medium">100% IEC / BS Adherent</span>
+                  <span className="text-[#0B65B3] dark:text-[#8DC63F] font-medium">100% IEC / BS Adherent</span>
                 </div>
               </div>
             </Reveal>
 
-            {/* Card 2: Authority Compliance (Compact & Easily Visible) */}
+            {/* Card 2: Authority Compliance (Clean White Card with Lightweight Border & Smooth Shadow) */}
             <Reveal staggerIndex={3}>
-              <div className="group relative h-full rounded-2xl bg-[#0D1117]/95 border border-white/10 hover:border-[#0B65B3]/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(11,101,179,0.15)] p-4 sm:p-5 flex flex-col justify-between overflow-hidden">
-                {/* Glowing Ambient Gradient on Card Hover */}
-                <div
-                  className="absolute inset-0 bg-gradient-to-br from-[#8DC63F]/5 via-transparent to-[#0B65B3]/5 group-hover:from-[#8DC63F]/10 group-hover:to-[#0B65B3]/10 transition-all duration-300 pointer-events-none"
-                  aria-hidden="true"
-                />
-
+              <div className="standards-clean-card group relative h-full rounded-2xl bg-white dark:bg-[#0D1117] border border-slate-200/90 dark:border-white/10 shadow-sm hover:shadow-md hover:border-[#0B65B3]/50 transition-all duration-300 hover:-translate-y-1 p-4 sm:p-5 flex flex-col justify-between overflow-hidden">
                 <div className="relative z-10 space-y-3.5">
-                  {/* Compact Card Header */}
-                  <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
+                  {/* Card Header (Without 8 Authorities Badge) */}
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-200/80 dark:border-white/[0.08]">
                     <div className="flex items-center gap-2.5">
                       <div className="w-8 h-8 rounded-lg bg-[#8DC63F]/15 border border-[#8DC63F]/30 flex items-center justify-center text-[#8DC63F] group-hover:bg-[#8DC63F] group-hover:text-black transition-colors duration-300">
                         <Building2 className="w-4 h-4" />
                       </div>
                       <div>
-                        <h3 className="text-base sm:text-lg font-bold text-white tracking-tight flex items-center gap-2">
-                          <span>Authority Compliance</span>
+                        <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight">
+                          Authority Compliance
                         </h3>
-                        <p className="text-[11px] text-[#A9B4C0]">UAE Utility & Civil Defence Bodies</p>
+                        <p className="text-[11px] text-slate-500 dark:text-[#A9B4C0]">UAE Utility & Civil Defence Bodies</p>
                       </div>
                     </div>
-
-                    <span className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-[#0B65B3]/20 text-[#8DC63F] border border-[#0B65B3]/40 shrink-0">
-                      8 Authorities
-                    </span>
                   </div>
 
                   {/* Authorities 2-Column Compact Grid */}
@@ -240,17 +220,17 @@ export default function IntroStandards({ productCategoryCount }: IntroStandardsP
                     {AUTHORITY_COMPLIANCE.map((auth, idx) => (
                       <div
                         key={idx}
-                        className="group/item flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-white/[0.025] hover:bg-white/[0.07] border border-white/[0.06] hover:border-[#0B65B3]/60 transition-all duration-200 hover:scale-[1.01] cursor-default"
+                        className="group/item flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-slate-50/80 hover:bg-slate-100/90 dark:bg-white/[0.025] dark:hover:bg-white/[0.07] border border-slate-200/70 dark:border-white/[0.06] hover:border-[#0B65B3]/50 transition-all duration-200 hover:scale-[1.01] cursor-default"
                       >
                         <div className="flex items-center gap-2 min-w-0">
-                          <div className="w-5 h-5 rounded bg-[#8DC63F]/15 flex items-center justify-center shrink-0 text-[#8DC63F] group-hover/item:text-white">
+                          <div className="w-5 h-5 rounded bg-[#8DC63F]/15 flex items-center justify-center shrink-0 text-[#8DC63F] group-hover/item:text-[#0B65B3]">
                             <FileCheck className="w-3 h-3" />
                           </div>
                           <div className="min-w-0">
-                            <span className="block text-xs sm:text-[13px] font-bold text-white group-hover/item:text-[#8DC63F] transition-colors truncate">
+                            <span className="block text-xs sm:text-[13px] font-bold text-slate-900 dark:text-white group-hover/item:text-[#0B65B3] dark:group-hover/item:text-[#8DC63F] transition-colors truncate">
                               {auth.code}
                             </span>
-                            <span className="block text-[10px] text-[#94A3B8] group-hover/item:text-[#CBD5E1] transition-colors truncate">
+                            <span className="block text-[10px] text-slate-500 dark:text-[#94A3B8] group-hover/item:text-slate-700 dark:group-hover/item:text-[#CBD5E1] transition-colors truncate">
                               {auth.name}
                             </span>
                           </div>
@@ -264,12 +244,12 @@ export default function IntroStandards({ productCategoryCount }: IntroStandardsP
                 </div>
 
                 {/* Bottom Compact Assurance Strip */}
-                <div className="relative z-10 mt-3.5 pt-2.5 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-[#94A3B8]">
-                  <span className="flex items-center gap-1.5 text-white/80">
+                <div className="relative z-10 mt-3.5 pt-2.5 border-t border-slate-200/80 dark:border-white/[0.06] flex items-center justify-between text-[11px] text-slate-500 dark:text-[#94A3B8]">
+                  <span className="flex items-center gap-1.5 text-slate-700 dark:text-white/80">
                     <Award className="w-3.5 h-3.5 text-[#8DC63F]" />
                     <span>NOC Clearances Approved</span>
                   </span>
-                  <span className="text-[#8DC63F] font-medium">All UAE Emirates</span>
+                  <span className="text-[#0B65B3] dark:text-[#8DC63F] font-medium">All UAE Emirates</span>
                 </div>
               </div>
             </Reveal>
