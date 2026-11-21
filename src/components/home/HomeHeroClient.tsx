@@ -42,6 +42,26 @@ interface SlideData {
 
 const HERO_SLIDES: SlideData[] = [
   {
+    id: 'industrial-technical-products',
+    category: 'Industrial & Technical',
+    shortName: 'Industrial',
+    badge: 'Trusted Industrial Supplier',
+    badgeIcon: ShieldCheck,
+    titleLine1: 'A Trusted Supplier of',
+    titleLine2: 'Quality Industrial & Technical Products',
+    subtitle: 'Delivering Quality Products & Dependable Solutions',
+    description:
+      'Delivering quality products and dependable solutions to support industries, infrastructure and projects across diverse sectors.',
+    ctaText: 'Explore Products',
+    ctaLink: '/products?group=EL',
+    imageUrl: '/images/industrial-technical-products-hero.webp',
+    imageAlt:
+      'Vision Energy - A trusted supplier of quality industrial and technical products delivering dependable solutions across diverse sectors',
+    standards: 'DEWA • SEWA • Civil Defense Compliant',
+    highlightColor: 'text-[#8DC63F]',
+    glowColor: 'rgba(141,198,63,0.45)',
+  },
+  {
     id: 'lightning-protection',
     category: 'Lightning Protection',
     shortName: 'Lightning',
@@ -78,26 +98,6 @@ const HERO_SLIDES: SlideData[] = [
     imageAlt:
       'Vision Energy specialist engineers installing rooftop earthing and lightning copper grid network on UAE site',
     standards: 'IEEE 80 • BS 7430',
-    highlightColor: 'text-[#8DC63F]',
-    glowColor: 'rgba(141,198,63,0.45)',
-  },
-  {
-    id: 'industrial-technical-products',
-    category: 'Industrial & Technical',
-    shortName: 'Industrial',
-    badge: 'Trusted Industrial Supplier',
-    badgeIcon: ShieldCheck,
-    titleLine1: 'A Trusted Supplier of',
-    titleLine2: 'Quality Industrial & Technical Products',
-    subtitle: 'Delivering Quality Products & Dependable Solutions',
-    description:
-      'Delivering quality products and dependable solutions to support industries, infrastructure and projects across diverse sectors.',
-    ctaText: 'Explore Products',
-    ctaLink: '/products?group=EL',
-    imageUrl: '/images/industrial-technical-products-hero.webp',
-    imageAlt:
-      'Vision Energy - A trusted supplier of quality industrial and technical products delivering dependable solutions across diverse sectors',
-    standards: 'DEWA • SEWA • Civil Defense Compliant',
     highlightColor: 'text-[#8DC63F]',
     glowColor: 'rgba(141,198,63,0.45)',
   },
