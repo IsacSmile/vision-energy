@@ -77,7 +77,7 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isAdmin]);
 
-  // Update --header-offset and --navbar-h CSS variables on document root
+  // Update --header-offset CSS variable on document root for sticky elements
   useEffect(() => {
     if (isAdmin) return;
     if (typeof document !== 'undefined') {
@@ -86,19 +86,12 @@ export default function Header() {
         // When scrolled, main navbar is 100px desktop, 86px mobile
         const headerOffsetValue = isDesktop ? '100px' : '86px';
         document.documentElement.style.setProperty('--header-offset', headerOffsetValue);
-
-        if (headerRef.current && showTopNotch) {
-          const actualH = headerRef.current.offsetHeight;
-          if (actualH > 0) {
-            document.documentElement.style.setProperty('--navbar-h', `${actualH}px`);
-          }
-        }
       };
       updateHeaderOffset();
       window.addEventListener('resize', updateHeaderOffset);
       return () => window.removeEventListener('resize', updateHeaderOffset);
     }
-  }, [isAdmin, showTopNotch]);
+  }, [isAdmin]);
 
 
   // Lock body scroll on open, focus management, and restore focus on close

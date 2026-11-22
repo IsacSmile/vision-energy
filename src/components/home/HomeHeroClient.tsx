@@ -331,7 +331,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
       id="home-hero"
       data-hero-section="true"
       aria-label="Vision Energy Hero Image Slider"
-      className="relative w-full flex flex-col justify-between overflow-hidden bg-[#050608] mt-[var(--navbar-h,120px)] sm:mt-[var(--navbar-h,128px)] md:mt-[var(--navbar-h,134px)] lg:mt-[var(--navbar-h,140px)] xl:mt-[var(--navbar-h,144px)] h-[calc(100svh-var(--navbar-h,120px))] sm:h-[calc(100svh-var(--navbar-h,128px))] md:h-[calc(100svh-var(--navbar-h,134px))] lg:h-[calc(100svh-var(--navbar-h,140px))] xl:h-[calc(100svh-var(--navbar-h,144px))] min-h-[calc(100svh-var(--navbar-h,120px))] sm:min-h-[calc(100svh-var(--navbar-h,128px))] md:min-h-[calc(100svh-var(--navbar-h,134px))] lg:min-h-[calc(100svh-var(--navbar-h,140px))] xl:min-h-[calc(100svh-var(--navbar-h,144px))] pt-2 sm:pt-3 lg:pt-4 pb-2 sm:pb-3 lg:pb-4 px-2 sm:px-6 lg:px-8 select-none"
+      className="relative w-full flex flex-col justify-between overflow-hidden bg-[#050608] mt-[var(--navbar-h,120px)] sm:mt-[var(--navbar-h,128px)] md:mt-[var(--navbar-h,134px)] lg:mt-[var(--navbar-h,140px)] xl:mt-[var(--navbar-h,144px)] h-[calc(100svh-var(--navbar-h,120px))] sm:h-[calc(100svh-var(--navbar-h,128px))] md:h-[calc(100svh-var(--navbar-h,134px))] lg:h-[calc(100svh-var(--navbar-h,140px))] xl:h-[calc(100svh-var(--navbar-h,144px))] min-h-[calc(100svh-var(--navbar-h,120px))] sm:min-h-[calc(100svh-var(--navbar-h,128px))] md:min-h-[calc(100svh-var(--navbar-h,134px))] lg:min-h-[calc(100svh-var(--navbar-h,140px))] xl:min-h-[calc(100svh-var(--navbar-h,144px))] select-none"
       style={{
         height: 'calc(100svh - var(--navbar-h, 140px))',
         minHeight: 'calc(100svh - var(--navbar-h, 140px))',
@@ -343,13 +343,9 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
       onTouchEnd={handleTouchEnd}
     >
       {/* ============================================================ */}
-      {/* Centered Website-Width Hero Slider Card                      */}
+      {/* LAYER 1: Background Images Slider (Full-Width 100%)          */}
       {/* ============================================================ */}
-      <div className="relative w-full max-w-[80rem] mx-auto flex-1 flex flex-col justify-between overflow-hidden rounded-xl sm:rounded-2xl lg:rounded-3xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.85)] bg-[#090C12]">
-        {/* ============================================================ */}
-        {/* LAYER 1: Background Images Slider (Website Content Width)    */}
-        {/* ============================================================ */}
-        <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-0">
+      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-0">
           {HERO_SLIDES.map((slide, idx) => {
             const isActive = idx === currentSlide;
             // Don't render inactive slides in initial SSR HTML to save critical LCP network bandwidth
@@ -386,7 +382,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
         {/* ============================================================ */}
         {/* Mobile Top Segmented Progress Bar (Story-Style, GPU)         */}
         {/* ============================================================ */}
-        <div className="relative z-30 w-full px-3 sm:px-4 pt-2.5 lg:hidden">
+        <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 pt-2.5 lg:hidden">
           <div
             className="grid gap-2 w-full"
             style={{ gridTemplateColumns: `repeat(${totalSlides}, minmax(0, 1fr))` }}
@@ -418,7 +414,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
         {/* ============================================================ */}
         {/* LAYER 3: Main Content (Slide Details & CTAs)                 */}
         {/* ============================================================ */}
-        <div className="relative z-30 w-full px-5 sm:px-8 lg:px-10 my-auto flex-1 flex flex-col justify-center py-4 sm:py-6">
+        <div className="relative z-30 w-full max-w-[80rem] mx-auto px-5 sm:px-6 lg:px-8 my-auto flex-1 flex flex-col justify-center py-4 sm:py-6">
         <div className="max-w-[760px] text-left space-y-3 sm:space-y-4 lg:space-y-5">
           
 
@@ -551,7 +547,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
       {/* ============================================================ */}
       {/* Mobile Interactive Quick-Tabs & Stats Bar */}
       {/* ============================================================ */}
-      <div className="relative z-30 w-full px-3 sm:px-4 pb-[max(10px,env(safe-area-inset-bottom))] lg:hidden">
+      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 pb-[max(10px,env(safe-area-inset-bottom))] lg:hidden">
         
         {/* Mobile Quick Category Switcher Tabs */}
         <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none sm:grid sm:grid-cols-5 md:grid-cols-10 mb-2.5">
@@ -597,7 +593,6 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
             </span>
           </div>
         </div>
-      </div>
       </div>
     </section>
   );
