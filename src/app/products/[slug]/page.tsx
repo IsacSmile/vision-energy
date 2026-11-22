@@ -30,7 +30,8 @@ export async function generateStaticParams() {
 }
 
 export const dynamicParams = true;
-export const revalidate = 300;
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function generateMetadata({ params }: SlugPageProps): Promise<Metadata> {
   const { slug } = await resolveParams(params);

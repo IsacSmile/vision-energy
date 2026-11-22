@@ -103,7 +103,8 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   };
 }
 
-export const revalidate = 300;
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export default async function ProductsPage({ searchParams }: PageProps) {
   const params = await resolveSearchParams(searchParams);

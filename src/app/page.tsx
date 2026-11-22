@@ -61,7 +61,8 @@ export const metadata = {
   },
 };
 
-export const revalidate = 60; // ISR revalidation
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 // FAQ Schema for Rich Snippets & Voice Search in Dubai / UAE
 const faqSchema = {

@@ -54,7 +54,7 @@ const HERO_SLIDES: SlideData[] = [
       'Delivering quality products and dependable solutions to support industries, infrastructure and projects across diverse sectors.',
     ctaText: 'Explore Products',
     ctaLink: '/products?group=EL',
-    imageUrl: '/images/industrial-technical-products-hero.webp',
+    imageUrl: '/images/industrial-technical-products-hero.webp?v=20261122v3',
     imageAlt:
       'Vision Energy - A trusted supplier of quality industrial and technical products delivering dependable solutions across diverse sectors',
     standards: 'DEWA • SEWA • Civil Defense Compliant',
@@ -74,7 +74,7 @@ const HERO_SLIDES: SlideData[] = [
       'Lightning, a powerful force of nature, can cause severe damage. We provide comprehensive solutions to protect lives, structures, and equipment across the UAE.',
     ctaText: 'Explore Lightning',
     ctaLink: '/products?group=LP',
-    imageUrl: '/images/lightning-protection-hero-2nd-img.webp',
+    imageUrl: '/images/lightning-protection-hero-2nd-img.webp?v=20261122v3',
     imageAlt:
       'Vision Energy - The Lightning Protection Experts, certified lightning protection systems in UAE',
     standards: 'IEC 62305 • BS EN 62305 • NFC 17-102 • NFPA 780',
@@ -94,7 +94,7 @@ const HERO_SLIDES: SlideData[] = [
       'Engineered copper earthing grids and low-impedance grounding for maximum electrical safety across UAE soil conditions.',
     ctaText: 'Explore Earthing',
     ctaLink: '/products?group=ER',
-    imageUrl: '/images/earthing-grounding-hero.webp',
+    imageUrl: '/images/earthing-grounding-hero.webp?v=20261122v3',
     imageAlt:
       'Precision earthing and grounding solutions - Copper earth rods, exothermic welding, earth pit, and copper tape conductors',
     standards: 'IEEE 80 • BS 7430',
@@ -114,7 +114,7 @@ const HERO_SLIDES: SlideData[] = [
       'Advanced electrical and mechanical solutions for industrial and infrastructure applications.',
     ctaText: 'Explore Solutions',
     ctaLink: '/products?group=ME',
-    imageUrl: '/images/electrical-mechanical-solutions-hero.webp',
+    imageUrl: '/images/electrical-mechanical-solutions-hero.webp?v=20261122v3',
     imageAlt:
       'Advanced electrical and mechanical solutions for industrial and infrastructure applications UAE',
     standards: 'DEWA • SEWA • ISO 9001 Compliant',
@@ -134,7 +134,7 @@ const HERO_SLIDES: SlideData[] = [
       'Quality laboratory equipment, consumables and accessories for multiple applications.',
     ctaText: 'Explore Equipment',
     ctaLink: '/products?group=LE',
-    imageUrl: '/images/laboratory-equipment-hero.webp',
+    imageUrl: '/images/laboratory-equipment-hero.webp?v=20261122v3',
     imageAlt:
       'Complete laboratory equipments for better tomorrow - Quality laboratory equipment, consumables and accessories',
     standards: 'ISO 17025 • GLP • CE Certified',
@@ -154,7 +154,7 @@ const HERO_SLIDES: SlideData[] = [
       "Expert maintenance and repair solutions to keep your gym equipment safe, reliable, and performing at its best.",
     ctaText: 'Explore Gym & Fitness',
     ctaLink: '/products?group=SP',
-    imageUrl: '/images/gym-equipment-maintenance-hero.webp',
+    imageUrl: '/images/gym-equipment-maintenance-hero.webp?v=20261122v3',
     imageAlt:
       "Gym equipment maintenance services - Expert maintenance and repair solutions to keep your gym equipment safe, reliable, and performing at its best",
     standards: 'Certified Technicians • Preventive AMC • OEM Genuine Parts',
@@ -174,7 +174,7 @@ const HERO_SLIDES: SlideData[] = [
       'Reliable safety equipment solutions to ensure workplace protection, compliance and peace of mind.',
     ctaText: 'Explore Safety Products',
     ctaLink: '/products?group=SF',
-    imageUrl: '/images/safety-equipment-supply-hero.webp',
+    imageUrl: '/images/safety-equipment-supply-hero.webp?v=20261122v3',
     imageAlt:
       'Safety equipment supply - Reliable safety equipment solutions to ensure workplace protection, compliance and peace of mind',
     standards: 'EN 397 • ANSI Z87.1 • OSHA Compliant',
@@ -194,7 +194,7 @@ const HERO_SLIDES: SlideData[] = [
       'Reliable safety and packaging products ensuring workplace protection, product safety, and efficient handling.',
     ctaText: 'Explore Packaging',
     ctaLink: '/products?group=PK',
-    imageUrl: '/images/commercial-packaging-safety-hero.webp',
+    imageUrl: '/images/commercial-packaging-safety-hero.webp?v=20261122v3',
     imageAlt:
       'Safety Equipment & Commercial Packaging Solutions - Reliable safety and packaging products ensuring workplace protection, product safety, and efficient handling',
     standards: 'ISO 9001 • Eco-Friendly • Heavy Duty Material',
@@ -215,7 +215,7 @@ const HERO_SLIDES: SlideData[] = [
       'Premium sports products and accessories designed to support every game and fitness activity.',
     ctaText: 'Explore Sports Products',
     ctaLink: '/products?group=SP',
-    imageUrl: '/images/sports-equipment-solutions-hero.webp',
+    imageUrl: '/images/sports-equipment-solutions-hero.webp?v=20261122v3',
     imageAlt:
       'Sports Equipment & Accessories - Premium sports products and accessories designed to support every game and fitness activity',
     standards: 'FIFA • FIBA • ITF Approved Standards',
@@ -234,7 +234,7 @@ const HERO_SLIDES: SlideData[] = [
     description: 'One Company. Multiple Solutions. A Commitment to Quality.',
     ctaText: 'Explore All Solutions',
     ctaLink: '/products?group=EN',
-    imageUrl: '/images/delivering-excellence-multiple-sectors-hero.webp',
+    imageUrl: '/images/delivering-excellence-multiple-sectors-hero.webp?v=20261122v3',
     imageAlt:
       'Delivering Excellence Across Multiple Sectors - One Company. Multiple Solutions. A Commitment to Quality',
     standards: 'DEWA • SEWA • Civil Defense • ISO 9001 Compliant',
