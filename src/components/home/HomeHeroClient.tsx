@@ -331,8 +331,11 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
       id="home-hero"
       data-hero-section="true"
       aria-label="Vision Energy Hero Image Slider"
-      className="relative w-full h-[100svh] min-h-[100svh] flex flex-col justify-between overflow-hidden bg-[#050608] pt-[var(--mobile-header-h,56px)] lg:pt-[var(--header-h,80px)] pb-2 sm:pb-4 lg:pb-6 px-2 sm:px-6 lg:px-8 select-none"
-      style={{ minHeight: '100svh', height: '100svh' }}
+      className="relative w-full flex flex-col justify-between overflow-hidden bg-[#050608] mt-[var(--navbar-h,120px)] sm:mt-[var(--navbar-h,128px)] md:mt-[var(--navbar-h,134px)] lg:mt-[var(--navbar-h,140px)] xl:mt-[var(--navbar-h,144px)] h-[calc(100svh-var(--navbar-h,120px))] sm:h-[calc(100svh-var(--navbar-h,128px))] md:h-[calc(100svh-var(--navbar-h,134px))] lg:h-[calc(100svh-var(--navbar-h,140px))] xl:h-[calc(100svh-var(--navbar-h,144px))] min-h-[calc(100svh-var(--navbar-h,120px))] sm:min-h-[calc(100svh-var(--navbar-h,128px))] md:min-h-[calc(100svh-var(--navbar-h,134px))] lg:min-h-[calc(100svh-var(--navbar-h,140px))] xl:min-h-[calc(100svh-var(--navbar-h,144px))] pt-2 sm:pt-3 lg:pt-4 pb-2 sm:pb-3 lg:pb-4 px-2 sm:px-6 lg:px-8 select-none"
+      style={{
+        height: 'calc(100svh - var(--navbar-h, 140px))',
+        minHeight: 'calc(100svh - var(--navbar-h, 140px))',
+      }}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
@@ -417,7 +420,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
         {/* LAYER 3: Main Content (Slide Details & CTAs)                 */}
         {/* ============================================================ */}
         <div className="relative z-30 w-full px-5 sm:px-8 lg:px-10 my-auto flex-1 flex flex-col justify-center py-4 sm:py-6">
-        <div className="max-w-[760px] text-left space-y-4 sm:space-y-6">
+        <div className="max-w-[760px] text-left space-y-3 sm:space-y-4 lg:space-y-5">
           
 
 
@@ -427,7 +430,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
             className="font-bold tracking-[-0.025em] leading-[1.16] sm:leading-[1.14] transition-all duration-400 animate-fadeIn text-left"
           >
             <span
-              className="block text-white text-[30px] sm:text-[40px] lg:text-[60px]"
+              className="block text-white text-[26px] min-[360px]:text-[28px] sm:text-[36px] lg:text-[44px] xl:text-[52px]"
               style={{
                 textShadow: '0 2px 14px rgba(5,6,8,0.95), 0 1px 3px rgba(5,6,8,0.8)',
               }}
@@ -435,7 +438,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
               {activeSlide.titleLine1}
             </span>
             <span
-              className={`block font-extrabold text-[30px] sm:text-[40px] lg:text-[60px] mt-1 ${activeSlide.highlightColor}`}
+              className={`block font-extrabold text-[26px] min-[360px]:text-[28px] sm:text-[36px] lg:text-[44px] xl:text-[52px] mt-1 ${activeSlide.highlightColor}`}
               style={{
                 textShadow: `0 0 24px ${activeSlide.glowColor}, 0 2px 12px rgba(5,6,8,0.95)`,
               }}

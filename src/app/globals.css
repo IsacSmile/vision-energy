@@ -5,8 +5,9 @@
 @layer base {
   :root {
     --font-poppins: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    --header-h: 118px;
-    --mobile-header-h: 92px;
+    --header-h: 140px;
+    --mobile-header-h: 120px;
+    --navbar-h: 120px;
     --mobile-bar-h: 56px;
     --bg-main: #050608;
     --bg-card: #0D1117;
@@ -19,6 +20,32 @@
     
     --text-primary: #FFFFFF;
     --text-muted: #A9B4C0;
+  }
+
+  @media (min-width: 640px) {
+    :root {
+      --navbar-h: 128px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    :root {
+      --navbar-h: 134px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    :root {
+      --header-h: 140px;
+      --navbar-h: 140px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    :root {
+      --header-h: 144px;
+      --navbar-h: 144px;
+    }
   }
 
   html {

@@ -19,6 +19,7 @@ export default function Header() {
   const toggleBtnRef = useRef<HTMLButtonElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
 
   const { openProductModal, openServiceModal } = useEnquiryModal();
   const isHome = pathname === '/';
@@ -76,7 +77,7 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isAdmin]);
 
-  // Update --header-offset CSS variable on document root for sticky elements
+  // Update --header-offset and --navbar-h CSS variables on document root
   useEffect(() => {
     if (isAdmin) return;
     if (typeof document !== 'undefined') {
@@ -85,12 +86,19 @@ export default function Header() {
         // When scrolled, main navbar is 100px desktop, 86px mobile
         const headerOffsetValue = isDesktop ? '100px' : '86px';
         document.documentElement.style.setProperty('--header-offset', headerOffsetValue);
+
+        if (headerRef.current && showTopNotch) {
+          const actualH = headerRef.current.offsetHeight;
+          if (actualH > 0) {
+            document.documentElement.style.setProperty('--navbar-h', `${actualH}px`);
+          }
+        }
       };
       updateHeaderOffset();
       window.addEventListener('resize', updateHeaderOffset);
       return () => window.removeEventListener('resize', updateHeaderOffset);
     }
-  }, [isAdmin]);
+  }, [isAdmin, showTopNotch]);
 
 
   // Lock body scroll on open, focus management, and restore focus on close
@@ -173,7 +181,7 @@ export default function Header() {
 
   return (
     <>
-      <header className={headerClasses}>
+      <header ref={headerRef} className={headerClasses}>
         {/* Top Notch / Sub-Header Utility Bar - Only shown at hero section, smoothly collapses on scroll away from hero */}
         <div
           className={`w-full bg-[#8DC63F] text-[#0A192F] z-50 border-b border-[#0A192F]/15 shadow-sm select-none transition-all duration-300 ease-in-out overflow-hidden ${
