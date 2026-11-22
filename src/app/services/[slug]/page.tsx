@@ -67,6 +67,13 @@ const SYSTEM_MODULE_MEDIA: Record<
     caption: string;
   }
 > = {
+  "Conventional Lightning Protection Systems": {
+    eyebrow: "EXTERNAL CONVENTIONAL PROTECTION",
+    body: "A standardized system comprising Franklin air rods, down conductors, and grounding networks. Engineered using Rolling Sphere, Protection Angle, and Faraday Mesh cage methods to safely intercept strikes and disperse energy to ground.",
+    image: "/images/conventional-mesh-faraday-cage-system.png",
+    caption:
+      "Conventional system: Franklin air terminals, roof mesh, continuous down conductors, test joints and low-impedance earth pits.",
+  },
   "Conventional Mesh / Faraday Cage Systems": {
     eyebrow: "EXTERNAL PROTECTION",
     body: "For buildings requiring multiple controlled paths for lightning energy, Vision Energy provides conventional protection using air terminals, roof conductor mesh, connected down conductors, test joints and a coordinated earthing network.",
@@ -74,12 +81,26 @@ const SYSTEM_MODULE_MEDIA: Record<
     caption:
       "Conventional mesh system: air terminals, roof mesh, continuous down conductors, test joints and earth pits.",
   },
+  "Early Streamer Emission (ESE) Systems": {
+    eyebrow: "ADVANCED ACTIVE PROTECTION",
+    body: "Advanced active ESE protection utilizing an ionizing triggering terminal with 4 operational modes (neutral, ionization, upward leader emission, interception) to emit an upward streamer earlier, securing an expansive protective radius to NFC 17-102.",
+    image: "/images/ese-coverage-concept.png",
+    caption:
+      "Early Streamer Emission (ESE) system: active ionizing terminal, elevated support mast, PVC-covered down conductors, and dedicated earth pits.",
+  },
   "ESE Coverage Concept": {
     eyebrow: "EXTERNAL PROTECTION",
     body: "For suitable structures, an ESE terminal can be incorporated into a complete external lightning protection solution. The terminal is installed on a mast above the highest protected plane, with PVC-covered copper down conductors, test points, equipotential bonding and a dedicated lightning earthing system. Protection coverage is confirmed through the final engineering assessment, installation height and applicable standards.",
     image: "/images/ese-coverage-concept.png",
     caption:
       "ESE coverage concept: protected volume, PVC-covered copper down conductors and dedicated earth pits.",
+  },
+  "Surge Protection Devices & Grounding Systems": {
+    eyebrow: "SECONDARY SURGE MITIGATION",
+    body: "Coordinated Type 1, 2, and 3 surge protection devices (SPDs) and equipotential bonding systems safeguarding sensitive electrical, mechanical, and electronic equipment from lightning-induced voltage spikes and transient overvoltages.",
+    image: "/images/surge-protection-grounding-system.webp",
+    caption:
+      "Surge Protection Devices (SPDs) & equipotential bonding: safeguarding sensitive switchgear, control electronics, and automation systems.",
   },
 };
 

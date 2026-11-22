@@ -22,7 +22,7 @@ export const PRODUCTS_WE_OFFER_ROWS: ProductRowGroup[] = [
       {
         id: 'p-01',
         name: 'Lightning Protection System',
-        description: 'Safely conducts lightning current to ground, protecting structures and equipment.',
+        description: 'Safely intercepts and conducts lightning strikes to ground, safeguarding personnel, structures, and equipment.',
         image: '/product-catalouge/LP-01.jpeg',
         alt: 'Vision Energy Lightning Protection System',
         slug: 'conventional-lightning-protection-systems',
@@ -31,7 +31,7 @@ export const PRODUCTS_WE_OFFER_ROWS: ProductRowGroup[] = [
       {
         id: 'p-02',
         name: 'Earthing System & Accessories',
-        description: 'Reliable earth connections, from copper conductors to complete earth pits.',
+        description: 'Reliable low-impedance earth connections, from copper conductors and rods to complete inspection pits.',
         image: '/product-catalouge/ER-04.jpeg',
         alt: 'Vision Energy Earthing System & Accessories',
         slug: 'earth-electrode-and-bonding-accessories',
@@ -40,7 +40,7 @@ export const PRODUCTS_WE_OFFER_ROWS: ProductRowGroup[] = [
       {
         id: 'p-03',
         name: 'Surge Protection Systems',
-        description: 'Protects equipment from power surges and transient voltage spikes.',
+        description: 'Safeguards electrical and electronic equipment from lightning-induced surges and transient overvoltages.',
         image: '/product-catalouge/EL-06.jpeg',
         alt: 'Vision Energy Surge Protection Systems',
         slug: 'surge-protection-devices',

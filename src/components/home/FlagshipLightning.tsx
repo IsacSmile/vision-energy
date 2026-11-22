@@ -15,25 +15,25 @@ const SAFETY_TILES = [
     id: 'personnel',
     icon: Users,
     title: 'Personnel Safety',
-    description: 'Safeguards lives by safely dispersing lightning currents.',
+    description: 'Directs lightning current away from structures via low-risk paths, minimizing risk of injury or electrocution.',
   },
   {
     id: 'structural',
     icon: Building2,
     title: 'Structural Protection',
-    description: 'Shields building fabric from direct-strike damage.',
+    description: 'Safely dissipates strike energy to prevent masonry fragmentation, roof damage, and structural wall cracks.',
   },
   {
     id: 'fire',
     icon: Flame,
     title: 'Fire Prevention',
-    description: 'Eliminates ignition risks and thermal hazards.',
+    description: 'Dissipates electrical energy and minimizes sparks or arcs, mitigating fire ignition in structures and wiring.',
   },
   {
     id: 'equipment',
     icon: Cpu,
     title: 'Equipment Protection',
-    description: 'Protects critical electrical and electronic systems.',
+    description: 'Safeguards electrical, mechanical, and electronic equipment against lightning-induced surges and transient overvoltage.',
   },
 ];
 
@@ -112,15 +112,15 @@ export default function FlagshipLightning() {
             <div className="space-y-2.5 sm:space-y-3">
               <SectionHeader
                 id="flagship-lightning-heading"
-                eyebrow="Our Specialism"
-                title="Lightning Protection and Earthing"
+                eyebrow="The Lightning Protection Experts"
+                title="Lightning Protection System (L.P.S.)"
               />
             </div>
 
             {/* Concise Description */}
             <Reveal staggerIndex={1}>
               <p className="text-sm sm:text-base text-[#A9B4C0] leading-relaxed">
-                Engineered protection networks of air terminals, down conductors, and earthing grids to safeguard lives, structures, and critical equipment.
+                Lightning, a powerful force of nature, can cause significant damage and pose threats to life and property. We prioritize safety and offer comprehensive solutions to protect against the dangers of lightning strikes.
               </p>
             </Reveal>
 
@@ -204,7 +204,7 @@ export default function FlagshipLightning() {
 
             {/* Compliance Note */}
             <p className="text-[13px] text-[#A9B4C0]/80 leading-relaxed pt-2">
-              Final design and test criteria are confirmed against approved project requirements, actual site conditions and applicable authority requirements.
+              Designed and certified in strict accordance with IEC 62305, BS EN 62305, NFC 17-102, NFPA 780, and UAE Civil Defence technical regulations.
             </p>
           </div>
 

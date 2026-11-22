@@ -16,7 +16,7 @@ export const FALLBACK_CATEGORIES: FallbackCategory[] = [
     groupPrefix: "LP",
     sortOrder: 1,
     title: "Conventional Lightning Protection Systems",
-    description: "Complete conventional lightning protection systems for buildings, industrial facilities and infrastructure, designed around air terminals, roof conductors, down conductors, test points and earth termination networks.",
+    description: "Standardized conventional lightning protection systems designed using Rolling Sphere, Protection Angle, and Faraday Mesh cage methodologies to intercept strikes, safely channel discharge currents, and disperse electrical energy into the ground.",
     families: "Franklin air terminals; air rods; roof conductor tape; conductor clips; test joints; bimetallic connectors; inspection pits; mounting bases"
   },
   {
@@ -25,7 +25,7 @@ export const FALLBACK_CATEGORIES: FallbackCategory[] = [
     groupPrefix: "LP",
     sortOrder: 2,
     title: "Early Streamer Emission (ESE) Lightning Protection Systems",
-    description: "Early Streamer Emission lightning protection solutions for specified projects requiring an ESE air terminal, mast, dedicated down conductor and engineered earthing arrangement.",
+    description: "Advanced active ESE lightning protection systems with ionizing terminals operating across 4 modes (neutral, ionization, upward leader emission, interception) to provide wider protective radius coverage to NFC 17-102 and IEC 62305.",
     families: "ESE terminals; lightning event counters; test equipment; support masts; guy-wire kits; copper and stainless-steel accessories"
   },
   {
@@ -34,7 +34,7 @@ export const FALLBACK_CATEGORIES: FallbackCategory[] = [
     groupPrefix: "LP",
     sortOrder: 3,
     title: "Lightning Protection Clamps, Fixings and Accessories",
-    description: "Specialist connection and fixing accessories for lightning protection conductors, air terminals and earth electrodes.",
+    description: "Certified connection, bonding, and fixing accessories for lightning protection conductors, air terminals, and earth electrodes ensuring mechanical continuity and corrosion resistance.",
     families: "Tape clamps; cable clamps; roof conductor holders; cross connectors; tee connectors; bimetallic joints; saddles; fasteners"
   },
   {
@@ -43,7 +43,7 @@ export const FALLBACK_CATEGORIES: FallbackCategory[] = [
     groupPrefix: "LP",
     sortOrder: 4,
     title: "Down Conductors, Earthing Tapes and Conductors",
-    description: "Down conductor and earthing conductor products for carrying lightning current and fault current safely to the earth termination system.",
+    description: "High-conductivity bare and PVC-insulated copper conductors, copper tapes, and earthing tapes engineered to safely route lightning discharge currents and fault currents to the ground grid.",
     families: "Bare copper conductor; stranded copper cable; copper tape; tinned copper braid; aluminium tape; GI strip; PVC insulated earth cable"
   },
   {

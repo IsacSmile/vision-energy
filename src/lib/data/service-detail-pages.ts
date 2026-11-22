@@ -189,43 +189,49 @@ export const SERVICE_DETAIL_PAGES: Record<string, StandardServiceDetailPage> = {
     sectionsBeforeProcess: [
       {
         id: 'why-risk-assessment-matters',
-        title: 'Safeguarding People, Assets, and Uptime',
+        title: 'Safeguarding People, Assets, and Critical Infrastructure',
         content:
-          'A certified risk assessment determines the necessity and optimal design of lightning and surge protection systems. We evaluate strike probability, structural dimensions, environmental exposure, and financial consequence to recommend proportional, cost-effective protection measures.',
+          'A certified risk assessment evaluates key site parameters to determine the required protection level for lightning protection systems (LPS). Key evaluation criteria include: large concentrations of people in public areas; elevated strike probabilities for tall or isolated buildings in high lightning density regions; irreplaceable heritage or valuable assets; production continuity and essential public services; presence of explosive or inflammable materials; and critical machinery installations.',
+      },
+      {
+        id: 'protection-levels-explained',
+        title: 'Protection Levels (Level 1 to Level 4)',
+        content:
+          'Based on calculated risk indices, facilities are classified into Protection Levels: Level 1 (highest protection for explosive, chemical, hospital, and mission-critical sites), Level 2, Level 3, and Level 4. Meeting these risk index criteria ensures proportional, cost-effective engineering measures that safeguard lives, property, and continuity of operations.',
       },
     ],
     processSection: {
       title: 'Our Assessment Methodology',
       description:
-        'Standards-compliant risk modeling to identify critical vulnerability zones and deliver certified authority reports.',
+        'Standards-compliant risk modeling to identify critical vulnerability zones, calculate loss probabilities, and deliver certified authority reports.',
       steps: [
         {
           step: 1,
           stepLabel: 'Step 1',
-          title: 'Data Collection',
+          title: 'Site Data & Parameter Collection',
           description:
-            'Structural dimensions, ground flash density, incoming service lines, and internal equipment sensitivity mapping.',
+            'Structural dimensions, ground flash density, incoming utility lines, public occupancy, and flammable/hazardous materials mapping.',
         },
         {
           step: 2,
           stepLabel: 'Step 2',
           title: 'Loss & Risk Computation',
           description:
-            'Evaluation of risk components (R1: loss of human life, R2: loss of public service, R4: economic value) against tolerable limits.',
+            'Evaluation of risk components (R1: loss of human life, R2: loss of public service, R3: cultural heritage, R4: economic value) against tolerable risk thresholds.',
         },
         {
           step: 3,
           stepLabel: 'Step 3',
-          title: 'Mitigation Engineering',
+          title: 'Mitigation & Level Sizing',
           description:
-            'Specification of LPS protection level (Class I to IV), coordinated surge protection devices (SPDs), and bonding requirements.',
+            'Specification of required LPS Protection Level (Level 1 - 4), rolling sphere radius, mesh size, coordinated SPDs, and equipotential bonding.',
         },
         {
           step: 4,
           stepLabel: 'Step 4',
-          title: 'Submittal Package',
+          title: 'Authority Submittal Package',
           description:
-            'Comprehensive technical report, calculations, and drawings ready for consultant and Civil Defence approval.',
+            'Comprehensive technical report, calculations, and drawings ready for consultant and UAE Civil Defence approval.',
         },
       ],
     },
@@ -234,7 +240,7 @@ export const SERVICE_DETAIL_PAGES: Record<string, StandardServiceDetailPage> = {
         id: 'authority-compliance-risk',
         title: 'Full Regulatory and Authority Compliance',
         content:
-          'Our risk assessments are carried out by qualified protection specialists adhering strictly to IEC 62305 standards and local Civil Defence circulars, ensuring prompt project clearances and uncompromised safety.',
+          'Our risk assessments are carried out by qualified protection specialists adhering strictly to IEC 62305-2 standards and local Civil Defence circulars, ensuring prompt project clearances, minimized liability, and uncompromised safety.',
       },
     ],
     contactSection: {

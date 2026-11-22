@@ -12,27 +12,27 @@ export const DIAGRAM_STEPS: StepItem[] = [
   {
     id: 1,
     title: 'Intercept',
-    description: 'Air terminals or roof mesh capture the strike.',
+    description: 'Air terminals (Franklin rods or active ESE terminals) capture strikes along a designated path.',
   },
   {
     id: 2,
     title: 'Conduct',
-    description: 'Down conductors route the energy safely.',
+    description: 'Continuous down conductors safely channel the high-voltage discharge from roof to earth.',
   },
   {
     id: 3,
     title: 'Dissipate',
-    description: 'Dedicated earth electrodes disperse the energy.',
+    description: 'Grounding electrodes and earth pits safely disperse energy into the soil, avoiding secondary effects.',
   },
   {
     id: 4,
-    title: 'Bond',
-    description: 'Equipotential bonding reduces dangerous potential differences.',
+    title: 'Bond & Continuity',
+    description: 'Equipotential bonding ensures system continuity and eliminates hazardous sparks or voltage differentials.',
   },
   {
     id: 5,
-    title: 'Protect',
-    description: 'Surge protection safeguards sensitive equipment.',
+    title: 'Protect & Surge SPD',
+    description: 'Surge protection devices (SPDs) safeguard sensitive electrical, mechanical, and electronic equipment.',
   },
 ];
 
