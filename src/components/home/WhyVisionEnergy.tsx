@@ -395,10 +395,10 @@ export default function WhyVisionEnergy() {
         </div>
 
         {/* Industries We Serve */}
-        <div className="space-y-6 pt-2">
+        <div className="space-y-6 sm:space-y-8 pt-4 sm:pt-6">
           <Reveal staggerIndex={8}>
-            <div className="flex items-center justify-between gap-2">
-              <h3 className="text-2xl sm:text-3xl font-bold text-white">
+            <div className="text-center max-w-2xl mx-auto">
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
                 Industries We Serve
               </h3>
             </div>
@@ -406,18 +406,18 @@ export default function WhyVisionEnergy() {
 
           {/* Interactive Sectors Grid with Decent Engineering Icons */}
           <Reveal staggerIndex={9}>
-            <div className="flex flex-wrap gap-2.5 sm:gap-3">
+            <div className="flex flex-wrap justify-center items-center gap-2.5 sm:gap-3.5 max-w-5xl mx-auto">
               {SECTORS.map((sector, i) => {
                 const IconComponent = sector.icon;
                 return (
                   <div
                     key={i}
-                    className="inline-flex items-center gap-3 px-4 py-2.5 rounded-xl bg-[#0D1117] border border-white/10 hover:border-[#8DC63F]/50 hover:bg-[#131924] text-white/90 hover:text-white transition-all duration-300 text-sm sm:text-[14.5px] font-medium shadow-sm group cursor-default"
+                    className="w-full sm:w-auto inline-flex items-center justify-start sm:justify-center gap-3 px-4 py-2.5 sm:px-4.5 sm:py-3 rounded-xl bg-[#0D1117] border border-white/10 hover:border-[#8DC63F]/50 hover:bg-[#131924] text-white/90 hover:text-white transition-all duration-300 text-sm sm:text-[14.5px] font-medium shadow-sm group cursor-default"
                   >
                     <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#0B65B3]/15 border border-[#0B65B3]/40 group-hover:border-[#8DC63F] group-hover:bg-[#0B65B3] group-hover:shadow-[0_0_14px_rgba(141,198,63,0.45)] flex items-center justify-center shrink-0 transition-all duration-300">
                       <IconComponent className="w-4 h-4 text-[#8DC63F] group-hover:scale-110 transition-transform duration-300" />
                     </div>
-                    <span>{sector.name}</span>
+                    <span className="leading-snug text-left">{sector.name}</span>
                   </div>
                 );
               })}
