@@ -96,7 +96,7 @@ const HERO_SLIDES: SlideData[] = [
     ctaLink: '/products?group=ER',
     imageUrl: '/images/earthing-grounding-hero.webp',
     imageAlt:
-      'Vision Energy specialist engineers installing rooftop earthing and lightning copper grid network on UAE site',
+      'Precision earthing and grounding solutions - Copper earth rods, exothermic welding, earth pit, and copper tape conductors',
     standards: 'IEEE 80 • BS 7430',
     highlightColor: 'text-[#8DC63F]',
     glowColor: 'rgba(141,198,63,0.45)',
@@ -209,7 +209,8 @@ const HERO_SLIDES: SlideData[] = [
     badgeIcon: Trophy,
     titleLine1: 'Sports Equipment &',
     titleLine2: 'Accessories',
-    subtitle: 'Premium Sports Products & Accessories',
+    subtitle:
+      'Premium sports products and accessories designed to support every game and fitness activity.',
     description:
       'Premium sports products and accessories designed to support every game and fitness activity.',
     ctaText: 'Explore Sports Products',
@@ -230,8 +231,7 @@ const HERO_SLIDES: SlideData[] = [
     titleLine1: 'Delivering Excellence Across',
     titleLine2: 'Multiple Sectors',
     subtitle: 'One Company. Multiple Solutions. A Commitment to Quality.',
-    description:
-      'One company. Multiple solutions. A commitment to quality delivering dependable engineering, safety, laboratory, and industrial solutions across the UAE.',
+    description: 'One Company. Multiple Solutions. A Commitment to Quality.',
     ctaText: 'Explore All Solutions',
     ctaLink: '/products?group=EN',
     imageUrl: '/images/delivering-excellence-multiple-sectors-hero.webp',

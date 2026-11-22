@@ -74,11 +74,11 @@ export default function ProductsWeOffer() {
       {/* Background Image Collage - Clear, Sharp & Interactive Spotlight */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/products-collage-banner.jpg"
+          src="/images/products-collage-banner.webp"
           alt="Vision Energy Certified Engineering Supplies"
           fill
           loading="lazy"
-          quality={80}
+          quality={85}
           sizes="100vw"
           className={`object-cover object-center transition-all duration-700 ease-out ${
             isHovered

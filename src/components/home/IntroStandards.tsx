@@ -123,8 +123,9 @@ export default function IntroStandards({ productCategoryCount }: IntroStandardsP
                 <span className="block text-[10px] sm:text-xs uppercase tracking-wider text-slate-500 dark:text-[#A9B4C0]">Coverage</span>
               </div>
               <div className="space-y-1 border-l border-slate-200/80 dark:border-white/[0.08] pl-3 sm:pl-6">
-                <span className="block text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">Multiple</span>
-                <span className="block text-[10px] sm:text-xs uppercase tracking-wider text-slate-500 dark:text-[#A9B4C0] truncate">Product categories</span>
+                <span className="block text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-tight">
+                  Product Category
+                </span>
               </div>
             </div>
           </div>
