@@ -54,7 +54,7 @@ const HERO_SLIDES: SlideData[] = [
       'Delivering quality products and dependable solutions to support industries, infrastructure and projects across diverse sectors.',
     ctaText: 'Explore Products',
     ctaLink: '/products?group=EL',
-    imageUrl: '/slider-images/09_Electrical_1920x1080-optimized.webp',
+    imageUrl: 'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795361169/09_Electrical_1920x1080-optimized.webp',
     imageAlt:
       'Vision Energy - Quality industrial and technical products showroom in UAE: distribution panels, circuit breakers, cable trays, and rigid conduits',
     standards: 'DEWA • SEWA • Civil Defense Compliant',
@@ -74,7 +74,7 @@ const HERO_SLIDES: SlideData[] = [
       'Lightning, a powerful force of nature, can cause severe damage. We provide comprehensive solutions to protect lives, structures, and equipment across the UAE.',
     ctaText: 'Explore Lightning',
     ctaLink: '/products?group=LP',
-    imageUrl: '/slider-images/06_Earthing_1920x1080.jpg.webp',
+    imageUrl: 'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795361171/06_Earthing_1920x1080.jpg.webp',
     imageAlt:
       'Advanced lightning protection systems - Early Streamer Emission ESE air terminals, conventional copper rods, and surge protection devices SPDs',
     standards: 'IEC 62305 • BS EN 62305 • NFC 17-102 • NFPA 780',
@@ -94,7 +94,7 @@ const HERO_SLIDES: SlideData[] = [
       'Engineered copper earthing grids and low-impedance grounding for maximum electrical safety across UAE soil conditions.',
     ctaText: 'Explore Earthing',
     ctaLink: '/products?group=ER',
-    imageUrl: '/slider-images/06_Earthing_1920x1080.jpg.webp',
+    imageUrl: 'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795361171/06_Earthing_1920x1080.jpg.webp',
     imageAlt:
       'Precision earthing and grounding solutions - Copper earth rods, exothermic welding, earth pit, and copper tape conductors',
     standards: 'IEEE 80 • BS 7430',
@@ -114,7 +114,7 @@ const HERO_SLIDES: SlideData[] = [
       'Advanced electrical and mechanical solutions for industrial and infrastructure applications.',
     ctaText: 'Explore Solutions',
     ctaLink: '/products?group=ME',
-    imageUrl: '/slider-images/07_Mechanical_1920x1080.jpg.webp',
+    imageUrl: 'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795361169/07_Mechanical_1920x1080.jpg.webp',
     imageAlt:
       'Advanced electrical and mechanical solutions UAE - Industrial centrifugal water pumps, booster pumps, gate valves, check valves, and pipe fittings',
     standards: 'DEWA • SEWA • ISO 9001 Compliant',
@@ -134,7 +134,7 @@ const HERO_SLIDES: SlideData[] = [
       'Quality laboratory equipment, consumables and accessories for multiple applications.',
     ctaText: 'Explore Equipment',
     ctaLink: '/products?group=LE',
-    imageUrl: '/slider-images/02_Laboratory_1920x1080.jpg.webp',
+    imageUrl: 'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795361169/02_Laboratory_1920x1080.jpg.webp',
     imageAlt:
       'Complete laboratory equipment for research and diagnostics - Microscopes, centrifuges, analytical balances, spectrophotometers, and lab consumables',
     standards: 'ISO 17025 • GLP • CE Certified',
@@ -154,7 +154,7 @@ const HERO_SLIDES: SlideData[] = [
       "Expert maintenance and repair solutions to keep your gym equipment safe, reliable, and performing at its best.",
     ctaText: 'Explore Gym & Fitness',
     ctaLink: '/products?group=SP',
-    imageUrl: '/slider-images/05_Gym_1920x1080-optimized.webp',
+    imageUrl: 'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795361169/05_Gym_1920x1080-optimized.webp',
     imageAlt:
       'Gym equipment maintenance services - Commercial fitness machinery, treadmills, rowing machines, power racks, and repair solutions',
     standards: 'Certified Technicians • Preventive AMC • OEM Genuine Parts',
@@ -174,7 +174,7 @@ const HERO_SLIDES: SlideData[] = [
       'Reliable safety equipment solutions to ensure workplace protection, compliance and peace of mind.',
     ctaText: 'Explore Safety Products',
     ctaLink: '/products?group=SF',
-    imageUrl: '/slider-images/04_Electronics_1920x1080.jpg.webp',
+    imageUrl: 'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795361170/04_Electronics_1920x1080.jpg.webp',
     imageAlt:
       'Workplace protection, automation, and safety equipment supply - Industrial sensors, limit controls, safety relays, and instrumentation',
     standards: 'EN 397 • ANSI Z87.1 • OSHA Compliant',
@@ -194,7 +194,7 @@ const HERO_SLIDES: SlideData[] = [
       'Reliable safety and packaging products ensuring workplace protection, product safety, and efficient handling.',
     ctaText: 'Explore Packaging',
     ctaLink: '/products?group=PK',
-    imageUrl: '/slider-images/01_Cables_1920x1080.webp',
+    imageUrl: 'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795361170/01_Cables_1920x1080.webp',
     imageAlt:
       'Safety equipment and commercial packaging solutions - Heavy-duty cable drums, spools, coiled conductors, and packaging materials',
     standards: 'ISO 9001 • Eco-Friendly • Heavy Duty Material',
@@ -215,7 +215,7 @@ const HERO_SLIDES: SlideData[] = [
       'Premium sports products and accessories designed to support every game and fitness activity.',
     ctaText: 'Explore Sports Products',
     ctaLink: '/products?group=SP',
-    imageUrl: '/slider-images/05_Gym_1920x1080-optimized.webp',
+    imageUrl: 'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795361169/05_Gym_1920x1080-optimized.webp',
     imageAlt:
       'Sports equipment and accessories - Premium commercial athletic equipment, dumbbells, weights, rowing machines, and fitness accessories',
     standards: 'FIFA • FIBA • ITF Approved Standards',
@@ -234,7 +234,7 @@ const HERO_SLIDES: SlideData[] = [
     description: 'One Company. Multiple Solutions. A Commitment to Quality.',
     ctaText: 'Explore All Solutions',
     ctaLink: '/products?group=EN',
-    imageUrl: '/slider-images/08_Solar_1920x1080-optimized.webp',
+    imageUrl: 'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795361169/08_Solar_1920x1080-optimized.webp',
     imageAlt:
       'Delivering excellence across multiple sectors - Solar PV renewable energy systems, hybrid inverters, battery storage BESS, and sustainable infrastructure',
     standards: 'DEWA • SEWA • Civil Defense • ISO 9001 Compliant',
