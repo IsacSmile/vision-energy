@@ -54,7 +54,7 @@ const HERO_SLIDES: SlideData[] = [
       'Delivering quality products and dependable solutions to support industries, infrastructure and projects across diverse sectors.',
     ctaText: 'Explore Products',
     ctaLink: '/products?group=EL',
-    imageUrl: '/images/industrial-technical-products-hero.webp?v=20261122v4',
+    imageUrl: '/images/industrial-technical-products-hero.webp?v=20261122v5',
     imageAlt:
       'Vision Energy - Quality industrial and technical products showroom in UAE: distribution panels, circuit breakers, cable trays, and rigid conduits',
     standards: 'DEWA • SEWA • Civil Defense Compliant',
@@ -74,7 +74,7 @@ const HERO_SLIDES: SlideData[] = [
       'Lightning, a powerful force of nature, can cause severe damage. We provide comprehensive solutions to protect lives, structures, and equipment across the UAE.',
     ctaText: 'Explore Lightning',
     ctaLink: '/products?group=LP',
-    imageUrl: '/images/lightning-protection-hero-2nd-img.webp?v=20261122v4',
+    imageUrl: '/images/lightning-protection-hero-2nd-img.webp?v=20261122v5',
     imageAlt:
       'Advanced lightning protection systems - Early Streamer Emission ESE air terminals, conventional copper rods, and surge protection devices SPDs',
     standards: 'IEC 62305 • BS EN 62305 • NFC 17-102 • NFPA 780',
@@ -94,7 +94,7 @@ const HERO_SLIDES: SlideData[] = [
       'Engineered copper earthing grids and low-impedance grounding for maximum electrical safety across UAE soil conditions.',
     ctaText: 'Explore Earthing',
     ctaLink: '/products?group=ER',
-    imageUrl: '/images/earthing-grounding-hero.webp?v=20261122v4',
+    imageUrl: '/images/earthing-grounding-hero.webp?v=20261122v5',
     imageAlt:
       'Precision earthing and grounding solutions - Copper earth rods, exothermic welding, earth pit, and copper tape conductors',
     standards: 'IEEE 80 • BS 7430',
@@ -114,7 +114,7 @@ const HERO_SLIDES: SlideData[] = [
       'Advanced electrical and mechanical solutions for industrial and infrastructure applications.',
     ctaText: 'Explore Solutions',
     ctaLink: '/products?group=ME',
-    imageUrl: '/images/electrical-mechanical-solutions-hero.webp?v=20261122v4',
+    imageUrl: '/images/electrical-mechanical-solutions-hero.webp?v=20261122v5',
     imageAlt:
       'Advanced electrical and mechanical solutions UAE - Industrial centrifugal water pumps, booster pumps, gate valves, check valves, and pipe fittings',
     standards: 'DEWA • SEWA • ISO 9001 Compliant',
@@ -134,7 +134,7 @@ const HERO_SLIDES: SlideData[] = [
       'Quality laboratory equipment, consumables and accessories for multiple applications.',
     ctaText: 'Explore Equipment',
     ctaLink: '/products?group=LE',
-    imageUrl: '/images/laboratory-equipment-hero.webp?v=20261122v4',
+    imageUrl: '/images/laboratory-equipment-hero.webp?v=20261122v5',
     imageAlt:
       'Complete laboratory equipment for research and diagnostics - Microscopes, centrifuges, analytical balances, spectrophotometers, and lab consumables',
     standards: 'ISO 17025 • GLP • CE Certified',
@@ -154,7 +154,7 @@ const HERO_SLIDES: SlideData[] = [
       "Expert maintenance and repair solutions to keep your gym equipment safe, reliable, and performing at its best.",
     ctaText: 'Explore Gym & Fitness',
     ctaLink: '/products?group=SP',
-    imageUrl: '/images/gym-equipment-maintenance-hero.webp?v=20261122v4',
+    imageUrl: '/images/gym-equipment-maintenance-hero.webp?v=20261122v5',
     imageAlt:
       'Gym equipment maintenance services - Commercial fitness machinery, treadmills, rowing machines, power racks, and repair solutions',
     standards: 'Certified Technicians • Preventive AMC • OEM Genuine Parts',
@@ -174,7 +174,7 @@ const HERO_SLIDES: SlideData[] = [
       'Reliable safety equipment solutions to ensure workplace protection, compliance and peace of mind.',
     ctaText: 'Explore Safety Products',
     ctaLink: '/products?group=SF',
-    imageUrl: '/images/safety-equipment-supply-hero.webp?v=20261122v4',
+    imageUrl: '/images/safety-equipment-supply-hero.webp?v=20261122v5',
     imageAlt:
       'Workplace protection, automation, and safety equipment supply - Industrial sensors, limit controls, safety relays, and instrumentation',
     standards: 'EN 397 • ANSI Z87.1 • OSHA Compliant',
@@ -194,7 +194,7 @@ const HERO_SLIDES: SlideData[] = [
       'Reliable safety and packaging products ensuring workplace protection, product safety, and efficient handling.',
     ctaText: 'Explore Packaging',
     ctaLink: '/products?group=PK',
-    imageUrl: '/images/commercial-packaging-safety-hero.webp?v=20261122v4',
+    imageUrl: '/images/commercial-packaging-safety-hero.webp?v=20261122v5',
     imageAlt:
       'Safety equipment and commercial packaging solutions - Heavy-duty cable drums, spools, coiled conductors, and packaging materials',
     standards: 'ISO 9001 • Eco-Friendly • Heavy Duty Material',
@@ -215,7 +215,7 @@ const HERO_SLIDES: SlideData[] = [
       'Premium sports products and accessories designed to support every game and fitness activity.',
     ctaText: 'Explore Sports Products',
     ctaLink: '/products?group=SP',
-    imageUrl: '/images/sports-equipment-solutions-hero.webp?v=20261122v4',
+    imageUrl: '/images/sports-equipment-solutions-hero.webp?v=20261122v5',
     imageAlt:
       'Sports equipment and accessories - Premium commercial athletic equipment, dumbbells, weights, rowing machines, and fitness accessories',
     standards: 'FIFA • FIBA • ITF Approved Standards',
@@ -234,7 +234,7 @@ const HERO_SLIDES: SlideData[] = [
     description: 'One Company. Multiple Solutions. A Commitment to Quality.',
     ctaText: 'Explore All Solutions',
     ctaLink: '/products?group=EN',
-    imageUrl: '/images/delivering-excellence-multiple-sectors-hero.webp?v=20261122v4',
+    imageUrl: '/images/delivering-excellence-multiple-sectors-hero.webp?v=20261122v5',
     imageAlt:
       'Delivering excellence across multiple sectors - Solar PV renewable energy systems, hybrid inverters, battery storage BESS, and sustainable infrastructure',
     standards: 'DEWA • SEWA • Civil Defense • ISO 9001 Compliant',
@@ -331,7 +331,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
       id="home-hero"
       data-hero-section="true"
       aria-label="Vision Energy Hero Image Slider"
-      className="relative w-full h-[100svh] min-h-[100svh] flex flex-col justify-between overflow-hidden bg-[#050608] pt-[var(--mobile-header-h,56px)] lg:pt-[var(--header-h,80px)] select-none"
+      className="relative w-full h-[100svh] min-h-[100svh] flex flex-col justify-between overflow-hidden bg-[#050608] pt-[var(--mobile-header-h,56px)] lg:pt-[var(--header-h,80px)] pb-2 sm:pb-4 lg:pb-6 px-2 sm:px-6 lg:px-8 select-none"
       style={{ minHeight: '100svh', height: '100svh' }}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
@@ -340,79 +340,83 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
       onTouchEnd={handleTouchEnd}
     >
       {/* ============================================================ */}
-      {/* LAYER 1: Background Images Slider (Crossfade + Subtle Scale) */}
+      {/* Centered Website-Width Hero Slider Card                      */}
       {/* ============================================================ */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-0">
-        {HERO_SLIDES.map((slide, idx) => {
-          const isActive = idx === currentSlide;
-          // Don't render inactive slides in initial SSR HTML to save critical LCP network bandwidth
-          if (idx !== 0 && !hasHydrated) return null;
-
-          return (
-            <div
-              key={slide.id}
-              className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
-                isActive ? 'opacity-100 z-10' : 'opacity-0 z-0'
-              }`}
-              aria-hidden={!isActive}
-            >
-              <Image
-                src={slide.imageUrl}
-                alt={slide.imageAlt}
-                fill
-                priority={idx === 0}
-                loading={idx === 0 ? 'eager' : 'lazy'}
-                fetchPriority={idx === 0 ? 'high' : 'low'}
-                sizes="100vw"
-                className={`object-cover object-center transition-transform duration-[4000ms] ease-out ${
-                  isActive ? 'scale-105' : 'scale-100'
-                }`}
-                quality={75}
-              />
-            </div>
-          );
-        })}
-      </div>
-
-      {/* 10% Overlay Only */}
-      <div className="absolute inset-0 bg-black/10 pointer-events-none z-10" />
-
-      {/* ============================================================ */}
-      {/* Mobile Top Segmented Progress Bar (Story-Style, Composited GPU Animation) */}
-      {/* ============================================================ */}
-      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 pt-2 lg:hidden">
-        <div
-          className="grid gap-2 w-full"
-          style={{ gridTemplateColumns: `repeat(${totalSlides}, minmax(0, 1fr))` }}
-        >
+      <div className="relative w-full max-w-[80rem] mx-auto flex-1 flex flex-col justify-between overflow-hidden rounded-xl sm:rounded-2xl lg:rounded-3xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.85)] bg-[#090C12]">
+        {/* ============================================================ */}
+        {/* LAYER 1: Background Images Slider (Website Content Width)    */}
+        {/* ============================================================ */}
+        <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-0">
           {HERO_SLIDES.map((slide, idx) => {
-            const isSelected = idx === currentSlide;
-            const isPassed = idx < currentSlide;
+            const isActive = idx === currentSlide;
+            // Don't render inactive slides in initial SSR HTML to save critical LCP network bandwidth
+            if (idx !== 0 && !hasHydrated) return null;
+
             return (
-              <button
+              <div
                 key={slide.id}
-                onClick={() => goToSlide(idx)}
-                className="h-1 rounded-full bg-white/20 overflow-hidden relative"
-                aria-label={`Jump to ${slide.category}`}
+                className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
+                  isActive ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                }`}
+                aria-hidden={!isActive}
               >
-                <div
-                  key={`mobile-progress-${idx}-${currentSlide}`}
-                  className="h-full bg-[#8DC63F] rounded-full origin-left will-change-transform"
-                  style={{
-                    transform: isPassed ? 'scaleX(1)' : isSelected ? undefined : 'scaleX(0)',
-                    animation: isSelected && !isPaused ? `heroProgressFill ${SLIDE_DURATION_MS}ms linear forwards` : 'none',
-                  }}
+                <Image
+                  src={slide.imageUrl}
+                  alt={slide.imageAlt}
+                  fill
+                  priority={idx === 0}
+                  loading={idx === 0 ? 'eager' : 'lazy'}
+                  fetchPriority={idx === 0 ? 'high' : 'low'}
+                  sizes="(max-width: 1280px) 100vw, 1280px"
+                  className={`object-cover object-center transition-transform duration-[4000ms] ease-out ${
+                    isActive ? 'scale-105' : 'scale-100'
+                  }`}
+                  quality={92}
                 />
-              </button>
+              </div>
             );
           })}
         </div>
-      </div>
 
-      {/* ============================================================ */}
-      {/* LAYER 3: Main Content (Slide Details & CTAs) */}
-      {/* ============================================================ */}
-      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-5 sm:px-6 lg:px-8 my-auto flex-1 flex flex-col justify-center py-4 sm:py-8">
+        {/* Ambient Dark Gradient Scrim (High contrast for text without washing out the image) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-black/20 pointer-events-none z-10" />
+
+        {/* ============================================================ */}
+        {/* Mobile Top Segmented Progress Bar (Story-Style, GPU)         */}
+        {/* ============================================================ */}
+        <div className="relative z-30 w-full px-3 sm:px-4 pt-2.5 lg:hidden">
+          <div
+            className="grid gap-2 w-full"
+            style={{ gridTemplateColumns: `repeat(${totalSlides}, minmax(0, 1fr))` }}
+          >
+            {HERO_SLIDES.map((slide, idx) => {
+              const isSelected = idx === currentSlide;
+              const isPassed = idx < currentSlide;
+              return (
+                <button
+                  key={slide.id}
+                  onClick={() => goToSlide(idx)}
+                  className="h-1 rounded-full bg-white/20 overflow-hidden relative"
+                  aria-label={`Jump to ${slide.category}`}
+                >
+                  <div
+                    key={`mobile-progress-${idx}-${currentSlide}`}
+                    className="h-full bg-[#8DC63F] rounded-full origin-left will-change-transform"
+                    style={{
+                      transform: isPassed ? 'scaleX(1)' : isSelected ? undefined : 'scaleX(0)',
+                      animation: isSelected && !isPaused ? `heroProgressFill ${SLIDE_DURATION_MS}ms linear forwards` : 'none',
+                    }}
+                  />
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* ============================================================ */}
+        {/* LAYER 3: Main Content (Slide Details & CTAs)                 */}
+        {/* ============================================================ */}
+        <div className="relative z-30 w-full px-5 sm:px-8 lg:px-10 my-auto flex-1 flex flex-col justify-center py-4 sm:py-6">
         <div className="max-w-[760px] text-left space-y-4 sm:space-y-6">
           
 
@@ -545,7 +549,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
       {/* ============================================================ */}
       {/* Mobile Interactive Quick-Tabs & Stats Bar */}
       {/* ============================================================ */}
-      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 pb-[max(12px,env(safe-area-inset-bottom))] lg:hidden">
+      <div className="relative z-30 w-full px-3 sm:px-4 pb-[max(10px,env(safe-area-inset-bottom))] lg:hidden">
         
         {/* Mobile Quick Category Switcher Tabs */}
         <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none sm:grid sm:grid-cols-5 md:grid-cols-10 mb-2.5">
@@ -591,6 +595,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
             </span>
           </div>
         </div>
+      </div>
       </div>
     </section>
   );
