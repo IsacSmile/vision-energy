@@ -159,9 +159,9 @@ export default function Header() {
   // Header is solid with website background color (#050608), fully opaque and non-transparent
   const headerClasses = mobileMenuOpen
     ? `fixed top-0 left-0 right-0 z-50 w-full bg-[#050608] border-b border-transparent pt-safe transition-all duration-300 translate-y-0`
-    : isHome
-    ? `fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 pt-safe translate-y-0 bg-[#050608] border-b border-[#0B65B3]/30 shadow-xl`
-    : `sticky top-0 z-50 w-full bg-[#050608] border-b border-[#1F2937] pt-safe transition-all duration-300 translate-y-0 shadow-xl`;
+    : `sticky top-0 z-50 w-full transition-all duration-300 pt-safe translate-y-0 bg-[#050608] ${
+        isHome ? 'border-b border-[#0B65B3]/30' : 'border-b border-[#1F2937]'
+      } shadow-xl`;
 
   const handleMobileEnquiry = () => {
     setMobileMenuOpen(false);

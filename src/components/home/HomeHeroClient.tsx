@@ -331,7 +331,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
       id="home-hero"
       data-hero-section="true"
       aria-label="Vision Energy Hero Image Slider"
-      className="relative w-full flex flex-col justify-between overflow-hidden bg-[#050608] mt-[var(--navbar-h,120px)] sm:mt-[var(--navbar-h,128px)] md:mt-[var(--navbar-h,134px)] lg:mt-[var(--navbar-h,140px)] xl:mt-[var(--navbar-h,144px)] h-[calc(100svh-var(--navbar-h,120px))] sm:h-[calc(100svh-var(--navbar-h,128px))] md:h-[calc(100svh-var(--navbar-h,134px))] lg:h-[calc(100svh-var(--navbar-h,140px))] xl:h-[calc(100svh-var(--navbar-h,144px))] min-h-[calc(100svh-var(--navbar-h,120px))] sm:min-h-[calc(100svh-var(--navbar-h,128px))] md:min-h-[calc(100svh-var(--navbar-h,134px))] lg:min-h-[calc(100svh-var(--navbar-h,140px))] xl:min-h-[calc(100svh-var(--navbar-h,144px))] select-none"
+      className="relative w-full flex flex-col justify-between overflow-hidden bg-[#050608] h-[calc(100svh-var(--navbar-h,120px))] sm:h-[calc(100svh-var(--navbar-h,128px))] md:h-[calc(100svh-var(--navbar-h,134px))] lg:h-[calc(100svh-var(--navbar-h,140px))] xl:h-[calc(100svh-var(--navbar-h,144px))] min-h-[calc(100svh-var(--navbar-h,120px))] sm:min-h-[calc(100svh-var(--navbar-h,128px))] md:min-h-[calc(100svh-var(--navbar-h,134px))] lg:min-h-[calc(100svh-var(--navbar-h,140px))] xl:min-h-[calc(100svh-var(--navbar-h,144px))] select-none"
       style={{
         height: 'calc(100svh - var(--navbar-h, 140px))',
         minHeight: 'calc(100svh - var(--navbar-h, 140px))',
@@ -366,7 +366,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
                   priority={idx === 0}
                   loading={idx === 0 ? 'eager' : 'lazy'}
                   fetchPriority={idx === 0 ? 'high' : 'low'}
-                  className={`object-cover object-center transition-transform duration-[4000ms] ease-out ${
+                  className={`object-cover object-top origin-top transition-transform duration-[4000ms] ease-out ${
                     isActive ? 'scale-105' : 'scale-100'
                   }`}
                   unoptimized
