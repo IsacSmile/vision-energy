@@ -8,6 +8,7 @@
     --header-h: 140px;
     --mobile-header-h: 120px;
     --navbar-h: 120px;
+    --header-offset: 86px;
     --mobile-bar-h: 56px;
     --bg-main: #050608;
     --bg-card: #0D1117;
@@ -38,6 +39,7 @@
     :root {
       --header-h: 140px;
       --navbar-h: 140px;
+      --header-offset: 100px;
     }
   }
 

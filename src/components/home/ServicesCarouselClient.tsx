@@ -191,13 +191,29 @@ export default function ServicesCarouselClient({
     const el = scrollRef.current;
     if (!el) return;
 
-    checkScroll();
-    el.addEventListener('scroll', checkScroll, { passive: true });
-    window.addEventListener('resize', checkScroll, { passive: true });
+    let ticking = false;
+    const throttledCheckScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          checkScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    // Defer initial measurement after paint to avoid forced reflow
+    const rafId = requestAnimationFrame(() => {
+      checkScroll();
+    });
+
+    el.addEventListener('scroll', throttledCheckScroll, { passive: true });
+    window.addEventListener('resize', throttledCheckScroll, { passive: true });
 
     return () => {
-      el.removeEventListener('scroll', checkScroll);
-      window.removeEventListener('resize', checkScroll);
+      cancelAnimationFrame(rafId);
+      el.removeEventListener('scroll', throttledCheckScroll);
+      window.removeEventListener('resize', throttledCheckScroll);
     };
   }, [checkScroll]);
 

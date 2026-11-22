@@ -77,23 +77,6 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isAdmin]);
 
-  // Update --header-offset CSS variable on document root for sticky elements
-  useEffect(() => {
-    if (isAdmin) return;
-    if (typeof document !== 'undefined') {
-      const updateHeaderOffset = () => {
-        const isDesktop = window.innerWidth >= 1024;
-        // When scrolled, main navbar is 100px desktop, 86px mobile
-        const headerOffsetValue = isDesktop ? '100px' : '86px';
-        document.documentElement.style.setProperty('--header-offset', headerOffsetValue);
-      };
-      updateHeaderOffset();
-      window.addEventListener('resize', updateHeaderOffset);
-      return () => window.removeEventListener('resize', updateHeaderOffset);
-    }
-  }, [isAdmin]);
-
-
   // Lock body scroll on open, focus management, and restore focus on close
   useEffect(() => {
     if (isAdmin) return;
@@ -195,14 +178,15 @@ export default function Header() {
               aria-hidden="true"
             />
 
-            {/* Seamless Infinite Marquee Track (2 identical copies) */}
+            {/* Seamless Infinite Marquee Track (2 copies, copy 2 aria-hidden) */}
             <div className="animate-marquee-fast flex items-center text-[11.5px] font-semibold py-1">
               {/* Copy 1 */}
               <div className="flex items-center divide-x divide-[#0A192F]/20 shrink-0">
                 <a
                   href="tel:+971501234567"
                   className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
-                  title="Call Vision Energy"
+                  title="Call Vision Energy (+971 50 123 4567)"
+                  aria-label="Call Vision Energy primary line +971 50 123 4567"
                 >
                   <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
                   <span className="whitespace-nowrap">+971 50 123 4567</span>
@@ -210,7 +194,8 @@ export default function Header() {
                 <a
                   href="tel:+971541234567"
                   className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
-                  title="Call Vision Energy"
+                  title="Call Vision Energy (+971 54 123 4567)"
+                  aria-label="Call Vision Energy secondary line +971 54 123 4567"
                 >
                   <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
                   <span className="whitespace-nowrap">+971 54 123 4567</span>
@@ -218,39 +203,28 @@ export default function Header() {
                 <a
                   href="mailto:info@visionenergyme.com"
                   className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
-                  title="Email Vision Energy"
+                  title="Email Vision Energy (info@visionenergyme.com)"
+                  aria-label="Email Vision Energy info@visionenergyme.com"
                 >
                   <Mail className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
                   <span className="whitespace-nowrap">info@visionenergyme.com</span>
                 </a>
               </div>
 
-              {/* Copy 2 (identically repeated for seamless loop) */}
-              <div className="flex items-center divide-x divide-[#0A192F]/20 shrink-0">
-                <a
-                  href="tel:+971501234567"
-                  className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
-                  title="Call Vision Energy"
-                >
+              {/* Copy 2 (visual duplicate for seamless loop, hidden from screen readers/Lighthouse) */}
+              <div className="flex items-center divide-x divide-[#0A192F]/20 shrink-0" aria-hidden="true" tabIndex={-1}>
+                <span className="flex items-center gap-1.5 px-3.5 shrink-0">
                   <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
                   <span className="whitespace-nowrap">+971 50 123 4567</span>
-                </a>
-                <a
-                  href="tel:+971541234567"
-                  className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
-                  title="Call Vision Energy"
-                >
+                </span>
+                <span className="flex items-center gap-1.5 px-3.5 shrink-0">
                   <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
                   <span className="whitespace-nowrap">+971 54 123 4567</span>
-                </a>
-                <a
-                  href="mailto:info@visionenergyme.com"
-                  className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
-                  title="Email Vision Energy"
-                >
+                </span>
+                <span className="flex items-center gap-1.5 px-3.5 shrink-0">
                   <Mail className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
                   <span className="whitespace-nowrap">info@visionenergyme.com</span>
-                </a>
+                </span>
               </div>
             </div>
           </div>
@@ -309,10 +283,9 @@ export default function Header() {
               alt="VISION ENERGY INTERNATIONAL UAE"
               width={490}
               height={188}
-              sizes="(max-width: 640px) 240px, (max-width: 1024px) 320px, 490px"
-              quality={80}
+              sizes="(max-width: 640px) 180px, (max-width: 1024px) 240px, 320px"
+              quality={75}
               className="dark-theme-logo h-[75px] sm:h-[84px] lg:h-[91px] xl:h-[96px] w-auto max-h-[98px] object-contain transition-transform group-hover:scale-105"
-              priority
             />
             {/* Light Theme Logo (Dark 'ENERGY INTERNATIONAL' text) */}
             <Image
@@ -320,8 +293,8 @@ export default function Header() {
               alt="VISION ENERGY INTERNATIONAL UAE"
               width={490}
               height={188}
-              sizes="(max-width: 640px) 240px, (max-width: 1024px) 320px, 490px"
-              quality={80}
+              sizes="(max-width: 640px) 180px, (max-width: 1024px) 240px, 320px"
+              quality={75}
               className="light-theme-logo h-[75px] sm:h-[84px] lg:h-[91px] xl:h-[96px] w-auto max-h-[98px] object-contain transition-transform group-hover:scale-105"
               priority
             />
