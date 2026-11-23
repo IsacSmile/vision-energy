@@ -166,7 +166,7 @@ export default async function HomePage() {
 
         <HairlineDivider />
 
-        {/* 2. INTRO & STANDARDS (#0D1117) */}
+        {/* 2. ABOUT VISION ENERGY */}
         <IntroStandards productCategoryCount={productCategoryCount} />
 
         <HairlineDivider />

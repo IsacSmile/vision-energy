@@ -35,6 +35,7 @@ import Reveal from '@/components/ui/Reveal';
 import Card from '@/components/ui/Card';
 import CustomSelect, { SelectOption } from '@/components/ui/CustomSelect';
 import ProductPreviewModal from './ProductPreviewModal';
+import StandardsCompliance from './StandardsCompliance';
 
 const SORT_OPTIONS: SelectOption[] = [
   { value: 'featured', label: 'Featured Order' },
@@ -599,6 +600,9 @@ export default function ProductsExplorer({
           </div>
         </div>
       </div>
+
+      {/* STANDARDS & AUTHORITY COMPLIANCE SECTION */}
+      <StandardsCompliance />
 
       {/* 4. STICKY TOOLBAR */}
       <div
