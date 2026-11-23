@@ -2,7 +2,8 @@
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import Reveal from '@/components/ui/Reveal';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Sparkles, CheckCircle2, ArrowRight, Phone } from 'lucide-react';
+import { useEnquiryModal } from '@/components/modals/EnquiryModalProvider';
 
 // Decent, authentic industrial engineering icons (designed specifically for UAE engineering & infrastructure sectors, avoiding generic AI template cliches)
 function CommercialIcon({ className = 'w-4 h-4' }: { className?: string }) {
@@ -255,6 +256,7 @@ const WHY_FEATURE_CARDS = [
 ];
 
 export default function WhyVisionEnergy() {
+  const { openProductModal } = useEnquiryModal();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -500,30 +502,95 @@ export default function WhyVisionEnergy() {
         {/* Industries We Serve */}
         <div className="space-y-6 sm:space-y-8 pt-4 sm:pt-6">
           <Reveal staggerIndex={4}>
-            <div className="text-left">
+            <div className="max-w-3xl space-y-2 text-left">
               <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
                 Industries We Serve
               </h3>
+              <p className="text-sm sm:text-base text-slate-400 dark:text-[#A9B4C0] leading-relaxed">
+                Proven supply track record and certified engineering systems across core UAE &amp; GCC infrastructure sectors.
+              </p>
             </div>
           </Reveal>
 
-          {/* Interactive Sectors Grid with Decent Engineering Icons */}
+          {/* Interactive Sectors Grid with Decent Engineering Icons & Complementary Support Card */}
           <Reveal staggerIndex={5}>
-            <div className="flex flex-wrap justify-start items-center gap-2.5 sm:gap-3.5">
-              {SECTORS.map((sector, i) => {
-                const IconComponent = sector.icon;
-                return (
-                  <div
-                    key={i}
-                    className="w-full sm:w-auto inline-flex items-center justify-start gap-3 px-4 py-2.5 sm:px-4.5 sm:py-3 rounded-xl bg-[#0D1117] border border-white/10 hover:border-[#8DC63F]/50 hover:bg-[#131924] text-white/90 hover:text-white transition-all duration-300 text-sm sm:text-[14.5px] font-medium shadow-sm group cursor-default"
-                  >
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#0B65B3]/15 border border-[#0B65B3]/40 group-hover:border-[#8DC63F] group-hover:bg-[#0B65B3] group-hover:shadow-[0_0_14px_rgba(141,198,63,0.45)] flex items-center justify-center shrink-0 transition-all duration-300">
-                      <IconComponent className="w-4 h-4 text-[#8DC63F] group-hover:scale-110 transition-transform duration-300" />
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
+              {/* Left Column: 10 Sector Cards in a Balanced 2-Column Grid */}
+              <div className="lg:col-span-7 xl:col-span-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5 h-full content-between">
+                  {SECTORS.map((sector, i) => {
+                    const IconComponent = sector.icon;
+                    return (
+                      <div
+                        key={i}
+                        className="group w-full inline-flex items-center justify-start gap-3.5 px-4 py-3 sm:px-4.5 sm:py-3.5 rounded-xl bg-[#0D1117] border border-white/10 hover:border-[#8DC63F]/50 hover:bg-[#131924] text-white/90 hover:text-white transition-all duration-300 text-sm sm:text-[14px] font-medium shadow-sm cursor-default"
+                      >
+                        <div className="w-8 h-8 rounded-lg bg-[#0B65B3]/15 border border-[#0B65B3]/40 group-hover:border-[#8DC63F] group-hover:bg-[#0B65B3] group-hover:shadow-[0_0_14px_rgba(141,198,63,0.45)] flex items-center justify-center shrink-0 transition-all duration-300">
+                          <IconComponent className="w-4 h-4 text-[#8DC63F] group-hover:scale-110 transition-transform duration-300" />
+                        </div>
+                        <span className="leading-snug text-left">{sector.name}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Right Column: High-Value Sector Consultation & Submittal Support Card */}
+              <div className="lg:col-span-5 xl:col-span-4">
+                <div className="h-full flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-[#0D1117] border border-white/10 hover:border-[#8DC63F]/40 transition-all duration-300 shadow-md">
+                  <div className="space-y-4">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8DC63F]/15 border border-[#8DC63F]/30 text-xs font-bold text-[#8DC63F] uppercase tracking-wider">
+                      <Sparkles className="w-3.5 h-3.5" />
+                      <span>Specialist Support</span>
                     </div>
-                    <span className="leading-snug text-left">{sector.name}</span>
+
+                    <h4 className="text-xl sm:text-[22px] font-bold text-white leading-snug">
+                      Custom Sector Requirements?
+                    </h4>
+
+                    <p className="text-sm text-slate-400 dark:text-[#A9B4C0] leading-relaxed">
+                      Need specialized authority NOC documentation, customized bill of quantities, or project submittal review for your facility?
+                    </p>
+
+                    <ul className="space-y-2.5 pt-2 border-t border-white/[0.08] text-xs sm:text-[13px] text-slate-300 dark:text-[#CBD5E1]">
+                      <li className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-[#8DC63F] shrink-0" />
+                        <span>DEWA, SEWA, TAQA &amp; ADCDA compliant</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-[#8DC63F] shrink-0" />
+                        <span>Comprehensive technical datasheets</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-[#8DC63F] shrink-0" />
+                        <span>Fast-track dispatch across UAE &amp; GCC</span>
+                      </li>
+                    </ul>
                   </div>
-                );
-              })}
+
+                  <div className="pt-5 mt-5 border-t border-white/[0.08] space-y-3">
+                    <button
+                      type="button"
+                      onClick={() => openProductModal?.({ categoryCode: 'SECTOR', categoryTitle: 'Industry Sector Consultation' })}
+                      className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#8DC63F] hover:bg-[#7cb335] text-[#050608] font-bold text-sm transition-all duration-300 shadow-sm hover:shadow-md active:scale-[0.99] cursor-pointer"
+                    >
+                      <span>Request Sector Consultation</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+
+                    <div className="flex items-center justify-between text-xs text-slate-400 dark:text-[#A9B4C0] px-1">
+                      <span>Direct Technical Desk:</span>
+                      <a
+                        href="tel:+97126790047"
+                        className="text-white hover:text-[#8DC63F] font-semibold transition-colors flex items-center gap-1"
+                      >
+                        <Phone className="w-3 h-3 text-[#8DC63F]" />
+                        <span>+971 2 679 0047</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </Reveal>
         </div>
