@@ -1,7 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import Reveal from '@/components/ui/Reveal';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 // Decent, authentic industrial engineering icons (designed specifically for UAE engineering & infrastructure sectors, avoiding generic AI template cliches)
 function CommercialIcon({ className = 'w-4 h-4' }: { className?: string }) {
@@ -144,7 +145,212 @@ const SECTORS = [
   { name: 'Data, Security & Critical Installations', shortName: 'Data & Critical Sites', icon: CriticalDataSecurityIcon },
 ];
 
+const WHY_FEATURE_CARDS = [
+  {
+    step: '1. Technical Expertise',
+    title: 'Product Selection for Your Project',
+    points: [
+      {
+        strong: 'Broad Portfolio:',
+        text: 'Electrical, mechanical and renewable energy solutions, laboratory and gym equipment, and specialist lightning protection and earthing systems.',
+      },
+      {
+        strong: 'Specification Review:',
+        text: 'We review ratings, materials, dimensions and compatibility against project requirements.',
+      },
+      {
+        strong: 'Practical Alternatives:',
+        text: 'Where suitable, we propose options based on performance, availability and budget.',
+      },
+      {
+        strong: 'Technical Submittals:',
+        text: 'We provide manufacturer datasheets and supporting documentation for consultant review.',
+      },
+    ],
+  },
+  {
+    step: '2. Standards & Regulations',
+    title: 'Aligned with Project and Authority Requirements',
+    points: [
+      {
+        strong: 'Applicable Standards:',
+        text: 'We reference the relevant project and product-specific standards for each scope where permitted by the relevant authority and project specifications.',
+      },
+      {
+        strong: 'Local Authority Requirements:',
+        text: 'We account for applicable regulations, technical circulars and notices issued by municipalities and Civil Defence authorities.',
+      },
+      {
+        strong: 'Utility and Energy Requirements:',
+        text: 'Where relevant, we support documentation for projects subject to requirements from TAQA, DEWA, DoE, EtihadWE, Sharjah Electricity, Water and Gas Authority, and the ADCDA Civil Defence Authorities.',
+      },
+    ],
+  },
+  {
+    step: '3. Project Coordination',
+    title: 'Support from Enquiry to Handover',
+    points: [
+      {
+        strong: 'Single Point of Contact:',
+        text: 'One team coordinates technical queries, quotations, submittals and delivery.',
+      },
+      {
+        strong: 'Site and Design Coordination:',
+        text: 'We work with clients, consultants and contractors to address site constraints and installation requirements.',
+      },
+      {
+        strong: 'Installation Support:',
+        text: 'We coordinate specialist installation through qualified partners where included in the project scope.',
+      },
+      {
+        strong: 'Testing and Handover:',
+        text: 'Where included, we coordinate testing, commissioning and handover documentation.',
+      },
+    ],
+  },
+  {
+    step: '4. Quality & Sourcing',
+    title: 'Products Suited to the Application',
+    points: [
+      {
+        strong: 'Authorised Distribution:',
+        text: 'We represent specialist manufacturers in the UAE across selected product lines.',
+      },
+      {
+        strong: 'Application-Specific Selection:',
+        text: 'We consider operating conditions such as heat, dust, humidity and corrosion exposure.',
+      },
+      {
+        strong: 'Product Documentation:',
+        text: 'We provide available certificates, test reports and manufacturer warranty details as required.',
+      },
+      {
+        strong: 'Supply Planning:',
+        text: 'We confirm stock status, lead times and delivery requirements during procurement.',
+      },
+    ],
+  },
+  {
+    step: '5. Long-Term Performance',
+    title: 'Equipment That’s Easier to Maintain',
+    points: [
+      {
+        strong: 'Serviceability:',
+        text: 'We consider access for inspection, maintenance and replacement when recommending equipment.',
+      },
+      {
+        strong: 'Spares and Accessories:',
+        text: 'We assist with compatible consumables, accessories and replacement parts.',
+      },
+      {
+        strong: 'Operating Documentation:',
+        text: 'We provide available manufacturer operation and maintenance manuals.',
+      },
+      {
+        strong: 'After-Sales Support:',
+        text: 'We assist with technical queries, warranty coordination and replacement sourcing.',
+      },
+    ],
+  },
+];
+
 export default function WhyVisionEnergy() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Mouse Drag to Scroll variables
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollStart = useRef(0);
+  const hasMoved = useRef(false);
+
+  const checkScroll = useCallback(() => {
+    if (!scrollRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+    setCanScrollLeft(scrollLeft > 10);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+
+    const cardEl = scrollRef.current.firstElementChild as HTMLElement | null;
+    const cardStep = cardEl ? cardEl.offsetWidth + 24 : 380;
+    const currentIdx = Math.round(scrollLeft / cardStep);
+    setActiveIndex(Math.min(Math.max(currentIdx, 0), WHY_FEATURE_CARDS.length - 1));
+  }, []);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    let ticking = false;
+    const throttledCheckScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          checkScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    const rafId = requestAnimationFrame(() => {
+      checkScroll();
+    });
+
+    el.addEventListener('scroll', throttledCheckScroll, { passive: true });
+    window.addEventListener('resize', throttledCheckScroll, { passive: true });
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      el.removeEventListener('scroll', throttledCheckScroll);
+      window.removeEventListener('resize', throttledCheckScroll);
+    };
+  }, [checkScroll]);
+
+  const getCardStep = () => {
+    if (!scrollRef.current) return 380;
+    const cardEl = scrollRef.current.firstElementChild as HTMLElement | null;
+    return cardEl ? cardEl.offsetWidth + 24 : 380;
+  };
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (!scrollRef.current) return;
+    const offset = direction === 'left' ? -getCardStep() : getCardStep();
+    scrollRef.current.scrollBy({ left: offset, behavior: 'smooth' });
+  };
+
+  const scrollToIndex = (index: number) => {
+    if (!scrollRef.current) return;
+    scrollRef.current.scrollTo({ left: index * getCardStep(), behavior: 'smooth' });
+  };
+
+  // Mouse Drag Events for Desktop Swipe
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!scrollRef.current) return;
+    isDragging.current = true;
+    hasMoved.current = false;
+    startX.current = e.pageX - scrollRef.current.offsetLeft;
+    scrollStart.current = scrollRef.current.scrollLeft;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging.current || !scrollRef.current) return;
+    const x = e.pageX - scrollRef.current.offsetLeft;
+    const walk = (x - startX.current) * 1.4;
+    if (Math.abs(walk) > 6) {
+      hasMoved.current = true;
+    }
+    scrollRef.current.scrollLeft = scrollStart.current - walk;
+  };
+
+  const handleMouseUp = () => {
+    isDragging.current = false;
+  };
+
+  const handleMouseLeave = () => {
+    isDragging.current = false;
+  };
+
   return (
     <section
       aria-labelledby="why-vision-energy-heading"
@@ -162,241 +368,138 @@ export default function WhyVisionEnergy() {
         aria-hidden="true"
       />
 
-      <div className="max-w-[80rem] mx-auto px-5 sm:px-6 lg:px-8 space-y-12 lg:space-y-16 relative z-10">
-        {/* Section Header */}
-        <div className="max-w-4xl space-y-4">
-          <Reveal staggerIndex={0}>
-            <div className="inline-flex items-center gap-2 text-xs sm:text-[13px] font-bold text-[#8DC63F] uppercase tracking-[0.14em]">
-              <span className="w-6 h-[2px] bg-[#8DC63F] rounded-full shrink-0" aria-hidden="true" />
-              <span>Why Vision Energy</span>
-            </div>
-          </Reveal>
+      <div className="max-w-[80rem] mx-auto px-5 sm:px-6 lg:px-8 space-y-10 sm:space-y-12 relative z-10">
+        {/* Section Header with Carousel Navigation Controls */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+          <div className="max-w-3xl space-y-3 sm:space-y-4">
+            <Reveal staggerIndex={0}>
+              <div className="inline-flex items-center gap-2 text-xs sm:text-[13px] font-bold text-[#8DC63F] uppercase tracking-[0.14em]">
+                <span className="w-6 h-[2px] bg-[#8DC63F] rounded-full shrink-0" aria-hidden="true" />
+                <span>Why Vision Energy</span>
+              </div>
+            </Reveal>
 
-          <Reveal staggerIndex={1}>
-            <h2
-              id="why-vision-energy-heading"
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-bold text-white leading-[1.2] tracking-[-0.02em] text-balance"
+            <Reveal staggerIndex={1}>
+              <h2
+                id="why-vision-energy-heading"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-bold text-white leading-[1.2] tracking-[-0.02em] text-balance"
+              >
+                Specialist Products and Technical Support Across the UAE and GCC
+              </h2>
+            </Reveal>
+          </div>
+
+          {/* Carousel Previous & Next Arrow Controls */}
+          <div className="flex items-center gap-2 shrink-0 self-start sm:self-end">
+            <button
+              type="button"
+              onClick={() => scroll('left')}
+              disabled={!canScrollLeft}
+              aria-label="Previous feature"
+              className={`carousel-nav-btn w-10 h-10 rounded-xl border flex items-center justify-center transition-all ${
+                canScrollLeft
+                  ? 'bg-white border-slate-300 text-[#8DC63F] hover:bg-[#8DC63F] hover:text-[#050608] hover:border-[#8DC63F] dark:bg-[#0A0E17] dark:border-white/20 dark:text-[#8DC63F] dark:hover:bg-[#8DC63F] dark:hover:text-[#050608] dark:hover:border-[#8DC63F] shadow-sm hover:shadow-md active:scale-95 cursor-pointer'
+                  : 'bg-slate-100 border-slate-200 text-slate-400 dark:bg-[#0A0E17]/40 dark:border-white/10 dark:text-white/30 cursor-not-allowed opacity-60'
+              }`}
             >
-              Specialist Products and Technical Support Across the UAE and GCC
-            </h2>
-          </Reveal>
+              <ChevronLeft className="w-5 h-5 stroke-[2.2]" />
+            </button>
+
+            <button
+              type="button"
+              onClick={() => scroll('right')}
+              disabled={!canScrollRight}
+              aria-label="Next feature"
+              className={`carousel-nav-btn w-10 h-10 rounded-xl border flex items-center justify-center transition-all ${
+                canScrollRight
+                  ? 'bg-white border-slate-300 text-[#8DC63F] hover:bg-[#8DC63F] hover:text-[#050608] hover:border-[#8DC63F] dark:bg-[#0A0E17] dark:border-white/20 dark:text-[#8DC63F] dark:hover:bg-[#8DC63F] dark:hover:text-[#050608] dark:hover:border-[#8DC63F] shadow-sm hover:shadow-md active:scale-95 cursor-pointer'
+                  : 'bg-slate-100 border-slate-200 text-slate-400 dark:bg-[#0A0E17]/40 dark:border-white/10 dark:text-white/30 cursor-not-allowed opacity-60'
+              }`}
+            >
+              <ChevronRight className="w-5 h-5 stroke-[2.2]" />
+            </button>
+          </div>
         </div>
 
-        {/* Feature Cards: Unified Grid of 5 Standard Card Boxes */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 lg:gap-8 items-stretch">
-          {/* Card 1: Technical Expertise */}
-          <Reveal staggerIndex={2} className="h-full md:col-span-1 lg:col-span-2">
-            <div className="group h-full flex flex-col justify-between p-6 sm:p-8 rounded-xl bg-[#0D1117] border border-white/[0.1] hover:border-[#8DC63F]/50 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
-              <div className="space-y-4">
-                <div>
-                  <span className="text-xs uppercase tracking-wider text-[#8DC63F] font-bold block mb-1.5">
-                    1. Technical Expertise
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-snug">
-                    Product Selection for Your Project
-                  </h3>
+        {/* Feature Cards: Responsive Horizontal Swipeable Carousel */}
+        <Reveal staggerIndex={2}>
+          <div className="relative">
+            <div
+              ref={scrollRef}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseLeave}
+              aria-roledescription="carousel"
+              aria-label="Why Vision Energy Features Carousel"
+              className="flex gap-5 sm:gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pt-2 pb-6 cursor-grab active:cursor-grabbing select-none items-stretch px-1"
+              style={{
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none',
+                WebkitOverflowScrolling: 'touch',
+              }}
+            >
+              {WHY_FEATURE_CARDS.map((card, idx) => (
+                <div
+                  key={idx}
+                  className="w-[86vw] min-w-[280px] max-w-[360px] sm:w-[350px] md:w-[calc((100%-24px)/2)] lg:w-[calc((100%-48px)/3)] shrink-0 snap-start flex flex-col"
+                >
+                  <div className="group h-full flex flex-col justify-between p-6 sm:p-8 rounded-2xl bg-[#0D1117] border border-white/[0.1] hover:border-[#8DC63F]/50 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
+                    <div className="space-y-4">
+                      <div>
+                        <span className="text-xs uppercase tracking-wider text-[#8DC63F] font-bold block mb-1.5">
+                          {card.step}
+                        </span>
+                        <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-snug">
+                          {card.title}
+                        </h3>
+                      </div>
+
+                      <ul className="space-y-2.5 sm:space-y-3 pt-2">
+                        {card.points.map((pt, pIdx) => (
+                          <li
+                            key={pIdx}
+                            className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors"
+                          >
+                            <span
+                              className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]"
+                              aria-hidden="true"
+                            />
+                            <span>
+                              <strong className="text-white font-semibold">{pt.strong} </strong>
+                              {pt.text}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-
-                <ul className="space-y-2.5 sm:space-y-3 pt-2">
-                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
-                    <span>
-                      <strong className="text-white font-semibold">Broad Portfolio:</strong> Electrical, mechanical and renewable energy solutions, laboratory and gym equipment, and specialist lightning protection and earthing systems.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
-                    <span>
-                      <strong className="text-white font-semibold">Specification Review:</strong> We review ratings, materials, dimensions and compatibility against project requirements.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
-                    <span>
-                      <strong className="text-white font-semibold">Practical Alternatives:</strong> Where suitable, we propose options based on performance, availability and budget.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
-                    <span>
-                      <strong className="text-white font-semibold">Technical Submittals:</strong> We provide manufacturer datasheets and supporting documentation for consultant review.
-                    </span>
-                  </li>
-                </ul>
-              </div>
+              ))}
             </div>
-          </Reveal>
 
-          {/* Card 2: Standards & Regulations */}
-          <Reveal staggerIndex={3} className="h-full md:col-span-1 lg:col-span-2">
-            <div className="group h-full flex flex-col justify-between p-6 sm:p-8 rounded-xl bg-[#0D1117] border border-white/[0.1] hover:border-[#8DC63F]/50 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
-              <div className="space-y-4">
-                <div>
-                  <span className="text-xs uppercase tracking-wider text-[#8DC63F] font-bold block mb-1.5">
-                    2. Standards &amp; Regulations
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-snug">
-                    Aligned with Project and Authority Requirements
-                  </h3>
-                </div>
-
-                <ul className="space-y-2.5 sm:space-y-3 pt-2">
-                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
-                    <span>
-                      <strong className="text-white font-semibold">Applicable Standards:</strong> We reference the relevant project and product-specific standards for each scope where permitted by the relevant authority and project specifications.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
-                    <span>
-                      <strong className="text-white font-semibold">Local Authority Requirements:</strong> We account for applicable regulations, technical circulars and notices issued by municipalities and Civil Defence authorities.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
-                    <span>
-                      <strong className="text-white font-semibold">Utility and Energy Requirements:</strong> Where relevant, we support documentation for projects subject to requirements from TAQA, DEWA, DoE, EtihadWE, Sharjah Electricity, Water and Gas Authority, and the ADCDA Civil Defence Authorities.
-                    </span>
-                  </li>
-                </ul>
-              </div>
+            {/* Carousel Pagination Dots */}
+            <div className="flex items-center justify-center gap-2 pt-2">
+              {WHY_FEATURE_CARDS.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => scrollToIndex(i)}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    activeIndex === i
+                      ? 'w-7 bg-[#8DC63F]'
+                      : 'w-2 bg-white/20 hover:bg-white/40'
+                  }`}
+                  aria-label={`Scroll to feature card ${i + 1}`}
+                />
+              ))}
             </div>
-          </Reveal>
-
-          {/* Card 3: Project Coordination */}
-          <Reveal staggerIndex={4} className="h-full md:col-span-1 lg:col-span-2">
-            <div className="group h-full flex flex-col justify-between p-6 sm:p-8 rounded-xl bg-[#0D1117] border border-white/[0.1] hover:border-[#8DC63F]/50 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
-              <div className="space-y-4">
-                <div>
-                  <span className="text-xs uppercase tracking-wider text-[#8DC63F] font-bold block mb-1.5">
-                    3. Project Coordination
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-snug">
-                    Support from Enquiry to Handover
-                  </h3>
-                </div>
-
-                <ul className="space-y-2.5 sm:space-y-3 pt-2">
-                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
-                    <span>
-                      <strong className="text-white font-semibold">Single Point of Contact:</strong> One team coordinates technical queries, quotations, submittals and delivery.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
-                    <span>
-                      <strong className="text-white font-semibold">Site and Design Coordination:</strong> We work with clients, consultants and contractors to address site constraints and installation requirements.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
-                    <span>
-                      <strong className="text-white font-semibold">Installation Support:</strong> We coordinate specialist installation through qualified partners where included in the project scope.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
-                    <span>
-                      <strong className="text-white font-semibold">Testing and Handover:</strong> Where included, we coordinate testing, commissioning and handover documentation.
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Card 4: Quality & Sourcing */}
-          <Reveal staggerIndex={5} className="h-full md:col-span-1 lg:col-span-2 lg:col-start-2">
-            <div className="group h-full flex flex-col justify-between p-6 sm:p-8 rounded-xl bg-[#0D1117] border border-white/[0.1] hover:border-[#8DC63F]/50 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
-              <div className="space-y-4">
-                <div>
-                  <span className="text-xs uppercase tracking-wider text-[#8DC63F] font-bold block mb-1.5">
-                    4. Quality &amp; Sourcing
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-snug">
-                    Products Suited to the Application
-                  </h3>
-                </div>
-
-                <ul className="space-y-2.5 sm:space-y-3 pt-2">
-                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
-                    <span>
-                      <strong className="text-white font-semibold">Authorised Distribution:</strong> We represent specialist manufacturers in the UAE across selected product lines.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
-                    <span>
-                      <strong className="text-white font-semibold">Application-Specific Selection:</strong> We consider operating conditions such as heat, dust, humidity and corrosion exposure.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
-                    <span>
-                      <strong className="text-white font-semibold">Product Documentation:</strong> We provide available certificates, test reports and manufacturer warranty details as required.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
-                    <span>
-                      <strong className="text-white font-semibold">Supply Planning:</strong> We confirm stock status, lead times and delivery requirements during procurement.
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Card 5: Long-Term Performance */}
-          <Reveal staggerIndex={6} className="h-full md:col-span-2 md:max-w-md md:mx-auto w-full lg:col-span-2 lg:col-start-4 lg:max-w-none lg:mx-0">
-            <div className="group h-full flex flex-col justify-between p-6 sm:p-8 rounded-xl bg-[#0D1117] border border-white/[0.1] hover:border-[#8DC63F]/50 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
-              <div className="space-y-4">
-                <div>
-                  <span className="text-xs uppercase tracking-wider text-[#8DC63F] font-bold block mb-1.5">
-                    5. Long-Term Performance
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-snug">
-                    Equipment That’s Easier to Maintain
-                  </h3>
-                </div>
-
-                <ul className="space-y-2.5 sm:space-y-3 pt-2">
-                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
-                    <span>
-                      <strong className="text-white font-semibold">Serviceability:</strong> We consider access for inspection, maintenance and replacement when recommending equipment.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
-                    <span>
-                      <strong className="text-white font-semibold">Spares and Accessories:</strong> We assist with compatible consumables, accessories and replacement parts.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
-                    <span>
-                      <strong className="text-white font-semibold">Operating Documentation:</strong> We provide available manufacturer operation and maintenance manuals.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]" aria-hidden="true" />
-                    <span>
-                      <strong className="text-white font-semibold">After-Sales Support:</strong> We assist with technical queries, warranty coordination and replacement sourcing.
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </Reveal>
-        </div>
+          </div>
+        </Reveal>
 
         {/* Industries We Serve */}
         <div className="space-y-6 sm:space-y-8 pt-4 sm:pt-6">
-          <Reveal staggerIndex={8}>
+          <Reveal staggerIndex={4}>
             <div className="text-center max-w-2xl mx-auto">
               <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
                 Industries We Serve
@@ -405,7 +508,7 @@ export default function WhyVisionEnergy() {
           </Reveal>
 
           {/* Interactive Sectors Grid with Decent Engineering Icons */}
-          <Reveal staggerIndex={9}>
+          <Reveal staggerIndex={5}>
             <div className="flex flex-wrap justify-center items-center gap-2.5 sm:gap-3.5 max-w-5xl mx-auto">
               {SECTORS.map((sector, i) => {
                 const IconComponent = sector.icon;
