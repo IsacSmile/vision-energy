@@ -501,7 +501,7 @@ export default function WhyVisionEnergy() {
         <div className="space-y-6 sm:space-y-8 pt-4 sm:pt-6">
           <Reveal staggerIndex={4}>
             <div className="text-left">
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
                 Industries We Serve
               </h3>
             </div>
@@ -515,19 +515,19 @@ export default function WhyVisionEnergy() {
                 return (
                   <div
                     key={i}
-                    className="group w-full flex items-center justify-between gap-4 p-4 sm:p-5 rounded-2xl bg-[#0D1117] border border-white/10 hover:border-[#8DC63F]/50 hover:bg-[#131924] transition-all duration-300 shadow-sm hover:shadow-md cursor-default"
+                    className="group w-full flex items-center justify-between gap-4 p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#0D1117] border border-slate-200/90 dark:border-white/10 hover:border-[#8DC63F]/60 dark:hover:border-[#8DC63F]/50 hover:shadow-md transition-all duration-300 shadow-sm cursor-default"
                   >
                     <div className="flex items-center gap-3.5 sm:gap-4 min-w-0">
-                      <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-[#0B65B3]/15 border border-[#0B65B3]/35 group-hover:border-[#8DC63F] group-hover:bg-[#0B65B3] group-hover:shadow-[0_0_14px_rgba(141,198,63,0.45)] flex items-center justify-center shrink-0 transition-all duration-300">
-                        <IconComponent className="w-5 h-5 text-[#8DC63F] group-hover:text-white transition-colors duration-300" />
+                      <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-[#0B65B3]/10 dark:bg-[#0B65B3]/15 border border-[#0B65B3]/25 dark:border-[#0B65B3]/35 group-hover:border-[#8DC63F] group-hover:bg-[#8DC63F] dark:group-hover:bg-[#0B65B3] group-hover:shadow-[0_0_14px_rgba(141,198,63,0.35)] flex items-center justify-center shrink-0 transition-all duration-300">
+                        <IconComponent className="w-5 h-5 text-[#0B65B3] dark:text-[#8DC63F] group-hover:text-black dark:group-hover:text-white transition-colors duration-300" />
                       </div>
-                      <span className="text-sm sm:text-[15px] font-semibold text-white/95 group-hover:text-white transition-colors leading-snug">
+                      <span className="text-sm sm:text-[15px] font-bold text-slate-900 dark:text-white group-hover:text-[#0B65B3] dark:group-hover:text-[#8DC63F] transition-colors leading-snug">
                         {sector.name}
                       </span>
                     </div>
 
-                    <div className="w-8 h-8 rounded-full bg-white/[0.04] border border-white/[0.08] group-hover:bg-[#8DC63F]/15 group-hover:border-[#8DC63F]/40 flex items-center justify-center shrink-0 transition-all duration-300">
-                      <ArrowUpRight className="w-4 h-4 text-[#A9B4C0] group-hover:text-[#8DC63F] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+                    <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-white/[0.05] border border-slate-200 dark:border-white/[0.08] group-hover:bg-[#8DC63F]/15 group-hover:border-[#8DC63F]/40 flex items-center justify-center shrink-0 transition-all duration-300">
+                      <ArrowUpRight className="w-4 h-4 text-slate-500 dark:text-[#A9B4C0] group-hover:text-[#8DC63F] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
                     </div>
                   </div>
                 );
