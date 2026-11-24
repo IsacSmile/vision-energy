@@ -232,14 +232,14 @@ export default function Header() {
 
           {/* Desktop/Tablet Static View (md+) */}
           <div className="hidden md:block max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-center h-[36px] sm:h-[40px] text-xs sm:text-[13px] font-semibold">
-              {/* Centered: 2 Phone Numbers + Email with Vertical Dividers */}
-              <div className="flex items-center justify-center divide-x divide-[#0A192F]/20 overflow-x-auto no-scrollbar py-1">
+            <div className="flex items-center justify-between h-[36px] sm:h-[40px] text-xs sm:text-[13px] font-semibold">
+              {/* Left side: Both Phone Numbers with Vertical Divider */}
+              <div className="flex items-center divide-x divide-[#0A192F]/20 py-1">
                 {/* Telephone 1 */}
                 <a
                   href="tel:+971501234567"
-                  className="flex items-center gap-2 px-3.5 sm:px-4 shrink-0 hover:text-black transition-colors"
-                  title="Call Vision Energy"
+                  className="flex items-center gap-2 pr-3.5 sm:pr-4 shrink-0 hover:text-black transition-colors"
+                  title="Call Vision Energy (+971 50 123 4567)"
                 >
                   <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
                   <span>+971 50 123 4567</span>
@@ -248,18 +248,20 @@ export default function Header() {
                 {/* Telephone 2 */}
                 <a
                   href="tel:+971541234567"
-                  className="flex items-center gap-2 px-3.5 sm:px-4 shrink-0 hover:text-black transition-colors"
-                  title="Call Vision Energy"
+                  className="flex items-center gap-2 pl-3.5 sm:pl-4 shrink-0 hover:text-black transition-colors"
+                  title="Call Vision Energy (+971 54 123 4567)"
                 >
                   <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
                   <span>+971 54 123 4567</span>
                 </a>
+              </div>
 
-                {/* Email */}
+              {/* Right side: Email */}
+              <div className="flex items-center py-1">
                 <a
                   href="mailto:info@visionenergyme.com"
-                  className="flex items-center gap-2 px-3.5 sm:px-4 shrink-0 hover:text-black transition-colors"
-                  title="Email Vision Energy"
+                  className="flex items-center gap-2 hover:text-black transition-colors"
+                  title="Email Vision Energy (info@visionenergyme.com)"
                 >
                   <Mail className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
                   <span>info@visionenergyme.com</span>
