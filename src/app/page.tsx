@@ -4,7 +4,6 @@ import HomeHeroClient from '@/components/home/HomeHeroClient';
 import IntroStandards from '@/components/home/IntroStandards';
 import ServicesPreview from '@/components/home/ServicesPreview';
 import ProductsWeOffer from '@/components/home/ProductsWeOffer';
-import WhyVisionEnergy from '@/components/home/WhyVisionEnergy';
 import OurPartners from '@/components/home/OurPartners';
 import FinalCTA from '@/components/home/FinalCTA';
 import SmoothScroll from '@/components/common/SmoothScroll';
@@ -171,12 +170,7 @@ export default async function HomePage() {
 
         <HairlineDivider />
 
-        {/* 3. WHY VISION ENERGY (#06080D) */}
-        <WhyVisionEnergy />
-
-        <HairlineDivider />
-
-        {/* 4. OUR PARTNERS (#050608) */}
+        {/* 3. OUR PARTNERS (#050608) */}
         <OurPartners />
 
         <HairlineDivider />

@@ -47,8 +47,8 @@ export const GROUP_LABELS: Record<string, string> = {
   SP: 'Sports & Fitness Equipment',
   // Laboratory Equipment Groups
   LE: 'General Laboratory Equipment',
-  LPE: 'Laboratory PPE & Safety Supplies',
-  LG: 'Laboratory Glassware & Plasticware',
+  LPE: 'PPE & Safety Supplies Equipments',
+  LG: 'Glassware and Plasticware Essentials',
   LH: 'Liquid Handling & Sample Preparation',
   LC: 'Laboratory Consumables & Accessories',
   LM: 'Measurement & Monitoring Instruments',

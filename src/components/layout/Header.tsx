@@ -134,6 +134,7 @@ export default function Header() {
   const navLinks = [
     { href: '/', label: dictionary.nav.home },
     { href: '/products', label: dictionary.nav.products },
+    { href: '/expertise', label: dictionary.nav.expertise || 'Expertise' },
     { href: '/services', label: dictionary.nav.services },
     { href: '/blog', label: dictionary.nav.blog },
     { href: '/contact', label: dictionary.nav.contact },

@@ -19,6 +19,7 @@ import {
   Boxes,
   Trophy,
   Globe,
+  Plug,
 } from 'lucide-react';
 
 interface SlideData {
@@ -53,7 +54,7 @@ const HERO_SLIDES: SlideData[] = [
     description:
       'Delivering quality products and dependable solutions to support industries, infrastructure and projects across diverse sectors.',
     ctaText: 'Explore Products',
-    ctaLink: '/products?group=EL',
+    ctaLink: '/products',
     imageUrl: 'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/09_Electrical_1920x1080-optimized.webp',
     imageAlt:
       'Vision Energy - Quality industrial and technical products showroom in UAE: distribution panels, circuit breakers, cable trays, and rigid conduits',
@@ -102,22 +103,42 @@ const HERO_SLIDES: SlideData[] = [
     glowColor: 'rgba(141,198,63,0.45)',
   },
   {
-    id: 'electrical-mechanical-solutions',
-    category: 'Electrical & Mechanical',
+    id: 'electrical-solutions',
+    category: 'Electrical',
     shortName: 'Electrical',
-    badge: 'Industrial & Infrastructure',
-    badgeIcon: Wrench,
-    titleLine1: 'Advanced Electrical &',
-    titleLine2: 'Mechanical Solutions',
+    badge: 'Industrial Electrical Systems',
+    badgeIcon: Plug,
+    titleLine1: 'Advanced Electrical',
+    titleLine2: 'Equipment & Solutions',
     subtitle: 'Engineered for Industrial & Infrastructure Applications',
     description:
-      'Advanced electrical and mechanical solutions for industrial and infrastructure applications.',
-    ctaText: 'Explore Solutions',
+      'High-performance electrical distribution, switchgear, cable containment, and industrial power solutions.',
+    ctaText: 'Explore Electrical',
+    ctaLink: '/products?group=EL',
+    imageUrl: 'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/09_Electrical_1920x1080-optimized.webp',
+    imageAlt:
+      'Advanced electrical equipment and solutions UAE - Distribution panels, switchgear, cable trays, conduits, and power systems',
+    standards: 'DEWA • SEWA • ISO 9001 Compliant',
+    highlightColor: 'text-[#8DC63F]',
+    glowColor: 'rgba(141,198,63,0.45)',
+  },
+  {
+    id: 'mechanical-solutions',
+    category: 'Mechanical',
+    shortName: 'Mechanical',
+    badge: 'Industrial & Infrastructure',
+    badgeIcon: Wrench,
+    titleLine1: 'Advanced Mechanical &',
+    titleLine2: 'Pumping Solutions',
+    subtitle: 'Engineered for Industrial & Infrastructure Applications',
+    description:
+      'Advanced mechanical solutions, centrifugal water pumps, valves, and HVAC equipment for industrial applications.',
+    ctaText: 'Explore Mechanical',
     ctaLink: '/products?group=ME',
     imageUrl: 'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/07_Mechanical_1920x1080.jpg.webp',
     imageAlt:
-      'Advanced electrical and mechanical solutions UAE - Industrial centrifugal water pumps, booster pumps, gate valves, check valves, and pipe fittings',
-    standards: 'DEWA • SEWA • ISO 9001 Compliant',
+      'Advanced mechanical solutions UAE - Industrial centrifugal water pumps, booster pumps, gate valves, check valves, and pipe fittings',
+    standards: 'ISO 9001 • Industrial Grade • MEP Compliant',
     highlightColor: 'text-[#8DC63F]',
     glowColor: 'rgba(141,198,63,0.45)',
   },
@@ -142,22 +163,22 @@ const HERO_SLIDES: SlideData[] = [
     glowColor: 'rgba(141,198,63,0.45)',
   },
   {
-    id: 'gym-equipment-maintenance',
-    category: 'Gym Equipment Maintenance',
-    shortName: 'Gym Care',
-    badge: 'Fitness Equipment Care',
+    id: 'gym-equipment',
+    category: 'Gym Equipment',
+    shortName: 'Gym',
+    badge: 'Fitness & Gym Equipment',
     badgeIcon: Dumbbell,
-    titleLine1: 'Gym Equipment',
-    titleLine2: 'Maintenance Services',
-    subtitle: 'Expert Maintenance & Repair Solutions',
+    titleLine1: 'Commercial Gym &',
+    titleLine2: 'Fitness Equipment',
+    subtitle: 'Premium Fitness Machinery & Gym Solutions',
     description:
-      "Expert maintenance and repair solutions to keep your gym equipment safe, reliable, and performing at its best.",
-    ctaText: 'Explore Gym & Fitness',
+      'Quality commercial gym equipment, fitness machinery, strength training systems, and comprehensive equipment care.',
+    ctaText: 'Explore Gym Equipment',
     ctaLink: '/products?group=SP',
     imageUrl: 'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/05_Gym_1920x1080-optimized.webp',
     imageAlt:
-      'Gym equipment maintenance services - Commercial fitness machinery, treadmills, rowing machines, power racks, and repair solutions',
-    standards: 'Certified Technicians • Preventive AMC • OEM Genuine Parts',
+      'Commercial gym equipment and fitness machinery - Treadmills, strength training machines, power racks, and fitness accessories UAE',
+    standards: 'Commercial Grade • Certified Safety • OEM Support',
     highlightColor: 'text-[#8DC63F]',
     glowColor: 'rgba(141,198,63,0.45)',
   },
@@ -565,7 +586,7 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
       <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 pb-[max(10px,env(safe-area-inset-bottom))] lg:hidden">
         
         {/* Mobile Quick Category Switcher Tabs */}
-        <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none sm:grid sm:grid-cols-5 md:grid-cols-10 mb-2.5">
+        <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none sm:grid sm:grid-cols-6 md:grid-cols-11 mb-2.5">
           {HERO_SLIDES.map((slide, idx) => {
             const isSelected = idx === currentSlide;
             const SlideIcon = slide.badgeIcon;

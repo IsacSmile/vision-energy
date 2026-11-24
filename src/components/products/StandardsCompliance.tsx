@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Reveal from '@/components/ui/Reveal';
-import { ShieldCheck, Building2, CheckCircle2, Award, Zap, FileCheck } from 'lucide-react';
+import { ShieldCheck, Building2, Award, Zap, FileCheck } from 'lucide-react';
 
 const LPS_STANDARDS = [
   {
@@ -101,7 +101,7 @@ export default function StandardsCompliance() {
                     </div>
                     <div>
                       <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight">
-                        LPS Standards
+                        100% LPS Standards Adherent
                       </h3>
                       <p className="text-[11px] text-slate-500 dark:text-[#A9B4C0]">International Engineering Codes</p>
                     </div>
@@ -139,15 +139,6 @@ export default function StandardsCompliance() {
                     );
                   })}
                 </div>
-              </div>
-
-              {/* Bottom Compact Assurance Strip */}
-              <div className="relative z-10 mt-3.5 pt-2.5 border-t border-slate-200/80 dark:border-white/[0.06] flex items-center justify-between text-[11px] text-slate-500 dark:text-[#94A3B8]">
-                <span className="flex items-center gap-1.5 text-slate-700 dark:text-white/80">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#8DC63F]" />
-                  <span>Technical Submittals Included</span>
-                </span>
-                <span className="text-[#0B65B3] dark:text-[#8DC63F] font-medium">100% IEC / BS Adherent</span>
               </div>
             </div>
           </Reveal>
@@ -191,9 +182,6 @@ export default function StandardsCompliance() {
                           </span>
                         </div>
                       </div>
-                      <span className="shrink-0 text-[10px] font-semibold text-[#8DC63F] bg-[#8DC63F]/10 px-1.5 py-0.5 rounded border border-[#8DC63F]/20">
-                        NOC
-                      </span>
                     </div>
                   ))}
                 </div>
@@ -203,9 +191,9 @@ export default function StandardsCompliance() {
               <div className="relative z-10 mt-3.5 pt-2.5 border-t border-slate-200/80 dark:border-white/[0.06] flex items-center justify-between text-[11px] text-slate-500 dark:text-[#94A3B8]">
                 <span className="flex items-center gap-1.5 text-slate-700 dark:text-white/80">
                   <Award className="w-3.5 h-3.5 text-[#8DC63F]" />
-                  <span>NOC Clearances Approved</span>
+                  <span>Authority Clearances Approved</span>
                 </span>
-                <span className="text-[#0B65B3] dark:text-[#8DC63F] font-medium">All UAE Emirates</span>
+                <span className="text-[#0B65B3] dark:text-[#8DC63F] font-medium">All UAE Authority</span>
               </div>
             </div>
           </Reveal>

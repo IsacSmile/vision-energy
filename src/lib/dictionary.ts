@@ -15,6 +15,7 @@ export const dictionary = {
   nav: {
     home: 'Home',
     products: 'Products',
+    expertise: 'Expertise',
     services: 'Services',
     blog: 'Blog',
     about: 'About Us',

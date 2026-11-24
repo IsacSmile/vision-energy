@@ -354,7 +354,7 @@ export default function WhyVisionEnergy() {
   return (
     <section
       aria-labelledby="why-vision-energy-heading"
-      className="py-16 md:py-24 lg:py-32 bg-[#06080D] relative border-t border-b border-white/[0.08] overflow-hidden"
+      className="py-16 md:py-24 lg:py-32 bg-[#F8FAFC] dark:bg-[#06080D] relative border-t border-b border-slate-200 dark:border-white/[0.08] overflow-hidden"
     >
       {/* Background Architectural Grid Pattern */}
       <div
@@ -382,7 +382,7 @@ export default function WhyVisionEnergy() {
             <Reveal staggerIndex={1}>
               <h2
                 id="why-vision-energy-heading"
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-bold text-white leading-[1.2] tracking-[-0.02em] text-balance"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-bold text-slate-900 dark:text-white leading-[1.2] tracking-[-0.02em] text-balance"
               >
                 Specialist Products and Technical Support Across the UAE and GCC
               </h2>
@@ -444,13 +444,13 @@ export default function WhyVisionEnergy() {
                   key={idx}
                   className="w-[86vw] min-w-[280px] max-w-[360px] sm:w-[350px] md:w-[calc((100%-24px)/2)] lg:w-[calc((100%-48px)/3)] shrink-0 snap-start flex flex-col"
                 >
-                  <div className="group h-full flex flex-col justify-between p-6 sm:p-8 rounded-2xl bg-[#0D1117] border border-white/[0.1] hover:border-[#8DC63F]/50 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
+                  <div className="group h-full flex flex-col justify-between p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#0D1117] border border-slate-200/90 dark:border-white/[0.1] hover:border-[#8DC63F]/60 dark:hover:border-[#8DC63F]/50 transition-all duration-300 shadow-md hover:shadow-xl dark:shadow-lg overflow-hidden">
                     <div className="space-y-4">
                       <div>
                         <span className="text-xs uppercase tracking-wider text-[#8DC63F] font-bold block mb-1.5">
                           {card.step}
                         </span>
-                        <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-snug">
+                        <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white group-hover:text-[#0B65B3] dark:group-hover:text-[#8DC63F] transition-colors leading-snug">
                           {card.title}
                         </h3>
                       </div>
@@ -459,14 +459,14 @@ export default function WhyVisionEnergy() {
                         {card.points.map((pt, pIdx) => (
                           <li
                             key={pIdx}
-                            className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-[#CBD5E1] group-hover:text-white transition-colors"
+                            className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-slate-600 dark:text-[#CBD5E1] group-hover:text-slate-900 dark:group-hover:text-white transition-colors"
                           >
                             <span
                               className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]"
                               aria-hidden="true"
                             />
                             <span>
-                              <strong className="text-white font-semibold">{pt.strong} </strong>
+                              <strong className="text-slate-900 dark:text-white font-semibold">{pt.strong} </strong>
                               {pt.text}
                             </span>
                           </li>
@@ -488,7 +488,7 @@ export default function WhyVisionEnergy() {
                   className={`h-1.5 rounded-full transition-all duration-300 ${
                     activeIndex === i
                       ? 'w-7 bg-[#8DC63F]'
-                      : 'w-2 bg-white/20 hover:bg-white/40'
+                      : 'w-2 bg-slate-300 hover:bg-slate-400 dark:bg-white/20 dark:hover:bg-white/40'
                   }`}
                   aria-label={`Scroll to feature card ${i + 1}`}
                 />

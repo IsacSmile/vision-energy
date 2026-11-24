@@ -25,8 +25,14 @@ function formatCategoryRecord(cat: any) {
     cat.imageUrl ||
     (cat.code ? `/product-catalouge/${cat.code}.jpeg` : null);
 
+  const groupPrefix = cat.groupPrefix || cat.group || "";
+  const groupLabel = getGroupLabel(groupPrefix, cat.groupLabel);
+
   return {
     ...cat,
+    group: groupPrefix,
+    groupPrefix,
+    groupLabel,
     image,
     imageUrl: image,
     imageAlt: cat.imageAlt || `${cat.title} (${cat.code})`,

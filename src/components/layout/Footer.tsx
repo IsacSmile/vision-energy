@@ -94,6 +94,7 @@ export default function Footer({ services = [] }: FooterProps) {
 
   const companyLinks = [
     { label: 'Home', href: '/' },
+    { label: 'Expertise', href: '/expertise' },
     { label: 'Blog', href: '/blog' },
     { label: 'Contact Us', href: '/contact' },
     { label: 'Admin Panel', href: '/admin' },
