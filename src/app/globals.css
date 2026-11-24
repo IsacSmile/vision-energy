@@ -514,30 +514,30 @@ html.light .bg-white\/10 {
 }
 
 /* 4. Text Contrast Overrides - Only for light content sections, NEVER inside dark heroes */
-html.light .text-white:not(footer *):not(footer):not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(#home-hero *):not([data-preserve-contrast]):not([data-preserve-contrast] *) {
+html.light .text-white:not(footer *):not(footer):not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(.expertise-hero *):not(#expertise-hero *):not(#home-hero *):not([data-preserve-contrast]):not([data-preserve-contrast] *) {
   color: #0F172A !important;
 }
 
-html.light .text-\[\#A9B4C0\]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(#home-hero *):not([data-preserve-contrast] *),
-html.light [class*="text-[#A9B4C0]"]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(#home-hero *):not([data-preserve-contrast] *) {
+html.light .text-\[\#A9B4C0\]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(.expertise-hero *):not(#expertise-hero *):not(#home-hero *):not([data-preserve-contrast] *),
+html.light [class*="text-[#A9B4C0]"]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(.expertise-hero *):not(#expertise-hero *):not(#home-hero *):not([data-preserve-contrast] *) {
   color: #334155 !important;
 }
 
-html.light .text-\[\#C9D1D9\]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(#home-hero *):not([data-preserve-contrast] *),
-html.light [class*="text-[#C9D1D9]"]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(#home-hero *):not([data-preserve-contrast] *),
-html.light .text-\[\#CBD5E1\]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(#home-hero *):not([data-preserve-contrast] *),
-html.light [class*="text-[#CBD5E1]"]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(#home-hero *):not([data-preserve-contrast] *),
-html.light .text-\[\#E2E8F0\]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(#home-hero *):not([data-preserve-contrast] *),
-html.light [class*="text-[#E2E8F0]"]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(#home-hero *):not([data-preserve-contrast] *) {
+html.light .text-\[\#C9D1D9\]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(.expertise-hero *):not(#expertise-hero *):not(#home-hero *):not([data-preserve-contrast] *),
+html.light [class*="text-[#C9D1D9]"]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(.expertise-hero *):not(#expertise-hero *):not(#home-hero *):not([data-preserve-contrast] *),
+html.light .text-\[\#CBD5E1\]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(.expertise-hero *):not(#expertise-hero *):not(#home-hero *):not([data-preserve-contrast] *),
+html.light [class*="text-[#CBD5E1]"]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(.expertise-hero *):not(#expertise-hero *):not(#home-hero *):not([data-preserve-contrast] *),
+html.light .text-\[\#E2E8F0\]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(.expertise-hero *):not(#expertise-hero *):not(#home-hero *):not([data-preserve-contrast] *),
+html.light [class*="text-[#E2E8F0]"]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(.expertise-hero *):not(#expertise-hero *):not(#home-hero *):not([data-preserve-contrast] *) {
   color: #1E293B !important;
 }
 
-html.light .text-\[\#94A3B8\]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(#home-hero *):not([data-preserve-contrast] *),
-html.light [class*="text-[#94A3B8]"]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(#home-hero *):not([data-preserve-contrast] *),
-html.light .text-\[\#8B949E\]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(#home-hero *):not([data-preserve-contrast] *),
-html.light [class*="text-[#8B949E]"]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(#home-hero *):not([data-preserve-contrast] *),
-html.light .text-\[\#9BA3AF\]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(#home-hero *):not([data-preserve-contrast] *),
-html.light [class*="text-[#9BA3AF]"]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(#home-hero *):not([data-preserve-contrast] *) {
+html.light .text-\[\#94A3B8\]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(.expertise-hero *):not(#expertise-hero *):not(#home-hero *):not([data-preserve-contrast] *),
+html.light [class*="text-[#94A3B8]"]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(.expertise-hero *):not(#expertise-hero *):not(#home-hero *):not([data-preserve-contrast] *),
+html.light .text-\[\#8B949E\]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(.expertise-hero *):not(#expertise-hero *):not(#home-hero *):not([data-preserve-contrast] *),
+html.light [class*="text-[#8B949E]"]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(.expertise-hero *):not(#expertise-hero *):not(#home-hero *):not([data-preserve-contrast] *),
+html.light .text-\[\#9BA3AF\]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(.expertise-hero *):not(#expertise-hero *):not(#home-hero *):not([data-preserve-contrast] *),
+html.light [class*="text-[#9BA3AF]"]:not([data-dark-hero="true"] *):not(.service-detail-hero *):not([data-hero-section] *):not(.services-hero *):not(#services-hero *):not(.products-hero *):not(#products-hero *):not(.expertise-hero *):not(#expertise-hero *):not(#home-hero *):not([data-preserve-contrast] *) {
   color: #475569 !important;
 }
 
@@ -578,8 +578,8 @@ html.light section:not([data-dark-hero="true"]):not([data-hero-section]):not(.se
 }
 
 /* Ensure all text-white spans and elements inside main/sections render with dark high contrast */
-html.light main .text-white:not([data-preserve-contrast]):not([data-preserve-contrast] *),
-html.light section:not([data-dark-hero="true"]):not([data-hero-section]):not(.services-hero):not(.service-detail-hero):not(#home-hero) .text-white:not([data-preserve-contrast]):not([data-preserve-contrast] *) {
+html.light main section:not([data-dark-hero="true"]):not([data-hero-section]):not(.services-hero):not(#services-hero):not(.products-hero):not(#products-hero):not(.expertise-hero):not(#expertise-hero):not(.service-detail-hero):not(#home-hero) .text-white:not([data-preserve-contrast]):not([data-preserve-contrast] *),
+html.light section:not([data-dark-hero="true"]):not([data-hero-section]):not(.services-hero):not(#services-hero):not(.products-hero):not(#products-hero):not(.expertise-hero):not(#expertise-hero):not(.service-detail-hero):not(#home-hero) .text-white:not([data-preserve-contrast]):not([data-preserve-contrast] *) {
   color: #0F172A !important;
   text-shadow: none !important;
 }
@@ -593,6 +593,8 @@ html.light .products-hero,
 html.light #products-hero,
 html.light .services-hero,
 html.light #services-hero,
+html.light .expertise-hero,
+html.light #expertise-hero,
 html.light .service-detail-hero,
 html.light #home-hero {
   background-color: #050608 !important;
@@ -615,6 +617,12 @@ html.light .services-hero .text-white,
 html.light #services-hero h1,
 html.light #services-hero h1 *,
 html.light #services-hero .text-white,
+html.light .expertise-hero h1,
+html.light .expertise-hero h1 *,
+html.light .expertise-hero .text-white,
+html.light #expertise-hero h1,
+html.light #expertise-hero h1 *,
+html.light #expertise-hero .text-white,
 html.light .service-detail-hero h1,
 html.light .service-detail-hero h1 *,
 html.light .service-detail-hero .text-white,
@@ -641,6 +649,10 @@ html.light .services-hero p,
 html.light .services-hero p *,
 html.light #services-hero p,
 html.light #services-hero p *,
+html.light .expertise-hero p,
+html.light .expertise-hero p *,
+html.light #expertise-hero p,
+html.light #expertise-hero p *,
 html.light .service-detail-hero p,
 html.light .service-detail-hero p *,
 html.light .service-detail-hero [class*="text-[#CBD5E1]"],
@@ -661,6 +673,10 @@ html.light .products-hero nav,
 html.light .products-hero nav *,
 html.light .services-hero nav,
 html.light .services-hero nav *,
+html.light .expertise-hero nav,
+html.light .expertise-hero nav *,
+html.light #expertise-hero nav,
+html.light #expertise-hero nav *,
 html.light .service-detail-hero nav,
 html.light .service-detail-hero nav *,
 html.light .service-detail-hero nav li,
@@ -672,7 +688,9 @@ html.light .service-detail-hero nav a {
 html.light [data-dark-hero="true"] nav a:hover,
 html.light .service-detail-hero nav a:hover,
 html.light .products-hero nav a:hover,
-html.light .services-hero nav a:hover {
+html.light .services-hero nav a:hover,
+html.light .expertise-hero nav a:hover,
+html.light #expertise-hero nav a:hover {
   color: #FFFFFF !important;
 }
 
@@ -680,6 +698,8 @@ html.light [data-dark-hero="true"] span.text-white,
 html.light [data-dark-hero="true"] li.text-white,
 html.light .products-hero span.text-white,
 html.light .services-hero span.text-white,
+html.light .expertise-hero span.text-white,
+html.light #expertise-hero span.text-white,
 html.light .service-detail-hero span.text-white,
 html.light .service-detail-hero li.text-white {
   color: #FFFFFF !important;
@@ -690,6 +710,8 @@ html.light [data-dark-hero="true"] .text-\[\#8DC63F\],
 html.light [data-dark-hero="true"] [class*="text-[#8DC63F]"],
 html.light .products-hero .text-\[\#8DC63F\],
 html.light .services-hero .text-\[\#8DC63F\],
+html.light .expertise-hero .text-\[\#8DC63F\],
+html.light #expertise-hero .text-\[\#8DC63F\],
 html.light .service-detail-hero .text-\[\#8DC63F\],
 html.light .service-detail-hero [class*="text-[#8DC63F]"] {
   color: #8DC63F !important;

@@ -98,7 +98,8 @@ export default function ExpertisePage() {
           id="expertise-hero"
           data-dark-hero="true"
           data-hero-section="true"
-          className="relative overflow-hidden bg-[#050608] border-b border-[#1F2937]/80 min-h-[380px] sm:min-h-[420px] lg:min-h-[460px] flex flex-col justify-end"
+          data-preserve-contrast="true"
+          className="expertise-hero relative overflow-hidden bg-[#050608] border-b border-[#1F2937]/80 min-h-[380px] sm:min-h-[420px] lg:min-h-[460px] flex flex-col justify-end text-white"
         >
           {/* Full Background Hero Image */}
           <div className="absolute inset-0 z-0">
@@ -111,37 +112,62 @@ export default function ExpertisePage() {
               className="object-cover object-center lg:object-right"
             />
             {/* High-contrast gradient scrims */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#050608]/90 via-[#050608]/60 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#050608] via-transparent to-[#050608]/40" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/80 sm:via-black/70 to-black/40 z-[1]" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#050608] via-transparent to-black/60 z-[1]" />
           </div>
 
           <div className="max-w-[80rem] w-full mx-auto px-4 sm:px-6 lg:px-8 pt-[calc(var(--header-offset,80px)+36px)] lg:pt-[calc(var(--header-offset,80px)+52px)] pb-10 sm:pb-14 relative z-10">
             <div className="space-y-4 max-w-4xl">
               <Reveal>
-                <nav aria-label="Breadcrumb" className="text-[13px] text-white/80 font-medium flex items-center gap-2 drop-shadow-sm">
+                <nav
+                  aria-label="Breadcrumb"
+                  data-preserve-contrast="true"
+                  className="text-[13px] text-white/90 font-medium flex items-center gap-2 drop-shadow-sm"
+                  style={{ color: 'rgba(255, 255, 255, 0.9)', textShadow: '0 1px 4px rgba(0, 0, 0, 0.85)' }}
+                >
                   <Link href="/" className="hover:text-white transition-colors">
                     Home
                   </Link>
-                  <ChevronRight className="w-3.5 h-3.5 text-white/50" />
-                  <span className="text-[#8DC63F] font-semibold">Expertise</span>
+                  <ChevronRight className="w-3.5 h-3.5 text-white/60" />
+                  <span className="text-[#8DC63F] font-semibold" style={{ color: '#8DC63F', textShadow: '0 1px 6px rgba(0,0,0,0.8)' }}>
+                    Expertise
+                  </span>
                 </nav>
               </Reveal>
 
               <Reveal delay={70}>
-                <div className="inline-flex items-center gap-2 text-xs sm:text-[13px] font-bold text-[#8DC63F] uppercase tracking-[0.14em]">
+                <div
+                  data-preserve-contrast="true"
+                  className="inline-flex items-center gap-2 text-xs sm:text-[13px] font-bold text-[#8DC63F] uppercase tracking-[0.14em]"
+                  style={{ color: '#8DC63F', textShadow: '0 1px 6px rgba(0,0,0,0.8)' }}
+                >
                   <span className="w-6 h-[2px] bg-[#8DC63F] rounded-full shrink-0" aria-hidden="true" />
                   <span>Engineering & Technical Capabilities</span>
                 </div>
               </Reveal>
 
               <Reveal delay={140}>
-                <h1 className="text-3xl sm:text-4xl lg:text-[48px] font-bold text-white tracking-tight leading-[1.15] drop-shadow-md">
+                <h1
+                  data-preserve-contrast="true"
+                  className="text-3xl sm:text-4xl lg:text-[48px] font-bold !text-white tracking-tight leading-[1.15]"
+                  style={{
+                    color: '#FFFFFF',
+                    textShadow: '0 3px 18px rgba(0, 0, 0, 0.95), 0 1px 4px rgba(0, 0, 0, 0.95)',
+                  }}
+                >
                   Technical Expertise & Engineering Support
                 </h1>
               </Reveal>
 
               <Reveal delay={210}>
-                <p className="text-base sm:text-lg text-white/90 max-w-3xl leading-relaxed drop-shadow">
+                <p
+                  data-preserve-contrast="true"
+                  className="text-base sm:text-lg !text-white/95 max-w-3xl leading-relaxed"
+                  style={{
+                    color: 'rgba(255, 255, 255, 0.95)',
+                    textShadow: '0 2px 10px rgba(0, 0, 0, 0.95), 0 1px 3px rgba(0, 0, 0, 0.9)',
+                  }}
+                >
                   Vision Energy combines deep domain technical knowledge, rigorous standards adherence, and local authority insight to deliver dependable engineering product solutions across the UAE and GCC.
                 </p>
               </Reveal>
