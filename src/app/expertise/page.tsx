@@ -104,16 +104,17 @@ export default function ExpertisePage() {
           {/* Full Background Hero Image */}
           <div className="absolute inset-0 z-0">
             <Image
-              src="/images/specialist-engineering-approach.jpg"
+              src="/images/specialist-engineering-approach.webp"
               alt="Vision Energy Technical Expertise & Engineering Support UAE"
               fill
               priority
               sizes="100vw"
+              quality={90}
               className="object-cover object-center lg:object-right"
             />
-            {/* High-contrast gradient scrims */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/80 sm:via-black/70 to-black/40 z-[1]" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#050608] via-transparent to-black/60 z-[1]" />
+            {/* Clean directional scrim: high contrast behind text on left, 100% clean and transparent over the engineer on right */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#050608]/90 via-[#050608]/50 to-transparent z-[1]" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#050608] via-transparent to-transparent z-[1]" />
           </div>
 
           <div className="max-w-[80rem] w-full mx-auto px-4 sm:px-6 lg:px-8 pt-[calc(var(--header-offset,80px)+36px)] lg:pt-[calc(var(--header-offset,80px)+52px)] pb-10 sm:pb-14 relative z-10">
@@ -185,7 +186,12 @@ export default function ExpertisePage() {
 
                   <Link
                     href="/services"
-                    className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#0D1117]/80 hover:bg-[#0D1117] text-white text-sm font-semibold border border-white/20 hover:border-white/40 transition-all active:scale-[0.98]"
+                    data-preserve-contrast="true"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-sm font-semibold border border-white/30 hover:border-white/60 backdrop-blur-md transition-all active:scale-[0.98] shadow-sm"
+                    style={{
+                      color: '#FFFFFF',
+                      textShadow: '0 1px 3px rgba(0, 0, 0, 0.8)',
+                    }}
                   >
                     <span>View Services</span>
                   </Link>
