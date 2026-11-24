@@ -37,10 +37,6 @@ const LPS_STANDARDS = [
 
 const AUTHORITY_COMPLIANCE = [
   {
-    code: 'TAQA (ADWEA)',
-    name: 'Abu Dhabi National Energy',
-  },
-  {
     code: 'ADDC',
     name: 'Abu Dhabi Distribution',
   },
@@ -177,9 +173,11 @@ export default function StandardsCompliance() {
                           <span className="block text-xs sm:text-[13px] font-bold text-slate-900 dark:text-white group-hover/item:text-[#0B65B3] dark:group-hover/item:text-[#8DC63F] transition-colors truncate">
                             {auth.code}
                           </span>
-                          <span className="block text-[10px] text-slate-500 dark:text-[#94A3B8] group-hover/item:text-slate-700 dark:group-hover/item:text-[#CBD5E1] transition-colors truncate">
-                            {auth.name}
-                          </span>
+                          {auth.name && (
+                            <span className="block text-[10px] text-slate-500 dark:text-[#94A3B8] group-hover/item:text-slate-700 dark:group-hover/item:text-[#CBD5E1] transition-colors truncate">
+                              {auth.name}
+                            </span>
+                          )}
                         </div>
                       </div>
                     </div>
