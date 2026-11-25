@@ -350,13 +350,13 @@ export default function ProductPreviewModal({
               )}
 
               {/* Verified Engineering Badges */}
-              <div className="grid grid-cols-2 gap-2 text-xs text-[#A9B4C0] pt-1">
-                <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F]" />
-                  <span>Authority NOC Compliance Ready</span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 items-start text-xs text-[#A9B4C0] pt-1">
+                <div className="flex items-start gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] shrink-0 mt-[5px]" />
+                  <span>Compliant to International Standards and Local Authority Regulations</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F]" />
+                <div className="flex items-start gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] shrink-0 mt-[5px]" />
                   <span>Full Technical Submittals &amp; CAD</span>
                 </div>
               </div>
