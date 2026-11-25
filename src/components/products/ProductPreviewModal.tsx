@@ -310,7 +310,7 @@ export default function ProductPreviewModal({
             </div>
           ) : !showEnquiryForm ? (
             /* VIEW 1: PRODUCT DETAILS & BIG 'ENQUIRE NOW' BUTTON */
-            <div className="space-y-6 my-auto">
+            <div className="space-y-5 my-auto">
               {/* Category Meta & Heading */}
               <div>
                 <div className="flex items-center gap-2 mb-2">
@@ -357,23 +357,27 @@ export default function ProductPreviewModal({
               )}
 
               {/* Verified Engineering Highlights */}
-              <ul className="flex flex-wrap gap-x-4 gap-y-2.5 list-none text-xs text-[#A9B4C0] pt-1">
+              <ul className="flex flex-wrap gap-2.5 list-none pt-1">
                 {PRODUCT_PREVIEW_HIGHLIGHTS.map((point) => (
                   <li
                     key={point}
-                    className="flex items-start gap-2 w-full sm:w-[calc(50%-0.5rem)] leading-[1.45]"
+                    className="flex items-start gap-2.5 w-full sm:w-[calc(50%-0.3125rem)] px-3.5 py-2.5 rounded-xl bg-[#161B22] border border-[#1F2937] hover:border-[#8DC63F]/40 transition-colors"
                   >
                     <span
-                      className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] shrink-0 mt-[6px]"
+                      className="w-5 h-5 rounded-full bg-[#8DC63F]/15 border border-[#8DC63F]/35 flex items-center justify-center shrink-0 mt-0.5"
                       aria-hidden="true"
-                    />
-                    <span>{point}</span>
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F]" />
+                    </span>
+                    <span className="text-xs font-medium text-[#CBD5E1] leading-[1.45]">
+                      {point}
+                    </span>
                   </li>
                 ))}
               </ul>
 
               {/* Enquire Now Call to Action */}
-              <div className="pt-4 space-y-3">
+              <div className="pt-2 space-y-3">
                 <button
                   type="button"
                   onClick={() => setShowEnquiryForm(true)}
