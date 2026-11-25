@@ -8,6 +8,13 @@ import { getGroupIcon } from '@/lib/group-icons';
 import { getCategoryPlaceholder } from '@/lib/utils/placeholders';
 import { dictionary } from '@/lib/dictionary';
 
+const PRODUCT_PREVIEW_HIGHLIGHTS = [
+  'Complies with applicable international standards and local authority regulations.',
+  'Technical datasheets and CAD drawings available on request.',
+  'Available ex-stock, subject to prior sale.',
+  'Customisation available on request, subject to manufacturer approval and lead times.',
+] as const;
+
 interface ProductPreviewModalProps {
   category: CategoryExplorerItem | null;
   isOpen: boolean;
@@ -349,17 +356,21 @@ export default function ProductPreviewModal({
                 </div>
               )}
 
-              {/* Verified Engineering Badges */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 items-start text-xs text-[#A9B4C0] pt-1">
-                <div className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] shrink-0 mt-[5px]" />
-                  <span>Compliant to International Standards and Local Authority Regulations</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] shrink-0 mt-[5px]" />
-                  <span>Full Technical Submittals &amp; CAD</span>
-                </div>
-              </div>
+              {/* Verified Engineering Highlights */}
+              <ul className="flex flex-wrap gap-x-4 gap-y-2.5 list-none text-xs text-[#A9B4C0] pt-1">
+                {PRODUCT_PREVIEW_HIGHLIGHTS.map((point) => (
+                  <li
+                    key={point}
+                    className="flex items-start gap-2 w-full sm:w-[calc(50%-0.5rem)] leading-[1.45]"
+                  >
+                    <span
+                      className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] shrink-0 mt-[6px]"
+                      aria-hidden="true"
+                    />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
 
               {/* Enquire Now Call to Action */}
               <div className="pt-4 space-y-3">
