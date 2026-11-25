@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import BrandImage from '@/components/ui/BrandImage';
 import { ArrowRight, ChevronRight } from 'lucide-react';
 import { getPublishedServices } from '@/lib/services/get-services';
 import ServicesListRow from '@/components/services/ServicesListRow';
@@ -201,10 +202,12 @@ export default async function ServicesListingPage() {
                 {/* Right: Short Size Showcase Image (Clean, No Badges) */}
                 <div className="relative z-10 w-full sm:w-80 md:w-80 lg:w-96 shrink-0">
                   <div className="relative aspect-[16/10] sm:aspect-[4/3] w-full rounded-2xl overflow-hidden border border-gray-200 shadow-md group/img">
-                    <Image
+                    <BrandImage
                       src="/images/products-collage-banner.webp"
                       alt="Vision Energy Certified Lightning Protection and Earthing Products"
                       fill
+                      surface="light"
+                      logoSize="md"
                       sizes="(max-width: 768px) 100vw, 384px"
                       className="object-cover object-center group-hover/img:scale-105 transition-transform duration-500"
                     />

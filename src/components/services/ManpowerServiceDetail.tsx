@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import BrandImage from '@/components/ui/BrandImage';
 import {
   ArrowLeft,
   ArrowRight,
@@ -263,16 +263,20 @@ export default function ManpowerServiceDetail({
               {/* Right: Uploaded Real Site Photography */}
               <div className="w-full lg:w-[480px] shrink-0 space-y-2.5">
                 <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100 dark:bg-[#050608] border border-slate-200 dark:border-white/10 shadow-xl group">
-                  <Image
+                  <BrandImage
                     src={heroImage}
                     alt={heroImageAlt}
                     fill
+                    surface="auto"
+                    logoSize="lg"
                     sizes="(max-width: 1024px) 100vw, 480px"
                     className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
                     priority
+                    afterOverlay={
+                      <div className="w-full h-full bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+                    }
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white/90 bg-[#050608]/80 backdrop-blur-md px-3 py-2 rounded-xl border border-white/10">
+                  <div className="absolute bottom-3 left-3 right-3 z-20 flex items-center justify-between text-xs text-white/90 bg-[#050608]/80 backdrop-blur-md px-3 py-2 rounded-xl border border-white/10">
                     <span className="font-semibold">Vision Energy Site Personnel</span>
                     <span className="text-[#8DC63F] font-mono text-[11px]">UAE Substation Deployment</span>
                   </div>

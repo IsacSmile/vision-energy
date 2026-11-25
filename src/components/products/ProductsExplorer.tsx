@@ -26,6 +26,7 @@ import {
   HelpCircle,
 } from 'lucide-react';
 import Image from 'next/image';
+import BrandImage from '@/components/ui/BrandImage';
 import { getCategoryPlaceholder } from '@/lib/utils/placeholders';
 import { useEnquiryModal } from '@/components/modals/EnquiryModalProvider';
 import { getGroupIcon, getGroupLabel, GROUP_LABELS } from '@/lib/group-icons';
@@ -1391,18 +1392,20 @@ function ItemCardOrRow({
           >
             {/* Thumbnail Box */}
             <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden bg-[#161B22] border border-[#1F2937] shrink-0 mt-0.5 group/img p-1">
-              <Image
+              <BrandImage
                 src={photoUrl}
                 alt={photoAlt}
                 fill
+                surface="auto"
+                logoSize="xs"
                 className="object-contain transition-transform duration-300 group-hover/card:scale-105"
                 sizes="(max-width: 640px) 80px, 96px"
               />
-              <div className="absolute top-1 left-1 w-6 h-6 rounded-md bg-[#050608]/85 backdrop-blur-md border border-[#0B65B3]/30 text-[#8DC63F] flex items-center justify-center">
+              <div className="absolute top-1 left-1 z-20 w-6 h-6 rounded-md bg-[#050608]/85 backdrop-blur-md border border-[#0B65B3]/30 text-[#8DC63F] flex items-center justify-center">
                 <GroupIcon className="w-3.5 h-3.5" />
               </div>
               {isPlaceholder && (
-                <span className="absolute bottom-1 right-1 px-1 py-0.5 text-[8px] font-medium text-white/70 bg-[#050608]/85 backdrop-blur-md rounded border border-white/10">
+                <span className="absolute bottom-1 right-1 z-20 px-1 py-0.5 text-[8px] font-medium text-white/70 bg-[#050608]/85 backdrop-blur-md rounded border border-white/10">
                   Sample
                 </span>
               )}
@@ -1459,18 +1462,20 @@ function ItemCardOrRow({
           >
             {/* Thumbnail Box */}
             <div className="relative w-28 h-24 rounded-xl overflow-hidden bg-[#161B22] border border-[#1F2937] shrink-0 group/img p-1">
-              <Image
+              <BrandImage
                 src={photoUrl}
                 alt={photoAlt}
                 fill
+                surface="auto"
+                logoSize="xs"
                 className="object-contain transition-transform duration-300 group-hover/card:scale-105"
                 sizes="112px"
               />
-              <div className="absolute top-1.5 left-1.5 w-7 h-7 rounded-md bg-[#050608]/85 backdrop-blur-md border border-[#0B65B3]/30 text-[#8DC63F] flex items-center justify-center">
+              <div className="absolute top-1.5 left-1.5 z-20 w-7 h-7 rounded-md bg-[#050608]/85 backdrop-blur-md border border-[#0B65B3]/30 text-[#8DC63F] flex items-center justify-center">
                 <GroupIcon className="w-3.5 h-3.5" />
               </div>
               {isPlaceholder && (
-                <span className="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 text-[9px] font-medium text-white/70 bg-[#050608]/85 backdrop-blur-md rounded border border-white/10">
+                <span className="absolute bottom-1.5 right-1.5 z-20 px-1.5 py-0.5 text-[9px] font-medium text-white/70 bg-[#050608]/85 backdrop-blur-md rounded border border-white/10">
                   Sample image
                 </span>
               )}
@@ -1530,17 +1535,19 @@ function ItemCardOrRow({
       >
         {/* Product Photo Showcase Box - Large & Prominent */}
         <div className="relative w-full aspect-[16/10] min-h-[220px] sm:min-h-[260px] lg:min-h-[280px] rounded-2xl overflow-hidden bg-[#161B22] border border-[#1F2937] mb-5 group/img p-3 flex items-center justify-center">
-          <Image
+          <BrandImage
             src={photoUrl}
             alt={photoAlt}
             fill
+            surface="auto"
+            logoSize="lg"
             className="object-contain p-3 transition-transform duration-700 group-hover/card:scale-105"
             sizes="(max-width: 768px) 100vw, 50vw"
             quality={90}
           />
 
           {/* Floating Top Bar Over Image */}
-          <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 pointer-events-none">
+          <div className="absolute top-3 left-3 right-3 z-20 flex items-center justify-between gap-2 pointer-events-none">
             <div className="w-9 h-9 rounded-xl bg-[#050608]/90 backdrop-blur-md border border-[#0B65B3]/40 text-[#8DC63F] flex items-center justify-center shrink-0 shadow-lg">
               <GroupIcon className="w-4.5 h-4.5" />
             </div>
@@ -1554,7 +1561,7 @@ function ItemCardOrRow({
 
           {/* Placeholder Badge */}
           {isPlaceholder && (
-            <span className="absolute bottom-2.5 right-2.5 px-2 py-0.5 text-[10px] font-medium text-white/70 bg-[#050608]/85 backdrop-blur-md rounded border border-white/10 pointer-events-none">
+            <span className="absolute bottom-2.5 right-2.5 z-20 px-2 py-0.5 text-[10px] font-medium text-white/70 bg-[#050608]/85 backdrop-blur-md rounded border border-white/10 pointer-events-none">
               Sample image
             </span>
           )}

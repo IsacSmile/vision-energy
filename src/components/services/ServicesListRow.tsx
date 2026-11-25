@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import BrandImage from '@/components/ui/BrandImage';
 import { Building2, Users, Wrench, ShieldAlert, Zap, ArrowRight } from 'lucide-react';
 import LightningButton from '@/components/ui/LightningButton';
 import { useEnquiryModal } from '@/components/modals/EnquiryModalProvider';
@@ -165,17 +165,21 @@ export default function ServicesListRow({ service, index }: ServicesListRowProps
           href={serviceHref}
           className="relative block w-full sm:w-72 lg:w-80 h-48 sm:h-52 lg:h-56 rounded-xl sm:rounded-2xl overflow-hidden bg-[#050608] border border-white/10 shrink-0 shadow-md group-hover:border-[#8DC63F]/40 transition-all duration-500"
         >
-          <Image
+          <BrandImage
             src={imageUrl}
             alt={imageAlt}
             fill
+            surface="auto"
+            logoSize="md"
             className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 288px, 320px"
+            afterOverlay={
+              <div className="absolute bottom-0 inset-x-0 h-14 bg-gradient-to-t from-[#050608]/90 to-transparent pointer-events-none" />
+            }
           />
-          <div className="absolute bottom-0 inset-x-0 h-14 bg-gradient-to-t from-[#050608]/90 to-transparent pointer-events-none" />
 
           {/* Floating Badges */}
-          <div className="absolute top-3 left-3 flex items-center gap-2 z-10">
+          <div className="absolute top-3 left-3 flex items-center gap-2 z-20">
             <span className="px-2.5 py-1 bg-[#050608]/90 backdrop-blur-md border border-[#8DC63F]/40 rounded-full text-xs font-mono font-bold text-[#8DC63F] shadow-sm tracking-wider">
               {formattedIndex}
             </span>

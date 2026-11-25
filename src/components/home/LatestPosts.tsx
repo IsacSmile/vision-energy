@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import BrandImage from '@/components/ui/BrandImage';
 import { FileText, ArrowUpRight } from 'lucide-react';
 import { getPublishedBlogPosts } from '@/lib/data/posts';
 import Reveal from '@/components/ui/Reveal';
@@ -78,10 +78,12 @@ export default async function LatestPosts() {
               {/* Cover Image Container */}
               <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[20px] bg-gradient-to-br from-[#0B65B3]/20 via-[#0D1117] to-[#050608] border border-white/[0.08]">
                 {featuredPost.coverImage ? (
-                  <Image
+                  <BrandImage
                     src={featuredPost.coverImage}
                     alt={featuredPost.title}
                     fill
+                    surface="auto"
+                    logoSize="lg"
                     sizes="(max-width: 1024px) 100vw, 58vw"
                     className="object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
                   />

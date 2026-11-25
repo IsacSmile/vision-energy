@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import BrandImage, { BrandLogoPlaceholder } from "@/components/ui/BrandImage";
 import { getPublishedBlogPosts } from "@/lib/data/posts";
 import { ArrowRight, ChevronRight } from "lucide-react";
 
@@ -74,13 +75,18 @@ export default async function BlogPage() {
               {/* Cover Image Container */}
               <div className="aspect-video w-full relative border-b border-[#1F2937] overflow-hidden bg-[#050608]">
                 {post.coverImage ? (
-                  <img
+                  <BrandImage
                     src={post.coverImage}
                     alt={post.coverAlt || post.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    fill
+                    unoptimized
+                    surface="auto"
+                    logoSize="md"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-[#0B65B3]/20 via-[#0D1117] to-[#8DC63F]/10" />
+                  <BrandLogoPlaceholder surface="auto" logoSize="md" animate={false} className="w-full h-full" />
                 )}
               </div>
 

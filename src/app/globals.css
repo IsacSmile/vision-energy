@@ -182,6 +182,43 @@
   animation: shimmer 1.5s infinite;
 }
 
+/* Vision Logo Branded Media Loading Animations */
+@keyframes brand-sheen {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes brand-progress-slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(65%);
+  }
+  100% {
+    transform: translateX(220%);
+  }
+}
+
+.animate-brand-sheen {
+  animation: brand-sheen 1.8s ease-in-out infinite;
+}
+
+.animate-brand-progress {
+  animation: brand-progress-slide 1.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-brand-sheen,
+  .animate-brand-progress {
+    animation: none !important;
+  }
+}
+
 /* Custom Utilities for Signature Design System */
 .bg-brand-dark {
   background-color: #050608;

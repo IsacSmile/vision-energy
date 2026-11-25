@@ -1,6 +1,7 @@
 import React from "react";
 import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
+import BrandImage from "@/components/ui/BrandImage";
 import { getPublishedBlogPostBySlug, getPublishedBlogPosts } from "@/lib/data/posts";
 import { renderSanitizedMarkdown } from "@/lib/sanitizer";
 import { db } from "@/lib/db";
@@ -180,11 +181,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       {/* Hero Cover Image */}
       {post.coverImage && (
-        <div className="w-full aspect-[16/9] sm:aspect-[21/9] overflow-hidden rounded-2xl border border-[#1F2937] bg-[#0D1117] shadow-2xl">
-          <img
+        <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] overflow-hidden rounded-2xl border border-[#1F2937] bg-[#0D1117] shadow-2xl">
+          <BrandImage
             src={post.coverImage}
             alt={post.coverAlt || post.title}
-            className="w-full h-full object-cover"
+            fill
+            unoptimized
+            surface="auto"
+            logoSize="lg"
+            sizes="(max-width: 1024px) 100vw, 896px"
+            priority
+            className="object-cover"
           />
         </div>
       )}
@@ -194,11 +201,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         {post.bodyImage && secondPartHtml ? (
           <>
             <div dangerouslySetInnerHTML={{ __html: firstPartHtml }} />
-            <div className="my-10 overflow-hidden rounded-2xl border border-[#1F2937] bg-[#0D1117] shadow-xl">
-              <img
+            <div className="relative my-10 w-full aspect-[16/9] max-h-[460px] overflow-hidden rounded-2xl border border-[#1F2937] bg-[#0D1117] shadow-xl">
+              <BrandImage
                 src={post.bodyImage}
                 alt={post.bodyAlt || "Article illustration"}
-                className="w-full max-h-[460px] object-cover"
+                fill
+                unoptimized
+                surface="auto"
+                logoSize="lg"
+                sizes="(max-width: 1024px) 100vw, 896px"
+                className="object-cover"
               />
             </div>
             <div dangerouslySetInnerHTML={{ __html: secondPartHtml }} />

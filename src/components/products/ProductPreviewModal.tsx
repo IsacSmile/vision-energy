@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useRef } from 'react';
-import Image from 'next/image';
+import BrandImage from '@/components/ui/BrandImage';
 import { X, Send, CheckCircle2, AlertCircle, Loader2, Copy, Check, ArrowLeft, Phone } from 'lucide-react';
 import { CategoryExplorerItem } from './ProductsExplorer';
 import { getGroupIcon } from '@/lib/group-icons';
@@ -235,11 +235,13 @@ export default function ProductPreviewModal({
           </div>
 
           {/* Prominent Large Product Image */}
-          <div className="relative w-full h-[280px] sm:h-[380px] lg:h-[480px] xl:h-[520px] flex items-center justify-center">
-            <Image
+          <div className="relative w-full h-[280px] sm:h-[380px] lg:h-[480px] xl:h-[520px] flex items-center justify-center rounded-xl overflow-hidden">
+            <BrandImage
               src={photoUrl}
               alt={photoAlt}
               fill
+              surface="auto"
+              logoSize="lg"
               className="object-contain transition-transform duration-500 group-hover:scale-105"
               sizes="(max-width: 1024px) 100vw, 60vw"
               quality={95}
@@ -249,7 +251,7 @@ export default function ProductPreviewModal({
 
           {/* Bottom Sample Badge if placeholder */}
           {isPlaceholder && (
-            <span className="absolute bottom-3 left-3 px-2 py-0.5 text-[10px] font-medium text-white/70 bg-[#050608]/90 backdrop-blur-md rounded border border-white/10 pointer-events-none">
+            <span className="absolute bottom-3 left-3 z-20 px-2 py-0.5 text-[10px] font-medium text-white/70 bg-[#050608]/90 backdrop-blur-md rounded border border-white/10 pointer-events-none">
               Sample image
             </span>
           )}

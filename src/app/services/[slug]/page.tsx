@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import BrandImage from "@/components/ui/BrandImage";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { ArrowRight, Check } from "lucide-react";
@@ -438,10 +438,12 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
 
                 <div className="space-y-3 pt-2 mt-auto">
                   <div className="relative w-full aspect-[16/9.8] rounded-xl sm:rounded-2xl overflow-hidden bg-[#050608] border border-white/10 shadow-xl">
-                    <Image
+                    <BrandImage
                       src="/images/conventional-mesh-faraday-cage-system.png"
                       alt="Conventional Mesh / Faraday Cage Systems"
                       fill
+                      surface="auto"
+                      logoSize="lg"
                       sizes="(max-width: 1024px) 100vw, 550px"
                       className="object-cover object-center"
                       priority
@@ -466,10 +468,12 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
 
                 <div className="space-y-3 pt-2 mt-auto">
                   <div className="relative w-full aspect-[16/9.8] rounded-xl sm:rounded-2xl overflow-hidden bg-[#050608] border border-white/10 shadow-xl">
-                    <Image
+                    <BrandImage
                       src="/images/ese-coverage-concept.png"
                       alt="ESE Coverage Concept"
                       fill
+                      surface="auto"
+                      logoSize="lg"
                       sizes="(max-width: 1024px) 100vw, 550px"
                       className="object-cover object-center"
                       priority
@@ -643,10 +647,12 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                         {media?.image && (
                           <div className="space-y-2.5 pt-1">
                             <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-[#050608] border border-white/10 group-hover:border-[#8DC63F]/30 transition-all duration-300">
-                              <Image
+                              <BrandImage
                                 src={media.image}
                                 alt={sys.title}
                                 fill
+                                surface="auto"
+                                logoSize="md"
                                 sizes="(max-width: 1024px) 100vw, 50vw"
                                 className="object-cover object-center group-hover:scale-[1.02] transition-transform duration-500"
                               />

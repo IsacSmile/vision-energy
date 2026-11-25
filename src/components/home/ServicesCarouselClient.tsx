@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import BrandImage from '@/components/ui/BrandImage';
 import {
   ArrowRight,
   ArrowUpRight,
@@ -383,22 +383,24 @@ export default function ServicesCarouselClient({
                     <div className={`flip-card-inner ${isFlipped ? 'is-flipped' : ''}`}>
                       {/* FRONT FACE: Clean Full-Card Image Only */}
                       <div className="flip-card-face flip-card-front rounded-[22px] overflow-hidden bg-[#050608] border border-white/[0.1] shadow-[0_12px_32px_rgba(0,0,0,0.14)]">
-                        <Image
+                        <BrandImage
                           src={service.image.url}
                           alt={service.image.alt}
                           fill
+                          surface="auto"
+                          logoSize="md"
                           className="object-cover object-center"
                           sizes="(max-width: 767px) 85vw, (max-width: 1023px) 48vw, 24vw"
-                        />
-
-                        {/* Subtle Edge Gradient for Depth */}
-                        <div
-                          className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/35 pointer-events-none"
-                          aria-hidden="true"
+                          afterOverlay={
+                            <div
+                              className="w-full h-full bg-gradient-to-t from-black/50 via-transparent to-black/35"
+                              aria-hidden="true"
+                            />
+                          }
                         />
 
                         {/* Top Floating Badge: Index & Icon */}
-                        <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#050608]/85 backdrop-blur-md border border-white/15 text-xs font-semibold text-white shadow-lg">
+                        <div className="absolute top-4 left-4 z-20 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#050608]/85 backdrop-blur-md border border-white/15 text-xs font-semibold text-white shadow-lg">
                           <span className="font-mono text-[#8DC63F] font-bold text-[11px]">
                             {service.number}
                           </span>
@@ -407,7 +409,7 @@ export default function ServicesCarouselClient({
                         </div>
 
                         {/* Top Right Indicator */}
-                        <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-[#050608]/80 backdrop-blur-md border border-white/15 flex items-center justify-center text-white/70 shadow-lg">
+                        <div className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-[#050608]/80 backdrop-blur-md border border-white/15 flex items-center justify-center text-white/70 shadow-lg">
                           <ArrowUpRight className="w-4 h-4" />
                         </div>
                       </div>

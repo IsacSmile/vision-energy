@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback, useRef } from "react";
-import Image from "next/image";
+import BrandImage from "@/components/ui/BrandImage";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface LightboxImage {
@@ -122,11 +122,13 @@ export function ProductGalleryLightbox({
           </>
         )}
 
-        <div className="relative h-full w-full">
-          <Image
+        <div className="relative h-full w-full rounded-xl overflow-hidden">
+          <BrandImage
             src={activeImage.blobUrl}
             alt={activeImage.altText || title}
             fill
+            surface="dark"
+            logoSize="lg"
             sizes="100vw"
             className="object-contain"
             priority
@@ -147,10 +149,12 @@ export function ProductGalleryLightbox({
                   : "border-slate-800 opacity-60 hover:opacity-100"
               }`}
             >
-              <Image
+              <BrandImage
                 src={img.blobUrl}
                 alt={img.altText || `${title} thumbnail ${idx + 1}`}
                 fill
+                surface="dark"
+                logoSize="xs"
                 sizes="56px"
                 className="object-cover"
               />

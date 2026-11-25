@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import BrandImage from "@/components/ui/BrandImage";
 import { Package, MessageSquare } from "lucide-react";
 import type { ProductItem } from "@/lib/data/product-items";
 import { getCategoryPlaceholder } from "@/lib/utils/placeholders";
@@ -37,22 +37,24 @@ export function ProductItemCard({ product, view = "grid" }: ProductItemCardProps
       >
         {/* Fixed size thumbnail for list view */}
         <div className="relative aspect-[4/3] w-full sm:w-36 shrink-0 overflow-hidden rounded-lg bg-slate-950 border border-slate-800 p-1 flex items-center justify-center">
-          <Image
+          <BrandImage
             src={imageUrl}
             alt={imageAlt}
             fill
+            surface="dark"
+            logoSize="xs"
             sizes="144px"
             className="object-contain p-1 transition-transform duration-500 group-hover:scale-105"
           />
           {/* Top-left Code Badge */}
-          <div className="absolute top-1.5 left-1.5 z-10 flex items-center gap-1 rounded bg-slate-950/90 px-2 py-0.5 text-[10px] font-bold text-emerald-400 border border-slate-800">
+          <div className="absolute top-1.5 left-1.5 z-20 flex items-center gap-1 rounded bg-slate-950/90 px-2 py-0.5 text-[10px] font-bold text-emerald-400 border border-slate-800">
             <Package className="h-3 w-3" />
             <span>{product.code}</span>
           </div>
 
           {/* Bottom-right Sample Image Badge */}
           {isPlaceholder && (
-            <div className="absolute bottom-1.5 right-1.5 z-10 rounded bg-slate-950/85 px-1.5 py-0.5 text-[9px] font-medium text-slate-300 border border-slate-800 backdrop-blur-sm">
+            <div className="absolute bottom-1.5 right-1.5 z-20 rounded bg-slate-950/85 px-1.5 py-0.5 text-[9px] font-medium text-slate-300 border border-slate-800 backdrop-blur-sm">
               Sample image
             </div>
           )}
@@ -122,23 +124,25 @@ export function ProductItemCard({ product, view = "grid" }: ProductItemCardProps
     >
       {/* Aspect ratio image container */}
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-950 p-2 flex items-center justify-center">
-        <Image
+        <BrandImage
           src={imageUrl}
           alt={imageAlt}
           fill
+          surface="dark"
+          logoSize="md"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-contain p-2 transition-transform duration-500 group-hover:scale-105"
         />
 
         {/* Top-left Code Badge Overlay */}
-        <div className="absolute top-3 left-3 z-10 flex items-center gap-1.5 rounded-md bg-slate-950/90 px-2.5 py-1 text-xs font-bold text-emerald-400 backdrop-blur-md border border-slate-800">
+        <div className="absolute top-3 left-3 z-20 flex items-center gap-1.5 rounded-md bg-slate-950/90 px-2.5 py-1 text-xs font-bold text-emerald-400 backdrop-blur-md border border-slate-800">
           <Package className="h-3.5 w-3.5" />
           <span>{product.code}</span>
         </div>
 
         {/* Bottom-right Sample Image Badge */}
         {isPlaceholder && (
-          <div className="absolute bottom-3 right-3 z-10 rounded-md bg-slate-950/85 px-2 py-0.5 text-[10px] font-medium text-slate-300 border border-slate-800 backdrop-blur-sm">
+          <div className="absolute bottom-3 right-3 z-20 rounded-md bg-slate-950/85 px-2 py-0.5 text-[10px] font-medium text-slate-300 border border-slate-800 backdrop-blur-sm">
             Sample image
           </div>
         )}

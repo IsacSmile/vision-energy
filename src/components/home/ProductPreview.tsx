@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import BrandImage from '@/components/ui/BrandImage';
 import { ArrowUpRight, ArrowRight, ChevronRight } from 'lucide-react';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Reveal from '@/components/ui/Reveal';
@@ -173,25 +173,27 @@ export default function ProductPreview() {
               >
                 {/* Large Prominent Image Banner with Badge */}
                 <div className="relative w-full h-60 sm:h-72 lg:h-80 overflow-hidden bg-[#050608] p-3 flex items-center justify-center">
-                  <Image
+                  <BrandImage
                     src={product.imageUrl}
                     alt={product.title}
                     fill
+                    surface="auto"
+                    logoSize="lg"
                     className="object-contain p-3 group-hover:scale-105 transition-transform duration-700 ease-out"
                     sizes="(max-width: 768px) 90vw, (max-width: 1280px) 50vw, 600px"
                     quality={90}
+                    afterOverlay={
+                      <div className="absolute bottom-0 inset-x-0 h-10 bg-gradient-to-t from-[#0D1117] to-transparent pointer-events-none" />
+                    }
                   />
 
-                  {/* Subtle bottom blend for seamless transition */}
-                  <div className="absolute bottom-0 inset-x-0 h-10 bg-gradient-to-t from-[#0D1117] to-transparent pointer-events-none" />
-
                   {/* Code Tag Top Left */}
-                  <div className="absolute top-4 left-4 px-2.5 py-1 rounded-md bg-[#050608]/90 backdrop-blur-md border border-white/20 text-xs font-bold text-[#8DC63F] tracking-wide shadow-lg">
+                  <div className="absolute top-4 left-4 z-20 px-2.5 py-1 rounded-md bg-[#050608]/90 backdrop-blur-md border border-white/20 text-xs font-bold text-[#8DC63F] tracking-wide shadow-lg">
                     {product.code}
                   </div>
 
                   {/* Standard Tag Top Right */}
-                  <div className="absolute top-4 right-4 px-2.5 py-1 rounded-md bg-[#0D1117]/85 backdrop-blur-md border border-white/15 text-[11px] font-medium text-white/90 shadow-lg">
+                  <div className="absolute top-4 right-4 z-20 px-2.5 py-1 rounded-md bg-[#0D1117]/85 backdrop-blur-md border border-white/15 text-[11px] font-medium text-white/90 shadow-lg">
                     {product.tag}
                   </div>
                 </div>
