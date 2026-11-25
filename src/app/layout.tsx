@@ -4,6 +4,7 @@ import Script from 'next/script';
 import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import StickyContactWidget from '@/components/layout/StickyContactWidget';
 import { EnquiryModalProvider } from '@/components/modals/EnquiryModalProvider';
 import EnquiryModal from '@/components/modals/EnquiryModal';
 import { ThemeProvider } from '@/components/theme/ThemeProvider';
@@ -301,6 +302,7 @@ export default async function RootLayout({
             <Header />
             <main className="grow">{children}</main>
             <Footer services={publishedServices} />
+            <StickyContactWidget />
             <EnquiryModal />
           </EnquiryModalProvider>
         </ThemeProvider>
