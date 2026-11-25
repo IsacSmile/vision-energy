@@ -176,18 +176,18 @@ export default async function HomePage() {
 
         <HairlineDivider />
 
+        {/* 4. PRODUCTS WE OFFER */}
+        <ProductsWeOffer />
+
+        <HairlineDivider />
+
         {/* 5. SERVICES PREVIEW (#0D1117) */}
         <ServicesPreview />
 
         <HairlineDivider />
 
-        {/* 6. PRODUCTS WE OFFER (#050608) */}
-        <ProductsWeOffer />
-
-        <HairlineDivider />
-
-        {/* 7. FINAL CTA (#0D1117) */}
-        <FinalCTA />
+        {/* 6. FINAL CTA (#050608) */}
+        <FinalCTA bgClass="bg-[#050608]" />
       </div>
     </SmoothScroll>
   );
