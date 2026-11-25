@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
-import { X } from 'lucide-react';
+import { ArrowUpRight, X } from 'lucide-react';
 
 const OFFICE_LANDLINE_DISPLAY = '+971 7 204 2763';
 const OFFICE_LANDLINE_TEL = '+97172042763';
@@ -12,7 +12,7 @@ const WHATSAPP_URL = 'https://wa.me/971507686700';
 /**
  * Desk landline telephone SVG icon for the Office Land Phone action.
  */
-function LandPhoneIcon({ className = 'w-6 h-6' }: { className?: string }) {
+function LandPhoneIcon({ className = 'w-5 h-5' }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -24,13 +24,9 @@ function LandPhoneIcon({ className = 'w-6 h-6' }: { className?: string }) {
       className={className}
       aria-hidden="true"
     >
-      {/* Top curved handset */}
       <path d="M3.5 8.5C5.8 5.8 9 4.5 12 4.5s6.2 1.3 8.5 4c.6.7.5 1.7-.2 2.3l-1.4 1.1c-.6.5-1.5.4-2-.2l-.9-1.1a.8.8 0 0 0-.6-.3h-6.8a.8.8 0 0 0-.6.3l-.9 1.1c-.5.6-1.4.7-2 .2L3.7 10.8c-.7-.6-.8-1.6-.2-2.3Z" />
-      {/* Desk cradle base */}
       <path d="M6.5 13h11l1.8 5.2a1.5 1.5 0 0 1-1.4 2H6.1a1.5 1.5 0 0 1-1.4-2L6.5 13Z" />
-      {/* Receiver posts */}
       <path d="M8.5 10.5V13M15.5 10.5V13" />
-      {/* Keypad indicator */}
       <circle cx="10" cy="16.2" r="0.65" fill="currentColor" stroke="none" />
       <circle cx="12" cy="16.2" r="0.65" fill="currentColor" stroke="none" />
       <circle cx="14" cy="16.2" r="0.65" fill="currentColor" stroke="none" />
@@ -41,7 +37,7 @@ function LandPhoneIcon({ className = 'w-6 h-6' }: { className?: string }) {
 /**
  * Official WhatsApp brand vector mark.
  */
-function WhatsAppIcon({ className = 'w-6 h-6' }: { className?: string }) {
+function WhatsAppIcon({ className = 'w-[22px] h-[22px]' }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 32 32"
@@ -154,71 +150,93 @@ export default function StickyContactWidget() {
       onBlur={handleBlur}
       className={`fixed right-[calc(0.875rem+env(safe-area-inset-right,0px))] sm:right-[calc(1.5rem+env(safe-area-inset-right,0px))] ${bottomPositionClass} z-40 flex flex-col items-end`}
     >
-      {/* Expanded Action Stack (Office Land Phone + WhatsApp) */}
+      {/* Unified Professional Quick-Contact Popover Card */}
       <div
         id="sticky-contact-actions"
         aria-hidden={!isOpen}
-        className={`flex flex-col items-end gap-3 pb-3 transition-all duration-300 ease-out motion-reduce:transition-none origin-bottom-right ${
+        className={`pb-3 transition-all duration-300 ease-out motion-reduce:transition-none origin-bottom-right ${
           isOpen
             ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto'
-            : 'opacity-0 translate-y-3 scale-95 pointer-events-none'
+            : 'opacity-0 translate-y-2.5 scale-95 pointer-events-none'
         }`}
       >
-        {/* 1. Office Land Phone Widget */}
-        <a
-          href={`tel:${OFFICE_LANDLINE_TEL}`}
-          tabIndex={isOpen ? 0 : -1}
-          aria-label={`Call Office Land Phone ${OFFICE_LANDLINE_DISPLAY}`}
-          onClick={() => setIsOpen(false)}
-          className={`group flex items-center gap-2.5 sm:gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded-full transition-all duration-300 motion-reduce:transition-none ${
-            isOpen ? 'translate-y-0 opacity-100 delay-[60ms]' : 'translate-y-2 opacity-0'
-          }`}
-        >
-          <span className="px-3.5 py-1.5 rounded-full bg-white dark:bg-[#0D1117] border border-slate-200 dark:border-white/15 shadow-[0_10px_28px_rgba(15,23,42,0.22)] dark:shadow-[0_10px_28px_rgba(0,0,0,0.55)] flex flex-col items-end text-right max-w-[calc(100vw-6rem)] transition-transform duration-200 group-hover:-translate-x-0.5">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#0B65B3] dark:text-[#60A5FA] leading-none">
-              Office Land Phone
+        <div className="w-[264px] sm:w-[284px] max-w-[calc(100vw-1.75rem)] rounded-2xl bg-white dark:bg-[#0B1220] border border-slate-200 dark:border-slate-700/80 shadow-[0_22px_50px_rgba(15,23,42,0.22)] dark:shadow-[0_24px_56px_rgba(0,0,0,0.72)] overflow-hidden">
+          {/* Compact Card Header */}
+          <div className="px-4 py-2.5 bg-slate-50 dark:bg-[#111B2E] border-b border-slate-200/80 dark:border-slate-700/70 flex items-center justify-between gap-2">
+            <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-[#0F172A] dark:text-white">
+              Direct Support
             </span>
-            <span className="text-xs sm:text-[13px] font-bold text-[#0F172A] dark:text-white tabular-nums whitespace-nowrap leading-tight mt-0.5">
-              {OFFICE_LANDLINE_DISPLAY}
+            <span className="inline-flex items-center gap-1.5 text-[10.5px] font-semibold text-[#15803D] dark:text-[#4ADE80]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E]" aria-hidden="true" />
+              <span>UAE Desk</span>
             </span>
-          </span>
+          </div>
 
-          <span
-            data-preserve-contrast="true"
-            className="w-12 h-12 sm:w-[52px] sm:h-[52px] rounded-full bg-gradient-to-br from-[#0B65B3] to-[#084C88] hover:from-[#0E74CE] hover:to-[#0B65B3] text-white border border-white/25 shadow-[0_10px_26px_rgba(11,101,179,0.42)] flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-105 group-active:scale-95"
-          >
-            <LandPhoneIcon className="w-[22px] h-[22px] sm:w-6 sm:h-6 text-white" />
-          </span>
-        </a>
+          {/* Action Rows */}
+          <div className="divide-y divide-slate-100 dark:divide-slate-800/80">
+            {/* 1. Office Land Phone Widget */}
+            <a
+              href={`tel:${OFFICE_LANDLINE_TEL}`}
+              tabIndex={isOpen ? 0 : -1}
+              aria-label={`Call Office Land Phone ${OFFICE_LANDLINE_DISPLAY}`}
+              onClick={() => setIsOpen(false)}
+              className="group flex items-center gap-3 px-3.5 py-3 hover:bg-slate-50 dark:hover:bg-white/[0.04] active:bg-slate-100 dark:active:bg-white/[0.07] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#8DC63F]"
+            >
+              <span
+                data-preserve-contrast="true"
+                className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0B65B3] to-[#084C88] text-white shadow-[0_6px_16px_rgba(11,101,179,0.32)] flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-105"
+              >
+                <LandPhoneIcon className="w-5 h-5 text-white" />
+              </span>
 
-        {/* 2. Original WhatsApp Widget */}
-        <a
-          href={WHATSAPP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          tabIndex={isOpen ? 0 : -1}
-          aria-label={`Chat on WhatsApp ${WHATSAPP_DISPLAY}`}
-          onClick={() => setIsOpen(false)}
-          className={`group flex items-center gap-2.5 sm:gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded-full transition-all duration-300 motion-reduce:transition-none ${
-            isOpen ? 'translate-y-0 opacity-100 delay-[20ms]' : 'translate-y-2 opacity-0'
-          }`}
-        >
-          <span className="px-3.5 py-1.5 rounded-full bg-white dark:bg-[#0D1117] border border-slate-200 dark:border-white/15 shadow-[0_10px_28px_rgba(15,23,42,0.22)] dark:shadow-[0_10px_28px_rgba(0,0,0,0.55)] flex flex-col items-end text-right max-w-[calc(100vw-6rem)] transition-transform duration-200 group-hover:-translate-x-0.5">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#15803D] dark:text-[#25D366] leading-none">
-              WhatsApp &amp; Mobile
-            </span>
-            <span className="text-xs sm:text-[13px] font-bold text-[#0F172A] dark:text-white tabular-nums whitespace-nowrap leading-tight mt-0.5">
-              {WHATSAPP_DISPLAY}
-            </span>
-          </span>
+              <span className="flex-1 min-w-0">
+                <span className="block text-[10px] font-bold uppercase tracking-wider text-[#0B65B3] dark:text-[#60A5FA] leading-none">
+                  Office Land Phone
+                </span>
+                <span className="block text-[13.5px] font-bold text-[#0F172A] dark:text-white tabular-nums whitespace-nowrap leading-tight mt-1">
+                  {OFFICE_LANDLINE_DISPLAY}
+                </span>
+              </span>
 
-          <span
-            data-preserve-contrast="true"
-            className="w-12 h-12 sm:w-[52px] sm:h-[52px] rounded-full bg-[#25D366] hover:bg-[#20BD5A] text-white border border-white/30 shadow-[0_10px_26px_rgba(37,211,102,0.44)] flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-105 group-active:scale-95"
-          >
-            <WhatsAppIcon className="w-[26px] h-[26px] sm:w-7 sm:h-7 text-white" />
-          </span>
-        </a>
+              <ArrowUpRight
+                className="w-4 h-4 text-slate-400 dark:text-slate-500 group-hover:text-[#0B65B3] dark:group-hover:text-[#60A5FA] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0"
+                aria-hidden="true"
+              />
+            </a>
+
+            {/* 2. Original WhatsApp Widget */}
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              tabIndex={isOpen ? 0 : -1}
+              aria-label={`Chat on WhatsApp ${WHATSAPP_DISPLAY}`}
+              onClick={() => setIsOpen(false)}
+              className="group flex items-center gap-3 px-3.5 py-3 hover:bg-slate-50 dark:hover:bg-white/[0.04] active:bg-slate-100 dark:active:bg-white/[0.07] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#8DC63F]"
+            >
+              <span
+                data-preserve-contrast="true"
+                className="w-10 h-10 rounded-xl bg-[#25D366] text-white shadow-[0_6px_16px_rgba(37,211,102,0.34)] flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-105"
+              >
+                <WhatsAppIcon className="w-[22px] h-[22px] text-white" />
+              </span>
+
+              <span className="flex-1 min-w-0">
+                <span className="block text-[10px] font-bold uppercase tracking-wider text-[#15803D] dark:text-[#25D366] leading-none">
+                  WhatsApp &amp; Mobile
+                </span>
+                <span className="block text-[13.5px] font-bold text-[#0F172A] dark:text-white tabular-nums whitespace-nowrap leading-tight mt-1">
+                  {WHATSAPP_DISPLAY}
+                </span>
+              </span>
+
+              <ArrowUpRight
+                className="w-4 h-4 text-slate-400 dark:text-slate-500 group-hover:text-[#15803D] dark:group-hover:text-[#25D366] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0"
+                aria-hidden="true"
+              />
+            </a>
+          </div>
+        </div>
       </div>
 
       {/* Main Sticky Message Launcher Button */}
@@ -241,7 +259,7 @@ export default function StickyContactWidget() {
 
         {/* Message Icon (collapsed) */}
         <MessageLauncherIcon
-          className={`w-6 h-6 text-[#F2C230] transition-all duration-200 ${
+          className={`w-6 h-6 transition-all duration-200 ${
             isOpen ? 'opacity-0 scale-75 rotate-45 absolute' : 'opacity-100 scale-100 rotate-0'
           }`}
         />
