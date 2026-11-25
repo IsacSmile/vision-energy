@@ -313,8 +313,8 @@ export default function ServicesCarouselClient({
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Link>
 
-            {/* Carousel Previous & Next Arrow Controls */}
-            <div className="flex items-center gap-2 pl-3 border-l border-white/15">
+            {/* Carousel Previous & Next Arrow Controls (Mobile Carousel Only) */}
+            <div className="flex md:hidden items-center gap-2 pl-3 border-l border-white/15">
               <button
                 type="button"
                 onClick={() => scroll('left')}
@@ -347,7 +347,7 @@ export default function ServicesCarouselClient({
         </div>
 
         {/* ============================================================ */}
-        {/* HORIZONTAL CAROUSEL WITH PREVIOUS ARCHITECTURAL CARD DESIGN  */}
+        {/* MOBILE HORIZONTAL CAROUSEL / DESKTOP 4-COLUMN STATIC GRID    */}
         {/* ============================================================ */}
         <div className="relative">
           <div
@@ -356,7 +356,7 @@ export default function ServicesCarouselClient({
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseLeave}
-            className="flex gap-6 sm:gap-7 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pt-2 pb-8 cursor-grab active:cursor-grabbing select-none items-stretch px-1"
+            className="flex gap-5 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pt-2 pb-4 cursor-grab active:cursor-grabbing select-none items-stretch px-1 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-5 xl:gap-6 md:overflow-visible md:scroll-auto md:snap-none md:cursor-default md:p-0"
             style={{
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
@@ -370,7 +370,7 @@ export default function ServicesCarouselClient({
               return (
                 <div
                   key={service.id}
-                  className="w-[84vw] min-w-[280px] max-w-[340px] sm:w-[350px] md:w-[370px] lg:w-[380px] h-[340px] sm:h-[360px] lg:h-[380px] shrink-0 snap-start"
+                  className="w-[84vw] min-w-[280px] max-w-[340px] sm:w-[340px] md:w-full md:min-w-0 md:max-w-none shrink-0 snap-start h-[340px] sm:h-[360px] lg:h-[350px] xl:h-[370px]"
                 >
                   <Link
                     href={service.href}
@@ -387,8 +387,8 @@ export default function ServicesCarouselClient({
                           src={service.image.url}
                           alt={service.image.alt}
                           fill
-                          className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-                          sizes="(max-width: 640px) 85vw, (max-width: 1024px) 370px, 380px"
+                          className="object-cover object-center"
+                          sizes="(max-width: 767px) 85vw, (max-width: 1023px) 48vw, 24vw"
                         />
 
                         {/* Subtle Edge Gradient for Depth */}
@@ -413,13 +413,13 @@ export default function ServicesCarouselClient({
                       </div>
 
                       {/* BACK FACE: Text Content Revealed Smoothly on Hover / Focus / Tap */}
-                      <div className="flip-card-face flip-card-back service-flip-back rounded-[22px] overflow-hidden border p-6 sm:p-7 flex flex-col justify-between">
+                      <div className="flip-card-face flip-card-back service-flip-back rounded-[22px] overflow-hidden border p-5 sm:p-6 lg:p-4 xl:p-5 flex flex-col justify-between">
                         <div>
                           {/* Top Row: Eyebrow & Number */}
-                          <div className="flex items-center justify-between gap-2 mb-3.5">
-                            <div className="flex items-center gap-2 min-w-0">
+                          <div className="flex items-center justify-between gap-2 mb-3">
+                            <div className="flex items-center gap-1.5 min-w-0">
                               <span className="w-2 h-2 rounded-full bg-[#8DC63F] shrink-0" />
-                              <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#8DC63F] truncate">
+                              <span className="text-[11px] lg:text-[10.5px] xl:text-[11px] font-bold uppercase tracking-wider text-[#8DC63F] truncate">
                                 {service.eyebrow}
                               </span>
                             </div>
@@ -429,26 +429,26 @@ export default function ServicesCarouselClient({
                           </div>
 
                           {/* Service Title */}
-                          <h3 className="text-xl sm:text-[22px] font-bold text-white leading-[1.28] mb-3">
+                          <h3 className="text-xl sm:text-[21px] lg:text-[17px] xl:text-[19px] font-bold text-white leading-[1.28] mb-2.5">
                             {service.title}
                           </h3>
 
                           {/* Service Summary */}
-                          <p className="text-[13.5px] sm:text-[14px] text-[#E2E8F0] font-normal leading-[1.6] line-clamp-4">
+                          <p className="text-[13.5px] lg:text-[12.5px] xl:text-[13.5px] text-[#E2E8F0] font-normal leading-[1.55] line-clamp-5">
                             {service.summary}
                           </p>
                         </div>
 
                         {/* Bottom Action Area: Read More + Meta Chip */}
-                        <div className="mt-4 pt-4 border-t border-white/[0.08] flex items-center justify-between gap-3">
-                          <div className="relative inline-flex items-center gap-1.5 text-sm font-bold text-white whitespace-nowrap shrink-0">
+                        <div className="mt-3 pt-3.5 border-t border-white/[0.08] flex items-center justify-between gap-2">
+                          <div className="relative inline-flex items-center gap-1.5 text-sm lg:text-xs xl:text-sm font-bold text-white whitespace-nowrap shrink-0">
                             <span>Read More</span>
-                            <ArrowRight className="w-4 h-4 text-[#8DC63F]" />
+                            <ArrowRight className="w-3.5 h-3.5 xl:w-4 xl:h-4 text-[#8DC63F]" />
                             <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-[#8DC63F] rounded-full" />
                           </div>
 
                           {service.metaChip && (
-                            <span className="text-[11px] font-semibold text-white/70 bg-white/[0.08] border border-white/10 px-2.5 py-1 rounded-full truncate">
+                            <span className="text-[10.5px] xl:text-[11px] font-semibold text-white/70 bg-white/[0.08] border border-white/10 px-2 py-0.5 xl:px-2.5 xl:py-1 rounded-full truncate">
                               {service.metaChip}
                             </span>
                           )}
@@ -463,9 +463,9 @@ export default function ServicesCarouselClient({
         </div>
 
         {/* ============================================================ */}
-        {/* CAROUSEL PAGINATION DOTS (Interactive) */}
+        {/* CAROUSEL PAGINATION DOTS (Mobile Carousel Only)              */}
         {/* ============================================================ */}
-        <div className="flex items-center justify-center gap-1.5 pt-1">
+        <div className="flex md:hidden items-center justify-center gap-1.5 pt-1">
           {CAROUSEL_SERVICES.map((_, i) => (
             <button
               key={i}
@@ -474,7 +474,7 @@ export default function ServicesCarouselClient({
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 activeIndex === i
                   ? 'w-7 bg-[#8DC63F]'
-                  : 'w-2 bg-white/20 hover:bg-white/40'
+                  : 'w-2 bg-slate-300 hover:bg-slate-400 dark:bg-white/20 dark:hover:bg-white/40'
               }`}
               aria-label={`Scroll to service card ${i + 1}`}
             />
