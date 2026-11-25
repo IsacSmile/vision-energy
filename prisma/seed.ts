@@ -5,6 +5,20 @@ import path from "path";
 
 const prisma = new PrismaClient();
 
+/**
+ * Resolves the catalogue image URL for a category/product code, preferring
+ * optimized WebP over PNG and JPEG when present on disk.
+ */
+function resolveCatalogueImageUrl(code: string): string {
+  const dir = path.join(process.cwd(), "public/product-catalouge");
+  for (const ext of ["webp", "png", "jpeg"]) {
+    if (fs.existsSync(path.join(dir, `${code}.${ext}`))) {
+      return `/product-catalouge/${code}.${ext}`;
+    }
+  }
+  return `/product-catalouge/${code}.jpeg`;
+}
+
 const GROUP_LABELS: Record<string, string> = {
   LP: "Lightning Protection",
   ER: "Earthing & Grounding",
@@ -306,11 +320,7 @@ async function main() {
   for (const cat of categoriesRaw) {
     const groupPrefix = cat.code.split("-")[0];
     const groupLabel = GROUP_LABELS[groupPrefix] || groupPrefix;
-    let imageExt = "jpeg";
-    if (fs.existsSync(path.join(process.cwd(), `public/product-catalouge/${cat.code}.png`))) {
-      imageExt = "png";
-    }
-    const imageUrl = `/product-catalouge/${cat.code}.${imageExt}`;
+    const imageUrl = resolveCatalogueImageUrl(cat.code);
     const imageAlt = `${cat.title} (${cat.code})`;
 
     await prisma.productCategory.upsert({
@@ -460,11 +470,7 @@ Equipotential bonding bars (MEBB) interconnected with low-impedance down conduct
         ? "Laboratory"
         : groupLabel;
 
-    let imageExt = "jpeg";
-    if (fs.existsSync(path.join(process.cwd(), `public/product-catalouge/${cat.code}.png`))) {
-      imageExt = "png";
-    }
-    const imageUrl = `/product-catalouge/${cat.code}.${imageExt}`;
+    const imageUrl = resolveCatalogueImageUrl(cat.code);
     const imageAlt = `${cat.title} (${cat.code})`;
 
     await (prisma as any).product.upsert({
