@@ -248,7 +248,7 @@ export default function HeroFeedbackMarquee() {
 
       {/* Masked Vertical Scrolling Viewport */}
       <div
-        className="vertical-marquee-container relative w-full h-[235px] lg:h-[325px] xl:h-[350px] overflow-hidden"
+        className="vertical-marquee-container relative w-full h-[235px] lg:h-[clamp(250px,38vh,325px)] xl:h-[clamp(260px,39vh,350px)] overflow-hidden"
         style={{
           maskImage:
             'linear-gradient(to bottom, transparent 0%, black 11%, black 89%, transparent 100%)',

@@ -84,7 +84,7 @@ const HERO_SLIDES: SlideData[] = [
     shortName: 'Earthing',
     badge: 'Low-Impedance Grids',
     badgeIcon: Layers,
-    titleLine1: 'Precision Earthing &',
+    titleLine1: 'Earthing &',
     titleLine2: 'Grounding Solutions',
     subtitle: 'Low-Impedance Foundation & Deep Earth Grids',
     description:
@@ -94,7 +94,7 @@ const HERO_SLIDES: SlideData[] = [
     imageUrl:
       'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361171/06_Earthing_1920x1080.jpg.webp',
     imageAlt:
-      'Precision earthing and grounding solutions - Copper earth rods, exothermic welding, earth pit, and copper tape conductors',
+      'Earthing and grounding solutions - Copper earth rods, exothermic welding, earth pit, and copper tape conductors',
     standards: 'IEEE 80 • BS 7430 • DEWA Approved',
   },
   {
@@ -379,7 +379,7 @@ export default function HomeHeroClient() {
       data-hero-section="true"
       data-dark-hero="true"
       aria-label="Vision Energy Hero Slider & UAE Client Feedback"
-      className="relative w-full flex flex-col justify-between overflow-hidden bg-[#050A14] min-h-[calc(100svh-var(--navbar-h,120px))] sm:min-h-[calc(100svh-var(--navbar-h,128px))] lg:min-h-[calc(100svh-var(--navbar-h,140px))] select-none"
+      className="relative w-full flex flex-col justify-between overflow-hidden bg-[#050A14] min-h-[calc(100svh-var(--navbar-h,122px))] sm:min-h-[calc(100svh-var(--navbar-h,130px))] lg:min-h-[calc(100svh-var(--navbar-h,142px))] select-none"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onTouchStart={handleTouchStart}
@@ -490,7 +490,7 @@ export default function HomeHeroClient() {
                 className="font-bold tracking-[-0.025em] leading-[1.15] sm:leading-[1.13] animate-fadeIn text-left"
               >
                 <span
-                  className="block text-white text-[26px] min-[375px]:text-[28px] sm:text-[32px] lg:text-[38px] xl:text-[44px]"
+                  className="block text-white text-[clamp(1.375rem,6.8vw,1.75rem)] sm:text-[2rem] md:text-[2.25rem] lg:text-[clamp(2rem,3.3vw,2.75rem)] xl:text-[2.75rem]"
                   style={{
                     textShadow: '0 2px 16px rgba(5,10,20,0.95), 0 1px 3px rgba(5,10,20,0.9)',
                   }}
@@ -499,7 +499,7 @@ export default function HomeHeroClient() {
                 </span>
                 <span
                   data-accent-text="true"
-                  className="block font-extrabold text-[#8DC63F] text-[26px] min-[375px]:text-[28px] sm:text-[32px] lg:text-[38px] xl:text-[44px] mt-1"
+                  className="block font-extrabold text-[#8DC63F] text-[clamp(1.375rem,6.8vw,1.75rem)] sm:text-[2rem] md:text-[2.25rem] lg:text-[clamp(2rem,3.3vw,2.75rem)] xl:text-[2.75rem] mt-1"
                   style={{
                     textShadow: '0 0 28px rgba(141,198,63,0.35), 0 2px 14px rgba(5,10,20,0.95)',
                   }}
@@ -526,13 +526,13 @@ export default function HomeHeroClient() {
               </div>
             </div>
 
-            {/* Action Buttons (Single horizontal row on mobile; aligned just above category pills on laptop+) */}
-            <div className="pt-1 lg:pt-0 grid grid-cols-2 sm:flex sm:flex-row sm:items-center gap-2 sm:gap-3.5 w-full sm:w-auto">
+            {/* Action Buttons (Single horizontal row when space permits; wraps cleanly without text truncation on narrow screens) */}
+            <div className="pt-1 lg:pt-0 flex flex-wrap sm:flex-nowrap items-center gap-2 sm:gap-3.5 w-full sm:w-auto">
               <Link
                 href={activeSlide.ctaLink}
-                className="min-w-0 inline-flex items-center justify-center gap-1.5 sm:gap-2 h-[44px] sm:h-[48px] px-2.5 sm:px-6 rounded-xl bg-[#8DC63F] hover:bg-[#9BD34E] text-[#07111E] text-[11px] min-[390px]:text-[12px] sm:text-sm font-bold shadow-[0_10px_28px_rgba(141,198,63,0.35)] hover:shadow-[0_12px_32px_rgba(141,198,63,0.5)] transition-all active:scale-[0.98] whitespace-nowrap"
+                className="flex-auto sm:flex-none min-w-0 inline-flex items-center justify-center gap-1.5 sm:gap-2 h-[44px] sm:h-[48px] px-3 sm:px-6 rounded-xl bg-[#8DC63F] hover:bg-[#9BD34E] text-[#07111E] text-[11.5px] min-[390px]:text-[12.5px] sm:text-sm font-bold shadow-[0_10px_28px_rgba(141,198,63,0.35)] hover:shadow-[0_12px_32px_rgba(141,198,63,0.5)] transition-all active:scale-[0.98] whitespace-nowrap"
               >
-                <span className="truncate">{activeSlide.ctaText}</span>
+                <span>{activeSlide.ctaText}</span>
                 <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" aria-hidden="true" />
               </Link>
 
@@ -544,10 +544,10 @@ export default function HomeHeroClient() {
                     serviceTitle: `${activeSlide.category} Technical Consultation`,
                   })
                 }
-                className="hero-consultation-btn min-w-0 inline-flex items-center justify-center gap-1.5 sm:gap-2 h-[44px] sm:h-[48px] px-2.5 sm:px-6 rounded-xl bg-[#0B1628]/80 hover:bg-[#0B65B3] border border-white/25 hover:border-[#8DC63F] text-white text-[11px] min-[390px]:text-[12px] sm:text-sm font-semibold backdrop-blur-md transition-all active:scale-[0.98] whitespace-nowrap"
+                className="hero-consultation-btn flex-auto sm:flex-none min-w-0 inline-flex items-center justify-center gap-1.5 sm:gap-2 h-[44px] sm:h-[48px] px-3 sm:px-6 rounded-xl bg-[#0B1628]/80 hover:bg-[#0B65B3] border border-white/25 hover:border-[#8DC63F] text-white text-[11.5px] min-[390px]:text-[12.5px] sm:text-sm font-semibold backdrop-blur-md transition-all active:scale-[0.98] whitespace-nowrap"
               >
                 <PhoneCall className="w-3.5 h-3.5 text-[#8DC63F] shrink-0" aria-hidden="true" />
-                <span className="truncate">Book Consultation</span>
+                <span>Book Consultation</span>
                 <ArrowUpRight className="hidden min-[400px]:inline-block w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/80 shrink-0" aria-hidden="true" />
               </button>
             </div>
@@ -621,7 +621,7 @@ export default function HomeHeroClient() {
       {/* ============================================================ */}
       {/* BOTTOM FLOATING WHITE STATS BAR                              */}
       {/* ============================================================ */}
-      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6 lg:pb-7 pt-1">
+      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 pb-4 sm:pb-5 lg:pb-5 pt-1">
         <div
           data-hero-stats-bar="true"
           data-light-surface="true"
@@ -629,7 +629,7 @@ export default function HomeHeroClient() {
         >
           <div className="grid grid-cols-2 divide-x divide-slate-200">
             {/* Stat 1: 2018 Established */}
-            <div className="px-4 py-3.5 sm:px-6 sm:py-5 flex flex-col items-center justify-center text-center">
+            <div className="px-4 py-3.5 sm:px-6 sm:py-4 flex flex-col items-center justify-center text-center">
               <div className="text-xl sm:text-2xl lg:text-[28px] font-extrabold text-[#0A192F] tracking-tight leading-tight">
                 2018
               </div>
@@ -639,7 +639,7 @@ export default function HomeHeroClient() {
             </div>
 
             {/* Stat 2: UAE & GCC Coverage */}
-            <div className="px-4 py-3.5 sm:px-6 sm:py-5 flex flex-col items-center justify-center text-center">
+            <div className="px-4 py-3.5 sm:px-6 sm:py-4 flex flex-col items-center justify-center text-center">
               <div className="text-xl sm:text-2xl lg:text-[28px] font-extrabold text-[#0A192F] tracking-tight leading-tight">
                 UAE &amp; GCC
               </div>

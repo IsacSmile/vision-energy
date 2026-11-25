@@ -7,7 +7,7 @@
     --font-poppins: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     --header-h: 140px;
     --mobile-header-h: 120px;
-    --navbar-h: 120px;
+    --navbar-h: 122px;
     --header-offset: 86px;
     --mobile-bar-h: 56px;
     --bg-main: #050608;
@@ -25,20 +25,20 @@
 
   @media (min-width: 640px) {
     :root {
-      --navbar-h: 128px;
+      --navbar-h: 130px;
     }
   }
 
   @media (min-width: 768px) {
     :root {
-      --navbar-h: 134px;
+      --navbar-h: 136px;
     }
   }
 
   @media (min-width: 1024px) {
     :root {
       --header-h: 140px;
-      --navbar-h: 140px;
+      --navbar-h: 142px;
       --header-offset: 100px;
     }
   }
@@ -46,7 +46,7 @@
   @media (min-width: 1280px) {
     :root {
       --header-h: 144px;
-      --navbar-h: 144px;
+      --navbar-h: 146px;
     }
   }
 
