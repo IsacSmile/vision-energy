@@ -168,6 +168,7 @@ export default function ServicesCarouselClient({
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [flippedCardId, setFlippedCardId] = useState<string | null>(null);
 
   // Mouse Drag to Scroll variables
   const isDragging = useRef(false);
@@ -261,10 +262,21 @@ export default function ServicesCarouselClient({
     isDragging.current = false;
   };
 
-  const handleCardClick = (e: React.MouseEvent) => {
+  const handleCardClick = (e: React.MouseEvent, serviceId: string) => {
     // If the user dragged, don't trigger link navigation
     if (hasMoved.current) {
       e.preventDefault();
+      return;
+    }
+
+    // On touch/non-hover devices, first tap flips the card to reveal content; second tap navigates
+    if (
+      typeof window !== 'undefined' &&
+      window.matchMedia('(hover: none)').matches &&
+      flippedCardId !== serviceId
+    ) {
+      e.preventDefault();
+      setFlippedCardId(serviceId);
     }
   };
 
@@ -353,81 +365,94 @@ export default function ServicesCarouselClient({
           >
             {CAROUSEL_SERVICES.map((service) => {
               const IconComponent = service.icon;
+              const isFlipped = flippedCardId === service.id;
 
               return (
                 <div
                   key={service.id}
-                  className="w-[84vw] min-w-[280px] max-w-[340px] sm:w-[350px] md:w-[370px] lg:w-[380px] shrink-0 snap-start flex flex-col"
+                  className="w-[84vw] min-w-[280px] max-w-[340px] sm:w-[350px] md:w-[370px] lg:w-[380px] h-[340px] sm:h-[360px] lg:h-[380px] shrink-0 snap-start"
                 >
                   <Link
                     href={service.href}
-                    onClick={handleCardClick}
-                    className="group relative flex flex-col h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded-[24px]"
+                    onClick={(e) => handleCardClick(e, service.id)}
+                    onBlur={() => {
+                      if (isFlipped) setFlippedCardId(null);
+                    }}
+                    className="flip-card-scene group block relative w-full h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded-[22px]"
                   >
-                    {/* Top Image Container with High-Res Photography */}
-                    <div className="relative w-full h-[240px] sm:h-[260px] lg:h-[280px] rounded-[20px] overflow-hidden bg-[#050608] border border-white/[0.08] shadow-md group-hover:border-[#8DC63F]/40 transition-all duration-500">
-                      <Image
-                        src={service.image.url}
-                        alt={service.image.alt}
-                        fill
-                        className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                        sizes="(max-width: 640px) 85vw, (max-width: 1024px) 370px, 380px"
-                      />
+                    <div className={`flip-card-inner ${isFlipped ? 'is-flipped' : ''}`}>
+                      {/* FRONT FACE: Clean Full-Card Image Only */}
+                      <div className="flip-card-face flip-card-front rounded-[22px] overflow-hidden bg-[#050608] border border-white/[0.1] shadow-[0_12px_32px_rgba(0,0,0,0.14)]">
+                        <Image
+                          src={service.image.url}
+                          alt={service.image.alt}
+                          fill
+                          className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                          sizes="(max-width: 640px) 85vw, (max-width: 1024px) 370px, 380px"
+                        />
 
-                      {/* Gradient Overlay for Depth */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/40 pointer-events-none" />
+                        {/* Subtle Edge Gradient for Depth */}
+                        <div
+                          className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/35 pointer-events-none"
+                          aria-hidden="true"
+                        />
 
-                      {/* Top Floating Badge: Index & Icon */}
-                      <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#050608]/85 backdrop-blur-md border border-white/15 text-xs font-semibold text-white shadow-lg">
-                        <span className="font-mono text-[#8DC63F] font-bold text-[11px]">
-                          {service.number}
-                        </span>
-                        <span className="text-white/20">•</span>
-                        <IconComponent className="w-3.5 h-3.5 text-white/90" />
-                      </div>
-
-                      {/* Top Right Quick Action Indicator */}
-                      <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-[#050608]/80 backdrop-blur-md border border-white/15 flex items-center justify-center text-white/70 group-hover:text-[#8DC63F] group-hover:border-[#8DC63F]/50 group-hover:scale-110 transition-all duration-300 shadow-lg">
-                        <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                      </div>
-                    </div>
-
-                    {/* Overlapping Elevated Architectural Card with Smooth Shadow */}
-                    <div className="-mt-16 sm:-mt-18 relative z-10 mx-2.5 sm:mx-3.5 flex-1 flex flex-col justify-between p-5 sm:p-6 lg:p-7 rounded-[20px] bg-[#0A0E17]/95 backdrop-blur-xl border border-white/[0.1] shadow-[0_10px_30px_rgba(0,0,0,0.1),0_4px_12px_rgba(0,0,0,0.06)] group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.16),0_8px_20px_rgba(141,198,63,0.18)] group-hover:border-[#8DC63F]/50 group-hover:-translate-y-1 transition-all duration-500">
-                      <div>
-                        {/* Eyebrow Category */}
-                        <div className="flex items-center gap-2 mb-3">
-                          <span className="w-2 h-2 rounded-full bg-[#8DC63F] animate-pulse" />
-                          <span className="text-[12px] sm:text-[13px] font-bold uppercase tracking-wider text-[#8DC63F]">
-                            {service.eyebrow}
+                        {/* Top Floating Badge: Index & Icon */}
+                        <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#050608]/85 backdrop-blur-md border border-white/15 text-xs font-semibold text-white shadow-lg">
+                          <span className="font-mono text-[#8DC63F] font-bold text-[11px]">
+                            {service.number}
                           </span>
+                          <span className="text-white/20">•</span>
+                          <IconComponent className="w-3.5 h-3.5 text-white/90" />
                         </div>
 
-                        {/* Service Title */}
-                        <h3 className="text-xl sm:text-[22px] lg:text-[23px] font-bold text-white group-hover:text-[#8DC63F] transition-colors leading-[1.3] mb-3">
-                          {service.title}
-                        </h3>
-
-                        {/* Service Summary */}
-                        <p className="text-[14px] sm:text-[14px] lg:text-[15px] text-[#E2E8F0] font-normal leading-[1.6] line-clamp-3">
-                          {service.summary}
-                        </p>
+                        {/* Top Right Indicator */}
+                        <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-[#050608]/80 backdrop-blur-md border border-white/15 flex items-center justify-center text-white/70 shadow-lg">
+                          <ArrowUpRight className="w-4 h-4" />
+                        </div>
                       </div>
 
-                      {/* Bottom Action Area: Read More with Animated Underline */}
-                      <div className="mt-5 pt-4 border-t border-white/[0.08] flex items-center justify-between">
-                        <div className="relative inline-flex items-center gap-2 text-sm sm:text-base font-bold text-white group-hover:text-[#8DC63F] transition-colors">
-                          <span>Read More</span>
-                          <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#8DC63F] group-hover:translate-x-1.5 transition-transform duration-300" />
-                          <span className="absolute -bottom-1 left-0 w-8 h-[2px] bg-[#8DC63F] group-hover:w-full transition-all duration-300 rounded-full" />
+                      {/* BACK FACE: Text Content Revealed Smoothly on Hover / Focus / Tap */}
+                      <div className="flip-card-face flip-card-back service-flip-back rounded-[22px] overflow-hidden border p-6 sm:p-7 flex flex-col justify-between">
+                        <div>
+                          {/* Top Row: Eyebrow & Number */}
+                          <div className="flex items-center justify-between gap-2 mb-3.5">
+                            <div className="flex items-center gap-2 min-w-0">
+                              <span className="w-2 h-2 rounded-full bg-[#8DC63F] shrink-0" />
+                              <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#8DC63F] truncate">
+                                {service.eyebrow}
+                              </span>
+                            </div>
+                            <span className="font-mono text-xs font-bold text-[#8DC63F] shrink-0">
+                              {service.number}
+                            </span>
+                          </div>
+
+                          {/* Service Title */}
+                          <h3 className="text-xl sm:text-[22px] font-bold text-white leading-[1.28] mb-3">
+                            {service.title}
+                          </h3>
+
+                          {/* Service Summary */}
+                          <p className="text-[13.5px] sm:text-[14px] text-[#E2E8F0] font-normal leading-[1.6] line-clamp-4">
+                            {service.summary}
+                          </p>
                         </div>
 
-                        {/* Subtle Meta Chip / Standards Indicator */}
-                        {service.metaChip && (
-                          <span className="text-[11px] sm:text-xs font-semibold text-white/70 bg-white/[0.08] border border-white/10 px-2.5 py-1 rounded-full transition-colors truncate max-w-[130px] sm:max-w-[150px]">
-                            {service.metaChip}
-                          </span>
-                        )}
+                        {/* Bottom Action Area: Read More + Meta Chip */}
+                        <div className="mt-4 pt-4 border-t border-white/[0.08] flex items-center justify-between gap-3">
+                          <div className="relative inline-flex items-center gap-1.5 text-sm font-bold text-white whitespace-nowrap shrink-0">
+                            <span>Read More</span>
+                            <ArrowRight className="w-4 h-4 text-[#8DC63F]" />
+                            <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-[#8DC63F] rounded-full" />
+                          </div>
+
+                          {service.metaChip && (
+                            <span className="text-[11px] font-semibold text-white/70 bg-white/[0.08] border border-white/10 px-2.5 py-1 rounded-full truncate">
+                              {service.metaChip}
+                            </span>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </Link>
