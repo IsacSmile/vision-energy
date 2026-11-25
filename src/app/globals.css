@@ -446,6 +446,52 @@ html.lenis, html.lenis body {
 }
 
 /* ============================================================ */
+/* Infinite Vertical Customer Feedback Marquee                  */
+/* ============================================================ */
+@keyframes verticalMarqueeUp {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+@keyframes verticalMarqueeDown {
+  0% {
+    transform: translate3d(0, -50%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-vertical-marquee-up {
+  animation: verticalMarqueeUp 36s linear infinite;
+  will-change: transform;
+}
+
+.animate-vertical-marquee-down {
+  animation: verticalMarqueeDown 40s linear infinite;
+  will-change: transform;
+}
+
+.vertical-marquee-container:hover .animate-vertical-marquee-up,
+.vertical-marquee-container:hover .animate-vertical-marquee-down,
+.vertical-marquee-container:focus-within .animate-vertical-marquee-up,
+.vertical-marquee-container:focus-within .animate-vertical-marquee-down {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-vertical-marquee-up,
+  .animate-vertical-marquee-down {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* ============================================================ */
 /* LIGHT MODE THEME OVERRIDES                                   */
 /* Guarantees 100% white background and complete text visibility */
 /* across all sections, headers, footers, cards, and modals     */
@@ -505,11 +551,11 @@ html.light .bg-brand-card-hover:hover {
   background-color: #F1F5F9 !important;
 }
 
-html.light .bg-white\/\[0\.04\],
-html.light .bg-white\/\[0\.05\],
-html.light .bg-white\/\[0\.08\],
-html.light .bg-white\/5,
-html.light .bg-white\/10 {
+html.light .bg-white\/\[0\.04\]:not(#home-hero *),
+html.light .bg-white\/\[0\.05\]:not(#home-hero *),
+html.light .bg-white\/\[0\.08\]:not(#home-hero *),
+html.light .bg-white\/5:not(#home-hero *),
+html.light .bg-white\/10:not(#home-hero *) {
   background-color: #F1F5F9 !important;
 }
 
@@ -631,16 +677,29 @@ html.light [data-hero-section] h1,
 html.light [data-hero-section] h1 *,
 html.light [data-hero-section] .text-white,
 html.light #home-hero h1,
-html.light #home-hero h1 *,
-html.light #home-hero .text-white {
+html.light #home-hero h1 > span:not([data-accent-text="true"]),
+html.light #home-hero .text-white:not([data-hero-stats-bar="true"] *):not([data-light-surface="true"] *) {
   color: #FFFFFF !important;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95), 0 1px 3px rgba(0, 0, 0, 0.95);
 }
 
-html.light [data-dark-hero="true"] p,
-html.light [data-dark-hero="true"] p *,
-html.light [data-dark-hero="true"] [class*="text-[#CBD5E1]"],
-html.light [data-dark-hero="true"] [class*="text-[#A9B4C0]"],
+html.light #home-hero [data-accent-text="true"] {
+  color: #8DC63F !important;
+}
+
+html.light #home-hero [data-hero-stats-bar="true"],
+html.light #home-hero [data-hero-stats-bar="true"] * {
+  text-shadow: none !important;
+}
+
+html.light #home-hero [data-hero-stats-bar="true"] {
+  background-color: #FFFFFF !important;
+}
+
+html.light [data-dark-hero="true"] p:not([data-hero-stats-bar="true"] *):not([data-light-surface="true"] *),
+html.light [data-dark-hero="true"] p *:not([data-hero-stats-bar="true"] *):not([data-light-surface="true"] *),
+html.light [data-dark-hero="true"] [class*="text-[#CBD5E1]"]:not([data-hero-stats-bar="true"] *),
+html.light [data-dark-hero="true"] [class*="text-[#A9B4C0]"]:not([data-hero-stats-bar="true"] *),
 html.light .products-hero p,
 html.light .products-hero p *,
 html.light #products-hero p,
@@ -657,10 +716,10 @@ html.light .service-detail-hero p,
 html.light .service-detail-hero p *,
 html.light .service-detail-hero [class*="text-[#CBD5E1]"],
 html.light .service-detail-hero [class*="text-[#A9B4C0]"],
-html.light [data-hero-section] p,
-html.light [data-hero-section] p *,
-html.light #home-hero p,
-html.light #home-hero p * {
+html.light [data-hero-section] p:not([data-hero-stats-bar="true"] *):not([data-light-surface="true"] *),
+html.light [data-hero-section] p *:not([data-hero-stats-bar="true"] *):not([data-light-surface="true"] *),
+html.light #home-hero p:not([data-hero-stats-bar="true"] *):not([data-light-surface="true"] *),
+html.light #home-hero p *:not([data-hero-stats-bar="true"] *):not([data-light-surface="true"] *) {
   color: #E2E8F0 !important;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.85), 0 1px 2px rgba(0, 0, 0, 0.95);
 }
@@ -718,117 +777,51 @@ html.light .service-detail-hero [class*="text-[#8DC63F]"] {
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
 }
 
-/* Hero Consultation Button in Light Mode: Logo Blue tint with lime highlight */
-html.light #home-hero button:has(svg.lucide-phone-call),
+/* Hero Consultation Button in Light Mode: Consistent high-contrast glass button */
 html.light #home-hero button.hero-consultation-btn {
-  background-color: rgba(11, 101, 179, 0.25) !important;
+  background-color: rgba(11, 22, 40, 0.78) !important;
   color: #FFFFFF !important;
-  border: 2px solid #0B65B3 !important;
-  box-shadow: 0 4px 14px 0 rgba(11, 101, 179, 0.25) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
 }
 
-html.light #home-hero button:has(svg.lucide-phone-call) span,
 html.light #home-hero button.hero-consultation-btn span {
   color: #FFFFFF !important;
-  font-weight: 700 !important;
 }
 
-html.light #home-hero button:has(svg.lucide-phone-call) svg,
 html.light #home-hero button.hero-consultation-btn svg {
   color: #8DC63F !important;
 }
 
-html.light #home-hero button:has(svg.lucide-phone-call):hover,
 html.light #home-hero button.hero-consultation-btn:hover {
   background-color: #0B65B3 !important;
   border-color: #8DC63F !important;
-  box-shadow: 0 0 24px rgba(141, 198, 63, 0.45) !important;
+  box-shadow: 0 0 24px rgba(141, 198, 63, 0.4) !important;
 }
 
-/* Hero Slider Tabs in Light Mode: High-contrast white cards with crisp dark text */
-html.light .hero-slider-tab,
-html.light #home-hero div.hidden.lg\:flex button[aria-label*="Go to slide"] {
-  background-color: #FFFFFF !important;
-  color: #0F172A !important;
-  border-color: #CBD5E1 !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08) !important;
+/* Hero Slider Pills in Light Mode: Refined translucent frosted-glass pills */
+html.light #home-hero .hero-slider-tab {
+  background-color: rgba(7, 17, 34, 0.46) !important;
+  color: rgba(255, 255, 255, 0.88) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 4px 14px rgba(0, 0, 0, 0.18) !important;
 }
 
-html.light .hero-slider-tab span,
-html.light #home-hero div.hidden.lg\:flex button[aria-label*="Go to slide"] span {
-  color: #0F172A !important;
-  font-weight: 700 !important;
+html.light #home-hero .hero-slider-tab span {
+  color: inherit !important;
 }
 
-html.light .hero-slider-tab[aria-current="true"],
-html.light #home-hero div.hidden.lg\:flex button[aria-label*="Go to slide"][aria-current="true"] {
-  border-color: #8DC63F !important;
-  box-shadow: 0 4px 14px rgba(141, 198, 63, 0.25), 0 2px 6px rgba(0, 0, 0, 0.08) !important;
-}
-
-html.light .hero-slider-tab:hover,
-html.light #home-hero div.hidden.lg\:flex button[aria-label*="Go to slide"]:hover {
-  background-color: #F8FAFC !important;
-  border-color: #8DC63F !important;
-}
-
-/* Hero Slider Navigation Arrows in Light Mode: Logo Blue with Lime Green highlight */
-html.light .hero-arrow-btn svg,
-html.light #home-hero div.hidden.lg\:flex button[aria-label*="slide"] svg {
-  color: #8DC63F !important;
-}
-
-html.light .hero-arrow-btn,
-html.light #home-hero div.hidden.lg\:flex button[aria-label*="slide"]:not([aria-label*="Go to slide"]) {
-  background-color: rgba(11, 101, 179, 0.2) !important;
-  border-color: rgba(141, 198, 63, 0.4) !important;
-  color: #8DC63F !important;
-  box-shadow: 0 2px 8px rgba(11, 101, 179, 0.2) !important;
-}
-
-html.light .hero-arrow-btn:hover,
-html.light #home-hero div.hidden.lg\:flex button[aria-label*="slide"]:not([aria-label*="Go to slide"]):hover {
-  background-color: #0B65B3 !important;
-  border-color: #8DC63F !important;
-  box-shadow: 0 0 16px rgba(141, 198, 63, 0.45) !important;
-}
-
-html.light .hero-arrow-btn:hover svg,
-html.light #home-hero div.hidden.lg\:flex button[aria-label*="slide"]:not([aria-label*="Go to slide"]):hover svg {
+html.light #home-hero .hero-slider-tab:hover {
+  background-color: rgba(11, 25, 48, 0.74) !important;
   color: #FFFFFF !important;
+  border-color: rgba(255, 255, 255, 0.38) !important;
 }
 
-html.light #home-hero div.hidden.lg\:flex div.border-l {
-  border-left-color: #CBD5E1 !important;
-}
-
-/* Mobile Quick Switcher Tabs & Tiles in Light Mode */
-html.light #home-hero div.lg\:hidden button {
-  background-color: #FFFFFF !important;
-  border-color: #CBD5E1 !important;
-  color: #0F172A !important;
-}
-
-html.light #home-hero div.lg\:hidden button span {
-  color: #0F172A !important;
-  font-weight: 700 !important;
-}
-
-html.light #home-hero div.lg\:hidden button[aria-label*="Jump"] {
-  background-color: rgba(255, 255, 255, 0.4) !important;
-}
-
-html.light #home-hero div.lg\:hidden .rounded-xl {
-  background-color: #FFFFFF !important;
-  border-color: #CBD5E1 !important;
-}
-
-html.light #home-hero div.lg\:hidden .rounded-xl span.text-white {
-  color: #0F172A !important;
-}
-
-html.light #home-hero div.lg\:hidden .rounded-xl span.text-\[\#A9B4C0\] {
-  color: #64748B !important;
+html.light #home-hero .hero-slider-tab[aria-current="true"] {
+  background-color: rgba(11, 27, 52, 0.88) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(141, 198, 63, 0.85) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 0 22px rgba(141, 198, 63, 0.22), 0 8px 20px rgba(0, 0, 0, 0.28) !important;
 }
 
 /* 6. Colored Buttons & Badges Contrast Preservations */
@@ -945,21 +938,21 @@ html.light #mobile-nav-overlay a.text-\[\#8DC63F\] {
 }
 
 /* 8. Borders & Dividers */
-html.light .border-\[\#1F2937\],
-html.light [class*="border-[#1F2937]"],
-html.light .border-white\/\[0\.08\],
-html.light .border-white\/\[0\.1\],
-html.light .border-white\/\[0\.12\],
-html.light .border-white\/\[0\.14\],
-html.light .border-white\/\[0\.15\],
-html.light .border-white\/\[0\.16\],
-html.light .border-white\/\[0\.2\],
-html.light .border-white\/10,
-html.light .border-white\/12,
-html.light .border-white\/15,
-html.light .border-white\/16,
-html.light .border-white\/20,
-html.light .border-brand-border {
+html.light .border-\[\#1F2937\]:not(#home-hero *),
+html.light [class*="border-[#1F2937]"]:not(#home-hero *),
+html.light .border-white\/\[0\.08\]:not(#home-hero *),
+html.light .border-white\/\[0\.1\]:not(#home-hero *),
+html.light .border-white\/\[0\.12\]:not(#home-hero *),
+html.light .border-white\/\[0\.14\]:not(#home-hero *),
+html.light .border-white\/\[0\.15\]:not(#home-hero *),
+html.light .border-white\/\[0\.16\]:not(#home-hero *),
+html.light .border-white\/\[0\.2\]:not(#home-hero *),
+html.light .border-white\/10:not(#home-hero *),
+html.light .border-white\/12:not(#home-hero *),
+html.light .border-white\/15:not(#home-hero *),
+html.light .border-white\/16:not(#home-hero *),
+html.light .border-white\/20:not(#home-hero *),
+html.light .border-brand-border:not(#home-hero *) {
   border-color: #E2E8F0 !important;
 }
 

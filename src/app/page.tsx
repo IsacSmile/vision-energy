@@ -135,6 +135,15 @@ const faqSchema = {
   ],
 };
 
+function HairlineDivider() {
+  return (
+    <div
+      className="w-full max-w-[80rem] mx-auto h-[1px] bg-[linear-gradient(90deg,transparent_0%,rgba(11,101,179,0.3)_35%,rgba(141,198,63,0.3)_65%,transparent_100%)]"
+      aria-hidden="true"
+    />
+  );
+}
+
 export default async function HomePage() {
   let productCategoryCount = FALLBACK_CATEGORIES.length;
 
@@ -145,14 +154,6 @@ export default async function HomePage() {
     console.error('Database query fallback triggered for HomePage:', e);
   }
 
-  // Hairline divider component
-  const HairlineDivider = () => (
-    <div
-      className="w-full max-w-[80rem] mx-auto h-[1px] bg-[linear-gradient(90deg,transparent_0%,rgba(11,101,179,0.3)_35%,rgba(141,198,63,0.3)_65%,transparent_100%)]"
-      aria-hidden="true"
-    />
-  );
-
   return (
     <SmoothScroll>
       <script
@@ -161,7 +162,7 @@ export default async function HomePage() {
       />
       <div className="bg-[#050608]">
         {/* 1. HERO SECTION */}
-        <HomeHeroClient productCategoryCount={productCategoryCount} />
+        <HomeHeroClient />
 
         <HairlineDivider />
 

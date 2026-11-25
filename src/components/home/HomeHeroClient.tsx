@@ -4,12 +4,12 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEnquiryModal } from '@/components/modals/EnquiryModalProvider';
+import HeroFeedbackMarquee from '@/components/home/HeroFeedbackMarquee';
 import {
   ArrowRight,
+  ArrowUpRight,
   Zap,
   Layers,
-  ChevronLeft,
-  ChevronRight,
   PhoneCall,
   ShieldCheck,
   Wrench,
@@ -37,8 +37,6 @@ interface SlideData {
   imageUrl: string;
   imageAlt: string;
   standards: string;
-  highlightColor: string;
-  glowColor: string;
 }
 
 const HERO_SLIDES: SlideData[] = [
@@ -49,18 +47,17 @@ const HERO_SLIDES: SlideData[] = [
     badge: 'Trusted Industrial Supplier',
     badgeIcon: ShieldCheck,
     titleLine1: 'A Trusted Supplier of',
-    titleLine2: 'Quality Industrial & Technical Products',
+    titleLine2: 'Industrial & Technical Products',
     subtitle: 'Delivering Quality Products & Dependable Solutions',
     description:
-      'Delivering quality products and dependable solutions to support industries, infrastructure and projects across diverse sectors.',
+      'Delivering certified engineering products and dependable technical solutions to support industries, MEP contractors, and infrastructure projects across the UAE.',
     ctaText: 'Explore Products',
     ctaLink: '/products',
-    imageUrl: 'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/09_Electrical_1920x1080-optimized.webp',
+    imageUrl:
+      'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/09_Electrical_1920x1080-optimized.webp',
     imageAlt:
       'Vision Energy - Quality industrial and technical products showroom in UAE: distribution panels, circuit breakers, cable trays, and rigid conduits',
-    standards: 'DEWA • SEWA • Civil Defense Compliant',
-    highlightColor: 'text-[#8DC63F]',
-    glowColor: 'rgba(141,198,63,0.45)',
+    standards: 'DEWA • SEWA • ADDC • Civil Defense Compliant',
   },
   {
     id: 'lightning-protection',
@@ -72,15 +69,14 @@ const HERO_SLIDES: SlideData[] = [
     titleLine2: 'Protection Systems',
     subtitle: 'Essential Safety for Your Assets',
     description:
-      'Lightning, a powerful force of nature, can cause severe damage. We provide comprehensive solutions to protect lives, structures, and equipment across the UAE.',
+      'Comprehensive structural lightning protection, ESE air terminals, and surge suppression engineered to protect lives, towers, and critical facilities across the UAE.',
     ctaText: 'Explore Lightning',
     ctaLink: '/products?group=LP',
-    imageUrl: 'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361171/06_Earthing_1920x1080.jpg.webp',
+    imageUrl:
+      'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361171/06_Earthing_1920x1080.jpg.webp',
     imageAlt:
       'Advanced lightning protection systems - Early Streamer Emission ESE air terminals, conventional copper rods, and surge protection devices SPDs',
     standards: 'IEC 62305 • BS EN 62305 • NFC 17-102 • NFPA 780',
-    highlightColor: 'text-[#8DC63F]',
-    glowColor: 'rgba(141,198,63,0.45)',
   },
   {
     id: 'earthing',
@@ -92,15 +88,14 @@ const HERO_SLIDES: SlideData[] = [
     titleLine2: 'Grounding Solutions',
     subtitle: 'Low-Impedance Foundation & Deep Earth Grids',
     description:
-      'Engineered copper earthing grids and low-impedance grounding for maximum electrical safety across UAE soil conditions.',
+      'Engineered copper earthing grids, exothermic welding, and low-impedance grounding built for maximum safety across challenging UAE soil conditions.',
     ctaText: 'Explore Earthing',
     ctaLink: '/products?group=ER',
-    imageUrl: 'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361171/06_Earthing_1920x1080.jpg.webp',
+    imageUrl:
+      'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361171/06_Earthing_1920x1080.jpg.webp',
     imageAlt:
       'Precision earthing and grounding solutions - Copper earth rods, exothermic welding, earth pit, and copper tape conductors',
-    standards: 'IEEE 80 • BS 7430',
-    highlightColor: 'text-[#8DC63F]',
-    glowColor: 'rgba(141,198,63,0.45)',
+    standards: 'IEEE 80 • BS 7430 • DEWA Approved',
   },
   {
     id: 'electrical-solutions',
@@ -112,15 +107,14 @@ const HERO_SLIDES: SlideData[] = [
     titleLine2: 'Equipment & Solutions',
     subtitle: 'Engineered for Industrial & Infrastructure Applications',
     description:
-      'High-performance electrical distribution, switchgear, cable containment, and industrial power solutions.',
+      'High-performance electrical distribution, switchgear accessories, cable containment, and industrial power systems delivered UAE-wide.',
     ctaText: 'Explore Electrical',
     ctaLink: '/products?group=EL',
-    imageUrl: 'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/09_Electrical_1920x1080-optimized.webp',
+    imageUrl:
+      'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/09_Electrical_1920x1080-optimized.webp',
     imageAlt:
       'Advanced electrical equipment and solutions UAE - Distribution panels, switchgear, cable trays, conduits, and power systems',
     standards: 'DEWA • SEWA • ISO 9001 Compliant',
-    highlightColor: 'text-[#8DC63F]',
-    glowColor: 'rgba(141,198,63,0.45)',
   },
   {
     id: 'mechanical-solutions',
@@ -132,15 +126,14 @@ const HERO_SLIDES: SlideData[] = [
     titleLine2: 'Pumping Solutions',
     subtitle: 'Engineered for Industrial & Infrastructure Applications',
     description:
-      'Advanced mechanical solutions, centrifugal water pumps, valves, and HVAC equipment for industrial applications.',
+      'Industrial centrifugal water pumps, booster stations, heavy-duty valves, and HVAC equipment engineered for demanding UAE MEP sites.',
     ctaText: 'Explore Mechanical',
     ctaLink: '/products?group=ME',
-    imageUrl: 'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/07_Mechanical_1920x1080.jpg.webp',
+    imageUrl:
+      'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/07_Mechanical_1920x1080.jpg.webp',
     imageAlt:
       'Advanced mechanical solutions UAE - Industrial centrifugal water pumps, booster pumps, gate valves, check valves, and pipe fittings',
     standards: 'ISO 9001 • Industrial Grade • MEP Compliant',
-    highlightColor: 'text-[#8DC63F]',
-    glowColor: 'rgba(141,198,63,0.45)',
   },
   {
     id: 'laboratory-equipment',
@@ -148,19 +141,18 @@ const HERO_SLIDES: SlideData[] = [
     shortName: 'Laboratory',
     badge: 'Research & Diagnostics',
     badgeIcon: Microscope,
-    titleLine1: 'Complete Laboratory Equipments',
-    titleLine2: 'for Better Tomorrow',
+    titleLine1: 'Complete Laboratory',
+    titleLine2: 'Equipment & Instrumentation',
     subtitle: 'Quality Laboratory Equipment, Consumables & Accessories',
     description:
-      'Quality laboratory equipment, consumables and accessories for multiple applications.',
+      'Precision analytical balances, optical instruments, lab glassware, and certified consumables supporting UAE testing & research facilities.',
     ctaText: 'Explore Equipment',
     ctaLink: '/products?group=LE',
-    imageUrl: 'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/02_Laboratory_1920x1080.jpg.webp',
+    imageUrl:
+      'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/02_Laboratory_1920x1080.jpg.webp',
     imageAlt:
       'Complete laboratory equipment for research and diagnostics - Microscopes, centrifuges, analytical balances, spectrophotometers, and lab consumables',
     standards: 'ISO 17025 • GLP • CE Certified',
-    highlightColor: 'text-[#8DC63F]',
-    glowColor: 'rgba(141,198,63,0.45)',
   },
   {
     id: 'gym-equipment',
@@ -172,19 +164,18 @@ const HERO_SLIDES: SlideData[] = [
     titleLine2: 'Fitness Equipment',
     subtitle: 'Premium Fitness Machinery & Gym Solutions',
     description:
-      'Quality commercial gym equipment, fitness machinery, strength training systems, and comprehensive equipment care.',
+      'Commercial-grade gym machinery, strength training systems, and turnkey equipment maintenance across hospitality, residential, and corporate clubs.',
     ctaText: 'Explore Gym Equipment',
     ctaLink: '/products?group=SP',
-    imageUrl: 'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/05_Gym_1920x1080-optimized.webp',
+    imageUrl:
+      'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/05_Gym_1920x1080-optimized.webp',
     imageAlt:
       'Commercial gym equipment and fitness machinery - Treadmills, strength training machines, power racks, and fitness accessories UAE',
     standards: 'Commercial Grade • Certified Safety • OEM Support',
-    highlightColor: 'text-[#8DC63F]',
-    glowColor: 'rgba(141,198,63,0.45)',
   },
   {
     id: 'safety-equipment-supply',
-    category: 'Safety Equipment Supply',
+    category: 'Safety Equipment',
     shortName: 'Safety',
     badge: 'Workplace Protection & PPE',
     badgeIcon: HardHat,
@@ -192,15 +183,14 @@ const HERO_SLIDES: SlideData[] = [
     titleLine2: '& Workplace Protection',
     subtitle: 'Reliable Safety Equipment Solutions & Certified PPE',
     description:
-      'Reliable safety equipment solutions to ensure workplace protection, compliance and peace of mind.',
+      'Certified industrial PPE, hazard detection, and workplace protection systems built for UAE construction, oil & gas, and utility operations.',
     ctaText: 'Explore Safety Products',
     ctaLink: '/products?group=SF',
-    imageUrl: 'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361170/04_Electronics_1920x1080.jpg.webp',
+    imageUrl:
+      'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361170/04_Electronics_1920x1080.jpg.webp',
     imageAlt:
       'Workplace protection, automation, and safety equipment supply - Industrial sensors, limit controls, safety relays, and instrumentation',
-    standards: 'EN 397 • ANSI Z87.1 • OSHA Compliant',
-    highlightColor: 'text-[#8DC63F]',
-    glowColor: 'rgba(141,198,63,0.45)',
+    standards: 'EN 397 • ANSI Z87.1 • Civil Defense Approved',
   },
   {
     id: 'commercial-packaging-solutions',
@@ -209,18 +199,17 @@ const HERO_SLIDES: SlideData[] = [
     badge: 'Packaging & Signage',
     badgeIcon: Boxes,
     titleLine1: 'Safety Equipment &',
-    titleLine2: 'Commercial Packaging Solutions',
+    titleLine2: 'Commercial Packaging',
     subtitle: 'Reliable Safety & Packaging Products',
     description:
-      'Reliable safety and packaging products ensuring workplace protection, product safety, and efficient handling.',
+      'Heavy-duty industrial packaging, protective wrapping, cable drums, and facility identification engineered for safe UAE logistics and handling.',
     ctaText: 'Explore Packaging',
     ctaLink: '/products?group=PK',
-    imageUrl: 'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361170/01_Cables_1920x1080.webp',
+    imageUrl:
+      'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361170/01_Cables_1920x1080.webp',
     imageAlt:
       'Safety equipment and commercial packaging solutions - Heavy-duty cable drums, spools, coiled conductors, and packaging materials',
-    standards: 'ISO 9001 • Eco-Friendly • Heavy Duty Material',
-    highlightColor: 'text-[#8DC63F]',
-    glowColor: 'rgba(141,198,63,0.45)',
+    standards: 'ISO 9001 • Heavy Duty Material • UAE Supply',
   },
   {
     id: 'sports-equipment-solutions',
@@ -229,19 +218,17 @@ const HERO_SLIDES: SlideData[] = [
     badge: 'Sports Equipment & Accessories',
     badgeIcon: Trophy,
     titleLine1: 'Sports Equipment &',
-    titleLine2: 'Accessories',
-    subtitle:
-      'Premium sports products and accessories designed to support every game and fitness activity.',
+    titleLine2: 'Court Accessories',
+    subtitle: 'Premium sports products and accessories for every athletic facility.',
     description:
-      'Premium sports products and accessories designed to support every game and fitness activity.',
+      'Professional athletic gear, court accessories, and institutional sports equipment supplied to academies, schools, and clubs across the Emirates.',
     ctaText: 'Explore Sports Products',
     ctaLink: '/products?group=SP',
-    imageUrl: 'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/05_Gym_1920x1080-optimized.webp',
+    imageUrl:
+      'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/05_Gym_1920x1080-optimized.webp',
     imageAlt:
       'Sports equipment and accessories - Premium commercial athletic equipment, dumbbells, weights, rowing machines, and fitness accessories',
     standards: 'FIFA • FIBA • ITF Approved Standards',
-    highlightColor: 'text-[#8DC63F]',
-    glowColor: 'rgba(141,198,63,0.45)',
   },
   {
     id: 'delivering-excellence-multiple-sectors',
@@ -249,81 +236,111 @@ const HERO_SLIDES: SlideData[] = [
     shortName: 'Multi-Sector',
     badge: 'Delivering Excellence',
     badgeIcon: Globe,
-    titleLine1: 'Delivering Excellence Across',
-    titleLine2: 'Multiple Sectors',
+    titleLine1: 'Delivering Excellence',
+    titleLine2: 'Across Multiple Sectors',
     subtitle: 'One Company. Multiple Solutions. A Commitment to Quality.',
-    description: 'One Company. Multiple Solutions. A Commitment to Quality.',
+    description:
+      'Backed by 18+ years of industry experience in the UAE, Vision Energy supports energy, MEP, solar PV, and industrial developments with turnkey supply.',
     ctaText: 'Explore All Solutions',
     ctaLink: '/products?group=EN',
-    imageUrl: 'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/08_Solar_1920x1080-optimized.webp',
+    imageUrl:
+      'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/08_Solar_1920x1080-optimized.webp',
     imageAlt:
       'Delivering excellence across multiple sectors - Solar PV renewable energy systems, hybrid inverters, battery storage BESS, and sustainable infrastructure',
     standards: 'DEWA • SEWA • Civil Defense • ISO 9001 Compliant',
-    highlightColor: 'text-[#8DC63F]',
-    glowColor: 'rgba(141,198,63,0.45)',
   },
 ];
 
-interface HomeHeroClientProps {
-  productCategoryCount?: number;
-}
+const SLIDE_DURATION_MS = 4200;
 
-const SLIDE_DURATION_MS = 3000;
-
-export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientProps) {
+export default function HomeHeroClient() {
   const { openServiceModal } = useEnquiryModal();
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [hasHydrated, setHasHydrated] = useState(false);
-  const [loadedSlides, setLoadedSlides] = useState<Set<number>>(() => new Set([0]));
+  const [sliderState, setSliderState] = useState<{ active: number; loaded: number[] }>({
+    active: 0,
+    loaded: [0, 1],
+  });
+  const [isHovered, setIsHovered] = useState(false);
 
-  useEffect(() => {
-    setHasHydrated(true);
-  }, []);
+  const currentSlide = sliderState.active;
+  const loadedSlides = sliderState.loaded;
 
-  // Touch swipe handling
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
+  const tabsRailRef = useRef<HTMLDivElement>(null);
 
   const totalSlides = HERO_SLIDES.length;
+  const isPaused = isHovered;
 
+  // Keep active category pill centered horizontally on mobile one-line rail without vertical scroll
   useEffect(() => {
-    setLoadedSlides((prev) => {
-      const nextSlideIdx = (currentSlide + 1) % totalSlides;
-      if (prev.has(currentSlide) && prev.has(nextSlideIdx)) return prev;
-      const updated = new Set(prev);
-      updated.add(currentSlide);
-      updated.add(nextSlideIdx);
-      return updated;
-    });
-  }, [currentSlide, totalSlides]);
+    const rail = tabsRailRef.current;
+    if (!rail || rail.scrollWidth <= rail.clientWidth) return;
+    const activeTab = rail.querySelector<HTMLElement>(`[data-slide-index="${currentSlide}"]`);
+    if (!activeTab) return;
+
+    const targetLeft = activeTab.offsetLeft - rail.clientWidth / 2 + activeTab.clientWidth / 2;
+    rail.scrollTo({ left: Math.max(0, targetLeft), behavior: 'smooth' });
+  }, [currentSlide]);
+
+  const updateSlide = useCallback(
+    (resolver: (curr: number) => number) => {
+      setSliderState((prev) => {
+        const nextIdx = resolver(prev.active);
+        const preloadIdx = (nextIdx + 1) % totalSlides;
+        const nextLoaded = new Set(prev.loaded);
+        nextLoaded.add(prev.active);
+        nextLoaded.add(nextIdx);
+        nextLoaded.add(preloadIdx);
+        return {
+          active: nextIdx,
+          loaded: Array.from(nextLoaded),
+        };
+      });
+    },
+    [totalSlides]
+  );
 
   const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % totalSlides);
-  }, [totalSlides]);
+    updateSlide((prev) => (prev + 1) % totalSlides);
+  }, [totalSlides, updateSlide]);
 
   const prevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
-  }, [totalSlides]);
+    updateSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+  }, [totalSlides, updateSlide]);
 
   const goToSlide = (index: number) => {
-    setCurrentSlide(index);
+    updateSlide(() => index);
   };
 
-  // Timer: triggers once per slide duration (no high-frequency 50ms interval churn)
+  // Auto-advance timer (skips when paused or user prefers reduced motion)
   useEffect(() => {
     if (isPaused) return;
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
 
     const timer = setTimeout(() => {
-      nextSlide();
+      updateSlide((prev) => (prev + 1) % totalSlides);
     }, SLIDE_DURATION_MS);
 
     return () => clearTimeout(timer);
-  }, [isPaused, currentSlide, nextSlide]);
+  }, [isPaused, currentSlide, totalSlides, updateSlide]);
 
-  // Keyboard navigation
+  // Keyboard navigation (ignore when typing or modal open)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === 'INPUT' ||
+          target.tagName === 'TEXTAREA' ||
+          target.tagName === 'SELECT' ||
+          target.isContentEditable)
+      ) {
+        return;
+      }
+      if (document.body.classList.contains('modal-open')) return;
+
       if (e.key === 'ArrowRight') {
         nextSlide();
       } else if (e.key === 'ArrowLeft') {
@@ -343,16 +360,13 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
   };
 
   const handleTouchEnd = () => {
-    if (!touchStartX.current || !touchEndX.current) return;
+    if (touchStartX.current === null || touchEndX.current === null) return;
     const distance = touchStartX.current - touchEndX.current;
-    const minSwipeDistance = 45;
-
-    if (distance > minSwipeDistance) {
+    if (distance > 45) {
       nextSlide();
-    } else if (distance < -minSwipeDistance) {
+    } else if (distance < -45) {
       prevSlide();
     }
-
     touchStartX.current = null;
     touchEndX.current = null;
   };
@@ -363,271 +377,276 @@ export default function HomeHeroClient({ productCategoryCount }: HomeHeroClientP
     <section
       id="home-hero"
       data-hero-section="true"
-      aria-label="Vision Energy Hero Image Slider"
-      className="relative w-full flex flex-col justify-between overflow-hidden bg-[#050608] h-[calc(100svh-var(--navbar-h,120px))] sm:h-[calc(100svh-var(--navbar-h,128px))] md:h-[calc(100svh-var(--navbar-h,134px))] lg:h-[calc(100svh-var(--navbar-h,140px))] xl:h-[calc(100svh-var(--navbar-h,144px))] min-h-[calc(100svh-var(--navbar-h,120px))] sm:min-h-[calc(100svh-var(--navbar-h,128px))] md:min-h-[calc(100svh-var(--navbar-h,134px))] lg:min-h-[calc(100svh-var(--navbar-h,140px))] xl:min-h-[calc(100svh-var(--navbar-h,144px))] select-none"
-      style={{
-        height: 'calc(100svh - var(--navbar-h, 140px))',
-        minHeight: 'calc(100svh - var(--navbar-h, 140px))',
-      }}
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
+      data-dark-hero="true"
+      aria-label="Vision Energy Hero Slider & UAE Client Feedback"
+      className="relative w-full flex flex-col justify-between overflow-hidden bg-[#050A14] min-h-[calc(100svh-var(--navbar-h,120px))] sm:min-h-[calc(100svh-var(--navbar-h,128px))] lg:min-h-[calc(100svh-var(--navbar-h,140px))] select-none"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
       {/* ============================================================ */}
-      {/* LAYER 1: Background Images Slider (Full-Width 100%)          */}
+      {/* LAYER 1: Full-Bleed Background Image Slider                  */}
       {/* ============================================================ */}
       <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-0">
-          {HERO_SLIDES.map((slide, idx) => {
-            const isActive = idx === currentSlide;
-            // Only render slides that are current or preloading for the next transition
-            if (!loadedSlides.has(idx)) return null;
+        {HERO_SLIDES.map((slide, idx) => {
+          const isActive = idx === currentSlide;
+          if (!loadedSlides.includes(idx)) return null;
 
-            return (
-              <div
-                key={slide.id}
-                className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
-                  isActive ? 'opacity-100 z-10' : 'opacity-0 z-0'
+          return (
+            <div
+              key={slide.id}
+              className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
+                isActive ? 'opacity-100 z-10' : 'opacity-0 z-0'
+              }`}
+              aria-hidden={!isActive}
+            >
+              <Image
+                src={slide.imageUrl}
+                alt={slide.imageAlt}
+                fill
+                sizes="100vw"
+                priority={idx === 0}
+                loading={idx === 0 ? 'eager' : 'lazy'}
+                fetchPriority={idx === 0 ? 'high' : 'low'}
+                quality={90}
+                className={`object-cover object-center brightness-[1.12] contrast-[1.05] transition-transform duration-[4500ms] ease-out ${
+                  isActive ? 'scale-105' : 'scale-100'
                 }`}
-                aria-hidden={!isActive}
+              />
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Lightweight Directional Scrim: Keeps left typography crisp while leaving background photography bright and clearly visible */}
+      <div
+        className="absolute inset-0 pointer-events-none z-10"
+        style={{
+          background:
+            'linear-gradient(92deg, rgba(5,11,24,0.72) 0%, rgba(6,14,30,0.42) 32%, rgba(6,14,30,0.08) 54%, rgba(6,14,30,0) 70%)',
+        }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-0 pointer-events-none z-10"
+        style={{
+          background:
+            'linear-gradient(180deg, transparent 0%, transparent 86%, rgba(5,10,20,0.22) 100%)',
+        }}
+        aria-hidden="true"
+      />
+
+      {/* ============================================================ */}
+      {/* Mobile Top Segmented Progress Indicator (<lg)                */}
+      {/* ============================================================ */}
+      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 pt-2.5 lg:hidden">
+        <div
+          className="grid gap-1.5 w-full"
+          style={{ gridTemplateColumns: `repeat(${totalSlides}, minmax(0, 1fr))` }}
+        >
+          {HERO_SLIDES.map((slide, idx) => {
+            const isSelected = idx === currentSlide;
+            const isPassed = idx < currentSlide;
+            return (
+              <button
+                key={slide.id}
+                type="button"
+                onClick={() => goToSlide(idx)}
+                className="py-2 -my-2 w-full flex items-center relative focus:outline-none"
+                aria-label={`Jump to slide ${idx + 1}: ${slide.category}`}
               >
-                <Image
-                  src={slide.imageUrl}
-                  alt={slide.imageAlt}
-                  fill
-                  sizes="100vw"
-                  priority={idx === 0}
-                  loading={idx === 0 ? 'eager' : 'lazy'}
-                  fetchPriority={idx === 0 ? 'high' : 'low'}
-                  quality={82}
-                  className={`object-cover object-top origin-top transition-transform duration-[4000ms] ease-out ${
-                    isActive ? 'scale-105' : 'scale-100'
-                  }`}
-                />
-              </div>
+                <div className="w-full h-1 rounded-full bg-white/20 overflow-hidden relative">
+                  <div
+                    key={`mobile-progress-${idx}-${currentSlide}-${isPaused ? 'paused' : 'run'}`}
+                    className="h-full bg-[#8DC63F] rounded-full origin-left will-change-transform"
+                    style={{
+                      transform: isPassed ? 'scaleX(1)' : isSelected ? undefined : 'scaleX(0)',
+                      animation:
+                        isSelected && !isPaused
+                          ? `heroProgressFill ${SLIDE_DURATION_MS}ms linear forwards`
+                          : 'none',
+                    }}
+                  />
+                </div>
+              </button>
             );
           })}
         </div>
+      </div>
 
-        {/* Ambient Dark Gradient Scrim (High contrast for text without washing out the image) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-black/20 pointer-events-none z-10" />
-
-        {/* ============================================================ */}
-        {/* Mobile Top Segmented Progress Bar (Story-Style, GPU)         */}
-        {/* ============================================================ */}
-        <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 pt-2.5 lg:hidden">
-          <div
-            className="grid gap-2 w-full"
-            style={{ gridTemplateColumns: `repeat(${totalSlides}, minmax(0, 1fr))` }}
-          >
-            {HERO_SLIDES.map((slide, idx) => {
-              const isSelected = idx === currentSlide;
-              const isPassed = idx < currentSlide;
-              return (
-                <button
-                  key={slide.id}
-                  onClick={() => goToSlide(idx)}
-                  className="py-3 -my-3 w-full flex items-center relative focus:outline-none"
-                  aria-label={`Jump to slide ${idx + 1}: ${slide.category}`}
-                >
-                  <div className="w-full h-1.5 rounded-full bg-white/20 overflow-hidden relative">
-                    <div
-                      key={`mobile-progress-${idx}-${currentSlide}`}
-                      className="h-full bg-[#8DC63F] rounded-full origin-left will-change-transform"
-                      style={{
-                        transform: isPassed ? 'scaleX(1)' : isSelected ? undefined : 'scaleX(0)',
-                        animation: isSelected && !isPaused ? `heroProgressFill ${SLIDE_DURATION_MS}ms linear forwards` : 'none',
-                      }}
-                    />
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* ============================================================ */}
-        {/* LAYER 3: Main Content (Slide Details & CTAs)                 */}
-        {/* ============================================================ */}
-        <div className="relative z-30 w-full max-w-[80rem] mx-auto px-5 sm:px-6 lg:px-8 my-auto flex-1 flex flex-col justify-center py-4 sm:py-6">
-        <div className="max-w-[760px] text-left space-y-3 sm:space-y-4 lg:space-y-5">
-          
-
-
-          {/* H1 Heading */}
-          <h1
-            key={`title-${currentSlide}`}
-            className="font-bold tracking-[-0.025em] leading-[1.16] sm:leading-[1.14] transition-all duration-400 animate-fadeIn text-left"
-          >
-            <span
-              className="block text-white text-[26px] min-[360px]:text-[28px] sm:text-[36px] lg:text-[44px] xl:text-[52px]"
-              style={{
-                textShadow: '0 2px 14px rgba(5,6,8,0.95), 0 1px 3px rgba(5,6,8,0.8)',
-              }}
-            >
-              {activeSlide.titleLine1}
-            </span>
-            <span
-              className={`block font-extrabold text-[26px] min-[360px]:text-[28px] sm:text-[36px] lg:text-[44px] xl:text-[52px] mt-1 ${activeSlide.highlightColor}`}
-              style={{
-                textShadow: `0 0 24px ${activeSlide.glowColor}, 0 2px 12px rgba(5,6,8,0.95)`,
-              }}
-            >
-              {activeSlide.titleLine2}
-            </span>
-          </h1>
-
-          {/* Concise Slide Description */}
-          <div key={`desc-${currentSlide}`} className="animate-fadeIn max-w-[360px] sm:max-w-[50ch] text-left pt-1">
-            <p
-              className="text-[#E2E8F0] font-normal text-[13.5px] sm:text-base lg:text-lg leading-relaxed"
-              style={{
-                textShadow: '0 2px 14px rgba(5,6,8,0.95)',
-              }}
-            >
-              {activeSlide.description}
-            </p>
-          </div>
-
-          {/* Action Buttons (Desktop & Mobile Redesigned) */}
-          <div className="pt-3 sm:pt-5 flex flex-row items-center justify-start gap-2 sm:gap-4 w-full max-w-[420px] sm:max-w-none">
-            {/* Primary Action Button */}
-            <Link
-              href={activeSlide.ctaLink}
-              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 h-[44px] sm:h-[48px] px-3 sm:px-6 rounded-full bg-[#0B65B3] hover:bg-[#095292] text-white text-[12px] min-[360px]:text-[13px] sm:text-sm font-bold border border-[#8DC63F]/60 hover:border-[#8DC63F] shadow-[0_0_20px_rgba(11,101,179,0.4)] hover:shadow-[0_0_28px_rgba(141,198,63,0.5)] transition-all active:scale-[0.98] whitespace-nowrap"
-            >
-              <span className="whitespace-nowrap">{activeSlide.ctaText}</span>
-              <ArrowRight className="w-3.5 h-3.5 text-[#8DC63F] shrink-0" />
-            </Link>
-
-            {/* Secondary Action Button */}
-            <button
-              onClick={() =>
-                openServiceModal({
-                  serviceSlug: activeSlide.id,
-                  serviceTitle: `${activeSlide.category} Technical Consultation`,
-                })
-              }
-              className="hero-consultation-btn flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 h-[44px] sm:h-[48px] px-3 sm:px-6 rounded-full bg-[#0B65B3]/20 hover:bg-[#0B65B3] border-2 border-[#0B65B3] hover:border-[#8DC63F] text-white text-[12px] min-[360px]:text-[13px] sm:text-sm font-semibold backdrop-blur-xl hover:shadow-[0_0_24px_rgba(141,198,63,0.4)] transition-all active:scale-[0.98] whitespace-nowrap"
-            >
-              <PhoneCall className="w-3.5 h-3.5 text-[#8DC63F] shrink-0" />
-              <span className="whitespace-nowrap">Consultation</span>
-            </button>
-          </div>
-
-          {/* ============================================================ */}
-          {/* Desktop Interactive Slider Navigation Tabs */}
-          {/* ============================================================ */}
-          <div className="hidden lg:flex flex-wrap items-center gap-2 pt-6">
-            {HERO_SLIDES.map((slide, idx) => {
-              const isSelected = idx === currentSlide;
-              const SlideIcon = slide.badgeIcon;
-              return (
-                <button
-                  key={slide.id}
-                  onClick={() => goToSlide(idx)}
-                  className={`hero-slider-tab group relative flex items-center gap-2.5 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-300 border ${
-                    isSelected
-                      ? 'bg-[#0D1117]/90 border-[#8DC63F]/60 text-white shadow-lg shadow-[#8DC63F]/15'
-                      : 'bg-[#0D1117]/40 border-white/10 text-white/70 hover:text-white hover:bg-[#0D1117]/70 hover:border-white/20'
-                  }`}
-                  aria-label={`Go to slide ${idx + 1}: ${slide.category}`}
-                  aria-current={isSelected ? 'true' : 'false'}
-                >
-                  <SlideIcon
-                    className={`w-3.5 h-3.5 transition-colors ${
-                      isSelected ? slide.highlightColor : 'text-white/50 group-hover:text-white/80'
-                    }`}
-                  />
-                  <span>{slide.category}</span>
-
-                  {/* 3s Animated Progress Line (GPU-composited scaleX animation) */}
-                  {isSelected && (
-                    <div className="absolute bottom-0 left-2 right-2 h-[2px] bg-white/10 rounded-full overflow-hidden">
-                      <div
-                        key={`desktop-progress-${currentSlide}`}
-                        className="h-full bg-[#8DC63F] origin-left will-change-transform"
-                        style={{
-                          animation: !isPaused ? `heroProgressFill ${SLIDE_DURATION_MS}ms linear forwards` : 'none',
-                        }}
-                      />
-                    </div>
-                  )}
-                </button>
-              );
-            })}
-
-            {/* Navigation Arrows */}
-            <div className="flex items-center gap-1.5 ml-2 pl-2 border-l border-white/15">
-              <button
-                onClick={prevSlide}
-                className="hero-arrow-btn w-8 h-8 rounded-lg bg-[#0B65B3]/20 hover:bg-[#0B65B3] border border-[#8DC63F]/40 hover:border-[#8DC63F] flex items-center justify-center text-[#8DC63F] hover:text-white hover:shadow-[0_0_14px_rgba(141,198,63,0.4)] transition-all"
-                aria-label="Previous slide"
+      {/* ============================================================ */}
+      {/* MAIN HERO SPLIT CONTENT + INFINITE VERTICAL FEEDBACK         */}
+      {/* ============================================================ */}
+      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-center py-2.5 sm:py-4 lg:py-3">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-8 items-start lg:items-stretch">
+          {/* LEFT COLUMN: Slide Heading, Description & Primary CTAs (CTAs sit just above category pills on laptop+) */}
+          <div className="lg:col-span-7 min-w-0 flex flex-col justify-center lg:justify-between space-y-3 sm:space-y-3.5 lg:space-y-0 text-left">
+            <div className="space-y-3 sm:space-y-3.5 lg:space-y-4 lg:my-auto lg:pb-4">
+              {/* Dynamic Slide H1 Headline */}
+              <h1
+                key={`title-${currentSlide}`}
+                className="font-bold tracking-[-0.025em] leading-[1.15] sm:leading-[1.13] animate-fadeIn text-left"
               >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
+                <span
+                  className="block text-white text-[26px] min-[375px]:text-[28px] sm:text-[32px] lg:text-[38px] xl:text-[44px]"
+                  style={{
+                    textShadow: '0 2px 16px rgba(5,10,20,0.95), 0 1px 3px rgba(5,10,20,0.9)',
+                  }}
+                >
+                  {activeSlide.titleLine1}
+                </span>
+                <span
+                  data-accent-text="true"
+                  className="block font-extrabold text-[#8DC63F] text-[26px] min-[375px]:text-[28px] sm:text-[32px] lg:text-[38px] xl:text-[44px] mt-1"
+                  style={{
+                    textShadow: '0 0 28px rgba(141,198,63,0.35), 0 2px 14px rgba(5,10,20,0.95)',
+                  }}
+                >
+                  {activeSlide.titleLine2}
+                </span>
+              </h1>
+
+              {/* Description & Authority Standards Line */}
+              <div key={`desc-${currentSlide}`} className="animate-fadeIn space-y-2 max-w-[54ch]">
+                <p
+                  className="text-[#E2E8F0] font-normal text-[13.5px] sm:text-[15px] lg:text-[16px] leading-relaxed"
+                  style={{
+                    textShadow: '0 2px 14px rgba(5,10,20,0.95)',
+                  }}
+                >
+                  {activeSlide.description}
+                </p>
+
+                <div className="inline-flex items-center gap-2 text-[11px] sm:text-xs font-medium text-[#CBD5E1]">
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#8DC63F] shrink-0" aria-hidden="true" />
+                  <span>{activeSlide.standards}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Action Buttons (Single horizontal row on mobile; aligned just above category pills on laptop+) */}
+            <div className="pt-1 lg:pt-0 grid grid-cols-2 sm:flex sm:flex-row sm:items-center gap-2 sm:gap-3.5 w-full sm:w-auto">
+              <Link
+                href={activeSlide.ctaLink}
+                className="min-w-0 inline-flex items-center justify-center gap-1.5 sm:gap-2 h-[44px] sm:h-[48px] px-2.5 sm:px-6 rounded-xl bg-[#8DC63F] hover:bg-[#9BD34E] text-[#07111E] text-[11px] min-[390px]:text-[12px] sm:text-sm font-bold shadow-[0_10px_28px_rgba(141,198,63,0.35)] hover:shadow-[0_12px_32px_rgba(141,198,63,0.5)] transition-all active:scale-[0.98] whitespace-nowrap"
+              >
+                <span className="truncate">{activeSlide.ctaText}</span>
+                <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" aria-hidden="true" />
+              </Link>
 
               <button
-                onClick={nextSlide}
-                className="hero-arrow-btn w-8 h-8 rounded-lg bg-[#0B65B3]/20 hover:bg-[#0B65B3] border border-[#8DC63F]/40 hover:border-[#8DC63F] flex items-center justify-center text-[#8DC63F] hover:text-white hover:shadow-[0_0_14px_rgba(141,198,63,0.4)] transition-all"
-                aria-label="Next slide"
+                type="button"
+                onClick={() =>
+                  openServiceModal({
+                    serviceSlug: activeSlide.id,
+                    serviceTitle: `${activeSlide.category} Technical Consultation`,
+                  })
+                }
+                className="hero-consultation-btn min-w-0 inline-flex items-center justify-center gap-1.5 sm:gap-2 h-[44px] sm:h-[48px] px-2.5 sm:px-6 rounded-xl bg-[#0B1628]/80 hover:bg-[#0B65B3] border border-white/25 hover:border-[#8DC63F] text-white text-[11px] min-[390px]:text-[12px] sm:text-sm font-semibold backdrop-blur-md transition-all active:scale-[0.98] whitespace-nowrap"
               >
-                <ChevronRight className="w-4 h-4" />
+                <PhoneCall className="w-3.5 h-3.5 text-[#8DC63F] shrink-0" aria-hidden="true" />
+                <span className="truncate">Book Consultation</span>
+                <ArrowUpRight className="hidden min-[400px]:inline-block w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/80 shrink-0" aria-hidden="true" />
               </button>
             </div>
+          </div>
+
+          {/* RIGHT COLUMN: Slim Frosted Infinite Vertical Customer Feedback Cards (Tablet & Desktop only; hidden on mobile) */}
+          <div className="hidden md:flex lg:col-span-5 min-w-0 items-start justify-center lg:justify-end w-full lg:-mt-4">
+            <HeroFeedbackMarquee />
           </div>
         </div>
       </div>
 
       {/* ============================================================ */}
-      {/* Mobile Interactive Quick-Tabs & Stats Bar */}
+      {/* FULL-WIDTH ALL CATEGORY SLIDER PILLS                         */}
       {/* ============================================================ */}
-      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 pb-[max(10px,env(safe-area-inset-bottom))] lg:hidden">
-        
-        {/* Mobile Quick Category Switcher Tabs */}
-        <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none sm:grid sm:grid-cols-6 md:grid-cols-11 mb-2.5">
+      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 pb-3 sm:pb-3.5">
+        <div
+          ref={tabsRailRef}
+          onTouchStart={(e) => e.stopPropagation()}
+          className="w-full flex flex-nowrap sm:flex-wrap items-center gap-1.5 sm:gap-2 overflow-x-auto sm:overflow-visible no-scrollbar"
+          role="tablist"
+          aria-label="Hero product & solution categories"
+        >
           {HERO_SLIDES.map((slide, idx) => {
             const isSelected = idx === currentSlide;
             const SlideIcon = slide.badgeIcon;
             return (
               <button
                 key={slide.id}
+                type="button"
+                role="tab"
+                data-slide-index={idx}
                 onClick={() => goToSlide(idx)}
-                aria-label={`Select category: ${slide.category}`}
-                className={`h-[40px] min-h-[40px] px-3 sm:px-1 shrink-0 sm:shrink rounded-lg text-[11px] font-semibold flex items-center justify-center gap-1.5 transition-all border ${
+                aria-selected={isSelected}
+                aria-current={isSelected ? 'true' : 'false'}
+                aria-label={`Go to slide ${idx + 1}: ${slide.category}`}
+                className={`hero-slider-tab group relative shrink-0 overflow-hidden flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 sm:py-[7px] rounded-full text-[11px] sm:text-xs font-semibold backdrop-blur-md transition-all duration-300 border ${
                   isSelected
-                    ? 'bg-[#0D1117]/90 border-[#8DC63F] text-white shadow-md shadow-[#8DC63F]/20'
-                    : 'bg-[#0D1117]/50 border-white/10 text-white/60 hover:text-white'
+                    ? 'bg-[#0B1B34]/88 border-[#8DC63F]/85 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_0_22px_rgba(141,198,63,0.22),0_8px_20px_rgba(0,0,0,0.28)]'
+                    : 'bg-[#071122]/45 border-white/20 text-white/88 hover:text-white hover:bg-[#0B1930]/75 hover:border-white/38 shadow-[inset_0_1px_0_rgba(255,255,255,0.14),0_4px_14px_rgba(0,0,0,0.18)]'
                 }`}
               >
-                <SlideIcon className={`w-3 h-3 shrink-0 ${isSelected ? 'text-[#8DC63F]' : 'text-white/40'}`} />
-                <span className="whitespace-nowrap sm:truncate">{slide.shortName}</span>
+                {/* Smooth Internal Progress Sweep on Active Pill */}
+                {isSelected && (
+                  <span
+                    key={`pill-progress-${currentSlide}-${isPaused ? 'paused' : 'run'}`}
+                    className="absolute inset-0 bg-gradient-to-r from-[#0B65B3]/40 via-[#0B65B3]/25 to-[#8DC63F]/30 origin-left pointer-events-none will-change-transform"
+                    style={{
+                      animation: !isPaused
+                        ? `heroProgressFill ${SLIDE_DURATION_MS}ms linear forwards`
+                        : 'none',
+                    }}
+                    aria-hidden="true"
+                  />
+                )}
+
+                <SlideIcon
+                  className={`relative z-10 w-3.5 h-3.5 shrink-0 transition-colors ${
+                    isSelected ? 'text-[#8DC63F]' : 'text-[#8DC63F]/80 group-hover:text-[#8DC63F]'
+                  }`}
+                  aria-hidden="true"
+                />
+                <span className="relative z-10 whitespace-nowrap sm:hidden">{slide.shortName}</span>
+                <span className="relative z-10 whitespace-nowrap hidden sm:inline">{slide.category}</span>
               </button>
             );
           })}
         </div>
+      </div>
 
-        {/* Quick Fact Tiles (2 Columns, Balanced) */}
-        <div className="grid grid-cols-2 gap-2.5 w-full mb-2">
-          {/* Tile A: 2018 Established */}
-          <div className="h-[62px] [media(max-height:640px)]:h-[52px] bg-[#0D1117]/85 backdrop-blur-md border border-white/[0.08] rounded-xl flex flex-col items-center justify-center text-center p-1">
-            <span className="text-[16px] [media(max-height:640px)]:text-[14px] font-bold text-white leading-tight">
-              2018
-            </span>
-            <span className="text-[10px] [media(max-height:640px)]:text-[8px] text-[#A9B4C0] uppercase tracking-[0.04em] font-medium leading-tight mt-0.5">
-              Established
-            </span>
-          </div>
+      {/* ============================================================ */}
+      {/* BOTTOM FLOATING WHITE STATS BAR                              */}
+      {/* ============================================================ */}
+      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6 lg:pb-7 pt-1">
+        <div
+          data-hero-stats-bar="true"
+          data-light-surface="true"
+          className="max-w-[30rem] sm:max-w-[38rem] mx-auto bg-white rounded-2xl shadow-[0_22px_55px_rgba(0,0,0,0.48)] border border-slate-200/90 overflow-hidden"
+        >
+          <div className="grid grid-cols-2 divide-x divide-slate-200">
+            {/* Stat 1: 2018 Established */}
+            <div className="px-4 py-3.5 sm:px-6 sm:py-5 flex flex-col items-center justify-center text-center">
+              <div className="text-xl sm:text-2xl lg:text-[28px] font-extrabold text-[#0A192F] tracking-tight leading-tight">
+                2018
+              </div>
+              <div className="text-[11px] sm:text-xs font-medium text-[#475569] mt-0.5">
+                Established
+              </div>
+            </div>
 
-          {/* Tile B: UAE and GCC */}
-          <div className="h-[62px] [media(max-height:640px)]:h-[52px] bg-[#0D1117]/85 backdrop-blur-md border border-white/[0.08] rounded-xl flex flex-col items-center justify-center text-center p-1">
-            <span className="text-[15px] [media(max-height:640px)]:text-[13px] font-bold text-white leading-tight">
-              UAE and GCC
-            </span>
-            <span className="text-[10px] [media(max-height:640px)]:text-[8px] text-[#A9B4C0] uppercase tracking-[0.04em] font-medium leading-tight mt-0.5">
-              Coverage
-            </span>
+            {/* Stat 2: UAE & GCC Coverage */}
+            <div className="px-4 py-3.5 sm:px-6 sm:py-5 flex flex-col items-center justify-center text-center">
+              <div className="text-xl sm:text-2xl lg:text-[28px] font-extrabold text-[#0A192F] tracking-tight leading-tight">
+                UAE &amp; GCC
+              </div>
+              <div className="text-[11px] sm:text-xs font-medium text-[#475569] mt-0.5">
+                Coverage
+              </div>
+            </div>
           </div>
         </div>
       </div>
