@@ -4,7 +4,6 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEnquiryModal } from '@/components/modals/EnquiryModalProvider';
-import HeroFeedbackMarquee from '@/components/home/HeroFeedbackMarquee';
 import {
   ArrowRight,
   ArrowUpRight,
@@ -378,7 +377,7 @@ export default function HomeHeroClient() {
       id="home-hero"
       data-hero-section="true"
       data-dark-hero="true"
-      aria-label="Vision Energy Hero Slider & UAE Client Feedback"
+      aria-label="Vision Energy Hero Slider"
       className="relative w-full flex flex-col justify-between overflow-hidden bg-[#050A14] min-h-[calc(100svh-var(--navbar-h,122px))] sm:min-h-[calc(100svh-var(--navbar-h,130px))] lg:min-h-[calc(100svh-var(--navbar-h,142px))] select-none"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -477,13 +476,11 @@ export default function HomeHeroClient() {
       </div>
 
       {/* ============================================================ */}
-      {/* MAIN HERO SPLIT CONTENT + INFINITE VERTICAL FEEDBACK         */}
+      {/* MAIN HERO CONTENT                                            */}
       {/* ============================================================ */}
       <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-center py-2.5 sm:py-4 lg:py-3">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-8 items-start lg:items-stretch">
-          {/* LEFT COLUMN: Slide Heading, Description & Primary CTAs (CTAs sit just above category pills on laptop+) */}
-          <div className="lg:col-span-7 min-w-0 flex flex-col justify-center lg:justify-between space-y-3 sm:space-y-3.5 lg:space-y-0 text-left">
-            <div className="space-y-3 sm:space-y-3.5 lg:space-y-4 lg:my-auto lg:pb-4">
+        <div className="max-w-[46rem] min-w-0 flex flex-col justify-center space-y-3 sm:space-y-3.5 lg:space-y-5 text-left">
+          <div className="space-y-3 sm:space-y-3.5 lg:space-y-4">
               {/* Dynamic Slide H1 Headline */}
               <h1
                 key={`title-${currentSlide}`}
@@ -551,12 +548,6 @@ export default function HomeHeroClient() {
                 <ArrowUpRight className="hidden min-[400px]:inline-block w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/80 shrink-0" aria-hidden="true" />
               </button>
             </div>
-          </div>
-
-          {/* RIGHT COLUMN: Slim Frosted Infinite Vertical Customer Feedback Cards (Tablet & Desktop only; hidden on mobile) */}
-          <div className="hidden md:flex lg:col-span-5 min-w-0 items-start justify-center lg:justify-end w-full lg:-mt-4">
-            <HeroFeedbackMarquee />
-          </div>
         </div>
       </div>
 

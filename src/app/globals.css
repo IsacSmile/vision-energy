@@ -483,52 +483,6 @@ html.lenis, html.lenis body {
 }
 
 /* ============================================================ */
-/* Infinite Vertical Customer Feedback Marquee                  */
-/* ============================================================ */
-@keyframes verticalMarqueeUp {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(0, -50%, 0);
-  }
-}
-
-@keyframes verticalMarqueeDown {
-  0% {
-    transform: translate3d(0, -50%, 0);
-  }
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-.animate-vertical-marquee-up {
-  animation: verticalMarqueeUp 36s linear infinite;
-  will-change: transform;
-}
-
-.animate-vertical-marquee-down {
-  animation: verticalMarqueeDown 40s linear infinite;
-  will-change: transform;
-}
-
-.vertical-marquee-container:hover .animate-vertical-marquee-up,
-.vertical-marquee-container:hover .animate-vertical-marquee-down,
-.vertical-marquee-container:focus-within .animate-vertical-marquee-up,
-.vertical-marquee-container:focus-within .animate-vertical-marquee-down {
-  animation-play-state: paused;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-vertical-marquee-up,
-  .animate-vertical-marquee-down {
-    animation: none !important;
-    transform: none !important;
-  }
-}
-
-/* ============================================================ */
 /* LIGHT MODE THEME OVERRIDES                                   */
 /* Guarantees 100% white background and complete text visibility */
 /* across all sections, headers, footers, cards, and modals     */
