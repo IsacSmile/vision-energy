@@ -200,7 +200,7 @@ export default function ProductPreviewModal({
 
       {/* Modal Dialog Window */}
       <div
-        className="relative w-full max-w-6xl max-h-[92vh] bg-[#0D1117] border border-[#1F2937] rounded-[24px] shadow-2xl flex flex-col lg:flex-row overflow-hidden z-10"
+        className="relative w-full max-w-7xl max-h-[92vh] bg-[#0D1117] border border-[#1F2937] rounded-[24px] shadow-2xl flex flex-col lg:flex-row overflow-hidden z-10"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button (Top Right Cross Icon) */}
@@ -215,7 +215,7 @@ export default function ProductPreviewModal({
         </button>
 
         {/* LEFT SIDE: Bigger Image Showcase Container */}
-        <div className="relative w-full lg:w-[54%] xl:w-[56%] bg-[#161B22] border-b lg:border-b-0 lg:border-r border-[#1F2937] flex flex-col items-center justify-center shrink-0 min-h-[280px] sm:min-h-[380px] lg:min-h-[540px] p-2 sm:p-3 lg:p-4 overflow-hidden group">
+        <div className="relative w-full lg:w-[44%] xl:w-[46%] bg-[#161B22] border-b lg:border-b-0 lg:border-r border-[#1F2937] flex flex-col items-center justify-center shrink-0 min-h-[260px] sm:min-h-[360px] lg:min-h-[540px] p-2 sm:p-3 lg:p-4 overflow-hidden group">
           {/* Subtle Ambient Radial Highlight */}
           <div
             className="absolute inset-0 bg-radial-gradient from-[#0B65B3]/10 via-transparent to-transparent pointer-events-none"
@@ -258,7 +258,7 @@ export default function ProductPreviewModal({
         {/* RIGHT SIDE: Heading, Text Content & Requirement Form */}
         <div
           ref={scrollableRef}
-          className="flex-1 flex flex-col overflow-y-auto max-h-[92vh] p-5 sm:p-7 lg:p-8 text-white modal-scrollable-content"
+          className="flex-1 min-w-0 flex flex-col overflow-y-auto max-h-[92vh] p-5 sm:p-6 lg:p-7 text-white modal-scrollable-content"
         >
           {successRef ? (
             /* SUCCESS STATE (Immediately shown after database insertion) */
@@ -357,19 +357,19 @@ export default function ProductPreviewModal({
               )}
 
               {/* Verified Engineering Highlights */}
-              <ul className="flex flex-wrap gap-2.5 list-none pt-1">
+              <ul className="flex flex-col gap-2 list-none w-full pt-1">
                 {PRODUCT_PREVIEW_HIGHLIGHTS.map((point) => (
                   <li
                     key={point}
-                    className="flex items-start gap-2.5 w-full sm:w-[calc(50%-0.3125rem)] px-3.5 py-2.5 rounded-xl bg-[#161B22] border border-[#1F2937] hover:border-[#8DC63F]/40 transition-colors"
+                    className="flex items-center gap-2.5 w-full px-3.5 py-2 rounded-xl bg-[#161B22] border border-[#1F2937] hover:border-[#8DC63F]/40 transition-colors"
                   >
                     <span
-                      className="w-5 h-5 rounded-full bg-[#8DC63F]/15 border border-[#8DC63F]/35 flex items-center justify-center shrink-0 mt-0.5"
+                      className="w-[18px] h-[18px] rounded-full bg-[#8DC63F]/15 border border-[#8DC63F]/35 flex items-center justify-center shrink-0"
                       aria-hidden="true"
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-[#8DC63F]" />
                     </span>
-                    <span className="text-xs font-medium text-[#CBD5E1] leading-[1.45]">
+                    <span className="min-w-0 text-[11.5px] sm:text-xs lg:text-[10.5px] xl:text-[11.5px] 2xl:text-xs font-medium text-[#CBD5E1] leading-snug">
                       {point}
                     </span>
                   </li>
