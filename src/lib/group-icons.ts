@@ -25,6 +25,7 @@ import {
   Sparkles,
   Activity,
   Trophy,
+  TestTubes,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -82,7 +83,7 @@ export const GROUP_ICONS: Record<string, LucideIcon> = {
   LPE: ShieldAlert,
   LG: Beaker,
   LH: Pipette,
-  LC: Boxes,
+  LC: TestTubes,
   LM: Gauge,
   MO: Microscope,
   LF: Armchair,
