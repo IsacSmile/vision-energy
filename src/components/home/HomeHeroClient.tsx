@@ -40,25 +40,6 @@ interface SlideData {
 
 const HERO_SLIDES: SlideData[] = [
   {
-    id: 'industrial-technical-products',
-    category: 'Industrial & Technical',
-    shortName: 'Industrial',
-    badge: 'Trusted Industrial Supplier',
-    badgeIcon: ShieldCheck,
-    titleLine1: 'A Trusted Supplier of',
-    titleLine2: 'Industrial & Technical Products',
-    subtitle: 'Delivering Quality Products & Dependable Solutions',
-    description:
-      'Delivering certified engineering products and dependable technical solutions to support industries, MEP contractors, and infrastructure projects across the UAE.',
-    ctaText: 'Explore Products',
-    ctaLink: '/products',
-    imageUrl:
-      'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/09_Electrical_1920x1080-optimized.webp',
-    imageAlt:
-      'Vision Energy - Quality industrial and technical products showroom in UAE: distribution panels, circuit breakers, cable trays, and rigid conduits',
-    standards: 'DEWA • SEWA • ADDC • Civil Defense Compliant',
-  },
-  {
     id: 'lightning-protection',
     category: 'Lightning Protection',
     shortName: 'Lightning',
@@ -190,6 +171,25 @@ const HERO_SLIDES: SlideData[] = [
     imageAlt:
       'Workplace protection, automation, and safety equipment supply - Industrial sensors, limit controls, safety relays, and instrumentation',
     standards: 'EN 397 • ANSI Z87.1 • Civil Defense Approved',
+  },
+  {
+    id: 'industrial-technical-products',
+    category: 'Industrial & Technical',
+    shortName: 'Industrial',
+    badge: 'Trusted Industrial Supplier',
+    badgeIcon: ShieldCheck,
+    titleLine1: 'A Trusted Supplier of',
+    titleLine2: 'Industrial & Technical Products',
+    subtitle: 'Delivering Quality Products & Dependable Solutions',
+    description:
+      'Delivering certified engineering products and dependable technical solutions to support industries, MEP contractors, and infrastructure projects across the UAE.',
+    ctaText: 'Explore Products',
+    ctaLink: '/products',
+    imageUrl:
+      'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/09_Electrical_1920x1080-optimized.webp',
+    imageAlt:
+      'Vision Energy - Quality industrial and technical products showroom in UAE: distribution panels, circuit breakers, cable trays, and rigid conduits',
+    standards: 'DEWA • SEWA • ADDC • Civil Defense Compliant',
   },
   {
     id: 'commercial-packaging-solutions',
@@ -566,44 +566,52 @@ export default function HomeHeroClient() {
             const isSelected = idx === currentSlide;
             const SlideIcon = slide.badgeIcon;
             return (
-              <button
-                key={slide.id}
-                type="button"
-                role="tab"
-                data-slide-index={idx}
-                onClick={() => goToSlide(idx)}
-                aria-selected={isSelected}
-                aria-current={isSelected ? 'true' : 'false'}
-                aria-label={`Go to slide ${idx + 1}: ${slide.category}`}
-                className={`hero-slider-tab group relative shrink-0 overflow-hidden flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 sm:py-[7px] rounded-full text-[11px] sm:text-xs font-semibold backdrop-blur-md transition-all duration-300 border ${
-                  isSelected
-                    ? 'bg-[#0B1B34]/88 border-[#8DC63F]/85 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_0_22px_rgba(141,198,63,0.22),0_8px_20px_rgba(0,0,0,0.28)]'
-                    : 'bg-[#071122]/45 border-white/20 text-white/88 hover:text-white hover:bg-[#0B1930]/75 hover:border-white/38 shadow-[inset_0_1px_0_rgba(255,255,255,0.14),0_4px_14px_rgba(0,0,0,0.18)]'
-                }`}
-              >
-                {/* Smooth Internal Progress Sweep on Active Pill */}
-                {isSelected && (
-                  <span
-                    key={`pill-progress-${currentSlide}-${isPaused ? 'paused' : 'run'}`}
-                    className="absolute inset-0 bg-gradient-to-r from-[#0B65B3]/40 via-[#0B65B3]/25 to-[#8DC63F]/30 origin-left pointer-events-none will-change-transform"
-                    style={{
-                      animation: !isPaused
-                        ? `heroProgressFill ${SLIDE_DURATION_MS}ms linear forwards`
-                        : 'none',
-                    }}
+              <React.Fragment key={slide.id}>
+                <button
+                  type="button"
+                  role="tab"
+                  data-slide-index={idx}
+                  onClick={() => goToSlide(idx)}
+                  aria-selected={isSelected}
+                  aria-current={isSelected ? 'true' : 'false'}
+                  aria-label={`Go to slide ${idx + 1}: ${slide.category}`}
+                  className={`hero-slider-tab group relative shrink-0 overflow-hidden flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 sm:py-[7px] rounded-full text-[11px] sm:text-xs font-semibold backdrop-blur-md transition-all duration-300 border ${
+                    isSelected
+                      ? 'bg-[#0B1B34]/88 border-[#8DC63F]/85 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_0_22px_rgba(141,198,63,0.22),0_8px_20px_rgba(0,0,0,0.28)]'
+                      : 'bg-[#071122]/45 border-white/20 text-white/88 hover:text-white hover:bg-[#0B1930]/75 hover:border-white/38 shadow-[inset_0_1px_0_rgba(255,255,255,0.14),0_4px_14px_rgba(0,0,0,0.18)]'
+                  }`}
+                >
+                  {/* Smooth Internal Progress Sweep on Active Pill */}
+                  {isSelected && (
+                    <span
+                      key={`pill-progress-${currentSlide}-${isPaused ? 'paused' : 'run'}`}
+                      className="absolute inset-0 bg-gradient-to-r from-[#0B65B3]/40 via-[#0B65B3]/25 to-[#8DC63F]/30 origin-left pointer-events-none will-change-transform"
+                      style={{
+                        animation: !isPaused
+                          ? `heroProgressFill ${SLIDE_DURATION_MS}ms linear forwards`
+                          : 'none',
+                      }}
+                      aria-hidden="true"
+                    />
+                  )}
+
+                  <SlideIcon
+                    className={`relative z-10 w-3.5 h-3.5 shrink-0 transition-colors ${
+                      isSelected ? 'text-[#8DC63F]' : 'text-[#8DC63F]/80 group-hover:text-[#8DC63F]'
+                    }`}
                     aria-hidden="true"
                   />
+                  <span className="relative z-10 whitespace-nowrap sm:hidden">{slide.shortName}</span>
+                  <span className="relative z-10 whitespace-nowrap hidden sm:inline">{slide.category}</span>
+                </button>
+                {/* Break cleanly after the 6th box so desktop shows 6 boxes on top row and 5 on bottom row */}
+                {idx === 5 && (
+                  <span
+                    aria-hidden="true"
+                    className="hidden lg:block basis-full h-0 sm:-my-1 pointer-events-none"
+                  />
                 )}
-
-                <SlideIcon
-                  className={`relative z-10 w-3.5 h-3.5 shrink-0 transition-colors ${
-                    isSelected ? 'text-[#8DC63F]' : 'text-[#8DC63F]/80 group-hover:text-[#8DC63F]'
-                  }`}
-                  aria-hidden="true"
-                />
-                <span className="relative z-10 whitespace-nowrap sm:hidden">{slide.shortName}</span>
-                <span className="relative z-10 whitespace-nowrap hidden sm:inline">{slide.category}</span>
-              </button>
+              </React.Fragment>
             );
           })}
         </div>
