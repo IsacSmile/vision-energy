@@ -467,7 +467,7 @@ export default function HomeHeroClient() {
       {/* MAIN HERO CONTENT                                            */}
       {/* ============================================================ */}
       <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-center py-2.5 sm:py-4 lg:py-3">
-        <div className="max-w-[46rem] min-w-0 flex flex-col justify-center space-y-3 sm:space-y-3.5 lg:space-y-5 text-left">
+        <div className="max-w-[56rem] min-w-0 flex flex-col justify-center space-y-3 sm:space-y-3.5 lg:space-y-5 text-left">
           <div className="space-y-3 sm:space-y-3.5 lg:space-y-4">
               {/* Executive Heritage & Regional Coverage Strip */}
               <div
@@ -493,10 +493,10 @@ export default function HomeHeroClient() {
               {/* Dynamic Slide H1 Headline */}
               <h1
                 key={`title-${currentSlide}`}
-                className="font-bold tracking-[-0.025em] leading-[1.15] sm:leading-[1.13] animate-fadeIn text-left"
+                className="font-bold tracking-[-0.025em] leading-[1.12] sm:leading-[1.1] animate-fadeIn text-left"
               >
                 <span
-                  className="block text-white text-[clamp(1.375rem,6.8vw,1.75rem)] sm:text-[2rem] md:text-[2.25rem] lg:text-[clamp(2rem,3.3vw,2.75rem)] xl:text-[2.75rem]"
+                  className="block text-white text-[clamp(1.55rem,7.2vw,1.95rem)] sm:text-[2.25rem] md:text-[2.625rem] lg:text-[clamp(2.35rem,3.6vw,3.15rem)] xl:text-[3.25rem]"
                   style={{
                     textShadow: '0 2px 16px rgba(5,10,20,0.95), 0 1px 3px rgba(5,10,20,0.9)',
                   }}
@@ -505,7 +505,7 @@ export default function HomeHeroClient() {
                 </span>
                 <span
                   data-accent-text="true"
-                  className="block font-extrabold text-[#8DC63F] text-[clamp(1.375rem,6.8vw,1.75rem)] sm:text-[2rem] md:text-[2.25rem] lg:text-[clamp(2rem,3.3vw,2.75rem)] xl:text-[2.75rem] mt-1"
+                  className="block font-extrabold text-[#8DC63F] text-[clamp(1.55rem,7.2vw,1.95rem)] sm:text-[2.25rem] md:text-[2.625rem] lg:text-[clamp(2.35rem,3.6vw,3.15rem)] xl:text-[3.25rem] mt-1"
                   style={{
                     textShadow: '0 0 28px rgba(141,198,63,0.35), 0 2px 14px rgba(5,10,20,0.95)',
                   }}
