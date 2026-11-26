@@ -4,18 +4,25 @@ import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import {
   Activity,
+  Building2,
   Check,
   CloudLightning,
+  Cpu,
   Flame,
+  HeartPulse,
   Landmark,
+  PawPrint,
   ShieldCheck,
+  TrendingDown,
   Users,
   Wrench,
+  type LucideIcon,
 } from 'lucide-react';
 import type {
   ExpertiseImage,
   ExpertiseStep,
   MethodologyBlock,
+  StepCardItem,
   SubTabPanel,
 } from '@/lib/data/expertise';
 import InfoCard from './InfoCard';
@@ -26,6 +33,138 @@ interface StepCardProps {
   step: ExpertiseStep;
   index: number;
   isDarkBand?: boolean;
+}
+
+const RISK_ITEM_ICONS: Record<string, LucideIcon> = {
+  'human-safety': HeartPulse,
+  'animals-wildlife': PawPrint,
+  'buildings-infrastructure': Building2,
+  'equipment-damages': Cpu,
+  'cultural-heritage': Landmark,
+  'economic-impacts': TrendingDown,
+};
+
+function RisksBentoShowcase({ cards }: { cards: StepCardItem[] }) {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-6 gap-5 items-stretch pt-1">
+      {cards.map((card, idx) => {
+        const Icon = RISK_ITEM_ICONS[card.id] || ShieldCheck;
+        const isHeroNavy = idx === 0;
+        const isClosingFull = idx === cards.length - 1;
+        const isBlueAccent = idx === 2 || idx === 3 || isClosingFull;
+
+        if (isHeroNavy) {
+          return (
+            <article
+              key={card.id}
+              data-preserve-contrast="true"
+              className="expertise-navy-band expertise-card-navy group md:col-span-6 p-6 sm:p-8 flex flex-col md:flex-row md:items-center gap-5 md:gap-7 shadow-[0_14px_34px_-12px_rgba(10,25,47,0.34)]"
+            >
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -top-14 right-10 w-52 h-52 rounded-full bg-[#8DC63F]/12 blur-2xl"
+              />
+
+              <div className="relative z-10 flex items-center gap-4 shrink-0">
+                <div className="expertise-icon-tile expertise-icon-tile-green w-14 h-14 rounded-2xl bg-[#8DC63F]/15 border border-[#8DC63F]/35 flex items-center justify-center text-[#8DC63F] shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
+                  <Icon className="w-6 h-6" aria-hidden="true" />
+                </div>
+                <h4 className="md:hidden text-xl font-bold text-white leading-snug tracking-tight">
+                  {card.title}
+                </h4>
+              </div>
+
+              <div className="relative z-10 flex-1 space-y-2 md:border-l md:border-white/15 md:pl-7">
+                <h4 className="hidden md:block text-xl sm:text-2xl font-bold text-white leading-snug tracking-tight">
+                  {card.title}
+                </h4>
+                {card.description && (
+                  <p className="text-[15px] sm:text-base font-normal text-slate-200 leading-[1.65] max-w-3xl">
+                    {card.description}
+                  </p>
+                )}
+              </div>
+
+              <Icon
+                className="expertise-safety-ghost pointer-events-none absolute -bottom-4 -right-3 w-28 h-28"
+                aria-hidden="true"
+              />
+            </article>
+          );
+        }
+
+        if (isClosingFull) {
+          return (
+            <article
+              key={card.id}
+              className="expertise-card accent-blue group md:col-span-6 p-6 sm:p-7 flex flex-col md:flex-row md:items-center gap-5 md:gap-7"
+            >
+              <div className="relative z-10 flex items-center gap-4 shrink-0">
+                <div className="expertise-icon-tile expertise-icon-tile-blue w-12 h-12 rounded-xl bg-[#0B65B3]/10 dark:bg-[#0B65B3]/20 text-[#0B65B3] dark:text-[#60A5FA] flex items-center justify-center">
+                  <Icon className="w-5 h-5" aria-hidden="true" />
+                </div>
+                <h4 className="md:hidden text-lg sm:text-[19px] font-bold text-[#0A192F] dark:text-white leading-snug tracking-tight">
+                  {card.title}
+                </h4>
+              </div>
+
+              <div className="relative z-10 flex-1 space-y-1.5 md:border-l md:border-slate-200/80 dark:md:border-white/10 md:pl-7">
+                <h4 className="hidden md:block text-lg sm:text-xl font-bold text-[#0A192F] dark:text-white leading-snug tracking-tight">
+                  {card.title}
+                </h4>
+                {card.description && (
+                  <p className="text-[15px] font-normal text-[#334155] dark:text-[#CBD5E1] leading-[1.6] max-w-3xl">
+                    {card.description}
+                  </p>
+                )}
+              </div>
+
+              <Icon
+                className="expertise-risk-ghost pointer-events-none absolute -bottom-4 -right-3 w-24 h-24"
+                aria-hidden="true"
+              />
+            </article>
+          );
+        }
+
+        return (
+          <article
+            key={card.id}
+            className={`expertise-card ${isBlueAccent ? 'accent-blue' : ''} group md:col-span-3 p-6 flex flex-col gap-4 h-full`}
+          >
+            <div className="relative z-10 flex items-center gap-3.5 pb-3.5 border-b border-slate-100 dark:border-white/[0.08]">
+              <div
+                className={`expertise-icon-tile ${
+                  isBlueAccent ? 'expertise-icon-tile-blue' : 'expertise-icon-tile-green'
+                } w-11 h-11 rounded-xl flex items-center justify-center shrink-0 ${
+                  isBlueAccent
+                    ? 'bg-[#0B65B3]/10 text-[#0B65B3] dark:bg-[#0B65B3]/20 dark:text-[#60A5FA]'
+                    : 'bg-[#8DC63F]/15 text-[#38700D] dark:text-[#8DC63F]'
+                }`}
+              >
+                <Icon className="w-5 h-5" aria-hidden="true" />
+              </div>
+
+              <h4 className="text-lg sm:text-[19px] font-bold text-[#0A192F] dark:text-white leading-snug tracking-tight">
+                {card.title}
+              </h4>
+            </div>
+
+            {card.description && (
+              <p className="relative z-10 text-[15px] font-normal text-[#334155] dark:text-[#CBD5E1] leading-[1.65] pr-4">
+                {card.description}
+              </p>
+            )}
+
+            <Icon
+              className="expertise-risk-ghost pointer-events-none absolute -bottom-4 -right-3 w-24 h-24"
+              aria-hidden="true"
+            />
+          </article>
+        );
+      })}
+    </div>
+  );
 }
 
 const RISK_CRITERIA_ICONS = [
@@ -589,8 +728,13 @@ export default function StepCard({ step, index, isDarkBand = false }: StepCardPr
         />
       )}
 
+      {/* Risks Associated with Lightning Architectural Bento (Step 2) */}
+      {step.id === 'risks' && step.cards && step.cards.length === 6 && (
+        <RisksBentoShowcase cards={step.cards} />
+      )}
+
       {/* Cards Grid (MediaCards & InfoCards, max 3 per row) */}
-      {step.cards && step.cards.length > 0 && (
+      {step.id !== 'risks' && step.cards && step.cards.length > 0 && (
         <div className={cardGridClass}>
           {step.cards.map((card) => (
             <InfoCard

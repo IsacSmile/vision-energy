@@ -157,6 +157,28 @@ html.dark .expertise-card:hover {
   transform: scale(1.08) rotate(-4deg);
 }
 
+.expertise-risk-ghost {
+  color: #0b65b3;
+  opacity: 0.045;
+  transition:
+    transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 300ms ease;
+}
+
+.group:hover .expertise-risk-ghost {
+  opacity: 0.1;
+  transform: scale(1.08) rotate(-4deg);
+}
+
+html.dark .expertise-risk-ghost {
+  color: #8dc63f;
+  opacity: 0.055;
+}
+
+html.dark .group:hover .expertise-risk-ghost {
+  opacity: 0.12;
+}
+
 .expertise-card-img {
   transition: transform 250ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -354,6 +376,8 @@ html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band .text-\[
   .expertise-card-navy:hover::before,
   .expertise-safety-ghost,
   .group:hover .expertise-safety-ghost,
+  .expertise-risk-ghost,
+  .group:hover .expertise-risk-ghost,
   .expertise-card-img,
   .group:hover .expertise-card-img,
   .expertise-btn-lift,
