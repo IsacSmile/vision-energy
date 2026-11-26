@@ -70,65 +70,55 @@ export default function StandardsCompliance() {
   return (
     <section
       aria-label="LPS Standards and Authority Compliance"
-      className="py-10 sm:py-12 lg:py-14 bg-[#050608] relative overflow-hidden border-b border-[#1F2937]/80"
+      className="py-12 md:py-20 lg:py-24 bg-[#050608] relative border-b border-slate-200 dark:border-[#1F2937]/80"
     >
-      {/* Background Subtle Gradient Accents */}
-      <div
-        className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-[#0B65B3]/10 rounded-full blur-3xl pointer-events-none"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-[#8DC63F]/10 rounded-full blur-3xl pointer-events-none"
-        aria-hidden="true"
-      />
-
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Compact, High-Visibility Standards & Authority Compliance Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-[80rem] mx-auto">
           {/* Card 1: LPS Standards (Clean White Card with Lightweight Border & Smooth Shadow) */}
           <Reveal staggerIndex={1}>
-            <div className="standards-clean-card group relative h-full rounded-2xl bg-white dark:bg-[#0D1117] border border-slate-200/90 dark:border-white/10 shadow-sm hover:shadow-md hover:border-[#8DC63F]/50 transition-all duration-300 hover:-translate-y-1 p-4 sm:p-5 flex flex-col justify-between overflow-hidden">
-              <div className="relative z-10 space-y-3.5">
+            <div className="standards-clean-card group relative h-full rounded-2xl bg-white dark:bg-[#0D1117] border border-slate-200/90 dark:border-white/10 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-white/25 transition-all duration-200 ease-out hover:-translate-y-[3px] motion-reduce:hover:translate-y-0 p-5 sm:p-6 flex flex-col justify-between">
+              <div className="relative z-10 space-y-4">
                 {/* Card Header */}
-                <div className="flex items-center justify-between pb-3 border-b border-slate-200/80 dark:border-white/[0.08]">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 rounded-lg bg-[#0B65B3]/10 dark:bg-[#0B65B3]/20 border border-[#0B65B3]/25 dark:border-[#0B65B3]/35 flex items-center justify-center text-[#0B65B3] dark:text-[#8DC63F] group-hover:bg-[#8DC63F] group-hover:text-black transition-colors duration-300">
+                <div className="flex items-center justify-between pb-3.5 border-b border-slate-200/80 dark:border-white/[0.08]">
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-lg bg-[#0B65B3]/10 dark:bg-[#0B65B3]/20 border border-[#0B65B3]/20 dark:border-[#0B65B3]/30 flex items-center justify-center text-[#0B65B3] dark:text-[#8DC63F] transition-colors duration-150">
                       <ShieldCheck className="w-4 h-4" />
                     </div>
                     <div>
-                      <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight">
+                      <h3 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white tracking-tight">
                         100% LPS Standards Adherent
                       </h3>
-                      <p className="text-[11px] text-slate-500 dark:text-[#A9B4C0]">International Engineering Codes</p>
+                      <p className="text-xs font-normal text-slate-500 dark:text-[#A9B4C0]">International Engineering Codes</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Standards 2-Column Compact Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {LPS_STANDARDS.map((std, idx) => {
                     const isLastOdd = idx === LPS_STANDARDS.length - 1;
                     return (
                       <div
                         key={idx}
-                        className={`group/item flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-slate-50/80 hover:bg-slate-100/90 dark:bg-white/[0.025] dark:hover:bg-white/[0.07] border border-slate-200/70 dark:border-white/[0.06] hover:border-[#8DC63F]/50 transition-all duration-200 hover:scale-[1.01] cursor-default ${
+                        className={`flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl bg-slate-50/80 dark:bg-white/[0.025] border border-slate-200/70 dark:border-white/[0.06] transition-colors duration-150 ${
                           isLastOdd ? 'sm:col-span-2' : ''
                         }`}
                       >
-                        <div className="flex items-center gap-2 min-w-0">
-                          <div className="w-5 h-5 rounded bg-[#0B65B3]/10 dark:bg-[#0B65B3]/20 flex items-center justify-center shrink-0 text-[#0B65B3] dark:text-[#8DC63F] group-hover/item:text-[#8DC63F]">
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <div className="w-5 h-5 rounded bg-[#0B65B3]/10 dark:bg-[#0B65B3]/20 flex items-center justify-center shrink-0 text-[#0B65B3] dark:text-[#8DC63F]">
                             <Zap className="w-3 h-3" />
                           </div>
                           <div className="min-w-0">
-                            <span className="block text-xs sm:text-[13px] font-bold text-slate-900 dark:text-white group-hover/item:text-[#0B65B3] dark:group-hover/item:text-[#8DC63F] transition-colors truncate">
+                            <span className="block text-xs sm:text-[13px] font-semibold text-slate-900 dark:text-white truncate">
                               {std.code}
                             </span>
-                            <span className="block text-[10px] text-slate-500 dark:text-[#94A3B8] group-hover/item:text-slate-700 dark:group-hover/item:text-[#CBD5E1] transition-colors truncate">
+                            <span className="block text-[11px] font-normal text-slate-500 dark:text-[#94A3B8] truncate">
                               {std.title}
                             </span>
                           </div>
                         </div>
-                        <span className="shrink-0 text-[10px] font-semibold text-[#8DC63F] bg-[#8DC63F]/10 px-1.5 py-0.5 rounded border border-[#8DC63F]/20">
+                        <span className="shrink-0 text-[10px] font-semibold text-[#5B8C1E] dark:text-[#8DC63F] bg-[#8DC63F]/10 px-1.5 py-0.5 rounded border border-[#8DC63F]/20">
                           ✓
                         </span>
                       </div>
@@ -141,40 +131,40 @@ export default function StandardsCompliance() {
 
           {/* Card 2: Authority Compliance (Clean White Card with Lightweight Border & Smooth Shadow) */}
           <Reveal staggerIndex={2}>
-            <div className="standards-clean-card group relative h-full rounded-2xl bg-white dark:bg-[#0D1117] border border-slate-200/90 dark:border-white/10 shadow-sm hover:shadow-md hover:border-[#0B65B3]/50 transition-all duration-300 hover:-translate-y-1 p-4 sm:p-5 flex flex-col justify-between overflow-hidden">
-              <div className="relative z-10 space-y-3.5">
+            <div className="standards-clean-card group relative h-full rounded-2xl bg-white dark:bg-[#0D1117] border border-slate-200/90 dark:border-white/10 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-white/25 transition-all duration-200 ease-out hover:-translate-y-[3px] motion-reduce:hover:translate-y-0 p-5 sm:p-6 flex flex-col justify-between">
+              <div className="relative z-10 space-y-4">
                 {/* Card Header */}
-                <div className="flex items-center justify-between pb-3 border-b border-slate-200/80 dark:border-white/[0.08]">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 rounded-lg bg-[#8DC63F]/15 border border-[#8DC63F]/30 flex items-center justify-center text-[#8DC63F] group-hover:bg-[#8DC63F] group-hover:text-black transition-colors duration-300">
+                <div className="flex items-center justify-between pb-3.5 border-b border-slate-200/80 dark:border-white/[0.08]">
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-lg bg-[#8DC63F]/15 border border-[#8DC63F]/25 flex items-center justify-center text-[#5B8C1E] dark:text-[#8DC63F] transition-colors duration-150">
                       <Building2 className="w-4 h-4" />
                     </div>
                     <div>
-                      <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight">
+                      <h3 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white tracking-tight">
                         Authority Compliance
                       </h3>
-                      <p className="text-[11px] text-slate-500 dark:text-[#A9B4C0]">UAE Utility & Civil Defence Bodies</p>
+                      <p className="text-xs font-normal text-slate-500 dark:text-[#A9B4C0]">UAE Utility & Civil Defence Bodies</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Authorities 2-Column Compact Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {AUTHORITY_COMPLIANCE.map((auth, idx) => (
                     <div
                       key={idx}
-                      className="group/item flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-slate-50/80 hover:bg-slate-100/90 dark:bg-white/[0.025] dark:hover:bg-white/[0.07] border border-slate-200/70 dark:border-white/[0.06] hover:border-[#0B65B3]/50 transition-all duration-200 hover:scale-[1.01] cursor-default"
+                      className="flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl bg-slate-50/80 dark:bg-white/[0.025] border border-slate-200/70 dark:border-white/[0.06] transition-colors duration-150"
                     >
-                      <div className="flex items-center gap-2 min-w-0">
-                        <div className="w-5 h-5 rounded bg-[#8DC63F]/15 flex items-center justify-center shrink-0 text-[#8DC63F] group-hover/item:text-[#0B65B3]">
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <div className="w-5 h-5 rounded bg-[#8DC63F]/15 flex items-center justify-center shrink-0 text-[#5B8C1E] dark:text-[#8DC63F]">
                           <FileCheck className="w-3 h-3" />
                         </div>
                         <div className="min-w-0">
-                          <span className="block text-xs sm:text-[13px] font-bold text-slate-900 dark:text-white group-hover/item:text-[#0B65B3] dark:group-hover/item:text-[#8DC63F] transition-colors truncate">
+                          <span className="block text-xs sm:text-[13px] font-semibold text-slate-900 dark:text-white truncate">
                             {auth.code}
                           </span>
                           {auth.name && (
-                            <span className="block text-[10px] text-slate-500 dark:text-[#94A3B8] group-hover/item:text-slate-700 dark:group-hover/item:text-[#CBD5E1] transition-colors truncate">
+                            <span className="block text-[11px] font-normal text-slate-500 dark:text-[#94A3B8] truncate">
                               {auth.name}
                             </span>
                           )}
@@ -186,12 +176,12 @@ export default function StandardsCompliance() {
               </div>
 
               {/* Bottom Compact Assurance Strip */}
-              <div className="relative z-10 mt-3.5 pt-2.5 border-t border-slate-200/80 dark:border-white/[0.06] flex items-center justify-between text-[11px] text-slate-500 dark:text-[#94A3B8]">
+              <div className="relative z-10 mt-4 pt-3 border-t border-slate-200/80 dark:border-white/[0.06] flex items-center justify-between text-xs text-slate-500 dark:text-[#94A3B8]">
                 <span className="flex items-center gap-1.5 text-slate-700 dark:text-white/80">
-                  <Award className="w-3.5 h-3.5 text-[#8DC63F]" />
+                  <Award className="w-3.5 h-3.5 text-[#5B8C1E] dark:text-[#8DC63F]" />
                   <span>Authority Clearances Approved</span>
                 </span>
-                <span className="text-[#0B65B3] dark:text-[#8DC63F] font-medium">All UAE Authority</span>
+                <span className="text-[#0B65B3] dark:text-[#8DC63F] font-semibold">All UAE Authority</span>
               </div>
             </div>
           </Reveal>

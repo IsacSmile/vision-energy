@@ -8,9 +8,13 @@ import LightningButton from '@/components/ui/LightningButton';
 
 interface FinalCTAProps {
   bgClass?: string;
+  variant?: 'default' | 'minimal';
 }
 
-export default function FinalCTA({ bgClass = 'bg-[#0D1117]' }: FinalCTAProps) {
+export default function FinalCTA({
+  bgClass = 'bg-[#0D1117]',
+  variant = 'default',
+}: FinalCTAProps) {
   const { openProductModal } = useEnquiryModal();
   const [copiedPhone, setCopiedPhone] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
@@ -19,10 +23,13 @@ export default function FinalCTA({ bgClass = 'bg-[#0D1117]' }: FinalCTAProps) {
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setPrefersReducedMotion(mediaQuery.matches);
+    const rafId = window.requestAnimationFrame(() => setPrefersReducedMotion(mediaQuery.matches));
     const handleChange = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
     mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      mediaQuery.removeEventListener('change', handleChange);
+    };
   }, []);
 
   const handleOpenEnquiry = (e: React.MouseEvent) => {
@@ -60,33 +67,43 @@ export default function FinalCTA({ bgClass = 'bg-[#0D1117]' }: FinalCTAProps) {
     }
   };
 
+  const isMinimal = variant === 'minimal';
+
   return (
     <section
       aria-labelledby="final-cta-heading"
-      className={`py-20 md:py-32 lg:py-40 ${bgClass} relative overflow-hidden border-t border-b border-white/[0.08]`}
+      className={`${
+        isMinimal
+          ? 'py-12 md:py-20 lg:py-24 bg-[#050608] border-b border-slate-200 dark:border-white/[0.08]'
+          : `py-20 md:py-32 lg:py-40 ${bgClass} border-t border-b border-white/[0.08]`
+      } relative overflow-hidden`}
     >
-      {/* Blue-to-Lime Hairline at Top */}
-      <div
-        className="absolute top-0 left-0 right-0 h-[1px] bg-[linear-gradient(90deg,transparent_0%,rgba(11,101,179,0.3)_35%,rgba(141,198,63,0.3)_65%,transparent_100%)]"
-        aria-hidden="true"
-      />
+      {!isMinimal && (
+        <>
+          {/* Blue-to-Lime Hairline at Top */}
+          <div
+            className="absolute top-0 left-0 right-0 h-[1px] bg-[linear-gradient(90deg,transparent_0%,rgba(11,101,179,0.3)_35%,rgba(141,198,63,0.3)_65%,transparent_100%)]"
+            aria-hidden="true"
+          />
+
+          {/* Soft Blue Radial Glow Overlay at Top-Right with 24s Drift */}
+          <div
+            className={`pointer-events-none absolute -top-32 -right-32 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] rounded-full opacity-70 ${
+              prefersReducedMotion ? '' : 'animate-[glowDrift_24s_ease-in-out_infinite_alternate]'
+            }`}
+            style={{
+              background:
+                'radial-gradient(circle at center, rgba(11,101,179,0.18), transparent 70%)',
+            }}
+            aria-hidden="true"
+          />
+        </>
+      )}
 
       {/* Screen Reader Live Announcement */}
       <span className="sr-only" role="status" aria-live="polite">
         {liveAnnouncement}
       </span>
-
-      {/* Soft Blue Radial Glow Overlay at Top-Right with 24s Drift */}
-      <div
-        className={`pointer-events-none absolute -top-32 -right-32 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] rounded-full opacity-70 ${
-          prefersReducedMotion ? '' : 'animate-[glowDrift_24s_ease-in-out_infinite_alternate]'
-        }`}
-        style={{
-          background:
-            'radial-gradient(circle at center, rgba(11,101,179,0.18), transparent 70%)',
-        }}
-        aria-hidden="true"
-      />
 
       <style jsx global>{`
         @keyframes glowDrift {

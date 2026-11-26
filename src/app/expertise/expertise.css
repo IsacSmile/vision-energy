@@ -1,0 +1,90 @@
+/* Scoped styles for /expertise page redesign */
+
+@keyframes expertisePanelEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.expertise-panel-enter {
+  animation: expertisePanelEnter 200ms ease-out both;
+}
+
+.expertise-step-reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.expertise-step-reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.expertise-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  box-shadow:
+    0 1px 3px rgba(15, 23, 42, 0.04),
+    0 4px 14px -4px rgba(15, 23, 42, 0.05);
+  transition:
+    transform 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.expertise-card:hover {
+  transform: translateY(-3px);
+  border-color: #cbd5e1;
+  box-shadow:
+    0 8px 20px -6px rgba(15, 23, 42, 0.08),
+    0 2px 6px -2px rgba(15, 23, 42, 0.04);
+}
+
+html.dark .expertise-card {
+  background-color: #0d1117;
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.35);
+}
+
+html.dark .expertise-card:hover {
+  border-color: rgba(141, 198, 63, 0.4);
+  box-shadow: 0 12px 26px -8px rgba(0, 0, 0, 0.55);
+}
+
+.expertise-card-img {
+  transition: transform 200ms ease;
+}
+
+.group:hover .expertise-card-img {
+  transform: scale(1.03);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .expertise-panel-enter {
+    animation: none !important;
+  }
+
+  .expertise-step-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .expertise-card,
+  .expertise-card:hover,
+  .expertise-card-img,
+  .group:hover .expertise-card-img {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+

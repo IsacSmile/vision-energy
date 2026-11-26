@@ -354,24 +354,12 @@ export default function WhyVisionEnergy() {
   return (
     <section
       aria-labelledby="why-vision-energy-heading"
-      className="py-16 md:py-24 lg:py-32 bg-[#F8FAFC] dark:bg-[#06080D] relative border-t border-b border-slate-200 dark:border-white/[0.08] overflow-hidden"
+      className="py-12 md:py-20 lg:py-24 bg-[#F8FAFC] dark:bg-[#06080D] relative border-b border-slate-200 dark:border-white/[0.08] overflow-hidden"
     >
-      {/* Background Architectural Grid Pattern */}
-      <div
-        className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none"
-        aria-hidden="true"
-      />
-
-      {/* Subtle Ambient Radial Glow */}
-      <div
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#8DC63F]/[0.03] blur-[150px] pointer-events-none rounded-full"
-        aria-hidden="true"
-      />
-
-      <div className="max-w-[80rem] mx-auto px-5 sm:px-6 lg:px-8 space-y-10 sm:space-y-12 relative z-10">
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12 relative z-10">
         {/* Section Header with Carousel Navigation Controls */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
-          <div className="max-w-3xl space-y-3 sm:space-y-4">
+          <div className="max-w-3xl space-y-3">
             <Reveal staggerIndex={0}>
               <div className="inline-flex items-center gap-2 text-xs sm:text-[13px] font-bold text-[#8DC63F] uppercase tracking-[0.14em]">
                 <span className="w-6 h-[2px] bg-[#8DC63F] rounded-full shrink-0" aria-hidden="true" />
@@ -382,7 +370,7 @@ export default function WhyVisionEnergy() {
             <Reveal staggerIndex={1}>
               <h2
                 id="why-vision-energy-heading"
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-bold text-slate-900 dark:text-white leading-[1.2] tracking-[-0.02em] text-balance"
+                className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-slate-900 dark:text-white leading-[1.2] tracking-[-0.02em] text-balance"
               >
                 Specialist Products and Technical Support Across the UAE and GCC
               </h2>
@@ -396,13 +384,13 @@ export default function WhyVisionEnergy() {
               onClick={() => scroll('left')}
               disabled={!canScrollLeft}
               aria-label="Previous feature"
-              className={`carousel-nav-btn w-10 h-10 rounded-xl border flex items-center justify-center transition-all ${
+              className={`carousel-nav-btn w-10 h-10 rounded-xl border flex items-center justify-center transition-colors duration-150 ${
                 canScrollLeft
-                  ? 'bg-white border-slate-300 text-[#8DC63F] hover:bg-[#8DC63F] hover:text-[#050608] hover:border-[#8DC63F] dark:bg-[#0A0E17] dark:border-white/20 dark:text-[#8DC63F] dark:hover:bg-[#8DC63F] dark:hover:text-[#050608] dark:hover:border-[#8DC63F] shadow-sm hover:shadow-md active:scale-95 cursor-pointer'
+                  ? 'bg-white border-slate-300 text-[#0B65B3] hover:bg-[#8DC63F] hover:text-[#050608] hover:border-[#8DC63F] dark:bg-[#0A0E17] dark:border-white/20 dark:text-[#8DC63F] dark:hover:bg-[#8DC63F] dark:hover:text-[#050608] dark:hover:border-[#8DC63F] shadow-sm cursor-pointer'
                   : 'bg-slate-100 border-slate-200 text-slate-400 dark:bg-[#0A0E17]/40 dark:border-white/10 dark:text-white/30 cursor-not-allowed opacity-60'
               }`}
             >
-              <ChevronLeft className="w-5 h-5 stroke-[2.2]" />
+              <ChevronLeft className="w-5 h-5 stroke-[2]" />
             </button>
 
             <button
@@ -410,13 +398,13 @@ export default function WhyVisionEnergy() {
               onClick={() => scroll('right')}
               disabled={!canScrollRight}
               aria-label="Next feature"
-              className={`carousel-nav-btn w-10 h-10 rounded-xl border flex items-center justify-center transition-all ${
+              className={`carousel-nav-btn w-10 h-10 rounded-xl border flex items-center justify-center transition-colors duration-150 ${
                 canScrollRight
-                  ? 'bg-white border-slate-300 text-[#8DC63F] hover:bg-[#8DC63F] hover:text-[#050608] hover:border-[#8DC63F] dark:bg-[#0A0E17] dark:border-white/20 dark:text-[#8DC63F] dark:hover:bg-[#8DC63F] dark:hover:text-[#050608] dark:hover:border-[#8DC63F] shadow-sm hover:shadow-md active:scale-95 cursor-pointer'
+                  ? 'bg-white border-slate-300 text-[#0B65B3] hover:bg-[#8DC63F] hover:text-[#050608] hover:border-[#8DC63F] dark:bg-[#0A0E17] dark:border-white/20 dark:text-[#8DC63F] dark:hover:bg-[#8DC63F] dark:hover:text-[#050608] dark:hover:border-[#8DC63F] shadow-sm cursor-pointer'
                   : 'bg-slate-100 border-slate-200 text-slate-400 dark:bg-[#0A0E17]/40 dark:border-white/10 dark:text-white/30 cursor-not-allowed opacity-60'
               }`}
             >
-              <ChevronRight className="w-5 h-5 stroke-[2.2]" />
+              <ChevronRight className="w-5 h-5 stroke-[2]" />
             </button>
           </div>
         </div>
@@ -432,7 +420,7 @@ export default function WhyVisionEnergy() {
               onMouseLeave={handleMouseLeave}
               aria-roledescription="carousel"
               aria-label="Why Vision Energy Features Carousel"
-              className="flex gap-5 sm:gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pt-2 pb-6 cursor-grab active:cursor-grabbing select-none items-stretch px-1"
+              className="flex gap-5 sm:gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pt-2 pb-4 cursor-grab active:cursor-grabbing select-none items-stretch px-1"
               style={{
                 scrollbarWidth: 'none',
                 msOverflowStyle: 'none',
@@ -444,25 +432,25 @@ export default function WhyVisionEnergy() {
                   key={idx}
                   className="w-[86vw] min-w-[280px] max-w-[360px] sm:w-[350px] md:w-[calc((100%-24px)/2)] lg:w-[calc((100%-48px)/3)] shrink-0 snap-start flex flex-col"
                 >
-                  <div className="group h-full flex flex-col justify-between p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#0D1117] border border-slate-200/90 dark:border-white/[0.1] hover:border-[#8DC63F]/60 dark:hover:border-[#8DC63F]/50 transition-all duration-300 shadow-md hover:shadow-xl dark:shadow-lg overflow-hidden">
+                  <div className="group h-full flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-white dark:bg-[#0D1117] border border-slate-200/90 dark:border-white/[0.1] hover:border-slate-300 dark:hover:border-white/25 hover:-translate-y-[3px] motion-reduce:hover:translate-y-0 transition-all duration-200 ease-out shadow-sm hover:shadow-md">
                     <div className="space-y-4">
                       <div>
-                        <span className="text-xs uppercase tracking-wider text-[#8DC63F] font-bold block mb-1.5">
+                        <span className="text-xs uppercase tracking-wider text-[#8DC63F] font-semibold block mb-1.5">
                           {card.step}
                         </span>
-                        <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white group-hover:text-[#0B65B3] dark:group-hover:text-[#8DC63F] transition-colors leading-snug">
+                        <h3 className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-white leading-snug">
                           {card.title}
                         </h3>
                       </div>
 
-                      <ul className="space-y-2.5 sm:space-y-3 pt-2">
+                      <ul className="space-y-2.5 pt-1">
                         {card.points.map((pt, pIdx) => (
                           <li
                             key={pIdx}
-                            className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-[13.5px] lg:text-sm leading-relaxed text-slate-600 dark:text-[#CBD5E1] group-hover:text-slate-900 dark:group-hover:text-white transition-colors"
+                            className="flex items-start gap-2.5 text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-[#CBD5E1]"
                           >
                             <span
-                              className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0 shadow-[0_0_8px_rgba(141,198,63,0.6)]"
+                              className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] mt-2 shrink-0"
                               aria-hidden="true"
                             />
                             <span>
@@ -485,7 +473,7 @@ export default function WhyVisionEnergy() {
                   key={i}
                   type="button"
                   onClick={() => scrollToIndex(i)}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                  className={`h-1.5 rounded-full transition-all duration-200 ${
                     activeIndex === i
                       ? 'w-7 bg-[#8DC63F]'
                       : 'w-2 bg-slate-300 hover:bg-slate-400 dark:bg-white/20 dark:hover:bg-white/40'
@@ -498,10 +486,10 @@ export default function WhyVisionEnergy() {
         </Reveal>
 
         {/* Industries We Serve */}
-        <div className="space-y-6 sm:space-y-8 pt-4 sm:pt-6">
+        <div className="space-y-6 pt-4">
           <Reveal staggerIndex={4}>
             <div className="text-left">
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
+              <h3 className="text-2xl sm:text-3xl font-semibold text-slate-900 dark:text-white tracking-tight">
                 Industries We Serve
               </h3>
             </div>
@@ -509,25 +497,25 @@ export default function WhyVisionEnergy() {
 
           {/* Interactive Sectors Grid: Balanced 2-Column Grid spanning full width */}
           <Reveal staggerIndex={5}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 w-full">
               {SECTORS.map((sector, i) => {
                 const IconComponent = sector.icon;
                 return (
                   <div
                     key={i}
-                    className="group w-full flex items-center justify-between gap-4 p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#0D1117] border border-slate-200/90 dark:border-white/10 hover:border-[#8DC63F]/60 dark:hover:border-[#8DC63F]/50 hover:shadow-md transition-all duration-300 shadow-sm cursor-default"
+                    className="group w-full flex items-center justify-between gap-4 p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#0D1117] border border-slate-200/90 dark:border-white/10 hover:border-slate-300 dark:hover:border-white/25 hover:-translate-y-[3px] motion-reduce:hover:translate-y-0 hover:shadow-md transition-all duration-200 ease-out shadow-sm cursor-default"
                   >
-                    <div className="flex items-center gap-3.5 sm:gap-4 min-w-0">
-                      <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-[#0B65B3]/10 dark:bg-[#0B65B3]/15 border border-[#0B65B3]/25 dark:border-[#0B65B3]/35 group-hover:border-[#8DC63F] group-hover:bg-[#8DC63F] dark:group-hover:bg-[#0B65B3] group-hover:shadow-[0_0_14px_rgba(141,198,63,0.35)] flex items-center justify-center shrink-0 transition-all duration-300">
-                        <IconComponent className="w-5 h-5 text-[#0B65B3] dark:text-[#8DC63F] group-hover:text-black dark:group-hover:text-white transition-colors duration-300" />
+                    <div className="flex items-center gap-3.5 min-w-0">
+                      <div className="w-10 h-10 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 flex items-center justify-center shrink-0 transition-colors duration-150">
+                        <IconComponent className="w-5 h-5 text-[#0B65B3] dark:text-[#8DC63F]" />
                       </div>
-                      <span className="text-sm sm:text-[15px] font-bold text-slate-900 dark:text-white group-hover:text-[#0B65B3] dark:group-hover:text-[#8DC63F] transition-colors leading-snug">
+                      <span className="text-sm sm:text-[15px] font-semibold text-slate-900 dark:text-white leading-snug">
                         {sector.name}
                       </span>
                     </div>
 
-                    <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-white/[0.05] border border-slate-200 dark:border-white/[0.08] group-hover:bg-[#8DC63F]/15 group-hover:border-[#8DC63F]/40 flex items-center justify-center shrink-0 transition-all duration-300">
-                      <ArrowUpRight className="w-4 h-4 text-slate-500 dark:text-[#A9B4C0] group-hover:text-[#8DC63F] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+                    <div className="w-8 h-8 rounded-full bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] flex items-center justify-center shrink-0 transition-colors duration-150">
+                      <ArrowUpRight className="w-4 h-4 text-slate-500 dark:text-[#A9B4C0] group-hover:text-[#0B65B3] dark:group-hover:text-[#8DC63F]" />
                     </div>
                   </div>
                 );
