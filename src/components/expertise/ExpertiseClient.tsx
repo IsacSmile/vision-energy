@@ -87,7 +87,7 @@ export default function ExpertiseClient() {
       ref={sectionRef}
       id="expertise-tabs"
       aria-label="Engineering Expertise Categories"
-      className="scroll-mt-[88px] sm:scroll-mt-[96px] lg:scroll-mt-[102px] xl:scroll-mt-[106px] bg-[#F8FAFC] dark:bg-[#050608] border-b border-slate-200 dark:border-[#1F2937]/80"
+      className="scroll-mt-[88px] sm:scroll-mt-[96px] lg:scroll-mt-[102px] xl:scroll-mt-[106px] bg-white dark:bg-[#050608] border-b border-slate-200 dark:border-[#1F2937]/80"
     >
       <Tabs tabs={EXPERTISE_TABS} activeTab={activeTab} onSelectTab={handleSelectTab} />
       <ExpertisePanel key={currentTabConfig.id} tab={currentTabConfig} />

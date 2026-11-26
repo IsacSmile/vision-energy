@@ -20,6 +20,29 @@ import {
   Accessibility,
   UtilityPole,
   PawPrint,
+  HeartPulse,
+  Cpu,
+  Landmark,
+  TrendingDown,
+  HardHat,
+  Zap,
+  Flame,
+  Shield,
+  Server,
+  Radar,
+  Target,
+  ArrowDownToLine,
+  Activity,
+  FileCheck,
+  FileText,
+  FolderSearch,
+  MapPin,
+  Compass,
+  ClipboardCheck,
+  DraftingCompass,
+  BadgeCheck,
+  Wrench,
+  Award,
   type LucideIcon,
 } from 'lucide-react';
 import type { SafetyIconKey, StepCardItem } from '@/lib/data/expertise';
@@ -47,41 +70,74 @@ const SAFETY_ICONS: Record<SafetyIconKey, LucideIcon> = {
   'paw-print': PawPrint,
 };
 
+const CARD_ID_ICONS: Record<string, LucideIcon> = {
+  // Risks
+  'human-safety': HeartPulse,
+  'animals-wildlife': PawPrint,
+  'buildings-infrastructure': Building2,
+  'equipment-damages': Cpu,
+  'cultural-heritage': Landmark,
+  'economic-impacts': TrendingDown,
+  // Effects & Requirement
+  'personnel-safety': HardHat,
+  'direct-strike-protection': Zap,
+  'fire-prevention': Flame,
+  'structural-protection': Shield,
+  'equipment-protection': Server,
+  // Functionality
+  detection: Radar,
+  interception: Target,
+  dissipation: ArrowDownToLine,
+  prevention: ShieldCheck,
+  continuity: Activity,
+  compliance: FileCheck,
+  // Earthing 10-stage workflow
+  'step-01': FileText,
+  'step-02': FolderSearch,
+  'step-03': MapPin,
+  'step-04': Compass,
+  'step-05': ClipboardCheck,
+  'step-06': DraftingCompass,
+  'step-07': BadgeCheck,
+  'step-08': HardHat,
+  'step-09': Wrench,
+  'step-10': Award,
+};
+
 interface InfoCardProps {
   item: StepCardItem;
   variant?: 'default' | 'icon';
+  accentTone?: 'green' | 'blue';
 }
 
-export default function InfoCard({ item, variant = 'default' }: InfoCardProps) {
+export default function InfoCard({
+  item,
+  variant = 'default',
+  accentTone = 'green',
+}: InfoCardProps) {
+  // Variant 1: Safety Icon Card (inside Dark Navy Step 9 band)
   if (variant === 'icon') {
     const Icon = item.iconName ? SAFETY_ICONS[item.iconName] : AlertTriangle;
     return (
-      <div className="expertise-card group p-4 flex items-center gap-3.5">
-        <div className="w-10 h-10 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 flex items-center justify-center shrink-0 text-[#0B65B3] dark:text-[#8DC63F]">
+      <div
+        data-preserve-contrast="true"
+        className="expertise-card-navy group p-5 flex items-center gap-4"
+      >
+        <div className="expertise-icon-tile expertise-icon-tile-green w-11 h-11 rounded-full bg-[#8DC63F]/15 border border-[#8DC63F]/30 flex items-center justify-center shrink-0 text-[#8DC63F]">
           <Icon className="w-5 h-5" aria-hidden="true" />
         </div>
-        <span className="text-sm font-semibold text-[#0F172A] dark:text-white leading-snug">
+        <span className="text-[15px] font-semibold text-white leading-[1.45]">
           {item.title}
         </span>
       </div>
     );
   }
 
-  const imageFrameClass =
-    item.image?.surface === 'dark'
-      ? 'bg-[#0A101D]'
-      : item.image?.surface === 'light'
-      ? 'bg-white'
-      : 'bg-slate-50 dark:bg-[#050608]';
-
-  return (
-    <div className="expertise-card group overflow-hidden flex flex-col h-full">
-      {item.image && (
-        <div
-          className={`relative w-full overflow-hidden border-b border-slate-200/80 dark:border-white/10 ${imageFrameClass} ${
-            item.image.surface === 'photo' ? 'aspect-[4/3]' : 'aspect-[16/10] p-3 flex items-center justify-center'
-          }`}
-        >
+  // Variant 2: MediaCard (Formation stages 1-4, LPS components 1-6)
+  if (item.image) {
+    return (
+      <div className="expertise-card group flex flex-col h-full">
+        <div className="relative w-full aspect-[4/3] overflow-hidden border-b border-slate-200/80 dark:border-white/10 bg-[#F4F8FC] dark:bg-[#0A111C] p-3 sm:p-4 flex items-center justify-center">
           <Image
             src={item.image.src}
             alt={item.image.alt}
@@ -90,27 +146,61 @@ export default function InfoCard({ item, variant = 'default' }: InfoCardProps) {
             unoptimized
             loading="lazy"
             decoding="async"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
-            className={`expertise-card-img ${
-              item.image.surface === 'photo'
-                ? 'w-full h-full object-cover'
-                : 'max-w-full max-h-full w-auto h-auto object-contain'
-            }`}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
+            className="expertise-card-img max-w-full max-h-full w-auto h-auto object-contain"
           />
         </div>
-      )}
 
-      <div className="p-4 sm:p-5 flex-1 flex flex-col gap-1.5">
-        <h4 className="text-sm sm:text-base font-semibold text-[#0F172A] dark:text-white leading-snug">
+        <div className="p-6 flex-1 flex flex-col gap-1.5">
+          <h4 className="text-lg sm:text-[19px] font-semibold text-[#0A192F] dark:text-white leading-[1.35]">
+            {item.title}
+          </h4>
+          {item.subtitle && (
+            <p className="text-sm font-semibold text-[#5B8C1E] dark:text-[#8DC63F]">
+              {item.subtitle}
+            </p>
+          )}
+          {item.description && (
+            <p className="text-[15px] font-normal text-[#334155] dark:text-[#CBD5E1] leading-[1.6]">
+              {item.description}
+            </p>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  // Variant 3: InfoCard (Risks, Effects, Functions, Workflow stages)
+  const Icon = CARD_ID_ICONS[item.id] || ShieldCheck;
+  const isBlue = accentTone === 'blue';
+
+  return (
+    <div
+      className={`expertise-card ${isBlue ? 'accent-blue' : ''} group p-6 flex flex-col gap-4 h-full`}
+    >
+      <div
+        className={`expertise-icon-tile ${
+          isBlue ? 'expertise-icon-tile-blue' : 'expertise-icon-tile-green'
+        } w-11 h-11 rounded-full flex items-center justify-center shrink-0 ${
+          isBlue
+            ? 'bg-[#0B65B3]/10 text-[#0B65B3] dark:bg-[#0B65B3]/20 dark:text-[#60A5FA]'
+            : 'bg-[#8DC63F]/15 text-[#38700D] dark:bg-[#8DC63F]/15 dark:text-[#8DC63F]'
+        }`}
+      >
+        <Icon className="w-5 h-5" aria-hidden="true" />
+      </div>
+
+      <div className="flex-1 flex flex-col gap-2">
+        <h4 className="text-lg sm:text-[19px] font-semibold text-[#0A192F] dark:text-white leading-[1.35]">
           {item.title}
         </h4>
         {item.subtitle && (
-          <p className="text-xs font-normal text-[#5B8C1E] dark:text-[#8DC63F]">
+          <p className="text-sm font-semibold text-[#5B8C1E] dark:text-[#8DC63F]">
             {item.subtitle}
           </p>
         )}
         {item.description && (
-          <p className="text-xs sm:text-sm font-normal text-slate-600 dark:text-[#A9B4C0] leading-relaxed">
+          <p className="text-[15px] font-normal text-[#334155] dark:text-[#CBD5E1] leading-[1.6]">
             {item.description}
           </p>
         )}
@@ -118,4 +208,3 @@ export default function InfoCard({ item, variant = 'default' }: InfoCardProps) {
     </div>
   );
 }
-

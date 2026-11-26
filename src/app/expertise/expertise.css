@@ -1,4 +1,4 @@
-/* Scoped styles for /expertise page redesign */
+/* Scoped visual design & motion tokens for /expertise */
 
 @keyframes expertisePanelEnter {
   from {
@@ -17,10 +17,10 @@
 
 .expertise-step-reveal {
   opacity: 0;
-  transform: translateY(12px);
+  transform: translateY(16px);
   transition:
-    opacity 320ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 420ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .expertise-step-reveal.is-revealed {
@@ -28,48 +28,265 @@
   transform: translateY(0);
 }
 
+/* Base interactive card with 3px -> 5px expanding top accent bar */
 .expertise-card {
+  position: relative;
+  overflow: hidden;
   background-color: #ffffff;
   border: 1px solid #e2e8f0;
-  border-radius: 1rem;
+  border-radius: 16px;
   box-shadow:
-    0 1px 3px rgba(15, 23, 42, 0.04),
-    0 4px 14px -4px rgba(15, 23, 42, 0.05);
+    0 2px 6px rgba(15, 23, 42, 0.04),
+    0 8px 20px -8px rgba(11, 101, 179, 0.08);
   transition:
-    transform 200ms ease,
-    border-color 200ms ease,
-    box-shadow 200ms ease;
+    transform 250ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 250ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.expertise-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: #8dc63f;
+  transition: height 250ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.expertise-card.accent-blue::before {
+  background-color: #0b65b3;
 }
 
 .expertise-card:hover {
-  transform: translateY(-3px);
-  border-color: #cbd5e1;
+  transform: translateY(-6px);
+  border-color: #8dc63f;
   box-shadow:
-    0 8px 20px -6px rgba(15, 23, 42, 0.08),
-    0 2px 6px -2px rgba(15, 23, 42, 0.04);
+    0 14px 32px -10px rgba(11, 101, 179, 0.22),
+    0 6px 14px -4px rgba(15, 23, 42, 0.06);
+}
+
+.expertise-card:hover::before {
+  height: 5px;
 }
 
 html.dark .expertise-card {
   background-color: #0d1117;
   border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.45);
 }
 
 html.dark .expertise-card:hover {
-  border-color: rgba(141, 198, 63, 0.4);
-  box-shadow: 0 12px 26px -8px rgba(0, 0, 0, 0.55);
+  border-color: #8dc63f;
+  box-shadow:
+    0 18px 36px -12px rgba(11, 101, 179, 0.32),
+    0 8px 18px -6px rgba(0, 0, 0, 0.55);
+}
+
+/* Dark navy band card variant (e.g. Step 9 safety items inside #0A192F) */
+.expertise-card-navy {
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px -6px rgba(0, 0, 0, 0.35);
+  transition:
+    transform 250ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 250ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 250ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.expertise-card-navy::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: #8dc63f;
+  transition: height 250ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+
+.expertise-card-navy:hover {
+  transform: translateY(-6px);
+  border-color: #8dc63f;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.45);
+}
+
+.expertise-card-navy:hover::before {
+  height: 5px;
 }
 
 .expertise-card-img {
-  transition: transform 200ms ease;
+  transition: transform 250ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .group:hover .expertise-card-img {
-  transform: scale(1.03);
+  transform: scale(1.05);
+}
+
+.expertise-icon-tile {
+  transition:
+    background-color 250ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    color 250ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.group:hover .expertise-icon-tile-green {
+  background-color: #8dc63f !important;
+  color: #ffffff !important;
+}
+
+.group:hover .expertise-icon-tile-blue {
+  background-color: #0b65b3 !important;
+  color: #ffffff !important;
+}
+
+.group:hover .expertise-icon-tile svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* Active node soft pulse ring */
+@keyframes nodePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(11, 101, 179, 0.38);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(11, 101, 179, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(11, 101, 179, 0);
+  }
+}
+
+.expertise-node-active {
+  animation: nodePulse 2.4s ease-out infinite;
+}
+
+/* Subtle 2px lift on CTA buttons */
+.expertise-btn-lift {
+  transition: transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.expertise-btn-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* Zebra table sticky column background alignment */
+.expertise-table tbody tr {
+  background-color: #ffffff;
+  transition: background-color 150ms ease;
+}
+
+.expertise-table tbody tr:nth-child(even) {
+  background-color: #f4f8fc;
+}
+
+.expertise-table tbody tr th[scope='row'] {
+  background-color: #ffffff;
+  transition: background-color 150ms ease;
+}
+
+.expertise-table tbody tr:nth-child(even) th[scope='row'] {
+  background-color: #f4f8fc;
+}
+
+.expertise-table tbody tr:hover,
+.expertise-table tbody tr:hover th[scope='row'] {
+  background-color: #e8f2fb;
+}
+
+html.dark .expertise-table tbody tr {
+  background-color: #0d1117;
+}
+
+html.dark .expertise-table tbody tr:nth-child(even) {
+  background-color: #111824;
+}
+
+html.dark .expertise-table tbody tr th[scope='row'] {
+  background-color: #0d1117;
+}
+
+html.dark .expertise-table tbody tr:nth-child(even) th[scope='row'] {
+  background-color: #111824;
+}
+
+html.dark .expertise-table tbody tr:hover,
+html.dark .expertise-table tbody tr:hover th[scope='row'] {
+  background-color: #16263b;
+}
+
+/* Faint step watermark number without Tailwind arbitrary-color override collisions */
+.expertise-watermark {
+  color: #0b65b3;
+  opacity: 0.1;
+}
+
+html.dark .expertise-watermark {
+  color: #8dc63f;
+  opacity: 0.12;
+}
+
+#expertise-tabpanel .expertise-navy-band .expertise-watermark {
+  color: #ffffff !important;
+  opacity: 0.11 !important;
+}
+
+/* Light-mode contrast protection inside dark navy bands & CTA (beats globals.css (1,5,2) h3 rule) */
+html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band.expertise-navy-band.expertise-navy-band.expertise-navy-band h3,
+html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band.expertise-navy-band.expertise-navy-band.expertise-navy-band h4,
+html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band .expertise-card-navy span {
+  color: #ffffff !important;
+}
+
+html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band p {
+  color: #e2e8f0 !important;
+}
+
+html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band .expertise-icon-tile {
+  color: #8dc63f !important;
+}
+
+html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band .expertise-icon-tile svg {
+  color: #8dc63f !important;
+  stroke: #8dc63f !important;
+}
+
+html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band .group:hover .expertise-icon-tile svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band .text-\[\#8DC63F\],
+html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band .text-\[\#8DC63F\] * {
+  color: #8dc63f !important;
+}
+
+/* SubTabs navy track & button contrast (avoids globals.css bg-white/[0.08] light override) */
+#expertise-tabpanel .expertise-subtabs-navy {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+#expertise-tabpanel .expertise-subtabs-navy .expertise-subtab-navy-inactive {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+#expertise-tabpanel .expertise-subtabs-navy .expertise-subtab-navy-inactive:hover {
+  color: #ffffff !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .expertise-panel-enter {
+  .expertise-panel-enter,
+  .expertise-node-active {
     animation: none !important;
   }
 
@@ -81,10 +298,17 @@ html.dark .expertise-card:hover {
 
   .expertise-card,
   .expertise-card:hover,
+  .expertise-card::before,
+  .expertise-card:hover::before,
+  .expertise-card-navy,
+  .expertise-card-navy:hover,
+  .expertise-card-navy::before,
+  .expertise-card-navy:hover::before,
   .expertise-card-img,
-  .group:hover .expertise-card-img {
+  .group:hover .expertise-card-img,
+  .expertise-btn-lift,
+  .expertise-btn-lift:hover {
     transform: none !important;
     transition: none !important;
   }
 }
-
