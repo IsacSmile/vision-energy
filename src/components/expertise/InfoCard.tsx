@@ -108,27 +108,41 @@ interface InfoCardProps {
   item: StepCardItem;
   variant?: 'default' | 'icon';
   accentTone?: 'green' | 'blue';
+  className?: string;
 }
 
 export default function InfoCard({
   item,
   variant = 'default',
   accentTone = 'green',
+  className = '',
 }: InfoCardProps) {
-  // Variant 1: Safety Icon Card (inside Dark Navy Step 9 band)
+  // Variant 1: Architectural Safety Module Card (inside Dark Navy Step 9 band)
   if (variant === 'icon') {
     const Icon = item.iconName ? SAFETY_ICONS[item.iconName] : AlertTriangle;
     return (
       <div
         data-preserve-contrast="true"
-        className="expertise-card-navy group p-5 flex items-center gap-4"
+        className={`expertise-card-navy group p-5 sm:p-6 flex flex-col justify-between gap-5 min-h-[144px] h-full ${className}`}
       >
-        <div className="expertise-icon-tile expertise-icon-tile-green w-11 h-11 rounded-full bg-[#8DC63F]/15 border border-[#8DC63F]/30 flex items-center justify-center shrink-0 text-[#8DC63F]">
-          <Icon className="w-5 h-5" aria-hidden="true" />
+        <div className="relative z-10 flex items-center justify-between gap-3 pt-0.5">
+          <div className="expertise-icon-tile expertise-icon-tile-green w-12 h-12 rounded-xl bg-[#8DC63F]/15 border border-[#8DC63F]/30 flex items-center justify-center shrink-0 text-[#8DC63F] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+            <Icon className="w-5 h-5" aria-hidden="true" />
+          </div>
+          <span
+            aria-hidden="true"
+            className="w-6 h-1 rounded-full bg-white/15 group-hover:w-10 group-hover:bg-[#8DC63F] transition-all duration-300 motion-reduce:transition-none"
+          />
         </div>
-        <span className="text-[15px] font-semibold text-white leading-[1.45]">
+
+        <span className="relative z-10 text-[15.5px] sm:text-base font-semibold text-white leading-[1.45] pr-6">
           {item.title}
         </span>
+
+        <Icon
+          className="expertise-safety-ghost pointer-events-none absolute -bottom-3 -right-3 w-20 h-20"
+          aria-hidden="true"
+        />
       </div>
     );
   }

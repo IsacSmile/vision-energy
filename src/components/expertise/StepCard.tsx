@@ -443,14 +443,37 @@ function SubTabContent({
         </div>
       )}
 
-      {/* Safety Icon Cards (Step 9) */}
-      {panel.iconItems && panel.iconItems.length > 0 && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {panel.iconItems.map((item) => (
-            <InfoCard key={item.id} item={item} variant="icon" />
-          ))}
-        </div>
-      )}
+      {/* Safety Icon Cards (Step 9 Navy Protocol Console) */}
+      {panel.iconItems && panel.iconItems.length > 0 && (() => {
+        const isEightCardBento = panel.iconItems.length === 8;
+        return (
+          <div className="expertise-safety-shell rounded-2xl p-4 sm:p-5 lg:p-6">
+            <div
+              className={
+                isEightCardBento
+                  ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4'
+                  : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'
+              }
+            >
+              {panel.iconItems.map((item, itemIdx) => {
+                const spanClass = isEightCardBento
+                  ? itemIdx >= 6
+                    ? 'lg:col-span-3'
+                    : 'lg:col-span-2'
+                  : '';
+                return (
+                  <InfoCard
+                    key={item.id}
+                    item={item}
+                    variant="icon"
+                    className={spanClass}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        );
+      })()}
     </div>
   );
 }
@@ -595,14 +618,35 @@ export default function StepCard({ step, index, isDarkBand = false }: StepCardPr
       {/* Sub-Tabs */}
       {step.subTabs && step.subTabs.length > 0 && activeSubTab && (
         <div className="space-y-4 pt-1">
-          <SubTabs
-            idPrefix={`step-${step.id}`}
-            ariaLabel={`${step.title} views`}
-            items={step.subTabs}
-            activeId={activeSubTab.id}
-            onChange={setActiveSubTabId}
-            tone={isDarkBand ? 'navy' : 'light'}
-          />
+          <div className={isDarkBand ? 'flex items-center justify-between gap-4 flex-wrap' : ''}>
+            <SubTabs
+              idPrefix={`step-${step.id}`}
+              ariaLabel={`${step.title} views`}
+              items={step.subTabs}
+              activeId={activeSubTab.id}
+              onChange={setActiveSubTabId}
+              tone={isDarkBand ? 'navy' : 'light'}
+            />
+
+            {isDarkBand && (
+              <div
+                aria-hidden="true"
+                className="expertise-phase-meter hidden sm:flex items-center gap-1.5 px-3.5 py-2.5 rounded-full"
+              >
+                {step.subTabs.map((st) => {
+                  const active = st.id === activeSubTab.id;
+                  return (
+                    <span
+                      key={st.id}
+                      className={`h-1.5 rounded-full transition-all duration-250 motion-reduce:transition-none ${
+                        active ? 'w-7 bg-[#8DC63F]' : 'w-2 bg-white/25'
+                      }`}
+                    />
+                  );
+                })}
+              </div>
+            )}
+          </div>
           <SubTabContent
             stepId={`step-${step.id}`}
             panel={activeSubTab}

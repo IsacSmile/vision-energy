@@ -86,18 +86,31 @@ html.dark .expertise-card:hover {
     0 8px 18px -6px rgba(0, 0, 0, 0.55);
 }
 
-/* Dark navy band card variant (e.g. Step 9 safety items inside #0A192F) */
+/* Dark navy band card variant & Step 9 protocol console */
+.expertise-safety-shell {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.expertise-phase-meter {
+  background-color: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
 .expertise-card-navy {
   position: relative;
   overflow: hidden;
-  background-color: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(155deg, rgba(20, 42, 76, 0.82) 0%, rgba(10, 22, 41, 0.94) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.13);
   border-radius: 16px;
-  box-shadow: 0 4px 16px -6px rgba(0, 0, 0, 0.35);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 6px 20px -8px rgba(0, 0, 0, 0.45);
   transition:
     transform 250ms cubic-bezier(0.2, 0.8, 0.2, 1),
     border-color 250ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    background-color 250ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    background 250ms cubic-bezier(0.2, 0.8, 0.2, 1),
     box-shadow 250ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
@@ -108,20 +121,40 @@ html.dark .expertise-card:hover {
   left: 0;
   right: 0;
   height: 3px;
-  background-color: #8dc63f;
+  background: linear-gradient(90deg, #8dc63f 0%, #0b65b3 100%);
   transition: height 250ms cubic-bezier(0.2, 0.8, 0.2, 1);
   pointer-events: none;
+  z-index: 2;
 }
 
 .expertise-card-navy:hover {
   transform: translateY(-6px);
-  border-color: #8dc63f;
-  background-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.45);
+  border-color: rgba(141, 198, 63, 0.75);
+  background: linear-gradient(155deg, rgba(24, 52, 92, 0.92) 0%, rgba(11, 29, 54, 0.98) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 18px 34px -12px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(141, 198, 63, 0.22);
 }
 
 .expertise-card-navy:hover::before {
   height: 5px;
+}
+
+.expertise-safety-ghost {
+  color: #ffffff !important;
+  stroke: currentColor !important;
+  opacity: 0.055 !important;
+  transition:
+    transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 300ms ease,
+    color 300ms ease;
+}
+
+.group:hover .expertise-safety-ghost {
+  color: #8dc63f !important;
+  opacity: 0.13 !important;
+  transform: scale(1.08) rotate(-4deg);
 }
 
 .expertise-card-img {
@@ -274,16 +307,29 @@ html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band .text-\[
 
 /* SubTabs navy track & button contrast (avoids globals.css bg-white/[0.08] light override) */
 #expertise-tabpanel .expertise-subtabs-navy {
-  background-color: rgba(255, 255, 255, 0.12) !important;
-  border-color: rgba(255, 255, 255, 0.2) !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  backdrop-filter: blur(8px);
 }
 
-#expertise-tabpanel .expertise-subtabs-navy .expertise-subtab-navy-inactive {
-  color: rgba(255, 255, 255, 0.85) !important;
+#expertise-tabpanel .expertise-subtabs-navy .expertise-subtab-navy-inactive,
+#expertise-tabpanel .expertise-subtabs-navy .expertise-subtab-navy-inactive span,
+#expertise-tabpanel .expertise-subtabs-navy .expertise-subtab-navy-inactive svg {
+  color: rgba(255, 255, 255, 0.82) !important;
 }
 
-#expertise-tabpanel .expertise-subtabs-navy .expertise-subtab-navy-inactive:hover {
+#expertise-tabpanel .expertise-subtabs-navy .expertise-subtab-navy-inactive svg {
+  stroke: rgba(255, 255, 255, 0.82) !important;
+}
+
+#expertise-tabpanel .expertise-subtabs-navy .expertise-subtab-navy-inactive:hover,
+#expertise-tabpanel .expertise-subtabs-navy .expertise-subtab-navy-inactive:hover span,
+#expertise-tabpanel .expertise-subtabs-navy .expertise-subtab-navy-inactive:hover svg {
   color: #ffffff !important;
+}
+
+#expertise-tabpanel .expertise-subtabs-navy .expertise-subtab-navy-inactive:hover svg {
+  stroke: #ffffff !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -306,6 +352,8 @@ html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band .text-\[
   .expertise-card-navy:hover,
   .expertise-card-navy::before,
   .expertise-card-navy:hover::before,
+  .expertise-safety-ghost,
+  .group:hover .expertise-safety-ghost,
   .expertise-card-img,
   .group:hover .expertise-card-img,
   .expertise-btn-lift,
