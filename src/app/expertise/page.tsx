@@ -192,11 +192,11 @@ export default function ExpertisePage() {
           </div>
         </section>
 
-        {/* SECTION B: INTERACTIVE EXPERTISE TABS */}
-        <ExpertiseClient />
-
-        {/* SECTION C: STANDARDS & AUTHORITY COMPLIANCE (Shared) */}
+        {/* SECTION B: STANDARDS & AUTHORITY COMPLIANCE (Shared, Top Credentials) */}
         <StandardsCompliance />
+
+        {/* SECTION C: INTERACTIVE EXPERTISE TABS */}
+        <ExpertiseClient />
 
         {/* SECTION D: WHY VISION ENERGY & INDUSTRIES WE SERVE (Shared) */}
         <WhyVisionEnergy />

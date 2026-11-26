@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { ArrowRight, Check, Dumbbell, FlaskConical, Phone } from 'lucide-react';
+import { ArrowRight, Dumbbell, FlaskConical, Phone } from 'lucide-react';
 import type { ExpertiseTabConfig, ExpertiseTabId } from '@/lib/data/expertise';
 import { useEnquiryModal } from '@/components/modals/EnquiryModalProvider';
 import LightningButton from '@/components/ui/LightningButton';
@@ -10,23 +10,6 @@ import StepCard from './StepCard';
 interface ExpertisePanelProps {
   tab: ExpertiseTabConfig;
 }
-
-const AUTHORITY_CHIPS = [
-  'IEC 62305',
-  'BS EN 62305',
-  'BS 7430',
-  'BS 7671 / IEC 60364',
-  'NFC 17-102',
-  'IEC 62561',
-  'NFPA 780',
-  'ADDC',
-  'DoE',
-  'ADCDA',
-  'Abu Dhabi Municipality',
-  'DEWA',
-  'SEWA',
-  'Etihad WE',
-];
 
 const DARK_BAND_STEP_IDS = new Set(['uae-impact', 'safety-precautions']);
 
@@ -276,35 +259,14 @@ export default function ExpertisePanel({ tab }: ExpertisePanelProps) {
             )}
           </div>
 
-          {/* Authority Strip (Standards & UAE Authorities already on site) */}
-          {hasSteps && (
-            <div className="space-y-5 pt-1">
-              <div
-                aria-label="Standards and UAE Authority Compliance"
-                className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 flex-nowrap md:flex-wrap"
-              >
-                {AUTHORITY_CHIPS.map((label) => (
-                  <span
-                    key={label}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#0B65B3]/20 dark:border-white/15 bg-white dark:bg-[#0D1117] text-xs font-medium text-[#0A192F] dark:text-[#E2E8F0] shadow-[0_1px_2px_rgba(10,25,47,0.04)] whitespace-nowrap shrink-0"
-                  >
-                    <Check
-                      className="w-3.5 h-3.5 text-[#5B8C1E] dark:text-[#8DC63F] shrink-0"
-                      aria-hidden="true"
-                    />
-                    <span>{label}</span>
-                  </span>
+          {/* Fact Counters (only where directly verified from source structure) */}
+          {hasSteps && factCounters.length > 0 && (
+            <div className="pt-1">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl">
+                {factCounters.map((stat) => (
+                  <CountUpStat key={stat.label} target={stat.target} label={stat.label} />
                 ))}
               </div>
-
-              {/* Fact Counters (only where directly verified from source structure) */}
-              {factCounters.length > 0 && (
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl">
-                  {factCounters.map((stat) => (
-                    <CountUpStat key={stat.label} target={stat.target} label={stat.label} />
-                  ))}
-                </div>
-              )}
             </div>
           )}
         </div>

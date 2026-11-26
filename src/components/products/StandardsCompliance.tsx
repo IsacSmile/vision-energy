@@ -1,190 +1,188 @@
 'use client';
 
 import React from 'react';
-import Reveal from '@/components/ui/Reveal';
-import { ShieldCheck, Building2, Award, Zap, FileCheck } from 'lucide-react';
+import { Building2, Check, FileCheck, ShieldCheck, type LucideIcon } from 'lucide-react';
 
-const LPS_STANDARDS = [
+interface ComplianceItem {
+  code: string;
+  description: string;
+}
+
+const LPS_STANDARDS: ComplianceItem[] = [
   {
     code: 'IEC 62305',
-    title: 'Lightning Protection Benchmark',
+    description: 'Lightning Protection Benchmark',
   },
   {
     code: 'BS EN 62305',
-    title: 'Structural & Surge Code',
+    description: 'Structural & Surge Code',
   },
   {
     code: 'BS 7430',
-    title: 'Earthing & Grounding Practice',
+    description: 'Earthing & Grounding Practice',
   },
   {
     code: 'BS 7671 / IEC 60364',
-    title: 'Wiring Regs & Circuit Safety',
+    description: 'Wiring Regs & Circuit Safety',
   },
   {
     code: 'NFC 17-102',
-    title: 'Early Streamer Emission (ESE)',
+    description: 'Early Streamer Emission (ESE)',
   },
   {
     code: 'IEC 62561',
-    title: 'LPS Components & Clamps',
+    description: 'LPS Components & Clamps',
   },
   {
     code: 'NFPA 780',
-    title: 'Life Safety in Critical Facilities',
+    description: 'Life Safety in Critical Facilities',
   },
 ];
 
-const AUTHORITY_COMPLIANCE = [
+const AUTHORITY_COMPLIANCE: ComplianceItem[] = [
   {
     code: 'ADDC',
-    name: 'Abu Dhabi Distribution',
+    description: 'Abu Dhabi Distribution',
   },
   {
     code: 'DoE',
-    name: 'Department of Energy',
+    description: 'Department of Energy',
   },
   {
     code: 'ADCDA',
-    name: 'Civil Defence Authority',
+    description: 'Civil Defence Authority',
   },
   {
     code: 'Abu Dhabi Municipality',
-    name: 'Municipal Town Planning',
+    description: 'Municipal Town Planning',
   },
   {
     code: 'DEWA',
-    name: 'Dubai Electricity & Water',
+    description: 'Dubai Electricity & Water',
   },
   {
     code: 'SEWA',
-    name: 'Sharjah Electricity & Water',
+    description: 'Sharjah Electricity & Water',
   },
   {
     code: 'Etihad WE',
-    name: 'Federal Utility (FEWA)',
+    description: 'Federal Utility (FEWA)',
   },
 ];
 
+function ComplianceCard({
+  title,
+  subtitle,
+  items,
+  headerIcon: HeaderIcon,
+  itemIcon: ItemIcon,
+  accent,
+}: {
+  title: string;
+  subtitle: string;
+  items: ComplianceItem[];
+  headerIcon: LucideIcon;
+  itemIcon: LucideIcon;
+  accent: 'blue' | 'green';
+}) {
+  const isBlue = accent === 'blue';
+
+  return (
+    <div className="relative overflow-hidden h-full rounded-2xl bg-white dark:bg-[#0D1117] border border-slate-200/90 dark:border-white/10 shadow-[0_4px_18px_-6px_rgba(10,25,47,0.08)] dark:shadow-[0_6px_22px_-8px_rgba(0,0,0,0.45)] p-5 sm:p-6 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_14px_30px_-10px_rgba(11,101,179,0.16)] motion-reduce:hover:translate-y-0 flex flex-col">
+      <span
+        aria-hidden="true"
+        className={`pointer-events-none absolute top-0 left-0 right-0 h-[3px] ${
+          isBlue ? 'bg-[#0B65B3]' : 'bg-[#8DC63F]'
+        }`}
+      />
+
+      {/* Header */}
+      <div className="flex items-center gap-3.5 pb-4 border-b border-slate-200/80 dark:border-white/[0.08]">
+        <div
+          className={`w-11 h-11 rounded-xl border flex items-center justify-center shrink-0 ${
+            isBlue
+              ? 'bg-[#0B65B3]/10 dark:bg-[#0B65B3]/20 border-[#0B65B3]/20 dark:border-[#0B65B3]/35 text-[#0B65B3] dark:text-[#60A5FA]'
+              : 'bg-[#8DC63F]/15 border-[#8DC63F]/30 text-[#5B8C1E] dark:text-[#8DC63F]'
+          }`}
+        >
+          <HeaderIcon className="w-5 h-5" aria-hidden="true" />
+        </div>
+        <div>
+          <h2 className="text-lg sm:text-xl font-bold text-[#0A192F] dark:text-white tracking-[-0.015em] leading-tight">
+            {title}
+          </h2>
+          <p className="text-[13px] sm:text-sm font-normal text-[#475569] dark:text-[#A9B4C0] mt-0.5">
+            {subtitle}
+          </p>
+        </div>
+      </div>
+
+      {/* Symmetrical 2-Column Item Grid (odd final entry spans full width) */}
+      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 flex-1">
+        {items.map((item, idx) => {
+          const isLastOdd = idx === items.length - 1 && items.length % 2 === 1;
+          return (
+            <li
+              key={item.code}
+              className={`flex items-start gap-3 px-3.5 py-3 rounded-xl bg-[#F4F8FC]/85 hover:bg-[#EAF2FA] dark:bg-white/[0.03] dark:hover:bg-white/[0.06] border border-slate-200/75 dark:border-white/[0.07] transition-colors duration-150 ${
+                isLastOdd ? 'sm:col-span-2' : ''
+              }`}
+            >
+              <span
+                className={`mt-0.5 w-6 h-6 rounded-lg flex items-center justify-center shrink-0 ${
+                  isBlue
+                    ? 'bg-[#0B65B3]/10 dark:bg-[#0B65B3]/20 text-[#0B65B3] dark:text-[#60A5FA]'
+                    : 'bg-[#8DC63F]/15 text-[#5B8C1E] dark:text-[#8DC63F]'
+                }`}
+              >
+                <ItemIcon className="w-3.5 h-3.5 stroke-[2.25]" aria-hidden="true" />
+              </span>
+              <div className="min-w-0">
+                <span className="block text-[14.5px] sm:text-[15px] font-bold text-[#0A192F] dark:text-white leading-snug">
+                  {item.code}
+                </span>
+                <span className="block text-[13px] font-normal text-[#475569] dark:text-[#CBD5E1] leading-snug mt-0.5">
+                  {item.description}
+                </span>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+}
+
+/**
+ * Shared top engineering credentials section displaying international LPS
+ * standards and UAE utility / civil defence authority compliance bodies.
+ */
 export default function StandardsCompliance() {
   return (
     <section
+      id="standards-compliance"
       aria-label="LPS Standards and Authority Compliance"
-      className="py-12 md:py-20 lg:py-24 bg-[#050608] relative border-b border-slate-200 dark:border-[#1F2937]/80"
+      className="py-8 sm:py-10 lg:py-12 bg-[#F4F8FC] dark:bg-[#080C14] border-b border-slate-200/80 dark:border-white/[0.08]"
     >
-      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Compact, High-Visibility Standards & Authority Compliance Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-[80rem] mx-auto">
-          {/* Card 1: LPS Standards (Clean White Card with Lightweight Border & Smooth Shadow) */}
-          <Reveal staggerIndex={1}>
-            <div className="standards-clean-card group relative h-full rounded-2xl bg-white dark:bg-[#0D1117] border border-slate-200/90 dark:border-white/10 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-white/25 transition-all duration-200 ease-out hover:-translate-y-[3px] motion-reduce:hover:translate-y-0 p-5 sm:p-6 flex flex-col justify-between">
-              <div className="relative z-10 space-y-4">
-                {/* Card Header */}
-                <div className="flex items-center justify-between pb-3.5 border-b border-slate-200/80 dark:border-white/[0.08]">
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-lg bg-[#0B65B3]/10 dark:bg-[#0B65B3]/20 border border-[#0B65B3]/20 dark:border-[#0B65B3]/30 flex items-center justify-center text-[#0B65B3] dark:text-[#8DC63F] transition-colors duration-150">
-                      <ShieldCheck className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <h3 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white tracking-tight">
-                        100% LPS Standards Adherent
-                      </h3>
-                      <p className="text-xs font-normal text-slate-500 dark:text-[#A9B4C0]">International Engineering Codes</p>
-                    </div>
-                  </div>
-                </div>
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+          <ComplianceCard
+            title="100% LPS Standards Adherent"
+            subtitle="International Engineering Codes"
+            items={LPS_STANDARDS}
+            headerIcon={ShieldCheck}
+            itemIcon={Check}
+            accent="blue"
+          />
 
-                {/* Standards 2-Column Compact Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  {LPS_STANDARDS.map((std, idx) => {
-                    const isLastOdd = idx === LPS_STANDARDS.length - 1;
-                    return (
-                      <div
-                        key={idx}
-                        className={`flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl bg-slate-50/80 dark:bg-white/[0.025] border border-slate-200/70 dark:border-white/[0.06] transition-colors duration-150 ${
-                          isLastOdd ? 'sm:col-span-2' : ''
-                        }`}
-                      >
-                        <div className="flex items-center gap-2.5 min-w-0">
-                          <div className="w-5 h-5 rounded bg-[#0B65B3]/10 dark:bg-[#0B65B3]/20 flex items-center justify-center shrink-0 text-[#0B65B3] dark:text-[#8DC63F]">
-                            <Zap className="w-3 h-3" />
-                          </div>
-                          <div className="min-w-0">
-                            <span className="block text-xs sm:text-[13px] font-semibold text-slate-900 dark:text-white truncate">
-                              {std.code}
-                            </span>
-                            <span className="block text-[11px] font-normal text-slate-500 dark:text-[#94A3B8] truncate">
-                              {std.title}
-                            </span>
-                          </div>
-                        </div>
-                        <span className="shrink-0 text-[10px] font-semibold text-[#5B8C1E] dark:text-[#8DC63F] bg-[#8DC63F]/10 px-1.5 py-0.5 rounded border border-[#8DC63F]/20">
-                          ✓
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Card 2: Authority Compliance (Clean White Card with Lightweight Border & Smooth Shadow) */}
-          <Reveal staggerIndex={2}>
-            <div className="standards-clean-card group relative h-full rounded-2xl bg-white dark:bg-[#0D1117] border border-slate-200/90 dark:border-white/10 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-white/25 transition-all duration-200 ease-out hover:-translate-y-[3px] motion-reduce:hover:translate-y-0 p-5 sm:p-6 flex flex-col justify-between">
-              <div className="relative z-10 space-y-4">
-                {/* Card Header */}
-                <div className="flex items-center justify-between pb-3.5 border-b border-slate-200/80 dark:border-white/[0.08]">
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-lg bg-[#8DC63F]/15 border border-[#8DC63F]/25 flex items-center justify-center text-[#5B8C1E] dark:text-[#8DC63F] transition-colors duration-150">
-                      <Building2 className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <h3 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white tracking-tight">
-                        Authority Compliance
-                      </h3>
-                      <p className="text-xs font-normal text-slate-500 dark:text-[#A9B4C0]">UAE Utility & Civil Defence Bodies</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Authorities 2-Column Compact Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  {AUTHORITY_COMPLIANCE.map((auth, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl bg-slate-50/80 dark:bg-white/[0.025] border border-slate-200/70 dark:border-white/[0.06] transition-colors duration-150"
-                    >
-                      <div className="flex items-center gap-2.5 min-w-0">
-                        <div className="w-5 h-5 rounded bg-[#8DC63F]/15 flex items-center justify-center shrink-0 text-[#5B8C1E] dark:text-[#8DC63F]">
-                          <FileCheck className="w-3 h-3" />
-                        </div>
-                        <div className="min-w-0">
-                          <span className="block text-xs sm:text-[13px] font-semibold text-slate-900 dark:text-white truncate">
-                            {auth.code}
-                          </span>
-                          {auth.name && (
-                            <span className="block text-[11px] font-normal text-slate-500 dark:text-[#94A3B8] truncate">
-                              {auth.name}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Bottom Compact Assurance Strip */}
-              <div className="relative z-10 mt-4 pt-3 border-t border-slate-200/80 dark:border-white/[0.06] flex items-center justify-between text-xs text-slate-500 dark:text-[#94A3B8]">
-                <span className="flex items-center gap-1.5 text-slate-700 dark:text-white/80">
-                  <Award className="w-3.5 h-3.5 text-[#5B8C1E] dark:text-[#8DC63F]" />
-                  <span>Authority Clearances Approved</span>
-                </span>
-                <span className="text-[#0B65B3] dark:text-[#8DC63F] font-semibold">All UAE Authority</span>
-              </div>
-            </div>
-          </Reveal>
+          <ComplianceCard
+            title="Authority Compliance"
+            subtitle="UAE Utility & Civil Defence Bodies"
+            items={AUTHORITY_COMPLIANCE}
+            headerIcon={Building2}
+            itemIcon={FileCheck}
+            accent="green"
+          />
         </div>
       </div>
     </section>
