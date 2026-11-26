@@ -7,22 +7,28 @@ import { usePathname } from 'next/navigation';
 import { useEnquiryModal } from '@/components/modals/EnquiryModalProvider';
 import { dictionary } from '@/lib/dictionary';
 import { Send } from 'lucide-react';
-import { FaPhoneIcon, FaEnvelopeIcon } from '@/components/ui/FaIcons';
+import { FaPhoneIcon, FaWhatsappIcon, FaEnvelopeIcon } from '@/components/ui/FaIcons';
 import LightningButton from '@/components/ui/LightningButton';
 import ThemeToggle from '@/components/theme/ThemeToggle';
 
-const TOP_BAR_PHONES = [
+const TOP_BAR_ACTIONS = [
   {
-    display: '+971 7 204 2763',
-    tel: '+97172042763',
-    title: 'Call Office Landline (+971 7 204 2763)',
-    ariaLabel: 'Call Vision Energy office landline +971 7 204 2763',
+    key: 'landline',
+    href: 'tel:+97172042763',
+    external: false,
+    title: 'Call Office Land Phone (+971 7 204 2763)',
+    ariaLabel: 'Call Vision Energy office land phone +971 7 204 2763',
+    icon: FaPhoneIcon,
+    iconClass: 'w-3.5 h-3.5 sm:w-4 sm:h-4',
   },
   {
-    display: '+971 50 768 6700',
-    tel: '+971507686700',
-    title: 'Call Mobile & WhatsApp (+971 50 768 6700)',
-    ariaLabel: 'Call Vision Energy mobile +971 50 768 6700',
+    key: 'whatsapp',
+    href: 'https://wa.me/971507686700',
+    external: true,
+    title: 'Chat on WhatsApp (+971 50 768 6700)',
+    ariaLabel: 'Chat with Vision Energy on WhatsApp +971 50 768 6700',
+    icon: FaWhatsappIcon,
+    iconClass: 'w-4 h-4 sm:w-[17px] sm:h-[17px]',
   },
 ] as const;
 
@@ -183,90 +189,42 @@ export default function Header() {
               : 'max-h-0 opacity-0 -translate-y-full border-b-0 pointer-events-none'
           }`}
         >
-          {/* Mobile View: Infinite Smooth Marquee (<md) */}
-          <div className="md:hidden relative flex items-center h-[34px] overflow-hidden">
-            {/* Subtle left/right fade gradients */}
-            <div
-              className="pointer-events-none absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-[#8DC63F] to-transparent z-10"
-              aria-hidden="true"
-            />
-            <div
-              className="pointer-events-none absolute right-0 top-0 bottom-0 w-4 bg-gradient-to-l from-[#8DC63F] to-transparent z-10"
-              aria-hidden="true"
-            />
-
-            {/* Seamless Infinite Marquee Track (2 copies, copy 2 aria-hidden) */}
-            <div className="animate-marquee-fast flex items-center text-[11.5px] font-semibold py-1">
-              {/* Copy 1 */}
-              <div className="flex items-center divide-x divide-[#0A192F]/20 shrink-0">
-                {TOP_BAR_PHONES.map((phone) => (
-                  <a
-                    key={phone.tel}
-                    href={`tel:${phone.tel}`}
-                    className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
-                    title={phone.title}
-                    aria-label={phone.ariaLabel}
-                  >
-                    <FaPhoneIcon className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
-                    <span className="whitespace-nowrap">{phone.display}</span>
-                  </a>
-                ))}
-                <a
-                  href="mailto:info@visionenergyme.com"
-                  className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
-                  title="Email Vision Energy (info@visionenergyme.com)"
-                  aria-label="Email Vision Energy info@visionenergyme.com"
-                >
-                  <FaEnvelopeIcon className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
-                  <span className="whitespace-nowrap">info@visionenergyme.com</span>
-                </a>
-              </div>
-
-              {/* Copy 2 (visual duplicate for seamless loop, hidden from screen readers/Lighthouse) */}
-              <div className="flex items-center divide-x divide-[#0A192F]/20 shrink-0" aria-hidden="true" tabIndex={-1}>
-                {TOP_BAR_PHONES.map((phone) => (
-                  <span key={`dup-${phone.tel}`} className="flex items-center gap-1.5 px-3.5 shrink-0">
-                    <FaPhoneIcon className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
-                    <span className="whitespace-nowrap">{phone.display}</span>
-                  </span>
-                ))}
-                <span className="flex items-center gap-1.5 px-3.5 shrink-0">
-                  <FaEnvelopeIcon className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
-                  <span className="whitespace-nowrap">info@visionenergyme.com</span>
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Desktop/Tablet Static View (md+) */}
-          <div className="hidden md:block max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Unified Static Bar Across All Screen Sizes: Icon-only Call & WhatsApp + Email */}
+          <div className="max-w-[80rem] mx-auto px-3.5 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-[36px] sm:h-[40px] text-xs sm:text-[13px] font-semibold">
-              {/* Left side: Both Phone Numbers with Vertical Divider */}
-              <div className="flex items-center divide-x divide-[#0A192F]/20 py-1">
-                {TOP_BAR_PHONES.map((phone, idx) => (
-                  <a
-                    key={`desktop-${phone.tel}`}
-                    href={`tel:${phone.tel}`}
-                    className={`flex items-center gap-2 shrink-0 hover:text-black transition-colors ${
-                      idx === 0 ? 'pr-3.5 sm:pr-4' : 'pl-3.5 sm:pl-4'
-                    }`}
-                    title={phone.title}
-                  >
-                    <FaPhoneIcon className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
-                    <span>{phone.display}</span>
-                  </a>
-                ))}
+              {/* Left side: Phone & WhatsApp Icon Links */}
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                {TOP_BAR_ACTIONS.map((action, idx) => {
+                  const IconComponent = action.icon;
+                  return (
+                    <React.Fragment key={action.key}>
+                      <a
+                        href={action.href}
+                        target={action.external ? '_blank' : undefined}
+                        rel={action.external ? 'noopener noreferrer' : undefined}
+                        className="inline-flex items-center justify-center w-8 h-7 sm:w-8 sm:h-8 rounded-md hover:bg-[#0A192F]/10 hover:text-black active:scale-95 transition-all shrink-0"
+                        title={action.title}
+                        aria-label={action.ariaLabel}
+                      >
+                        <IconComponent className={`${action.iconClass} text-[#0A192F] shrink-0`} />
+                      </a>
+                      {idx === 0 && (
+                        <span className="h-3.5 w-px bg-[#0A192F]/25 shrink-0" aria-hidden="true" />
+                      )}
+                    </React.Fragment>
+                  );
+                })}
               </div>
 
               {/* Right side: Email */}
-              <div className="flex items-center py-1">
+              <div className="flex items-center py-1 min-w-0">
                 <a
                   href="mailto:info@visionenergyme.com"
-                  className="flex items-center gap-2 hover:text-black transition-colors"
+                  className="flex items-center gap-1.5 sm:gap-2 hover:text-black transition-colors truncate"
                   title="Email Vision Energy (info@visionenergyme.com)"
                 >
                   <FaEnvelopeIcon className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
-                  <span>info@visionenergyme.com</span>
+                  <span className="truncate">info@visionenergyme.com</span>
                 </a>
               </div>
             </div>
