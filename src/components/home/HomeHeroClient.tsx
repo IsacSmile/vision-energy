@@ -466,69 +466,67 @@ export default function HomeHeroClient() {
       {/* ============================================================ */}
       {/* MAIN HERO CONTENT                                            */}
       {/* ============================================================ */}
-      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-center py-2.5 sm:py-4 lg:py-3">
-        <div className="max-w-[56rem] min-w-0 flex flex-col justify-center space-y-3 sm:space-y-3.5 lg:space-y-5 text-left">
-          <div className="space-y-3 sm:space-y-3.5 lg:space-y-4">
-              {/* Executive Heritage & Regional Coverage Strip */}
-              <div
-                data-preserve-contrast="true"
-                className="inline-flex flex-wrap items-center gap-x-2.5 gap-y-1 px-3.5 py-1.5 rounded-full bg-[#071122]/82 backdrop-blur-md border border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.16),0_10px_28px_rgba(0,0,0,0.35)] text-[11px] sm:text-xs tracking-wide w-fit max-w-full"
-              >
-                <span className="inline-flex items-center gap-1.5">
-                  <span
-                    className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] shadow-[0_0_8px_rgba(141,198,63,0.9)] shrink-0"
-                    aria-hidden="true"
-                  />
-                  <span className="font-extrabold text-[#8DC63F] tabular-nums">2018</span>
-                  <span className="font-semibold text-white">Established</span>
-                </span>
-                <span className="w-px h-3.5 bg-white/25 shrink-0" aria-hidden="true" />
-                <span className="inline-flex items-center gap-1.5">
-                  <Globe className="w-3.5 h-3.5 text-[#8DC63F] shrink-0" aria-hidden="true" />
-                  <span className="font-bold text-white">UAE GCC</span>
-                  <span className="font-medium text-[#CBD5E1]">Coverage</span>
-                </span>
-              </div>
+      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-center py-2.5 sm:py-6 lg:py-8">
+        <div className="max-w-[56rem] min-w-0 flex flex-col justify-center text-left">
+          {/* Executive Heritage & Regional Coverage Strip */}
+          <div
+            data-preserve-contrast="true"
+            className="mb-3 sm:mb-5 lg:mb-6 inline-flex flex-wrap items-center gap-x-2.5 gap-y-1 px-3.5 py-1.5 rounded-full bg-[#071122]/82 backdrop-blur-md border border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.16),0_10px_28px_rgba(0,0,0,0.35)] text-[11px] sm:text-xs tracking-wide w-fit max-w-full"
+          >
+            <span className="inline-flex items-center gap-1.5">
+              <span
+                className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] shadow-[0_0_8px_rgba(141,198,63,0.9)] shrink-0"
+                aria-hidden="true"
+              />
+              <span className="font-extrabold text-[#8DC63F] tabular-nums">2018</span>
+              <span className="font-semibold text-white">Established</span>
+            </span>
+            <span className="w-px h-3.5 bg-white/25 shrink-0" aria-hidden="true" />
+            <span className="inline-flex items-center gap-1.5">
+              <Globe className="w-3.5 h-3.5 text-[#8DC63F] shrink-0" aria-hidden="true" />
+              <span className="font-bold text-white">UAE GCC</span>
+              <span className="font-medium text-[#CBD5E1]">Coverage</span>
+            </span>
+          </div>
 
-              {/* Dynamic Slide H1 Headline */}
-              <h1
-                key={`title-${currentSlide}`}
-                className="font-bold tracking-[-0.025em] leading-[1.12] sm:leading-[1.1] animate-fadeIn text-left"
-              >
-                <span
-                  className="block text-white text-[clamp(1.55rem,7.2vw,1.95rem)] sm:text-[2.25rem] md:text-[2.625rem] lg:text-[clamp(2.35rem,3.6vw,3.15rem)] xl:text-[3.25rem]"
-                  style={{
-                    textShadow: '0 2px 16px rgba(5,10,20,0.95), 0 1px 3px rgba(5,10,20,0.9)',
-                  }}
-                >
-                  {activeSlide.titleLine1}
-                </span>
-                <span
-                  data-accent-text="true"
-                  className="block font-extrabold text-[#8DC63F] text-[clamp(1.55rem,7.2vw,1.95rem)] sm:text-[2.25rem] md:text-[2.625rem] lg:text-[clamp(2.35rem,3.6vw,3.15rem)] xl:text-[3.25rem] mt-1"
-                  style={{
-                    textShadow: '0 0 28px rgba(141,198,63,0.35), 0 2px 14px rgba(5,10,20,0.95)',
-                  }}
-                >
-                  {activeSlide.titleLine2}
-                </span>
-              </h1>
+          {/* Dynamic Slide H1 Headline */}
+          <h1
+            key={`title-${currentSlide}`}
+            className="mb-3 sm:mb-5 lg:mb-5 font-bold tracking-[-0.025em] leading-[1.12] sm:leading-[1.1] animate-fadeIn text-left"
+          >
+            <span
+              className="block text-white text-[clamp(1.55rem,7.2vw,1.95rem)] sm:text-[2.25rem] md:text-[2.625rem] lg:text-[clamp(2.35rem,3.6vw,3.15rem)] xl:text-[3.25rem]"
+              style={{
+                textShadow: '0 2px 16px rgba(5,10,20,0.95), 0 1px 3px rgba(5,10,20,0.9)',
+              }}
+            >
+              {activeSlide.titleLine1}
+            </span>
+            <span
+              data-accent-text="true"
+              className="block font-extrabold text-[#8DC63F] text-[clamp(1.55rem,7.2vw,1.95rem)] sm:text-[2.25rem] md:text-[2.625rem] lg:text-[clamp(2.35rem,3.6vw,3.15rem)] xl:text-[3.25rem] mt-1.5"
+              style={{
+                textShadow: '0 0 28px rgba(141,198,63,0.35), 0 2px 14px rgba(5,10,20,0.95)',
+              }}
+            >
+              {activeSlide.titleLine2}
+            </span>
+          </h1>
 
-              {/* Enlarged Hero Description */}
-              <div key={`desc-${currentSlide}`} className="animate-fadeIn max-w-[58ch]">
-                <p
-                  className="text-[#E2E8F0] font-normal text-[15.5px] sm:text-[17.5px] lg:text-[19px] xl:text-[20px] leading-[1.6]"
-                  style={{
-                    textShadow: '0 2px 14px rgba(5,10,20,0.95)',
-                  }}
-                >
-                  {activeSlide.description}
-                </p>
-              </div>
-            </div>
+          {/* Enlarged Hero Description */}
+          <div key={`desc-${currentSlide}`} className="mb-4 sm:mb-7 lg:mb-8 animate-fadeIn max-w-[58ch]">
+            <p
+              className="text-[#E2E8F0] font-normal text-[15.5px] sm:text-[17.5px] lg:text-[19px] xl:text-[20px] leading-[1.6]"
+              style={{
+                textShadow: '0 2px 14px rgba(5,10,20,0.95)',
+              }}
+            >
+              {activeSlide.description}
+            </p>
+          </div>
 
-            {/* Action Buttons (Single horizontal row when space permits; wraps cleanly without text truncation on narrow screens) */}
-            <div className="pt-1 lg:pt-0 flex flex-wrap sm:flex-nowrap items-center gap-2 sm:gap-3.5 w-full sm:w-auto">
+          {/* Action Buttons (Single horizontal row when space permits; wraps cleanly without text truncation on narrow screens) */}
+          <div className="flex flex-wrap sm:flex-nowrap items-center gap-2.5 sm:gap-4 w-full sm:w-auto">
               <Link
                 href={activeSlide.ctaLink}
                 className="flex-auto sm:flex-none min-w-0 inline-flex items-center justify-center gap-1.5 sm:gap-2 h-[44px] sm:h-[48px] px-3 sm:px-6 rounded-xl bg-[#8DC63F] hover:bg-[#9BD34E] text-[#07111E] text-[11.5px] min-[390px]:text-[12.5px] sm:text-sm font-bold shadow-[0_10px_28px_rgba(141,198,63,0.35)] hover:shadow-[0_12px_32px_rgba(141,198,63,0.5)] transition-all active:scale-[0.98] whitespace-nowrap"
@@ -558,12 +556,12 @@ export default function HomeHeroClient() {
       {/* ============================================================ */}
       {/* FULL-WIDTH ALL CATEGORY SLIDER BOXES                         */}
       {/* ============================================================ */}
-      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 pb-5 sm:pb-7 lg:pb-8">
+      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 pt-1 sm:pt-3 lg:pt-4 pb-4 sm:pb-8 lg:pb-10">
         <div
           ref={tabsRailRef}
           data-light-surface="true"
           onTouchStart={(e) => e.stopPropagation()}
-          className="w-full flex flex-nowrap sm:flex-wrap items-center gap-2 sm:gap-2.5 overflow-x-auto sm:overflow-visible no-scrollbar"
+          className="w-full flex flex-nowrap sm:flex-wrap items-center gap-2 sm:gap-2.5 xl:gap-3 overflow-x-auto sm:overflow-visible no-scrollbar"
           role="tablist"
           aria-label="Hero product & solution categories"
         >
