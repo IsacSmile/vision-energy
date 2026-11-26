@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import BrandImage from '@/components/ui/BrandImage';
-import { X, Send, CheckCircle2, AlertCircle, Loader2, Copy, Check, ArrowLeft, Phone } from 'lucide-react';
+import { X, Send, CheckCircle2, AlertCircle, Loader2, Copy, Check, ArrowLeft } from 'lucide-react';
+import { FaPhoneIcon } from '@/components/ui/FaIcons';
 import { CategoryExplorerItem } from './ProductsExplorer';
 import { getGroupIcon } from '@/lib/group-icons';
 import { getCategoryPlaceholder } from '@/lib/utils/placeholders';
@@ -392,11 +393,11 @@ export default function ProductPreviewModal({
                 <div className="flex items-center justify-between text-xs text-[#A9B4C0] px-1">
                   <span>Fast response within 24 hours</span>
                   <a
-                    href="tel:+971501234567"
+                    href="tel:+97172042763"
                     className="inline-flex items-center gap-1.5 text-[#8DC63F] hover:underline font-semibold"
                   >
-                    <Phone className="w-3 h-3" />
-                    <span>Call: +971 50 123 4567</span>
+                    <FaPhoneIcon className="w-3 h-3" />
+                    <span>Call: +971 7 204 2763</span>
                   </a>
                 </div>
               </div>

@@ -2,9 +2,9 @@ export const dictionary = {
   company: {
     name: 'VISION ENERGY INTERNATIONAL',
     tagline: 'Redefined, Innovative And Quality Assured Engineering Product Solutions',
-    phones: ['+971 7 204 2763', '+971 54 700 4616'],
+    phones: ['+971 7 204 2763', '+971 50 768 6700'],
     primaryPhone: '+971 7 204 2763',
-    secondaryPhone: '+971 54 700 4616',
+    secondaryPhone: '+971 50 768 6700',
     email: 'info@visionenergyme.com',
     website: 'www.visionenergyme.com',
     locations: ['Abu Dhabi', 'Dubai', 'Ras Al Khaimah'],

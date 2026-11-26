@@ -149,7 +149,7 @@ export default async function RootLayout({
     image: 'https://www.visionenergyme.com/images/products-collage-banner.jpg',
     description:
       'Authorised UAE distributor & engineering specialist in lightning protection, low-impedance earthing networks, electrical equipment, generator machinery, and heavy equipment support across Dubai and all Emirates.',
-    telephone: '+971 50 123 4567',
+    telephone: '+971 7 204 2763',
     email: 'info@visionenergyme.com',
     priceRange: '$$$',
     address: {
@@ -185,14 +185,14 @@ export default async function RootLayout({
     contactPoint: [
       {
         '@type': 'ContactPoint',
-        telephone: '+971 50 123 4567',
+        telephone: '+971 7 204 2763',
         contactType: 'sales',
         areaServed: 'AE',
         availableLanguage: ['English', 'Arabic'],
       },
       {
         '@type': 'ContactPoint',
-        telephone: '+971 54 123 4567',
+        telephone: '+971 50 768 6700',
         contactType: 'customer support',
         areaServed: 'AE',
         availableLanguage: ['English', 'Arabic'],

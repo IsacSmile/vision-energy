@@ -35,7 +35,7 @@ const contactPageSchema = {
   mainEntity: {
     '@type': 'LocalBusiness',
     name: 'Vision Energy International',
-    telephone: '+971 50 123 4567',
+    telephone: '+971 7 204 2763',
     email: 'info@visionenergyme.com',
     address: {
       '@type': 'PostalAddress',

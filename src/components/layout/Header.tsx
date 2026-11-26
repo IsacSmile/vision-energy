@@ -6,9 +6,25 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useEnquiryModal } from '@/components/modals/EnquiryModalProvider';
 import { dictionary } from '@/lib/dictionary';
-import { Phone, Mail, Send } from 'lucide-react';
+import { Send } from 'lucide-react';
+import { FaPhoneIcon, FaEnvelopeIcon } from '@/components/ui/FaIcons';
 import LightningButton from '@/components/ui/LightningButton';
 import ThemeToggle from '@/components/theme/ThemeToggle';
+
+const TOP_BAR_PHONES = [
+  {
+    display: '+971 7 204 2763',
+    tel: '+97172042763',
+    title: 'Call Office Landline (+971 7 204 2763)',
+    ariaLabel: 'Call Vision Energy office landline +971 7 204 2763',
+  },
+  {
+    display: '+971 50 768 6700',
+    tel: '+971507686700',
+    title: 'Call Mobile & WhatsApp (+971 50 768 6700)',
+    ariaLabel: 'Call Vision Energy mobile +971 50 768 6700',
+  },
+] as const;
 
 export default function Header() {
   const pathname = usePathname() || '';
@@ -183,47 +199,39 @@ export default function Header() {
             <div className="animate-marquee-fast flex items-center text-[11.5px] font-semibold py-1">
               {/* Copy 1 */}
               <div className="flex items-center divide-x divide-[#0A192F]/20 shrink-0">
-                <a
-                  href="tel:+971501234567"
-                  className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
-                  title="Call Vision Energy (+971 50 123 4567)"
-                  aria-label="Call Vision Energy primary line +971 50 123 4567"
-                >
-                  <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
-                  <span className="whitespace-nowrap">+971 50 123 4567</span>
-                </a>
-                <a
-                  href="tel:+971541234567"
-                  className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
-                  title="Call Vision Energy (+971 54 123 4567)"
-                  aria-label="Call Vision Energy secondary line +971 54 123 4567"
-                >
-                  <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
-                  <span className="whitespace-nowrap">+971 54 123 4567</span>
-                </a>
+                {TOP_BAR_PHONES.map((phone) => (
+                  <a
+                    key={phone.tel}
+                    href={`tel:${phone.tel}`}
+                    className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
+                    title={phone.title}
+                    aria-label={phone.ariaLabel}
+                  >
+                    <FaPhoneIcon className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                    <span className="whitespace-nowrap">{phone.display}</span>
+                  </a>
+                ))}
                 <a
                   href="mailto:info@visionenergyme.com"
                   className="flex items-center gap-1.5 px-3.5 shrink-0 hover:text-black transition-colors"
                   title="Email Vision Energy (info@visionenergyme.com)"
                   aria-label="Email Vision Energy info@visionenergyme.com"
                 >
-                  <Mail className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                  <FaEnvelopeIcon className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
                   <span className="whitespace-nowrap">info@visionenergyme.com</span>
                 </a>
               </div>
 
               {/* Copy 2 (visual duplicate for seamless loop, hidden from screen readers/Lighthouse) */}
               <div className="flex items-center divide-x divide-[#0A192F]/20 shrink-0" aria-hidden="true" tabIndex={-1}>
+                {TOP_BAR_PHONES.map((phone) => (
+                  <span key={`dup-${phone.tel}`} className="flex items-center gap-1.5 px-3.5 shrink-0">
+                    <FaPhoneIcon className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                    <span className="whitespace-nowrap">{phone.display}</span>
+                  </span>
+                ))}
                 <span className="flex items-center gap-1.5 px-3.5 shrink-0">
-                  <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
-                  <span className="whitespace-nowrap">+971 50 123 4567</span>
-                </span>
-                <span className="flex items-center gap-1.5 px-3.5 shrink-0">
-                  <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
-                  <span className="whitespace-nowrap">+971 54 123 4567</span>
-                </span>
-                <span className="flex items-center gap-1.5 px-3.5 shrink-0">
-                  <Mail className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                  <FaEnvelopeIcon className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
                   <span className="whitespace-nowrap">info@visionenergyme.com</span>
                 </span>
               </div>
@@ -235,25 +243,19 @@ export default function Header() {
             <div className="flex items-center justify-between h-[36px] sm:h-[40px] text-xs sm:text-[13px] font-semibold">
               {/* Left side: Both Phone Numbers with Vertical Divider */}
               <div className="flex items-center divide-x divide-[#0A192F]/20 py-1">
-                {/* Telephone 1 */}
-                <a
-                  href="tel:+971501234567"
-                  className="flex items-center gap-2 pr-3.5 sm:pr-4 shrink-0 hover:text-black transition-colors"
-                  title="Call Vision Energy (+971 50 123 4567)"
-                >
-                  <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
-                  <span>+971 50 123 4567</span>
-                </a>
-
-                {/* Telephone 2 */}
-                <a
-                  href="tel:+971541234567"
-                  className="flex items-center gap-2 pl-3.5 sm:pl-4 shrink-0 hover:text-black transition-colors"
-                  title="Call Vision Energy (+971 54 123 4567)"
-                >
-                  <Phone className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
-                  <span>+971 54 123 4567</span>
-                </a>
+                {TOP_BAR_PHONES.map((phone, idx) => (
+                  <a
+                    key={`desktop-${phone.tel}`}
+                    href={`tel:${phone.tel}`}
+                    className={`flex items-center gap-2 shrink-0 hover:text-black transition-colors ${
+                      idx === 0 ? 'pr-3.5 sm:pr-4' : 'pl-3.5 sm:pl-4'
+                    }`}
+                    title={phone.title}
+                  >
+                    <FaPhoneIcon className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                    <span>{phone.display}</span>
+                  </a>
+                ))}
               </div>
 
               {/* Right side: Email */}
@@ -263,7 +265,7 @@ export default function Header() {
                   className="flex items-center gap-2 hover:text-black transition-colors"
                   title="Email Vision Energy (info@visionenergyme.com)"
                 >
-                  <Mail className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                  <FaEnvelopeIcon className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
                   <span>info@visionenergyme.com</span>
                 </a>
               </div>
@@ -330,7 +332,7 @@ export default function Header() {
               variant="primary"
               size="md"
               href={`tel:${dictionary.company.primaryPhone}`}
-              iconLeft={<Phone className="w-4 h-4 text-[#8DC63F]" />}
+              iconLeft={<FaPhoneIcon className="w-4 h-4 text-[#8DC63F]" />}
               id="header-call-button"
             >
               {dictionary.nav.callNow}
@@ -343,10 +345,11 @@ export default function Header() {
 
             <a
               href={`tel:${dictionary.company.primaryPhone}`}
+              data-preserve-contrast="true"
               className="w-[44px] h-[44px] flex items-center justify-center rounded-xl bg-[#0B65B3] hover:bg-[#095292] border border-[#8DC63F]/50 hover:border-[#8DC63F] hover:shadow-[0_0_16px_rgba(141,198,63,0.4)] focus-visible:ring-2 focus-visible:ring-[#8DC63F] active-press shadow-md transition-all"
               aria-label="Call Vision Energy"
             >
-              <Phone className="w-5 h-5 text-[#8DC63F]" />
+              <FaPhoneIcon className="w-4 h-4 text-[#8DC63F]" />
             </a>
 
             {/* Single Toggle Button with Animated Hamburger-to-X */}
@@ -443,7 +446,7 @@ export default function Header() {
               size="md"
               href={`tel:${dictionary.company.primaryPhone}`}
               onClick={() => setMobileMenuOpen(false)}
-              iconLeft={<Phone className="w-4 h-4 text-[#8DC63F]" />}
+              iconLeft={<FaPhoneIcon className="w-3.5 h-3.5 text-[#8DC63F]" />}
               fullWidth
             >
               Call Us
