@@ -481,6 +481,27 @@ export default function HomeHeroClient() {
       <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-center py-2.5 sm:py-4 lg:py-3">
         <div className="max-w-[46rem] min-w-0 flex flex-col justify-center space-y-3 sm:space-y-3.5 lg:space-y-5 text-left">
           <div className="space-y-3 sm:space-y-3.5 lg:space-y-4">
+              {/* Executive Heritage & Regional Coverage Strip */}
+              <div
+                data-preserve-contrast="true"
+                className="inline-flex flex-wrap items-center gap-x-2.5 gap-y-1 px-3.5 py-1.5 rounded-full bg-[#071122]/82 backdrop-blur-md border border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.16),0_10px_28px_rgba(0,0,0,0.35)] text-[11px] sm:text-xs tracking-wide w-fit max-w-full"
+              >
+                <span className="inline-flex items-center gap-1.5">
+                  <span
+                    className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] shadow-[0_0_8px_rgba(141,198,63,0.9)] shrink-0"
+                    aria-hidden="true"
+                  />
+                  <span className="font-extrabold text-[#8DC63F] tabular-nums">2018</span>
+                  <span className="font-semibold text-white">Established</span>
+                </span>
+                <span className="w-px h-3.5 bg-white/25 shrink-0" aria-hidden="true" />
+                <span className="inline-flex items-center gap-1.5">
+                  <Globe className="w-3.5 h-3.5 text-[#8DC63F] shrink-0" aria-hidden="true" />
+                  <span className="font-bold text-white">UAE GCC</span>
+                  <span className="font-medium text-[#CBD5E1]">Coverage</span>
+                </span>
+              </div>
+
               {/* Dynamic Slide H1 Headline */}
               <h1
                 key={`title-${currentSlide}`}
@@ -554,7 +575,7 @@ export default function HomeHeroClient() {
       {/* ============================================================ */}
       {/* FULL-WIDTH ALL CATEGORY SLIDER PILLS                         */}
       {/* ============================================================ */}
-      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 pb-3 sm:pb-3.5">
+      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 pb-5 sm:pb-7 lg:pb-8">
         <div
           ref={tabsRailRef}
           onTouchStart={(e) => e.stopPropagation()}
@@ -614,39 +635,6 @@ export default function HomeHeroClient() {
               </React.Fragment>
             );
           })}
-        </div>
-      </div>
-
-      {/* ============================================================ */}
-      {/* BOTTOM FLOATING WHITE STATS BAR                              */}
-      {/* ============================================================ */}
-      <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 pb-4 sm:pb-5 lg:pb-5 pt-1">
-        <div
-          data-hero-stats-bar="true"
-          data-light-surface="true"
-          className="max-w-[30rem] sm:max-w-[38rem] mx-auto bg-white rounded-2xl shadow-[0_22px_55px_rgba(0,0,0,0.48)] border border-slate-200/90 overflow-hidden"
-        >
-          <div className="grid grid-cols-2 divide-x divide-slate-200">
-            {/* Stat 1: 2018 Established */}
-            <div className="px-4 py-3.5 sm:px-6 sm:py-4 flex flex-col items-center justify-center text-center">
-              <div className="text-xl sm:text-2xl lg:text-[28px] font-extrabold text-[#0A192F] tracking-tight leading-tight">
-                2018
-              </div>
-              <div className="text-[11px] sm:text-xs font-medium text-[#475569] mt-0.5">
-                Established
-              </div>
-            </div>
-
-            {/* Stat 2: UAE & GCC Coverage */}
-            <div className="px-4 py-3.5 sm:px-6 sm:py-4 flex flex-col items-center justify-center text-center">
-              <div className="text-xl sm:text-2xl lg:text-[28px] font-extrabold text-[#0A192F] tracking-tight leading-tight">
-                UAE &amp; GCC
-              </div>
-              <div className="text-[11px] sm:text-xs font-medium text-[#475569] mt-0.5">
-                Coverage
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>

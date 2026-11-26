@@ -669,7 +669,7 @@ html.light [data-hero-section] h1 *,
 html.light [data-hero-section] .text-white,
 html.light #home-hero h1,
 html.light #home-hero h1 > span:not([data-accent-text="true"]),
-html.light #home-hero .text-white:not([data-hero-stats-bar="true"] *):not([data-light-surface="true"] *) {
+html.light #home-hero .text-white:not([data-light-surface="true"] *) {
   color: #FFFFFF !important;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95), 0 1px 3px rgba(0, 0, 0, 0.95);
 }
@@ -678,19 +678,10 @@ html.light #home-hero [data-accent-text="true"] {
   color: #8DC63F !important;
 }
 
-html.light #home-hero [data-hero-stats-bar="true"],
-html.light #home-hero [data-hero-stats-bar="true"] * {
-  text-shadow: none !important;
-}
-
-html.light #home-hero [data-hero-stats-bar="true"] {
-  background-color: #FFFFFF !important;
-}
-
-html.light [data-dark-hero="true"] p:not([data-hero-stats-bar="true"] *):not([data-light-surface="true"] *),
-html.light [data-dark-hero="true"] p *:not([data-hero-stats-bar="true"] *):not([data-light-surface="true"] *),
-html.light [data-dark-hero="true"] [class*="text-[#CBD5E1]"]:not([data-hero-stats-bar="true"] *),
-html.light [data-dark-hero="true"] [class*="text-[#A9B4C0]"]:not([data-hero-stats-bar="true"] *),
+html.light [data-dark-hero="true"] p:not([data-light-surface="true"] *),
+html.light [data-dark-hero="true"] p *:not([data-light-surface="true"] *),
+html.light [data-dark-hero="true"] [class*="text-[#CBD5E1]"],
+html.light [data-dark-hero="true"] [class*="text-[#A9B4C0]"],
 html.light .products-hero p,
 html.light .products-hero p *,
 html.light #products-hero p,
@@ -707,10 +698,10 @@ html.light .service-detail-hero p,
 html.light .service-detail-hero p *,
 html.light .service-detail-hero [class*="text-[#CBD5E1]"],
 html.light .service-detail-hero [class*="text-[#A9B4C0]"],
-html.light [data-hero-section] p:not([data-hero-stats-bar="true"] *):not([data-light-surface="true"] *),
-html.light [data-hero-section] p *:not([data-hero-stats-bar="true"] *):not([data-light-surface="true"] *),
-html.light #home-hero p:not([data-hero-stats-bar="true"] *):not([data-light-surface="true"] *),
-html.light #home-hero p *:not([data-hero-stats-bar="true"] *):not([data-light-surface="true"] *) {
+html.light [data-hero-section] p:not([data-light-surface="true"] *),
+html.light [data-hero-section] p *:not([data-light-surface="true"] *),
+html.light #home-hero p:not([data-light-surface="true"] *),
+html.light #home-hero p *:not([data-light-surface="true"] *) {
   color: #E2E8F0 !important;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.85), 0 1px 2px rgba(0, 0, 0, 0.95);
 }
