@@ -1,10 +1,9 @@
 'use client';
 
 import React from 'react';
-import { ArrowUpRight } from 'lucide-react';
-import Reveal from '@/components/ui/Reveal';
+import '@/app/expertise/expertise.css';
 
-function CommercialIcon({ className = 'w-4 h-4' }: { className?: string }) {
+function CommercialIcon({ className = 'w-5 h-5' }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
       <path d="M3 21h18" />
@@ -16,7 +15,7 @@ function CommercialIcon({ className = 'w-4 h-4' }: { className?: string }) {
   );
 }
 
-function HighRiseIcon({ className = 'w-4 h-4' }: { className?: string }) {
+function HighRiseIcon({ className = 'w-5 h-5' }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
       <path d="M4 21h16" />
@@ -29,7 +28,7 @@ function HighRiseIcon({ className = 'w-4 h-4' }: { className?: string }) {
   );
 }
 
-function WarehouseLogisticsIcon({ className = 'w-4 h-4' }: { className?: string }) {
+function WarehouseLogisticsIcon({ className = 'w-5 h-5' }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
       <path d="M3 20h18" />
@@ -41,7 +40,7 @@ function WarehouseLogisticsIcon({ className = 'w-4 h-4' }: { className?: string 
   );
 }
 
-function IndustrialPlantIcon({ className = 'w-4 h-4' }: { className?: string }) {
+function IndustrialPlantIcon({ className = 'w-5 h-5' }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
       <path d="M3 21h18" />
@@ -55,7 +54,7 @@ function IndustrialPlantIcon({ className = 'w-4 h-4' }: { className?: string }) 
   );
 }
 
-function OilGasIcon({ className = 'w-4 h-4' }: { className?: string }) {
+function OilGasIcon({ className = 'w-5 h-5' }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
       <path d="M3 21h18" />
@@ -69,7 +68,7 @@ function OilGasIcon({ className = 'w-4 h-4' }: { className?: string }) {
   );
 }
 
-function SubstationUtilityIcon({ className = 'w-4 h-4' }: { className?: string }) {
+function SubstationUtilityIcon({ className = 'w-5 h-5' }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
       <path d="M4 22h16" />
@@ -84,7 +83,7 @@ function SubstationUtilityIcon({ className = 'w-4 h-4' }: { className?: string }
   );
 }
 
-function HealthcareInstitutionalIcon({ className = 'w-4 h-4' }: { className?: string }) {
+function HealthcareInstitutionalIcon({ className = 'w-5 h-5' }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
       <path d="M3 21h18" />
@@ -96,7 +95,7 @@ function HealthcareInstitutionalIcon({ className = 'w-4 h-4' }: { className?: st
   );
 }
 
-function ModernVillaIcon({ className = 'w-4 h-4' }: { className?: string }) {
+function ModernVillaIcon({ className = 'w-5 h-5' }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
       <path d="M2 20h20" />
@@ -109,7 +108,7 @@ function ModernVillaIcon({ className = 'w-4 h-4' }: { className?: string }) {
   );
 }
 
-function DefenceMilitaryIcon({ className = 'w-4 h-4' }: { className?: string }) {
+function DefenceMilitaryIcon({ className = 'w-5 h-5' }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
       <path d="M12 2l7 3.5v5.5c0 5-3.5 8.8-7 10.5-3.5-1.7-7-5.5-7-10.5V5.5L12 2z" />
@@ -119,7 +118,7 @@ function DefenceMilitaryIcon({ className = 'w-4 h-4' }: { className?: string }) 
   );
 }
 
-function CriticalDataSecurityIcon({ className = 'w-4 h-4' }: { className?: string }) {
+function CriticalDataSecurityIcon({ className = 'w-5 h-5' }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
       <path d="M12 2l7 3.5v5.5c0 5-3.5 8.8-7 10.5-3.5-1.7-7-5.5-7-10.5V5.5L12 2z" />
@@ -145,54 +144,65 @@ const SECTORS = [
 ];
 
 /**
- * Shared 10-sector UAE & GCC Industries We Serve grid positioned below tabs.
+ * Compact 10-sector grid positioned at the top of /expertise presenting the
+ * facility types Vision Energy supports across the UAE and GCC.
  */
 export default function IndustriesWeServe() {
   return (
     <section
+      id="industries-we-serve"
       aria-labelledby="industries-we-serve-heading"
-      className="py-12 md:py-16 lg:py-20 bg-[#F8FAFC] dark:bg-[#06080D] relative border-b border-slate-200 dark:border-white/[0.08]"
+      className="py-10 sm:py-12 lg:py-14 bg-[#F4F8FC] dark:bg-[#080C14] relative border-b border-slate-200/80 dark:border-white/[0.08]"
     >
-      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-        <Reveal staggerIndex={0}>
-          <div className="text-left">
-            <h2
-              id="industries-we-serve-heading"
-              className="text-2xl sm:text-3xl font-semibold text-slate-900 dark:text-white tracking-tight"
-            >
-              Industries We Serve
-            </h2>
-          </div>
-        </Reveal>
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-7">
+        <div className="flex items-center gap-3">
+          <span className="w-6 h-[2px] bg-[#8DC63F] rounded-full shrink-0" aria-hidden="true" />
+          <h2
+            id="industries-we-serve-heading"
+            className="text-2xl sm:text-3xl font-bold text-[#0A192F] dark:text-white tracking-[-0.02em]"
+          >
+            Industries We Serve
+          </h2>
+        </div>
 
-        <Reveal staggerIndex={1}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 w-full">
-            {SECTORS.map((sector, i) => {
-              const IconComponent = sector.icon;
-              return (
-                <div
-                  key={i}
-                  className="group w-full flex items-center justify-between gap-4 p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#0D1117] border border-slate-200/90 dark:border-white/10 hover:border-slate-300 dark:hover:border-white/25 hover:-translate-y-[3px] motion-reduce:hover:translate-y-0 hover:shadow-md transition-all duration-200 ease-out shadow-sm cursor-default"
-                >
-                  <div className="flex items-center gap-3.5 min-w-0">
-                    <div className="w-10 h-10 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 flex items-center justify-center shrink-0 transition-colors duration-150">
-                      <IconComponent className="w-5 h-5 text-[#0B65B3] dark:text-[#8DC63F]" />
-                    </div>
-                    <span className="text-sm sm:text-[15px] font-semibold text-slate-900 dark:text-white leading-snug">
-                      {sector.name}
-                    </span>
+        {/* Balanced 2x5 grid on desktop, 5x2 grid on mobile/tablet (no trailing orphan slots) */}
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-3.5 sm:gap-4 items-stretch">
+          {SECTORS.map((sector, idx) => {
+            const IconComponent = sector.icon;
+            const isBlue = idx % 2 === 0;
+            return (
+              <div
+                key={sector.name}
+                className={`expertise-card ${isBlue ? 'accent-blue' : ''} group p-4 sm:p-5 flex flex-col justify-between gap-4 h-full`}
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <div
+                    className={`expertise-icon-tile ${
+                      isBlue ? 'expertise-icon-tile-blue' : 'expertise-icon-tile-green'
+                    } w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
+                      isBlue
+                        ? 'bg-[#0B65B3]/10 text-[#0B65B3] dark:bg-[#0B65B3]/20 dark:text-[#60A5FA]'
+                        : 'bg-[#8DC63F]/15 text-[#38700D] dark:text-[#8DC63F]'
+                    }`}
+                  >
+                    <IconComponent className="w-5 h-5" />
                   </div>
-
-                  <div className="w-8 h-8 rounded-full bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] flex items-center justify-center shrink-0 transition-colors duration-150">
-                    <ArrowUpRight className="w-4 h-4 text-slate-500 dark:text-[#A9B4C0] group-hover:text-[#0B65B3] dark:group-hover:text-[#8DC63F]" />
-                  </div>
+                  <span
+                    aria-hidden="true"
+                    className={`w-1.5 h-1.5 rounded-full transition-transform duration-200 group-hover:scale-125 ${
+                      isBlue ? 'bg-[#0B65B3]/35 dark:bg-[#60A5FA]/40' : 'bg-[#8DC63F]/60'
+                    }`}
+                  />
                 </div>
-              );
-            })}
-          </div>
-        </Reveal>
+
+                <span className="text-[13.5px] sm:text-[14.5px] font-semibold text-[#0A192F] dark:text-white leading-[1.4]">
+                  {sector.name}
+                </span>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
 }
-

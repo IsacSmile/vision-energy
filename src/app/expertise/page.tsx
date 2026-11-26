@@ -199,11 +199,11 @@ export default function ExpertisePage() {
         {/* SECTION C: WHY VISION ENERGY (Shared, Top Capability Pillars) */}
         <WhyVisionEnergy />
 
-        {/* SECTION D: INTERACTIVE EXPERTISE TABS */}
-        <ExpertiseClient />
-
-        {/* SECTION E: INDUSTRIES WE SERVE (Shared) */}
+        {/* SECTION D: INDUSTRIES WE SERVE (Shared, Top Sector Matrix) */}
         <IndustriesWeServe />
+
+        {/* SECTION E: INTERACTIVE EXPERTISE TABS */}
+        <ExpertiseClient />
 
         {/* SECTION F: FINAL CTA (Shared) */}
         <FinalCTA variant="minimal" />
