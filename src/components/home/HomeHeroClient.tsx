@@ -35,7 +35,6 @@ interface SlideData {
   ctaLink: string;
   imageUrl: string;
   imageAlt: string;
-  standards: string;
 }
 
 const HERO_SLIDES: SlideData[] = [
@@ -56,7 +55,6 @@ const HERO_SLIDES: SlideData[] = [
       'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361171/06_Earthing_1920x1080.jpg.webp',
     imageAlt:
       'Advanced lightning protection systems - Early Streamer Emission ESE air terminals, conventional copper rods, and surge protection devices SPDs',
-    standards: 'IEC 62305 • BS EN 62305 • NFC 17-102 • NFPA 780',
   },
   {
     id: 'earthing',
@@ -75,7 +73,6 @@ const HERO_SLIDES: SlideData[] = [
       'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361171/06_Earthing_1920x1080.jpg.webp',
     imageAlt:
       'Earthing and grounding solutions - Copper earth rods, exothermic welding, earth pit, and copper tape conductors',
-    standards: 'IEEE 80 • BS 7430 • DEWA Approved',
   },
   {
     id: 'electrical-solutions',
@@ -94,7 +91,6 @@ const HERO_SLIDES: SlideData[] = [
       'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/09_Electrical_1920x1080-optimized.webp',
     imageAlt:
       'Advanced electrical equipment and solutions UAE - Distribution panels, switchgear, cable trays, conduits, and power systems',
-    standards: 'DEWA • SEWA • ISO 9001 Compliant',
   },
   {
     id: 'mechanical-solutions',
@@ -113,7 +109,6 @@ const HERO_SLIDES: SlideData[] = [
       'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/07_Mechanical_1920x1080.jpg.webp',
     imageAlt:
       'Advanced mechanical solutions UAE - Industrial centrifugal water pumps, booster pumps, gate valves, check valves, and pipe fittings',
-    standards: 'ISO 9001 • Industrial Grade • MEP Compliant',
   },
   {
     id: 'laboratory-equipment',
@@ -132,7 +127,6 @@ const HERO_SLIDES: SlideData[] = [
       'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/02_Laboratory_1920x1080.jpg.webp',
     imageAlt:
       'Complete laboratory equipment for research and diagnostics - Microscopes, centrifuges, analytical balances, spectrophotometers, and lab consumables',
-    standards: 'ISO 17025 • GLP • CE Certified',
   },
   {
     id: 'gym-equipment',
@@ -151,7 +145,6 @@ const HERO_SLIDES: SlideData[] = [
       'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/05_Gym_1920x1080-optimized.webp',
     imageAlt:
       'Commercial gym equipment and fitness machinery - Treadmills, strength training machines, power racks, and fitness accessories UAE',
-    standards: 'Commercial Grade • Certified Safety • OEM Support',
   },
   {
     id: 'safety-equipment-supply',
@@ -170,7 +163,6 @@ const HERO_SLIDES: SlideData[] = [
       'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361170/04_Electronics_1920x1080.jpg.webp',
     imageAlt:
       'Workplace protection, automation, and safety equipment supply - Industrial sensors, limit controls, safety relays, and instrumentation',
-    standards: 'EN 397 • ANSI Z87.1 • Civil Defense Approved',
   },
   {
     id: 'industrial-technical-products',
@@ -189,7 +181,6 @@ const HERO_SLIDES: SlideData[] = [
       'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/09_Electrical_1920x1080-optimized.webp',
     imageAlt:
       'Vision Energy - Quality industrial and technical products showroom in UAE: distribution panels, circuit breakers, cable trays, and rigid conduits',
-    standards: 'DEWA • SEWA • ADDC • Civil Defense Compliant',
   },
   {
     id: 'commercial-packaging-solutions',
@@ -208,7 +199,6 @@ const HERO_SLIDES: SlideData[] = [
       'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361170/01_Cables_1920x1080.webp',
     imageAlt:
       'Safety equipment and commercial packaging solutions - Heavy-duty cable drums, spools, coiled conductors, and packaging materials',
-    standards: 'ISO 9001 • Heavy Duty Material • UAE Supply',
   },
   {
     id: 'sports-equipment-solutions',
@@ -227,7 +217,6 @@ const HERO_SLIDES: SlideData[] = [
       'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/05_Gym_1920x1080-optimized.webp',
     imageAlt:
       'Sports equipment and accessories - Premium commercial athletic equipment, dumbbells, weights, rowing machines, and fitness accessories',
-    standards: 'FIFA • FIBA • ITF Approved Standards',
   },
   {
     id: 'delivering-excellence-multiple-sectors',
@@ -246,7 +235,6 @@ const HERO_SLIDES: SlideData[] = [
       'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/08_Solar_1920x1080-optimized.webp',
     imageAlt:
       'Delivering excellence across multiple sectors - Solar PV renewable energy systems, hybrid inverters, battery storage BESS, and sustainable infrastructure',
-    standards: 'DEWA • SEWA • Civil Defense • ISO 9001 Compliant',
   },
 ];
 
@@ -526,21 +514,16 @@ export default function HomeHeroClient() {
                 </span>
               </h1>
 
-              {/* Description & Authority Standards Line */}
-              <div key={`desc-${currentSlide}`} className="animate-fadeIn space-y-2 max-w-[54ch]">
+              {/* Enlarged Hero Description */}
+              <div key={`desc-${currentSlide}`} className="animate-fadeIn max-w-[58ch]">
                 <p
-                  className="text-[#E2E8F0] font-normal text-[13.5px] sm:text-[15px] lg:text-[16px] leading-relaxed"
+                  className="text-[#E2E8F0] font-normal text-[15.5px] sm:text-[17.5px] lg:text-[19px] xl:text-[20px] leading-[1.6]"
                   style={{
                     textShadow: '0 2px 14px rgba(5,10,20,0.95)',
                   }}
                 >
                   {activeSlide.description}
                 </p>
-
-                <div className="inline-flex items-center gap-2 text-[11px] sm:text-xs font-medium text-[#CBD5E1]">
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#8DC63F] shrink-0" aria-hidden="true" />
-                  <span>{activeSlide.standards}</span>
-                </div>
               </div>
             </div>
 
