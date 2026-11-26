@@ -266,8 +266,10 @@ html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band .group:h
 }
 
 html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band .text-\[\#8DC63F\],
-html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band .text-\[\#8DC63F\] * {
+html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band .text-\[\#8DC63F\] *,
+html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band .text-\[\#8DC63F\] svg {
   color: #8dc63f !important;
+  stroke: #8dc63f !important;
 }
 
 /* SubTabs navy track & button contrast (avoids globals.css bg-white/[0.08] light override) */

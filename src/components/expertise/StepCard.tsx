@@ -2,7 +2,16 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { Check } from 'lucide-react';
+import {
+  Activity,
+  Check,
+  CloudLightning,
+  Flame,
+  Landmark,
+  ShieldCheck,
+  Users,
+  Wrench,
+} from 'lucide-react';
 import type {
   ExpertiseImage,
   ExpertiseStep,
@@ -17,6 +26,147 @@ interface StepCardProps {
   step: ExpertiseStep;
   index: number;
   isDarkBand?: boolean;
+}
+
+const RISK_CRITERIA_ICONS = [
+  Users,
+  CloudLightning,
+  Landmark,
+  Activity,
+  Flame,
+  Wrench,
+  ShieldCheck,
+];
+
+function RiskAssessmentShowcase({
+  chart,
+  checklist,
+  paragraphs,
+}: {
+  chart: ExpertiseImage;
+  checklist: string[];
+  paragraphs?: string[];
+}) {
+  return (
+    <div className="space-y-6 pt-1">
+      {/* Top Bento Row: Protection Levels Chart + Navy Compliance Callout */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-stretch">
+        <figure className="group expertise-card accent-blue lg:col-span-7 p-4 sm:p-5 flex flex-col justify-between">
+          <div className="rounded-xl bg-[#F4F8FC] dark:bg-[#0B1220] border border-[#0B65B3]/12 dark:border-white/10 p-3 sm:p-4 flex-1 flex items-center justify-center">
+            <div className="w-full rounded-lg bg-white p-3 sm:p-4 border border-slate-200/75 shadow-[inset_0_1px_4px_rgba(10,25,47,0.05)] overflow-hidden">
+              <div
+                className="relative w-full"
+                style={{ aspectRatio: `${chart.width} / ${chart.height}` }}
+              >
+                <Image
+                  src={chart.src}
+                  alt={chart.alt}
+                  width={chart.width}
+                  height={chart.height}
+                  unoptimized
+                  loading="lazy"
+                  decoding="async"
+                  sizes="(max-width: 1024px) 100vw, 640px"
+                  className="expertise-card-img w-full h-full object-contain"
+                />
+              </div>
+            </div>
+          </div>
+
+          {chart.caption && (
+            <figcaption className="mt-3.5 pt-3 border-t border-slate-100 dark:border-white/10 flex items-center gap-2.5 text-[13px] font-medium text-[#334155] dark:text-[#CBD5E1] leading-snug px-1">
+              <span className="w-2 h-2 rounded-full bg-[#0B65B3] shrink-0" aria-hidden="true" />
+              <span>{chart.caption}</span>
+            </figcaption>
+          )}
+        </figure>
+
+        {paragraphs && paragraphs.length > 0 && (
+          <div
+            data-preserve-contrast="true"
+            className="expertise-navy-band lg:col-span-5 relative overflow-hidden rounded-2xl bg-[linear-gradient(155deg,#0A192F_0%,#0E2544_62%,#0B65B3_135%)] border border-[#8DC63F]/30 p-6 sm:p-7 flex flex-col justify-between gap-6 shadow-[0_14px_34px_-12px_rgba(10,25,47,0.32)]"
+          >
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute top-0 left-0 right-0 h-[3px] bg-[#8DC63F]"
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -top-12 -right-12 w-44 h-44 rounded-full bg-[#8DC63F]/15 blur-2xl"
+            />
+
+            <div className="relative z-10 flex items-center justify-between gap-3 pt-1">
+              <div className="w-12 h-12 rounded-xl bg-[#8DC63F]/15 border border-[#8DC63F]/35 flex items-center justify-center text-[#8DC63F]">
+                <ShieldCheck className="w-6 h-6" aria-hidden="true" />
+              </div>
+              <div className="flex items-center gap-1.5" aria-hidden="true">
+                <span className="w-8 h-1.5 rounded-full bg-[#8DC63F]" />
+                <span className="w-4 h-1.5 rounded-full bg-[#0B65B3]" />
+                <span className="w-2 h-1.5 rounded-full bg-white/30" />
+              </div>
+            </div>
+
+            <div className="relative z-10 space-y-3 my-auto">
+              {paragraphs.map((paragraph, pIdx) => (
+                <p
+                  key={pIdx}
+                  className="text-base sm:text-[17px] font-medium text-white/95 leading-[1.65]"
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+
+            <div
+              aria-hidden="true"
+              className="relative z-10 pt-2 flex items-center"
+            >
+              <span className="h-1 w-full rounded-full bg-gradient-to-r from-[#8DC63F] via-[#0B65B3] to-[#0B65B3]/25" />
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Bottom Structured Criteria Grid (2-col symmetrical bento; odd closing criterion spans full row) */}
+      <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {checklist.map((item, cIdx) => {
+          const CriterionIcon = RISK_CRITERIA_ICONS[cIdx % RISK_CRITERIA_ICONS.length];
+          const isClosingCriterion = cIdx === checklist.length - 1 && checklist.length % 2 === 1;
+
+          return (
+            <li
+              key={cIdx}
+              className={`group expertise-card p-5 flex items-start gap-4 ${
+                isClosingCriterion ? 'md:col-span-2 accent-blue' : ''
+              }`}
+            >
+              <div
+                className={`expertise-icon-tile shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${
+                  isClosingCriterion
+                    ? 'expertise-icon-tile-blue bg-[#0B65B3]/12 dark:bg-[#0B65B3]/20 text-[#0B65B3] dark:text-[#60A5FA]'
+                    : 'expertise-icon-tile-green bg-[#8DC63F]/15 text-[#5B8C1E] dark:text-[#8DC63F]'
+                }`}
+              >
+                <CriterionIcon className="w-5 h-5" aria-hidden="true" />
+              </div>
+
+              <span className="flex-1 text-[15px] font-normal text-[#1E293B] dark:text-[#E2E8F0] leading-[1.6] pt-0.5">
+                {item}
+              </span>
+
+              <span
+                data-preserve-contrast="true"
+                className="mt-1 w-6 h-6 rounded-full bg-[#8DC63F] text-white flex items-center justify-center shrink-0 shadow-[0_2px_8px_-2px_rgba(141,198,63,0.65)]"
+                aria-hidden="true"
+              >
+                <Check className="w-3.5 h-3.5 stroke-[2.75]" />
+              </span>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
 }
 
 function isLoudGreenDiagram(src: string) {
@@ -361,7 +511,7 @@ export default function StepCard({ step, index, isDarkBand = false }: StepCardPr
     <div
       ref={cardRef}
       className={`expertise-step-reveal space-y-6 ${revealed ? 'is-revealed' : ''}`}
-      style={{ transitionDelay: `${Math.min(index * 80, 320)}ms` }}
+      style={{ transitionDelay: index === 0 ? '0ms' : '40ms' }}
     >
       {/* Unboxed Step Heading with Big Faint Watermark Step Number */}
       <div className="relative pt-2 space-y-3">
@@ -407,47 +557,13 @@ export default function StepCard({ step, index, isDarkBand = false }: StepCardPr
         </div>
       )}
 
-      {/* Two-Column Protection Levels Chart + Pill Checklist (Step 6) */}
+      {/* Protection Levels Chart + Navy Compliance Callout + Structured Criteria Grid (Step 6) */}
       {hasTwoColumnChecklist && step.images?.[0] && step.checklist && (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start pt-1">
-          <div className="lg:col-span-6">
-            <FramedDiagram image={step.images[0]} />
-          </div>
-
-          <div className="lg:col-span-6 space-y-4">
-            <ul className="space-y-2.5">
-              {step.checklist.map((item, cIdx) => (
-                <li
-                  key={cIdx}
-                  className="flex items-start gap-3 rounded-2xl sm:rounded-full border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0D1117] px-4 py-3 shadow-[0_2px_8px_-4px_rgba(10,25,47,0.06)] hover:-translate-y-0.5 hover:border-[#8DC63F] motion-reduce:hover:translate-y-0 transition-all duration-200"
-                >
-                  <span
-                    data-preserve-contrast="true"
-                    className="mt-0.5 w-6 h-6 rounded-full bg-[#8DC63F] text-white flex items-center justify-center shrink-0"
-                  >
-                    <Check className="w-3.5 h-3.5 stroke-[2.5]" aria-hidden="true" />
-                  </span>
-                  <span className="text-[15px] font-normal text-[#334155] dark:text-[#CBD5E1] leading-[1.6]">
-                    {item}
-                  </span>
-                </li>
-              ))}
-            </ul>
-
-            {step.paragraphs && step.paragraphs.length > 0 && (
-              <div className="space-y-2 pt-1">
-                {step.paragraphs.map((paragraph, pIdx) => (
-                  <p
-                    key={pIdx}
-                    className="text-[15px] font-normal text-[#475569] dark:text-[#A9B4C0] leading-[1.6]"
-                  >
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
+        <RiskAssessmentShowcase
+          chart={step.images[0]}
+          checklist={step.checklist}
+          paragraphs={step.paragraphs}
+        />
       )}
 
       {/* Cards Grid (MediaCards & InfoCards, max 3 per row) */}
