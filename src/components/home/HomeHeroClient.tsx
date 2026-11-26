@@ -573,13 +573,14 @@ export default function HomeHeroClient() {
       </div>
 
       {/* ============================================================ */}
-      {/* FULL-WIDTH ALL CATEGORY SLIDER PILLS                         */}
+      {/* FULL-WIDTH ALL CATEGORY SLIDER BOXES                         */}
       {/* ============================================================ */}
       <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 pb-5 sm:pb-7 lg:pb-8">
         <div
           ref={tabsRailRef}
+          data-light-surface="true"
           onTouchStart={(e) => e.stopPropagation()}
-          className="w-full flex flex-nowrap sm:flex-wrap items-center gap-1.5 sm:gap-2 overflow-x-auto sm:overflow-visible no-scrollbar"
+          className="w-full flex flex-nowrap sm:flex-wrap items-center gap-2 sm:gap-2.5 overflow-x-auto sm:overflow-visible no-scrollbar"
           role="tablist"
           aria-label="Hero product & solution categories"
         >
@@ -596,17 +597,17 @@ export default function HomeHeroClient() {
                   aria-selected={isSelected}
                   aria-current={isSelected ? 'true' : 'false'}
                   aria-label={`Go to slide ${idx + 1}: ${slide.category}`}
-                  className={`hero-slider-tab group relative shrink-0 overflow-hidden flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 sm:py-[7px] rounded-full text-[11px] sm:text-xs font-semibold backdrop-blur-md transition-all duration-300 border ${
+                  className={`hero-slider-tab group relative shrink-0 overflow-hidden flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 xl:px-4 xl:py-2 rounded-lg text-[11px] sm:text-xs xl:text-[13px] transition-all duration-200 border shadow-sm ${
                     isSelected
-                      ? 'bg-[#0B1B34]/88 border-[#8DC63F]/85 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_0_22px_rgba(141,198,63,0.22),0_8px_20px_rgba(0,0,0,0.28)]'
-                      : 'bg-[#071122]/45 border-white/20 text-white/88 hover:text-white hover:bg-[#0B1930]/75 hover:border-white/38 shadow-[inset_0_1px_0_rgba(255,255,255,0.14),0_4px_14px_rgba(0,0,0,0.18)]'
+                      ? 'bg-[#EDF7DF] border-[#5B8C1E] text-[#365314] font-semibold shadow-[0_2px_10px_rgba(91,140,30,0.18)]'
+                      : 'bg-[#F8FAFC] border-[#CBD5E1] text-[#1E293B] font-medium hover:bg-white hover:border-[#94A3B8] hover:text-[#0F172A]'
                   }`}
                 >
-                  {/* Smooth Internal Progress Sweep on Active Pill */}
+                  {/* Smooth Internal Progress Sweep on Active Box */}
                   {isSelected && (
                     <span
                       key={`pill-progress-${currentSlide}-${isPaused ? 'paused' : 'run'}`}
-                      className="absolute inset-0 bg-gradient-to-r from-[#0B65B3]/40 via-[#0B65B3]/25 to-[#8DC63F]/30 origin-left pointer-events-none will-change-transform"
+                      className="absolute inset-0 bg-gradient-to-r from-[#8DC63F]/28 via-[#8DC63F]/18 to-[#5B8C1E]/15 origin-left pointer-events-none will-change-transform"
                       style={{
                         animation: !isPaused
                           ? `heroProgressFill ${SLIDE_DURATION_MS}ms linear forwards`
@@ -617,8 +618,10 @@ export default function HomeHeroClient() {
                   )}
 
                   <SlideIcon
-                    className={`relative z-10 w-3.5 h-3.5 shrink-0 transition-colors ${
-                      isSelected ? 'text-[#8DC63F]' : 'text-[#8DC63F]/80 group-hover:text-[#8DC63F]'
+                    className={`relative z-10 w-3.5 h-3.5 xl:w-4 xl:h-4 shrink-0 transition-colors ${
+                      isSelected
+                        ? 'text-[#4D7C0F]'
+                        : 'text-[#5B8C1E] group-hover:text-[#4D7C0F]'
                     }`}
                     aria-hidden="true"
                   />
@@ -629,7 +632,7 @@ export default function HomeHeroClient() {
                 {idx === 5 && (
                   <span
                     aria-hidden="true"
-                    className="hidden lg:block basis-full h-0 sm:-my-1 pointer-events-none"
+                    className="hidden lg:block basis-full h-0 sm:-my-1.5 pointer-events-none"
                   />
                 )}
               </React.Fragment>
