@@ -212,24 +212,74 @@ export const earthingData: ExpertiseTabConfig = {
       title: 'Standards & Technical References',
       intro:
         'Final design and test criteria are confirmed against approved project requirements, actual site conditions and applicable authority requirements.',
-      images: [
-        {
-          src: '/images/expertise/earthing/standards-reference-blocks.webp',
-          alt: 'Standards reference blocks covering BS EN 62305, BS EN 62561, IEC 62305, IEC 62561, IEC 60364, NFC 17-102, and NFPA 780',
-          width: 1200,
-          height: 675,
-          caption: 'Standards reference blocks.',
-          surface: 'light',
-        },
-        {
-          src: '/images/expertise/earthing/technical-competence-overview.webp',
-          alt: 'Technical competence overview across Risk Assessment, Engineering Design, Quality Installation, and Testing & Handover',
-          width: 1200,
-          height: 675,
-          caption: 'Technical competence overview.',
-          surface: 'light',
-        },
-      ],
+      standardsReference: {
+        heading: 'Technical Standards & References',
+        subheading: 'Key standards relevant to earthing and lightning protection systems',
+        blocks: [
+          {
+            id: 'bs-en',
+            badge: 'BS EN',
+            codes: ['BS EN 62305', 'BS EN 62561'],
+            description: 'Lightning protection and system components',
+          },
+          {
+            id: 'iec',
+            badge: 'IEC',
+            codes: ['IEC 62305', 'IEC 62561', 'IEC 60364'],
+            description: 'Lightning protection, components and LV installations',
+          },
+          {
+            id: 'nfc',
+            badge: 'NFC',
+            codes: ['NFC 17-102'],
+            description: 'ESE lightning protection systems where applicable',
+          },
+          {
+            id: 'nfpa',
+            badge: 'NFPA',
+            codes: ['NFPA 780'],
+            description: 'Installation of lightning protection systems where applicable',
+          },
+        ],
+        footnote:
+          'System design and test criteria follow approved project requirements and site conditions.',
+      },
+      processFlow: {
+        heading: 'Technical Competence',
+        subheading: 'Engineered design, verified installation and documented handover',
+        stages: [
+          {
+            id: 'competence-risk',
+            stepCode: '01',
+            title: 'Risk Assessment',
+            description: 'Building exposure, occupancy, geometry and services',
+            iconKey: 'risk',
+          },
+          {
+            id: 'competence-design',
+            stepCode: '02',
+            title: 'Engineering Design',
+            description: 'Rolling sphere, protective angle and mesh methods',
+            iconKey: 'design',
+          },
+          {
+            id: 'competence-installation',
+            stepCode: '03',
+            title: 'Quality Installation',
+            description: 'Air terminals, down conductors, bonding and earth pits',
+            iconKey: 'installation',
+          },
+          {
+            id: 'competence-handover',
+            stepCode: '04',
+            title: 'Testing & Handover',
+            description: 'Continuity, earth resistance, reports and photographs',
+            iconKey: 'handover',
+          },
+        ],
+        footnote:
+          'Key standards: BS EN 62305 | IEC 62305 | NFC 17-102 where applicable | NFPA 780 where applicable',
+      },
     },
   ],
 };

@@ -108,6 +108,20 @@ export interface ProcessFlowConfig {
   footnote?: string;
 }
 
+export interface StandardsReferenceBlock {
+  id: string;
+  badge: string;
+  codes: string[];
+  description: string;
+}
+
+export interface StandardsReferenceConfig {
+  heading: string;
+  subheading: string;
+  blocks: StandardsReferenceBlock[];
+  footnote?: string;
+}
+
 export interface ExpertiseStep {
   id: string;
   stepNumber: number;
@@ -118,6 +132,7 @@ export interface ExpertiseStep {
   cardColumns?: 2 | 3;
   checklist?: string[];
   images?: ExpertiseImage[];
+  standardsReference?: StandardsReferenceConfig;
   processFlow?: ProcessFlowConfig;
   subTabs?: SubTabPanel[];
 }
