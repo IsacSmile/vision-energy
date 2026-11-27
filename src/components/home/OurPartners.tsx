@@ -37,16 +37,16 @@ function PartnerLogoItem({ partner }: { partner: Partner }) {
 
   return (
     <div
-      className="partner-logo-card h-20 sm:h-24 md:h-[112px] lg:h-[132px] px-6 sm:px-9 lg:px-12 py-3 sm:py-4 lg:py-5 rounded-xl sm:rounded-2xl bg-white border border-[#D4AF37]/35 hover:border-[#D4AF37]/70 flex items-center justify-center shrink-0 shadow-sm hover:scale-105 hover:shadow-md transition-all duration-300 select-none"
+      className="partner-logo-card h-[68px] sm:h-[82px] lg:h-[104px] px-5 sm:px-7 lg:px-10 py-2.5 sm:py-3.5 rounded-xl sm:rounded-2xl bg-white border border-[#D4AF37]/35 hover:border-[#D4AF37]/70 flex items-center justify-center shrink-0 shadow-sm hover:scale-105 hover:shadow-md transition-all duration-300 select-none"
       title={partner.name}
     >
       {!hasFailed ? (
         <Image
           src={imgSrc}
           alt={partner.name}
-          width={280}
-          height={104}
-          sizes="(max-width: 640px) 160px, (max-width: 1024px) 220px, 280px"
+          width={240}
+          height={92}
+          sizes="(max-width: 640px) 140px, (max-width: 1024px) 190px, 240px"
           loading="lazy"
           onError={() => {
             if (imgSrc.endsWith('.webp')) {
@@ -55,10 +55,10 @@ function PartnerLogoItem({ partner }: { partner: Partner }) {
               setHasFailed(true);
             }
           }}
-          className="h-12 sm:h-16 md:h-[74px] lg:h-[88px] w-auto max-w-[160px] sm:max-w-[215px] lg:max-w-[270px] object-contain"
+          className="h-10 sm:h-14 lg:h-[68px] w-auto max-w-[140px] sm:max-w-[190px] lg:max-w-[235px] object-contain"
         />
       ) : (
-        <span className="text-sm sm:text-base font-semibold text-gray-800 tracking-tight text-center px-2">
+        <span className="text-xs sm:text-sm font-semibold text-gray-800 tracking-tight text-center px-2">
           {partner.name}
         </span>
       )}
@@ -68,32 +68,21 @@ function PartnerLogoItem({ partner }: { partner: Partner }) {
 
 export default function OurPartners() {
   return (
-    <section aria-label="Our Clients" className="py-14 md:py-20 lg:py-24 bg-[#050608] relative overflow-hidden">
+    <section aria-label="Our Clients" className="py-10 md:py-14 lg:py-16 bg-[#050608] relative overflow-hidden">
       <div className="max-w-[80rem] mx-auto px-5 sm:px-6 lg:px-8">
         <Reveal>
-          <div className="partner-marquee-container rounded-2xl border border-dashed border-[#D4AF37]/40 bg-[#0D1117]/90 backdrop-blur-sm overflow-hidden flex flex-col md:flex-row items-stretch md:items-center hover:border-[#D4AF37]/70 hover:shadow-[0_0_30px_rgba(212,175,55,0.16)] transition-all duration-500 shadow-2xl group/marquee">
+          <div className="partner-marquee-container rounded-2xl border border-dashed border-[#D4AF37]/40 bg-[#0D1117]/90 backdrop-blur-sm overflow-hidden flex flex-col md:flex-row items-stretch md:items-center hover:border-[#D4AF37]/70 hover:shadow-[0_0_24px_rgba(212,175,55,0.14)] transition-all duration-500 shadow-sm group/marquee">
             {/* Partition: "Our Clients" - Top on mobile, Left on desktop */}
-            <div className="partner-marquee-divider w-full md:w-auto px-5 py-4 sm:py-5 md:px-10 lg:px-14 md:py-10 lg:py-12 flex items-center justify-center border-b md:border-b-0 md:border-r border-dashed border-[#D4AF37]/32 shrink-0 bg-[#0A0D14]/90 self-stretch">
-              <span className="text-lg sm:text-xl md:text-2xl lg:text-4xl font-extrabold text-white whitespace-nowrap tracking-tight">
+            <div className="partner-marquee-divider w-full md:w-auto px-4 py-3 sm:py-4 md:px-9 lg:px-12 md:py-7 lg:py-9 flex items-center justify-center border-b md:border-b-0 md:border-r border-dashed border-[#D4AF37]/32 shrink-0 bg-[#0A0D14]/90 self-stretch">
+              <span className="text-base sm:text-lg md:text-2xl lg:text-3xl font-extrabold text-white whitespace-nowrap tracking-tight">
                 Our Clients
               </span>
             </div>
 
-            {/* Track: Continuous Auto-Scrolling Marquee - Full width underneath on mobile */}
-            <div className="relative w-full flex-1 overflow-hidden py-5 sm:py-7 md:py-9 lg:py-11">
-              {/* Left Edge Gradient Fade */}
-              <div
-                className="pointer-events-none absolute left-0 top-0 bottom-0 w-6 sm:w-16 lg:w-24 bg-gradient-to-r from-[#0D1117] to-transparent z-10"
-                aria-hidden="true"
-              />
-              {/* Right Edge Gradient Fade */}
-              <div
-                className="pointer-events-none absolute right-0 top-0 bottom-0 w-6 sm:w-16 lg:w-24 bg-gradient-to-l from-[#0D1117] to-transparent z-10"
-                aria-hidden="true"
-              />
-
+            {/* Track: Continuous Auto-Scrolling Marquee - Clear without dark edge overlays */}
+            <div className="relative w-full flex-1 overflow-hidden py-4 sm:py-5 md:py-6 lg:py-7">
               {/* Infinite Moving Loop Track */}
-              <div className="animate-marquee flex items-center gap-5 sm:gap-8 lg:gap-11 pl-4 sm:pl-10">
+              <div className="animate-marquee flex items-center gap-4 sm:gap-7 lg:gap-9 pl-3 sm:pl-8">
                 {[...PARTNER_TRACK, ...PARTNER_TRACK].map((partner, idx) => (
                   <PartnerLogoItem
                     key={`${partner.id}-${idx}`}
