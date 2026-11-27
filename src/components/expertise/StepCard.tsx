@@ -62,7 +62,7 @@ function RisksBentoShowcase({ cards }: { cards: StepCardItem[] }) {
             >
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute -top-14 right-10 w-52 h-52 rounded-full bg-[#8DC63F]/12 blur-2xl"
+                className="pointer-events-none absolute -top-14 right-10 w-52 h-52 rounded-full bg-[#8DC63F]/15 blur-2xl"
               />
 
               <div className="relative z-10 flex items-center gap-4 shrink-0">
@@ -191,7 +191,7 @@ function RiskAssessmentShowcase({
       {/* Top Bento Row: Protection Levels Chart + Navy Compliance Callout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-stretch">
         <figure className="group expertise-card accent-blue lg:col-span-7 p-4 sm:p-5 flex flex-col justify-between">
-          <div className="rounded-xl bg-[#F4F8FC] dark:bg-[#0B1220] border border-[#0B65B3]/12 dark:border-white/10 p-3 sm:p-4 flex-1 flex items-center justify-center">
+          <div className="rounded-xl bg-[#F4F8FC] dark:bg-[#0B1220] border border-[#0B65B3]/15 dark:border-white/10 p-3 sm:p-4 flex-1 flex items-center justify-center">
             <div className="w-full rounded-lg bg-white p-3 sm:p-4 border border-slate-200/75 shadow-[inset_0_1px_4px_rgba(10,25,47,0.05)] overflow-hidden">
               <div
                 className="relative w-full"
@@ -282,7 +282,7 @@ function RiskAssessmentShowcase({
               <div
                 className={`expertise-icon-tile shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${
                   isClosingCriterion
-                    ? 'expertise-icon-tile-blue bg-[#0B65B3]/12 dark:bg-[#0B65B3]/20 text-[#0B65B3] dark:text-[#60A5FA]'
+                    ? 'expertise-icon-tile-blue bg-[#0B65B3]/10 dark:bg-[#0B65B3]/20 text-[#0B65B3] dark:text-[#60A5FA]'
                     : 'expertise-icon-tile-green bg-[#8DC63F]/15 text-[#5B8C1E] dark:text-[#8DC63F]'
                 }`}
               >

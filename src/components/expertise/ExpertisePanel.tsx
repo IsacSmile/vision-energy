@@ -6,6 +6,7 @@ import type { ExpertiseTabConfig, ExpertiseTabId } from '@/lib/data/expertise';
 import { useEnquiryModal } from '@/components/modals/EnquiryModalProvider';
 import LightningButton from '@/components/ui/LightningButton';
 import StepCard from './StepCard';
+import StepSidebarNav from './StepSidebarNav';
 
 interface ExpertisePanelProps {
   tab: ExpertiseTabConfig;
@@ -305,47 +306,12 @@ export default function ExpertisePanel({ tab }: ExpertisePanelProps) {
       {/* 3. FULL-WIDTH ALTERNATING STEPPER WITH STICKY INDEX & CONTINUOUS 3PX GRADIENT RAIL */}
       {hasSteps && tab.steps && (
         <div ref={stepperRef} className="relative">
-          {/* Desktop Sticky Mini Progress Step Index */}
-          <div className="pointer-events-none hidden lg:block absolute inset-0 z-20">
-            <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 h-full">
-              <aside
-                aria-label="Step index"
-                className="pointer-events-auto sticky top-[178px] w-[204px] py-12"
-              >
-                <div className="rounded-2xl bg-white/95 dark:bg-[#0D1117]/95 backdrop-blur-md border border-slate-200/90 dark:border-white/10 p-3.5 shadow-[0_8px_24px_-8px_rgba(10,25,47,0.12)]">
-                  <span className="block px-2.5 pb-2 text-[11px] font-bold uppercase tracking-[0.14em] text-[#5B8C1E] dark:text-[#8DC63F]">
-                    On this guide
-                  </span>
-                  <nav aria-label="Steps">
-                    <ul className="space-y-1">
-                      {tab.steps.map((step, idx) => {
-                        const isActive = activeStepIndex === idx;
-                        return (
-                          <li key={step.id}>
-                            <button
-                              type="button"
-                              onClick={() => scrollToStep(idx)}
-                              aria-current={isActive ? 'step' : undefined}
-                              className={`w-full text-left px-2.5 py-2 rounded-xl text-xs leading-snug flex items-start gap-2 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] cursor-pointer ${
-                                isActive
-                                  ? 'bg-[#0B65B3]/10 dark:bg-[#0B65B3]/25 text-[#0B65B3] dark:text-[#8DC63F] font-semibold'
-                                  : 'text-[#334155] dark:text-[#A9B4C0] hover:bg-slate-100 hover:text-[#0A192F] dark:hover:bg-white/[0.05] dark:hover:text-white font-medium'
-                              }`}
-                            >
-                              <span className="tabular-nums shrink-0 font-mono text-[11px] mt-0.5">
-                                {String(step.stepNumber).padStart(2, '0')}
-                              </span>
-                              <span className="line-clamp-2">{step.title}</span>
-                            </button>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </nav>
-                </div>
-              </aside>
-            </div>
-          </div>
+          {/* Desktop Sticky Generalized Step Index */}
+          <StepSidebarNav
+            steps={tab.steps}
+            activeStepIndex={activeStepIndex}
+            onSelectStep={scrollToStep}
+          />
 
           {/* Continuous 3px Vertical Track spanning full height of stepper */}
           <div className="pointer-events-none absolute inset-0 z-10" aria-hidden="true">
@@ -395,7 +361,7 @@ export default function ExpertisePanel({ tab }: ExpertisePanelProps) {
                 className={`w-full ${bandClass}`}
               >
                 <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
-                  <div className="lg:pl-[228px] flex items-start gap-4 sm:gap-6">
+                  <div className="lg:pl-[252px] flex items-start gap-4 sm:gap-6">
                     {/* 44px Circular Step Node */}
                     <div
                       ref={(el) => {

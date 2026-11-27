@@ -35,7 +35,7 @@ function renderCell(cell: TableCellValue, isFirstCol = false) {
     }
     if (/^(level\s*4|iv)$/i.test(trimmed)) {
       return (
-        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#0B65B3]/12 text-[#0B65B3] dark:text-[#60A5FA] border border-[#0B65B3]/30">
+        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#0B65B3]/10 text-[#0B65B3] dark:text-[#60A5FA] border border-[#0B65B3]/30">
           {trimmed}
         </span>
       );
