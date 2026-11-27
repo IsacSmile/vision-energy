@@ -119,7 +119,7 @@ const CAROUSEL_SERVICES: ServiceCardItem[] = [
       'Wenner 4-pin soil resistivity modeling, earth pit loop impedance testing, continuity verification, and certified third-party NOC submittals for UAE authorities.',
     icon: Activity,
     image: {
-      url: 'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795772381/testing-commisioning.png',
+      url: 'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795773037/Testing_and_Commissioning.png',
       alt: 'Switchgear testing, earth loop impedance inspection, and commissioning verification UAE',
     },
     metaChip: 'IEEE 81 • Third-Party NOC',
