@@ -87,8 +87,8 @@ export default async function HomePage() {
 
         <HairlineDivider />
 
-        {/* 3. OUR PARTNERS (#050608) */}
-        <OurPartners />
+        {/* 3. SPECIALISED SERVICES PREVIEW (#0D1117) */}
+        <ServicesPreview />
 
         <HairlineDivider />
 
@@ -97,8 +97,8 @@ export default async function HomePage() {
 
         <HairlineDivider />
 
-        {/* 5. SERVICES PREVIEW (#0D1117) */}
-        <ServicesPreview />
+        {/* 5. OUR CLIENTS (#050608) */}
+        <OurPartners />
 
         <HairlineDivider />
 

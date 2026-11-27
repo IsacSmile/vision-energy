@@ -263,7 +263,7 @@ export default function FinalCTA({
 
                   <dd className="space-y-3">
                     <p className="text-base lg:text-[1.0625rem] leading-[1.7] text-[#A9B4C0] max-w-[38ch]">
-                      RAK Business Centre BC4, RAK FTZ Business Park, P.O Box 17111, Al Nakheel, Ras Al Khaimah, UAE
+                      Ras Al Khaimah, UAE
                     </p>
 
                     <a

@@ -14,21 +14,23 @@ import ThemeToggle from '@/components/theme/ThemeToggle';
 const TOP_BAR_ACTIONS = [
   {
     key: 'landline',
+    display: '+971 7 204 2763',
     href: 'tel:+97172042763',
     external: false,
     title: 'Call Office Land Phone (+971 7 204 2763)',
     ariaLabel: 'Call Vision Energy office land phone +971 7 204 2763',
     icon: FaPhoneIcon,
-    iconClass: 'w-3.5 h-3.5 sm:w-4 sm:h-4',
+    iconClass: 'w-3.5 h-3.5',
   },
   {
     key: 'whatsapp',
+    display: '+971 54 700 4616',
     href: 'https://wa.me/971547004616',
     external: true,
     title: 'Chat on WhatsApp (+971 54 700 4616)',
     ariaLabel: 'Chat with Vision Energy on WhatsApp +971 54 700 4616',
     icon: FaWhatsappIcon,
-    iconClass: 'w-4 h-4 sm:w-[17px] sm:h-[17px]',
+    iconClass: 'w-4 h-4',
   },
 ] as const;
 
@@ -189,11 +191,73 @@ export default function Header() {
               : 'max-h-0 opacity-0 -translate-y-full border-b-0 pointer-events-none'
           }`}
         >
-          {/* Unified Static Bar Across All Screen Sizes: Icon-only Call & WhatsApp + Email */}
-          <div className="max-w-[80rem] mx-auto px-3.5 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between h-[36px] sm:h-[40px] text-xs sm:text-[13px] font-semibold">
-              {/* Left side: Phone & WhatsApp Icon Links */}
-              <div className="flex items-center gap-1.5 sm:gap-2">
+          {/* Mobile View (<md): Smooth Infinite Marquee with Icons & Numbers */}
+          <div className="md:hidden relative flex items-center h-[36px] overflow-hidden">
+            <div
+              className="pointer-events-none absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-[#8DC63F] to-transparent z-10"
+              aria-hidden="true"
+            />
+            <div
+              className="pointer-events-none absolute right-0 top-0 bottom-0 w-4 bg-gradient-to-l from-[#8DC63F] to-transparent z-10"
+              aria-hidden="true"
+            />
+
+            <div className="animate-marquee-fast flex items-center text-xs font-semibold py-1">
+              <div className="flex items-center divide-x divide-[#0A192F]/25 shrink-0">
+                {TOP_BAR_ACTIONS.map((action) => {
+                  const IconComponent = action.icon;
+                  return (
+                    <a
+                      key={`mob-${action.key}`}
+                      href={action.href}
+                      target={action.external ? '_blank' : undefined}
+                      rel={action.external ? 'noopener noreferrer' : undefined}
+                      className="flex items-center gap-1.5 px-3.5 py-1 shrink-0 hover:text-black transition-colors whitespace-nowrap"
+                      title={action.title}
+                      aria-label={action.ariaLabel}
+                    >
+                      <IconComponent className={`${action.iconClass} text-[#0A192F] shrink-0`} />
+                      <span className="tabular-nums whitespace-nowrap">{action.display}</span>
+                    </a>
+                  );
+                })}
+                <a
+                  href="mailto:info@visionenergyme.com"
+                  className="flex items-center gap-1.5 px-3.5 py-1 shrink-0 hover:text-black transition-colors whitespace-nowrap"
+                  title="Email Vision Energy (info@visionenergyme.com)"
+                  aria-label="Email Vision Energy info@visionenergyme.com"
+                >
+                  <FaEnvelopeIcon className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                  <span className="whitespace-nowrap">info@visionenergyme.com</span>
+                </a>
+              </div>
+
+              <div className="flex items-center divide-x divide-[#0A192F]/25 shrink-0" aria-hidden="true">
+                {TOP_BAR_ACTIONS.map((action) => {
+                  const IconComponent = action.icon;
+                  return (
+                    <span
+                      key={`mob-dup-${action.key}`}
+                      className="flex items-center gap-1.5 px-3.5 py-1 shrink-0 whitespace-nowrap"
+                    >
+                      <IconComponent className={`${action.iconClass} text-[#0A192F] shrink-0`} />
+                      <span className="tabular-nums whitespace-nowrap">{action.display}</span>
+                    </span>
+                  );
+                })}
+                <span className="flex items-center gap-1.5 px-3.5 py-1 shrink-0 whitespace-nowrap">
+                  <FaEnvelopeIcon className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />
+                  <span className="whitespace-nowrap">info@visionenergyme.com</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop/Tablet Static View (md+): Phone & WhatsApp Icons with Numbers + Email */}
+          <div className="hidden md:block max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between h-[40px] text-[13px] font-semibold">
+              {/* Left side: Phone & WhatsApp with Visible Numbers */}
+              <div className="flex items-center gap-1.5">
                 {TOP_BAR_ACTIONS.map((action, idx) => {
                   const IconComponent = action.icon;
                   return (
@@ -202,11 +266,12 @@ export default function Header() {
                         href={action.href}
                         target={action.external ? '_blank' : undefined}
                         rel={action.external ? 'noopener noreferrer' : undefined}
-                        className="inline-flex items-center justify-center w-8 h-7 sm:w-8 sm:h-8 rounded-md hover:bg-[#0A192F]/10 hover:text-black active:scale-95 transition-all shrink-0"
+                        className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md hover:bg-[#0A192F]/10 hover:text-black active:scale-95 transition-all shrink-0 whitespace-nowrap"
                         title={action.title}
                         aria-label={action.ariaLabel}
                       >
                         <IconComponent className={`${action.iconClass} text-[#0A192F] shrink-0`} />
+                        <span className="tabular-nums">{action.display}</span>
                       </a>
                       {idx === 0 && (
                         <span className="h-3.5 w-px bg-[#0A192F]/25 shrink-0" aria-hidden="true" />
@@ -220,7 +285,7 @@ export default function Header() {
               <div className="flex items-center py-1 min-w-0">
                 <a
                   href="mailto:info@visionenergyme.com"
-                  className="flex items-center gap-1.5 sm:gap-2 hover:text-black transition-colors truncate"
+                  className="flex items-center gap-2 px-2 py-1 rounded-md hover:bg-[#0A192F]/10 hover:text-black transition-all truncate"
                   title="Email Vision Energy (info@visionenergyme.com)"
                 >
                   <FaEnvelopeIcon className="w-3.5 h-3.5 text-[#0A192F] shrink-0" />

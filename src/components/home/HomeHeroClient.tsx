@@ -15,7 +15,7 @@ import {
   Microscope,
   Dumbbell,
   HardHat,
-  Boxes,
+  Cable,
   Trophy,
   Globe,
   Plug,
@@ -52,7 +52,7 @@ const HERO_SLIDES: SlideData[] = [
     ctaText: 'Explore Lightning',
     ctaLink: '/products?group=LP',
     imageUrl:
-      'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361171/06_Earthing_1920x1080.jpg.webp',
+      'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795763212/Lightning_Protection_System-1.png',
     imageAlt:
       'Advanced lightning protection systems - Early Streamer Emission ESE air terminals, conventional copper rods, and surge protection devices SPDs',
   },
@@ -183,22 +183,22 @@ const HERO_SLIDES: SlideData[] = [
       'Vision Energy - Quality industrial and technical products showroom in UAE: distribution panels, circuit breakers, cable trays, and rigid conduits',
   },
   {
-    id: 'commercial-packaging-solutions',
-    category: 'Commercial Packaging',
-    shortName: 'Packaging',
-    badge: 'Packaging & Signage',
-    badgeIcon: Boxes,
-    titleLine1: 'Safety Equipment &',
-    titleLine2: 'Commercial Packaging',
-    subtitle: 'Reliable Safety & Packaging Products',
+    id: 'cables-and-wire-solutions',
+    category: 'Cables & Wire',
+    shortName: 'Cables',
+    badge: 'Cables & Connectivity',
+    badgeIcon: Cable,
+    titleLine1: 'Industrial Cabling &',
+    titleLine2: 'Cables & Wire',
+    subtitle: 'Power, Control, Instrumentation & Earth Conductors',
     description:
-      'Heavy-duty industrial packaging, protective wrapping, cable drums, and facility identification engineered for safe UAE logistics and handling.',
-    ctaText: 'Explore Packaging',
-    ctaLink: '/products?group=PK',
+      'Armoured power cables, control wires, braided conductors, and copper connectivity engineered for demanding UAE & Qatar projects.',
+    ctaText: 'Explore Cables & Wire',
+    ctaLink: '/products?group=CB',
     imageUrl:
       'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361170/01_Cables_1920x1080.webp',
     imageAlt:
-      'Safety equipment and commercial packaging solutions - Heavy-duty cable drums, spools, coiled conductors, and packaging materials',
+      'Cables and wire solutions - Heavy-duty cable drums, armoured cables, and coiled copper conductors',
   },
   {
     id: 'sports-equipment-solutions',
@@ -468,25 +468,17 @@ export default function HomeHeroClient() {
       {/* ============================================================ */}
       <div className="relative z-30 w-full max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-center py-2.5 sm:py-6 lg:py-8">
         <div className="max-w-[56rem] min-w-0 flex flex-col justify-center text-left">
-          {/* Executive Heritage & Regional Coverage Strip */}
+          {/* Executive Heritage Strip */}
           <div
             data-preserve-contrast="true"
-            className="mb-3 sm:mb-5 lg:mb-6 inline-flex flex-wrap items-center gap-x-2.5 gap-y-1 px-3.5 py-1.5 rounded-full bg-[#071122]/82 backdrop-blur-md border border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.16),0_10px_28px_rgba(0,0,0,0.35)] text-[11px] sm:text-xs tracking-wide w-fit max-w-full"
+            className="mb-3 sm:mb-5 lg:mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#071122]/85 backdrop-blur-md border border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.16),0_10px_28px_rgba(0,0,0,0.35)] text-xs sm:text-sm tracking-wide w-fit max-w-full"
           >
-            <span className="inline-flex items-center gap-1.5">
-              <span
-                className="w-1.5 h-1.5 rounded-full bg-[#8DC63F] shadow-[0_0_8px_rgba(141,198,63,0.9)] shrink-0"
-                aria-hidden="true"
-              />
-              <span className="font-extrabold text-[#8DC63F] tabular-nums">2018</span>
-              <span className="font-semibold text-white">Established</span>
-            </span>
-            <span className="w-px h-3.5 bg-white/25 shrink-0" aria-hidden="true" />
-            <span className="inline-flex items-center gap-1.5">
-              <Globe className="w-3.5 h-3.5 text-[#8DC63F] shrink-0" aria-hidden="true" />
-              <span className="font-bold text-white">UAE &amp; Qatar</span>
-              <span className="font-medium text-[#CBD5E1]">Coverage</span>
-            </span>
+            <span
+              className="w-2 h-2 rounded-full bg-[#8DC63F] shadow-[0_0_8px_rgba(141,198,63,0.9)] shrink-0"
+              aria-hidden="true"
+            />
+            <span className="font-black text-[#8DC63F] tabular-nums">2018</span>{' '}
+            <span className="font-bold text-white">Established</span>
           </div>
 
           {/* Dynamic Slide H1 Headline */}
