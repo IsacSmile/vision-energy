@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
+const isPreviewEnv =
+  Boolean(process.env.VERCEL_ENV && process.env.VERCEL_ENV !== 'production');
+
 const nextConfig = {
   reactStrictMode: true,
+  trailingSlash: false,
   generateBuildId: async () => {
     return 'vision-build-' + Date.now();
   },
@@ -41,8 +45,28 @@ const nextConfig = {
       },
     ],
   },
-  async headers() {
+  async redirects() {
     return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'visionenergyme.com',
+          },
+        ],
+        destination: 'https://www.visionenergyme.com/:path*',
+        permanent: true,
+      },
+      {
+        source: '/services/earthing-grounding',
+        destination: '/services/earthing-and-grounding',
+        permanent: true,
+      },
+    ];
+  },
+  async headers() {
+    const baseHeaders = [
       {
         source: '/(.*)',
         headers: [
@@ -66,43 +90,66 @@ const nextConfig = {
             key: 'Strict-Transport-Security',
             value: 'max-age=63072000; includeSubDomains; preload',
           },
+          ...(isPreviewEnv
+            ? [
+                {
+                  key: 'X-Robots-Tag',
+                  value: 'noindex, nofollow, noarchive',
+                },
+              ]
+            : []),
         ],
       },
       {
-        // Force browsers to bypass stale cache and purge cached page data
-        source: '/((?!_next/static|_next/image|favicon.ico).*)',
+        source: '/(.*)',
+        has: [
+          {
+            type: 'host',
+            value: '.*\\.vercel\\.app',
+          },
+        ],
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0, s-maxage=0',
-          },
-          {
-            key: 'Pragma',
-            value: 'no-cache',
-          },
-          {
-            key: 'Expires',
-            value: '0',
-          },
-          {
-            key: 'Clear-Site-Data',
-            value: '"cache"',
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow, noarchive',
           },
         ],
       },
       {
-        // Enforce instant revalidation for public images
         source: '/images/(.*)',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=0, must-revalidate',
+            value: 'public, max-age=86400, stale-while-revalidate=604800',
+          },
+        ],
+      },
+      {
+        source: '/product-catalouge/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, stale-while-revalidate=604800',
+          },
+        ],
+      },
+      {
+        source: '/(admin|api)/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-store, no-cache, must-revalidate, max-age=0',
+          },
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow',
           },
         ],
       },
     ];
+
+    return baseHeaders;
   },
 };
 
 module.exports = nextConfig;
-

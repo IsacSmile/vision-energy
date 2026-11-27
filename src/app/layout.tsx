@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from 'next';
 import { Poppins } from 'next/font/google';
-import Script from 'next/script';
 import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -8,6 +7,7 @@ import StickyContactWidget from '@/components/layout/StickyContactWidget';
 import { EnquiryModalProvider } from '@/components/modals/EnquiryModalProvider';
 import EnquiryModal from '@/components/modals/EnquiryModal';
 import { ThemeProvider } from '@/components/theme/ThemeProvider';
+import AnalyticsAndConsent from '@/components/common/AnalyticsAndConsent';
 import { getPublishedServices } from '@/lib/data/services';
 
 const poppins = Poppins({
@@ -286,15 +286,6 @@ export default async function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
-        <Script id="microsoft-clarity" strategy="lazyOnload">
-          {`
-            (function(c,l,a,r,i,t,y){
-                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "yktp18a9bf");
-          `}
-        </Script>
       </head>
       <body className="bg-white text-[#0F172A] dark:bg-[#050608] dark:text-white flex flex-col min-h-screen antialiased" suppressHydrationWarning>
         <ThemeProvider>
@@ -304,6 +295,7 @@ export default async function RootLayout({
             <Footer services={publishedServices} />
             <StickyContactWidget />
             <EnquiryModal />
+            <AnalyticsAndConsent />
           </EnquiryModalProvider>
         </ThemeProvider>
       </body>

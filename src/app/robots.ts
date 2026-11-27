@@ -1,6 +1,8 @@
 import { MetadataRoute } from 'next';
 
-const AI_CRAWLER_AGENTS = [
+const SEARCH_AND_AI_CRAWLERS = [
+  'Googlebot',
+  'Bingbot',
   'OAI-SearchBot',
   'ChatGPT-User',
   'GPTBot',
@@ -12,8 +14,20 @@ const AI_CRAWLER_AGENTS = [
 ];
 
 export default function robots(): MetadataRoute.Robots {
+  const isPreview = Boolean(process.env.VERCEL_ENV && process.env.VERCEL_ENV !== 'production');
+  if (isPreview) {
+    return {
+      rules: [
+        {
+          userAgent: '*',
+          disallow: '/',
+        },
+      ],
+    };
+  }
+
   const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.visionenergyme.com').replace(/\/$/, '');
-  const disallow = ['/admin', '/admin/*', '/api/*'];
+  const disallow = ['/admin', '/admin/*', '/api/*', '/thank-you', '/dev/*'];
 
   return {
     rules: [
@@ -22,9 +36,24 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow,
       },
-      ...AI_CRAWLER_AGENTS.map((userAgent) => ({
+      ...SEARCH_AND_AI_CRAWLERS.map((userAgent) => ({
         userAgent,
-        allow: ['/', '/expertise', '/expertise.md', '/llms.txt', '/products', '/services', '/blog', '/contact'],
+        allow: [
+          '/',
+          '/expertise',
+          '/expertise/*',
+          '/products',
+          '/products/*',
+          '/services',
+          '/services/*',
+          '/about',
+          '/glossary',
+          '/blog',
+          '/blog/*',
+          '/contact',
+          '/llms.txt',
+          '/expertise.md',
+        ],
         disallow,
       })),
     ],
