@@ -40,51 +40,42 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   );
 
   return {
-    title: "Engineering Supplies, Laboratory Equipment & Electrical Products Dubai UAE | Vision Energy",
+    title: 'Product Catalogue UAE | Lightning, Earthing & Lab Supply',
     description:
-      "Explore certified product categories across lightning protection, earthing, industrial electrical supplies, LED lights, automation systems, switchgear accessories, electrical tools, and laboratory equipment in Dubai & UAE. Compliant with DEWA, SEWA & Civil Defense.",
+      'Explore 115 certified product categories in lightning protection, earthing, electrical, gym & laboratory equipment across Dubai, Abu Dhabi, RAK & Qatar.',
     keywords: [
-      "Lightning Protection Products Dubai",
-      "Earthing Materials UAE",
-      "Electrical Equipment Dubai",
-      "LED Lights Supplier Dubai UAE",
-      "Automation Items and PLC Controls UAE",
-      "Controls and Switchgear Accessories Dubai",
-      "Electrical Tools and Test Equipment UAE",
-      "Laboratory Equipment Dubai UAE",
-      "General Laboratory Equipment UAE",
-      "Laboratory Glassware Dubai",
-      "Sports Equipment and Court Accessories UAE",
-      "Exothermic Welding Supplies UAE",
-      "Cable Trays and Supports Dubai",
-      "Industrial Generator Equipment UAE",
-      "Heavy Duty Clamps UAE",
-      "Vision Energy Catalogue",
+      'Lightning Protection Products UAE',
+      'Earthing Materials UAE',
+      'Laboratory Equipment UAE',
+      'Gym Equipment UAE',
+      'Electrical Equipment Dubai',
+      'Vision Energy Catalogue',
     ],
     alternates: {
-      canonical: "https://www.visionenergyme.com/products",
+      canonical: 'https://www.visionenergyme.com/products',
     },
     openGraph: {
-      title: "Engineering Supplies, Laboratory Equipment & Electrical Products Dubai UAE | Vision Energy",
+      title: 'Product Catalogue UAE | Lightning, Earthing & Lab Supply',
       description:
-        "Explore certified product categories across lightning protection, earthing, industrial electrical supplies, and comprehensive laboratory equipment in Dubai & UAE.",
-      url: "https://www.visionenergyme.com/products",
-      type: "website",
+        'Certified categories in lightning protection, earthing, electrical, gym & laboratory equipment across UAE & Qatar.',
+      url: 'https://www.visionenergyme.com/products',
+      type: 'website',
+      locale: 'en_AE',
       images: [
         {
-          url: "https://www.visionenergyme.com/images/products-collage-banner.jpg",
+          url: 'https://www.visionenergyme.com/images/products-collage-banner.jpg',
           width: 1200,
           height: 630,
-          alt: "Vision Energy Product Catalogue Dubai UAE",
+          alt: 'Vision Energy Product Catalogue UAE',
         },
       ],
     },
     twitter: {
-      card: "summary_large_image",
-      title: "Engineering Supplies, Laboratory Equipment & Electrical Products Dubai UAE | Vision Energy",
+      card: 'summary_large_image',
+      title: 'Product Catalogue UAE | Lightning, Earthing & Lab Supply',
       description:
-        "Explore certified product categories across lightning protection, earthing, electrical supplies, and laboratory equipment in Dubai & UAE.",
-      images: ["https://www.visionenergyme.com/images/products-collage-banner.jpg"],
+        'Certified categories across lightning protection, earthing, electrical, gym & laboratory equipment in UAE & Qatar.',
+      images: ['https://www.visionenergyme.com/images/products-collage-banner.jpg'],
     },
     robots: hasQueryParams
       ? {
@@ -97,14 +88,13 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
           googleBot: {
             index: true,
             follow: true,
-            "max-image-preview": "large",
+            'max-image-preview': 'large',
           },
         },
   };
 }
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+export const revalidate = 300;
 
 export default async function ProductsPage({ searchParams }: PageProps) {
   const params = await resolveSearchParams(searchParams);

@@ -59,7 +59,7 @@ export const SERVICES_CONTENT: Record<string, ServiceContentConfig> = {
       lead: 'Certified external and internal lightning protection systems (LPS) engineered to safeguard commercial buildings, high-rises, industrial plants, warehouses, substations, healthcare facilities, schools, villas, and critical installations across the UAE.',
     },
     overview:
-      'Lightning, a powerful force of nature, can cause significant damage and pose severe threats to life and property. In response to regional thunderstorm activity and atmospheric shifts, UAE authorities mandate robust Lightning Protection Systems (LPS) for all constructions. Vision Energy delivers comprehensive end-to-end solutions—from certified risk assessment and multi-brand engineering design to installation and ongoing maintenance—ensuring optimal structural protection, fire prevention, personnel safety, and equipment surge security.',
+      'Lightning can cause structural damage and severe electrical hazards to buildings and critical infrastructure. Vision Energy delivers comprehensive end-to-end Lightning Protection Systems (LPS)—from project risk assessment and multi-brand engineering design aligned with IEC 62305 and BS EN 62305 to installation and ongoing testing—supporting structural safety, fire mitigation, and equipment surge protection.',
     systems: [
       {
         title: 'Conventional Lightning Protection Systems',
@@ -151,8 +151,8 @@ export const SERVICES_CONTENT: Record<string, ServiceContentConfig> = {
     metaChips: ['Conventional mesh systems', 'ESE systems', 'Surge Protection', 'Civil Defence Compliant'],
     faq: [
       {
-        q: 'Why is a Lightning Protection System (LPS) essential for UAE buildings?',
-        a: 'Due to towering skyscrapers, extensive open terrain, and increased thunderstorm activity, UAE authorities mandate LPS for all construction. A certified LPS provides personnel safety, prevents structural damage and fires, and safeguards sensitive equipment from destructive surges.'
+        q: 'Why is a Lightning Protection System (LPS) recommended for UAE buildings?',
+        a: 'High-rise towers, industrial facilities, and open installations face lightning strike exposure across the UAE. An engineered LPS supports personnel safety, helps reduce structural damage and fire hazards, and protects sensitive electrical equipment when coordinated with earthing and surge suppression.'
       },
       {
         q: 'What is the difference between Conventional and ESE lightning protection?',
@@ -213,7 +213,7 @@ export const SERVICES_CONTENT: Record<string, ServiceContentConfig> = {
       'Third-party HSE cards and UAE authority approvals',
     ],
     whyChooseUs: [
-      '10+ years supplying technical manpower in the UAE',
+      'Established 2018 with more than 160 projects completed across the UAE',
       'Mobilization within 24-48 hours for urgent requests',
       'Specialists in lightning protection and earthing, not generic labour supply',
       'One point of contact from mobilization to handover',
@@ -291,7 +291,7 @@ export const SERVICES_CONTENT: Record<string, ServiceContentConfig> = {
       'Third-party HSE cards and UAE authority approvals',
     ],
     whyChooseUs: [
-      '10+ years supplying technical manpower in the UAE',
+      'Established 2018 with more than 160 projects completed across the UAE',
       'Mobilization within 24-48 hours for urgent requests',
       'Specialists in lightning protection and earthing, not generic labour supply',
       'One point of contact from mobilization to handover',

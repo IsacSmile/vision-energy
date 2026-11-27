@@ -149,7 +149,7 @@ export default function ServicesListRow({ service, index }: ServicesListRowProps
   };
 
   const isEarthingService = service.slug === 'earthing-and-grounding' || service.slug === 'earthing-grounding';
-  const serviceHref = isEarthingService ? '/services/earthing-grounding' : `/services/${service.slug}`;
+  const serviceHref = isEarthingService ? '/services/earthing-and-grounding' : `/services/${service.slug}`;
 
   return (
     <li className="relative group list-none">

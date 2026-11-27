@@ -8,7 +8,7 @@ export const laboratoryData: ExpertiseTabConfig = {
   emptyState: {
     title: 'Laboratory Equipment & Solutions',
     message:
-      'Technical specifications, laboratory glassware, analytical instrumentation, and facility supply schedules across the UAE and GCC are available on request.',
+      'Technical specifications, laboratory glassware, analytical instrumentation, and facility supply schedules across the UAE and Qatar are available on request.',
     ctaLabel: 'Send Enquiry',
   },
 };

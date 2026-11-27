@@ -9,6 +9,8 @@ import EnquiryModal from '@/components/modals/EnquiryModal';
 import { ThemeProvider } from '@/components/theme/ThemeProvider';
 import AnalyticsAndConsent from '@/components/common/AnalyticsAndConsent';
 import { getPublishedServices } from '@/lib/data/services';
+import { COMPANY_FACTS, ORGANIZATION_ID, SITE_URL, WEBSITE_ID } from '@/lib/seo/company';
+import { SOCIAL_LINKS } from '@/config/social';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -32,78 +34,55 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: 'Vision Energy International | Lightning Protection, Earthing, Electrical & Equipment Supplier Dubai UAE',
-    template: '%s | Vision Energy International UAE',
+    default: 'Vision Energy | Lightning, Earthing & Technical Supply UAE',
+    template: '%s',
   },
   description:
-    'Leading UAE specialist & authorised supplier of certified lightning protection systems, low-impedance earthing networks, electrical equipment, generator machinery, and heavy equipment support across Dubai, Abu Dhabi, and the UAE. Fully compliant with DEWA, SEWA & Civil Defense.',
+    'Vision Energy International: lightning protection, earthing systems, surge protection, gym & laboratory equipment across Dubai, Abu Dhabi, RAK & Qatar.',
   keywords: [
     'Lightning Protection Dubai',
+    'Lightning Protection Abu Dhabi',
+    'Lightning Protection Ras Al Khaimah',
     'Lightning Protection UAE',
-    'Earthing Systems Dubai',
-    'Earthing and Grounding UAE',
-    'Electrical Equipment Supplier Dubai',
-    'Electrical Equipment UAE',
-    'LED Lights Supplier Dubai UAE',
-    'Commercial LED Lighting UAE',
-    'Automation Items Dubai UAE',
-    'Industrial Sensors & PLC Controls UAE',
-    'Controls and Switchgear Accessories Dubai',
-    'Electrical Tools Supplier UAE',
-    'Laboratory Equipment Supplier Dubai',
-    'Laboratory Glassware and Consumables UAE',
-    'Safety Equipment & PPE Supplier Dubai',
-    'Sports Equipment & Court Accessories UAE',
-    'Heavy Equipment Rental Dubai',
-    'Heavy Vehicle Rental UAE',
-    'Industrial Generator Equipment UAE',
-    'Exothermic Welding Dubai',
-    'ESE Lightning Protection UAE',
+    'Lightning Protection Qatar',
+    'Earthing Systems UAE',
+    'Earthing Contractor Dubai',
+    'Laboratory Equipment Supplier UAE',
+    'Gym Equipment Supplier UAE',
     'DEWA Approved Earthing Materials',
-    'Civil Defense Approved Lightning Protection',
-    'Soil Resistivity Testing UAE',
-    'Cable Management and Cable Trays Dubai',
-    'Specialist Engineering Manpower Dubai',
     'Vision Energy International',
   ],
-  metadataBase: new URL('https://www.visionenergyme.com'),
+  metadataBase: new URL(SITE_URL),
   alternates: {
-    canonical: 'https://www.visionenergyme.com',
-    languages: {
-      'en-AE': 'https://www.visionenergyme.com',
-      'en': 'https://www.visionenergyme.com',
-      'x-default': 'https://www.visionenergyme.com',
-    },
+    canonical: SITE_URL,
   },
   openGraph: {
-    title: 'Vision Energy International | Lightning Protection, Earthing & Electrical Equipment Dubai UAE',
+    title: 'Vision Energy | Lightning, Earthing & Technical Supply UAE',
     description:
-      'Certified engineering solutions in lightning protection, earthing networks, industrial electrical equipment, generators, and heavy equipment support across Dubai and all Emirates.',
-    url: 'https://www.visionenergyme.com',
+      'Certified lightning protection, earthing networks, gym & laboratory equipment across Dubai, Abu Dhabi, Ras Al Khaimah, UAE & Qatar.',
+    url: SITE_URL,
     siteName: 'Vision Energy International',
     locale: 'en_AE',
     type: 'website',
     images: [
       {
-        url: 'https://www.visionenergyme.com/images/products-collage-banner.jpg',
+        url: `${SITE_URL}/images/products-collage-banner.jpg`,
         width: 1200,
         height: 630,
-        alt: 'Vision Energy International Certified Engineering Supplies Dubai UAE',
+        alt: 'Vision Energy International UAE Engineering & Technical Solutions',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Vision Energy International | Lightning Protection, Earthing & Electrical Equipment Dubai UAE',
+    title: 'Vision Energy | Lightning, Earthing & Technical Supply UAE',
     description:
-      'Certified engineering supplies in lightning protection, earthing networks, industrial electrical equipment, and equipment rental across Dubai and UAE.',
-    images: ['https://www.visionenergyme.com/images/products-collage-banner.jpg'],
+      'Lightning protection, earthing systems, gym & laboratory equipment across Dubai, Abu Dhabi, RAK, UAE & Qatar.',
+    images: [`${SITE_URL}/images/products-collage-banner.jpg`],
   },
   other: {
-    'geo.region': 'AE-DU',
-    'geo.placename': 'Dubai, United Arab Emirates',
-    'geo.position': '25.2048;55.2708',
-    'ICBM': '25.2048, 55.2708',
+    'geo.region': 'AE-RK',
+    'geo.placename': 'Al Nakheel, Ras Al Khaimah, United Arab Emirates',
   },
   icons: {
     icon: [
@@ -138,131 +117,65 @@ export default async function RootLayout({
   // Fetch published services for Footer
   const publishedServices = await getPublishedServices();
 
-  // JSON-LD Multi-Type LocalBusiness & Organization Schema for Dubai & UAE
+  const sameAs = Object.values(SOCIAL_LINKS).filter((u) => Boolean(u && u.trim()));
+
+  // Linked JSON-LD Organization & ProfessionalService Schema (RAK Head Office verified NAP)
   const organizationSchema = {
     '@context': 'https://schema.org',
-    '@type': ['Organization', 'LocalBusiness', 'ProfessionalService'],
-    name: 'VISION ENERGY INTERNATIONAL',
-    alternateName: ['Vision Energy ME', 'Vision Energy International LLC', 'Vision Energy Electrical Trading'],
-    url: 'https://www.visionenergyme.com',
-    logo: 'https://www.visionenergyme.com/main-logo-vision.png',
-    image: 'https://www.visionenergyme.com/images/products-collage-banner.jpg',
+    '@type': ['Organization', 'ProfessionalService'],
+    '@id': ORGANIZATION_ID,
+    name: COMPANY_FACTS.legalName,
+    alternateName: [COMPANY_FACTS.name, 'Vision Energy ME'],
+    url: SITE_URL,
+    logo: `${SITE_URL}/main-logo-vision.png`,
+    image: `${SITE_URL}/images/products-collage-banner.jpg`,
     description:
-      'Authorised UAE distributor & engineering specialist in lightning protection, low-impedance earthing networks, electrical equipment, generator machinery, and heavy equipment support across Dubai and all Emirates.',
-    telephone: '+971 7 204 2763',
-    email: 'info@visionenergyme.com',
-    priceRange: '$$$',
+      'Established 2018 with more than 160 projects completed. Specialist supplier and engineering partner for lightning protection systems, earthing networks, surge protection, commercial gym equipment, and laboratory equipment across Dubai, Abu Dhabi, Ras Al Khaimah, the UAE, and Qatar.',
+    telephone: COMPANY_FACTS.phones.landline,
+    email: COMPANY_FACTS.email,
+    foundingDate: COMPANY_FACTS.established,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'RAK Business Centre BC4, Ras Al Khaimah',
-      addressLocality: 'Ras Al Khaimah',
-      addressRegion: 'United Arab Emirates',
-      addressCountry: 'AE',
+      streetAddress: COMPANY_FACTS.headOffice.streetAddress,
+      postOfficeBoxNumber: COMPANY_FACTS.headOffice.poBox,
+      addressLocality: COMPANY_FACTS.headOffice.locality,
+      addressRegion: COMPANY_FACTS.headOffice.region,
+      addressCountry: COMPANY_FACTS.headOffice.countryCode,
     },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: 25.2048,
-      longitude: 55.2708,
-    },
-    openingHoursSpecification: [
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-        opens: '08:00',
-        closes: '18:00',
-      },
-    ],
-    areaServed: [
-      { '@type': 'City', name: 'Dubai' },
-      { '@type': 'City', name: 'Abu Dhabi' },
-      { '@type': 'City', name: 'Sharjah' },
-      { '@type': 'City', name: 'Ras Al Khaimah' },
-      { '@type': 'City', name: 'Ajman' },
-      { '@type': 'City', name: 'Fujairah' },
-      { '@type': 'City', name: 'Umm Al Quwain' },
-      { '@type': 'Country', name: 'United Arab Emirates' },
-    ],
+    areaServed: COMPANY_FACTS.areaServedSchema,
     contactPoint: [
       {
         '@type': 'ContactPoint',
-        telephone: '+971 7 204 2763',
-        contactType: 'sales',
-        areaServed: 'AE',
-        availableLanguage: ['English', 'Arabic'],
+        telephone: COMPANY_FACTS.phones.landline,
+        contactType: 'office',
+        areaServed: ['AE', 'QA'],
+        availableLanguage: ['English'],
       },
       {
         '@type': 'ContactPoint',
-        telephone: '+971 50 768 6700',
-        contactType: 'customer support',
-        areaServed: 'AE',
-        availableLanguage: ['English', 'Arabic'],
+        telephone: COMPANY_FACTS.phones.mobile,
+        contactType: 'sales',
+        areaServed: ['AE', 'QA'],
+        availableLanguage: ['English'],
       },
     ],
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: 'Vision Energy Core Engineering & Supply Services',
-      itemListElement: [
-        {
-          '@type': 'OfferCatalog',
-          name: 'Lightning Protection Systems',
-          description: 'Conventional Faraday cage and Early Streamer Emission (ESE) lightning protection systems compliant with IEC 62305 & NF C 17-102.',
-        },
-        {
-          '@type': 'OfferCatalog',
-          name: 'Earthing & Grounding Networks',
-          description: 'Copper earth rods, exothermic welding, earth enhancement compounds, and soil resistivity testing.',
-        },
-        {
-          '@type': 'OfferCatalog',
-          name: 'Industrial Electrical Equipment & Cables',
-          description: 'Power distribution, switchgear, cable trays, conduits, and circuit protection systems.',
-        },
-        {
-          '@type': 'OfferCatalog',
-          name: 'Heavy Equipment & Industrial Generator Solutions',
-          description: 'Industrial generator equipment, heavy-duty clamps, site equipment support, and machinery solutions across the UAE.',
-        },
-        {
-          '@type': 'OfferCatalog',
-          name: 'Specialist Engineering Manpower Supply',
-          description: 'Certified electrical technicians, earthing specialists, and site installation engineers across Dubai and the UAE.',
-        },
-        {
-          '@type': 'OfferCatalog',
-          name: 'LED Lighting & Energy-Efficient Fixtures',
-          description: 'High-bay LED lights, floodlights, commercial panels, linear luminaires, and streetlights compliant with UAE energy standards.',
-        },
-        {
-          '@type': 'OfferCatalog',
-          name: 'Industrial Automation & Controls Switchgear',
-          description: 'PLCs, HMIs, variable frequency drives, contactors, circuit breakers, control relays, and switchgear accessories.',
-        },
-        {
-          '@type': 'OfferCatalog',
-          name: 'Professional Electrical Tools & Testing Instruments',
-          description: 'Insulated hand tools, hydraulic crimpers, cable cutters, digital multimeters, and calibrated electrical test equipment.',
-        },
-        {
-          '@type': 'OfferCatalog',
-          name: 'Laboratory Equipment & Scientific Consumables',
-          description: 'Precision analytical balances, laboratory glassware, chemical consumables, and scientific research instrumentation.',
-        },
-      ],
-    },
-    foundingDate: '2018',
+    ...(sameAs.length > 0 ? { sameAs } : {}),
   };
 
-  // Google Sitelinks Searchbox WebSite Schema
+  // Linked WebSite Schema
   const websiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Vision Energy International',
-    url: 'https://www.visionenergyme.com',
+    '@id': WEBSITE_ID,
+    name: COMPANY_FACTS.name,
+    url: SITE_URL,
+    publisher: { '@id': ORGANIZATION_ID },
+    inLanguage: 'en',
     potentialAction: {
       '@type': 'SearchAction',
       target: {
         '@type': 'EntryPoint',
-        urlTemplate: 'https://www.visionenergyme.com/products?q={search_term_string}',
+        urlTemplate: `${SITE_URL}/products?q={search_term_string}`,
       },
       'query-input': 'required name=search_term_string',
     },

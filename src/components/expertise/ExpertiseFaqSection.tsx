@@ -25,7 +25,7 @@ export default function ExpertiseFaqSection() {
             </h2>
 
             <p className="text-[15px] sm:text-base text-[#475569] dark:text-[#A9B4C0] leading-[1.6]">
-              Direct answers covering UAE and GCC compliance standards, soil-resistivity design, surge coordination, and specialist facility procurement.
+              Direct answers covering UAE compliance standards, soil-resistivity design, surge coordination, and specialist facility procurement across the UAE and Qatar.
             </p>
           </div>
 

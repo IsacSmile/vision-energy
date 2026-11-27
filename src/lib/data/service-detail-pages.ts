@@ -169,7 +169,7 @@ export const SERVICE_DETAIL_PAGES: Record<string, StandardServiceDetailPage> = {
     contactSection: {
       heading: 'Discuss Your System Design & Installation Requirements',
       text:
-        'Connect with our engineering team for technical reviews, submittals, and tailored installation proposals across the UAE and GCC.',
+        'Connect with our engineering team for technical reviews, submittals, and tailored installation proposals across the UAE and Qatar.',
       buttonText: 'Request System Consultation',
       buttonLink: '/contact',
     },

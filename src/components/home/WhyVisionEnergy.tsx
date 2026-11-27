@@ -162,7 +162,7 @@ export default function WhyVisionEnergy() {
             id="why-vision-energy-heading"
             className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#0A192F] dark:text-white leading-[1.18] tracking-[-0.02em]"
           >
-            Specialist Products and Technical Support Across the UAE and GCC
+            Specialist Products and Technical Support Across the UAE and Qatar
           </h2>
         </div>
 

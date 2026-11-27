@@ -484,7 +484,7 @@ export default function HomeHeroClient() {
             <span className="w-px h-3.5 bg-white/25 shrink-0" aria-hidden="true" />
             <span className="inline-flex items-center gap-1.5">
               <Globe className="w-3.5 h-3.5 text-[#8DC63F] shrink-0" aria-hidden="true" />
-              <span className="font-bold text-white">UAE GCC</span>
+              <span className="font-bold text-white">UAE &amp; Qatar</span>
               <span className="font-medium text-[#CBD5E1]">Coverage</span>
             </span>
           </div>
@@ -501,7 +501,7 @@ export default function HomeHeroClient() {
               }}
             >
               {activeSlide.titleLine1}
-            </span>
+            </span>{' '}
             <span
               data-accent-text="true"
               className="block font-extrabold text-[#8DC63F] text-[clamp(1.55rem,7.2vw,1.95rem)] sm:text-[2.25rem] md:text-[2.625rem] lg:text-[clamp(2.35rem,3.6vw,3.15rem)] xl:text-[3.25rem] mt-1.5"

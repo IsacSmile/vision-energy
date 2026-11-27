@@ -116,8 +116,16 @@ function getSystemModuleMedia(title: string) {
 }
 
 export const dynamicParams = true;
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+export const revalidate = 3600;
+
+function fitServiceMeta(text: string, max: number): string {
+  const clean = text.replace(/\s+/g, " ").trim();
+  if (clean.length <= max) return clean;
+  const sliced = clean.slice(0, Math.max(0, max - 1));
+  const lastSpace = sliced.lastIndexOf(" ");
+  const base = lastSpace > Math.floor(max * 0.55) ? sliced.slice(0, lastSpace) : sliced;
+  return `${base.replace(/[,.;:\-—]+$/, "").trim()}…`;
+}
 
 export async function generateMetadata({ params }: ServiceDetailPageProps) {
   const { slug } = await resolveParams(params);
@@ -125,24 +133,26 @@ export async function generateMetadata({ params }: ServiceDetailPageProps) {
   // Reusable data-driven service page metadata (Earthing & Grounding, etc.)
   const standardPage = getStandardServicePage(slug);
   if (standardPage) {
-    const title = `${standardPage.seo.title} Dubai UAE | Vision Energy`;
+    const rawTitle = `${standardPage.seo.title} | Vision Energy`;
+    const title = fitServiceMeta(rawTitle, 60);
+    const description = fitServiceMeta(standardPage.seo.description, 155);
     return {
       title,
-      description: standardPage.seo.description,
+      description,
       keywords: [
         standardPage.title,
         `${standardPage.badgeLabel} Dubai`,
         'Earthing Systems Dubai',
-        'Grounding Networks UAE',
-        'Soil Resistivity Testing Dubai',
-        'DEWA Approved Earthing UAE',
+        'Earthing Contractor Abu Dhabi',
+        'Grounding Networks UAE & Qatar',
+        'Soil Resistivity Testing UAE',
       ],
       alternates: {
         canonical: `https://www.visionenergyme.com/services/${standardPage.slug}`,
       },
       openGraph: {
         title,
-        description: standardPage.seo.description,
+        description,
         url: `https://www.visionenergyme.com/services/${standardPage.slug}`,
         type: "article",
         images: [
@@ -150,14 +160,14 @@ export async function generateMetadata({ params }: ServiceDetailPageProps) {
             url: "https://www.visionenergyme.com/images/products-collage-banner.jpg",
             width: 1200,
             height: 630,
-            alt: `${standardPage.title} Dubai UAE`,
+            alt: `${standardPage.title} UAE & Qatar`,
           },
         ],
       },
       twitter: {
         card: "summary_large_image",
         title,
-        description: standardPage.seo.description,
+        description,
         images: ["https://www.visionenergyme.com/images/products-collage-banner.jpg"],
       },
     };
@@ -170,18 +180,22 @@ export async function generateMetadata({ params }: ServiceDetailPageProps) {
   }
 
   const content = service.content || {};
-  let pageTitle = `${service.title} Dubai UAE | Vision Energy International`;
-  let pageDesc = service.summary;
+  let pageTitle = fitServiceMeta(`${service.title} | Vision Energy`, 60);
+  let pageDesc = fitServiceMeta(service.summary || "", 155);
 
   if (slug === "external-lightning-protection-installation") {
-    pageTitle = "Lightning Protection Installation Dubai UAE | Vision Energy International";
-    pageDesc =
+    pageTitle = "Lightning Protection Installation UAE | Vision Energy";
+    pageDesc = fitServiceMeta(
       content.heroLead ||
-      "Certified external lightning protection installation in Dubai and UAE. Faraday cage, air terminals, and ESE systems compliant with IEC 62305 & Civil Defense.";
+        "External lightning protection installation in Dubai, Abu Dhabi, RAK, UAE & Qatar. Conventional & ESE systems aligned with IEC 62305.",
+      155
+    );
   } else if (slug === "manpower-supply" || slug === "specialist-engineering-manpower-supply") {
-    pageTitle = "Specialist Engineering & MEP Manpower Supply Dubai UAE | Vision Energy";
-    pageDesc =
-      "Certified MEP technicians, electrical engineers, earthing specialists, and equipment operators across Dubai, Abu Dhabi, and UAE.";
+    pageTitle = "Engineering & MEP Manpower Supply UAE | Vision Energy";
+    pageDesc = fitServiceMeta(
+      "Certified MEP technicians, electrical engineers, and earthing specialists across Dubai, Abu Dhabi, Ras Al Khaimah, UAE & Qatar.",
+      155
+    );
   }
 
   return {
@@ -191,9 +205,10 @@ export async function generateMetadata({ params }: ServiceDetailPageProps) {
       service.title,
       `${service.title} Dubai`,
       `${service.title} UAE`,
+      `${service.title} Qatar`,
       "Lightning Protection Dubai",
       "Engineering Contractor UAE",
-      "MEP Specialist Dubai",
+      "MEP Specialist UAE",
     ],
     alternates: {
       canonical: `https://www.visionenergyme.com/services/${slug}`,
@@ -208,7 +223,7 @@ export async function generateMetadata({ params }: ServiceDetailPageProps) {
           url: "https://www.visionenergyme.com/images/products-collage-banner.jpg",
           width: 1200,
           height: 630,
-          alt: `${service.title} Dubai UAE`,
+          alt: `${service.title} UAE & Qatar`,
         },
       ],
     },
@@ -243,14 +258,15 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
       description: standardPage.seo.description,
       url: `https://www.visionenergyme.com/services/${standardPage.slug}`,
       provider: {
-        "@type": "Organization",
-        name: "Vision Energy International",
-        url: "https://www.visionenergyme.com",
+        "@id": "https://www.visionenergyme.com/#organization",
       },
-      areaServed: {
-        "@type": "Country",
-        name: "United Arab Emirates",
-      },
+      areaServed: [
+        { "@type": "City", name: "Dubai" },
+        { "@type": "City", name: "Abu Dhabi" },
+        { "@type": "City", name: "Ras Al Khaimah" },
+        { "@type": "Country", name: "United Arab Emirates" },
+        { "@type": "Country", name: "Qatar" },
+      ],
       serviceType: "Specialist Electrical & Earthing Engineering",
     };
 
@@ -304,14 +320,15 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
     description: pageDesc,
     url: `https://www.visionenergyme.com/services/${slug}`,
     provider: {
-      "@type": "Organization",
-      name: "Vision Energy International",
-      url: "https://www.visionenergyme.com",
+      "@id": "https://www.visionenergyme.com/#organization",
     },
-    areaServed: {
-      "@type": "Country",
-      name: "United Arab Emirates",
-    },
+    areaServed: [
+      { "@type": "City", name: "Dubai" },
+      { "@type": "City", name: "Abu Dhabi" },
+      { "@type": "City", name: "Ras Al Khaimah" },
+      { "@type": "Country", name: "United Arab Emirates" },
+      { "@type": "Country", name: "Qatar" },
+    ],
     serviceType: "Engineering & Technical Services",
   };
 

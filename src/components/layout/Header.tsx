@@ -23,10 +23,10 @@ const TOP_BAR_ACTIONS = [
   },
   {
     key: 'whatsapp',
-    href: 'https://wa.me/971507686700',
+    href: 'https://wa.me/971547004616',
     external: true,
-    title: 'Chat on WhatsApp (+971 50 768 6700)',
-    ariaLabel: 'Chat with Vision Energy on WhatsApp +971 50 768 6700',
+    title: 'Chat on WhatsApp (+971 54 700 4616)',
+    ariaLabel: 'Chat with Vision Energy on WhatsApp +971 54 700 4616',
     icon: FaWhatsappIcon,
     iconClass: 'w-4 h-4 sm:w-[17px] sm:h-[17px]',
   },

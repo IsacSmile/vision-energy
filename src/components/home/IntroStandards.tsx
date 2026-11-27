@@ -38,22 +38,26 @@ export default function IntroStandards({ productCategoryCount }: IntroStandardsP
           <div className="lg:col-span-7 space-y-5 pt-2 lg:pt-0">
             <Reveal staggerIndex={1} className="space-y-3.5">
               <p className="text-base md:text-lg text-slate-600 dark:text-[#A9B4C0] leading-[1.7]">
-                Founded in 2018, Vision Energy International supplies electrical, mechanical and renewable energy solutions to construction, MEP, oil and gas, and renewable energy projects across the GCC. Our portfolio also includes laboratory and gym equipment and specialize in lightning protection and earthing systems.
+                Established in 2018 with more than 160 projects completed, Vision Energy International supplies electrical, mechanical, renewable energy, gym, and laboratory solutions—with specialist engineering capabilities in lightning protection, earthing, and surge protection systems across Dubai, Abu Dhabi, Ras Al Khaimah, the UAE, and Qatar.
               </p>
               <p className="text-base md:text-lg text-slate-600 dark:text-[#A9B4C0] leading-[1.7]">
-                As an authorised agent and distributor for specialist products in the UAE, we draw on over a decade of industry experience to help clients select equipment that meets project specifications, applicable international standards and local regulatory requirements.
+                From our Ras Al Khaimah head office and branches in Dubai and Abu Dhabi, we help consultants and contractors select and deploy equipment aligned with applicable international standards and UAE utility requirements.
               </p>
             </Reveal>
 
-            {/* 2 Plain Facts */}
-            <div className="grid grid-cols-2 gap-4 sm:gap-8 pt-5 border-t border-slate-200/80 dark:border-white/[0.08] max-w-sm sm:max-w-md">
+            {/* Verified Company Stats */}
+            <div className="grid grid-cols-3 gap-4 sm:gap-8 pt-5 border-t border-slate-200/80 dark:border-white/[0.08] max-w-lg">
               <div className="space-y-1">
                 <span className="block text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">2018</span>
                 <span className="block text-[10px] sm:text-xs uppercase tracking-wider text-slate-500 dark:text-[#A9B4C0]">Established</span>
               </div>
-              <div className="space-y-1 border-l border-slate-200/80 dark:border-white/[0.08] pl-4 sm:pl-8">
-                <span className="block text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">UAE and GCC</span>
-                <span className="block text-[10px] sm:text-xs uppercase tracking-wider text-slate-500 dark:text-[#A9B4C0]">Coverage</span>
+              <div className="space-y-1 border-l border-slate-200/80 dark:border-white/[0.08] pl-4 sm:pl-6">
+                <span className="block text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">160+</span>
+                <span className="block text-[10px] sm:text-xs uppercase tracking-wider text-slate-500 dark:text-[#A9B4C0]">Projects</span>
+              </div>
+              <div className="space-y-1 border-l border-slate-200/80 dark:border-white/[0.08] pl-4 sm:pl-6">
+                <span className="block text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">UAE &amp; Qatar</span>
+                <span className="block text-[10px] sm:text-xs uppercase tracking-wider text-slate-500 dark:text-[#A9B4C0]">Markets Served</span>
               </div>
             </div>
           </div>

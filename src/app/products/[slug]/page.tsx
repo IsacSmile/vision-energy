@@ -30,8 +30,16 @@ export async function generateStaticParams() {
 }
 
 export const dynamicParams = true;
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+export const revalidate = 3600;
+
+function fitMetaText(text: string, max: number): string {
+  const clean = text.replace(/\s+/g, " ").trim();
+  if (clean.length <= max) return clean;
+  const sliced = clean.slice(0, Math.max(0, max - 1));
+  const lastSpace = sliced.lastIndexOf(" ");
+  const base = lastSpace > Math.floor(max * 0.55) ? sliced.slice(0, lastSpace) : sliced;
+  return `${base.replace(/[,.;:\-—]+$/, "").trim()}…`;
+}
 
 export async function generateMetadata({ params }: SlugPageProps): Promise<Metadata> {
   const { slug } = await resolveParams(params);
@@ -40,8 +48,15 @@ export async function generateMetadata({ params }: SlugPageProps): Promise<Metad
   const category = await getPublishedCategoryBySlug(slug);
   if (!category) return { title: "Category Not Found" };
 
-  const title = `[${category.code}] ${category.title} Dubai UAE | Vision Energy`;
-  const description = `${category.description} Certified engineering supplier in Dubai & across the UAE. Fully compliant with DEWA, SEWA & Civil Defense.`;
+  const fullTitle = `[${category.code}] ${category.title} | Vision Energy`;
+  const title =
+    fullTitle.length <= 60
+      ? fullTitle
+      : fitMetaText(`${category.title} | Vision Energy`, 60);
+  const description = fitMetaText(
+    `${category.description} Supplier in Dubai, Abu Dhabi, RAK & Qatar.`,
+    155
+  );
   const absoluteImageUrl = category.imageUrl?.startsWith("http")
     ? category.imageUrl
     : category.imageUrl
@@ -156,21 +171,12 @@ export default async function CategoryDetailPage({ params }: SlugPageProps) {
     name: `[${category.code}] ${category.title}`,
     description: category.description,
     sku: category.code,
+    category: category.group,
     image: absoluteImageUrl,
+    url: `https://www.visionenergyme.com/products/${category.slug}`,
     brand: {
       "@type": "Brand",
       name: "Vision Energy International",
-    },
-    offers: {
-      "@type": "AggregateOffer",
-      priceCurrency: "AED",
-      lowPrice: "100.00",
-      offerCount: "1",
-      availability: "https://schema.org/InStock",
-      areaServed: {
-        "@type": "Country",
-        name: "United Arab Emirates",
-      },
     },
   };
 

@@ -1,13 +1,17 @@
-import { earthingData } from './earthing.data';
 import { EXPERTISE_FAQ_ITEMS } from './faq.data';
 
 const SITE_URL = 'https://www.visionenergyme.com';
 const EXPERTISE_URL = `${SITE_URL}/expertise`;
 
-export function buildExpertiseJsonLd() {
-  const workflowStep = earthingData.steps?.find((s) => s.id === 'how-we-work');
-  const workflowStages = workflowStep?.processFlow?.stages || [];
+const EXPERTISE_AREA_SERVED = [
+  { '@type': 'City', name: 'Dubai' },
+  { '@type': 'City', name: 'Abu Dhabi' },
+  { '@type': 'City', name: 'Ras Al Khaimah' },
+  { '@type': 'Country', name: 'United Arab Emirates' },
+  { '@type': 'Country', name: 'Qatar' },
+];
 
+export function buildExpertiseJsonLd() {
   return {
     '@context': 'https://schema.org',
     '@graph': [
@@ -15,22 +19,16 @@ export function buildExpertiseJsonLd() {
         '@type': 'WebPage',
         '@id': `${EXPERTISE_URL}#webpage`,
         url: EXPERTISE_URL,
-        name: 'Lightning & Earthing Engineering Expertise | Vision Energy International',
+        name: 'Lightning & Earthing Expertise UAE & Qatar | Vision Energy',
         headline: 'Lightning & Earthing Engineering Expertise',
         description:
-          'Authority-compliant lightning protection and earthing systems engineered for UAE and GCC critical infrastructure, alongside specialized gym and laboratory technical solutions.',
+          'Lightning protection and earthing systems aligned with IEC 62305, BS 7430 and UAE authorities, plus commercial gym and laboratory equipment.',
         inLanguage: 'en-AE',
         isPartOf: {
-          '@type': 'WebSite',
           '@id': `${SITE_URL}/#website`,
-          url: SITE_URL,
-          name: 'Vision Energy International',
         },
         publisher: {
-          '@type': 'Organization',
           '@id': `${SITE_URL}/#organization`,
-          name: 'VISION ENERGY INTERNATIONAL',
-          url: SITE_URL,
         },
         primaryImageOfPage: {
           '@type': 'ImageObject',
@@ -90,9 +88,9 @@ export function buildExpertiseJsonLd() {
               name: 'Lightning Protection Engineering Systems',
               serviceType: 'IEC 62305, BS EN 62305, BS EN 62561, NF C 17-102 & NFPA 780 Lightning Protection',
               description:
-                'Risk assessment (Levels I–IV), rolling sphere & protection angle design, conventional Faraday cage mesh, ESE terminals, air terminals, down conductors, and UAE authority submittals.',
-              areaServed: 'AE',
-              provider: { '@type': 'Organization', name: 'VISION ENERGY INTERNATIONAL' },
+                'Risk assessment (Levels I–IV), rolling sphere & protection angle design, conventional Faraday cage mesh, ESE terminals, air terminals, down conductors, and UAE & Qatar project submittals.',
+              areaServed: EXPERTISE_AREA_SERVED,
+              provider: { '@id': `${SITE_URL}/#organization` },
             },
           },
           {
@@ -103,9 +101,9 @@ export function buildExpertiseJsonLd() {
               name: 'Earthing, Grounding & Surge Protection Engineering',
               serviceType: 'BS 7430 & IEC 60364 Earthing, Equipotential Bonding & Type 1/2/3 SPD Coordination',
               description:
-                'Soil resistivity testing, deep copper electrodes, ground enhancement compounds, exothermic joints, equipotential earth bars, DEWA/SEWA compliance, and earth-resistance testing.',
-              areaServed: 'AE',
-              provider: { '@type': 'Organization', name: 'VISION ENERGY INTERNATIONAL' },
+                'Soil resistivity testing, deep copper electrodes, ground enhancement compounds, exothermic joints, equipotential earth bars, DEWA/SEWA compliance, and earth-resistance testing across the UAE & Qatar.',
+              areaServed: EXPERTISE_AREA_SERVED,
+              provider: { '@id': `${SITE_URL}/#organization` },
             },
           },
           {
@@ -116,9 +114,9 @@ export function buildExpertiseJsonLd() {
               name: 'Commercial Gym Equipment & Technical Solutions',
               serviceType: 'Specialist Gym & Athletic Facility Supply Support',
               description:
-                'Technical specifications, layout coordination, and commercial gym equipment supply support across the UAE and GCC.',
-              areaServed: 'AE',
-              provider: { '@type': 'Organization', name: 'VISION ENERGY INTERNATIONAL' },
+                'Technical specifications, layout coordination, and commercial gym equipment supply support across the UAE and Qatar.',
+              areaServed: EXPERTISE_AREA_SERVED,
+              provider: { '@id': `${SITE_URL}/#organization` },
             },
           },
           {
@@ -129,26 +127,12 @@ export function buildExpertiseJsonLd() {
               name: 'Laboratory Equipment & Technical Solutions',
               serviceType: 'Laboratory Instrumentation, Glassware & Consumables Supply Support',
               description:
-                'Analytical instruments, precision glassware, laboratory consumables, and procurement engineering support across the UAE and GCC.',
-              areaServed: 'AE',
-              provider: { '@type': 'Organization', name: 'VISION ENERGY INTERNATIONAL' },
+                'Analytical instruments, precision glassware, laboratory consumables, and procurement engineering support across the UAE and Qatar.',
+              areaServed: EXPERTISE_AREA_SERVED,
+              provider: { '@id': `${SITE_URL}/#organization` },
             },
           },
         ],
-      },
-      {
-        '@type': 'HowTo',
-        '@id': `${EXPERTISE_URL}#workflow`,
-        name: 'How Vision Energy Delivers Compliant Lightning & Earthing Projects',
-        description:
-          'Ten-stage technical delivery process from customer enquiry and soil resistivity study through engineering design, authority approval, supervised installation, and tested handover.',
-        step: workflowStages.map((stage, idx) => ({
-          '@type': 'HowToStep',
-          position: idx + 1,
-          name: stage.title,
-          text: stage.description,
-          url: `${EXPERTISE_URL}#step-how-we-work`,
-        })),
       },
       {
         '@type': 'FAQPage',

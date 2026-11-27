@@ -2,15 +2,16 @@ export const dictionary = {
   company: {
     name: 'VISION ENERGY INTERNATIONAL',
     tagline: 'Redefined, Innovative And Quality Assured Engineering Product Solutions',
-    phones: ['+971 7 204 2763', '+971 50 768 6700'],
+    phones: ['+971 7 204 2763', '+971 54 700 4616'],
     primaryPhone: '+971 7 204 2763',
-    secondaryPhone: '+971 50 768 6700',
+    secondaryPhone: '+971 54 700 4616',
     email: 'info@visionenergyme.com',
     website: 'www.visionenergyme.com',
-    locations: ['Abu Dhabi', 'Dubai', 'Ras Al Khaimah'],
-    headquarters: 'RAK Business Centre BC4, Ras Al Khaimah, United Arab Emirates',
+    locations: ['Dubai', 'Abu Dhabi', 'Ras Al Khaimah', 'Qatar'],
+    headquarters:
+      'RAK Business Centre BC4, RAK FTZ Business Park, P.O Box 17111, Al Nakheel, Ras Al Khaimah, UAE',
     founded: '2018',
-    type: 'Trading Company & Authorised Distributor'
+    type: 'Engineering Solutions & Authorised Technical Supply'
   },
   nav: {
     home: 'Home',
@@ -29,14 +30,15 @@ export const dictionary = {
     ctaServices: 'Book a Service'
   },
   emirates: [
-    'Abu Dhabi',
     'Dubai',
-    'Sharjah',
+    'Abu Dhabi',
     'Ras Al Khaimah',
+    'Sharjah',
     'Ajman',
     'Fujairah',
     'Umm Al Quwain',
-    'Other / International'
+    'Qatar',
+    'Other'
   ],
   projectTypes: [
     'New Construction',

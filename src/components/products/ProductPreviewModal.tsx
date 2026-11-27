@@ -454,7 +454,7 @@ function ProductPreviewDialog({
                 Region
               </div>
               <div className="text-xs font-semibold text-[#0A192F] dark:text-white truncate">
-                UAE &amp; GCC Supply
+                UAE &amp; Qatar Supply
               </div>
             </div>
           </div>

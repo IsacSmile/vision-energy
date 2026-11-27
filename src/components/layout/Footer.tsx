@@ -55,11 +55,11 @@ export default function Footer({ services = [] }: FooterProps) {
     Boolean(SOCIAL_LINKS.instagram);
 
   const productGroupLinks = [
-    { label: 'Lightning Protection & Earthing', href: '/products?group=LP' },
-    { label: 'Earthing & Bonding', href: '/products?group=EB' },
-    { label: 'Mechanical & Fixings', href: '/products?group=MF' },
-    { label: 'Industrial Cables', href: '/products?group=IC' },
-    { label: 'Solar Energy Components', href: '/products?group=SE' },
+    { label: 'Lightning Protection Systems', href: '/products?group=LP' },
+    { label: 'Earthing & Bonding Materials', href: '/products?group=ER' },
+    { label: 'Gym & Sports Equipment', href: '/products?group=SP' },
+    { label: 'Laboratory Equipment', href: '/products?group=LE' },
+    { label: 'Electrical Equipment', href: '/products?group=EL' },
     { label: 'All Products', href: '/products' },
   ];
 
@@ -94,10 +94,11 @@ export default function Footer({ services = [] }: FooterProps) {
 
   const companyLinks = [
     { label: 'Home', href: '/' },
-    { label: 'Expertise', href: '/expertise' },
+    { label: 'About Us', href: '/about' },
+    { label: 'Expertise Hub', href: '/expertise' },
+    { label: 'Technical Glossary', href: '/glossary' },
     { label: 'Blog', href: '/blog' },
     { label: 'Contact Us', href: '/contact' },
-    { label: 'Admin Panel', href: '/admin' },
   ];
 
   return (
@@ -130,7 +131,7 @@ export default function Footer({ services = [] }: FooterProps) {
                 One Company. Multiple Solutions. A Commitment to Quality
               </p>
               <p className="text-xs !text-white/80 leading-relaxed">
-                Specialist electrical, mechanical, renewable energy, and earthing solutions across the UAE and GCC.
+                Established 2018 · Over 160 projects completed. Specialist lightning protection, earthing, electrical, mechanical, renewable, gym &amp; laboratory solutions across Dubai, Abu Dhabi, Ras Al Khaimah, the UAE, and Qatar.
               </p>
             </div>
 
@@ -300,7 +301,14 @@ export default function Footer({ services = [] }: FooterProps) {
 
                 <div className="flex items-start gap-2.5 pt-1 !text-white/80">
                   <MapPin className="w-4 h-4 text-[#8DC63F] shrink-0 mt-0.5" />
-                  <span>Abu Dhabi | Dubai | Ras Al Khaimah</span>
+                  <div className="space-y-1 text-xs leading-relaxed">
+                    <span className="block !text-white/90 font-medium">
+                      RAK Business Centre BC4, RAK FTZ Business Park, P.O Box 17111, Al Nakheel, Ras Al Khaimah, UAE
+                    </span>
+                    <span className="block !text-white/70">
+                      Branches: Dubai &amp; Abu Dhabi · Markets: UAE &amp; Qatar
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>

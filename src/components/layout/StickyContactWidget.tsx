@@ -6,8 +6,8 @@ import { ArrowUpRight, X } from 'lucide-react';
 
 const OFFICE_LANDLINE_DISPLAY = '+971 7 204 2763';
 const OFFICE_LANDLINE_TEL = '+97172042763';
-const WHATSAPP_DISPLAY = '+971 50 768 6700';
-const WHATSAPP_URL = 'https://wa.me/971507686700';
+const WHATSAPP_DISPLAY = '+971 54 700 4616';
+const WHATSAPP_URL = 'https://wa.me/971547004616';
 
 /**
  * Desk landline telephone SVG icon for the Office Land Phone action.
@@ -139,17 +139,47 @@ export default function StickyContactWidget() {
 
   const bottomPositionClass = hasServiceMobileBar
     ? 'bottom-[calc(5.25rem+env(safe-area-inset-bottom,0px))] lg:bottom-[calc(1.5rem+env(safe-area-inset-bottom,0px))]'
-    : 'bottom-[calc(0.875rem+env(safe-area-inset-bottom,0px))] sm:bottom-[calc(1.5rem+env(safe-area-inset-bottom,0px))]';
+    : 'bottom-[calc(4.25rem+env(safe-area-inset-bottom,0px))] sm:bottom-[calc(1.5rem+env(safe-area-inset-bottom,0px))]';
 
   return (
-    <div
-      ref={containerRef}
-      onTouchStart={handleTouchStart}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onBlur={handleBlur}
-      className={`fixed right-[calc(0.875rem+env(safe-area-inset-right,0px))] sm:right-[calc(1.5rem+env(safe-area-inset-right,0px))] ${bottomPositionClass} z-40 flex flex-col items-end`}
-    >
+    <>
+      {/* Sticky Mobile Quick Call + WhatsApp Action Bar (<sm, hidden on service detail pages which render their own CTA bar) */}
+      {!hasServiceMobileBar && (
+        <div
+          data-preserve-contrast="true"
+          className="fixed bottom-0 inset-x-0 z-40 sm:hidden bg-[#0A192F]/95 backdrop-blur-md border-t border-white/15 px-3 py-2 flex items-center gap-2.5 shadow-[0_-8px_24px_rgba(0,0,0,0.35)]"
+        >
+          <a
+            href={`tel:${OFFICE_LANDLINE_TEL}`}
+            aria-label={`Call Office Land Phone ${OFFICE_LANDLINE_DISPLAY}`}
+            className="flex-1 h-10 rounded-xl bg-[#0B65B3] hover:bg-[#095292] text-white text-xs font-bold inline-flex items-center justify-center gap-2 transition-colors active:scale-[0.98]"
+            style={{ color: '#FFFFFF' }}
+          >
+            <LandPhoneIcon className="w-4 h-4 text-[#8DC63F]" />
+            <span>Call Office</span>
+          </a>
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Chat on WhatsApp ${WHATSAPP_DISPLAY}`}
+            className="flex-1 h-10 rounded-xl bg-[#15803D] hover:bg-[#166534] text-white text-xs font-bold inline-flex items-center justify-center gap-2 transition-colors active:scale-[0.98]"
+            style={{ color: '#FFFFFF' }}
+          >
+            <WhatsAppIcon className="w-4 h-4 text-white" />
+            <span>WhatsApp</span>
+          </a>
+        </div>
+      )}
+
+      <div
+        ref={containerRef}
+        onTouchStart={handleTouchStart}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onBlur={handleBlur}
+        className={`${hasServiceMobileBar ? 'flex' : 'hidden sm:flex'} fixed right-[calc(0.875rem+env(safe-area-inset-right,0px))] sm:right-[calc(1.5rem+env(safe-area-inset-right,0px))] ${bottomPositionClass} z-40 flex-col items-end`}
+      >
       {/* Unified Professional Quick-Contact Popover Card */}
       <div
         id="sticky-contact-actions"
@@ -272,6 +302,7 @@ export default function StickyContactWidget() {
           aria-hidden="true"
         />
       </button>
-    </div>
+      </div>
+    </>
   );
 }

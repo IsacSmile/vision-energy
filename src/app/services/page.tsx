@@ -10,26 +10,24 @@ import FinalCTA from '@/components/home/FinalCTA';
 import Reveal from '@/components/ui/Reveal';
 
 export const metadata = {
-  title: 'Engineering Services, Lightning Protection & Manpower Dubai UAE | Vision Energy',
+  title: 'Engineering & MEP Services UAE & Qatar | Vision Energy',
   description:
-    'Specialist engineering services in Dubai & across the UAE: lightning protection installation, low-impedance earthing design, soil resistivity testing, and certified MEP manpower supply. DEWA & Civil Defense compliant.',
+    'Lightning protection installation, earthing & grounding design, soil resistivity testing, and certified MEP manpower in UAE & Qatar.',
   keywords: [
-    'Lightning Protection Installation Dubai',
-    'Lightning Protection UAE',
-    'Earthing System Design UAE',
+    'Lightning Protection Installation UAE',
+    'Earthing System Design Dubai',
+    'Earthing Contractor Abu Dhabi',
     'Soil Resistivity Testing UAE',
-    'Engineering Manpower Supply Dubai',
-    'Specialist MEP Services Dubai',
+    'Engineering Manpower Supply UAE & Qatar',
     'Surge Protection Installation UAE',
-    'Civil Defense Lightning Approval Dubai',
   ],
   alternates: {
     canonical: 'https://www.visionenergyme.com/services',
   },
   openGraph: {
-    title: 'Engineering Services, Lightning Protection & Manpower Dubai UAE | Vision Energy',
+    title: 'Engineering & MEP Services UAE & Qatar | Vision Energy',
     description:
-      'Specialist engineering services in Dubai & across the UAE: lightning protection installation, earthing design, soil resistivity testing, and certified MEP manpower supply.',
+      'Lightning protection installation, earthing design, soil resistivity testing, and certified MEP manpower across Dubai, Abu Dhabi, RAK & Qatar.',
     url: 'https://www.visionenergyme.com/services',
     type: 'website',
     images: [
@@ -37,24 +35,42 @@ export const metadata = {
         url: 'https://www.visionenergyme.com/images/products-collage-banner.jpg',
         width: 1200,
         height: 630,
-        alt: 'Vision Energy Engineering Services Dubai UAE',
+        alt: 'Vision Energy Engineering Services UAE & Qatar',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Engineering Services, Lightning Protection & Manpower Dubai UAE | Vision Energy',
+    title: 'Engineering & MEP Services UAE & Qatar | Vision Energy',
     description:
-      'Specialist engineering services across Dubai & UAE: lightning protection, earthing networks, and certified manpower supply.',
+      'Lightning protection, earthing networks, soil testing & certified MEP manpower across UAE & Qatar.',
     images: ['https://www.visionenergyme.com/images/products-collage-banner.jpg'],
   },
 };
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+export const revalidate = 300;
 
 export default async function ServicesListingPage() {
-  const publishedServices = await getPublishedServices();
+  const rawServices = await getPublishedServices();
+  const publishedServices = rawServices.map((service) => ({
+    ...service,
+    content: service.content
+      ? {
+          metaChips: service.content.metaChips,
+          image: service.content.image,
+          imageAlt: service.content.imageAlt,
+          hero: service.content.hero
+            ? {
+                imageUrl: service.content.hero.imageUrl,
+                imageAlt: service.content.hero.imageAlt,
+              }
+            : undefined,
+          systems: service.content.systems?.[0]
+            ? [{ points: service.content.systems[0].points }]
+            : undefined,
+        }
+      : null,
+  }));
 
   // JSON-LD Schemas
   const breadcrumbJsonLd = {
@@ -124,33 +140,25 @@ export default async function ServicesListingPage() {
 
           <div className="max-w-[80rem] w-full mx-auto px-4 sm:px-6 lg:px-8 pt-[calc(var(--header-offset,80px)+36px)] lg:pt-[calc(var(--header-offset,80px)+52px)] pb-10 sm:pb-14 relative z-10">
             <div className="space-y-4 max-w-4xl">
-              <Reveal>
-                <nav aria-label="Breadcrumb" className="text-[13px] text-white/80 font-medium flex items-center gap-2 drop-shadow-sm">
-                  <Link href="/" className="hover:text-white transition-colors">
-                    Home
-                  </Link>
-                  <ChevronRight className="w-3.5 h-3.5 text-white/50" />
-                  <span className="text-[#8DC63F] font-semibold">Services</span>
-                </nav>
-              </Reveal>
+              <nav aria-label="Breadcrumb" className="text-[13px] text-white/80 font-medium flex items-center gap-2 drop-shadow-sm">
+                <Link href="/" className="hover:text-white transition-colors">
+                  Home
+                </Link>
+                <ChevronRight className="w-3.5 h-3.5 text-white/50" />
+                <span className="text-[#8DC63F] font-semibold">Services</span>
+              </nav>
 
-              <Reveal delay={70}>
-                <span className="text-[13px] font-semibold text-[#8DC63F] uppercase tracking-widest block drop-shadow-sm">
-                  Services
-                </span>
-              </Reveal>
+              <span className="text-[13px] font-semibold text-[#8DC63F] uppercase tracking-widest block drop-shadow-sm">
+                Services
+              </span>
 
-              <Reveal delay={140}>
-                <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-white tracking-tight leading-[1.15] drop-shadow-md">
-                  Installation and Support Services
-                </h1>
-              </Reveal>
+              <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-white tracking-tight leading-[1.15] drop-shadow-md">
+                Installation and Support Services
+              </h1>
 
-              <Reveal delay={210}>
-                <p className="text-base sm:text-lg text-white/90 max-w-2xl leading-relaxed drop-shadow">
-                  Beyond supply, we help deliver results. From product selection and technical coordination to installation guidance and after-sales support, our team keeps your project moving with confidence.
-                </p>
-              </Reveal>
+              <p className="text-base sm:text-lg text-white/90 max-w-2xl leading-relaxed drop-shadow">
+                Beyond supply, we help deliver results. From product selection and technical coordination to installation guidance and after-sales support, our team keeps your project moving across the UAE &amp; Qatar.
+              </p>
             </div>
           </div>
         </section>

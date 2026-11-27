@@ -1,24 +1,24 @@
 # Vision Energy International
 
-> Authorised UAE engineering specialist and supplier focused primarily on Lightning Protection Systems and Earthing & Grounding Networks (IEC 62305, BS EN 62305, BS EN 62561, NF C 17-102, BS 7430, NFPA 780), with secondary project supply and technical support for Commercial Gym Equipment and Laboratory Equipment across Dubai, Abu Dhabi, Sharjah, and the GCC.
+> Established in 2018 with more than 160 projects completed, Vision Energy International is a UAE engineering specialist and supplier focused primarily on Lightning Protection Systems and Earthing & Grounding Networks (IEC 62305, BS EN 62305, BS EN 62561, NF C 17-102, BS 7430, NFPA 780), alongside secondary project supply and technical support for Commercial Gym Equipment and Laboratory Equipment across Dubai, Abu Dhabi, Ras Al Khaimah, the UAE, and Qatar.
 
 ## Company Overview & Geographic Scope
 - **Legal Entity**: VISION ENERGY INTERNATIONAL
-- **Headquarters**: RAK Business Centre BC4, Ras Al Khaimah, United Arab Emirates
-- **Service Region**: Dubai, Abu Dhabi, Sharjah, Ras Al Khaimah, Ajman, Fujairah, Umm Al Quwain (UAE & GCC)
-- **UAE Regulatory Alignment**: DEWA (Dubai Electricity & Water Authority), SEWA (Sharjah Electricity & Water Authority), ADDC (Abu Dhabi Distribution Company), DoE (Department of Energy), ADCDA (Abu Dhabi Civil Defence Authority), Abu Dhabi Municipality
-- **Hours**: Monday–Saturday, 08:00–18:00 (GST / UTC+4)
-- **Primary Contact**: `+971 7 204 2763` | `+971 50 768 6700` | `info@visionenergyme.com`
+- **Head Office**: RAK Business Centre BC4, RAK FTZ Business Park, P.O Box 17111, Al Nakheel, Ras Al Khaimah, UAE
+- **Branches**: Dubai and Abu Dhabi (UAE)
+- **Markets Served**: Dubai, Abu Dhabi, Ras Al Khaimah, wider UAE, and Qatar (project supply & technical support; no local office in Qatar)
+- **UAE Authorities Referenced**: DEWA, SEWA, Etihad WE, ADDC, DoE (Department of Energy), ADCDA (Abu Dhabi Civil Defence Authority), Abu Dhabi Municipality
+- **Primary Contact**: `+971 7 204 2763` | `+971 54 700 4616` | `info@visionenergyme.com`
 
 ## Priority #1 Technical Expertise
-- [Engineering Expertise Overview](https://www.visionenergyme.com/expertise): Full interactive guide covering Lightning Protection Systems, Earthing & Equipotential Bonding, Surge Protection Coordination, and UAE regulatory workflows.
+- [Engineering Expertise Overview](https://www.visionenergyme.com/expertise): Full interactive guide covering Lightning Protection Systems, Earthing & Equipotential Bonding, Surge Protection Coordination, and UAE project workflows.
 - [Markdown Specification of /expertise](https://www.visionenergyme.com/expertise.md): Agent-friendly Markdown reference with all protection tables, formulas (`Rp`, `Rp(h)`, Rolling Sphere Levels I–IV, Faraday Mesh grid dimensions, ESE `ΔT` radii), 10-stage delivery workflow, and direct FAQ answers.
-- [Lightning Protection Tab](https://www.visionenergyme.com/expertise#lightning): 9-step engineering guide (formation, 6 risk profiles, 5 LPS effects, 6 engineered components, 6 core functions, risk criteria & Levels I–IV, Conventional vs. ESE vs. Meshed Cage comparison, UAE thunderstorm impact, before/during/after safety precautions).
+- [Lightning Protection Tab](https://www.visionenergyme.com/expertise#lightning): 9-step engineering guide (formation, 6 risk profiles, 5 LPS effects, 6 engineered components, 6 core functions, risk criteria & Levels I–IV, Conventional vs. ESE vs. Meshed Cage comparison, regional exposure, before/during/after safety precautions).
 - [Earthing & Grounding Tab](https://www.visionenergyme.com/expertise#earthing): 5-step engineering guide (soil resistivity study, deep electrodes & enhancement compounds, exothermic bonding, Type 1/2/3 SPD surge coordination, 10-stage project delivery, technical standards).
 
 ## Priority #2 Facility & Equipment Expertise
-- [Gym Equipment & Solutions](https://www.visionenergyme.com/expertise#gym): Technical procurement and equipment solutions for commercial gym and fitness facilities in the UAE & GCC.
-- [Laboratory Equipment & Solutions](https://www.visionenergyme.com/expertise#laboratory): Analytical equipment, glassware, and technical procurement solutions for industrial and scientific laboratories in the UAE & GCC.
+- [Gym Equipment & Solutions](https://www.visionenergyme.com/expertise#gym): Technical procurement and equipment solutions for commercial gym and fitness facilities in the UAE & Qatar.
+- [Laboratory Equipment & Solutions](https://www.visionenergyme.com/expertise#laboratory): Analytical equipment, glassware, and technical procurement solutions for industrial and scientific laboratories in the UAE & Qatar.
 
 ## Core Catalog & Services
 - [All Product Categories](https://www.visionenergyme.com/products): Lightning protection hardware, earthing rods/tapes/exothermic moulds, electrical distribution, LED lighting, industrial automation, safety PPE, laboratory consumables, and gym equipment.

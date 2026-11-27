@@ -635,12 +635,12 @@ export const lightningData: ExpertiseTabConfig = {
     {
       id: 'uae-impact',
       stepNumber: 8,
-      title: 'Impact of Lightning in the UAE',
+      title: 'Impact of Lightning in the UAE & Qatar',
       intro:
-        'In a land renowned for its towering skyscrapers, expansive deserts, and vibrant cities, the occurrence of lightning was once considered rare amidst the perpetual sunshine. However, the recent adoption of cloud seeding technology has led to an increase in thunderstorms and frequent lightning strikes across the region.',
+        'High-rise towers, coastal industrial facilities, energy assets, and large infrastructure campuses across the UAE and Qatar face seasonal electrical storm activity and surge hazards.',
       paragraphs: [
-        'In response to the surge in thunderstorms and frequent lightning strikes, authorities have mandated the implementation of Lightning Protection Systems (LPS) for all constructions. Additionally, there is an emphasis on the maintenance of existing systems to ensure robust protection against lightning-related hazards.',
-        'Given the latest trend in the region for thunderstorm activities, the implementation of lightning protection systems has become crucial in the UAE. These systems help safeguard buildings, infrastructure, and individuals from the destructive power of lightning. By incorporating lightning rods, surge protectors, and grounding systems, structures can be better equipped to withstand lightning strikes and mitigate potential damage.',
+        'Engineered Lightning Protection Systems (LPS) and periodic maintenance inspections help safeguard occupants, structures, and sensitive building systems from direct lightning strikes and transient overvoltages.',
+        'These systems help safeguard buildings, infrastructure, and individuals from the destructive power of lightning. By incorporating lightning rods, surge protectors, and grounding systems, structures can be better equipped to withstand lightning strikes and mitigate potential damage.',
         'Moreover, steps have been initiated for the latest advancement in lightning protection and lightning detection technologies, alongside public education on lightning safety protocols essential to reducing the impact of lightning-related incidents in the UAE.',
       ],
     },

@@ -12,9 +12,9 @@ export const EXPERTISE_FAQ_ITEMS: ExpertiseFaqItem[] = [
     topic: 'Lightning',
     priority: 1,
     question:
-      'What lightning protection and earthing standards are required for UAE & GCC authority approvals?',
+      'What lightning protection and earthing standards apply to UAE & Qatar projects?',
     answer:
-      'Projects across Dubai, Abu Dhabi, and the Northern Emirates follow IEC 62305 and BS EN 62305 (Parts 1–4) for structural risk assessment and external/internal protection, BS EN / IEC 62561 for certified components, BS 7430 and IEC 60364 for earthing and surge coordination, plus NF C 17-102 (ESE) or NFPA 780 where specified—prepared for DEWA, SEWA, ADDC, DoE, ADCDA, and municipality clearance.',
+      'Projects across Dubai, Abu Dhabi, Ras Al Khaimah, and the wider UAE follow IEC 62305 and BS EN 62305 (Parts 1–4) for structural risk assessment and external/internal protection, BS EN / IEC 62561 for certified components, BS 7430 and IEC 60364 for earthing and surge coordination, plus NF C 17-102 (ESE) or NFPA 780 where specified—prepared for DEWA, SEWA, Etihad WE, ADDC, DoE, ADCDA, and Abu Dhabi Municipality alignment. For Qatar projects, designs follow applicable IEC/BS international project specifications.',
   },
   {
     id: 'faq-rolling-sphere-levels',
@@ -68,7 +68,7 @@ export const EXPERTISE_FAQ_ITEMS: ExpertiseFaqItem[] = [
     question:
       'What technical and procurement support does Vision Energy offer for commercial Gym and Laboratory facilities?',
     answer:
-      'Alongside our core lightning protection and earthing engineering practice, Vision Energy supports commercial gym facilities and scientific or industrial laboratories across the UAE and GCC with specialist equipment sourcing, analytical glassware and instruments, project compliance guidance, and dependable regional supply scheduling.',
+      'Alongside our core lightning protection and earthing engineering practice, Vision Energy supports commercial gym facilities and scientific or industrial laboratories across Dubai, Abu Dhabi, Ras Al Khaimah, the UAE, and Qatar with specialist equipment sourcing, analytical glassware and instruments, project compliance guidance, and regional supply scheduling.',
   },
 ];
 

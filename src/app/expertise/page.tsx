@@ -11,9 +11,9 @@ import ExpertiseFaqSection from '@/components/expertise/ExpertiseFaqSection';
 import { buildExpertiseJsonLd } from '@/lib/data/expertise';
 
 export const metadata = {
-  title: 'Lightning & Earthing Engineering Expertise UAE | Vision Energy',
+  title: 'Lightning & Earthing Expertise UAE & Qatar | Vision Energy',
   description:
-    'Authority-compliant lightning protection (IEC 62305, NF C 17-102) and earthing systems (BS 7430, DEWA/SEWA) engineered for UAE & GCC infrastructure, alongside specialized gym and laboratory technical solutions by Vision Energy.',
+    'Lightning protection (IEC 62305, NF C 17-102) and earthing systems (BS 7430, DEWA/SEWA), plus commercial gym and laboratory equipment.',
   keywords: [
     'Lightning Protection Expertise UAE',
     'Earthing Engineering Solutions',
@@ -23,24 +23,19 @@ export const metadata = {
     'NF C 17-102 ESE System Dubai',
     'Surge Protection Coordination UAE',
     'Gym Equipment Engineering UAE',
-    'Laboratory Solutions GCC',
+    'Laboratory Solutions UAE & Qatar',
     'Vision Energy Expertise',
   ],
   alternates: {
     canonical: 'https://www.visionenergyme.com/expertise',
-    languages: {
-      'en-AE': 'https://www.visionenergyme.com/expertise',
-      en: 'https://www.visionenergyme.com/expertise',
-      'x-default': 'https://www.visionenergyme.com/expertise',
-    },
     types: {
       'text/markdown': 'https://www.visionenergyme.com/expertise.md',
     },
   },
   openGraph: {
-    title: 'Lightning & Earthing Engineering Expertise | Vision Energy UAE',
+    title: 'Lightning & Earthing Expertise UAE & Qatar | Vision Energy',
     description:
-      'Authority-compliant lightning protection and earthing systems across the UAE and GCC, alongside specialized gym and laboratory technical solutions.',
+      'Authority-compliant lightning protection and earthing systems across the UAE & Qatar, alongside gym and laboratory equipment solutions.',
     url: 'https://www.visionenergyme.com/expertise',
     siteName: 'Vision Energy International',
     locale: 'en_AE',
@@ -56,9 +51,9 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Lightning & Earthing Engineering Expertise | Vision Energy UAE',
+    title: 'Lightning & Earthing Expertise UAE & Qatar | Vision Energy',
     description:
-      'Authority-compliant lightning protection and earthing systems across the UAE and GCC, alongside specialized gym and laboratory technical solutions.',
+      'Lightning protection and earthing systems across the UAE & Qatar, plus gym and laboratory equipment solutions.',
     images: ['https://www.visionenergyme.com/images/expertise-hero-bg.webp'],
   },
   robots: {
@@ -73,8 +68,8 @@ export const metadata = {
     },
   },
   other: {
-    'geo.region': 'AE-DU',
-    'geo.placename': 'Dubai & Ras Al Khaimah, United Arab Emirates',
+    'geo.region': 'AE-RK',
+    'geo.placename': 'Al Nakheel, Ras Al Khaimah, United Arab Emirates',
     'llms-txt': 'https://www.visionenergyme.com/llms.txt',
   },
 };
@@ -189,7 +184,7 @@ export default function ExpertisePage() {
                   textShadow: '0 2px 10px rgba(0, 0, 0, 0.92), 0 1px 3px rgba(0, 0, 0, 0.88)',
                 }}
               >
-                Authority-compliant lightning protection and earthing systems engineered for UAE and GCC critical infrastructure—alongside specialized technical solutions for commercial gym and laboratory facilities.
+                Authority-compliant lightning protection and earthing systems engineered for UAE and Qatar critical infrastructure—alongside specialized technical solutions for commercial gym and laboratory facilities.
               </p>
 
               {/* Action Buttons */}

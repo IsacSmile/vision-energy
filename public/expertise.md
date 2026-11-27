@@ -2,8 +2,9 @@
 
 - **Canonical URL**: https://www.visionenergyme.com/expertise
 - **Markdown Twin**: https://www.visionenergyme.com/expertise.md
-- **Organization**: VISION ENERGY INTERNATIONAL (United Arab Emirates & GCC)
-- **Contact**: `+971 7 204 2763` | `+971 50 768 6700` | `info@visionenergyme.com`
+- **Organization**: VISION ENERGY INTERNATIONAL (Est. 2018 · 160+ Projects Completed)
+- **Head Office**: RAK Business Centre BC4, RAK FTZ Business Park, P.O Box 17111, Al Nakheel, Ras Al Khaimah, UAE (Branches: Dubai & Abu Dhabi; Markets Served: UAE & Qatar)
+- **Contact**: `+971 7 204 2763` | `+971 54 700 4616` | `info@visionenergyme.com`
 - **Primary Priority (#1)**: Lightning Protection Systems, Earthing & Grounding Networks, Equipotential Bonding, Surge Protection Coordination
 - **Secondary Priority (#2)**: Commercial Gym Equipment & Laboratory Equipment Technical Solutions
 
@@ -75,8 +76,8 @@ Triggered by high public occupancy, high ground flash density / tall isolated bu
 - **Single Point Lightning Rod**: `IEC 62305, BS EN 62305` — Suitable for small structures, communication towers, masts, and antennas.
 - **Meshed Cage (Faraday)**: `IEC 62305, BS EN 62305` — Multiple roof/perimeter parallel paths; suited to structures including facilities requiring distributed interception.
 
-### 08. Impact of Lightning in the UAE
-Increased thunderstorm activity alongside regional weather patterns and cloud-seeding events has prompted UAE authorities to mandate compliant LPS design, installation, and maintenance inspection across new and existing developments.
+### 08. Impact of Lightning in the UAE & Qatar
+High-rise towers, coastal industrial facilities, energy assets, and large infrastructure campuses across the UAE and Qatar face seasonal electrical storm activity, prompting structured IEC 62305 risk assessments and compliant LPS design, installation, and maintenance inspection across developments.
 
 ### 09. Lightning & Thunderstorm Safety Precautions
 - **Before**: Avoid open areas, clear decaying branches, seek enclosed shelter, close windows, unplug sensitive appliances, verify LPS hardware readiness.
@@ -114,15 +115,15 @@ Increased thunderstorm activity alongside regional weather patterns and cloud-se
 ---
 
 ## Priority #2: Commercial Gym & Laboratory Solutions
-- **Gym Equipment & Technical Support (`#gym`)**: Technical equipment selection, sourcing, and commercial fitness supply coordination across UAE & GCC developments.
-- **Laboratory Equipment & Technical Support (`#laboratory`)**: Analytical instrumentation, precision balances, certified laboratory glassware, and consumables supply for research, academic, and industrial testing laboratories in the UAE & GCC.
+- **Gym Equipment & Technical Support (`#gym`)**: Technical equipment selection, sourcing, and commercial fitness supply coordination across UAE & Qatar developments.
+- **Laboratory Equipment & Technical Support (`#laboratory`)**: Analytical instrumentation, precision balances, certified laboratory glassware, and consumables supply for research, academic, and industrial testing laboratories in the UAE & Qatar.
 
 ---
 
 ## Technical Engineering FAQ (Direct Answers)
 
-**Q: What lightning protection standards and UAE authority approvals apply to projects in Dubai and Abu Dhabi?**
-A: External and internal lightning protection designs in the UAE follow IEC 62305, BS EN 62305, BS EN 62561, BS 7430, BS 7671 / IEC 60364, and where specified NF C 17-102 or NFPA 780, aligned with DEWA, SEWA, ADDC, DoE, ADCDA, and Abu Dhabi Municipality review criteria.
+**Q: What lightning protection standards apply to projects in Dubai, Abu Dhabi, and Qatar?**
+A: External and internal lightning protection designs in the UAE follow IEC 62305, BS EN 62305, BS EN 62561, BS 7430, BS 7671 / IEC 60364, and where specified NF C 17-102 or NFPA 780, aligned with DEWA, SEWA, Etihad WE, ADDC, DoE, ADCDA, and Abu Dhabi Municipality review criteria. Qatar projects follow applicable IEC/BS project specifications.
 
 **Q: How are earthing systems engineered for high-resistivity desert or rocky UAE soil?**
 A: Vision Energy begins with on-site Wenner soil resistivity measurement, then selects single or coupled copper rods, deep-bore electrodes, ground enhancement compounds, and exothermic joints bonded to main earth bars to verify target earth resistance cleanly at handover.
@@ -137,5 +138,5 @@ A: Conventional IEC 62305 systems create a multi-path roof air-terminal and cond
 A: External air terminals and down conductors divert direct strike currents safely to earth, while transient switching and induced electromagnetic surges enter via power and data cables; cascading Type 1 (incoming supply), Type 2 (distribution), and Type 3 (sensitive equipment) SPDs with equipotential bonding protects building electronics.
 
 **Q: Does Vision Energy support Gym and Laboratory facilities in addition to Lightning and Earthing?**
-A: Yes. While engineered lightning protection and earthing networks are our core specialist engineering discipline, Vision Energy also provides dedicated technical procurement and equipment supply for commercial gym facilities and scientific or industrial laboratories across the UAE and GCC.
+A: Yes. While engineered lightning protection and earthing networks are our core specialist engineering discipline, Vision Energy also provides dedicated technical procurement and equipment supply for commercial gym facilities and scientific or industrial laboratories across the UAE and Qatar.
 

@@ -4,23 +4,23 @@ import { MapPin, Phone, Mail, Globe, Clock, Building2, ShieldCheck, ChevronRight
 import ContactFormClient from '@/components/contact/ContactFormClient';
 
 export const metadata = {
-  title: 'Contact Us | Vision Energy International Dubai, Abu Dhabi & RAK UAE',
+  title: 'Contact Vision Energy | RAK HQ, Dubai, Abu Dhabi & Qatar',
   description:
-    'Contact Vision Energy International in Dubai, Abu Dhabi & Ras Al Khaimah. Get technical submittals, pricing, and project consultation for lightning protection, earthing networks, and industrial electrical supplies across the UAE.',
+    'Contact Vision Energy International in RAK HQ, Dubai & Abu Dhabi (+971 7 204 2763, info@visionenergyme.com). Quotes for UAE & Qatar.',
   keywords: [
     'Contact Vision Energy Dubai',
-    'Lightning Protection Supplier Dubai Contact',
-    'Earthing Materials Supplier UAE Phone',
-    'MEP Equipment Supplier Dubai Office',
-    'Vision Energy UAE Contact',
+    'Lightning Protection Supplier UAE Contact',
+    'Earthing Supplier Abu Dhabi Phone',
+    'Vision Energy Ras Al Khaimah HQ',
+    'Vision Energy Qatar Enquiries',
   ],
   alternates: {
     canonical: 'https://www.visionenergyme.com/contact',
   },
   openGraph: {
-    title: 'Contact Vision Energy International | Dubai, Abu Dhabi & RAK UAE',
+    title: 'Contact Vision Energy | RAK HQ, Dubai, Abu Dhabi & Qatar',
     description:
-      'Contact our technical engineering team in Dubai, Abu Dhabi & Ras Al Khaimah for certified lightning protection, earthing, and electrical equipment submittals.',
+      'Contact Vision Energy International in Ras Al Khaimah HQ, Dubai & Abu Dhabi for lightning protection, earthing, gym & lab equipment quotes.',
     url: 'https://www.visionenergyme.com/contact',
     type: 'website',
   },
@@ -30,25 +30,11 @@ const contactPageSchema = {
   '@context': 'https://schema.org',
   '@type': 'ContactPage',
   name: 'Contact Vision Energy International',
-  description: 'Technical sales and project enquiry desks serving Dubai, Abu Dhabi, Ras Al Khaimah, and all UAE Emirates.',
+  description:
+    'Technical sales and project enquiry desk serving Dubai, Abu Dhabi, Ras Al Khaimah, the UAE, and Qatar from our Ras Al Khaimah head office.',
   url: 'https://www.visionenergyme.com/contact',
   mainEntity: {
-    '@type': 'LocalBusiness',
-    name: 'Vision Energy International',
-    telephone: '+971 7 204 2763',
-    email: 'info@visionenergyme.com',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'RAK Business Centre BC4, Ras Al Khaimah',
-      addressLocality: 'Ras Al Khaimah',
-      addressRegion: 'United Arab Emirates',
-      addressCountry: 'AE',
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: 25.2048,
-      longitude: 55.2708,
-    },
+    '@id': 'https://www.visionenergyme.com/#organization',
   },
 };
 
@@ -141,7 +127,7 @@ export default function ContactPage() {
 
             {/* Tappable Card 4: Navigation / Directions */}
             <a
-              href="https://maps.google.com/?q=Ras+Al+Khaimah+Business+Centre+BC4+UAE"
+              href="https://maps.google.com/?q=RAK+Business+Centre+BC4+RAK+FTZ+Business+Park+Al+Nakheel+Ras+Al+Khaimah+UAE"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full bg-[#0D1117] border border-white/10 hover:border-[#F2C230] p-4 rounded-xl flex items-center justify-between transition-all active:scale-[0.98] group shadow-lg"
@@ -151,9 +137,9 @@ export default function ContactPage() {
                   <Navigation className="w-6 h-6" />
                 </div>
                 <div>
-                  <span className="text-xs font-bold text-gray-400 block uppercase tracking-wider">Get Driving Directions</span>
+                  <span className="text-xs font-bold text-gray-400 block uppercase tracking-wider">Head Office Address</span>
                   <span className="text-xs font-bold text-white group-hover:text-[#F2C230] transition-colors">
-                    RAK Business Centre BC4, Ras Al Khaimah
+                    RAK Business Centre BC4, RAK FTZ Business Park, P.O Box 17111, Al Nakheel, Ras Al Khaimah, UAE
                   </span>
                 </div>
               </div>
@@ -161,22 +147,28 @@ export default function ContactPage() {
             </a>
           </div>
 
-          {/* UAE Regional Cities Strip */}
-          <div className="p-4 bg-[#0D1117] border border-white/10 rounded-xl space-y-2">
+          {/* Regional Coverage & Company Facts Block */}
+          <div className="p-4 bg-[#0D1117] border border-white/10 rounded-xl space-y-3">
             <span className="text-xs font-bold text-[#8DC63F] uppercase tracking-wider block">
-              Active Regional Operations
+              Offices &amp; Markets Served
             </span>
             <div className="flex flex-wrap gap-2 text-xs">
               <span className="px-3 py-1 bg-[#050608] border border-white/10 rounded-full text-white font-medium">
-                📍 Ras Al Khaimah (HQ)
+                Ras Al Khaimah (Head Office)
               </span>
               <span className="px-3.5 py-1 bg-[#050608] border border-white/10 rounded-full text-white font-medium">
-                📍 Abu Dhabi Office
+                Dubai Branch
               </span>
               <span className="px-3.5 py-1 bg-[#050608] border border-white/10 rounded-full text-white font-medium">
-                📍 Dubai Commercial
+                Abu Dhabi Branch
+              </span>
+              <span className="px-3.5 py-1 bg-[#050608] border border-white/10 rounded-full text-white font-medium">
+                Qatar (Project Supply &amp; Technical Support)
               </span>
             </div>
+            <p className="text-[11px] text-[#A9B4C0] leading-relaxed">
+              Established 2018 · Over 160 projects completed · Operating Hours: Gulf Standard Time (GMT+4) — call +971 7 204 2763 or WhatsApp +971 54 700 4616 for immediate technical assistance.
+            </p>
           </div>
 
           {/* Lazy-loaded Interactive Map Container */}
@@ -184,25 +176,32 @@ export default function ContactPage() {
             <div className="flex items-center justify-between text-xs text-gray-300">
               <span className="font-bold text-white flex items-center gap-1.5">
                 <MapPin className="w-4 h-4 text-[#8DC63F]" />
-                HQ Coordinates & Map
+                Head Office Location Map
               </span>
-              <span className="text-[10px] text-gray-400">RAK, UAE</span>
+              <span className="text-[10px] text-gray-400">Al Nakheel, Ras Al Khaimah</span>
             </div>
-            
-            <div className="w-full h-48 bg-[#050608] border border-white/10 rounded-lg relative overflow-hidden flex flex-col items-center justify-center text-center p-4">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(11,101,179,0.15),transparent_70%)]" />
-              <MapPin className="w-8 h-8 text-[#8DC63F] mb-2 animate-bounce" />
-              <p className="text-xs font-bold text-white z-10">Ras Al Khaimah Headquarters</p>
-              <p className="text-[11px] text-gray-400 z-10 max-w-xs mt-0.5">
-                Business Centre BC4, RAK Free Trade Zone
+
+            <div className="w-full h-56 bg-[#050608] border border-white/10 rounded-lg relative overflow-hidden">
+              <iframe
+                title="Vision Energy International Ras Al Khaimah Head Office Map"
+                src="https://maps.google.com/maps?q=RAK%20FTZ%20Business%20Park%20Al%20Nakheel%20Ras%20Al%20Khaimah%20UAE&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full border-0 grayscale contrast-125 opacity-90"
+              />
+            </div>
+
+            <div className="flex items-center justify-between gap-3 pt-1">
+              <p className="text-[11px] text-[#A9B4C0]">
+                RAK Business Centre BC4, RAK FTZ Business Park, P.O Box 17111
               </p>
               <a
-                href="https://maps.google.com/?q=Ras+Al+Khaimah+Business+Centre+BC4+UAE"
+                href="https://maps.google.com/?q=RAK+Business+Centre+BC4+RAK+FTZ+Business+Park+Al+Nakheel+Ras+Al+Khaimah+UAE"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 px-4 py-1.5 bg-[#0B65B3] hover:bg-[#0B65B3]/80 text-white text-[11px] font-bold rounded-full transition-all z-10 inline-flex items-center gap-1.5"
+                className="px-3.5 py-1.5 bg-[#0B65B3] hover:bg-[#0B65B3]/80 text-white text-[11px] font-bold rounded-full transition-all inline-flex items-center gap-1.5 shrink-0"
               >
-                <span>Open in Google Maps</span>
+                <span>Open in Maps</span>
                 <Navigation className="w-3 h-3" />
               </a>
             </div>

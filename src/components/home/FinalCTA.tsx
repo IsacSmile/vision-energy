@@ -262,12 +262,12 @@ export default function FinalCTA({
                   </dt>
 
                   <dd className="space-y-3">
-                    <p className="text-base lg:text-[1.0625rem] leading-[1.7] text-[#A9B4C0] max-w-[34ch]">
-                      RAK Business Centre BC4, Ras Al Khaimah, United Arab Emirates
+                    <p className="text-base lg:text-[1.0625rem] leading-[1.7] text-[#A9B4C0] max-w-[38ch]">
+                      RAK Business Centre BC4, RAK FTZ Business Park, P.O Box 17111, Al Nakheel, Ras Al Khaimah, UAE
                     </p>
 
                     <a
-                      href="https://www.google.com/maps/search/?api=1&query=RAK+Business+Centre+BC4+Ras+Al+Khaimah+United+Arab+Emirates"
+                      href="https://www.google.com/maps/search/?api=1&query=RAK+Business+Centre+BC4+RAK+FTZ+Business+Park+Al+Nakheel+Ras+Al+Khaimah+UAE"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 text-base font-semibold text-[#8DC63F] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] rounded min-h-[48px] active:opacity-70"
@@ -287,7 +287,8 @@ export default function FinalCTA({
                   <dd>
                     <p className="text-[18px] font-medium text-white">
                       Abu Dhabi <span className="text-[#A9B4C0] mx-2">·</span> Dubai{' '}
-                      <span className="text-[#A9B4C0] mx-2">·</span> Ras Al Khaimah
+                      <span className="text-[#A9B4C0] mx-2">·</span> Ras Al Khaimah{' '}
+                      <span className="text-[#A9B4C0] mx-2">·</span> Qatar
                     </p>
                   </dd>
                 </div>
