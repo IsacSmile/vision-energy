@@ -80,7 +80,17 @@ export type ProcessFlowIconKey =
   | 'test'
   | 'incoming'
   | 'distribution'
-  | 'circuit';
+  | 'circuit'
+  | 'enquiry'
+  | 'documents'
+  | 'survey'
+  | 'earthing'
+  | 'risk'
+  | 'design'
+  | 'approval'
+  | 'installation'
+  | 'commissioning'
+  | 'handover';
 
 export interface ProcessFlowStage {
   id: string;
@@ -93,6 +103,7 @@ export interface ProcessFlowStage {
 export interface ProcessFlowConfig {
   heading: string;
   subheading: string;
+  layout?: 'row' | 'paired';
   stages: ProcessFlowStage[];
   footnote?: string;
 }

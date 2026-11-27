@@ -5,6 +5,8 @@ import Image from 'next/image';
 import {
   Activity,
   ArrowDownToLine,
+  Award,
+  BadgeCheck,
   Building2,
   Check,
   ChevronRight,
@@ -12,10 +14,15 @@ import {
   CloudLightning,
   Compass,
   Cpu,
+  DraftingCompass,
+  FileText,
   Flame,
+  FolderSearch,
   GitMerge,
+  HardHat,
   HeartPulse,
   Landmark,
+  MapPin,
   PawPrint,
   Server,
   ShieldCheck,
@@ -52,9 +59,88 @@ const PROCESS_FLOW_ICONS: Record<ProcessFlowStage['iconKey'], LucideIcon> = {
   incoming: Zap,
   distribution: Server,
   circuit: Cpu,
+  enquiry: FileText,
+  documents: FolderSearch,
+  survey: MapPin,
+  earthing: Compass,
+  risk: ClipboardCheck,
+  design: DraftingCompass,
+  approval: BadgeCheck,
+  installation: HardHat,
+  commissioning: Wrench,
+  handover: Award,
 };
 
-function ProcessFlowStagesGrid({ stages }: { stages: ProcessFlowStage[] }) {
+function ProcessFlowStagesGrid({
+  stages,
+  layout = 'row',
+}: {
+  stages: ProcessFlowStage[];
+  layout?: 'row' | 'paired';
+}) {
+  const isPaired = layout === 'paired' || stages.length > 4;
+
+  if (isPaired) {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-7 items-stretch">
+        {stages.map((stage, idx) => {
+          const Icon = PROCESS_FLOW_ICONS[stage.iconKey] || ShieldCheck;
+          const isBlue = idx % 2 === 0;
+          const hasPairConnector = idx % 2 === 0 && idx < stages.length - 1;
+
+          return (
+            <div key={stage.id} className="relative flex flex-col">
+              <article
+                className={`expertise-card ${isBlue ? 'accent-blue' : ''} group p-4 sm:p-5 flex items-start gap-4 h-full`}
+              >
+                <div
+                  className={`expertise-icon-tile ${
+                    isBlue ? 'expertise-icon-tile-blue' : 'expertise-icon-tile-green'
+                  } w-11 h-11 rounded-xl flex items-center justify-center shrink-0 mt-0.5 ${
+                    isBlue
+                      ? 'bg-[#0B65B3]/10 text-[#0B65B3] dark:bg-[#0B65B3]/20 dark:text-[#60A5FA]'
+                      : 'bg-[#8DC63F]/15 text-[#38700D] dark:text-[#8DC63F]'
+                  }`}
+                >
+                  <Icon className="w-5 h-5" aria-hidden="true" />
+                </div>
+
+                <div className="min-w-0 flex-1 space-y-1.5">
+                  <div className="flex items-center gap-2.5 flex-wrap">
+                    <span
+                      className={`font-mono text-xs font-bold tabular-nums px-2 py-0.5 rounded-md shrink-0 ${
+                        isBlue
+                          ? 'bg-[#0B65B3]/10 text-[#0B65B3] dark:bg-[#0B65B3]/20 dark:text-[#60A5FA]'
+                          : 'bg-[#8DC63F]/15 text-[#38700D] dark:text-[#8DC63F]'
+                      }`}
+                    >
+                      {stage.stepCode}
+                    </span>
+                    <h5 className="text-[15.5px] sm:text-base font-bold text-[#0A192F] dark:text-white leading-snug tracking-tight">
+                      {stage.title}
+                    </h5>
+                  </div>
+                  <p className="text-[13.5px] sm:text-sm font-normal text-[#475569] dark:text-[#CBD5E1] leading-[1.55]">
+                    {stage.description}
+                  </p>
+                </div>
+              </article>
+
+              {hasPairConnector && (
+                <span
+                  aria-hidden="true"
+                  className="hidden md:flex absolute top-1/2 -right-[26px] -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-white dark:bg-[#111827] border border-[#0B65B3]/25 dark:border-white/15 shadow-sm items-center justify-center text-[#0B65B3] dark:text-[#8DC63F]"
+                >
+                  <ChevronRight className="w-3.5 h-3.5 stroke-[2.5]" />
+                </span>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-7 items-stretch">
       {stages.map((stage, idx) => {
@@ -205,8 +291,8 @@ function ProcessFlowShowcase({
           </figure>
         </div>
 
-        {/* Full-Width Interactive 4-Stage Pipeline */}
-        <ProcessFlowStagesGrid stages={processFlow.stages} />
+        {/* Full-Width Interactive Stage Pipeline */}
+        <ProcessFlowStagesGrid stages={processFlow.stages} layout={processFlow.layout} />
       </div>
     );
   }
@@ -254,7 +340,7 @@ function ProcessFlowShowcase({
 
       {/* Interactive Stage Flow Cards & Bottom Design Criteria Note */}
       <div className="p-5 sm:p-6 lg:p-7 space-y-5">
-        <ProcessFlowStagesGrid stages={processFlow.stages} />
+        <ProcessFlowStagesGrid stages={processFlow.stages} layout={processFlow.layout} />
 
         {processFlow.footnote && (
           <div className="rounded-xl bg-[#F4F8FC] dark:bg-[#090F1A] border border-slate-200/80 dark:border-white/10 border-l-4 border-l-[#0B65B3] px-4 sm:px-5 py-3.5 flex items-start sm:items-center gap-3">
