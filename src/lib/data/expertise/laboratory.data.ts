@@ -7,7 +7,8 @@ export const laboratoryData: ExpertiseTabConfig = {
   heading: 'Laboratory Equipment & Technical Support',
   emptyState: {
     title: 'Laboratory Equipment & Solutions',
-    message: 'Details coming soon',
+    message:
+      'Technical specifications, laboratory glassware, analytical instrumentation, and facility supply schedules across the UAE and GCC are available on request.',
     ctaLabel: 'Send Enquiry',
   },
 };

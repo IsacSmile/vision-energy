@@ -5,6 +5,8 @@ import { laboratoryData } from './laboratory.data';
 import type { ExpertiseTabConfig, ExpertiseTabId } from './types';
 
 export * from './types';
+export { EXPERTISE_FAQ_ITEMS, type ExpertiseFaqItem } from './faq.data';
+export { buildExpertiseJsonLd } from './schema';
 
 export const EXPERTISE_TABS: ExpertiseTabConfig[] = [
   lightningData,

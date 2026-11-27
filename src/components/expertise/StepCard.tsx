@@ -54,6 +54,7 @@ interface StepCardProps {
   step: ExpertiseStep;
   index: number;
   isDarkBand?: boolean;
+  isPanelActive?: boolean;
 }
 
 function StandardsReferenceShowcase({ config }: { config: StandardsReferenceConfig }) {
@@ -1023,20 +1024,23 @@ function SubTabContent({
   stepId,
   panel,
   isDarkBand = false,
+  isActive = true,
 }: {
   stepId: string;
   panel: SubTabPanel;
   isDarkBand?: boolean;
+  isActive?: boolean;
 }) {
   const isEsePanel = panel.id === 'ese';
 
   return (
     <div
       key={panel.id}
-      id={`${stepId}-subpanel`}
+      id={`${stepId}-subpanel-${panel.id}`}
       role="tabpanel"
       aria-labelledby={`${stepId}-subtab-${panel.id}`}
-      className="expertise-panel-enter space-y-6 pt-3"
+      hidden={!isActive}
+      className={isActive ? 'expertise-panel-enter space-y-6 pt-3' : 'space-y-6 pt-3'}
     >
       {/* ESE two-column intro + visual architecture */}
       {isEsePanel && panel.paragraphs && panel.images && (
@@ -1201,12 +1205,19 @@ function SubTabContent({
   );
 }
 
-export default function StepCard({ step, index, isDarkBand = false }: StepCardProps) {
+export default function StepCard({
+  step,
+  index,
+  isDarkBand = false,
+  isPanelActive = true,
+}: StepCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [revealed, setRevealed] = useState(false);
   const [activeSubTabId, setActiveSubTabId] = useState<string>(step.subTabs?.[0]?.id || '');
 
   useEffect(() => {
+    if (!isPanelActive || revealed) return;
+
     let rafId: number | null = null;
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -1241,7 +1252,7 @@ export default function StepCard({ step, index, isDarkBand = false }: StepCardPr
       if (rafId !== null) window.cancelAnimationFrame(rafId);
       observer.disconnect();
     };
-  }, []);
+  }, [isPanelActive, revealed]);
 
   const activeSubTab = step.subTabs?.find((st) => st.id === activeSubTabId) || step.subTabs?.[0];
   const cardGridClass =
@@ -1414,11 +1425,15 @@ export default function StepCard({ step, index, isDarkBand = false }: StepCardPr
               </div>
             )}
           </div>
-          <SubTabContent
-            stepId={`step-${step.id}`}
-            panel={activeSubTab}
-            isDarkBand={isDarkBand}
-          />
+          {step.subTabs.map((subTab) => (
+            <SubTabContent
+              key={subTab.id}
+              stepId={`step-${step.id}`}
+              panel={subTab}
+              isDarkBand={isDarkBand}
+              isActive={subTab.id === activeSubTab.id}
+            />
+          ))}
         </div>
       )}
     </div>

@@ -4,7 +4,6 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   EXPERTISE_TABS,
   EXPERTISE_TAB_IDS,
-  getExpertiseTab,
   type ExpertiseTabId,
 } from '@/lib/data/expertise';
 import Tabs from './Tabs';
@@ -71,16 +70,12 @@ export default function ExpertiseClient() {
           const y = window.scrollY + rect.top - headerOffset;
           window.scrollTo({
             top: Math.max(0, y),
-            behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
-              ? 'auto'
-              : 'smooth',
+            behavior: 'auto',
           });
         }
       }
     }
   }, []);
-
-  const currentTabConfig = getExpertiseTab(activeTab);
 
   return (
     <section
@@ -90,7 +85,13 @@ export default function ExpertiseClient() {
       className="scroll-mt-[88px] sm:scroll-mt-[96px] lg:scroll-mt-[102px] xl:scroll-mt-[106px] bg-white dark:bg-[#050608] border-b border-slate-200 dark:border-[#1F2937]/80"
     >
       <Tabs tabs={EXPERTISE_TABS} activeTab={activeTab} onSelectTab={handleSelectTab} />
-      <ExpertisePanel key={currentTabConfig.id} tab={currentTabConfig} />
+      {EXPERTISE_TABS.map((tabConfig) => (
+        <ExpertisePanel
+          key={tabConfig.id}
+          tab={tabConfig}
+          isActive={tabConfig.id === activeTab}
+        />
+      ))}
     </section>
   );
 }

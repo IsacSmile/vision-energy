@@ -5,6 +5,8 @@ import type { ExpertiseStep } from '@/lib/data/expertise';
 
 interface StepSidebarNavProps {
   title?: string;
+  asideLabel?: string;
+  navLabel?: string;
   steps: ExpertiseStep[];
   activeStepIndex: number;
   onSelectStep: (index: number) => void;
@@ -16,6 +18,8 @@ interface StepSidebarNavProps {
  */
 export default function StepSidebarNav({
   title = 'On this guide',
+  asideLabel = 'Step index',
+  navLabel = 'Steps',
   steps,
   activeStepIndex,
   onSelectStep,
@@ -29,7 +33,7 @@ export default function StepSidebarNav({
     <div className="pointer-events-none hidden lg:block absolute inset-0 z-20">
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <aside
-          aria-label="Step index"
+          aria-label={asideLabel}
           className="pointer-events-auto sticky top-[168px] w-[228px] py-6 lg:py-8"
         >
           <div className="relative overflow-hidden rounded-2xl bg-white/95 dark:bg-[#0D1117]/95 backdrop-blur-md border border-slate-200/90 dark:border-white/10 shadow-[0_10px_28px_-10px_rgba(10,25,47,0.14)] dark:shadow-[0_12px_30px_-10px_rgba(0,0,0,0.6)]">
@@ -67,7 +71,7 @@ export default function StepSidebarNav({
 
             {/* Step Links */}
             <nav
-              aria-label="Steps"
+              aria-label={navLabel}
               className="p-2.5 max-h-[calc(100vh-250px)] overflow-y-auto no-scrollbar"
             >
               <ul className="relative space-y-1">

@@ -290,67 +290,67 @@ html.dark .expertise-watermark {
   opacity: 0.12;
 }
 
-#expertise-tabpanel .expertise-navy-band .expertise-watermark {
+#expertise-tabs .expertise-navy-band .expertise-watermark {
   color: #ffffff !important;
   opacity: 0.11 !important;
 }
 
 /* Light-mode contrast protection inside dark navy bands & CTA (beats globals.css (1,5,2) h3 rule) */
-html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band.expertise-navy-band.expertise-navy-band.expertise-navy-band h3,
-html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band.expertise-navy-band.expertise-navy-band.expertise-navy-band h4,
-html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band .expertise-card-navy span {
+html.light #expertise-tabs .expertise-navy-band.expertise-navy-band.expertise-navy-band.expertise-navy-band.expertise-navy-band h3,
+html.light #expertise-tabs .expertise-navy-band.expertise-navy-band.expertise-navy-band.expertise-navy-band.expertise-navy-band h4,
+html.light #expertise-tabs .expertise-navy-band.expertise-navy-band .expertise-card-navy span {
   color: #ffffff !important;
 }
 
-html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band p {
+html.light #expertise-tabs .expertise-navy-band.expertise-navy-band p {
   color: #e2e8f0 !important;
 }
 
-html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band .expertise-icon-tile {
+html.light #expertise-tabs .expertise-navy-band.expertise-navy-band .expertise-icon-tile {
   color: #8dc63f !important;
 }
 
-html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band .expertise-icon-tile svg {
+html.light #expertise-tabs .expertise-navy-band.expertise-navy-band .expertise-icon-tile svg {
   color: #8dc63f !important;
   stroke: #8dc63f !important;
 }
 
-html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band .group:hover .expertise-icon-tile svg {
+html.light #expertise-tabs .expertise-navy-band.expertise-navy-band .group:hover .expertise-icon-tile svg {
   color: #ffffff !important;
   stroke: #ffffff !important;
 }
 
-html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band .text-\[\#8DC63F\],
-html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band .text-\[\#8DC63F\] *,
-html.light #expertise-tabpanel .expertise-navy-band.expertise-navy-band .text-\[\#8DC63F\] svg {
+html.light #expertise-tabs .expertise-navy-band.expertise-navy-band .text-\[\#8DC63F\],
+html.light #expertise-tabs .expertise-navy-band.expertise-navy-band .text-\[\#8DC63F\] *,
+html.light #expertise-tabs .expertise-navy-band.expertise-navy-band .text-\[\#8DC63F\] svg {
   color: #8dc63f !important;
   stroke: #8dc63f !important;
 }
 
 /* SubTabs navy track & button contrast (avoids globals.css bg-white/[0.08] light override) */
-#expertise-tabpanel .expertise-subtabs-navy {
+#expertise-tabs .expertise-subtabs-navy {
   background-color: rgba(255, 255, 255, 0.08) !important;
   border-color: rgba(255, 255, 255, 0.18) !important;
   backdrop-filter: blur(8px);
 }
 
-#expertise-tabpanel .expertise-subtabs-navy .expertise-subtab-navy-inactive,
-#expertise-tabpanel .expertise-subtabs-navy .expertise-subtab-navy-inactive span,
-#expertise-tabpanel .expertise-subtabs-navy .expertise-subtab-navy-inactive svg {
+#expertise-tabs .expertise-subtabs-navy .expertise-subtab-navy-inactive,
+#expertise-tabs .expertise-subtabs-navy .expertise-subtab-navy-inactive span,
+#expertise-tabs .expertise-subtabs-navy .expertise-subtab-navy-inactive svg {
   color: rgba(255, 255, 255, 0.82) !important;
 }
 
-#expertise-tabpanel .expertise-subtabs-navy .expertise-subtab-navy-inactive svg {
+#expertise-tabs .expertise-subtabs-navy .expertise-subtab-navy-inactive svg {
   stroke: rgba(255, 255, 255, 0.82) !important;
 }
 
-#expertise-tabpanel .expertise-subtabs-navy .expertise-subtab-navy-inactive:hover,
-#expertise-tabpanel .expertise-subtabs-navy .expertise-subtab-navy-inactive:hover span,
-#expertise-tabpanel .expertise-subtabs-navy .expertise-subtab-navy-inactive:hover svg {
+#expertise-tabs .expertise-subtabs-navy .expertise-subtab-navy-inactive:hover,
+#expertise-tabs .expertise-subtabs-navy .expertise-subtab-navy-inactive:hover span,
+#expertise-tabs .expertise-subtabs-navy .expertise-subtab-navy-inactive:hover svg {
   color: #ffffff !important;
 }
 
-#expertise-tabpanel .expertise-subtabs-navy .expertise-subtab-navy-inactive:hover svg {
+#expertise-tabs .expertise-subtabs-navy .expertise-subtab-navy-inactive:hover svg {
   stroke: #ffffff !important;
 }
 

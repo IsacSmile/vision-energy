@@ -160,7 +160,7 @@ export default function Tabs({ tabs, activeTab, onSelectTab }: TabsProps) {
                     type="button"
                     role="tab"
                     aria-selected={isActive}
-                    aria-controls="expertise-tabpanel"
+                    aria-controls={`expertise-tabpanel-${tab.id}`}
                     tabIndex={isActive ? 0 : -1}
                     data-preserve-contrast={isActive ? 'true' : undefined}
                     onClick={() => onSelectTab(tab.id)}

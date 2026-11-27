@@ -10,6 +10,7 @@ import StepSidebarNav from './StepSidebarNav';
 
 interface ExpertisePanelProps {
   tab: ExpertiseTabConfig;
+  isActive: boolean;
 }
 
 const DARK_BAND_STEP_IDS = new Set(['uae-impact', 'safety-precautions']);
@@ -100,7 +101,7 @@ function EmptyStateIcon({ id }: { id: ExpertiseTabId }) {
   return <FlaskConical className="w-8 h-8" aria-hidden="true" />;
 }
 
-export default function ExpertisePanel({ tab }: ExpertisePanelProps) {
+export default function ExpertisePanel({ tab, isActive }: ExpertisePanelProps) {
   const { openProductModal } = useEnquiryModal();
   const stepperRef = useRef<HTMLDivElement>(null);
   const railMeasureRef = useRef<HTMLDivElement>(null);
@@ -118,7 +119,7 @@ export default function ExpertisePanel({ tab }: ExpertisePanelProps) {
 
   // Measure exact 3px vertical track coordinates across all step bands
   useLayoutEffect(() => {
-    if (!tab.steps || tab.steps.length === 0) return;
+    if (!isActive || !tab.steps || tab.steps.length === 0) return;
 
     const measureRail = () => {
       const container = railMeasureRef.current;
@@ -150,11 +151,11 @@ export default function ExpertisePanel({ tab }: ExpertisePanelProps) {
       ro.disconnect();
       window.removeEventListener('resize', measureRail);
     };
-  }, [tab.id, tab.steps]);
+  }, [isActive, tab.id, tab.steps]);
 
   // Track scroll progress along full stepper height + active step highlight
   useEffect(() => {
-    if (!tab.steps || tab.steps.length === 0) return;
+    if (!isActive || !tab.steps || tab.steps.length === 0) return;
 
     let rafId: number | null = null;
 
@@ -199,7 +200,7 @@ export default function ExpertisePanel({ tab }: ExpertisePanelProps) {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleScroll);
     };
-  }, [tab.id, tab.steps, railMetrics.height, railMetrics.top]);
+  }, [isActive, tab.id, tab.steps, railMetrics.height, railMetrics.top]);
 
   const scrollToStep = (index: number) => {
     const el = stepSectionRefs.current[index];
@@ -228,11 +229,14 @@ export default function ExpertisePanel({ tab }: ExpertisePanelProps) {
 
   return (
     <div
-      id="expertise-tabpanel"
+      id={`expertise-tabpanel-${tab.id}`}
       role="tabpanel"
       aria-labelledby={`expertise-tab-${tab.id}`}
-      tabIndex={0}
-      className="expertise-panel-enter focus:outline-none"
+      hidden={!isActive}
+      tabIndex={isActive ? 0 : -1}
+      data-expertise-topic={tab.id}
+      data-expertise-priority={tab.id === 'lightning' || tab.id === 'earthing' ? '1' : '2'}
+      className={isActive ? 'expertise-panel-enter focus:outline-none' : 'focus:outline-none'}
     >
       {/* 1. PANEL INTRO + AUTHORITY STRIP + COUNTERS */}
       <div className="relative bg-white dark:bg-[#050608] overflow-hidden">
@@ -308,6 +312,8 @@ export default function ExpertisePanel({ tab }: ExpertisePanelProps) {
         <div ref={stepperRef} className="relative">
           {/* Desktop Sticky Generalized Step Index */}
           <StepSidebarNav
+            asideLabel={`${tab.label} step index`}
+            navLabel={`${tab.label} guide steps`}
             steps={tab.steps}
             activeStepIndex={activeStepIndex}
             onSelectStep={scrollToStep}
@@ -384,7 +390,7 @@ export default function ExpertisePanel({ tab }: ExpertisePanelProps) {
 
                     {/* Full-Width Step Content */}
                     <div className="flex-1 min-w-0">
-                      <StepCard step={step} index={index} isDarkBand={isDarkBand} />
+                      <StepCard step={step} index={index} isDarkBand={isDarkBand} isPanelActive={isActive} />
                     </div>
                   </div>
                 </div>

@@ -7,7 +7,8 @@ export const gymData: ExpertiseTabConfig = {
   heading: 'Gym Equipment & Technical Support',
   emptyState: {
     title: 'Gym Equipment & Solutions',
-    message: 'Details coming soon',
+    message:
+      'Technical specifications, layout coordination, and commercial gym equipment supply schedules across the UAE and GCC are available on request.',
     ctaLabel: 'Send Enquiry',
   },
 };

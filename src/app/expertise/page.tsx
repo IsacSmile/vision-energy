@@ -7,37 +7,50 @@ import IndustriesWeServe from '@/components/home/IndustriesWeServe';
 import StandardsCompliance from '@/components/products/StandardsCompliance';
 import FinalCTA from '@/components/home/FinalCTA';
 import ExpertiseClient from '@/components/expertise/ExpertiseClient';
+import ExpertiseFaqSection from '@/components/expertise/ExpertiseFaqSection';
+import { buildExpertiseJsonLd } from '@/lib/data/expertise';
 
 export const metadata = {
   title: 'Lightning & Earthing Engineering Expertise UAE | Vision Energy',
   description:
-    'Authority-compliant lightning protection and earthing systems engineered for UAE & GCC infrastructure, alongside specialized gym and laboratory technical solutions by Vision Energy.',
+    'Authority-compliant lightning protection (IEC 62305, NF C 17-102) and earthing systems (BS 7430, DEWA/SEWA) engineered for UAE & GCC infrastructure, alongside specialized gym and laboratory technical solutions by Vision Energy.',
   keywords: [
     'Lightning Protection Expertise UAE',
     'Earthing Engineering Solutions',
-    'DEWA Authority Approval UAE',
+    'DEWA Approved Earthing Consultant',
     'SEWA Compliance Support',
+    'IEC 62305 Rolling Sphere UAE',
+    'NF C 17-102 ESE System Dubai',
+    'Surge Protection Coordination UAE',
     'Gym Equipment Engineering UAE',
     'Laboratory Solutions GCC',
-    'Lightning Protection Design UAE',
-    'Earthing Systems Expertise Dubai',
     'Vision Energy Expertise',
   ],
   alternates: {
     canonical: 'https://www.visionenergyme.com/expertise',
+    languages: {
+      'en-AE': 'https://www.visionenergyme.com/expertise',
+      en: 'https://www.visionenergyme.com/expertise',
+      'x-default': 'https://www.visionenergyme.com/expertise',
+    },
+    types: {
+      'text/markdown': 'https://www.visionenergyme.com/expertise.md',
+    },
   },
   openGraph: {
     title: 'Lightning & Earthing Engineering Expertise | Vision Energy UAE',
     description:
       'Authority-compliant lightning protection and earthing systems across the UAE and GCC, alongside specialized gym and laboratory technical solutions.',
     url: 'https://www.visionenergyme.com/expertise',
+    siteName: 'Vision Energy International',
+    locale: 'en_AE',
     type: 'website',
     images: [
       {
-        url: 'https://www.visionenergyme.com/images/products-collage-banner.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Vision Energy Technical & Engineering Expertise Dubai UAE',
+        url: 'https://www.visionenergyme.com/images/expertise-hero-bg.webp',
+        width: 1920,
+        height: 1072,
+        alt: 'Vision Energy electrical engineer testing earthing resistance beneath rooftop copper lightning protection rods',
       },
     ],
   },
@@ -46,7 +59,23 @@ export const metadata = {
     title: 'Lightning & Earthing Engineering Expertise | Vision Energy UAE',
     description:
       'Authority-compliant lightning protection and earthing systems across the UAE and GCC, alongside specialized gym and laboratory technical solutions.',
-    images: ['https://www.visionenergyme.com/images/products-collage-banner.jpg'],
+    images: ['https://www.visionenergyme.com/images/expertise-hero-bg.webp'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  other: {
+    'geo.region': 'AE-DU',
+    'geo.placename': 'Dubai & Ras Al Khaimah, United Arab Emirates',
+    'llms-txt': 'https://www.visionenergyme.com/llms.txt',
   },
 };
 
@@ -54,43 +83,13 @@ export const dynamic = 'force-static';
 export const revalidate = 3600;
 
 export default function ExpertisePage() {
-  const breadcrumbJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: 'https://www.visionenergyme.com',
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Expertise',
-        item: 'https://www.visionenergyme.com/expertise',
-      },
-    ],
-  };
-
-  const webPageJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    name: 'Technical Expertise & Engineering Solutions | Vision Energy International',
-    description:
-      'Specialist product selection, authority approval compliance, and turnkey engineering support across the UAE and GCC.',
-    url: 'https://www.visionenergyme.com/expertise',
-  };
+  const expertiseGraphJsonLd = buildExpertiseJsonLd();
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(expertiseGraphJsonLd) }}
       />
 
       <div className="w-full bg-[#050608] text-white overflow-x-clip">
@@ -232,7 +231,10 @@ export default function ExpertisePage() {
         {/* SECTION E: INTERACTIVE EXPERTISE TABS */}
         <ExpertiseClient />
 
-        {/* SECTION F: FINAL CTA (Shared) */}
+        {/* SECTION F: AEO TECHNICAL FAQ & QUICK ANSWERS */}
+        <ExpertiseFaqSection />
+
+        {/* SECTION G: FINAL CTA (Shared) */}
         <FinalCTA variant="minimal" />
       </div>
     </>

@@ -120,7 +120,7 @@ export default function SubTabs({
               type="button"
               role="tab"
               aria-selected={isActive}
-              aria-controls={`${idPrefix}-subpanel`}
+              aria-controls={`${idPrefix}-subpanel-${item.id}`}
               tabIndex={isActive ? 0 : -1}
               data-preserve-contrast={isActive ? 'true' : undefined}
               onClick={() => onChange(item.id)}
