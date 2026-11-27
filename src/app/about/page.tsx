@@ -89,7 +89,7 @@ const aboutJsonLd = {
 
 export default function AboutPage() {
   return (
-    <div className="bg-[#050608] text-white">
+    <div data-preserve-contrast="true" className="bg-[#050608] text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd) }}

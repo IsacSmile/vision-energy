@@ -1,6 +1,9 @@
 'use client';
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
+import dynamic from 'next/dynamic';
+
+const LazyEnquiryModal = dynamic(() => import('./EnquiryModal'), { ssr: false });
 
 export type ModalType = 'SERVICE' | 'PRODUCT' | null;
 
@@ -28,10 +31,12 @@ const EnquiryModalContext = createContext<EnquiryModalContextType | undefined>(u
 
 export function EnquiryModalProvider({ children }: { children: ReactNode }) {
   const [modalType, setModalType] = useState<ModalType>(null);
+  const [hasOpened, setHasOpened] = useState(false);
   const [serviceContext, setServiceContext] = useState<ServiceModalContext | null>(null);
   const [productContext, setProductContext] = useState<ProductModalContext | null>(null);
 
   const openServiceModal = (context?: Partial<ServiceModalContext>) => {
+    setHasOpened(true);
     setServiceContext({
       serviceSlug: context?.serviceSlug || 'general-service',
       serviceTitle: context?.serviceTitle || 'General Technical Service Booking',
@@ -41,6 +46,7 @@ export function EnquiryModalProvider({ children }: { children: ReactNode }) {
   };
 
   const openProductModal = (context?: Partial<ProductModalContext>) => {
+    setHasOpened(true);
     setProductContext({
       categoryCode: context?.categoryCode || 'GENERAL',
       categoryTitle: context?.categoryTitle || 'General Product Enquiry',
@@ -68,6 +74,7 @@ export function EnquiryModalProvider({ children }: { children: ReactNode }) {
       }}
     >
       {children}
+      {hasOpened && <LazyEnquiryModal />}
     </EnquiryModalContext.Provider>
   );
 }

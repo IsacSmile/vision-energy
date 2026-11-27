@@ -37,9 +37,9 @@ export interface StandardServiceDetailPage {
 }
 
 export const SERVICE_DETAIL_PAGES: Record<string, StandardServiceDetailPage> = {
-  'earthing-grounding': {
-    slug: 'earthing-grounding',
-    aliases: ['earthing-and-grounding'],
+  'earthing-and-grounding': {
+    slug: 'earthing-and-grounding',
+    aliases: ['earthing-grounding'],
     badgeLabel: 'EARTHING & BONDING',
     title: 'Earthing That Holds Up in UAE Ground: How Vision Energy Builds Systems That Pass the Test',
     intro:

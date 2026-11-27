@@ -131,7 +131,7 @@ export const EXPERTISE_SUBPAGES: Record<ExpertiseTabId, ExpertiseSubpageConfig> 
     id: 'gym',
     seoTitle: 'Gym & Sports Equipment Supplier UAE & Qatar | Vision Energy',
     seoDescription:
-      'Commercial gym & athletic accessories (SP-01, SP-02) supplied across Dubai, Abu Dhabi, Ras Al Khaimah & Qatar. Request BOQ pricing and technical datasheets.',
+      'Commercial gym & athletic accessories (SP-01, SP-02) supplied in Dubai, Abu Dhabi, RAK & Qatar. Request BOQ pricing and technical datasheets.',
     keywords: [
       'Commercial Gym Equipment Supplier UAE',
       'Gym Accessories Dubai Abu Dhabi',

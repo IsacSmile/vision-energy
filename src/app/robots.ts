@@ -1,4 +1,8 @@
 import { MetadataRoute } from 'next';
+import { headers } from 'next/headers';
+import { SITE_URL } from '@/lib/seo/company';
+
+export const dynamic = 'force-dynamic';
 
 const SEARCH_AND_AI_CRAWLERS = [
   'Googlebot',
@@ -13,9 +17,12 @@ const SEARCH_AND_AI_CRAWLERS = [
   'Applebot-Extended',
 ];
 
-export default function robots(): MetadataRoute.Robots {
-  const isPreview = Boolean(process.env.VERCEL_ENV && process.env.VERCEL_ENV !== 'production');
-  if (isPreview) {
+export default async function robots(): Promise<MetadataRoute.Robots> {
+  const hdrs = await headers();
+  const host = (hdrs.get('x-forwarded-host') || hdrs.get('host') || '').toLowerCase();
+  const isPreviewEnv = Boolean(process.env.VERCEL_ENV && process.env.VERCEL_ENV !== 'production');
+  const isStagingHost = host.endsWith('.vercel.app') || host.includes('nihatechsolutions.online');
+  if (isPreviewEnv || isStagingHost) {
     return {
       rules: [
         {
@@ -26,7 +33,7 @@ export default function robots(): MetadataRoute.Robots {
     };
   }
 
-  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.visionenergyme.com').replace(/\/$/, '');
+  const baseUrl = SITE_URL;
   const disallow = ['/admin', '/admin/*', '/api/*', '/thank-you', '/dev/*'];
 
   return {

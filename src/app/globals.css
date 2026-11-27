@@ -510,43 +510,43 @@ html.light body {
 }
 
 /* 1. Main Section & Page Backgrounds */
-html.light .bg-\[\#050608\],
-html.light [class*="bg-[#050608]"],
-html.light .bg-\[\#06080D\],
-html.light [class*="bg-[#06080D]"],
-html.light .bg-brand-dark {
+html.light .bg-\[\#050608\]:not([data-preserve-contrast="true"]):not([data-preserve-contrast="true"] *),
+html.light [class*="bg-[#050608]"]:not([data-preserve-contrast="true"]):not([data-preserve-contrast="true"] *),
+html.light .bg-\[\#06080D\]:not([data-preserve-contrast="true"]):not([data-preserve-contrast="true"] *),
+html.light [class*="bg-[#06080D]"]:not([data-preserve-contrast="true"]):not([data-preserve-contrast="true"] *),
+html.light .bg-brand-dark:not([data-preserve-contrast="true"]):not([data-preserve-contrast="true"] *) {
   background-color: #FFFFFF !important;
 }
 
 /* 2. Cards, Steppers, and Panels */
-html.light .bg-\[\#0D1117\],
-html.light [class*="bg-[#0D1117]"],
-html.light .bg-\[\#0C1017\],
-html.light [class*="bg-[#0C1017]"],
-html.light .bg-\[\#0A0E17\],
-html.light [class*="bg-[#0A0E17]"],
-html.light .bg-\[\#0A0D14\],
-html.light [class*="bg-[#0A0D14]"],
-html.light .bg-\[\#080B10\],
-html.light [class*="bg-[#080B10]"],
-html.light .bg-\[\#131924\],
-html.light [class*="bg-[#131924]"],
-html.light .bg-brand-card {
+html.light .bg-\[\#0D1117\]:not([data-preserve-contrast="true"]):not([data-preserve-contrast="true"] *),
+html.light [class*="bg-[#0D1117]"]:not([data-preserve-contrast="true"]):not([data-preserve-contrast="true"] *),
+html.light .bg-\[\#0C1017\]:not([data-preserve-contrast="true"]):not([data-preserve-contrast="true"] *),
+html.light [class*="bg-[#0C1017]"]:not([data-preserve-contrast="true"]):not([data-preserve-contrast="true"] *),
+html.light .bg-\[\#0A0E17\]:not([data-preserve-contrast="true"]):not([data-preserve-contrast="true"] *),
+html.light [class*="bg-[#0A0E17]"]:not([data-preserve-contrast="true"]):not([data-preserve-contrast="true"] *),
+html.light .bg-\[\#0A0D14\]:not([data-preserve-contrast="true"]):not([data-preserve-contrast="true"] *),
+html.light [class*="bg-[#0A0D14]"]:not([data-preserve-contrast="true"]):not([data-preserve-contrast="true"] *),
+html.light .bg-\[\#080B10\]:not([data-preserve-contrast="true"]):not([data-preserve-contrast="true"] *),
+html.light [class*="bg-[#080B10]"]:not([data-preserve-contrast="true"]):not([data-preserve-contrast="true"] *),
+html.light .bg-\[\#131924\]:not([data-preserve-contrast="true"]):not([data-preserve-contrast="true"] *),
+html.light [class*="bg-[#131924]"]:not([data-preserve-contrast="true"]):not([data-preserve-contrast="true"] *),
+html.light .bg-brand-card:not([data-preserve-contrast="true"]):not([data-preserve-contrast="true"] *) {
   background-color: #F8FAFC !important;
 }
 
 /* 3. Nested Boxes & Hover Surfaces */
-html.light .bg-\[\#161B22\],
-html.light [class*="bg-[#161B22]"],
-html.light .bg-brand-card-hover:hover {
+html.light .bg-\[\#161B22\]:not([data-preserve-contrast="true"]):not([data-preserve-contrast="true"] *),
+html.light [class*="bg-[#161B22]"]:not([data-preserve-contrast="true"]):not([data-preserve-contrast="true"] *),
+html.light .bg-brand-card-hover:not([data-preserve-contrast="true"]):not([data-preserve-contrast="true"] *):hover {
   background-color: #F1F5F9 !important;
 }
 
-html.light .bg-white\/\[0\.04\]:not(#home-hero *),
-html.light .bg-white\/\[0\.05\]:not(#home-hero *),
-html.light .bg-white\/\[0\.08\]:not(#home-hero *),
-html.light .bg-white\/5:not(#home-hero *),
-html.light .bg-white\/10:not(#home-hero *) {
+html.light .bg-white\/\[0\.04\]:not(#home-hero *):not([data-preserve-contrast="true"] *):not([data-dark-hero="true"] *),
+html.light .bg-white\/\[0\.05\]:not(#home-hero *):not([data-preserve-contrast="true"] *):not([data-dark-hero="true"] *),
+html.light .bg-white\/\[0\.08\]:not(#home-hero *):not([data-preserve-contrast="true"] *):not([data-dark-hero="true"] *),
+html.light .bg-white\/5:not(#home-hero *):not([data-preserve-contrast="true"] *):not([data-dark-hero="true"] *),
+html.light .bg-white\/10:not(#home-hero *):not([data-preserve-contrast="true"] *):not([data-dark-hero="true"] *) {
   background-color: #F1F5F9 !important;
 }
 
@@ -597,19 +597,19 @@ html.light .text-white\/50:not(footer *):not([data-dark-hero="true"] *):not(.ser
 }
 
 /* Ensure all paragraphs inside sections have high-contrast clear readable text in light mode */
-html.light section:not([data-dark-hero="true"]):not([data-hero-section]):not(.services-hero):not(.service-detail-hero) p:not([data-preserve-contrast] *),
+html.light section:not([data-dark-hero="true"]):not([data-hero-section]):not(.services-hero):not(.service-detail-hero):not([data-preserve-contrast="true"]):not([data-preserve-contrast="true"] *) p:not([data-preserve-contrast] *),
 html.light article p:not([data-preserve-contrast] *),
-html.light main:not([data-dark-hero="true"]) p:not([data-preserve-contrast] *) {
+html.light main:not([data-dark-hero="true"]):not([data-preserve-contrast="true"]):not([data-preserve-contrast="true"] *) p:not([data-preserve-contrast] *) {
   color: #334155;
 }
 
 /* Ensure all content headings (h2, h3, h4) and cards inside main/sections are crisp dark #0F172A in light mode */
-html.light main h2,
-html.light main h3,
-html.light main h4,
-html.light section:not([data-dark-hero="true"]):not([data-hero-section]):not(.services-hero):not(.service-detail-hero):not(#home-hero) h2,
-html.light section:not([data-dark-hero="true"]):not([data-hero-section]):not(.services-hero):not(.service-detail-hero):not(#home-hero) h3,
-html.light section:not([data-dark-hero="true"]):not([data-hero-section]):not(.services-hero):not(.service-detail-hero):not(#home-hero) h4 {
+html.light main h2:not([data-preserve-contrast="true"] *),
+html.light main h3:not([data-preserve-contrast="true"] *),
+html.light main h4:not([data-preserve-contrast="true"] *),
+html.light section:not([data-dark-hero="true"]):not([data-hero-section]):not(.services-hero):not(.service-detail-hero):not(#home-hero):not([data-preserve-contrast="true"]):not([data-preserve-contrast="true"] *) h2:not([data-preserve-contrast="true"] *),
+html.light section:not([data-dark-hero="true"]):not([data-hero-section]):not(.services-hero):not(.service-detail-hero):not(#home-hero):not([data-preserve-contrast="true"]):not([data-preserve-contrast="true"] *) h3:not([data-preserve-contrast="true"] *),
+html.light section:not([data-dark-hero="true"]):not([data-hero-section]):not(.services-hero):not(.service-detail-hero):not(#home-hero):not([data-preserve-contrast="true"]):not([data-preserve-contrast="true"] *) h4:not([data-preserve-contrast="true"] *) {
   color: #0F172A !important;
   text-shadow: none !important;
 }

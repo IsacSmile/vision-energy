@@ -28,7 +28,7 @@ export default async function ThankYouPage({
   const enquiryType = resolved?.type;
 
   return (
-    <div className="min-h-[75vh] bg-[#050608] text-white flex items-center justify-center px-4 py-20">
+    <div data-preserve-contrast="true" className="min-h-[75vh] bg-[#050608] text-white flex items-center justify-center px-4 py-20">
       <ThankYouTracker reference={refCode} enquiryType={enquiryType} />
 
       <div className="max-w-xl w-full rounded-3xl bg-[#0D1117] border border-[#8DC63F]/35 p-8 sm:p-10 text-center space-y-6 shadow-2xl">

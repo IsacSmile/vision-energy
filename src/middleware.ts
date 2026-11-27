@@ -92,9 +92,17 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  return NextResponse.next();
+  const host = (request.headers.get("x-forwarded-host") || request.headers.get("host") || "").toLowerCase();
+  const isPreviewEnv = Boolean(process.env.VERCEL_ENV && process.env.VERCEL_ENV !== "production");
+  const isNonCanonicalStagingHost = host.endsWith(".vercel.app") || host.includes("nihatechsolutions.online");
+
+  const response = NextResponse.next();
+  if (isPreviewEnv || isNonCanonicalStagingHost) {
+    response.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
+  }
+  return response;
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/api/admin/:path*"],
+  matcher: ["/((?!_next/static|_next/image|favicon.ico|images/|product-catalouge/|partners/).*)"],
 };

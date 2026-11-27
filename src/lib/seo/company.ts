@@ -1,6 +1,4 @@
-export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || 'https://www.visionenergyme.com'
-).replace(/\/$/, '');
+export const SITE_URL = 'https://www.visionenergyme.com';
 
 export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;

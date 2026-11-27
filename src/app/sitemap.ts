@@ -4,9 +4,10 @@ import { getPublishedServices } from "@/lib/data/services";
 import { getPublishedBlogPosts } from "@/lib/data/posts";
 import { EXPERTISE_TAB_IDS } from "@/lib/data/expertise";
 import { ALL_WAVE1_PAGES } from "@/lib/data/locations";
+import { SITE_URL } from "@/lib/seo/company";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.visionenergyme.com").replace(/\/$/, "");
+  const baseUrl = SITE_URL;
   const lastUpdated = new Date("2026-11-27T00:00:00Z");
 
   // Static public & trust routes

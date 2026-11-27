@@ -123,7 +123,8 @@ export default async function ExpertiseCategoryPage({ params }: ExpertiseSubpage
             alt={subpageConfig.heroImageAlt}
             fill
             priority
-            sizes="100vw"
+            quality={70}
+            sizes="(max-width: 640px) 640px, 100vw"
             className="object-cover object-center brightness-[0.82] contrast-[1.06]"
           />
           <div

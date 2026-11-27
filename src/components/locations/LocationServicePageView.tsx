@@ -41,7 +41,7 @@ export default async function LocationServicePageView({
   const jsonLd = buildWave1JsonLd(page);
 
   return (
-    <div className="bg-[#050608] text-white">
+    <div data-preserve-contrast="true" className="bg-[#050608] text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -59,7 +59,8 @@ export default async function LocationServicePageView({
             alt={page.heroImageAlt}
             fill
             priority
-            sizes="100vw"
+            quality={70}
+            sizes="(max-width: 640px) 640px, 100vw"
             className="object-cover object-center brightness-[0.8] contrast-[1.05]"
           />
           <div

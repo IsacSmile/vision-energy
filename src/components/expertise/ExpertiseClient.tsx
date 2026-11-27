@@ -78,6 +78,9 @@ export default function ExpertiseClient() {
     }
   }, []);
 
+  const activeTabConfig =
+    EXPERTISE_TABS.find((t) => t.id === activeTab) || EXPERTISE_TABS[0];
+
   return (
     <section
       ref={sectionRef}
@@ -86,13 +89,11 @@ export default function ExpertiseClient() {
       className="scroll-mt-[88px] sm:scroll-mt-[96px] lg:scroll-mt-[102px] xl:scroll-mt-[106px] bg-white dark:bg-[#050608] border-b border-slate-200 dark:border-[#1F2937]/80"
     >
       <Tabs tabs={EXPERTISE_TABS} activeTab={activeTab} onSelectTab={handleSelectTab} />
-      {EXPERTISE_TABS.map((tabConfig) => (
-        <ExpertisePanel
-          key={tabConfig.id}
-          tab={tabConfig}
-          isActive={tabConfig.id === activeTab}
-        />
-      ))}
+      <ExpertisePanel
+        key={activeTabConfig.id}
+        tab={activeTabConfig}
+        isActive={true}
+      />
 
       {/* Subtle indexable discipline cross-links row for search crawlers & direct deep-linking */}
       <nav

@@ -44,7 +44,7 @@ const CAROUSEL_SERVICES: ServiceCardItem[] = [
       'Certified external structural lightning protection, Faraday mesh grids, air terminals, and early streamer emission (ESE) systems compliant with IEC 62305.',
     icon: Zap,
     image: {
-      url: '/images/external-lightning-protection-installation.png',
+      url: 'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795759864/Lightning_Protection_600x750.jpg',
       alt: 'External structural lightning protection and earthing building installation UAE',
     },
     metaChip: 'IEC 62305 • ESE',
@@ -89,7 +89,7 @@ const CAROUSEL_SERVICES: ServiceCardItem[] = [
       'Engineered low-resistance earth grids (<1Ω / <2Ω), deep well ground electrodes, exothermic welding, and equipotential bonding compliant with DEWA and BS 7430.',
     icon: Layers,
     image: {
-      url: '/images/earthing-grounding-hero.webp',
+      url: 'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795759863/Earthing_600x750.jpg',
       alt: 'Engineered earthing and grounding system installation UAE',
     },
     metaChip: 'DEWA & SEWA Compliant',
@@ -104,7 +104,7 @@ const CAROUSEL_SERVICES: ServiceCardItem[] = [
       'Type 1, Type 2, and Type 3 SPD panel integration, equipotential bonding bars, and transient voltage suppression protecting sensitive automation equipment.',
     icon: ShieldCheck,
     image: {
-      url: '/images/surge-protection-bonding.webp',
+      url: 'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795709257/DIN-Rail_Surge_Protection_Panel.png',
       alt: 'Surge protection device SPD switchboard installation and copper bonding',
     },
     metaChip: 'IEC 61643 • IEEE C62.41',
@@ -134,7 +134,7 @@ const CAROUSEL_SERVICES: ServiceCardItem[] = [
       'Preventive and corrective electromechanical maintenance, fitness and commercial machinery upkeep, periodic safety audits, and guaranteed SLA response times.',
     icon: Wrench,
     image: {
-      url: '/images/gym-equipment-maintenance-hero.webp',
+      url: 'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795759864/Equipment-maintainance_600x750.jpg',
       alt: 'Commercial electromechanical equipment maintenance and AMC',
     },
     metaChip: 'Preventive AMC Contracts',
@@ -149,7 +149,7 @@ const CAROUSEL_SERVICES: ServiceCardItem[] = [
       'End-to-end electrical containment, cable management, switchgear installation, distribution boards, and heavy industrial utility infrastructure delivery.',
     icon: Cog,
     image: {
-      url: '/images/electrical-mechanical-solutions-hero.webp',
+      url: 'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795759864/Mechanical_600x750.jpg',
       alt: 'Electrical and mechanical turnkey solutions engineering UAE',
     },
     metaChip: 'Full Turnkey MEP',
@@ -374,6 +374,7 @@ export default function ServicesCarouselClient({
                 >
                   <Link
                     href={service.href}
+                    prefetch={false}
                     onClick={(e) => handleCardClick(e, service.id)}
                     onBlur={() => {
                       if (isFlipped) setFlippedCardId(null);
@@ -467,19 +468,24 @@ export default function ServicesCarouselClient({
         {/* ============================================================ */}
         {/* CAROUSEL PAGINATION DOTS (Mobile Carousel Only)              */}
         {/* ============================================================ */}
-        <div className="flex md:hidden items-center justify-center gap-1.5 pt-1">
+        <div className="flex md:hidden items-center justify-center gap-0.5 pt-1">
           {CAROUSEL_SERVICES.map((_, i) => (
             <button
               key={i}
               type="button"
               onClick={() => scrollToIndex(i)}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                activeIndex === i
-                  ? 'w-7 bg-[#8DC63F]'
-                  : 'w-2 bg-slate-300 hover:bg-slate-400 dark:bg-white/20 dark:hover:bg-white/40'
-              }`}
+              className="min-w-[24px] min-h-[24px] flex items-center justify-center p-1 rounded-full cursor-pointer"
               aria-label={`Scroll to service card ${i + 1}`}
-            />
+            >
+              <span
+                aria-hidden="true"
+                className={`block h-1.5 rounded-full transition-all duration-300 ${
+                  activeIndex === i
+                    ? 'w-7 bg-[#8DC63F]'
+                    : 'w-2 bg-slate-300 hover:bg-slate-400 dark:bg-white/20 dark:hover:bg-white/40'
+                }`}
+              />
+            </button>
           ))}
         </div>
       </div>

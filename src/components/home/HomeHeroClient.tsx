@@ -238,7 +238,7 @@ const HERO_SLIDES: SlideData[] = [
   },
 ];
 
-const SLIDE_DURATION_MS = 4200;
+const SLIDE_DURATION_MS = 6000;
 
 export default function HomeHeroClient() {
   const { openServiceModal } = useEnquiryModal();
@@ -393,11 +393,11 @@ export default function HomeHeroClient() {
                 src={slide.imageUrl}
                 alt={slide.imageAlt}
                 fill
-                sizes="100vw"
+                sizes="(max-width: 640px) 640px, 100vw"
                 priority={idx === 0}
                 loading={idx === 0 ? 'eager' : 'lazy'}
                 fetchPriority={idx === 0 ? 'high' : 'low'}
-                quality={78}
+                quality={70}
                 className={`object-cover object-center brightness-[1.12] contrast-[1.05] transition-transform duration-[4500ms] ease-out ${
                   isActive ? 'scale-105' : 'scale-100'
                 }`}

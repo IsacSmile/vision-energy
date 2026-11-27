@@ -32,7 +32,7 @@ export default function ExpertiseFaqSection() {
           <a
             href="/expertise.md"
             type="text/markdown"
-            aria-label="Open machine-readable Markdown technical specification for /expertise"
+            aria-label="Technical Spec (.md) — Machine-readable Markdown reference for /expertise"
             className="inline-flex items-center gap-2 self-start lg:self-auto px-4 py-2 rounded-full border border-slate-200/90 dark:border-white/15 bg-white dark:bg-[#0D1117] text-xs font-semibold text-[#0B65B3] dark:text-[#8DC63F] hover:border-[#0B65B3] dark:hover:border-[#8DC63F] shadow-sm transition-colors"
           >
             <FileCode2 className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />

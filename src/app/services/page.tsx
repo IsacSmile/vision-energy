@@ -52,25 +52,40 @@ export const revalidate = 300;
 
 export default async function ServicesListingPage() {
   const rawServices = await getPublishedServices();
-  const publishedServices = rawServices.map((service) => ({
-    ...service,
-    content: service.content
-      ? {
-          metaChips: service.content.metaChips,
-          image: service.content.image,
-          imageAlt: service.content.imageAlt,
-          hero: service.content.hero
-            ? {
-                imageUrl: service.content.hero.imageUrl,
-                imageAlt: service.content.hero.imageAlt,
-              }
-            : undefined,
-          systems: service.content.systems?.[0]
-            ? [{ points: service.content.systems[0].points }]
-            : undefined,
-        }
-      : null,
-  }));
+  const publishedServices = rawServices.map((service) => {
+    const rawImg = service.content?.image;
+    const safeImage =
+      typeof rawImg === 'string' && !rawImg.startsWith('data:')
+        ? rawImg
+        : service.slug === 'surge-protection-and-bonding'
+        ? '/images/surge-protection-bonding.webp'
+        : undefined;
+    const rawHeroImg = service.content?.hero?.imageUrl;
+    const safeHeroImage =
+      typeof rawHeroImg === 'string' && !rawHeroImg.startsWith('data:')
+        ? rawHeroImg
+        : safeImage;
+
+    return {
+      ...service,
+      content: service.content
+        ? {
+            metaChips: service.content.metaChips,
+            image: safeImage,
+            imageAlt: service.content.imageAlt,
+            hero: service.content.hero
+              ? {
+                  imageUrl: safeHeroImage,
+                  imageAlt: service.content.hero.imageAlt,
+                }
+              : undefined,
+            systems: service.content.systems?.[0]
+              ? [{ points: service.content.systems[0].points }]
+              : undefined,
+          }
+        : null,
+    };
+  });
 
   // JSON-LD Schemas
   const breadcrumbJsonLd = {
@@ -130,7 +145,8 @@ export default async function ServicesListingPage() {
               alt="Vision Energy Installation and Field Engineering Services UAE"
               fill
               priority
-              sizes="100vw"
+              quality={70}
+              sizes="(max-width: 640px) 640px, 100vw"
               className="object-cover object-center lg:object-right"
             />
             {/* Light gradient overlays so the background image is vibrant and clearly visible */}

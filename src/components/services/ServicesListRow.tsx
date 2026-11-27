@@ -11,15 +11,15 @@ import { SERVICES_CONTENT } from '@/lib/services/content';
 
 const DEFAULT_SERVICE_IMAGES: Record<string, { url: string; alt: string }> = {
   'external-lightning-protection-installation': {
-    url: '/images/external-lightning-protection-installation.png',
+    url: '/images/external-lightning-protection-installation.webp',
     alt: 'External structural lightning protection and earthing building installation UAE',
   },
   'manpower-supply': {
-    url: '/images/specialist-engineering-manpower-supply.jpg',
+    url: '/images/specialist-engineering-manpower-supply.webp',
     alt: 'Specialist engineering manpower and certified technicians on site in UAE',
   },
   'specialist-engineering-manpower-supply': {
-    url: '/images/specialist-engineering-manpower-supply.jpg',
+    url: '/images/specialist-engineering-manpower-supply.webp',
     alt: 'Specialist engineering manpower and certified technicians on site in UAE',
   },
   'earthing-grounding-system-design-installation': {
@@ -241,7 +241,9 @@ export default function ServicesListRow({ service, index }: ServicesListRowProps
             <button
               type="button"
               onClick={handleBookClick}
+              data-preserve-contrast="true"
               className="py-2 px-5 rounded-full bg-[#0B65B3] hover:bg-[#095292] text-white border border-[#8DC63F]/50 hover:border-[#8DC63F] shadow-[0_0_16px_rgba(11,101,179,0.35)] hover:shadow-[0_0_24px_rgba(141,198,63,0.5)] font-bold text-xs sm:text-sm tracking-wide transition-all duration-300 active:scale-95 cursor-pointer"
+              style={{ color: '#FFFFFF' }}
             >
               {service.slug.includes('manpower') ? 'Request Manpower' : 'Get a Quote'}
             </button>

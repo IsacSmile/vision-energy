@@ -5,7 +5,6 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import StickyContactWidget from '@/components/layout/StickyContactWidget';
 import { EnquiryModalProvider } from '@/components/modals/EnquiryModalProvider';
-import EnquiryModal from '@/components/modals/EnquiryModal';
 import { ThemeProvider } from '@/components/theme/ThemeProvider';
 import AnalyticsAndConsent from '@/components/common/AnalyticsAndConsent';
 import { getPublishedServices } from '@/lib/data/services';
@@ -114,8 +113,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Fetch published services for Footer
-  const publishedServices = await getPublishedServices();
+  // Fetch minimal service navigation data for Footer (exclude large content blobs/base64 assets)
+  const publishedServices = (await getPublishedServices()).map((s) => ({
+    id: s.id,
+    slug: s.slug,
+    title: s.title,
+  }));
 
   const sameAs = Object.values(SOCIAL_LINKS).filter((u) => Boolean(u && u.trim()));
 
@@ -207,7 +210,6 @@ export default async function RootLayout({
             <main className="grow">{children}</main>
             <Footer services={publishedServices} />
             <StickyContactWidget />
-            <EnquiryModal />
             <AnalyticsAndConsent />
           </EnquiryModalProvider>
         </ThemeProvider>

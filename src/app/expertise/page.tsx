@@ -103,8 +103,8 @@ export default function ExpertisePage() {
               alt="Vision Energy electrical engineer testing earthing resistance beneath rooftop copper lightning protection rods"
               fill
               priority
-              unoptimized
-              sizes="100vw"
+              quality={70}
+              sizes="(max-width: 640px) 640px, 100vw"
               className="object-cover object-[72%_44%] lg:object-[right_42%]"
             />
             {/* Mobile & tablet scrim: balanced readability across full width while keeping background clear */}

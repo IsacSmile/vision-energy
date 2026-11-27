@@ -174,6 +174,7 @@ export default function Footer({ services = [] }: FooterProps) {
                   <li key={item.href}>
                     <Link
                       href={item.href}
+                      prefetch={false}
                       className="!text-white/80 hover:!text-[#8DC63F] hover:translate-x-0.5 transition-all inline-block py-0.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8DC63F] rounded"
                     >
                       {item.label}
@@ -213,6 +214,7 @@ export default function Footer({ services = [] }: FooterProps) {
                   <li key={service.slug}>
                     <Link
                       href={`/services/${service.slug}`}
+                      prefetch={false}
                       className="!text-white/80 hover:!text-[#8DC63F] hover:translate-x-0.5 transition-all inline-block py-0.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8DC63F] rounded"
                     >
                       {service.title}
@@ -252,6 +254,7 @@ export default function Footer({ services = [] }: FooterProps) {
                   <li key={item.href}>
                     <Link
                       href={item.href}
+                      prefetch={false}
                       className="!text-white/80 hover:!text-[#8DC63F] hover:translate-x-0.5 transition-all inline-block py-0.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8DC63F] rounded"
                     >
                       {item.label}
