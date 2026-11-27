@@ -9,27 +9,27 @@ import FinalCTA from '@/components/home/FinalCTA';
 import ExpertiseClient from '@/components/expertise/ExpertiseClient';
 
 export const metadata = {
-  title: 'Technical Expertise & Engineering Solutions UAE | Vision Energy',
+  title: 'Lightning & Earthing Engineering Expertise UAE | Vision Energy',
   description:
-    'Discover Vision Energy’s technical expertise across the UAE & GCC: specialist product selection, authority submittals, DEWA/SEWA compliance, project coordination, and lifetime performance support.',
+    'Authority-compliant lightning protection and earthing systems engineered for UAE & GCC infrastructure, alongside specialized gym and laboratory technical solutions by Vision Energy.',
   keywords: [
-    'Technical Expertise UAE',
-    'Engineering Support Dubai',
+    'Lightning Protection Expertise UAE',
+    'Earthing Engineering Solutions',
     'DEWA Authority Approval UAE',
     'SEWA Compliance Support',
-    'Specialist Product Selection UAE',
+    'Gym Equipment Engineering UAE',
+    'Laboratory Solutions GCC',
     'Lightning Protection Design UAE',
     'Earthing Systems Expertise Dubai',
-    'MEP Project Coordination Dubai',
     'Vision Energy Expertise',
   ],
   alternates: {
     canonical: 'https://www.visionenergyme.com/expertise',
   },
   openGraph: {
-    title: 'Technical Expertise & Engineering Solutions UAE | Vision Energy',
+    title: 'Lightning & Earthing Engineering Expertise | Vision Energy UAE',
     description:
-      'Specialist product selection, authority approval compliance, and turnkey engineering support across the UAE and GCC.',
+      'Authority-compliant lightning protection and earthing systems across the UAE and GCC, alongside specialized gym and laboratory technical solutions.',
     url: 'https://www.visionenergyme.com/expertise',
     type: 'website',
     images: [
@@ -43,9 +43,9 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Technical Expertise & Engineering Solutions UAE | Vision Energy',
+    title: 'Lightning & Earthing Engineering Expertise | Vision Energy UAE',
     description:
-      'Specialist product selection, authority compliance, and turnkey engineering support across the UAE and GCC.',
+      'Authority-compliant lightning protection and earthing systems across the UAE and GCC, alongside specialized gym and laboratory technical solutions.',
     images: ['https://www.visionenergyme.com/images/products-collage-banner.jpg'],
   },
 };
@@ -100,26 +100,53 @@ export default function ExpertisePage() {
           data-dark-hero="true"
           data-hero-section="true"
           data-preserve-contrast="true"
-          className="expertise-hero relative overflow-hidden bg-[#050608] border-b border-[#1F2937]/80 min-h-[380px] sm:min-h-[420px] lg:min-h-[460px] flex flex-col justify-end text-white"
+          className="expertise-hero relative overflow-hidden bg-[#050608] border-b border-[#1F2937]/80 min-h-[420px] sm:min-h-[460px] lg:min-h-[520px] flex flex-col justify-end text-white"
         >
           {/* Full Background Hero Image */}
           <div className="absolute inset-0 z-0">
             <Image
-              src="/images/specialist-engineering-approach.webp"
-              alt="Vision Energy Technical Expertise & Engineering Support UAE"
+              src="/images/expertise-hero-bg.webp"
+              alt="Vision Energy electrical engineer testing earthing resistance beneath rooftop copper lightning protection rods"
               fill
               priority
+              unoptimized
               sizes="100vw"
-              quality={80}
-              className="object-cover object-center lg:object-right"
+              className="object-cover object-[72%_44%] lg:object-[right_42%]"
             />
-            {/* Clean directional scrim: high contrast behind text on left, 100% clean and transparent over the engineer on right */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#050608]/90 via-[#050608]/50 to-transparent z-[1]" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#050608] via-transparent to-transparent z-[1]" />
+            {/* Mobile & tablet scrim: balanced readability across full width while keeping upper subject vivid */}
+            <div
+              className="lg:hidden absolute inset-0 z-[1]"
+              style={{
+                background:
+                  'linear-gradient(0deg, rgba(5, 6, 8, 0.92) 0%, rgba(5, 6, 8, 0.72) 52%, rgba(5, 6, 8, 0.28) 100%)',
+              }}
+            />
+            {/* Desktop targeted left-side scrim: high contrast under copy without muddying the right-side photograph */}
+            <div
+              className="hidden lg:block absolute inset-0 z-[1]"
+              style={{
+                background:
+                  'linear-gradient(90deg, rgba(5, 6, 8, 0.88) 0%, rgba(5, 6, 8, 0.70) 36%, rgba(5, 6, 8, 0.20) 56%, rgba(5, 6, 8, 0) 72%)',
+              }}
+            />
+            <div
+              className="absolute inset-x-0 top-0 h-24 z-[1]"
+              style={{
+                background:
+                  'linear-gradient(180deg, rgba(5, 6, 8, 0.55) 0%, rgba(5, 6, 8, 0) 100%)',
+              }}
+            />
+            <div
+              className="absolute inset-x-0 bottom-0 h-20 z-[1]"
+              style={{
+                background:
+                  'linear-gradient(0deg, rgba(5, 6, 8, 0.82) 0%, rgba(5, 6, 8, 0) 100%)',
+              }}
+            />
           </div>
 
-          <div className="max-w-[80rem] w-full mx-auto px-4 sm:px-6 lg:px-8 pt-[calc(var(--header-offset,80px)+36px)] lg:pt-[calc(var(--header-offset,80px)+52px)] pb-10 sm:pb-14 relative z-10">
-            <div className="space-y-4 max-w-4xl">
+          <div className="max-w-[80rem] w-full mx-auto px-4 sm:px-6 lg:px-8 pt-[calc(var(--header-offset,80px)+44px)] lg:pt-[calc(var(--header-offset,80px)+64px)] pb-11 sm:pb-14 relative z-10">
+            <div className="space-y-4 max-w-[630px] lg:max-w-[660px]">
               <nav
                 aria-label="Breadcrumb"
                 data-preserve-contrast="true"
@@ -141,29 +168,29 @@ export default function ExpertisePage() {
                 style={{ color: '#8DC63F', textShadow: '0 1px 6px rgba(0,0,0,0.8)' }}
               >
                 <span className="w-6 h-[2px] bg-[#8DC63F] rounded-full shrink-0" aria-hidden="true" />
-                <span>Engineering & Technical Capabilities</span>
+                <span>Technical Expertise &amp; Engineering Capabilities</span>
               </div>
 
               <h1
                 data-preserve-contrast="true"
-                className="text-3xl sm:text-4xl lg:text-[48px] font-bold !text-white tracking-tight leading-[1.15]"
+                className="text-3xl sm:text-4xl lg:text-[46px] font-bold !text-white tracking-tight leading-[1.13]"
                 style={{
                   color: '#FFFFFF',
-                  textShadow: '0 3px 18px rgba(0, 0, 0, 0.95), 0 1px 4px rgba(0, 0, 0, 0.95)',
+                  textShadow: '0 3px 18px rgba(0, 0, 0, 0.92), 0 1px 4px rgba(0, 0, 0, 0.9)',
                 }}
               >
-                Technical Expertise & Engineering Support
+                Lightning &amp; Earthing Engineering Expertise
               </h1>
 
               <p
                 data-preserve-contrast="true"
-                className="text-base sm:text-lg !text-white/95 max-w-3xl leading-relaxed"
+                className="text-base sm:text-lg !text-white/95 max-w-[600px] leading-relaxed"
                 style={{
                   color: 'rgba(255, 255, 255, 0.95)',
-                  textShadow: '0 2px 10px rgba(0, 0, 0, 0.95), 0 1px 3px rgba(0, 0, 0, 0.9)',
+                  textShadow: '0 2px 10px rgba(0, 0, 0, 0.92), 0 1px 3px rgba(0, 0, 0, 0.88)',
                 }}
               >
-                Vision Energy combines deep domain technical knowledge, rigorous standards adherence, and local authority insight to deliver dependable engineering product solutions across the UAE and GCC.
+                Authority-compliant lightning protection and earthing systems engineered for UAE and GCC critical infrastructure—alongside specialized technical solutions for commercial gym and laboratory facilities.
               </p>
 
               {/* Action Buttons */}
