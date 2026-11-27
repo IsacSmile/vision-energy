@@ -232,7 +232,7 @@ const HERO_SLIDES: SlideData[] = [
     ctaText: 'Explore All Solutions',
     ctaLink: '/products?group=EN',
     imageUrl:
-      'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/08_Solar_1920x1080-optimized.webp',
+      'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795770175/multisector.png',
     imageAlt:
       'Delivering excellence across multiple sectors - Solar PV renewable energy systems, hybrid inverters, battery storage BESS, and sustainable infrastructure',
   },

@@ -74,7 +74,7 @@ const CAROUSEL_SERVICES: ServiceCardItem[] = [
       'Skilled and certified electrical engineers, QA/QC inspectors, cable jointers, and site supervisors deployed across commercial, MEP, and industrial projects.',
     icon: Users,
     image: {
-      url: '/images/specialist-engineering-manpower-supply.jpg',
+      url: 'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795709252/Industrial_Safety_Team_Lineup.png',
       alt: 'Specialist engineering manpower and certified technicians on site in UAE',
     },
     metaChip: 'Certified Technicians',
@@ -119,8 +119,8 @@ const CAROUSEL_SERVICES: ServiceCardItem[] = [
       'Wenner 4-pin soil resistivity modeling, earth pit loop impedance testing, continuity verification, and certified third-party NOC submittals for UAE authorities.',
     icon: Activity,
     image: {
-      url: '/images/testing-commissioning-survey.webp',
-      alt: 'Wenner 4-pin soil resistivity testing and earth pit inspection verification UAE',
+      url: 'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795709210/Industrial_Switchgear_Testing_Technician.png',
+      alt: 'Switchgear testing, earth loop impedance inspection, and commissioning verification UAE',
     },
     metaChip: 'IEEE 81 • Third-Party NOC',
     href: '/services',
@@ -134,7 +134,7 @@ const CAROUSEL_SERVICES: ServiceCardItem[] = [
       'Preventive and corrective electromechanical maintenance, fitness and commercial machinery upkeep, periodic safety audits, and guaranteed SLA response times.',
     icon: Wrench,
     image: {
-      url: 'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795759864/Equipment-maintainance_600x750.jpg',
+      url: 'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795771200/Industrial_Maintenance_24_7_Service.png',
       alt: 'Commercial electromechanical equipment maintenance and AMC',
     },
     metaChip: 'Preventive AMC Contracts',
