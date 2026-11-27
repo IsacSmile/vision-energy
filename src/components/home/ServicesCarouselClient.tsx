@@ -59,7 +59,7 @@ const CAROUSEL_SERVICES: ServiceCardItem[] = [
       'Laser-engraved 316 stainless steel plates, aluminium tags, warning signs, cable identification, and schematic mimic panels for UAE infrastructure.',
     icon: Tag,
     image: {
-      url: '/images/custom-engraved-plates-identification.webp',
+      url: 'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795771993/Engraving.png',
       alt: 'Custom engraved stainless steel plates, cable tags, caution and earthing system plates',
     },
     metaChip: 'Laser Engraved • 316 SS',
