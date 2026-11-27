@@ -7,6 +7,12 @@ import type { ExpertiseTabConfig, ExpertiseTabId } from './types';
 export * from './types';
 export { EXPERTISE_FAQ_ITEMS, type ExpertiseFaqItem } from './faq.data';
 export { buildExpertiseJsonLd } from './schema';
+export {
+  EXPERTISE_SUBPAGES,
+  getExpertiseSubpage,
+  buildExpertiseSubpageJsonLd,
+  type ExpertiseSubpageConfig,
+} from './subpages';
 
 export const EXPERTISE_TABS: ExpertiseTabConfig[] = [
   lightningData,

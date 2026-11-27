@@ -11,14 +11,14 @@
 - **Primary Contact**: `+971 7 204 2763` | `+971 54 700 4616` | `info@visionenergyme.com`
 
 ## Priority #1 Technical Expertise
-- [Engineering Expertise Overview](https://www.visionenergyme.com/expertise): Full interactive guide covering Lightning Protection Systems, Earthing & Equipotential Bonding, Surge Protection Coordination, and UAE project workflows.
+- [Engineering Expertise Hub](https://www.visionenergyme.com/expertise): Overview hub linking all four engineering and equipment disciplines, standards compliance matrix, and technical FAQ.
+- [Lightning Protection Engineering Guide](https://www.visionenergyme.com/expertise/lightning): Dedicated guide covering formation, risk levels I–IV, Rolling Sphere, Protection Angle, Meshed Cage, ESE NF C 17-102, UAE/Qatar application, and safety precautions.
+- [Earthing & Grounding Engineering Guide](https://www.visionenergyme.com/expertise/earthing): Dedicated guide covering Wenner soil resistivity testing, deep copper electrodes, exothermic joints, Type 1/2/3 SPD coordination, and 10-stage delivery workflow.
 - [Markdown Specification of /expertise](https://www.visionenergyme.com/expertise.md): Agent-friendly Markdown reference with all protection tables, formulas (`Rp`, `Rp(h)`, Rolling Sphere Levels I–IV, Faraday Mesh grid dimensions, ESE `ΔT` radii), 10-stage delivery workflow, and direct FAQ answers.
-- [Lightning Protection Tab](https://www.visionenergyme.com/expertise#lightning): 9-step engineering guide (formation, 6 risk profiles, 5 LPS effects, 6 engineered components, 6 core functions, risk criteria & Levels I–IV, Conventional vs. ESE vs. Meshed Cage comparison, regional exposure, before/during/after safety precautions).
-- [Earthing & Grounding Tab](https://www.visionenergyme.com/expertise#earthing): 5-step engineering guide (soil resistivity study, deep electrodes & enhancement compounds, exothermic bonding, Type 1/2/3 SPD surge coordination, 10-stage project delivery, technical standards).
 
 ## Priority #2 Facility & Equipment Expertise
-- [Gym Equipment & Solutions](https://www.visionenergyme.com/expertise#gym): Technical procurement and equipment solutions for commercial gym and fitness facilities in the UAE & Qatar.
-- [Laboratory Equipment & Solutions](https://www.visionenergyme.com/expertise#laboratory): Analytical equipment, glassware, and technical procurement solutions for industrial and scientific laboratories in the UAE & Qatar.
+- [Commercial Gym & Sports Equipment Guide](https://www.visionenergyme.com/expertise/gym): Commercial fitness & athletic accessories (`SP-01`, `SP-02`) procurement schedules and technical specifications across the UAE & Qatar.
+- [Laboratory Equipment & Instrumentation Guide](https://www.visionenergyme.com/expertise/laboratory): Analytical instruments (`AT`), benchtop gear (`LE`), safety cabinets (`LS`), glassware (`LG`), cold storage (`TS`), water systems (`WS`), and PPE (`LPE`) across the UAE & Qatar.
 
 ## Core Catalog & Services
 - [All Product Categories](https://www.visionenergyme.com/products): Lightning protection hardware, earthing rods/tapes/exothermic moulds, electrical distribution, LED lighting, industrial automation, safety PPE, laboratory consumables, and gym equipment.

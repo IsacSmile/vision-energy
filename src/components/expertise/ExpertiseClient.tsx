@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import {
   EXPERTISE_TABS,
   EXPERTISE_TAB_IDS,
@@ -92,6 +93,27 @@ export default function ExpertiseClient() {
           isActive={tabConfig.id === activeTab}
         />
       ))}
+
+      {/* Subtle indexable discipline cross-links row for search crawlers & direct deep-linking */}
+      <nav
+        aria-label="Dedicated discipline engineering pages"
+        className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 border-t border-slate-200/80 dark:border-white/[0.06] flex flex-wrap items-center justify-between gap-3 text-xs text-[#475569] dark:text-[#A9B4C0]"
+      >
+        <span className="font-semibold uppercase tracking-[0.12em] text-[#0B65B3] dark:text-[#8DC63F]">
+          Dedicated Discipline Guides
+        </span>
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+          {EXPERTISE_TABS.map((tab) => (
+            <Link
+              key={tab.id}
+              href={`/expertise/${tab.id}`}
+              className="px-3 py-1 rounded-full border border-slate-200/90 dark:border-white/10 hover:border-[#0B65B3] dark:hover:border-[#8DC63F] hover:text-[#0B65B3] dark:hover:text-[#8DC63F] transition-colors font-medium"
+            >
+              {tab.label} Engineering Guide
+            </Link>
+          ))}
+        </div>
+      </nav>
     </section>
   );
 }

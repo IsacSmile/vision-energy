@@ -1,13 +1,15 @@
 'use client';
 
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { Dumbbell, FlaskConical, Zap } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowUpRight, Dumbbell, FlaskConical, Zap } from 'lucide-react';
 import type { ExpertiseTabConfig, ExpertiseTabId } from '@/lib/data/expertise';
 
 interface TabsProps {
   tabs: ExpertiseTabConfig[];
   activeTab: ExpertiseTabId;
-  onSelectTab: (tabId: ExpertiseTabId) => void;
+  onSelectTab?: (tabId: ExpertiseTabId) => void;
+  routeBasePath?: string;
 }
 
 function EarthGroundIcon({ className = 'w-4 h-4' }: { className?: string }) {
@@ -43,8 +45,8 @@ function renderTabIcon(id: ExpertiseTabId) {
   }
 }
 
-export default function Tabs({ tabs, activeTab, onSelectTab }: TabsProps) {
-  const buttonRefs = useRef<Array<HTMLButtonElement | null>>([]);
+export default function Tabs({ tabs, activeTab, onSelectTab, routeBasePath }: TabsProps) {
+  const itemRefs = useRef<Array<HTMLElement | null>>([]);
   const trackRef = useRef<HTMLDivElement>(null);
   const sentinelRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
@@ -77,11 +79,11 @@ export default function Tabs({ tabs, activeTab, onSelectTab }: TabsProps) {
   useLayoutEffect(() => {
     const updateIndicator = () => {
       const idx = tabs.findIndex((t) => t.id === activeTab);
-      const btn = buttonRefs.current[idx];
-      if (!btn) return;
+      const itemEl = itemRefs.current[idx];
+      if (!itemEl) return;
       setIndicator({
-        left: btn.offsetLeft,
-        width: btn.offsetWidth,
+        left: itemEl.offsetLeft,
+        width: itemEl.offsetWidth,
         ready: true,
       });
     };
@@ -98,6 +100,7 @@ export default function Tabs({ tabs, activeTab, onSelectTab }: TabsProps) {
   }, [activeTab, tabs]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
+    if (!onSelectTab) return;
     let nextIndex: number | null = null;
 
     if (e.key === 'ArrowRight') {
@@ -114,9 +117,11 @@ export default function Tabs({ tabs, activeTab, onSelectTab }: TabsProps) {
       e.preventDefault();
       const targetTab = tabs[nextIndex];
       onSelectTab(targetTab.id);
-      buttonRefs.current[nextIndex]?.focus();
+      itemRefs.current[nextIndex]?.focus();
     }
   };
+
+  const isRouteMode = Boolean(routeBasePath);
 
   return (
     <>
@@ -128,11 +133,11 @@ export default function Tabs({ tabs, activeTab, onSelectTab }: TabsProps) {
             : ''
         }`}
       >
-        <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <div className="overflow-x-auto no-scrollbar">
+        <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3">
+          <div className="overflow-x-auto no-scrollbar max-w-full">
             <div
               ref={trackRef}
-              role="tablist"
+              role={isRouteMode ? 'navigation' : 'tablist'}
               aria-label="Engineering Expertise Categories"
               className="relative inline-flex items-center gap-1 p-1.5 rounded-full bg-slate-100/95 dark:bg-[#0D1117] border border-slate-200/90 dark:border-white/10 flex-nowrap"
             >
@@ -150,11 +155,36 @@ export default function Tabs({ tabs, activeTab, onSelectTab }: TabsProps) {
 
               {tabs.map((tab, index) => {
                 const isActive = tab.id === activeTab;
+                const sharedClassName = `relative z-10 shrink-0 whitespace-nowrap inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full text-sm font-semibold transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#050608] cursor-pointer ${
+                  isActive
+                    ? `text-white ${!indicator.ready ? 'bg-[#0B65B3]' : ''}`
+                    : 'text-[#0A192F]/80 dark:text-[#A9B4C0] hover:text-[#0A192F] dark:hover:text-white'
+                }`;
+
+                if (routeBasePath) {
+                  return (
+                    <Link
+                      key={tab.id}
+                      ref={(el) => {
+                        itemRefs.current[index] = el;
+                      }}
+                      id={`expertise-route-${tab.id}`}
+                      href={`${routeBasePath}/${tab.id}`}
+                      aria-current={isActive ? 'page' : undefined}
+                      data-preserve-contrast={isActive ? 'true' : undefined}
+                      className={sharedClassName}
+                    >
+                      {renderTabIcon(tab.id)}
+                      <span>{tab.label}</span>
+                    </Link>
+                  );
+                }
+
                 return (
                   <button
                     key={tab.id}
                     ref={(el) => {
-                      buttonRefs.current[index] = el;
+                      itemRefs.current[index] = el;
                     }}
                     id={`expertise-tab-${tab.id}`}
                     type="button"
@@ -163,13 +193,9 @@ export default function Tabs({ tabs, activeTab, onSelectTab }: TabsProps) {
                     aria-controls={`expertise-tabpanel-${tab.id}`}
                     tabIndex={isActive ? 0 : -1}
                     data-preserve-contrast={isActive ? 'true' : undefined}
-                    onClick={() => onSelectTab(tab.id)}
+                    onClick={() => onSelectTab?.(tab.id)}
                     onKeyDown={(e) => handleKeyDown(e, index)}
-                    className={`relative z-10 shrink-0 whitespace-nowrap inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full text-sm font-semibold transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DC63F] focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#050608] cursor-pointer ${
-                      isActive
-                        ? `text-white ${!indicator.ready ? 'bg-[#0B65B3]' : ''}`
-                        : 'text-[#0A192F]/80 dark:text-[#A9B4C0] hover:text-[#0A192F] dark:hover:text-white'
-                    }`}
+                    className={sharedClassName}
                   >
                     {renderTabIcon(tab.id)}
                     <span>{tab.label}</span>
@@ -178,6 +204,30 @@ export default function Tabs({ tabs, activeTab, onSelectTab }: TabsProps) {
               })}
             </div>
           </div>
+
+          {/* Dedicated SEO sub-route crawlable links / hub backlink */}
+          <nav
+            aria-label="Dedicated discipline pages"
+            className="hidden sm:flex items-center gap-1.5 text-xs font-medium text-[#475569] dark:text-[#A9B4C0]"
+          >
+            {isRouteMode ? (
+              <Link
+                href="/expertise"
+                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-slate-200/90 dark:border-white/10 hover:border-[#0B65B3] dark:hover:border-[#8DC63F] hover:text-[#0B65B3] dark:hover:text-[#8DC63F] transition-colors"
+              >
+                <span>All Expertise Overview</span>
+                <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
+              </Link>
+            ) : (
+              <Link
+                href={`/expertise/${activeTab}`}
+                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-slate-200/90 dark:border-white/10 hover:border-[#0B65B3] dark:hover:border-[#8DC63F] hover:text-[#0B65B3] dark:hover:text-[#8DC63F] transition-colors"
+              >
+                <span>Open Full Guide</span>
+                <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
+              </Link>
+            )}
+          </nav>
         </div>
       </div>
     </>
