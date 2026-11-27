@@ -45,18 +45,14 @@ export default function IntroStandards({ productCategoryCount }: IntroStandardsP
               </p>
             </Reveal>
 
-            {/* Verified Company Stats */}
-            <div className="grid grid-cols-3 gap-4 sm:gap-8 pt-5 border-t border-slate-200/80 dark:border-white/[0.08] max-w-lg">
+            {/* Company Stats */}
+            <div className="grid grid-cols-2 gap-4 sm:gap-8 pt-5 border-t border-slate-200/80 dark:border-white/[0.08] max-w-sm sm:max-w-md">
               <div className="space-y-1">
                 <span className="block text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">2018</span>
                 <span className="block text-[10px] sm:text-xs uppercase tracking-wider text-slate-500 dark:text-[#A9B4C0]">Established</span>
               </div>
-              <div className="space-y-1 border-l border-slate-200/80 dark:border-white/[0.08] pl-4 sm:pl-6">
-                <span className="block text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">160+</span>
-                <span className="block text-[10px] sm:text-xs uppercase tracking-wider text-slate-500 dark:text-[#A9B4C0]">Projects</span>
-              </div>
-              <div className="space-y-1 border-l border-slate-200/80 dark:border-white/[0.08] pl-4 sm:pl-6">
-                <span className="block text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">UAE &amp; Qatar</span>
+              <div className="space-y-1 border-l border-slate-200/80 dark:border-white/[0.08] pl-4 sm:pl-8">
+                <span className="block text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">UAE &amp; GCC</span>
                 <span className="block text-[10px] sm:text-xs uppercase tracking-wider text-slate-500 dark:text-[#A9B4C0]">Markets Served</span>
               </div>
             </div>
