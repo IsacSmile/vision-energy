@@ -112,34 +112,34 @@ export default function ExpertisePage() {
               sizes="100vw"
               className="object-cover object-[72%_44%] lg:object-[right_42%]"
             />
-            {/* Mobile & tablet scrim: balanced readability across full width while keeping upper subject vivid */}
+            {/* Mobile & tablet scrim: balanced readability across full width while keeping background clear */}
             <div
               className="lg:hidden absolute inset-0 z-[1]"
               style={{
                 background:
-                  'linear-gradient(0deg, rgba(5, 6, 8, 0.92) 0%, rgba(5, 6, 8, 0.72) 52%, rgba(5, 6, 8, 0.28) 100%)',
+                  'linear-gradient(0deg, rgba(5, 10, 20, 0.72) 0%, rgba(5, 10, 20, 0.46) 52%, rgba(5, 10, 20, 0.12) 100%)',
               }}
             />
-            {/* Desktop targeted left-side scrim: high contrast under copy without muddying the right-side photograph */}
+            {/* Desktop light feather behind copy: preserves crisp sky, glass architecture & substation details on left */}
             <div
               className="hidden lg:block absolute inset-0 z-[1]"
               style={{
                 background:
-                  'linear-gradient(90deg, rgba(5, 6, 8, 0.88) 0%, rgba(5, 6, 8, 0.70) 36%, rgba(5, 6, 8, 0.20) 56%, rgba(5, 6, 8, 0) 72%)',
+                  'linear-gradient(90deg, rgba(5, 10, 20, 0.44) 0%, rgba(5, 10, 20, 0.30) 34%, rgba(5, 10, 20, 0.08) 54%, rgba(5, 10, 20, 0) 68%)',
               }}
             />
             <div
-              className="absolute inset-x-0 top-0 h-24 z-[1]"
+              className="absolute inset-x-0 top-0 h-16 z-[1]"
               style={{
                 background:
-                  'linear-gradient(180deg, rgba(5, 6, 8, 0.55) 0%, rgba(5, 6, 8, 0) 100%)',
+                  'linear-gradient(180deg, rgba(5, 10, 20, 0.20) 0%, rgba(5, 10, 20, 0) 100%)',
               }}
             />
             <div
-              className="absolute inset-x-0 bottom-0 h-20 z-[1]"
+              className="absolute inset-x-0 bottom-0 h-14 z-[1]"
               style={{
                 background:
-                  'linear-gradient(0deg, rgba(5, 6, 8, 0.82) 0%, rgba(5, 6, 8, 0) 100%)',
+                  'linear-gradient(0deg, rgba(5, 6, 8, 0.42) 0%, rgba(5, 6, 8, 0) 100%)',
               }}
             />
           </div>
