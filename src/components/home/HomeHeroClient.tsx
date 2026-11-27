@@ -59,7 +59,7 @@ const HERO_SLIDES: SlideData[] = [
   },
   {
     id: 'ese-lightning-protection',
-    category: 'ESE Lightning Protection System',
+    category: 'ESE',
     shortName: 'ESE Lightning',
     badge: 'Active Early Streamer Emission',
     badgeIcon: CloudLightning,
