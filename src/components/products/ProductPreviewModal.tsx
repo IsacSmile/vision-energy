@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   X,
   Send,
@@ -22,6 +23,7 @@ import { CategoryExplorerItem } from './ProductsExplorer';
 import { getGroupIcon } from '@/lib/group-icons';
 import { getCategoryPlaceholder } from '@/lib/utils/placeholders';
 import { dictionary } from '@/lib/dictionary';
+import { trackConversion } from '@/lib/analytics';
 
 const PRODUCT_PREVIEW_HIGHLIGHTS = [
   {
@@ -87,6 +89,7 @@ function ProductPreviewDialog({
   onClose: () => void;
   initialShowForm: boolean;
 }) {
+  const router = useRouter();
   const [showEnquiryForm, setShowEnquiryForm] = useState(initialShowForm);
   const [submitting, setSubmitting] = useState(false);
   const [successRef, setSuccessRef] = useState<string | null>(null);
@@ -275,10 +278,16 @@ function ProductPreviewDialog({
         throw new Error(json.error || 'Failed to submit enquiry. Please try again.');
       }
 
-      setSuccessRef(json.reference || 'PRD-SUCCESS');
-      if (scrollableRef.current) {
-        scrollableRef.current.scrollTop = 0;
-      }
+      const refCode = String(json.reference || 'PRD-SUCCESS');
+      trackConversion('enquiry_submit', {
+        form: 'product_preview_modal',
+        ref: refCode,
+        category: category.code,
+        location: deliveryLocation || '',
+      });
+      setSuccessRef(refCode);
+      onClose();
+      router.push(`/thank-you?ref=${encodeURIComponent(refCode)}&type=product`);
     } catch (err: unknown) {
       const errMsg = err instanceof Error ? err.message : 'Network error occurred. Please try again.';
       setServerError(errMsg);

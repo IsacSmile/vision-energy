@@ -1,13 +1,16 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { serviceEnquirySchema, ServiceEnquiryInput } from '@/lib/validation';
 import { dictionary } from '@/lib/dictionary';
+import { trackConversion } from '@/lib/analytics';
 import { CheckCircle2, AlertCircle, Loader2, Send } from 'lucide-react';
 
 export default function ContactFormClient() {
+  const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
   const [successRef, setSuccessRef] = useState<string | null>(null);
   const [serverError, setServerError] = useState<string | null>(null);
@@ -46,9 +49,15 @@ export default function ContactFormClient() {
       if (!res.ok) {
         throw new Error(result.error || 'Failed to submit contact enquiry');
       }
+      trackConversion('enquiry_submit', {
+        form: 'contact_page',
+        ref: String(result.reference || ''),
+        location: data.emirate || '',
+      });
       setSuccessRef(result.reference);
-    } catch (err: any) {
-      setServerError(err.message || 'An unexpected error occurred.');
+      router.push(`/thank-you?ref=${encodeURIComponent(String(result.reference || ''))}&type=contact`);
+    } catch (err: unknown) {
+      setServerError(err instanceof Error ? err.message : 'An unexpected error occurred.');
     } finally {
       setSubmitting(false);
     }
@@ -107,7 +116,7 @@ export default function ContactFormClient() {
         </div>
 
         <div>
-          <label className="block text-xs font-medium text-gray-300 mb-1">Phone Number (UAE) *</label>
+          <label className="block text-xs font-medium text-gray-300 mb-1">Phone / WhatsApp *</label>
           <input
             {...register('phone')}
             type="tel"

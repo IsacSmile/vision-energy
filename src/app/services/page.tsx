@@ -175,6 +175,47 @@ export default async function ServicesListingPage() {
                 <ServicesListRow key={service.id} service={service} index={idx} />
               ))}
             </ol>
+
+            {/* Regional Delivery Coverage Links (UAE Primary & Qatar Secondary) */}
+            <nav
+              aria-label="Regional engineering service coverage"
+              className="mt-12 p-6 rounded-2xl bg-[#0D1117] border border-white/10 space-y-4"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <h3 className="text-sm sm:text-base font-bold text-white">
+                  Regional Engineering Coverage: UAE &amp; Qatar
+                </h3>
+                <span className="text-xs text-[#A9B4C0]">
+                  Ras Al Khaimah HQ · Dubai &amp; Abu Dhabi Branches · Qatar Supply
+                </span>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs font-semibold">
+                <Link href="/uae/dubai/lightning-protection" className="px-3.5 py-2.5 rounded-xl bg-[#050608] border border-white/10 hover:border-[#8DC63F] text-white transition-colors">
+                  Dubai Lightning Protection →
+                </Link>
+                <Link href="/uae/dubai/earthing-grounding" className="px-3.5 py-2.5 rounded-xl bg-[#050608] border border-white/10 hover:border-[#8DC63F] text-white transition-colors">
+                  Dubai Earthing &amp; Grounding →
+                </Link>
+                <Link href="/uae/abu-dhabi/lightning-protection" className="px-3.5 py-2.5 rounded-xl bg-[#050608] border border-white/10 hover:border-[#8DC63F] text-white transition-colors">
+                  Abu Dhabi Lightning Protection →
+                </Link>
+                <Link href="/uae/abu-dhabi/earthing-grounding" className="px-3.5 py-2.5 rounded-xl bg-[#050608] border border-white/10 hover:border-[#8DC63F] text-white transition-colors">
+                  Abu Dhabi Earthing &amp; Grounding →
+                </Link>
+                <Link href="/uae/ras-al-khaimah/lightning-protection" className="px-3.5 py-2.5 rounded-xl bg-[#050608] border border-white/10 hover:border-[#8DC63F] text-white transition-colors">
+                  Ras Al Khaimah LPS (HQ) →
+                </Link>
+                <Link href="/uae/ras-al-khaimah/earthing-grounding" className="px-3.5 py-2.5 rounded-xl bg-[#050608] border border-white/10 hover:border-[#8DC63F] text-white transition-colors">
+                  Ras Al Khaimah Earthing →
+                </Link>
+                <Link href="/qatar/lightning-protection" className="px-3.5 py-2.5 rounded-xl bg-[#050608] border border-white/10 hover:border-[#8DC63F] text-[#8DC63F] transition-colors">
+                  Qatar Lightning Supply →
+                </Link>
+                <Link href="/qatar/earthing-grounding" className="px-3.5 py-2.5 rounded-xl bg-[#050608] border border-white/10 hover:border-[#8DC63F] text-[#8DC63F] transition-colors">
+                  Qatar Earthing &amp; SPDs →
+                </Link>
+              </div>
+            </nav>
           </div>
         </section>
 

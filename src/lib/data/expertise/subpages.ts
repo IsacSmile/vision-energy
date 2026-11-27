@@ -66,10 +66,10 @@ export const EXPERTISE_SUBPAGES: Record<ExpertiseTabId, ExpertiseSubpageConfig> 
       },
     ],
     localLinks: [
-      { href: '/services/external-lightning-protection-installation', label: 'External LPS Installation' },
-      { href: '/services/risk-assessment', label: 'Lightning Risk Assessment' },
-      { href: '/products?group=LP', label: 'Browse All LP Catalog Hardware' },
-      { href: '/contact', label: 'Request Submittal in UAE or Qatar' },
+      { href: '/uae/dubai/lightning-protection', label: 'Lightning Protection in Dubai' },
+      { href: '/uae/abu-dhabi/lightning-protection', label: 'Lightning Protection in Abu Dhabi' },
+      { href: '/uae/ras-al-khaimah/lightning-protection', label: 'Lightning Protection in Ras Al Khaimah' },
+      { href: '/qatar/lightning-protection', label: 'Lightning Protection in Qatar' },
     ],
     faqItems: EXPERTISE_FAQ_ITEMS.filter((item) => item.topic === 'Lightning'),
     serviceType: 'IEC 62305, BS EN 62305 & NF C 17-102 Lightning Protection Engineering',
@@ -117,10 +117,10 @@ export const EXPERTISE_SUBPAGES: Record<ExpertiseTabId, ExpertiseSubpageConfig> 
       },
     ],
     localLinks: [
-      { href: '/services/earthing-and-grounding', label: 'Earthing & Grounding Service' },
-      { href: '/products?group=ER', label: 'Browse All ER Earthing Hardware' },
-      { href: '/products/surge-protection-devices', label: 'Type 1/2/3 Surge Protection (EL-06)' },
-      { href: '/contact', label: 'Book Soil Testing or SPD Quote' },
+      { href: '/uae/dubai/earthing-grounding', label: 'Earthing & Grounding in Dubai' },
+      { href: '/uae/abu-dhabi/earthing-grounding', label: 'Earthing & Grounding in Abu Dhabi' },
+      { href: '/uae/ras-al-khaimah/earthing-grounding', label: 'Earthing & Grounding in Ras Al Khaimah' },
+      { href: '/qatar/earthing-grounding', label: 'Earthing & Grounding in Qatar' },
     ],
     faqItems: EXPERTISE_FAQ_ITEMS.filter(
       (item) => item.topic === 'Earthing' || item.topic === 'Surge & Testing'

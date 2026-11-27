@@ -24,5 +24,13 @@
 - [All Product Categories](https://www.visionenergyme.com/products): Lightning protection hardware, earthing rods/tapes/exothermic moulds, electrical distribution, LED lighting, industrial automation, safety PPE, laboratory consumables, and gym equipment.
 - [Engineering & Manpower Services](https://www.visionenergyme.com/services): Engineering design, soil resistivity testing, system commissioning, and specialist technical manpower.
 - [Technical Blog](https://www.visionenergyme.com/blog): Articles on surge arrester placement, high-resistivity earthing, and Conventional vs. ESE design.
+- [Technical Glossary](https://www.visionenergyme.com/glossary): Standardized IEC 62305, NF C 17-102, BS 7430, and SPD definitions.
+- [About Vision Energy](https://www.visionenergyme.com/about): Company profile (Est. 2018, 160+ projects), Ras Al Khaimah HQ, Dubai/Abu Dhabi branches, UAE & Qatar coverage.
 - [Request a Quote / Contact](https://www.visionenergyme.com/contact): Direct project submittal and procurement enquiry page.
+
+## Regional Engineering Pages (UAE & Qatar)
+- [Dubai Lightning Protection](https://www.visionenergyme.com/uae/dubai/lightning-protection) | [Dubai Earthing & Grounding](https://www.visionenergyme.com/uae/dubai/earthing-grounding)
+- [Abu Dhabi Lightning Protection](https://www.visionenergyme.com/uae/abu-dhabi/lightning-protection) | [Abu Dhabi Earthing & Grounding](https://www.visionenergyme.com/uae/abu-dhabi/earthing-grounding)
+- [Ras Al Khaimah Lightning Protection](https://www.visionenergyme.com/uae/ras-al-khaimah/lightning-protection) | [Ras Al Khaimah Earthing & Grounding](https://www.visionenergyme.com/uae/ras-al-khaimah/earthing-grounding)
+- [Qatar Lightning Protection Supply](https://www.visionenergyme.com/qatar/lightning-protection) | [Qatar Earthing & SPD Supply](https://www.visionenergyme.com/qatar/earthing-grounding)
 

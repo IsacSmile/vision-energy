@@ -1,7 +1,9 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useEnquiryModal } from './EnquiryModalProvider';
+import { trackConversion } from '@/lib/analytics';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { serviceEnquirySchema, productEnquirySchema, ServiceEnquiryInput, ProductEnquiryInput } from '@/lib/validation';
@@ -249,6 +251,7 @@ function ServiceForm({
   serverError: string | null;
   closeModal: () => void;
 }) {
+  const router = useRouter();
   const [showExtraDetails, setShowExtraDetails] = useState(false);
 
   const {
@@ -285,7 +288,14 @@ function ServiceForm({
       if (!res.ok) {
         throw new Error(result.error || 'Failed to submit service booking request');
       }
+      trackConversion('enquiry_submit', {
+        form: 'service_modal',
+        ref: String(result.reference || ''),
+        emirate: data.emirate || '',
+      });
       setSuccessRef(result.reference);
+      closeModal();
+      router.push(`/thank-you?ref=${encodeURIComponent(String(result.reference || ''))}&type=service`);
     } catch (err: any) {
       setServerError(err.message || 'An unexpected error occurred. Please try again.');
     } finally {
@@ -326,7 +336,7 @@ function ServiceForm({
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-gray-300 mb-1">Phone Number (UAE) *</label>
+            <label className="block text-xs font-medium text-gray-300 mb-1">Phone / WhatsApp *</label>
             <input
               {...register('phone')}
               type="tel"
@@ -513,6 +523,7 @@ function ProductForm({
   serverError: string | null;
   closeModal: () => void;
 }) {
+  const router = useRouter();
   const [showExtraDetails, setShowExtraDetails] = useState(false);
 
   const {
@@ -560,7 +571,14 @@ function ProductForm({
       if (!res.ok) {
         throw new Error(result.error || 'Failed to submit product enquiry request');
       }
+      trackConversion('enquiry_submit', {
+        form: 'product_modal',
+        ref: String(result.reference || ''),
+        location: data.deliveryLocation || '',
+      });
       setSuccessRef(result.reference);
+      closeModal();
+      router.push(`/thank-you?ref=${encodeURIComponent(String(result.reference || ''))}&type=product`);
     } catch (err: any) {
       setServerError(err.message || 'An unexpected error occurred. Please try again.');
     } finally {
@@ -601,7 +619,7 @@ function ProductForm({
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-gray-300 mb-1">Phone Number (UAE) *</label>
+            <label className="block text-xs font-medium text-gray-300 mb-1">Phone / WhatsApp *</label>
             <input
               {...register('phone')}
               type="tel"
