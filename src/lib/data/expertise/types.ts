@@ -73,6 +73,21 @@ export interface SubTabPanel {
   iconItems?: StepCardItem[];
 }
 
+export interface ProcessFlowStage {
+  id: string;
+  stepCode: string;
+  title: string;
+  description: string;
+  iconKey: 'soil' | 'electrode' | 'bonding' | 'test';
+}
+
+export interface ProcessFlowConfig {
+  heading: string;
+  subheading: string;
+  stages: ProcessFlowStage[];
+  footnote?: string;
+}
+
 export interface ExpertiseStep {
   id: string;
   stepNumber: number;
@@ -83,6 +98,7 @@ export interface ExpertiseStep {
   cardColumns?: 2 | 3;
   checklist?: string[];
   images?: ExpertiseImage[];
+  processFlow?: ProcessFlowConfig;
   subTabs?: SubTabPanel[];
 }
 

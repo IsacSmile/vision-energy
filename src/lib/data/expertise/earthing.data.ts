@@ -14,16 +14,42 @@ export const earthingData: ExpertiseTabConfig = {
       title: 'Earthing, Grounding & Equipotential Bonding',
       intro:
         "An effective earthing network is fundamental to personnel safety and reliable operation of electrical systems. Vision Energy designs and installs earthing systems suited to the UAE's variable soil conditions, including dry, rocky and high-resistivity environments.",
-      images: [
-        {
-          src: '/images/expertise/earthing/earthing-bonding-flow.webp',
-          alt: 'Earthing and bonding system flow: Soil Study, Earth Electrodes, Bonding Network, and Test & Record',
-          width: 1200,
-          height: 675,
-          caption: 'Earthing and bonding system flow.',
-          surface: 'light',
-        },
-      ],
+      processFlow: {
+        heading: 'Earthing & Bonding System',
+        subheading: 'From soil investigation to tested and documented earth network',
+        stages: [
+          {
+            id: 'soil-study',
+            stepCode: '01',
+            title: 'Soil Study',
+            description: 'Soil resistivity test and site assessment',
+            iconKey: 'soil',
+          },
+          {
+            id: 'earth-electrodes',
+            stepCode: '02',
+            title: 'Earth Electrodes',
+            description: 'Rods, deep electrodes, pits and ground enhancement',
+            iconKey: 'electrode',
+          },
+          {
+            id: 'bonding-network',
+            stepCode: '03',
+            title: 'Bonding Network',
+            description: 'Earth bars, structural bonding and exothermic joints',
+            iconKey: 'bonding',
+          },
+          {
+            id: 'test-record',
+            stepCode: '04',
+            title: 'Test & Record',
+            description: 'Earth resistance, continuity and completion records',
+            iconKey: 'test',
+          },
+        ],
+        footnote:
+          'Earthing design is determined by project requirements, soil conditions and final test criteria.',
+      },
     },
     {
       id: 'earthing-grounding-systems',

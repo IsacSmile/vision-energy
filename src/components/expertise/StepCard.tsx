@@ -4,11 +4,16 @@ import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import {
   Activity,
+  ArrowDownToLine,
   Building2,
   Check,
+  ChevronRight,
+  ClipboardCheck,
   CloudLightning,
+  Compass,
   Cpu,
   Flame,
+  GitMerge,
   HeartPulse,
   Landmark,
   PawPrint,
@@ -16,12 +21,15 @@ import {
   TrendingDown,
   Users,
   Wrench,
+  Zap,
   type LucideIcon,
 } from 'lucide-react';
 import type {
   ExpertiseImage,
   ExpertiseStep,
   MethodologyBlock,
+  ProcessFlowConfig,
+  ProcessFlowStage,
   StepCardItem,
   SubTabPanel,
 } from '@/lib/data/expertise';
@@ -33,6 +41,131 @@ interface StepCardProps {
   step: ExpertiseStep;
   index: number;
   isDarkBand?: boolean;
+}
+
+const PROCESS_FLOW_ICONS: Record<ProcessFlowStage['iconKey'], LucideIcon> = {
+  soil: Compass,
+  electrode: ArrowDownToLine,
+  bonding: GitMerge,
+  test: ClipboardCheck,
+};
+
+function ProcessFlowShowcase({ processFlow }: { processFlow: ProcessFlowConfig }) {
+  return (
+    <div className="rounded-2xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0D1117] shadow-[0_6px_24px_-8px_rgba(10,25,47,0.1)] dark:shadow-[0_10px_28px_-10px_rgba(0,0,0,0.5)] overflow-hidden">
+      {/* Dark Navy Feature Header Strip */}
+      <div
+        data-preserve-contrast="true"
+        className="expertise-navy-band relative overflow-hidden bg-[linear-gradient(135deg,#0A192F_0%,#0E2546_65%,#0B65B3_135%)] px-6 py-5 sm:px-7 sm:py-6 border-b border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+      >
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-12 right-12 w-44 h-44 rounded-full bg-[#8DC63F]/15 blur-2xl"
+        />
+
+        <div className="relative z-10 flex items-center gap-4">
+          <div className="w-11 h-11 rounded-xl bg-[#8DC63F]/15 border border-[#8DC63F]/35 text-[#8DC63F] flex items-center justify-center shrink-0 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
+            <Zap className="w-5 h-5" aria-hidden="true" />
+          </div>
+          <div>
+            <h4 className="text-base sm:text-lg font-bold uppercase tracking-[0.06em] text-white leading-tight">
+              {processFlow.heading}
+            </h4>
+            <p className="text-sm sm:text-[15px] font-normal text-slate-200 leading-snug mt-0.5">
+              {processFlow.subheading}
+            </p>
+          </div>
+        </div>
+
+        <div
+          aria-hidden="true"
+          className="relative z-10 hidden sm:flex items-center gap-1.5 shrink-0"
+        >
+          {processFlow.stages.map((st, i) => (
+            <span
+              key={st.id}
+              className={`h-1.5 rounded-full ${
+                i % 2 === 0 ? 'w-5 bg-[#8DC63F]' : 'w-3 bg-white/40'
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Interactive Stage Flow Cards & Bottom Design Criteria Note */}
+      <div className="p-5 sm:p-6 lg:p-7 space-y-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-7 items-stretch">
+          {processFlow.stages.map((stage, idx) => {
+            const Icon = PROCESS_FLOW_ICONS[stage.iconKey] || ShieldCheck;
+            const isBlue = idx % 2 === 0;
+            const hasConnector = idx < processFlow.stages.length - 1;
+
+            return (
+              <div key={stage.id} className="relative flex flex-col">
+                <article
+                  className={`expertise-card ${isBlue ? 'accent-blue' : ''} group p-5 flex flex-col justify-between gap-4 h-full`}
+                >
+                  <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-100 dark:border-white/[0.08]">
+                    <div
+                      className={`expertise-icon-tile ${
+                        isBlue ? 'expertise-icon-tile-blue' : 'expertise-icon-tile-green'
+                      } w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
+                        isBlue
+                          ? 'bg-[#0B65B3]/10 text-[#0B65B3] dark:bg-[#0B65B3]/20 dark:text-[#60A5FA]'
+                          : 'bg-[#8DC63F]/15 text-[#38700D] dark:text-[#8DC63F]'
+                      }`}
+                    >
+                      <Icon className="w-5 h-5" aria-hidden="true" />
+                    </div>
+
+                    <span
+                      className={`font-mono text-xs font-bold tabular-nums px-2.5 py-1 rounded-full ${
+                        isBlue
+                          ? 'bg-[#0B65B3]/10 text-[#0B65B3] dark:bg-[#0B65B3]/20 dark:text-[#60A5FA]'
+                          : 'bg-[#8DC63F]/15 text-[#38700D] dark:text-[#8DC63F]'
+                      }`}
+                    >
+                      {stage.stepCode}
+                    </span>
+                  </div>
+
+                  <div className="space-y-1.5 flex-1">
+                    <h5 className="text-[15.5px] sm:text-base font-bold text-[#0A192F] dark:text-white leading-snug tracking-tight">
+                      {stage.title}
+                    </h5>
+                    <p className="text-[13.5px] sm:text-sm font-normal text-[#475569] dark:text-[#CBD5E1] leading-[1.55]">
+                      {stage.description}
+                    </p>
+                  </div>
+                </article>
+
+                {hasConnector && (
+                  <span
+                    aria-hidden="true"
+                    className="hidden lg:flex absolute top-1/2 -right-[26px] -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-white dark:bg-[#111827] border border-[#0B65B3]/25 dark:border-white/15 shadow-sm items-center justify-center text-[#0B65B3] dark:text-[#8DC63F]"
+                  >
+                    <ChevronRight className="w-3.5 h-3.5 stroke-[2.5]" />
+                  </span>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {processFlow.footnote && (
+          <div className="rounded-xl bg-[#F4F8FC] dark:bg-[#090F1A] border border-slate-200/80 dark:border-white/10 border-l-4 border-l-[#0B65B3] px-4 sm:px-5 py-3.5 flex items-start sm:items-center gap-3">
+            <ShieldCheck
+              className="w-4 h-4 text-[#0B65B3] dark:text-[#8DC63F] shrink-0 mt-0.5 sm:mt-0"
+              aria-hidden="true"
+            />
+            <p className="text-[14px] sm:text-[14.5px] font-medium text-[#334155] dark:text-[#CBD5E1] leading-[1.55]">
+              {processFlow.footnote}
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
 
 const RISK_ITEM_ICONS: Record<string, LucideIcon> = {
@@ -746,7 +879,10 @@ export default function StepCard({ step, index, isDarkBand = false }: StepCardPr
         </div>
       )}
 
-      {/* Standalone Step Diagrams (e.g. Earthing steps 1-5) */}
+      {/* Interactive Multi-Stage Process Flow (Earthing Step 1) */}
+      {step.processFlow && <ProcessFlowShowcase processFlow={step.processFlow} />}
+
+      {/* Standalone Step Diagrams (e.g. Earthing steps 2-5) */}
       {!hasTwoColumnChecklist && step.images && step.images.length > 0 && (
         <div
           className={`grid gap-5 ${
