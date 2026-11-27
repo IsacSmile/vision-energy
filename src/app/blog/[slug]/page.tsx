@@ -11,14 +11,12 @@ interface BlogPostPageProps {
   params?: Promise<{ slug: string }> | { slug: string };
 }
 
-async function resolveParams(params: BlogPostPageProps["params"]) {
+async function resolveParams(params: BlogPostPageProps["params"]): Promise<{ slug: string }> {
   if (!params) return { slug: "" };
   try {
-    if (typeof (params as any).then === "function") {
-      return (await params) || { slug: "" };
-    }
-    return (params as any) || { slug: "" };
-  } catch (e) {
+    const resolved = await Promise.resolve(params);
+    return resolved || { slug: "" };
+  } catch {
     return { slug: "" };
   }
 }
@@ -35,6 +33,15 @@ export async function generateStaticParams() {
 export const dynamicParams = true;
 export const revalidate = 300;
 
+function fitBlogMeta(text: string, max: number): string {
+  const clean = text.replace(/\s+/g, " ").trim();
+  if (clean.length <= max) return clean;
+  const sliced = clean.slice(0, Math.max(0, max - 1));
+  const lastSpace = sliced.lastIndexOf(" ");
+  const base = lastSpace > Math.floor(max * 0.55) ? sliced.slice(0, lastSpace) : sliced;
+  return `${base.replace(/[,.;:\-—|]+$/, "").trim()}…`;
+}
+
 export async function generateMetadata({ params }: BlogPostPageProps) {
   const { slug } = await resolveParams(params);
   if (!slug) return { title: "Article Not Found" };
@@ -42,8 +49,9 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
   const post = await getPublishedBlogPostBySlug(slug);
   if (!post) return { title: "Article Not Found" };
 
-  const title = `${post.title} | Vision Energy UAE`;
-  const description = post.subheading;
+  const rawTitle = `${post.title} | Vision Energy`;
+  const title = rawTitle.length <= 60 ? rawTitle : fitBlogMeta(post.title, 60);
+  const description = fitBlogMeta(post.subheading || post.title, 155);
 
   return {
     title,
@@ -109,44 +117,69 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       })
     : "";
 
+  const formattedUpdatedDate = post.updatedAt
+    ? new Date(post.updatedAt).toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      })
+    : formattedDate;
+
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": post.title,
-    "description": post.subheading,
-    "image": post.coverImage ? [post.coverImage] : ["https://www.visionenergyme.com/images/products-collage-banner.jpg"],
-    "datePublished": post.publishedAt ? new Date(post.publishedAt).toISOString() : undefined,
-    "dateModified": post.updatedAt ? new Date(post.updatedAt).toISOString() : undefined,
-    "author": {
-      "@type": "Organization",
-      "name": "Vision Energy Engineering Team",
-      "url": "https://www.visionenergyme.com",
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Vision Energy International UAE",
-      "url": "https://www.visionenergyme.com",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.visionenergyme.com/main-logo-vision.png",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": `https://www.visionenergyme.com/blog/${post.slug}#article`,
+        "headline": post.title,
+        "description": post.subheading,
+        "image": post.coverImage ? [post.coverImage] : ["https://www.visionenergyme.com/images/products-collage-banner.jpg"],
+        "datePublished": post.publishedAt ? new Date(post.publishedAt).toISOString() : undefined,
+        "dateModified": post.updatedAt ? new Date(post.updatedAt).toISOString() : undefined,
+        "author": {
+          "@type": "Organization",
+          "@id": "https://www.visionenergyme.com/#organization",
+          "name": "Vision Energy International",
+        },
+        "publisher": {
+          "@id": "https://www.visionenergyme.com/#organization",
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": `https://www.visionenergyme.com/blog/${post.slug}`,
+        },
       },
-    },
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": `https://www.visionenergyme.com/blog/${post.slug}`,
-    },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.visionenergyme.com" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.visionenergyme.com/blog" },
+          { "@type": "ListItem", "position": 3, "name": post.title, "item": `https://www.visionenergyme.com/blog/${post.slug}` },
+        ],
+      },
+    ],
   };
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 space-y-8 sm:space-y-12">
-      {/* JSON-LD Article Structured Data */}
+      {/* JSON-LD BlogPosting & Breadcrumb Structured Data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* Back Link */}
-      <div>
+      {/* Breadcrumb + Back Link */}
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <nav aria-label="Breadcrumb" className="text-xs text-[#A9B4C0] font-medium flex items-center gap-2">
+          <Link href="/" className="hover:text-white transition-colors">Home</Link>
+          <span aria-hidden="true">/</span>
+          <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
+          <span aria-hidden="true">/</span>
+          <span className="text-[#8DC63F] truncate max-w-[220px] sm:max-w-sm" aria-current="page">
+            {post.title}
+          </span>
+        </nav>
+
         <Link
           href="/blog"
           className="inline-flex items-center gap-2 text-xs font-semibold text-[#A9B4C0] hover:text-[#8DC63F] transition-colors min-h-[40px] active-press"
@@ -165,7 +198,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           {formattedDate && (
             <span className="flex items-center gap-1.5 text-[#A9B4C0] font-medium">
               <Calendar className="w-3.5 h-3.5 text-gray-500" />
-              {formattedDate}
+              Published: {formattedDate}
+            </span>
+          )}
+          {formattedUpdatedDate && (
+            <span className="text-[#A9B4C0] font-medium">
+              · Updated: {formattedUpdatedDate}
             </span>
           )}
         </div>
@@ -197,7 +235,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       )}
 
       {/* Article Body Content */}
-      <main className="border-t border-[#1F2937]/80 pt-8 text-[#D1D5DB] text-base sm:text-[18px] leading-[1.85] space-y-6">
+      <article className="border-t border-[#1F2937]/80 pt-8 text-[#D1D5DB] text-base sm:text-[18px] leading-[1.85] space-y-6">
+        <section aria-labelledby="article-technical-context" className="p-5 rounded-xl bg-[#0D1117] border border-white/10 space-y-2">
+          <h2 id="article-technical-context" className="text-lg sm:text-xl font-bold text-white">
+            Technical Engineering Overview
+          </h2>
+          <p className="text-sm sm:text-base text-[#A9B4C0] leading-relaxed">
+            {post.subheading}
+          </p>
+        </section>
+
         {post.bodyImage && secondPartHtml ? (
           <>
             <div dangerouslySetInnerHTML={{ __html: firstPartHtml }} />
@@ -218,7 +265,27 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         ) : (
           <div dangerouslySetInnerHTML={{ __html: sanitizedBodyHtml }} />
         )}
-      </main>
+
+        <section aria-labelledby="article-related-guides" className="mt-10 p-6 rounded-2xl bg-[#0D1117] border border-white/10 space-y-4">
+          <h2 id="article-related-guides" className="text-xl font-bold text-white">
+            Related Engineering Guides &amp; Product Systems
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm font-semibold">
+            <Link href="/expertise/lightning" className="p-3 rounded-xl bg-[#050608] border border-white/10 hover:border-[#8DC63F] text-[#8DC63F] transition-colors">
+              Lightning Protection Engineering Guide →
+            </Link>
+            <Link href="/expertise/earthing" className="p-3 rounded-xl bg-[#050608] border border-white/10 hover:border-[#8DC63F] text-[#8DC63F] transition-colors">
+              Earthing &amp; Surge Protection Guide →
+            </Link>
+            <Link href="/glossary" className="p-3 rounded-xl bg-[#050608] border border-white/10 hover:border-[#8DC63F] text-white transition-colors">
+              Engineering Terminology Glossary →
+            </Link>
+            <Link href="/contact" className="p-3 rounded-xl bg-[#050608] border border-white/10 hover:border-[#8DC63F] text-white transition-colors">
+              Request UAE / Qatar Submittal →
+            </Link>
+          </div>
+        </section>
+      </article>
 
       {/* Bottom Footer Link */}
       <footer className="pt-8 border-t border-[#1F2937]/80">

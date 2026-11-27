@@ -5,25 +5,25 @@ import { getPublishedBlogPosts } from "@/lib/data/posts";
 import { ArrowRight, ChevronRight } from "lucide-react";
 
 export const metadata = {
-  title: "Engineering Blog & Technical Guides UAE | Lightning Protection & Earthing",
+  title: 'Engineering Blog & Technical Guides UAE | Vision Energy',
   description:
-    "Expert technical articles on IEC 62305 lightning protection, low resistance earthing in high-resistivity desert soils, ESE air terminals, and UAE DEWA/Civil Defense regulations.",
+    'Technical guides on IEC 62305 lightning protection, BS 7430 earthing in UAE soil, SPD surge coordination & approvals for UAE and Qatar projects.',
   keywords: [
-    "Lightning Protection Guide UAE",
-    "Earthing Soil Resistivity Dubai",
-    "IEC 62305 Compliance UAE",
-    "ESE vs Conventional Lightning Protection",
-    "Vision Energy Blog",
+    'Lightning Protection Guide UAE',
+    'Earthing Soil Resistivity Dubai',
+    'IEC 62305 Compliance UAE',
+    'ESE vs Conventional Lightning Protection',
+    'Vision Energy Blog Qatar UAE',
   ],
   alternates: {
-    canonical: "https://www.visionenergyme.com/blog",
+    canonical: 'https://www.visionenergyme.com/blog',
   },
   openGraph: {
-    title: "Engineering Blog & Technical Guides UAE | Vision Energy",
+    title: 'Engineering Blog & Technical Guides UAE | Vision Energy',
     description:
-      "Expert technical guides on lightning protection, low-resistance earthing, and electrical codes across the UAE.",
-    url: "https://www.visionenergyme.com/blog",
-    type: "website",
+      'Technical guides on IEC 62305 lightning protection, BS 7430 earthing, and electrical codes across UAE & Qatar.',
+    url: 'https://www.visionenergyme.com/blog',
+    type: 'website',
   },
 };
 
@@ -54,13 +54,21 @@ export default async function BlogPage() {
 
         {/* Description */}
         <p className="text-base lg:text-[18px] text-[#A9B4C0] leading-[1.65] max-w-[60ch]">
-          Knowledge base articles on international electrical codes, lightning risk mitigation, and earthing system design for UAE projects.
+          Knowledge base articles on international electrical codes, lightning risk mitigation, and earthing system design for UAE and Qatar projects.
         </p>
 
-        {/* Article Count Meta Line */}
-        <p className="text-[13px] text-[#A9B4C0] font-medium pt-1">
-          {posts.length} technical articles
-        </p>
+        {/* Cross-links & Count Meta Line */}
+        <div className="flex flex-wrap items-center gap-4 text-[13px] text-[#A9B4C0] font-medium pt-1">
+          <span>{posts.length} technical articles</span>
+          <span aria-hidden="true">·</span>
+          <Link href="/expertise" className="text-[#8DC63F] hover:underline">
+            Engineering Expertise Hub
+          </Link>
+          <span aria-hidden="true">·</span>
+          <Link href="/glossary" className="text-[#8DC63F] hover:underline">
+            Technical Glossary
+          </Link>
+        </div>
       </div>
 
       {/* Grid of Blog Posts */}

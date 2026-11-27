@@ -244,7 +244,7 @@ export default function HomeHeroClient() {
   const { openServiceModal } = useEnquiryModal();
   const [sliderState, setSliderState] = useState<{ active: number; loaded: number[] }>({
     active: 0,
-    loaded: [0, 1],
+    loaded: [0],
   });
   const [isHovered, setIsHovered] = useState(false);
 
@@ -397,7 +397,7 @@ export default function HomeHeroClient() {
                 priority={idx === 0}
                 loading={idx === 0 ? 'eager' : 'lazy'}
                 fetchPriority={idx === 0 ? 'high' : 'low'}
-                quality={90}
+                quality={78}
                 className={`object-cover object-center brightness-[1.12] contrast-[1.05] transition-transform duration-[4500ms] ease-out ${
                   isActive ? 'scale-105' : 'scale-100'
                 }`}
