@@ -8,6 +8,7 @@ import {
   ArrowRight,
   ArrowUpRight,
   Zap,
+  CloudLightning,
   Layers,
   PhoneCall,
   ShieldCheck,
@@ -44,7 +45,7 @@ const HERO_SLIDES: SlideData[] = [
     shortName: 'Lightning',
     badge: 'The Lightning Protection Experts',
     badgeIcon: Zap,
-    titleLine1: 'Advanced Lightning',
+    titleLine1: 'Conventional Lightning',
     titleLine2: 'Protection Systems',
     subtitle: 'Essential Safety for Your Assets',
     description:
@@ -54,7 +55,25 @@ const HERO_SLIDES: SlideData[] = [
     imageUrl:
       'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795763212/Lightning_Protection_System-1.png',
     imageAlt:
-      'Advanced lightning protection systems - Early Streamer Emission ESE air terminals, conventional copper rods, and surge protection devices SPDs',
+      'lightning protection systems - Early Streamer Emission ESE air terminals, conventional copper rods, and surge protection devices SPDs',
+  },
+  {
+    id: 'ese-lightning-protection',
+    category: 'ESE Lightning Protection System',
+    shortName: 'ESE Lightning',
+    badge: 'Active Early Streamer Emission',
+    badgeIcon: CloudLightning,
+    titleLine1: 'Early Streamer Emission',
+    titleLine2: 'ESE Lightning Protection',
+    subtitle: 'Wide-Radius Active Air Terminals (NF C 17-102)',
+    description:
+      'Active Early Streamer Emission (ESE) air terminals, elevated masts, strike counters, and dedicated down conductors engineered for wide-radius rooftop protection across the UAE.',
+    ctaText: 'Explore ESE Systems',
+    ctaLink: '/products/early-streamer-emission-lightning-protection-systems',
+    imageUrl:
+      'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795783014/Rooftop_Lightning.png',
+    imageAlt:
+      'Rooftop Early Streamer Emission (ESE) lightning protection air terminal mast and down conductor installation UAE',
   },
   {
     id: 'earthing',
@@ -601,11 +620,11 @@ export default function HomeHeroClient() {
                   <span className="relative z-10 whitespace-nowrap sm:hidden">{slide.shortName}</span>
                   <span className="relative z-10 whitespace-nowrap hidden sm:inline">{slide.category}</span>
                 </button>
-                {/* Break cleanly after the 6th box so desktop shows 6 boxes on top row and 5 on bottom row */}
+                {/* Break cleanly after the 6th box on xl+ so desktop shows 6 boxes on top row and 6 on bottom row */}
                 {idx === 5 && (
                   <span
                     aria-hidden="true"
-                    className="hidden lg:block basis-full h-0 sm:-my-1.5 pointer-events-none"
+                    className="hidden xl:block basis-full h-0 sm:-my-1.5 pointer-events-none"
                   />
                 )}
               </React.Fragment>
