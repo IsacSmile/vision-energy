@@ -70,7 +70,7 @@ const HERO_SLIDES: SlideData[] = [
     ctaText: 'Explore Earthing',
     ctaLink: '/products?group=ER',
     imageUrl:
-      'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361171/06_Earthing_1920x1080.jpg.webp',
+      'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795768322/Industrial_Earthing_Pit_and_Grounding_System.png',
     imageAlt:
       'Earthing and grounding solutions - Copper earth rods, exothermic welding, earth pit, and copper tape conductors',
   },
@@ -160,7 +160,7 @@ const HERO_SLIDES: SlideData[] = [
     ctaText: 'Explore Safety Products',
     ctaLink: '/products?group=SF',
     imageUrl:
-      'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361170/04_Electronics_1920x1080.jpg.webp',
+      'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795769502/Safety-equipment.png',
     imageAlt:
       'Workplace protection, automation, and safety equipment supply - Industrial sensors, limit controls, safety relays, and instrumentation',
   },
