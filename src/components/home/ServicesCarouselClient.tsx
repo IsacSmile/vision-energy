@@ -89,7 +89,7 @@ const CAROUSEL_SERVICES: ServiceCardItem[] = [
       'Engineered low-resistance earth grids (<1Ω / <2Ω), deep well ground electrodes, exothermic welding, and equipotential bonding compliant with DEWA and BS 7430.',
     icon: Layers,
     image: {
-      url: 'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795759863/Earthing_600x750.jpg',
+      url: 'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795771701/Industrial_Earthing_Solutions_Showcase.png',
       alt: 'Engineered earthing and grounding system installation UAE',
     },
     metaChip: 'DEWA & SEWA Compliant',
