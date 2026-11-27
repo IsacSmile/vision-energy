@@ -17,6 +17,7 @@ import {
   HeartPulse,
   Landmark,
   PawPrint,
+  Server,
   ShieldCheck,
   TrendingDown,
   Users,
@@ -48,9 +49,168 @@ const PROCESS_FLOW_ICONS: Record<ProcessFlowStage['iconKey'], LucideIcon> = {
   electrode: ArrowDownToLine,
   bonding: GitMerge,
   test: ClipboardCheck,
+  incoming: Zap,
+  distribution: Server,
+  circuit: Cpu,
 };
 
-function ProcessFlowShowcase({ processFlow }: { processFlow: ProcessFlowConfig }) {
+function ProcessFlowStagesGrid({ stages }: { stages: ProcessFlowStage[] }) {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-7 items-stretch">
+      {stages.map((stage, idx) => {
+        const Icon = PROCESS_FLOW_ICONS[stage.iconKey] || ShieldCheck;
+        const isBlue = idx % 2 === 0;
+        const hasConnector = idx < stages.length - 1;
+
+        return (
+          <div key={stage.id} className="relative flex flex-col">
+            <article
+              className={`expertise-card ${isBlue ? 'accent-blue' : ''} group p-5 flex flex-col justify-between gap-4 h-full`}
+            >
+              <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-100 dark:border-white/[0.08]">
+                <div
+                  className={`expertise-icon-tile ${
+                    isBlue ? 'expertise-icon-tile-blue' : 'expertise-icon-tile-green'
+                  } w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
+                    isBlue
+                      ? 'bg-[#0B65B3]/10 text-[#0B65B3] dark:bg-[#0B65B3]/20 dark:text-[#60A5FA]'
+                      : 'bg-[#8DC63F]/15 text-[#38700D] dark:text-[#8DC63F]'
+                  }`}
+                >
+                  <Icon className="w-5 h-5" aria-hidden="true" />
+                </div>
+
+                <span
+                  className={`font-mono text-xs font-bold tabular-nums px-2.5 py-1 rounded-full ${
+                    isBlue
+                      ? 'bg-[#0B65B3]/10 text-[#0B65B3] dark:bg-[#0B65B3]/20 dark:text-[#60A5FA]'
+                      : 'bg-[#8DC63F]/15 text-[#38700D] dark:text-[#8DC63F]'
+                  }`}
+                >
+                  {stage.stepCode}
+                </span>
+              </div>
+
+              <div className="space-y-1.5 flex-1">
+                <h5 className="text-[15.5px] sm:text-base font-bold text-[#0A192F] dark:text-white leading-snug tracking-tight">
+                  {stage.title}
+                </h5>
+                <p className="text-[13.5px] sm:text-sm font-normal text-[#475569] dark:text-[#CBD5E1] leading-[1.55]">
+                  {stage.description}
+                </p>
+              </div>
+            </article>
+
+            {hasConnector && (
+              <span
+                aria-hidden="true"
+                className="hidden lg:flex absolute top-1/2 -right-[26px] -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-white dark:bg-[#111827] border border-[#0B65B3]/25 dark:border-white/15 shadow-sm items-center justify-center text-[#0B65B3] dark:text-[#8DC63F]"
+              >
+                <ChevronRight className="w-3.5 h-3.5 stroke-[2.5]" />
+              </span>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function ProcessFlowShowcase({
+  processFlow,
+  companionImage,
+}: {
+  processFlow: ProcessFlowConfig;
+  companionImage?: ExpertiseImage;
+}) {
+  if (companionImage) {
+    return (
+      <div className="space-y-6 pt-1">
+        {/* Top Split Bento: Deep Navy Process Brief + Footnote | Companion Engineering Photo */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-stretch">
+          <div
+            data-preserve-contrast="true"
+            className="expertise-navy-band lg:col-span-5 relative overflow-hidden rounded-2xl bg-[linear-gradient(150deg,#0A192F_0%,#0E2546_65%,#0B65B3_135%)] border border-[#8DC63F]/30 p-6 sm:p-7 flex flex-col justify-between gap-6 shadow-[0_14px_34px_-12px_rgba(10,25,47,0.32)]"
+          >
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute top-0 left-0 right-0 h-[3px] bg-[#8DC63F]"
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -top-12 -right-12 w-44 h-44 rounded-full bg-[#8DC63F]/15 blur-2xl"
+            />
+
+            <div className="relative z-10 flex items-center justify-between gap-3 pt-1">
+              <div className="w-11 h-11 rounded-xl bg-[#8DC63F]/15 border border-[#8DC63F]/35 text-[#8DC63F] flex items-center justify-center shrink-0">
+                <Zap className="w-5 h-5" aria-hidden="true" />
+              </div>
+              <div aria-hidden="true" className="flex items-center gap-1.5">
+                {processFlow.stages.map((st, i) => (
+                  <span
+                    key={st.id}
+                    className={`h-1.5 rounded-full ${
+                      i % 2 === 0 ? 'w-5 bg-[#8DC63F]' : 'w-2.5 bg-white/35'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <div className="relative z-10 space-y-2.5">
+              <h4 className="text-base sm:text-lg font-bold uppercase tracking-[0.05em] text-white leading-snug">
+                {processFlow.heading}
+              </h4>
+              <p className="text-[14.5px] sm:text-[15px] font-normal text-slate-200 leading-[1.6]">
+                {processFlow.subheading}
+              </p>
+            </div>
+
+            {processFlow.footnote && (
+              <div className="relative z-10 pt-4 border-t border-white/15 flex items-start gap-2.5">
+                <ShieldCheck className="w-4 h-4 text-[#8DC63F] shrink-0 mt-0.5" aria-hidden="true" />
+                <p className="text-[13px] sm:text-[13.5px] font-normal text-slate-200 leading-[1.55]">
+                  {processFlow.footnote}
+                </p>
+              </div>
+            )}
+          </div>
+
+          <figure className="group expertise-card accent-blue lg:col-span-7 p-4 sm:p-5 flex flex-col justify-between">
+            <div className="rounded-xl bg-[#F4F8FC] dark:bg-[#0B1220] border border-[#0B65B3]/15 dark:border-white/10 p-2.5 sm:p-3 flex-1 flex items-center justify-center">
+              <div
+                className="relative w-full overflow-hidden rounded-lg"
+                style={{ aspectRatio: `${companionImage.width} / ${companionImage.height}` }}
+              >
+                <Image
+                  src={companionImage.src}
+                  alt={companionImage.alt}
+                  width={companionImage.width}
+                  height={companionImage.height}
+                  unoptimized
+                  loading="lazy"
+                  decoding="async"
+                  sizes="(max-width: 1024px) 100vw, 620px"
+                  className="expertise-card-img w-full h-full object-cover"
+                />
+              </div>
+            </div>
+
+            {companionImage.caption && (
+              <figcaption className="mt-3.5 pt-3 border-t border-slate-100 dark:border-white/10 flex items-center gap-2.5 text-[13px] font-medium text-[#334155] dark:text-[#CBD5E1] leading-snug px-1">
+                <span className="w-2 h-2 rounded-full bg-[#0B65B3] shrink-0" aria-hidden="true" />
+                <span>{companionImage.caption}</span>
+              </figcaption>
+            )}
+          </figure>
+        </div>
+
+        {/* Full-Width Interactive 4-Stage Pipeline */}
+        <ProcessFlowStagesGrid stages={processFlow.stages} />
+      </div>
+    );
+  }
+
   return (
     <div className="rounded-2xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0D1117] shadow-[0_6px_24px_-8px_rgba(10,25,47,0.1)] dark:shadow-[0_10px_28px_-10px_rgba(0,0,0,0.5)] overflow-hidden">
       {/* Dark Navy Feature Header Strip */}
@@ -94,63 +254,7 @@ function ProcessFlowShowcase({ processFlow }: { processFlow: ProcessFlowConfig }
 
       {/* Interactive Stage Flow Cards & Bottom Design Criteria Note */}
       <div className="p-5 sm:p-6 lg:p-7 space-y-5">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-7 items-stretch">
-          {processFlow.stages.map((stage, idx) => {
-            const Icon = PROCESS_FLOW_ICONS[stage.iconKey] || ShieldCheck;
-            const isBlue = idx % 2 === 0;
-            const hasConnector = idx < processFlow.stages.length - 1;
-
-            return (
-              <div key={stage.id} className="relative flex flex-col">
-                <article
-                  className={`expertise-card ${isBlue ? 'accent-blue' : ''} group p-5 flex flex-col justify-between gap-4 h-full`}
-                >
-                  <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-100 dark:border-white/[0.08]">
-                    <div
-                      className={`expertise-icon-tile ${
-                        isBlue ? 'expertise-icon-tile-blue' : 'expertise-icon-tile-green'
-                      } w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
-                        isBlue
-                          ? 'bg-[#0B65B3]/10 text-[#0B65B3] dark:bg-[#0B65B3]/20 dark:text-[#60A5FA]'
-                          : 'bg-[#8DC63F]/15 text-[#38700D] dark:text-[#8DC63F]'
-                      }`}
-                    >
-                      <Icon className="w-5 h-5" aria-hidden="true" />
-                    </div>
-
-                    <span
-                      className={`font-mono text-xs font-bold tabular-nums px-2.5 py-1 rounded-full ${
-                        isBlue
-                          ? 'bg-[#0B65B3]/10 text-[#0B65B3] dark:bg-[#0B65B3]/20 dark:text-[#60A5FA]'
-                          : 'bg-[#8DC63F]/15 text-[#38700D] dark:text-[#8DC63F]'
-                      }`}
-                    >
-                      {stage.stepCode}
-                    </span>
-                  </div>
-
-                  <div className="space-y-1.5 flex-1">
-                    <h5 className="text-[15.5px] sm:text-base font-bold text-[#0A192F] dark:text-white leading-snug tracking-tight">
-                      {stage.title}
-                    </h5>
-                    <p className="text-[13.5px] sm:text-sm font-normal text-[#475569] dark:text-[#CBD5E1] leading-[1.55]">
-                      {stage.description}
-                    </p>
-                  </div>
-                </article>
-
-                {hasConnector && (
-                  <span
-                    aria-hidden="true"
-                    className="hidden lg:flex absolute top-1/2 -right-[26px] -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-white dark:bg-[#111827] border border-[#0B65B3]/25 dark:border-white/15 shadow-sm items-center justify-center text-[#0B65B3] dark:text-[#8DC63F]"
-                  >
-                    <ChevronRight className="w-3.5 h-3.5 stroke-[2.5]" />
-                  </span>
-                )}
-              </div>
-            );
-          })}
-        </div>
+        <ProcessFlowStagesGrid stages={processFlow.stages} />
 
         {processFlow.footnote && (
           <div className="rounded-xl bg-[#F4F8FC] dark:bg-[#090F1A] border border-slate-200/80 dark:border-white/10 border-l-4 border-l-[#0B65B3] px-4 sm:px-5 py-3.5 flex items-start sm:items-center gap-3">
@@ -879,11 +983,16 @@ export default function StepCard({ step, index, isDarkBand = false }: StepCardPr
         </div>
       )}
 
-      {/* Interactive Multi-Stage Process Flow (Earthing Step 1) */}
-      {step.processFlow && <ProcessFlowShowcase processFlow={step.processFlow} />}
+      {/* Interactive Multi-Stage Process Flow (Earthing Step 1 & Step 3) */}
+      {step.processFlow && (
+        <ProcessFlowShowcase
+          processFlow={step.processFlow}
+          companionImage={step.images?.[0]}
+        />
+      )}
 
-      {/* Standalone Step Diagrams (e.g. Earthing steps 2-5) */}
-      {!hasTwoColumnChecklist && step.images && step.images.length > 0 && (
+      {/* Standalone Step Diagrams (steps without dedicated showcase components) */}
+      {!hasTwoColumnChecklist && !step.processFlow && step.images && step.images.length > 0 && (
         <div
           className={`grid gap-5 ${
             step.images.length > 1 ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1 max-w-4xl'

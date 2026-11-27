@@ -73,12 +73,21 @@ export interface SubTabPanel {
   iconItems?: StepCardItem[];
 }
 
+export type ProcessFlowIconKey =
+  | 'soil'
+  | 'electrode'
+  | 'bonding'
+  | 'test'
+  | 'incoming'
+  | 'distribution'
+  | 'circuit';
+
 export interface ProcessFlowStage {
   id: string;
   stepCode: string;
   title: string;
   description: string;
-  iconKey: 'soil' | 'electrode' | 'bonding' | 'test';
+  iconKey: ProcessFlowIconKey;
 }
 
 export interface ProcessFlowConfig {

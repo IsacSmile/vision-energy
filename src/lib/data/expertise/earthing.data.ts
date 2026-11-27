@@ -75,16 +75,43 @@ export const earthingData: ExpertiseTabConfig = {
       title: 'Surge Protection & Commissioning',
       intro:
         'External protection should be supported by internal protection wherever sensitive electrical or electronic equipment is present. Vision Energy can provide coordinated surge protection and bonding solutions for electrical distribution systems and critical services.',
-      cardColumns: 2,
+      processFlow: {
+        heading: 'Surge Protection & Equipotential Bonding',
+        subheading: 'Coordinated internal protection for distribution systems and sensitive equipment',
+        stages: [
+          {
+            id: 'incoming-energy',
+            stepCode: '01',
+            title: 'Incoming Energy',
+            description: 'Type 1 SPD at the main incoming supply',
+            iconKey: 'incoming',
+          },
+          {
+            id: 'distribution',
+            stepCode: '02',
+            title: 'Distribution',
+            description: 'Type 2 SPD at distribution level',
+            iconKey: 'distribution',
+          },
+          {
+            id: 'sensitive-circuits',
+            stepCode: '03',
+            title: 'Sensitive Circuits',
+            description: 'Type 3 / data protection at critical equipment',
+            iconKey: 'circuit',
+          },
+          {
+            id: 'bonding',
+            stepCode: '04',
+            title: 'Bonding',
+            description: 'Equipotential bonding provides a coordinated reference',
+            iconKey: 'bonding',
+          },
+        ],
+        footnote:
+          'Select and coordinate surge protective devices in accordance with the electrical installation and project requirements.',
+      },
       images: [
-        {
-          src: '/images/expertise/earthing/surge-protection-bonding-flow.webp',
-          alt: 'Surge protection and equipotential bonding flow: Incoming Energy, Distribution, Sensitive Circuits, and Bonding',
-          width: 1200,
-          height: 675,
-          caption: 'Surge protection and equipotential bonding flow.',
-          surface: 'light',
-        },
         {
           src: '/images/expertise/earthing/surge-protection-commissioning.webp',
           alt: 'Engineers testing and commissioning surge protection devices and equipotential earth bar inside an electrical distribution panel',
