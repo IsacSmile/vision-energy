@@ -59,12 +59,12 @@ const HERO_SLIDES: SlideData[] = [
   },
   {
     id: 'ese-lightning-protection',
-    category: 'ESE',
+    category: 'ESE Lightning Protection System',
     shortName: 'ESE Lightning',
     badge: 'Active Early Streamer Emission',
     badgeIcon: CloudLightning,
-    titleLine1: 'Early Streamer Emission',
-    titleLine2: 'ESE Lightning Protection',
+    titleLine1: 'ESE Lightning',
+    titleLine2: 'Protection System',
     subtitle: 'Wide-Radius Active Air Terminals (NF C 17-102)',
     description:
       'Active Early Streamer Emission (ESE) air terminals, elevated masts, strike counters, and dedicated down conductors engineered for wide-radius rooftop protection across the UAE.',
