@@ -149,3 +149,4 @@ Full sitemap contains **128 URLs**: `6` static routes (`/`, `/products`, `/exper
 | **P1** | Programmatic (Wave 1) | Launch Wave 1 city service pages (`/solutions/[service]/[city]` or clean flat routes for **Dubai, Abu Dhabi, Ras Al Khaimah × Lightning & Earthing** — 6 high-utility `>=400`-word unique pages, plus UAE Gym & Lab / Qatar compliant scoped pages if passing gate) | **High** | High |
 | **P2** | AEO & CRO | Add `40–60`-word `"Quick answer"` blocks on key landing pages, wire Clarity/DOM conversion event tracking (`tel`, `WhatsApp`, `email`, enquiry, brochure), add `/thank-you` conversion confirmation route & sticky mobile Call/WhatsApp accessibility | **High** | Medium |
 | **P2** | Strategy Docs | Produce complete `/seo/*` CSV/Markdown playbook deliverables & run final multi-template mobile Lighthouse QA (`>= 90` target across Perf, A11y, BP, SEO) | **High** | Low |
+
