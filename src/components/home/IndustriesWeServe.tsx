@@ -152,7 +152,7 @@ export default function IndustriesWeServe() {
     <section
       id="industries-we-serve"
       aria-labelledby="industries-we-serve-heading"
-      className="py-10 sm:py-12 lg:py-14 bg-[#F4F8FC] dark:bg-[#080C14] relative border-b border-slate-200/80 dark:border-white/[0.08]"
+      className="py-8 sm:py-10 bg-[#F4F8FC] dark:bg-[#080C14] relative border-b border-slate-200/80 dark:border-white/[0.08]"
     >
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-7">
         <div className="flex items-center gap-3">

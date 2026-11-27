@@ -15,6 +15,7 @@ import {
   Compass,
   Cpu,
   DraftingCompass,
+  FileCheck,
   FileText,
   Flame,
   FolderSearch,
@@ -24,8 +25,11 @@ import {
   Landmark,
   MapPin,
   PawPrint,
+  Radar,
   Server,
+  Shield,
   ShieldCheck,
+  Target,
   TrendingDown,
   Users,
   Wrench,
@@ -468,6 +472,169 @@ const RISK_ITEM_ICONS: Record<string, LucideIcon> = {
   'economic-impacts': TrendingDown,
 };
 
+const EFFECT_ITEM_ICONS: Record<string, LucideIcon> = {
+  'personnel-safety': HardHat,
+  'direct-strike-protection': Zap,
+  'fire-prevention': Flame,
+  'structural-protection': Shield,
+  'equipment-protection': Server,
+};
+
+const FUNCTION_ITEM_ICONS: Record<string, LucideIcon> = {
+  detection: Radar,
+  interception: Target,
+  dissipation: ArrowDownToLine,
+  prevention: ShieldCheck,
+  continuity: Activity,
+  compliance: FileCheck,
+};
+
+const UAE_IMPACT_ICONS: LucideIcon[] = [Building2, ShieldCheck, Radar];
+
+function ArchitecturalInfoCard({
+  card,
+  icon: Icon,
+  badge,
+  isBlue = false,
+  className = '',
+}: {
+  card: StepCardItem;
+  icon: LucideIcon;
+  badge?: string;
+  isBlue?: boolean;
+  className?: string;
+}) {
+  return (
+    <article
+      className={`expertise-card ${isBlue ? 'accent-blue' : ''} group p-6 flex flex-col gap-4 h-full ${className}`}
+    >
+      <div className="relative z-10 flex items-center justify-between gap-3 pb-3.5 border-b border-slate-100 dark:border-white/[0.08]">
+        <div className="flex items-center gap-3.5 min-w-0">
+          <div
+            className={`expertise-icon-tile ${
+              isBlue ? 'expertise-icon-tile-blue' : 'expertise-icon-tile-green'
+            } w-11 h-11 rounded-xl flex items-center justify-center shrink-0 ${
+              isBlue
+                ? 'bg-[#0B65B3]/10 text-[#0B65B3] dark:bg-[#0B65B3]/20 dark:text-[#60A5FA]'
+                : 'bg-[#8DC63F]/15 text-[#38700D] dark:text-[#8DC63F]'
+            }`}
+          >
+            <Icon className="w-5 h-5" aria-hidden="true" />
+          </div>
+
+          <h4 className="text-lg sm:text-[19px] font-bold text-[#0A192F] dark:text-white leading-snug tracking-tight">
+            {card.title}
+          </h4>
+        </div>
+
+        {badge && (
+          <span
+            className={`font-mono text-xs font-bold tabular-nums px-2.5 py-1 rounded-full shrink-0 ${
+              isBlue
+                ? 'bg-[#0B65B3]/10 text-[#0B65B3] dark:bg-[#0B65B3]/20 dark:text-[#60A5FA]'
+                : 'bg-[#8DC63F]/15 text-[#38700D] dark:text-[#8DC63F]'
+            }`}
+          >
+            {badge}
+          </span>
+        )}
+      </div>
+
+      {card.description && (
+        <p className="relative z-10 text-[15px] font-normal text-[#334155] dark:text-[#CBD5E1] leading-[1.65] pr-4">
+          {card.description}
+        </p>
+      )}
+
+      <Icon
+        className="expertise-risk-ghost pointer-events-none absolute -bottom-4 -right-3 w-24 h-24"
+        aria-hidden="true"
+      />
+    </article>
+  );
+}
+
+function EffectsRequirementShowcase({ cards }: { cards: StepCardItem[] }) {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-5 items-stretch pt-1">
+      {cards.map((card, idx) => {
+        const Icon = EFFECT_ITEM_ICONS[card.id] || ShieldCheck;
+        const isBottomWide = idx >= 3;
+        const spanClass = isBottomWide
+          ? idx === 4
+            ? 'md:col-span-2 lg:col-span-3'
+            : 'md:col-span-1 lg:col-span-3'
+          : 'lg:col-span-2';
+        return (
+          <ArchitecturalInfoCard
+            key={card.id}
+            card={card}
+            icon={Icon}
+            badge={String(idx + 1).padStart(2, '0')}
+            isBlue={idx % 2 === 1}
+            className={spanClass}
+          />
+        );
+      })}
+    </div>
+  );
+}
+
+function FunctionalitySequenceShowcase({ cards }: { cards: StepCardItem[] }) {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch pt-1">
+      {cards.map((card, idx) => {
+        const Icon = FUNCTION_ITEM_ICONS[card.id] || ShieldCheck;
+        return (
+          <ArchitecturalInfoCard
+            key={card.id}
+            card={card}
+            icon={Icon}
+            badge={String(idx + 1).padStart(2, '0')}
+            isBlue
+          />
+        );
+      })}
+    </div>
+  );
+}
+
+function UaeImpactShowcase({ paragraphs }: { paragraphs: string[] }) {
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-stretch pt-2">
+      {paragraphs.map((paragraph, idx) => {
+        const Icon = UAE_IMPACT_ICONS[idx % UAE_IMPACT_ICONS.length];
+        return (
+          <article
+            key={idx}
+            data-preserve-contrast="true"
+            className="expertise-card-navy group p-6 flex flex-col gap-5 h-full"
+          >
+            <div className="relative z-10 flex items-center justify-between gap-3 pb-3.5 border-b border-white/12">
+              <div className="expertise-icon-tile expertise-icon-tile-green w-11 h-11 rounded-xl bg-[#8DC63F]/15 border border-[#8DC63F]/30 flex items-center justify-center shrink-0 text-[#8DC63F]">
+                <Icon className="w-5 h-5" aria-hidden="true" />
+              </div>
+
+              <span className="font-mono text-xs font-bold tabular-nums px-2.5 py-1 rounded-full bg-[#0B65B3]/30 border border-white/15 text-white">
+                {String(idx + 1).padStart(2, '0')}
+              </span>
+            </div>
+
+            <p className="relative z-10 text-[15px] font-normal text-slate-200 leading-[1.65] flex-1 pr-3">
+              {paragraph}
+            </p>
+
+            <Icon
+              className="expertise-safety-ghost pointer-events-none absolute -bottom-3 -right-3 w-24 h-24"
+              aria-hidden="true"
+            />
+          </article>
+        );
+      })}
+    </div>
+  );
+}
+
 function RisksBentoShowcase({ cards }: { cards: StepCardItem[] }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-6 gap-5 items-stretch pt-1">
@@ -552,39 +719,13 @@ function RisksBentoShowcase({ cards }: { cards: StepCardItem[] }) {
         }
 
         return (
-          <article
+          <ArchitecturalInfoCard
             key={card.id}
-            className={`expertise-card ${isBlueAccent ? 'accent-blue' : ''} group md:col-span-3 p-6 flex flex-col gap-4 h-full`}
-          >
-            <div className="relative z-10 flex items-center gap-3.5 pb-3.5 border-b border-slate-100 dark:border-white/[0.08]">
-              <div
-                className={`expertise-icon-tile ${
-                  isBlueAccent ? 'expertise-icon-tile-blue' : 'expertise-icon-tile-green'
-                } w-11 h-11 rounded-xl flex items-center justify-center shrink-0 ${
-                  isBlueAccent
-                    ? 'bg-[#0B65B3]/10 text-[#0B65B3] dark:bg-[#0B65B3]/20 dark:text-[#60A5FA]'
-                    : 'bg-[#8DC63F]/15 text-[#38700D] dark:text-[#8DC63F]'
-                }`}
-              >
-                <Icon className="w-5 h-5" aria-hidden="true" />
-              </div>
-
-              <h4 className="text-lg sm:text-[19px] font-bold text-[#0A192F] dark:text-white leading-snug tracking-tight">
-                {card.title}
-              </h4>
-            </div>
-
-            {card.description && (
-              <p className="relative z-10 text-[15px] font-normal text-[#334155] dark:text-[#CBD5E1] leading-[1.65] pr-4">
-                {card.description}
-              </p>
-            )}
-
-            <Icon
-              className="expertise-risk-ghost pointer-events-none absolute -bottom-4 -right-3 w-24 h-24"
-              aria-hidden="true"
-            />
-          </article>
+            card={card}
+            icon={Icon}
+            isBlue={isBlueAccent}
+            className="md:col-span-3"
+          />
         );
       })}
     </div>
@@ -766,6 +907,25 @@ function FramedDiagram({ image, compact = false }: { image: ExpertiseImage; comp
               sizes="(max-width: 768px) 100vw, 360px"
               className="expertise-card-img w-full h-full object-contain rounded-lg"
             />
+          </div>
+        ) : image.surface === 'light' ? (
+          <div className="w-full rounded-xl bg-white p-3 sm:p-4 border border-slate-200/75 shadow-[inset_0_1px_4px_rgba(10,25,47,0.04)] overflow-hidden">
+            <div
+              className="relative w-full"
+              style={{ aspectRatio: `${image.width} / ${image.height}` }}
+            >
+              <Image
+                src={image.src}
+                alt={image.alt}
+                width={image.width}
+                height={image.height}
+                unoptimized
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 768px) 100vw, 680px"
+                className="expertise-card-img w-full h-full object-contain"
+              />
+            </div>
           </div>
         ) : (
           <div
@@ -1119,7 +1279,11 @@ export default function StepCard({ step, index, isDarkBand = false }: StepCardPr
         {step.intro && (
           <p
             className={`relative z-10 text-[15px] sm:text-base font-normal leading-[1.6] max-w-4xl ${
-              isDarkBand ? 'text-slate-200' : 'text-[#334155] dark:text-[#CBD5E1]'
+              step.id === 'uae-impact'
+                ? 'border-l-4 border-[#8DC63F] pl-4 sm:pl-5 text-slate-100 text-base sm:text-[17px] leading-[1.65]'
+                : isDarkBand
+                ? 'text-slate-200'
+                : 'text-[#334155] dark:text-[#CBD5E1]'
             }`}
           >
             {step.intro}
@@ -1127,21 +1291,29 @@ export default function StepCard({ step, index, isDarkBand = false }: StepCardPr
         )}
       </div>
 
-      {/* Additional Paragraphs */}
-      {step.paragraphs && step.paragraphs.length > 0 && !hasTwoColumnChecklist && (
-        <div className="space-y-3 max-w-4xl">
-          {step.paragraphs.map((paragraph, pIdx) => (
-            <p
-              key={pIdx}
-              className={`text-[15px] sm:text-base font-normal leading-[1.6] ${
-                isDarkBand ? 'text-slate-300' : 'text-[#475569] dark:text-[#A9B4C0]'
-              }`}
-            >
-              {paragraph}
-            </p>
-          ))}
-        </div>
+      {/* UAE Impact Structured Dark-Glass Pillars (Step 8) */}
+      {step.id === 'uae-impact' && step.paragraphs && step.paragraphs.length > 0 && (
+        <UaeImpactShowcase paragraphs={step.paragraphs} />
       )}
+
+      {/* Additional Paragraphs */}
+      {step.id !== 'uae-impact' &&
+        step.paragraphs &&
+        step.paragraphs.length > 0 &&
+        !hasTwoColumnChecklist && (
+          <div className="space-y-3 max-w-4xl">
+            {step.paragraphs.map((paragraph, pIdx) => (
+              <p
+                key={pIdx}
+                className={`text-[15px] sm:text-base font-normal leading-[1.6] ${
+                  isDarkBand ? 'text-slate-300' : 'text-[#475569] dark:text-[#A9B4C0]'
+                }`}
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        )}
 
       {/* Protection Levels Chart + Navy Compliance Callout + Structured Criteria Grid (Step 6) */}
       {hasTwoColumnChecklist && step.images?.[0] && step.checklist && (
@@ -1157,18 +1329,32 @@ export default function StepCard({ step, index, isDarkBand = false }: StepCardPr
         <RisksBentoShowcase cards={step.cards} />
       )}
 
-      {/* Cards Grid (MediaCards & InfoCards, max 3 per row) */}
-      {step.id !== 'risks' && step.cards && step.cards.length > 0 && (
-        <div className={cardGridClass}>
-          {step.cards.map((card) => (
-            <InfoCard
-              key={card.id}
-              item={card}
-              accentTone={isBlueCards ? 'blue' : 'green'}
-            />
-          ))}
-        </div>
+      {/* Effects & Requirement Asymmetric 3+2 Bento (Step 3) */}
+      {step.id === 'effects-requirement' && step.cards && step.cards.length === 5 && (
+        <EffectsRequirementShowcase cards={step.cards} />
       )}
+
+      {/* Functionality 6-Stage Operational Sequence (Step 5) */}
+      {step.id === 'functionality' && step.cards && step.cards.length === 6 && (
+        <FunctionalitySequenceShowcase cards={step.cards} />
+      )}
+
+      {/* Cards Grid (MediaCards & default InfoCards, max 3 per row) */}
+      {step.id !== 'risks' &&
+        step.id !== 'effects-requirement' &&
+        step.id !== 'functionality' &&
+        step.cards &&
+        step.cards.length > 0 && (
+          <div className={cardGridClass}>
+            {step.cards.map((card) => (
+              <InfoCard
+                key={card.id}
+                item={card}
+                accentTone={isBlueCards ? 'blue' : 'green'}
+              />
+            ))}
+          </div>
+        )}
 
       {/* Technical Standards & References Blocks (Earthing Step 5) */}
       {step.standardsReference && (

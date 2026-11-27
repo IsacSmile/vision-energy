@@ -149,21 +149,40 @@ export default function InfoCard({
 
   // Variant 2: MediaCard (Formation stages 1-4, LPS components 1-6)
   if (item.image) {
+    const isPhoto = item.image.surface === 'photo';
     return (
       <div className="expertise-card group flex flex-col h-full">
-        <div className="relative w-full aspect-[4/3] overflow-hidden border-b border-slate-200/80 dark:border-white/10 bg-[#F4F8FC] dark:bg-[#0A111C] p-3 sm:p-4 flex items-center justify-center">
-          <Image
-            src={item.image.src}
-            alt={item.image.alt}
-            width={item.image.width}
-            height={item.image.height}
-            unoptimized
-            loading="lazy"
-            decoding="async"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
-            className="expertise-card-img max-w-full max-h-full w-auto h-auto object-contain"
-          />
-        </div>
+        {isPhoto ? (
+          <div className="relative w-full aspect-[4/3] overflow-hidden border-b border-slate-200/80 dark:border-white/10 bg-[#0A192F]">
+            <Image
+              src={item.image.src}
+              alt={item.image.alt}
+              width={item.image.width}
+              height={item.image.height}
+              unoptimized
+              loading="lazy"
+              decoding="async"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 440px"
+              className="expertise-card-img w-full h-full object-cover"
+            />
+          </div>
+        ) : (
+          <div className="relative w-full aspect-[4/3] overflow-hidden border-b border-slate-200/80 dark:border-white/10 bg-[#F4F8FC] dark:bg-[#0A111C] p-3 sm:p-4 flex items-center justify-center">
+            <div className="w-full h-full rounded-xl bg-white p-2.5 sm:p-3 border border-slate-200/75 shadow-[inset_0_1px_4px_rgba(10,25,47,0.04)] overflow-hidden flex items-center justify-center">
+              <Image
+                src={item.image.src}
+                alt={item.image.alt}
+                width={item.image.width}
+                height={item.image.height}
+                unoptimized
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
+                className="expertise-card-img max-w-full max-h-full w-auto h-auto object-contain"
+              />
+            </div>
+          </div>
+        )}
 
         <div className="p-6 flex-1 flex flex-col gap-1.5">
           <h4 className="text-lg sm:text-[19px] font-semibold text-[#0A192F] dark:text-white leading-[1.35]">

@@ -148,7 +148,7 @@ export default function WhyVisionEnergy() {
     <section
       id="why-vision-energy"
       aria-labelledby="why-vision-energy-heading"
-      className="py-10 sm:py-12 lg:py-14 bg-white dark:bg-[#050608] relative border-b border-slate-200/80 dark:border-white/[0.08]"
+      className="py-8 sm:py-10 lg:py-12 bg-white dark:bg-[#050608] relative border-b border-slate-200/80 dark:border-white/[0.08]"
     >
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 relative z-10">
         {/* Section Header */}

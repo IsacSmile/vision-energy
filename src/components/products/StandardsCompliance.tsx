@@ -162,7 +162,7 @@ export default function StandardsCompliance() {
     <section
       id="standards-compliance"
       aria-label="LPS Standards and Authority Compliance"
-      className="py-8 sm:py-10 lg:py-12 bg-[#F4F8FC] dark:bg-[#080C14] border-b border-slate-200/80 dark:border-white/[0.08]"
+      className="py-7 sm:py-9 bg-[#F4F8FC] dark:bg-[#080C14] border-b border-slate-200/80 dark:border-white/[0.08]"
     >
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
