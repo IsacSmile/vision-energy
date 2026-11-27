@@ -178,7 +178,7 @@ const HERO_SLIDES: SlideData[] = [
     ctaText: 'Explore Products',
     ctaLink: '/products',
     imageUrl:
-      'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/09_Electrical_1920x1080-optimized.webp',
+      'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795769851/Industrial.png',
     imageAlt:
       'Vision Energy - Quality industrial and technical products showroom in UAE: distribution panels, circuit breakers, cable trays, and rigid conduits',
   },
@@ -214,7 +214,7 @@ const HERO_SLIDES: SlideData[] = [
     ctaText: 'Explore Sports Products',
     ctaLink: '/products?group=SP',
     imageUrl:
-      'https://res.cloudinary.com/m6fi2bs5/image/upload/f_auto,q_auto/v1795361169/05_Gym_1920x1080-optimized.webp',
+      'https://res.cloudinary.com/m6fi2bs5/image/upload/v1795769981/sports.png',
     imageAlt:
       'Sports equipment and accessories - Premium commercial athletic equipment, dumbbells, weights, rowing machines, and fitness accessories',
   },
