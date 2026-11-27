@@ -144,8 +144,8 @@ const SECTORS = [
 ];
 
 /**
- * Compact 10-sector grid positioned at the top of /expertise presenting the
- * facility types Vision Energy supports across the UAE and Qatar.
+ * Compact 10-sector grid positioned on the homepage between Our Clients and Get in touch,
+ * presenting the facility types Vision Energy supports across the UAE and Qatar.
  */
 export default function IndustriesWeServe() {
   return (

@@ -1355,5 +1355,31 @@ html.light .service-flip-back {
   }
 }
 
+/* 19. Products Explorer Hierarchical Sidebar & Cards in Light Mode */
+html.light #products-explorer aside .hover\:bg-white\/5:hover,
+html.light #products-explorer main .hover\:bg-white\/5:hover,
+html.light #products-explorer [role="dialog"] .hover\:bg-white\/5:hover {
+  background-color: #F1F5F9 !important;
+}
+
+html.light #products-explorer aside .hover\:text-white:hover,
+html.light #products-explorer main .hover\:text-white:not([class*="bg-[#0B65B3]"]):hover,
+html.light #products-explorer [role="dialog"] .hover\:text-white:hover {
+  color: #0F172A !important;
+}
+
+html.light #products-explorer aside .bg-white\/\[0\.08\] {
+  background-color: #F1F5F9 !important;
+}
+
+html.light #products-explorer main .bg-\[\#0D1117\]\/40 {
+  background-color: #F8FAFC !important;
+}
+
+html.light #products-explorer main .hover\:bg-\[\#161B22\]\/50:hover {
+  background-color: #F8FAFC !important;
+}
+
+
 
 

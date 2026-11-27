@@ -1,33 +1,34 @@
 import React, { Suspense } from "react";
 import { Metadata } from "next";
 import { getPublishedProductCategories } from "@/lib/data/products";
+import { resolveProductTaxonomy } from "@/lib/product-taxonomy";
 import ProductsExplorer, { CategoryExplorerItem } from "@/components/products/ProductsExplorer";
 import ProductsLoading from "./loading";
 
-interface PageProps {
-  searchParams?: Promise<{
-    q?: string;
-    group?: string;
-    codes?: string;
-    sort?: string;
-    view?: string;
-  }> | {
-    q?: string;
-    group?: string;
-    codes?: string;
-    sort?: string;
-    view?: string;
-  };
+interface SearchParamsShape {
+  q?: string;
+  group?: string;
+  main?: string;
+  sub?: string;
+  codes?: string;
+  sort?: string;
+  view?: string;
 }
 
-async function resolveSearchParams(searchParams: PageProps["searchParams"]) {
+interface PageProps {
+  searchParams?: Promise<SearchParamsShape> | SearchParamsShape;
+}
+
+async function resolveSearchParams(
+  searchParams: PageProps["searchParams"]
+): Promise<SearchParamsShape> {
   if (!searchParams) return {};
   try {
-    if (typeof (searchParams as any).then === "function") {
+    if ("then" in searchParams && typeof searchParams.then === "function") {
       return (await searchParams) || {};
     }
-    return (searchParams as any) || {};
-  } catch (e) {
+    return (searchParams as SearchParamsShape) || {};
+  } catch {
     return {};
   }
 }
@@ -36,7 +37,7 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   const params = await resolveSearchParams(searchParams);
 
   const hasQueryParams = Boolean(
-    params.q || params.group || params.codes || params.sort || params.view
+    params.q || params.group || params.main || params.sub || params.codes || params.sort || params.view
   );
 
   return {
@@ -99,7 +100,7 @@ export const revalidate = 300;
 export default async function ProductsPage({ searchParams }: PageProps) {
   const params = await resolveSearchParams(searchParams);
 
-  let rawCategories: any[] = [];
+  let rawCategories: Awaited<ReturnType<typeof getPublishedProductCategories>> = [];
   try {
     rawCategories = await getPublishedProductCategories();
   } catch (e) {
@@ -108,12 +109,17 @@ export default async function ProductsPage({ searchParams }: PageProps) {
 
   const categories: CategoryExplorerItem[] = (rawCategories || []).map((cat) => {
     const group = (cat.group || "").toUpperCase();
+    const taxonomy = resolveProductTaxonomy(cat.code, group, cat.groupLabel || group);
 
     return {
       code: cat.code,
       slug: cat.slug,
       group,
       groupLabel: cat.groupLabel || group,
+      mainCategoryId: taxonomy.mainId,
+      mainCategoryLabel: taxonomy.mainLabel,
+      subcategoryId: taxonomy.subId,
+      subcategoryLabel: taxonomy.subLabel,
       sortOrder: cat.sortOrder,
       priority: cat.priority,
       title: cat.title,
@@ -146,6 +152,8 @@ export default async function ProductsPage({ searchParams }: PageProps) {
 
   const initialQ = params.q ? params.q.slice(0, 80) : "";
   const initialGroup = params.group ? params.group.toUpperCase() : "ALL";
+  const initialMain = params.main ? params.main.toLowerCase() : "";
+  const initialSub = params.sub ? params.sub.toLowerCase() : "";
   const initialCodes = params.codes
     ? params.codes
         .split(",")
@@ -166,6 +174,8 @@ export default async function ProductsPage({ searchParams }: PageProps) {
           categories={categories}
           initialQ={initialQ}
           initialGroup={initialGroup}
+          initialMain={initialMain}
+          initialSub={initialSub}
           initialCodes={initialCodes}
           initialSort={initialSort}
           initialView={initialView}

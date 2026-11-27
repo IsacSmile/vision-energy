@@ -5,6 +5,7 @@ import IntroStandards from '@/components/home/IntroStandards';
 import ServicesPreview from '@/components/home/ServicesPreview';
 import ProductsWeOffer from '@/components/home/ProductsWeOffer';
 import OurPartners from '@/components/home/OurPartners';
+import IndustriesWeServe from '@/components/home/IndustriesWeServe';
 import FinalCTA from '@/components/home/FinalCTA';
 import SmoothScroll from '@/components/common/SmoothScroll';
 import { FALLBACK_CATEGORIES } from '@/lib/fallback-categories';
@@ -102,7 +103,12 @@ export default async function HomePage() {
 
         <HairlineDivider />
 
-        {/* 6. FINAL CTA (#050608) */}
+        {/* 6. INDUSTRIES WE SERVE */}
+        <IndustriesWeServe />
+
+        <HairlineDivider />
+
+        {/* 7. FINAL CTA (#050608) */}
         <FinalCTA bgClass="bg-[#050608]" />
       </div>
     </SmoothScroll>

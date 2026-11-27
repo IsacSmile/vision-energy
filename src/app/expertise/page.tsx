@@ -3,7 +3,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronRight, ArrowRight } from 'lucide-react';
 import WhyVisionEnergy from '@/components/home/WhyVisionEnergy';
-import IndustriesWeServe from '@/components/home/IndustriesWeServe';
 import StandardsCompliance from '@/components/products/StandardsCompliance';
 import FinalCTA from '@/components/home/FinalCTA';
 import ExpertiseClient from '@/components/expertise/ExpertiseClient';
@@ -220,16 +219,13 @@ export default function ExpertisePage() {
         {/* SECTION C: WHY VISION ENERGY (Shared, Top Capability Pillars) */}
         <WhyVisionEnergy />
 
-        {/* SECTION D: INDUSTRIES WE SERVE (Shared, Top Sector Matrix) */}
-        <IndustriesWeServe />
-
-        {/* SECTION E: INTERACTIVE EXPERTISE TABS */}
+        {/* SECTION D: INTERACTIVE EXPERTISE TABS */}
         <ExpertiseClient />
 
-        {/* SECTION F: AEO TECHNICAL FAQ & QUICK ANSWERS */}
+        {/* SECTION E: AEO TECHNICAL FAQ & QUICK ANSWERS */}
         <ExpertiseFaqSection />
 
-        {/* SECTION G: FINAL CTA (Shared) */}
+        {/* SECTION F: FINAL CTA (Shared) */}
         <FinalCTA variant="minimal" />
       </div>
     </>

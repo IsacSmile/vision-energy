@@ -21,6 +21,7 @@ import {
 import { FaPhoneIcon } from '@/components/ui/FaIcons';
 import { CategoryExplorerItem } from './ProductsExplorer';
 import { getGroupIcon } from '@/lib/group-icons';
+import { resolveProductTaxonomy } from '@/lib/product-taxonomy';
 import { getCategoryPlaceholder } from '@/lib/utils/placeholders';
 import { dictionary } from '@/lib/dictionary';
 import { trackConversion } from '@/lib/analytics';
@@ -223,6 +224,9 @@ function ProductPreviewDialog({
   const photoUrl = category.imageUrl || placeholder.imageUrl;
   const photoAlt = category.imageAlt || placeholder.imageAlt;
   const isPlaceholder = category.isPlaceholder ?? !category.imageUrl;
+  const taxonomy = resolveProductTaxonomy(category.code, category.group, category.groupLabel);
+  const mainLabel = category.mainCategoryLabel || taxonomy.mainLabel;
+  const subLabel = category.subcategoryLabel || taxonomy.subLabel;
 
   const handleSubmitEnquiry = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -583,7 +587,10 @@ function ProductPreviewDialog({
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-[#8DC63F]/15 dark:bg-[#8DC63F]/20 text-[11px] font-bold uppercase tracking-[0.1em] text-[#3F6E0C] dark:text-[#8DC63F]">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#689F1B] dark:bg-[#8DC63F]" />
-                    {category.groupLabel}
+                    {mainLabel}
+                  </span>
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-[#0B65B3]/10 dark:bg-[#0B65B3]/25 text-[11px] font-semibold text-[#0B65B3] dark:text-[#60A5FA] border border-[#0B65B3]/20 dark:border-[#0B65B3]/40">
+                    ↳ {subLabel}
                   </span>
                   <span className="text-xs font-mono font-semibold text-[#475569] dark:text-[#CBD5E1] px-2 py-0.5 rounded-md bg-slate-100 dark:bg-white/[0.06] border border-slate-200/80 dark:border-white/10">
                     Code: {category.code}
