@@ -156,7 +156,7 @@ export const lightningData: ExpertiseTabConfig = {
     {
       id: 'engineered-network',
       stepNumber: 4,
-      title: 'A Complete Engineered Protection Network',
+      title: 'Components - We have used',
       intro:
         'A lightning protection system is not simply a lightning rod on a roof. It is a complete engineered protection network comprising air terminals, down conductors, bonding connections, earth electrodes and, where required, surge protection devices.',
       paragraphs: [
