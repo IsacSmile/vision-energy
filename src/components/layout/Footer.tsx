@@ -306,7 +306,7 @@ export default function Footer({ services = [] }: FooterProps) {
                   <MapPin className="w-4 h-4 text-[#8DC63F] shrink-0 mt-0.5" />
                   <div className="space-y-1 text-xs leading-relaxed">
                     <span className="block !text-white/90 font-medium">
-                      RAK Business Centre BC4, RAK FTZ Business Park, P.O Box 17111, Al Nakheel, Ras Al Khaimah, UAE
+                      HQ: Ras Al Khaimah, UAE
                     </span>
                     <span className="block !text-white/70">
                       Branches: Dubai &amp; Abu Dhabi · Markets: UAE &amp; Qatar

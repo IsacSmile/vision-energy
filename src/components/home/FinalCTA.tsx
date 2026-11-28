@@ -287,8 +287,7 @@ export default function FinalCTA({
                   <dd>
                     <p className="text-[18px] font-medium text-white">
                       Abu Dhabi <span className="text-[#A9B4C0] mx-2">·</span> Dubai{' '}
-                      <span className="text-[#A9B4C0] mx-2">·</span> Ras Al Khaimah{' '}
-                      <span className="text-[#A9B4C0] mx-2">·</span> Qatar
+                      <span className="text-[#A9B4C0] mx-2">·</span> Ras Al Khaimah
                     </p>
                   </dd>
                 </div>
