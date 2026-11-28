@@ -88,13 +88,13 @@ export default async function HomePage() {
 
         <HairlineDivider />
 
-        {/* 3. SPECIALISED SERVICES PREVIEW (#0D1117) */}
-        <ServicesPreview />
+        {/* 3. PRODUCTS WE OFFER */}
+        <ProductsWeOffer />
 
         <HairlineDivider />
 
-        {/* 4. PRODUCTS WE OFFER */}
-        <ProductsWeOffer />
+        {/* 4. SPECIALISED SERVICES PREVIEW (#0D1117) */}
+        <ServicesPreview />
 
         <HairlineDivider />
 
